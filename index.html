@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OHI Solutions · Site pentru afacerea ta · 500 lei</title>
+<meta name="description" content="Site de prezentare pentru afaceri locale, gata de pus online. Preț fix: 500 lei.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#121A33; --paper:#F6F7FB; --white:#FFFFFF; --cobalt:#2E4BFF; --cobalt-d:#1F34C7;
+  --tag:#FFB020; --line:#DCE0EE; --muted:#5B6485; --soft:#E9ECF7; --ok:#16A36A; --err:#D6342C;
+  --display:"Bricolage Grotesque", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --body:"Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --ink:#EEF1FB; --paper:#0F1426; --white:#161D36; --line:#2A3356; --muted:#A5AED0; --soft:#1B2342; --cobalt:#6F85FF; --cobalt-d:#8FA0FF; }
+}
+:root[data-theme="dark"]{ --ink:#EEF1FB; --paper:#0F1426; --white:#161D36; --line:#2A3356; --muted:#A5AED0; --soft:#1B2342; --cobalt:#6F85FF; --cobalt-d:#8FA0FF; }
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.6;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--tag);outline-offset:3px;border-radius:6px}
+.wrap{max-width:70rem;margin:0 auto;padding:0 1.25rem}
+h1,h2,h3{font-family:var(--display);line-height:1.05;letter-spacing:-.02em;margin:0}
+h2{font-size:clamp(2rem,5.5vw,3.2rem);font-weight:800;max-width:18ch}
+.lede{color:var(--muted);max-width:36rem;margin:.8rem 0 0;font-size:1.1rem}
+section{padding:4.5rem 0}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:1rem}
+.brand{font-family:var(--display);font-weight:800;font-size:1.3rem;text-decoration:none;letter-spacing:-.02em}
+.brand i{display:inline-block;width:.55em;height:.55em;border-radius:2px;background:var(--cobalt);margin-right:.35em;transform:translateY(-.05em)}
+nav.links{display:flex;gap:1.4rem;font-weight:600;font-size:.95rem}
+nav.links a{text-decoration:none;color:var(--muted)}
+nav.links a:hover{color:var(--ink)}
+@media (max-width:760px){nav.links{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border:0;border-radius:12px;padding:.85rem 1.3rem;font:inherit;font-weight:700;text-decoration:none;cursor:pointer}
+.btn-main{background:var(--cobalt);color:#fff}
+.btn-main:hover{background:var(--cobalt-d)}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--line)}
+.btn-sm{padding:.55rem .95rem;font-size:.95rem}
+
+/* hero */
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;padding-top:3.5rem;padding-bottom:4.5rem}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:2.5rem;padding-top:2.2rem}}
+.hero h1{font-size:clamp(2.6rem,7.4vw,4.9rem);font-weight:800;max-width:13ch}
+.hero .lede{font-size:1.18rem}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.8rem}
+.facts{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;margin:1.8rem 0 0;padding:0;list-style:none;color:var(--muted);font-weight:600;font-size:.95rem}
+.facts li::before{content:"✓";color:var(--ok);font-weight:800;margin-right:.45rem}
+
+/* the build animation */
+.stage{position:relative}
+.browser{background:var(--white);border:1px solid var(--line);border-radius:18px;box-shadow:0 30px 60px -30px rgba(18,26,51,.35);overflow:hidden}
+.bar{display:flex;align-items:center;gap:.4rem;padding:.7rem .9rem;border-bottom:1px solid var(--line);background:var(--soft)}
+.bar span{width:.7rem;height:.7rem;border-radius:50%;background:var(--line)}
+.bar em{margin-left:.6rem;flex:1;font-style:normal;font-size:.8rem;color:var(--muted);background:var(--white);border-radius:6px;padding:.25rem .6rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.page{padding:1.1rem;display:grid;gap:.8rem;min-height:21rem}
+.blk{border-radius:8px;background:var(--soft);position:relative;overflow:hidden}
+.b-nav{height:1.6rem;display:flex;align-items:center;justify-content:space-between;background:transparent}
+.b-nav .logo{width:5.5rem;height:1rem;border-radius:4px;background:var(--soft)}
+.b-nav .dots{display:flex;gap:.4rem}
+.b-nav .dots i{width:2.2rem;height:.6rem;border-radius:4px;background:var(--soft)}
+.b-hero{height:9rem;display:grid;grid-template-columns:1.2fr 1fr;gap:.8rem;background:transparent}
+.b-hero .txt{display:grid;gap:.5rem;align-content:center}
+.b-hero .txt i{height:.9rem;border-radius:4px;background:var(--soft)}
+.b-hero .txt i:nth-child(1){width:95%;height:1.3rem}
+.b-hero .txt i:nth-child(2){width:70%;height:1.3rem}
+.b-hero .txt i:nth-child(3){width:85%}
+.b-hero .txt b{display:block;width:6.5rem;height:1.9rem;border-radius:8px;background:var(--soft);margin-top:.3rem}
+.b-hero .img{border-radius:10px;position:relative;overflow:hidden;background:radial-gradient(circle at 30% 35%,#FFD37A 0 18%,transparent 19%),linear-gradient(160deg,#8FA3FF,#2E4BFF)}
+.b-hero .img::after{content:"";position:absolute;inset:0;background:var(--soft);transition:opacity .7s ease 1.3s}
+.built .b-hero .img::after{opacity:0}
+.b-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;background:transparent}
+.b-cards i{height:4.2rem;border-radius:8px;background:var(--soft)}
+
+/* the "built" state paints over the skeleton, one piece at a time */
+.page .paint{transition:background-color .5s ease, color .5s ease}
+.built .b-nav .logo{background:var(--ink)}
+.built .b-nav .dots i{background:var(--line)}
+.built .b-hero .txt i:nth-child(1),.built .b-hero .txt i:nth-child(2){background:var(--ink)}
+.built .b-hero .txt i:nth-child(3){background:var(--line)}
+.built .b-hero .txt b{background:var(--cobalt)}
+.built .b-cards i:nth-child(1){background:#FFE3A3}
+.built .b-cards i:nth-child(2){background:#CFD8FF}
+.built .b-cards i:nth-child(3){background:#BDEBD6}
+.seq .b-nav .logo{transition-delay:.2s}.seq .b-nav .dots i{transition-delay:.35s}
+.seq .b-hero .txt i{transition-delay:.7s}.seq .b-hero .txt b{transition-delay:1.05s}
+.page:not(.seq) .b-hero .img::after{transition:none}
+.seq .b-cards i:nth-child(1){transition-delay:1.7s}.seq .b-cards i:nth-child(2){transition-delay:1.85s}.seq .b-cards i:nth-child(3){transition-delay:2s}
+.pricetag{position:absolute;right:-.6rem;top:-1.4rem;background:var(--tag);color:#121A33;font-family:var(--display);font-weight:800;font-size:1.6rem;line-height:1;padding:.9rem 1.1rem .8rem 1.4rem;border-radius:10px 16px 16px 10px;box-shadow:0 12px 24px -12px rgba(0,0,0,.4);transform-origin:12% 50%;transform:rotate(-8deg)}
+.pricetag::before{content:"";position:absolute;left:.55rem;top:50%;width:.45rem;height:.45rem;margin-top:-.22rem;border-radius:50%;background:var(--paper)}
+.pricetag small{display:block;font-family:var(--body);font-size:.72rem;font-weight:700;margin-top:.25rem}
+@media (prefers-reduced-motion: no-preference){
+  .js .pricetag{opacity:0;transform:rotate(-8deg) translateY(-14px)}
+  .js .built .pricetag,.js .stage.shown .pricetag{animation:swing 1.1s cubic-bezier(.2,.9,.3,1.3) 2.3s both}
+  @keyframes swing{0%{opacity:0;transform:rotate(-30deg) translateY(-20px)}60%{opacity:1;transform:rotate(4deg)}100%{opacity:1;transform:rotate(-8deg)}}
+}
+
+/* what you get */
+.get{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.get .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:3rem}
+@media (max-width:860px){.get .wrap{grid-template-columns:1fr;gap:1.5rem}}
+.list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 2rem}
+@media (max-width:560px){.list{grid-template-columns:1fr}}
+.list li{padding:1rem 0;border-bottom:1px solid var(--line)}
+.list b{display:block;font-size:1.05rem}
+.list span{color:var(--muted);font-size:.97rem}
+
+/* steps (real sequence) */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.2rem;counter-reset:s}
+@media (max-width:760px){.steps{grid-template-columns:1fr}}
+.step{counter-increment:s;padding-top:1rem;border-top:3px solid var(--ink)}
+.step::before{content:counter(s);font-family:var(--display);font-weight:800;font-size:2.4rem;color:var(--cobalt);line-height:1}
+.step h3{font-size:1.35rem;margin:.5rem 0 .3rem}
+.step p{margin:0;color:var(--muted)}
+
+/* work */
+.work .wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+@media (max-width:860px){.work .wrap{grid-template-columns:1fr}}
+.phone{width:min(17rem,70vw);margin:0 auto;aspect-ratio:9/18.5;border-radius:2.2rem;background:#1b1b1f;padding:.6rem;box-shadow:0 30px 60px -30px rgba(18,26,51,.5)}
+.screen{height:100%;border-radius:1.7rem;overflow:hidden;background:#fff;display:grid;grid-template-rows:auto 1fr}
+.screen .sh{background:#B3261E;color:#fff;padding:1.4rem 1rem 1rem}
+.screen .sh b{font-family:var(--display);font-size:2.2rem;font-weight:800;letter-spacing:-.04em;display:block;line-height:.9}
+.screen .sh span{font-size:.8rem;opacity:.9}
+.screen .sb{padding:.8rem;display:grid;gap:.5rem;align-content:start;background:#fff}
+.screen .sb div{display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:#3A0D12;border-bottom:1px dashed #EBCFCB;padding:.35rem 0}
+.screen .sb div em{font-style:normal;font-weight:700}
+.screen .sb .pick{border:0;gap:.4rem;margin-top:.3rem}
+.screen .sb .pick span{flex:1;text-align:center;border:1.5px solid #EBCFCB;border-radius:8px;padding:.4rem;font-weight:600}
+.screen .sb .pick .on{border-color:#B3261E;background:#FBEDEB}
+.screen .sb .tot{font-weight:700;font-size:.85rem;border:0}
+.screen .sb .go{background:#F2C230;border-radius:999px;justify-content:center;font-weight:700;border:0;margin-top:.3rem;padding:.55rem}
+.work h3{font-size:1.6rem;margin:0 0 .5rem}
+.work p{color:var(--muted);margin:.4rem 0}
+.work .note{font-size:.93rem}
+
+/* price */
+.price{background:var(--ink);color:var(--paper)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .price{background:#1B2342;color:#EEF1FB}}
+.price .wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+@media (max-width:860px){.price .wrap{grid-template-columns:1fr;gap:1.5rem}}
+.price h2{color:inherit}
+.amount{margin:.8rem 0 .4rem;font-family:var(--display);font-weight:800;font-size:clamp(5rem,16vw,9rem);line-height:.85;letter-spacing:-.05em}
+.amount small{font-size:.28em;letter-spacing:0;margin-left:.3rem}
+.price p{opacity:.85;max-width:30rem}
+.price .btn-main{background:var(--tag);color:#121A33;margin-top:1rem}
+.price ul{list-style:none;padding:0;margin:0;display:grid;gap:.55rem}
+.price li{padding-left:1.7rem;position:relative}
+.price li::before{content:"✓";position:absolute;left:0;color:var(--tag);font-weight:800}
+.price .extra{margin-top:1rem;font-size:.93rem;opacity:.75}
+
+/* faq */
+.faq details{border-bottom:1px solid var(--line);padding:1.1rem 0}
+.faq summary{cursor:pointer;font-weight:700;font-size:1.1rem;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--display);font-size:1.5rem;line-height:1;color:var(--cobalt);transition:transform .2s ease}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:.6rem 0 0;color:var(--muted);max-width:44rem}
+.faq .wrap{max-width:52rem}
+
+/* form */
+.contact{background:var(--white);border-top:1px solid var(--line)}
+.contact .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:3rem}
+@media (max-width:860px){.contact .wrap{grid-template-columns:1fr;gap:1.5rem}}
+form{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media (max-width:560px){form{grid-template-columns:1fr}}
+.f{display:grid;gap:.35rem}
+.f.full{grid-column:1/-1}
+label{font-weight:600;font-size:.95rem}
+label small{color:var(--muted);font-weight:500}
+input,select,textarea{width:100%;font:inherit;font-size:1rem;padding:.8rem .9rem;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--cobalt);box-shadow:0 0 0 3px color-mix(in srgb,var(--cobalt) 25%,transparent)}
+textarea{min-height:7rem;resize:vertical}
+.chk{grid-column:1/-1;display:flex;gap:.6rem;align-items:flex-start;font-size:.93rem;color:var(--muted);font-weight:500}
+.chk input{width:1.15rem;height:1.15rem;margin-top:.2rem;accent-color:var(--cobalt);flex:0 0 auto}
+.err{grid-column:1/-1;color:var(--err);font-weight:600;min-height:1.3em;margin:0}
+form .btn{grid-column:1/-1;justify-self:start;font-size:1.05rem;padding:1rem 1.6rem}
+.btn[disabled]{opacity:.6;cursor:wait}
+.done{border:2px solid var(--ok);border-radius:16px;padding:1.5rem}
+.done h3{font-size:1.6rem;margin-bottom:.4rem}
+.done p{margin:.3rem 0;color:var(--muted)}
+.direct{margin-top:1.4rem;display:grid;gap:.4rem;font-weight:600}
+.direct a{text-decoration:none;color:var(--cobalt)}
+
+footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem}
+.paybtn{margin:.6rem 0 .2rem;font-size:1.08rem;padding:1rem 1.5rem}
+.small{font-size:.9rem;color:var(--muted)}
+.paid{background:var(--cobalt);color:#fff;padding:.9rem 0}
+.paid b{margin-right:.3rem}
+.terms{border:1px solid var(--line);border-radius:12px;padding:.7rem .9rem}
+.terms summary{cursor:pointer;font-weight:600}
+.terms p{margin:.5rem 0 0;color:var(--muted);font-size:.93rem;white-space:pre-line}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><i aria-hidden="true"></i><span data-c="brand"></span></a>
+    <nav class="links" aria-label="Meniu">
+      <a href="#ce-primesti">Ce primești</a>
+      <a href="#pret">Preț</a>
+      <a href="#intrebari">Întrebări</a>
+    </nav>
+    <a class="btn btn-main btn-sm" href="#cerere">Cere site-ul</a>
+  </div>
+</header>
+
+<div class="paid" id="paid" role="status" hidden>
+  <div class="wrap"><b>Plata a fost primită. Mulțumesc!</b> Te contactez în curând ca să începem.</div>
+</div>
+<main id="top">
+  <section class="hero" aria-labelledby="h1">
+    <div class="wrap">
+      <div>
+        <h1 id="h1">Site pentru afacerea ta, gata de clienți.</h1>
+        <p class="lede">Un site de prezentare clar, rapid și adaptat pentru telefon, cu formular și buton de WhatsApp. Preț fix, fără surprize.</p>
+        <div class="ctas">
+          <a class="btn btn-main" href="#cerere">Cere site-ul tău</a>
+          <a class="btn btn-ghost" href="#ce-primesti">Vezi ce primești</a>
+        </div>
+        <ul class="facts">
+          <li>Preț fix: 500 lei</li>
+          <li>Arată bine pe telefon</li>
+          <li>Clienții te contactează direct</li>
+        </ul>
+      </div>
+
+      <div class="stage" id="stage" aria-label="Exemplu de site care se construiește">
+        <div class="browser">
+          <div class="bar"><span></span><span></span><span></span><em>afacereata.ro</em></div>
+          <div class="page seq" id="page">
+            <div class="blk b-nav"><i class="logo paint"></i><div class="dots"><i class="paint"></i><i class="paint"></i><i class="paint"></i></div></div>
+            <div class="blk b-hero">
+              <div class="txt"><i class="paint"></i><i class="paint"></i><i class="paint"></i><b class="paint"></b></div>
+              <div class="img paint"></div>
+            </div>
+            <div class="blk b-cards"><i class="paint"></i><i class="paint"></i><i class="paint"></i></div>
+          </div>
+        </div>
+        <div class="pricetag" aria-hidden="true">500 lei<small>preț fix</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="get" id="ce-primesti" aria-labelledby="h-get">
+    <div class="wrap">
+      <div>
+        <h2 id="h-get">Ce primești pentru 500 lei</h2>
+        <p class="lede">Tot ce are nevoie o afacere locală ca să fie găsită și contactată, fără lucruri pe care nu le folosești.</p>
+      </div>
+      <ul class="list" id="pkg"></ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-how">
+    <div class="wrap">
+      <h2 id="h-how">De la mesaj la site online</h2>
+      <div class="steps">
+        <div class="step"><h3>Îmi spui despre afacere</h3><p>Completezi formularul de mai jos. Te sun ca să aflu ce vinzi, cui și cum vrei să arate.</p></div>
+        <div class="step"><h3>Construiesc site-ul</h3><p>Primești o variantă de verificat. Îmi spui ce vrei schimbat și ajustez.</p></div>
+        <div class="step"><h3>Ești online</h3><p>Pun site-ul pe domeniul tău și îți arăt cum primești mesajele de la clienți.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="work" aria-labelledby="h-work">
+    <div class="wrap">
+      <div class="phone" aria-hidden="true">
+        <div class="screen">
+          <div class="sh"><b>LaTine</b><span>Langoși, pizza și plăcinte</span></div>
+          <div class="sb">
+            <div>Langoș cu cașcaval <em>40 RON</em></div>
+            <div>Pizza Margherita <em>54 RON</em></div>
+            <div>Plăcintă cu mere <em>30 RON</em></div>
+            <div>Plăcintă cu brânză <em>35 RON</em></div>
+            <div>Limonadă de casă <em>18 RON</em></div>
+            <div class="pick"><span class="on">Livrare</span><span>Ridic eu</span></div>
+            <div class="tot">Total <em>177 RON</em></div>
+            <div class="go">Trimite comanda</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2 id="h-work">Un proiect real: LaTine</h2>
+        <p>Site de comenzi pentru o afacere cu langoși, pizza și plăcinte din Târgu Mureș, cu două locații.</p>
+        <p>Clienții comandă de pe telefon, comanda ajunge automat la locația potrivită, iar bucătăria și livratorii o văd în aplicația lor.</p>
+        <p class="note">Acesta e un proiect mai complex, făcut la comandă. Pachetul de 500 lei e un site de prezentare.</p>
+        <p><a class="btn btn-ghost btn-sm" href="https://la-tine.vercel.app" target="_blank" rel="noopener">Vezi site-ul LaTine</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="price" id="pret" aria-labelledby="h-price">
+    <div class="wrap">
+      <div>
+        <h2 id="h-price">Un singur preț, spus de la început</h2>
+        <div class="amount" aria-label="500 lei">500<small>lei</small></div>
+        <p>Plătești site-ul o dată. Nu există abonament la mine.</p>
+        <a class="btn btn-main" href="#cerere">Comandă site-ul</a>
+        <p class="small" style="color:inherit;opacity:.8">Completezi datele, apoi plătești online cu cardul.</p>
+      </div>
+      <div>
+        <ul id="pkgShort"></ul>
+        <p class="extra" id="notIncl"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="intrebari" aria-labelledby="h-faq">
+    <div class="wrap">
+      <h2 id="h-faq">Întrebări puse des</h2>
+      <div style="margin-top:1.5rem" id="faq"></div>
+    </div>
+  </section>
+
+  <section class="contact" id="cerere" aria-labelledby="h-form">
+    <div class="wrap">
+      <div>
+        <h2 id="h-form">Cere site-ul tău</h2>
+        <p class="lede">Completează în două minute. Te contactez ca să stabilim detaliile.</p>
+        <div class="direct" id="direct"></div>
+      </div>
+      <div>
+        <form id="form" novalidate>
+          <div class="f"><label for="n">Numele tău</label><input id="n" name="name" autocomplete="name" required></div>
+          <div class="f"><label for="b">Numele afacerii</label><input id="b" name="business" autocomplete="organization" required></div>
+          <div class="f"><label for="p">Telefon</label><input id="p" name="phone" type="tel" inputmode="tel" autocomplete="tel" required></div>
+          <div class="f"><label for="e">Email <small>(opțional)</small></label><input id="e" name="email" type="email" autocomplete="email"></div>
+          <div class="f"><label for="t">Domeniul afacerii</label>
+            <select id="t" name="business_type" required>
+              <option value="">Alege</option>
+              <option>Restaurant, cafenea, fast-food</option>
+              <option>Salon, frizerie, cosmetică</option>
+              <option>Service auto, meșteșugari, construcții</option>
+              <option>Magazin</option>
+              <option>Servicii profesionale</option>
+              <option>Altceva</option>
+            </select></div>
+          <div class="f"><label for="w">De ce ai nevoie</label>
+            <select id="w" name="need" required>
+              <option value="">Alege</option>
+              <option>Site nou (500 lei)</option>
+              <option>Refacerea site-ului actual</option>
+              <option>Site + asistent AI</option>
+              <option>Nu știu încă, vreau un sfat</option>
+            </select></div>
+          <div class="f full"><label for="m">Spune-mi pe scurt despre afacere <small>(opțional)</small></label><textarea id="m" name="message" placeholder="Ce vinzi, unde ești, ai deja un site sau o pagină de Facebook?"></textarea></div>
+          <label class="chk"><input type="checkbox" id="ok" required> <span id="okTxt">Sunt de acord să fiu contactat în legătură cu această cerere.</span></label>
+          <details class="terms f full" id="termsBox" hidden><summary>Termeni și rambursare</summary><p id="termsText"></p></details>
+          <p class="err" id="err" role="alert"></p>
+          <button class="btn btn-main" id="send" type="submit">Trimite cererea</button>
+        </form>
+        <div class="done" id="done" hidden>
+          <div id="payStep" hidden>
+            <h3>Ultimul pas: plata</h3>
+            <p>Datele tale au fost trimise. Plătește 500 lei cu cardul ca să începem.</p>
+            <a class="btn btn-main paybtn" id="payBtn" href="#" rel="noopener">Plătește 500 lei cu cardul</a>
+            <p class="small">Plata e procesată în siguranță de Stripe. Primești confirmarea pe email.</p>
+            <p class="small" id="bundleNote" hidden></p>
+          </div>
+          <div id="talkStep" hidden>
+            <h3>Cererea a fost trimisă</h3>
+            <p>Te contactez în cel mai scurt timp la numărul lăsat.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© <span id="yr"></span> <span data-c="brand"></span></span><span>Site-uri pentru afaceri locale</span></div>
+</footer>
+
+<script>
+/* ================= EDITEAZĂ AICI ================= */
+const CONFIG = {
+  brand: "OHI Solutions",
+  phone: "",                 // ex. "+40712345678" (apare ca buton de apel și WhatsApp)
+  email: "",                 // ex. "contact@firma.ro"
+  webhookUrl: "https://hook.eu2.make.com/pjyknr3dp5tb8b5stpbit53yqluizecy",
+  // Stripe Payment Link pentru acest serviciu (din dashboard-ul Stripe → Payment Links)
+  paymentLink: "",
+  // Setează în Stripe: după plată, redirecționare către adresa site-ului + "?platit=1"
+  otherServiceLink: "",      // opțional: link către celălalt serviciu (pentru pachetul combinat)
+  terms: "",                 // textul tău de termeni și rambursare (obligatoriu înainte de a vinde)            // webhook-ul Make.com pentru formular
+  package: [
+    ["Site de prezentare", "O pagină lungă, cu până la 5 secțiuni: despre, servicii sau meniu, prețuri, galerie, contact."],
+    ["Adaptat pentru telefon", "Arată și merge bine pe orice ecran."],
+    ["Formular de contact", "Cererile clienților ajung direct la tine."],
+    ["Buton de WhatsApp și apel", "Clientul te contactează dintr-o singură atingere."],
+    ["Harta cu locația", "Clienții văd imediat unde te găsesc."],
+    ["O rundă de modificări", "Îmi spui ce vrei schimbat după prima variantă."]
+  ],
+  notIncluded: "Nu sunt incluse: domeniul (se plătește separat, anual), magazinul online și textele de marketing scrise de la zero.",
+  faq: [
+    ["Cât durează?", "De obicei câteva zile de la primirea textelor și a pozelor. Îți spun termenul exact când vorbim."],
+    ["Am nevoie de un domeniu?", "E recomandat, de exemplu numeafacerii.ro. Te ajut să-l alegi și să-l cumperi. Costul domeniului nu e inclus în cei 500 lei."],
+    ["Pot schimba textele după ce e gata?", "Da. O rundă de modificări e inclusă. Schimbările ulterioare se stabilesc separat."],
+    ["Faceți și magazine online?", "Da, dar au alt preț, pentru că au nevoie de coș, plăți și stocuri. Scrie-mi și îți fac o ofertă."],
+    ["Pot adăuga un asistent AI care răspunde clienților?", "Da, prin RAI Solutions, serviciul nostru de asistenți AI. Îl poți cere împreună cu site-ul, bifând opțiunea din formular."]
+  ]
+};
+/* ================================================== */
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+document.documentElement.classList.add("js");
+document.querySelectorAll('[data-c="brand"]').forEach(el => el.textContent = CONFIG.brand);
+$("#yr").textContent = new Date().getFullYear();
+$("#pkg").innerHTML = CONFIG.package.map(([t, d]) => `<li><b>${esc(t)}</b><span>${esc(d)}</span></li>`).join("");
+$("#pkgShort").innerHTML = CONFIG.package.map(([t]) => `<li>${esc(t)}</li>`).join("");
+$("#notIncl").textContent = CONFIG.notIncluded;
+$("#faq").innerHTML = CONFIG.faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join("");
+const digits = CONFIG.phone.replace(/[^\d]/g, "");
+$("#direct").innerHTML = [
+  CONFIG.phone ? `<a href="tel:${esc(CONFIG.phone)}">Sună: ${esc(CONFIG.phone)}</a>` : "",
+  digits ? `<a href="https://wa.me/${digits}" target="_blank" rel="noopener">Scrie pe WhatsApp</a>` : "",
+  CONFIG.email ? `<a href="mailto:${esc(CONFIG.email)}">${esc(CONFIG.email)}</a>` : ""
+].join("");
+
+/* hero: the site paints itself once, when it comes into view */
+const stage = $("#stage"), page = $("#page");
+const build = () => { page.classList.add("built"); stage.classList.add("shown"); };
+if (matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
+  page.classList.remove("seq"); build();
+} else {
+  const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { setTimeout(build, 300); io.disconnect(); } }, { threshold:.4 });
+  io.observe(stage);
+}
+
+/* payment */
+const sendLabel = () => {
+  const need = $("#w").value;
+  return CONFIG.paymentLink && (need === "Site nou (500 lei)" || need === "Site + asistent AI") ? "Continuă la plată" : "Trimite cererea";
+};
+$("#w").addEventListener("change", () => $("#send").textContent = sendLabel());
+if (CONFIG.terms) { $("#termsBox").hidden = false; $("#termsText").textContent = CONFIG.terms; $("#okTxt").textContent = "Sunt de acord să fiu contactat și am citit termenii și condițiile de rambursare."; }
+if (new URLSearchParams(location.search).get("platit") === "1") $("#paid").hidden = false;
+
+/* form */
+$("#form").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.target, err = $("#err");
+  const need = [["n","Scrie-ți numele."],["b","Scrie numele afacerii."],["p","Lasă un număr de telefon ca să te pot suna."],["t","Alege domeniul afacerii."],["w","Alege de ce ai nevoie."]];
+  for (const [id, msg] of need) { if (!$("#" + id).value.trim()) { err.textContent = msg; $("#" + id).focus(); return; } }
+  if ($("#p").value.replace(/[^\d]/g, "").length < 9) { err.textContent = "Numărul de telefon pare incomplet."; $("#p").focus(); return; }
+  if (!$("#ok").checked) { err.textContent = "Bifează acordul ca să te pot contacta."; return; }
+  err.textContent = "";
+  const data = new URLSearchParams(new FormData(f));
+  data.set("source", "site-web-500");
+  data.set("created_at", new Date().toISOString());
+  const b = $("#send"); b.disabled = true; b.textContent = "Se trimite…";
+  const reqId = "REQ-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
+  data.set("request_id", reqId);
+  try {
+    if (!CONFIG.webhookUrl) throw new Error("no webhook");
+    await fetch(CONFIG.webhookUrl, { method:"POST", mode:"no-cors", body:data });
+    f.hidden = true; $("#done").hidden = false;
+    const need = $("#w").value, pays = CONFIG.paymentLink && (need === "Site nou (500 lei)" || need === "Site + asistent AI");
+    $("#payStep").hidden = !pays; $("#talkStep").hidden = !!pays;
+    if (pays) {
+      const u = new URL(CONFIG.paymentLink);
+      u.searchParams.set("client_reference_id", reqId);
+      const em = $("#e").value.trim(); if (em) u.searchParams.set("prefilled_email", em);
+      $("#payBtn").href = u.toString();
+      if (need === "Site + asistent AI") {
+        const n = $("#bundleNote"); n.hidden = false;
+        n.innerHTML = "Asistentul AI se plătește separat" + (CONFIG.otherServiceLink ? ': <a href="' + esc(CONFIG.otherServiceLink) + '" target="_blank" rel="noopener">vezi aici</a>.' : ". Te contactez pentru detalii.");
+      }
+    } $("#done").scrollIntoView({ block:"center" });
+  } catch (x) {
+    err.textContent = "Cererea nu a putut fi trimisă. Încearcă din nou sau contactează-mă direct.";
+  } finally { b.disabled = false; b.textContent = sendLabel(); }
+});
+</script>
+</body>
+</html>
