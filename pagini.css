@@ -27,7 +27,7 @@ header.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--b
 .brand{font-family:var(--display);font-weight:800;font-size:1.45rem;letter-spacing:-.03em;text-decoration:none}
 .brand span{color:var(--tag)}
 .nav{display:flex;gap:1.3rem;margin-right:auto}
-.nav a{text-decoration:none;color:var(--muted);font-weight:600;font-size:.95rem;padding:.3rem 0}
+.nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-weight:600;font-size:.95rem;padding:.3rem 0}
 .nav a:hover,.nav a[aria-current="page"]{color:var(--ink)}
 .nav a[aria-current="page"]{box-shadow:inset 0 -2px 0 var(--tag)}
 @media (max-width:720px){
