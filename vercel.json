@@ -1,0 +1,11 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/refacere-site-web",
+      "destination": "/solutii-personalizate",
+      "permanent": true
+    }
+  ]
+}

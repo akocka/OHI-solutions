@@ -3,8 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>OHI Solutions · Site-uri care aduc clienți</title>
-<meta name="description" content="Site-uri rapide și moderne pentru afaceri locale. Site Basic 500 lei, Site Ultra 1199 lei, refacere 400 lei. Demo gratuit.">
+<title>Creare Site Web Târgu Mureș pentru Afaceri Locale | OHI Solutions</title>
+<meta name="description" content="OHI Solutions, Târgu Mureș: site-uri web rapide, gândite pentru telefon, pentru restaurante, saloane, service-uri și afaceri locale. Cere un demo gratuit.">
+<link rel="canonical" href="https://ohis-gamma.vercel.app/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:site_name" content="OHI Solutions">
+<meta property="og:title" content="Creare Site Web Târgu Mureș pentru Afaceri Locale | OHI Solutions">
+<meta property="og:description" content="OHI Solutions, Târgu Mureș: site-uri web rapide, gândite pentru telefon, pentru restaurante, saloane, service-uri și afaceri locale. Cere un demo gratuit.">
+<meta property="og:url" content="https://ohis-gamma.vercel.app/">
+<meta property="og:image" content="https://ohis-gamma.vercel.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/icon-512.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Organization", "@id": "https://ohis-gamma.vercel.app/#org", "name": "OHI Solutions", "url": "https://ohis-gamma.vercel.app/", "logo": "https://ohis-gamma.vercel.app/icon-512.png", "description": "Creare de site-uri web și soluții web personalizate pentru afaceri locale din Târgu Mureș și din toată România.", "telephone": "+40740267706", "address": {"@type": "PostalAddress", "addressLocality": "Târgu Mureș", "addressCountry": "RO"}}, {"@context": "https://schema.org", "@type": "WebSite", "@id": "https://ohis-gamma.vercel.app/#website", "name": "OHI Solutions", "url": "https://ohis-gamma.vercel.app/", "inLanguage": "ro-RO", "publisher": {"@id": "https://ohis-gamma.vercel.app/#org"}}, {"@context": "https://schema.org", "@type": "Service", "name": "Creare site web pentru afaceri locale", "serviceType": "Web design", "provider": {"@id": "https://ohis-gamma.vercel.app/#org"}, "areaServed": {"@type": "Country", "name": "România"}, "url": "https://ohis-gamma.vercel.app/creare-site-web", "offers": [{"@type": "Offer", "name": "Site Basic", "price": "500", "priceCurrency": "RON", "url": "https://ohis-gamma.vercel.app/preturi"}, {"@type": "Offer", "name": "Site Ultra", "price": "1199", "priceCurrency": "RON", "url": "https://ohis-gamma.vercel.app/preturi"}]}]</script>
 <meta name="theme-color" content="#0B0D14">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,14 +60,24 @@ section{position:relative}
 body::after{content:"";position:fixed;inset:-50%;z-index:60;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:70;background:var(--tag);transform-origin:0 50%;transform:scaleX(0);pointer-events:none}
 
-/* preloader */
-.loader{position:fixed;inset:0;z-index:100;background:#07080D;color:#F2F3F7;display:grid;grid-template-rows:1fr auto;padding:calc(env(safe-area-inset-top,0px) + 1.5rem) clamp(1.1rem,4vw,2.5rem) calc(env(safe-area-inset-bottom,0px) + 1.5rem);transition:transform 1s var(--ease)}
-.loader .w{font-family:var(--display);font-weight:800;font-size:1.2rem;letter-spacing:-.02em}
-.loader .w b{color:var(--tag)}
-.loader .n{font-family:var(--display);font-weight:800;font-size:clamp(5rem,22vw,15rem);line-height:.8;letter-spacing:-.06em;font-variant-numeric:tabular-nums}
-.loader .bar{height:2px;background:rgba(255,255,255,.12);margin-top:1rem;overflow:hidden}
-.loader .bar i{display:block;height:100%;width:0;background:var(--tag)}
-.loader.out{transform:translateY(-100%)}
+/* intro: 3D tornado that assembles a website (once per visit, skippable) */
+.intro{position:fixed;inset:0;z-index:100;background:radial-gradient(120% 90% at 50% 60%,#121633 0%,#07080D 62%);color:#F2F3F7;overflow:hidden;transition:opacity .6s var(--ease)}
+.intro canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.intro .ui{position:absolute;inset:0;pointer-events:none;display:grid;grid-template-rows:auto 1fr auto;padding:calc(env(safe-area-inset-top,0px) + 1.2rem) clamp(1.1rem,4vw,2.5rem) calc(env(safe-area-inset-bottom,0px) + 1.2rem)}
+.intro .w{font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+.intro .w b{color:var(--tag)}
+.intro .row{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem}
+.intro .st{font-size:.8rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#9AA0B8}
+.intro .st span{display:block;font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,7vw,4.4rem);line-height:.9;letter-spacing:-.05em;color:#F2F3F7;font-variant-numeric:tabular-nums;text-transform:none;margin-top:.35rem}
+.intro .skip{pointer-events:auto;font:inherit;font-weight:700;font-size:.95rem;color:#F2F3F7;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.22);border-radius:999px;padding:.75rem 1.2rem;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background .3s,border-color .3s,color .3s}
+.intro .skip:hover{background:#FFB020;border-color:#FFB020;color:#0B0D14}
+.intro .ifin{position:absolute;left:0;right:0;top:50%;text-align:center;transform:translateY(-50%);font-family:var(--display);font-weight:800;font-size:clamp(2rem,6vw,4.6rem);letter-spacing:-.05em;opacity:0;pointer-events:none;text-shadow:0 10px 40px rgba(0,0,0,.6)}
+.intro .ifin em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--tag);letter-spacing:-.01em}
+.intro.fin .ifin{opacity:1;transition:opacity .5s var(--ease)}
+.intro canvas{transition:opacity .5s var(--ease)}
+.intro.fin canvas{opacity:.35}
+.intro.out{opacity:0}
+html.intro-on{overflow:hidden}
 
 /* cursor ring (fine pointers only) */
 .ring{position:fixed;left:0;top:0;z-index:90;width:38px;height:38px;margin:-19px 0 0 -19px;border:1.5px solid var(--ink);border-radius:50%;pointer-events:none;opacity:0;transition:width .3s var(--ease),height .3s var(--ease),margin .3s var(--ease),background .3s,opacity .3s;mix-blend-mode:difference;display:grid;place-items:center;font-size:.72rem;font-weight:700;color:#000}
@@ -248,7 +274,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:
 .screen .sb div em{font-style:normal;font-weight:700}
 .screen .sb .go{background:#25D366;color:#fff;border-radius:999px;justify-content:center;font-weight:700;border:0;margin-top:.4rem;padding:.6rem}
 .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem}
-.chips span{border:1px solid var(--line);border-radius:999px;padding:.4rem .9rem;font-weight:600;font-size:.92rem;color:var(--muted)}
+.chips span,.chips a{border:1px solid var(--line);border-radius:999px;padding:.4rem .9rem;font-weight:600;font-size:.92rem;color:var(--muted)}
 .note{color:var(--muted);font-size:.9rem}
 
 /* pricing */
@@ -264,6 +290,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:
 .tier .tag{align-self:flex-start;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--tag);color:#0B0D14;border-radius:999px;padding:.25rem .7rem}
 .tier h3{font-family:var(--display);font-weight:700;font-size:1.5rem;margin:0;letter-spacing:-.02em}
 .tier .amt{font-family:var(--display);font-weight:800;font-size:clamp(4rem,7vw,5.6rem);line-height:.85;letter-spacing:-.06em}
+.tier .amt.amt-txt{font-size:clamp(2.6rem,4.6vw,3.6rem);line-height:1}
 .tier .amt small{font-size:.28em;letter-spacing:0;margin-left:.3rem}
 .tier .muted{color:var(--muted);margin:0}
 .tier .btn{margin-top:auto;align-self:flex-start}
@@ -312,7 +339,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:
 .lab.l{left:1rem}.lab.r{right:1rem}
 /* illustrative "old" and "new" sites */
 .old{background:#E9E9E9;color:#222;font-family:"Times New Roman",Times,serif;padding:1.2rem;height:100%;overflow:hidden}
-.old h4{margin:0;font-size:clamp(1.2rem,2.4vw,1.8rem);color:#000080;text-decoration:underline}
+.old .t4{margin:0;font-size:clamp(1.2rem,2.4vw,1.8rem);color:#000080;text-decoration:underline}
 .old .menu{margin:.4rem 0 .8rem;font-size:.9rem;color:#0000EE;text-decoration:underline}
 .old p{margin:.4rem 0;font-size:.95rem;max-width:42rem}
 .old .tbl{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:.6rem;max-width:30rem;background:#999;border:2px outset #ccc}
@@ -321,8 +348,8 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:
 .new{height:100%;background:#0F2A24;color:#fff;display:grid;grid-template-columns:1.1fr .9fr;gap:1.4rem;align-items:center;padding:clamp(1.2rem,4vw,3rem);overflow:hidden}
 @media (max-width:640px){.new{grid-template-columns:1fr;align-content:center}}
 .new small{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#7FE0B5;font-weight:700}
-.new h4{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,4vw,3.2rem);line-height:.95;letter-spacing:-.04em;margin:.5rem 0}
-.new h4 em{font-family:var(--serif);font-style:italic;font-weight:400;color:#FFC857}
+.new .t4{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,4vw,3.2rem);line-height:.95;letter-spacing:-.04em;margin:.5rem 0}
+.new .t4 em{font-family:var(--serif);font-style:italic;font-weight:400;color:#FFC857}
 .new p{margin:0;opacity:.85;font-size:.95rem}
 .new .b{display:inline-block;margin-top:1rem;background:#FFC857;color:#14302B;font-weight:800;border-radius:999px;padding:.6rem 1.1rem;font-size:.9rem}
 .new .card{border-radius:18px;background:linear-gradient(160deg,#1D5B4E,#0F2A24);border:1px solid rgba(255,255,255,.12);padding:1rem;display:grid;gap:.5rem}
@@ -441,13 +468,108 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
   .js .hero .line > span,.js .fade,.js [data-r]{transform:none!important;opacity:1!important}
   .manifesto p .w{opacity:1}
 }
+.info{padding:clamp(4rem,8vw,6.5rem) 0 0}
+.igrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.4rem}
+@media (max-width:900px){.igrid{grid-template-columns:1fr}}
+.icard{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:1.6rem 1.5rem}
+.icard h3{font-family:var(--display);font-weight:800;letter-spacing:-.03em;font-size:1.35rem;margin:0 0 .8rem}
+.icard ul{margin:0;padding:0;list-style:none;display:grid;gap:.55rem;color:var(--muted)}
+.icard li{padding-left:1.4rem;position:relative}
+.icard li::before{content:"";position:absolute;left:0;top:.62em;width:.55rem;height:.55rem;border-radius:50%;background:var(--tag)}
+.more{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin:1.8rem 0 0}
+.more a,.tier .lnk,.foot-links a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--tag);text-underline-offset:4px;font-weight:600}
+.tier .lnk{display:inline-block;margin:-.3rem 0 1rem;font-size:.92rem}
+.chips a{text-decoration:none}
+.req{color:var(--tag);font-weight:700}
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+.foot-links{display:flex;flex-wrap:wrap;gap:.5rem 1.3rem;margin:0 0 1.6rem;font-size:.95rem}
+.foot-links a{font-weight:500;color:var(--muted)}
+.ok-note{color:var(--muted);font-size:.9rem}
+/* ---------- 3D builder ---------- */
+.builder{padding:clamp(5rem,10vw,8rem) 0;background:var(--bg2);border-block:1px solid var(--line);overflow:hidden}
+.bhead{max-width:44rem}
+.bgrid{display:grid;grid-template-columns:minmax(0,25rem) minmax(0,1fr);gap:clamp(2rem,4vw,4rem);margin-top:3rem;align-items:center}
+@media (max-width:960px){.bgrid{grid-template-columns:minmax(0,1fr)}.bstage{order:-1}}
+@media (min-width:961px){.bgrid{align-items:start}.bstage{position:sticky;top:18vh}}
+.bctl{display:grid;grid-template-columns:minmax(0,1fr);gap:1.2rem}
+.bctl>*{grid-column:1/-1}
+.bctl fieldset{border:0;margin:0;padding:0;min-width:0}
+.bctl legend,.bfield label{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.55rem;padding:0;display:block}
+.brow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.bopts{display:flex;flex-wrap:wrap;gap:.45rem}
+.bopts label,.bsw label{position:relative;cursor:pointer}
+.bopts input,.bsw input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.bopts span{display:inline-flex;align-items:center;min-height:40px;padding:.45rem .95rem;border:1.5px solid var(--line);border-radius:999px;font-weight:600;font-size:.92rem;transition:background .25s,border-color .25s,color .25s}
+.bopts input:checked+span{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.bopts input:focus-visible+span,.bsw input:focus-visible+span{outline:3px solid var(--tag);outline-offset:3px}
+.bsw{display:flex;flex-wrap:wrap;gap:.6rem}
+.bsw span{display:block;width:40px;height:40px;border-radius:50%;background:var(--c);border:3px solid var(--bg2);box-shadow:0 0 0 1.5px var(--line);transition:transform .25s,box-shadow .25s}
+.bsw input:checked+span{box-shadow:0 0 0 2.5px var(--ink);transform:scale(1.08)}
+.bctl .btn{justify-self:start;margin-top:.3rem}
+.bctl .note{margin:0}
+.bstage{position:relative;min-width:0;min-height:16rem;display:grid;place-items:center;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.bstage.drag{cursor:grabbing}
+.bstage::before{content:"";position:absolute;inset:8% 6%;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--bc,#FFB020) 30%,transparent),transparent);filter:blur(30px);transition:background .6s}
+.bfit{width:660px;height:430px;transform-origin:50% 50%;flex:none}
+.bscene{position:relative;width:660px;height:430px;transform-style:preserve-3d;perspective:1600px}
+.bscene>.lap,.bscene>.ph{transform-style:preserve-3d}
+.lap{position:absolute;left:30px;top:20px;width:540px;transform:rotateX(var(--rx,8deg)) rotateY(var(--ry,-18deg));transform-style:preserve-3d;transition:transform .08s linear}
+.lid{position:relative;background:#1B1E27;border-radius:16px 16px 6px 6px;padding:14px 14px 18px;box-shadow:0 40px 60px -30px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.08)}
+.cam{position:absolute;top:5px;left:50%;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:#3A3F4E}
+.lap .scr{height:318px;border-radius:4px;overflow:hidden;background:#fff}
+.deck{position:relative;height:16px;margin:0 -34px;background:linear-gradient(#C9CDD6,#9BA1AE);border-radius:0 0 18px 18px;box-shadow:0 22px 30px -12px rgba(0,0,0,.5)}
+.deck::before{content:"";position:absolute;left:50%;top:0;width:90px;margin-left:-45px;height:6px;border-radius:0 0 8px 8px;background:rgba(0,0,0,.18)}
+.ph{position:absolute;right:20px;bottom:6px;width:152px;height:310px;background:#14161D;border-radius:30px;padding:9px;transform:translateZ(90px) rotateX(var(--rx,8deg)) rotateY(calc(var(--ry,-18deg) * 1.4));box-shadow:0 40px 50px -24px rgba(0,0,0,.6),inset 0 0 0 1.5px rgba(255,255,255,.12);transition:transform .08s linear}
+.notch{position:absolute;top:13px;left:50%;width:46px;height:12px;margin-left:-23px;border-radius:9px;background:#14161D;z-index:2}
+.ph .scr{height:100%;border-radius:22px;overflow:hidden;background:#fff}
+.bhint{position:absolute;bottom:-.4rem;left:0;right:0;text-align:center;font-size:.8rem;color:var(--muted);margin:0;letter-spacing:.08em;text-transform:uppercase}
+@media (pointer:coarse){.bhint{display:none}}
+/* mini site */
+.ms{--a:#FFB020;--mbg:#F7F5F0;--mink:#16181F;--mmut:rgba(22,24,31,.6);--card:#fff;height:100%;background:var(--mbg);color:var(--mink);font-family:var(--body);font-size:9px;line-height:1.35;display:flex;flex-direction:column;transition:background .4s,color .4s}
+.ms.dark{--mbg:#111319;--mink:#F3F3F5;--mmut:rgba(243,243,245,.62);--card:#1B1E27}
+.ms .mn{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;gap:8px}
+.ms .mb{font-weight:800;font-size:10.5px;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ms .mb i{display:inline-block;width:7px;height:7px;border-radius:2px;background:var(--a);margin-right:5px;vertical-align:0}
+.ms .ml{display:flex;gap:10px;color:var(--mmut);font-weight:600}
+.ms .mc{background:var(--a);color:var(--on,#111);border-radius:99px;padding:4px 9px;font-weight:700;white-space:nowrap}
+.ms .mh{display:grid;grid-template-columns:1.15fr 1fr;gap:12px;padding:12px 14px 10px;align-items:center;flex:1}
+.ms .mk{font-size:7.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--a)}
+.ms .mt{font-family:var(--hf,var(--display));font-weight:var(--hw,800);font-size:21px;line-height:1;letter-spacing:var(--hl,-.04em);margin:5px 0 6px;text-transform:var(--ht,none)}
+.ms .mt em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--a);text-transform:none;letter-spacing:-.01em}
+.ms .mp{color:var(--mmut);margin:0 0 8px}
+.ms .mi{height:100%;min-height:110px;border-radius:var(--r,10px);background:radial-gradient(60% 70% at 30% 30%,color-mix(in srgb,var(--a) 85%,#fff),transparent 70%),radial-gradient(60% 60% at 80% 80%,color-mix(in srgb,var(--a) 55%,#000),transparent 70%),color-mix(in srgb,var(--a) 35%,var(--mbg));position:relative;overflow:hidden}
+.ms .mi::after{content:"";position:absolute;left:12%;right:12%;bottom:12%;height:22%;border-radius:6px;background:rgba(255,255,255,.35);backdrop-filter:blur(4px)}
+.ms .mg{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:0 14px 12px}
+.ms .mg div{background:var(--card);border-radius:var(--r,10px);padding:7px 8px;font-weight:700;box-shadow:0 1px 0 rgba(0,0,0,.05)}
+.ms .mg div::before{content:"";display:block;width:12px;height:12px;border-radius:4px;background:color-mix(in srgb,var(--a) 70%,transparent);margin-bottom:5px}
+.ms .mf{display:flex;justify-content:space-between;padding:7px 14px;border-top:1px solid color-mix(in srgb,var(--mink) 10%,transparent);color:var(--mmut);font-size:7.5px}
+.ms.m{font-size:8px}
+.ms.m .mn{padding:24px 10px 8px}
+.ms.m .ml{display:none}
+.ms.m .mh{grid-template-columns:1fr;padding:6px 10px;gap:8px;flex:none}
+.ms.m .mt{font-size:17px}
+.ms.m .mi{min-height:72px;order:-1}
+.ms.m .mg{grid-template-columns:1fr;gap:5px;padding:0 10px 8px}
+.ms.m .mg div{display:flex;align-items:center;gap:6px;padding:6px 8px}
+.ms.m .mg div::before{margin:0;width:10px;height:10px}
+.ms.m .mf{margin-top:auto}
+.ms.swap{animation:msIn .45s var(--ease)}
+@keyframes msIn{from{opacity:.25;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.ms.swap{animation:none}.lap,.ph{transition:none}}
 </style>
 </head>
 <body>
 
-<div class="loader" id="loader" aria-hidden="true">
-  <div class="w">OHI<b>.</b></div>
-  <div><div class="n" id="ln">000</div><div class="bar"><i id="lb"></i></div></div>
+<div class="intro" id="intro" role="region" aria-label="Animație de introducere: construim un site">
+  <canvas id="introCv" aria-hidden="true"></canvas>
+  <div class="ui">
+    <div class="w" aria-hidden="true">OHI<b>.</b></div>
+    <div class="ifin" id="introDone" aria-hidden="true">Site-ul tău, <em>gata.</em></div>
+    <div class="row">
+      <div class="st" aria-hidden="true">Asamblăm site-ul<span id="introPct">000%</span></div>
+      <button class="skip" id="introSkip" type="button">Sari peste <span aria-hidden="true">→</span></button>
+    </div>
+  </div>
 </div>
 <div class="progress" id="prog"></div>
 <div class="ring" id="ring"></div>
@@ -458,7 +580,7 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
 
 <header class="top" id="hdr">
   <div class="wrap">
-    <a class="brand" href="#top"><i aria-hidden="true"></i><span data-c="brand">OHI Solutions</span></a>
+    <a class="brand" href="/" aria-label="OHI Solutions, pagina principală"><i aria-hidden="true"></i><span data-c="brand">OHI Solutions</span></a>
     <nav class="links" aria-label="Meniu">
       <a href="#ce-primesti">Ce primești</a>
       <a href="#proces">Proces</a>
@@ -478,10 +600,13 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
     <a href="#ce-primesti"><span>Ce primești</span></a>
     <a href="#proces"><span>Proces</span></a>
     <a href="#demo"><span>Demo gratuit</span></a>
+    <a href="#constructor"><span>Constructor 3D</span></a>
     <a href="#pret"><span>Prețuri</span></a>
     <a href="#cerere"><span>Contact</span></a>
+    <a href="/creare-site-web"><span>Cum lucrăm</span></a>
+    <a href="/blog"><span>Blog</span></a>
   </nav>
-  <p style="margin:0;opacity:.85">Site-uri pentru afaceri locale, de la 400 lei.</p>
+  <p style="margin:0;opacity:.85">Site-uri pentru afaceri locale, de la 500 lei.</p>
 </div>
 
 <main id="top">
@@ -489,10 +614,10 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
     <canvas id="field" aria-hidden="true"></canvas>
     <span class="scrollhint" aria-hidden="true">Derulează ↓</span>
     <div class="wrap">
-      <span class="eyebrow fade">Site-uri pentru afaceri locale</span>
+      <span class="eyebrow fade">Web design pentru firme mici</span>
       <h1 id="h1">
-        <span class="line"><span>Site-uri care</span></span>
-        <span class="line"><span>aduc clienți pentru</span></span>
+        <span class="line"><span>Creare site web</span></span>
+        <span class="line"><span>pentru</span></span>
         <span class="line"><span class="rot" id="rot" aria-hidden="true"><b class="in">restaurante.</b><b>saloane.</b><b>service-uri.</b><b>cafenele.</b><b>meșteri.</b></span><span class="sr">afaceri locale.</span></span>
       </h1>
       <div class="hero-bottom">
@@ -504,7 +629,7 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
           </div>
           <p class="cap" data-cap></p>
         </div>
-        <div class="badge fade" aria-label="Preț fix, de la 400 lei">
+        <div class="badge fade" aria-label="Site Basic: 500 lei, preț de lansare">
           <svg viewBox="0 0 100 100" aria-hidden="true"><defs><path id="circ" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><text><textPath href="#circ">PREȚ FIX · FĂRĂ ABONAMENT · DEMO GRATUIT ·</textPath></text></svg>
           <div class="c">500<small>LEI</small></div>
         </div>
@@ -514,8 +639,8 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
 
   <div class="marquee" aria-hidden="true">
     <div class="mtrack" id="mtrack">
-      <span>Site Basic <em>500 lei</em> <i>✦</i> Site Ultra <em>1199 lei</em> <i>✦</i> Refacere <em>400 lei</em> <i>✦</i> Prețuri de lansare <i>✦</i> Demo gratuit <i>✦</i></span>
-      <span>Site Basic <em>500 lei</em> <i>✦</i> Site Ultra <em>1199 lei</em> <i>✦</i> Refacere <em>400 lei</em> <i>✦</i> Prețuri de lansare <i>✦</i> Demo gratuit <i>✦</i></span>
+      <span>Site Basic <em>500 lei</em> <i>✦</i> Site Ultra <em>1199 lei</em> <i>✦</i> Soluții <em>la comandă</em> <i>✦</i> Prețuri de lansare <i>✦</i> Demo gratuit <i>✦</i></span>
+      <span>Site Basic <em>500 lei</em> <i>✦</i> Site Ultra <em>1199 lei</em> <i>✦</i> Soluții <em>la comandă</em> <i>✦</i> Prețuri de lansare <i>✦</i> Demo gratuit <i>✦</i></span>
     </div>
   </div>
 
@@ -528,10 +653,10 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
 
   <div class="wrap">
     <div class="stats" data-r>
-      <div class="stat"><b data-count="500">0</b><span>lei, preț de lansare</span></div>
-      <div class="stat"><b data-count="0">0</b><span>lei abonament lunar</span></div>
-      <div class="stat"><b data-count="6">0</b><span>lucruri incluse</span></div>
-      <div class="stat"><b data-count="0">0</b><span>lei pentru demo</span></div>
+      <div class="stat"><b data-count="500">500</b><span>lei, preț de lansare</span></div>
+      <div class="stat"><b data-count="0">0</b><span>lei abonament lunar la OHI</span></div>
+      <div class="stat"><b data-count="6">6</b><span>lucruri incluse</span></div>
+      <div class="stat"><b data-count="24">24</b><span>de ore până la demo-ul gratuit</span></div>
     </div>
   </div>
 
@@ -606,8 +731,42 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
         <span class="eyebrow">Exemplu</span>
         <h2 id="h-ex">Așa poate arăta <em>site-ul tău.</em></h2>
         <p class="lede">Program, meniu sau servicii cu prețuri, adresa pe hartă și un buton de WhatsApp. Tot ce caută un client, pe un singur ecran de telefon.</p>
-        <div class="chips"><span>Restaurante</span><span>Cafenele</span><span>Saloane</span><span>Service-uri</span><span>Meșteri</span><span>Magazine</span></div>
+        <div class="chips"><a href="/site-uri-restaurante">Restaurante</a><a href="/site-uri-restaurante">Cafenele</a><a href="/site-uri-saloane">Saloane</a><span>Service-uri</span><span>Meșteri</span><span>Magazine</span></div>
         <p class="note" style="margin-top:1.4rem">Exemplu de design pentru o afacere fictivă. Site-ul tău va avea numele, culorile și serviciile afacerii tale.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="builder" id="constructor" aria-labelledby="h-build">
+    <div class="wrap">
+      <div class="bhead">
+        <span class="eyebrow">Constructor 3D</span>
+        <h2 id="h-build">Construiește-ți <em>site-ul.</em></h2>
+        <p class="lede">Alege domeniul, numele, culoarea și stilul. Vezi pe loc cum ar arăta pe laptop și pe telefon, apoi trimite-mi designul ca punct de plecare pentru demo-ul gratuit.</p>
+      </div>
+      <div class="bgrid">
+        <form class="bctl" id="bForm" novalidate>
+          <fieldset><legend>1. Domeniul</legend><div class="bopts" id="bType"></div></fieldset>
+          <div class="bfield"><label for="bName">2. Numele afacerii</label><input id="bName" maxlength="26" placeholder="ex. Salon Aria" autocomplete="organization"></div>
+          <fieldset><legend>3. Culoarea</legend><div class="bsw" id="bColor"></div></fieldset>
+          <fieldset><legend>4. Stilul</legend><div class="bopts" id="bStyle"></div></fieldset>
+          <div class="brow">
+            <fieldset><legend>5. Fundal</legend><div class="bopts" id="bMode"></div></fieldset>
+            <fieldset><legend>6. Pachet</legend><div class="bopts" id="bPack"></div></fieldset>
+          </div>
+          <button class="btn btn-main" type="submit">Vreau acest design <span class="arr">→</span></button>
+          <p class="note">Previzualizare orientativă, cu texte de exemplu. Designul final îl facem împreună, cu textele și pozele tale.</p>
+        </form>
+        <div class="bstage" id="bStage">
+          <p class="sr" id="bSummary" aria-live="polite"></p>
+          <div class="bfit" id="bFit" aria-hidden="true">
+            <div class="bscene" id="bScene">
+              <div class="lap"><div class="lid"><div class="cam"></div><div class="scr"><div class="ms" id="bSiteL"></div></div></div><div class="deck"></div></div>
+              <div class="ph"><div class="notch"></div><div class="scr"><div class="ms m" id="bSiteP"></div></div></div>
+            </div>
+          </div>
+          <p class="bhint" aria-hidden="true">Trage ca să rotești</p>
+        </div>
       </div>
     </div>
   </section>
@@ -654,11 +813,11 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
     </div>
   </section>
 
-  <section class="excl" id="exclusivitate" aria-labelledby="h-ex">
+  <section class="excl" id="exclusivitate" aria-labelledby="h-excl">
     <div class="wrap exgrid">
       <div>
         <span class="eyebrow">Exclusivitate pe zonă</span>
-        <h2 id="h-ex">Concurentul tău <em>nu primește</em> același site.</h2>
+        <h2 id="h-excl">Concurentul tău <em>nu primește</em> același site.</h2>
         <p class="lede">Cu Site Ultra îți rezervi zona: timp de 12 luni nu facem site pentru alt client din același domeniu, în același oraș sau cartier. Tu ieși în evidență, nu concurentul.</p>
       </div>
       <form class="excard" id="exForm" novalidate data-r>
@@ -668,6 +827,45 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
         <button class="btn btn-main" type="submit">Verifică zona <span class="arr">→</span></button>
         <p class="exout" id="exOut" role="status" aria-live="polite"></p>
       </form>
+    </div>
+  </section>
+
+  <section class="info" id="detalii" aria-labelledby="h-info">
+    <div class="wrap">
+      <span class="eyebrow">Spus clar</span>
+      <h2 id="h-info">Ce îmi trimiți și ce <em>primești.</em></h2>
+      <div class="igrid">
+        <article class="icard" data-r>
+          <h3>Ce îmi trimiți tu</h3>
+          <ul>
+            <li>Numele afacerii și logo-ul, dacă ai unul</li>
+            <li>Serviciile sau meniul, cu prețuri</li>
+            <li>Programul, adresa și datele de contact</li>
+            <li>Poze cu locul, produsele sau lucrările tale</li>
+            <li>Dacă ai deja un site sau un domeniu: adresa lui și acces la domeniu</li>
+          </ul>
+        </article>
+        <article class="icard" data-r="2">
+          <h3>Ce primești la lansare</h3>
+          <ul>
+            <li>Site-ul publicat pe domeniul tău</li>
+            <li>Formular care îți trimite cererile clienților</li>
+            <li>Butoane de WhatsApp și apel, plus harta</li>
+            <li>Arată bine pe telefon, tabletă și calculator</li>
+            <li>Îți arăt cum primești mesajele de la clienți</li>
+          </ul>
+        </article>
+        <article class="icard" data-r="3">
+          <h3>Ce nu e inclus</h3>
+          <ul>
+            <li>Domeniul (ex. numeafacerii.ro), plătit separat, anual</li>
+            <li>Magazinul online, cu coș și plăți: ofertă separată</li>
+            <li>La Basic, textele scrise de la zero</li>
+            <li>Modificările după rundele incluse se stabilesc separat</li>
+          </ul>
+        </article>
+      </div>
+      <p class="more"><a href="/creare-site-web">Cum lucrăm, pas cu pas</a><a href="/preturi">Prețuri și diferențe între pachete</a><a href="/solutii-personalizate">Soluții personalizate</a></p>
     </div>
   </section>
 
@@ -683,6 +881,7 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
           <div class="amt">500<small>lei</small></div>
           <p class="std">Preț standard după lansare: <b>849 lei</b></p>
           <p class="muted">Site de prezentare curat și rapid, pe o singură pagină.</p>
+          <a class="lnk" href="/preturi">Ce include Basic</a>
           <a class="btn btn-ghost" href="#cerere" data-pick="Site Basic (500 lei)">Alege Basic <span class="arr">→</span></a>
         </article>
         <article class="tier main" data-r="2">
@@ -694,12 +893,13 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
           <a class="btn btn-main" href="#cerere" data-pick="Site Ultra (1199 lei)">Alege Ultra <span class="arr">→</span></a>
         </article>
         <article class="tier" data-r="3">
-          <span class="tag">Ai deja un site?</span>
-          <h3>Refacerea site-ului</h3>
-          <div class="amt">400<small>lei</small></div>
-          <p class="std">&nbsp;</p>
-          <p class="muted">Păstrăm conținutul site-ului tău actual, într-un design nou, rapid.</p>
-          <a class="btn btn-ghost" href="#cerere" data-pick="Refacerea site-ului actual (400 lei)">Alege refacerea <span class="arr">→</span></a>
+          <span class="tag">Pe măsura ta</span>
+          <h3>Soluție personalizată</h3>
+          <div class="amt amt-txt">La ofertă</div>
+          <p class="std">Ofertă scrisă, cu preț fix, în <b>24 de ore</b></p>
+          <p class="muted">Programări online, site în română și maghiară, meniu QR, magazin mic sau orice funcție specială.</p>
+          <a class="lnk" href="/solutii-personalizate">Ce putem construi</a>
+          <a class="btn btn-ghost" href="#cerere" data-pick="Soluție personalizată (ofertă)">Cere o ofertă <span class="arr">→</span></a>
         </article>
       </div>
 
@@ -716,7 +916,7 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
 
       <div class="addon" data-r>
         <div><b>Vrei și un asistent AI care răspunde clienților?</b><span>Îl poți adăuga oricând, separat, de la RAI Solutions, serviciul nostru de asistenți AI.</span></div>
-        <a class="btn btn-ghost btn-sm" href="#cerere">Întreabă-mă <span class="arr">→</span></a>
+        <a class="btn btn-ghost btn-sm" href="https://rais-pi.vercel.app/" target="_blank" rel="noopener">Vezi RAI Solutions <span class="arr">→</span></a>
       </div>
     </div>
   </section>
@@ -733,18 +933,20 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
       <div>
         <span class="eyebrow">Aplicație</span>
         <h2 id="h-form">Aplică pentru <em>un loc.</em></h2>
-        <p class="lede">Citesc personal fiecare aplicație. Completează în două minute și îți arăt gratuit cum ar arăta site-ul tău.</p>
+        <p class="lede">Sunt în Târgu Mureș. Completează formularul în două minute sau sună-mă la <a href="tel:+40740267706">0740 267 706</a>.</p>
         <p class="cap" data-cap style="margin-top:1.2rem"></p>
         <div class="direct" id="direct"></div>
       </div>
       <div class="formcard">
         <form id="form" novalidate>
-          <div class="f"><label for="n">Numele tău</label><input id="n" name="name" autocomplete="name" required></div>
-          <div class="f"><label for="b">Numele afacerii</label><input id="b" name="business" autocomplete="organization" required></div>
-          <div class="f"><label for="p">Telefon</label><input id="p" name="phone" type="tel" inputmode="tel" autocomplete="tel" required></div>
+          <p class="ok-note f full" style="margin:0">Câmpurile cu <span class="req">*</span> sunt obligatorii.</p>
+          <div class="hp" aria-hidden="true"><label for="hpf">Nu completa acest câmp</label><input id="hpf" name="company_site" tabindex="-1" autocomplete="off"></div>
+          <div class="f"><label for="n">Numele tău <span class="req" aria-hidden="true">*</span></label><input id="n" name="name" autocomplete="name" required aria-required="true" aria-describedby="err"></div>
+          <div class="f"><label for="b">Numele afacerii <span class="req" aria-hidden="true">*</span></label><input id="b" name="business" autocomplete="organization" required aria-required="true" aria-describedby="err"></div>
+          <div class="f"><label for="p">Telefon <span class="req" aria-hidden="true">*</span></label><input id="p" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-required="true" aria-describedby="err"></div>
           <div class="f"><label for="e">Email <small>(opțional)</small></label><input id="e" name="email" type="email" autocomplete="email"></div>
-          <div class="f"><label for="t">Domeniul afacerii</label>
-            <select id="t" name="business_type" required>
+          <div class="f"><label for="t">Domeniul afacerii <span class="req" aria-hidden="true">*</span></label>
+            <select id="t" name="business_type" required aria-required="true" aria-describedby="err">
               <option value="">Alege</option>
               <option>Restaurant, cafenea, fast-food</option>
               <option>Salon, frizerie, cosmetică</option>
@@ -753,22 +955,22 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
               <option>Servicii profesionale</option>
               <option>Altceva</option>
             </select></div>
-          <div class="f"><label for="w">De ce ai nevoie</label>
-            <select id="w" name="need" required>
+          <div class="f"><label for="w">De ce ai nevoie <span class="req" aria-hidden="true">*</span></label>
+            <select id="w" name="need" required aria-required="true" aria-describedby="err">
               <option value="">Alege</option>
               <option>Site Basic (500 lei)</option>
               <option>Site Ultra (1199 lei)</option>
-              <option>Refacerea site-ului actual (400 lei)</option>
+              <option>Soluție personalizată (ofertă)</option>
               <option>Vreau întâi un demo gratuit</option>
               <option>Nu știu încă, vreau un sfat</option>
             </select></div>
-          <div class="f full" id="oldWrap" hidden><label for="old">Adresa site-ului actual</label><input id="old" name="website" inputmode="url" placeholder="afacereata.ro"><small class="hint">Păstrăm textele, produsele și pozele de pe site-ul actual și le mutăm într-un design nou, adaptat pentru telefon.</small></div>
+          <div class="f full" id="oldWrap" hidden><label for="old">Ai deja un site? <small>(opțional)</small></label><input id="old" name="website" inputmode="url" placeholder="afacereata.ro"><small class="hint">Dacă ai, putem porni de la el. Descrie mai jos ce vrei să facă site-ul nou și primești oferta în 24 de ore.</small></div>
           <div class="f"><label for="goal">Ce vrei să obții?</label>
             <select id="goal"><option value="">Alege</option><option>Mai mulți clienți</option><option>Să arăt profesionist online</option><option>Programări, rezervări sau comenzi</option><option>Altceva</option></select></div>
           <div class="f"><label for="mat">Ai texte și poze?</label>
             <select id="mat"><option value="">Alege</option><option>Da, le am</option><option>Parțial</option><option>Nu, am nevoie de ajutor</option></select></div>
           <div class="f full"><label for="m">Spune-mi pe scurt despre afacere <small>(opțional)</small></label><textarea id="m" name="message" placeholder="Ce vinzi, unde ești, ai deja un site sau o pagină de Facebook?"></textarea></div>
-          <label class="chk"><input type="checkbox" id="ok" required> <span id="okTxt">Sunt de acord să fiu contactat în legătură cu această cerere.</span></label>
+          <label class="chk"><input type="checkbox" id="ok" required aria-required="true"> <span id="okTxt"><span class="req" aria-hidden="true">*</span> Sunt de acord să fiu contactat în legătură cu această cerere.</span></label>
           <details class="terms f full" id="termsBox" hidden><summary>Termeni și rambursare</summary><p id="termsText"></p></details>
           <p class="err" id="err" role="alert"></p>
           <button class="btn btn-main" id="send" type="submit">Trimite aplicația</button>
@@ -782,8 +984,9 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
             <p class="small" id="bundleNote" hidden></p>
           </div>
           <div id="talkStep" hidden>
-            <h3>Aplicația ta a fost primită</h3>
+            <h3 id="doneTitle" tabindex="-1">Aplicația ta a fost trimisă</h3>
             <p>Mulțumesc! O citesc personal și te contactez în cel mai scurt timp, ca să vedem dacă proiectul tău se potrivește și când avem loc.</p>
+            <p class="small" id="doneId"></p>
           </div>
         </div>
       </div>
@@ -794,7 +997,10 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
 <footer>
   <div class="wrap">
     <p class="bigword" id="bigword" aria-hidden="true">OHI.</p>
-    <div class="foot"><span>© <span id="yr"></span> <span data-c="brand">OHI Solutions</span></span><span>Site-uri pentru afaceri locale · <a href="#cerere">Contact</a></span></div>
+    <nav class="foot-links" aria-label="Pagini">
+      <a href="/creare-site-web">Creare site web</a><a href="/preturi">Prețuri</a><a href="/solutii-personalizate">Soluții personalizate</a><a href="/site-uri-restaurante">Site-uri pentru restaurante</a><a href="/site-uri-saloane">Site-uri pentru saloane</a><a href="/blog">Blog</a><a href="https://rais-pi.vercel.app/" rel="noopener">Asistent AI (RAI Solutions)</a>
+    </nav>
+    <div class="foot"><span>© <span id="yr"></span> <span data-c="brand">OHI Solutions</span></span><span>Târgu Mureș · <a href="tel:+40740267706">0740 267 706</a> · <a href="#cerere">Formular</a></span></div>
   </div>
 </footer>
 
@@ -802,14 +1008,15 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
 /* ================= EDITEAZĂ AICI ================= */
 const CONFIG = {
   brand: "OHI Solutions",
-  phone: "",                 // ex. "+40712345678" (apare ca buton de apel și WhatsApp)
+  phone: "+40740267706",     // apare ca buton de apel
+  phoneDisplay: "0740 267 706",
+  city: "Târgu Mureș",
   email: "",                 // ex. "contact@firma.ro"
   webhookUrl: "https://hook.eu2.make.com/pjyknr3dp5tb8b5stpbit53yqluizecy",
   // Stripe Payment Links, câte unul pentru fiecare pachet (lasă "" ca să nu ceri plată online)
   paymentLinks: {
     "Site Basic (500 lei)": "https://buy.stripe.com/7sYdR3faG2qe4i74tceUU00",
-    "Site Ultra (1199 lei)": "https://buy.stripe.com/14A6oBbYu8OC01R6BkeUU03",
-    "Refacerea site-ului actual (400 lei)": "https://buy.stripe.com/3cI8wJ1jQc0O9CrcZIeUU02"
+    "Site Ultra (1199 lei)": "https://buy.stripe.com/14A6oBbYu8OC01R6BkeUU03"
   },
   // În Stripe: după plată, redirecționare către adresa site-ului + "?platit=1"
   terms: "",                 // textul tău de termeni și rambursare
@@ -867,9 +1074,10 @@ const CONFIG = {
     ["Cât durează?", "De obicei câteva zile de la primirea textelor și a pozelor. Îți spun termenul exact când vorbim."],
     ["Am nevoie de un domeniu?", "E recomandat, de exemplu numeafacerii.ro. Te ajut să-l alegi și să-l cumperi. Costul domeniului nu e inclus în preț."],
     ["Pot schimba textele după ce e gata?", "Da. O rundă de modificări e inclusă. Schimbările ulterioare se stabilesc separat."],
+    ["Cum plătesc?", "Alegi pachetul în formular și, după ce trimiți datele, plătești online cu cardul, în siguranță, prin Stripe. Dacă vrei întâi să vezi cum ar arăta, alege „Vreau întâi un demo gratuit” și plătești doar dacă îți place."],
     ["Cum funcționează demo-ul gratuit?", "Îți fac gratuit prima pagină a site-ului, ca să vezi cum ar arăta afacerea ta online. Dacă îți place, îți trimit linkul de plată și termin tot site-ul. Dacă nu, nu datorezi nimic."],
-    ["Ce înseamnă refacerea site-ului?", "Dacă ai deja un site, păstrăm textele, produsele și pozele de pe el și le punem într-un design nou, rapid și adaptat pentru telefon. Ai nevoie de acces la domeniu (sau de persoana care l-a cumpărat), ca să mutăm adresa pe site-ul nou. Site-urile foarte mari sau magazinele online primesc o ofertă separată."],
-    ["Faceți și magazine online?", "Da, dar au alt preț, pentru că au nevoie de coș, plăți și stocuri. Scrie-mi și îți fac o ofertă."],
+    ["Ce înseamnă o soluție personalizată?", "Când ai nevoie de ceva ce nu intră în Basic sau Ultra: programări online, site în română și maghiară, meniu cu cod QR, un magazin mic sau o funcție specială. Îmi spui ce vrei, iar în 24 de ore primești o ofertă scrisă cu preț fix. Dacă ai deja un site, putem porni de la conținutul lui."],
+    ["Faceți și magazine online?", "Da, ca soluție personalizată, pentru că au nevoie de coș, plăți și stocuri. Alege „Soluție personalizată” în formular și primești o ofertă."],
     ["Pot adăuga un asistent AI care răspunde clienților?", "Da. Asistentul AI e un produs separat, de la RAI Solutions, serviciul nostru de asistenți AI. Îl poți adăuga oricând, chiar și după ce site-ul e gata."]
   ]
 };
@@ -938,9 +1146,9 @@ $("#cmpRows").innerHTML = CONFIG.compare.map(([k, a, b]) => {
     $("#baAfter").innerHTML = `<img src="${esc(ba.after)}" alt="Site-ul nou${ba.name ? " " + esc(ba.name) : ""}">`;
     $("#baNote").textContent = ba.name ? "Proiect real: " + ba.name + "." : "";
   } else {
-    $("#baBefore").innerHTML = `<div class="old"><h4>Bine ati venit pe site-ul Restaurant Exemplu!!!</h4><div class="menu">Acasa | Despre noi | Meniu | Galerie foto | Contact</div><p>Restaurantul nostru va asteapta cu cele mai bune preparate din oras. Pentru comenzi va rugam sa ne sunati la numarul de telefon afisat mai jos sau sa ne trimiteti un e-mail.</p><div class="tbl"><span>Luni-Vineri</span><span>10-22</span><span>Sambata</span><span>12-23</span><span>Telefon</span><span>07xx xxx xxx</span></div><div class="mq">*** OFERTA SPECIALA - SUNATI ACUM ***</div></div>`;
-    $("#baAfter").innerHTML = `<div class="new"><div><small>Restaurant Exemplu</small><h4>Gustul de acasă, <em>în centru.</em></h4><p>Meniul zilei, rezervări și livrare. Totul dintr-o atingere.</p><span class="b">Rezervă o masă</span></div><div class="card"><div>Meniul zilei <b>32 lei</b></div><div>Luni–Vineri <b>10–22</b></div><div>Livrare <b>gratuită</b></div></div></div>`;
-    $("#baNote").textContent = "Exemplu ilustrativ pentru o afacere fictivă. Aici vor apărea proiecte reale de refacere, cu acordul clienților.";
+    $("#baBefore").innerHTML = `<div class="old"><p class="t4">Bine ati venit pe site-ul Restaurant Exemplu!!!</p><div class="menu">Acasa | Despre noi | Meniu | Galerie foto | Contact</div><p>Restaurantul nostru va asteapta cu cele mai bune preparate din oras. Pentru comenzi va rugam sa ne sunati la numarul de telefon afisat mai jos sau sa ne trimiteti un e-mail.</p><div class="tbl"><span>Luni-Vineri</span><span>10-22</span><span>Sambata</span><span>12-23</span><span>Telefon</span><span>07xx xxx xxx</span></div><div class="mq">*** OFERTA SPECIALA - SUNATI ACUM ***</div></div>`;
+    $("#baAfter").innerHTML = `<div class="new"><div><small>Restaurant Exemplu</small><p class="t4">Gustul de acasă, <em>în centru.</em></p><p>Meniul zilei, rezervări și livrare. Totul dintr-o atingere.</p><span class="b">Rezervă o masă</span></div><div class="card"><div>Meniul zilei <b>32 lei</b></div><div>Luni–Vineri <b>10–22</b></div><div>Livrare <b>gratuită</b></div></div></div>`;
+    $("#baNote").textContent = "Exemplu ilustrativ pentru o afacere fictivă. Aici vor apărea proiecte reale, cu acordul clienților.";
   }
   const box = $("#cmpbox"), r = $("#baRange");
   const set = v => box.style.setProperty("--x", v + "%");
@@ -956,26 +1164,208 @@ $("#notIncl").textContent = CONFIG.notIncluded;
 $("#faq").innerHTML = CONFIG.faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join("");
 const digits = CONFIG.phone.replace(/[^\d]/g, "");
 $("#direct").innerHTML = [
-  CONFIG.phone ? `<a href="tel:${esc(CONFIG.phone)}">Sună: ${esc(CONFIG.phone)}</a>` : "",
-  digits ? `<a href="https://wa.me/${digits}" target="_blank" rel="noopener">Scrie pe WhatsApp</a>` : "",
+  CONFIG.phone ? `<a href="tel:${esc(CONFIG.phone)}">Sună: ${esc(CONFIG.phoneDisplay || CONFIG.phone)}</a>` : "",
+  CONFIG.city ? `<span>${esc(CONFIG.city)}</span>` : "",
   CONFIG.email ? `<a href="mailto:${esc(CONFIG.email)}">${esc(CONFIG.email)}</a>` : ""
 ].join("");
 
-/* ---------- preloader (once per visit) ---------- */
+/* ---------- intro: a 3D tornado of pieces that assembles a website (once per visit, skippable) ---------- */
 function startPage(){ document.documentElement.classList.add("ready"); }
-(function loader(){
-  const L = $("#loader");
+(function intro(){
+  const box = $("#intro");
   let seen = false; try { seen = sessionStorage.getItem("ohi_seen") === "1"; } catch (e) {}
-  if (REDUCED || seen) { L.remove(); startPage(); return; }
+  const cv = box && box.querySelector("canvas"), x = cv && cv.getContext ? cv.getContext("2d") : null;
+  if (!box || REDUCED || seen || !x) { if (box) box.remove(); startPage(); return; }
   try { sessionStorage.setItem("ohi_seen", "1"); } catch (e) {}
-  const t0 = performance.now(), dur = 1300;
-  (function tick(){
-    const p = Math.min(1, Math.max(0, (performance.now() - t0) / dur)), e = 1 - Math.pow(1 - p, 3);
-    $("#ln").textContent = String(Math.round(e * 100)).padStart(3, "0");
-    $("#lb").style.width = (e * 100) + "%";
-    if (p < 1) requestAnimationFrame(tick);
-    else { L.classList.add("out"); setTimeout(startPage, 250); setTimeout(() => L.remove(), 1100); }
-  })();
+  const root = document.documentElement;
+  root.classList.add("intro-on");
+  const locked = [...document.body.children].filter(el => el !== box && el.tagName !== "SCRIPT");
+  locked.forEach(el => { el.inert = true; });
+  startPage(); // the hero is already painted underneath, so the page counts as loaded right away
+
+  const TAU = Math.PI * 2, rnd = (a, b) => a + Math.random() * (b - a);
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const eio = u => u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;
+  const eo = u => 1 - Math.pow(1 - u, 3);
+  let VW = innerWidth, VH = innerHeight;
+  const phone = VW < 700 || VW / VH < .8;
+
+  /* the website that gets built: rectangles in page units (x, y, w, h), drawn front to back by z */
+  const P = [];
+  const add = (g, x0, y0, w, h, c, z) => P.push({ g, x0, y0, w, h, c, z: z || 0 });
+  let W, H;
+  if (!phone) {
+    W = 100; H = 62;
+    const cols = 8, rows = 5, tw = W / cols, th = H / rows;
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) add(0, c * tw, r * th, tw + .05, th + .05, (r + c) % 2 ? "#131829" : "#161C30");
+    add(1, 0, 0, 100, 4, "#1F2745", -.2); add(1, 2, 1.2, 1.6, 1.6, "#FF6B61", -.4); add(1, 4.4, 1.2, 1.6, 1.6, "#FFB020", -.4); add(1, 6.8, 1.2, 1.6, 1.6, "#2BC48A", -.4); add(1, 30, 1, 40, 2, "#2C3458", -.4);
+    add(2, 5, 8, 10, 2.6, "#F2F3F7", -.4); add(2, 52, 8.6, 7, 1.4, "#9AA0B8", -.4); add(2, 61, 8.6, 7, 1.4, "#9AA0B8", -.4); add(2, 70, 8.6, 7, 1.4, "#9AA0B8", -.4); add(2, 82, 7.4, 13, 3.6, "#FFB020", -.4);
+    add(3, 5, 16, 50, 5.2, "#F2F3F7", -.4); add(3, 5, 23, 38, 5.2, "#F2F3F7", -.4); add(3, 5, 30, 30, 5.2, "#FFB020", -.4); add(3, 5, 38, 40, 1.3, "#9AA0B8", -.4); add(3, 5, 40.6, 34, 1.3, "#9AA0B8", -.4);
+    add(4, 5, 44.5, 15, 4.4, "#F2F3F7", -.4); add(4, 22, 44.5, 13, 4.4, "#4C63FF", -.4);
+    add(5, 60, 15, 17.5, 16, "#4C63FF", -.3); add(5, 77.5, 15, 17.5, 16, "#B98CFF", -.3); add(5, 60, 31, 17.5, 16, "#3FD0E8", -.3); add(5, 77.5, 31, 17.5, 16, "#FF6FA8", -.3);
+    [["#2BC48A", 5], ["#FF6FA8", 36], ["#3FD0E8", 67]].forEach(([c, x0]) => { add(6, x0, 52, 28, 8.5, "#1F2745", -.3); add(6, x0, 52, 28, 1.1, c, -.5); add(6, x0 + 2, 55.2, 16, 1.2, "#F2F3F7", -.5); add(6, x0 + 2, 57.4, 21, 1.1, "#9AA0B8", -.5); });
+  } else {
+    W = 56; H = 100;
+    const cols = 4, rows = 7, tw = W / cols, th = H / rows;
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) add(0, c * tw, r * th, tw + .05, th + .05, (r + c) % 2 ? "#131829" : "#161C30");
+    add(1, 0, 0, 56, 5, "#1F2745", -.2); add(1, 20, 1.6, 16, 1.8, "#2C3458", -.4);
+    add(2, 4, 9, 13, 3, "#F2F3F7", -.4); add(2, 44, 9, 8, 3, "#FFB020", -.4);
+    add(3, 4, 18, 44, 5.5, "#F2F3F7", -.4); add(3, 4, 25, 36, 5.5, "#F2F3F7", -.4); add(3, 4, 32, 26, 5.5, "#FFB020", -.4); add(3, 4, 40.5, 46, 1.6, "#9AA0B8", -.4); add(3, 4, 43.4, 38, 1.6, "#9AA0B8", -.4);
+    add(4, 4, 48, 48, 5.5, "#F2F3F7", -.4); add(4, 4, 55, 48, 5.5, "#4C63FF", -.4);
+    add(5, 4, 64, 24, 16, "#4C63FF", -.3); add(5, 28, 64, 24, 16, "#FF6FA8", -.3);
+    [["#2BC48A", 4], ["#3FD0E8", 29]].forEach(([c, x0]) => { add(6, x0, 83, 23, 13, "#1F2745", -.3); add(6, x0, 83, 23, 1.4, c, -.5); add(6, x0 + 2, 87, 14, 1.6, "#F2F3F7", -.5); add(6, x0 + 2, 90, 18, 1.4, "#9AA0B8", -.5); });
+  }
+
+  /* timing: tiles first (in random order), then the content, group by group */
+  const T_FILL = 900, T_LAST = phone ? 3500 : 3700, FLY = 850;
+  const tiles = P.filter(p => p.g === 0).sort(() => Math.random() - .5), rest = P.filter(p => p.g > 0);
+  const order = tiles.concat(rest), split = T_FILL + (T_LAST - T_FILL) * .38;
+  tiles.forEach((p, i) => { p.dep = T_FILL + (split - T_FILL) * i / tiles.length; });
+  rest.forEach((p, i) => { p.dep = split + 120 + (T_LAST - split - 120) * i / Math.max(1, rest.length - 1); });
+  const T_BUILT = T_LAST + FLY;
+
+  /* tornado: a funnel, narrow at the bottom, wide at the top */
+  const HF = H * (phone ? 1.25 : 1.55), RB = W * .05, RT = W * (phone ? .62 : .44);
+  const radius = yn => RB + (RT - RB) * Math.pow(yn, 1.35);
+  order.forEach((p, i) => {
+    p.th = rnd(0, TAU); p.yn = rnd(.05, .98); p.om = rnd(1.5, 2.6) * (1.3 - p.yn * .5); p.ph = rnd(0, TAU);
+    p.p0 = rnd(0, TAU); p.r0 = rnd(0, TAU); p.sp = rnd(-2.4, 2.4); p.sr = rnd(-2, 2);
+    p.ts = clamp(8 / Math.max(p.w, p.h), .22, .85); p.spawn = i * 7;
+    p.tx = p.x0 + p.w / 2 - W / 2; p.ty = H / 2 - (p.y0 + p.h / 2); p.tz = p.z;
+  });
+  const N = phone ? 150 : 240, dust = [];
+  for (let i = 0; i < N; i++) dust.push({ th: rnd(0, TAU), yn: Math.random(), om: rnd(1.8, 3.4), rr: rnd(.75, 1.3), s: rnd(.6, 1.8), c: Math.random() < .2 ? "255,176,32" : (Math.random() < .5 ? "124,140,255" : "242,243,247") });
+  const axis = (yn, t) => Math.sin(t * .9 + yn * 3.2) * W * .045 * yn;
+  function inTornado(p, t){
+    const s = t / 1000, yn = clamp(p.yn + .035 * Math.sin(s * 1.3 + p.ph), 0, 1), th = p.th + p.om * s, r = radius(yn);
+    return { X: axis(yn, s) + r * Math.cos(th), Y: -HF / 2 + yn * HF, Z: r * Math.sin(th), yaw: th + Math.PI / 2, pitch: p.p0 + p.sp * s, roll: p.r0 + p.sr * s, sc: p.ts };
+  }
+  const near = (a) => Math.round(a / TAU) * TAU;
+
+  /* camera */
+  let dpr, S, D, cx, cy, mx = 0, my = 0;
+  function size(){
+    VW = innerWidth; VH = innerHeight; dpr = Math.min(2, devicePixelRatio || 1);
+    cv.width = Math.round(VW * dpr); cv.height = Math.round(VH * dpr); x.setTransform(dpr, 0, 0, dpr, 0, 0);
+    S = phone ? Math.min(VW * .84 / W, VH * .6 / H) : Math.min(VW * .78 / W, VH * .62 / H);
+    D = (phone ? 150 : 170); cx = VW / 2; cy = VH * (phone ? .47 : .48);
+  }
+  size(); addEventListener("resize", size);
+  if (FINE) addEventListener("pointermove", e => { mx = e.clientX / VW - .5; my = e.clientY / VH - .5; });
+
+  const rz = (v, a) => { const c = Math.cos(a), s = Math.sin(a); return [v[0] * c - v[1] * s, v[0] * s + v[1] * c, v[2]]; };
+  const rx = (v, a) => { const c = Math.cos(a), s = Math.sin(a); return [v[0], v[1] * c - v[2] * s, v[1] * s + v[2] * c]; };
+  const ry = (v, a) => { const c = Math.cos(a), s = Math.sin(a); return [v[0] * c + v[2] * s, v[1], -v[0] * s + v[2] * c]; };
+  let camYaw = 0, camTilt = 0, zoom = 1;
+  const world = v => rx(ry(v, camYaw), camTilt);
+  const proj = v => { const k = S * D * zoom / Math.max(8, v[2] + D); return [cx + v[0] * k, cy - v[1] * k, v[2]]; };
+
+  const pctEl = $("#introPct"); let lastPct = -1;
+  let t0 = performance.now(), exitAt = Infinity, ended = false, raf = 0;
+
+  function frame(now){
+    const t = now - t0;
+    const asm = eio(clamp((t - split) / (T_BUILT - split), 0, 1));
+    const ex = exitAt < Infinity ? eio(clamp((now - exitAt) / 700, 0, 1)) : 0;
+    camYaw = (.42 * Math.sin(t / 1700) + mx * .5) * (1 - asm) + mx * .1 * asm;
+    camTilt = (-.34 + my * .2) * (1 - asm) + my * .05 * asm;
+    zoom = 1 + ex * 2.2;
+    x.clearRect(0, 0, VW, VH);
+
+    /* funnel rings */
+    const fade = 1 - asm;
+    if (fade > .01) {
+      x.save(); x.setLineDash([5, 11]); x.lineDashOffset = -t * .06; x.lineWidth = 1;
+      for (let k = 1; k <= 9; k++) {
+        const yn = k / 9, r = radius(yn) * 1.08, Y = -HF / 2 + yn * HF, ax = axis(yn, t / 1000);
+        x.beginPath();
+        for (let j = 0; j <= 40; j++) { const a = j / 40 * TAU, q = proj(world([ax + r * Math.cos(a), Y, r * Math.sin(a)])); j ? x.lineTo(q[0], q[1]) : x.moveTo(q[0], q[1]); }
+        x.strokeStyle = `rgba(124,140,255,${.16 * fade * Math.min(1, t / 600)})`; x.stroke();
+      }
+      x.restore();
+    }
+
+    /* dust */
+    x.save(); x.globalCompositeOperation = "lighter";
+    const scatter = 1 + asm * 2.4, s = t / 1000;
+    for (const d of dust) {
+      const th = d.th + d.om * s * (1 + asm), yn = d.yn, r = radius(yn) * d.rr * scatter;
+      const q = proj(world([axis(yn, s) + r * Math.cos(th), -HF / 2 + yn * HF + asm * 12 * d.rr, r * Math.sin(th)]));
+      const a = (.55 * (1 - asm) + .04) * Math.min(1, t / 500) * (1 - ex);
+      if (a < .01) continue;
+      x.fillStyle = `rgba(${d.c},${a})`; x.fillRect(q[0], q[1], d.s * 1.6, d.s * 1.6);
+    }
+    x.restore();
+
+    /* pieces */
+    let landed = 0;
+    const draw = [];
+    for (const p of P) {
+      let st, flash = 0, alpha = 1;
+      if (t < p.dep) {
+        st = inTornado(p, t);
+        const a = eo(clamp((t - p.spawn) / 700, 0, 1)); st.sc *= a; alpha = a;
+      } else if (t < p.dep + FLY) {
+        if (!p.snap) { const s0 = inTornado(p, p.dep); p.snap = s0; p.ay = near(s0.yaw); p.ap = near(s0.pitch); p.ar = near(s0.roll); }
+        const u = (t - p.dep) / FLY, e = eio(u), a = p.snap;
+        const mxp = (a.X + p.tx) / 2, myp = (a.Y + p.ty) / 2 + 9, mzp = Math.min(a.Z, p.tz) - 34;
+        const b = (A, B, C) => (1 - e) * (1 - e) * A + 2 * (1 - e) * e * B + e * e * C;
+        st = { X: b(a.X, mxp, p.tx), Y: b(a.Y, myp, p.ty), Z: b(a.Z, mzp, p.tz),
+               yaw: a.yaw + (p.ay - a.yaw) * e, pitch: a.pitch + (p.ap - a.pitch) * e, roll: a.roll + (p.ar - a.roll) * e,
+               sc: a.sc + (1 - a.sc) * e + Math.sin(Math.PI * u) * .12 };
+      } else {
+        landed++;
+        st = { X: p.tx, Y: p.ty, Z: p.tz, yaw: 0, pitch: 0, roll: 0, sc: 1 };
+        flash = Math.max(0, 1 - (t - p.dep - FLY) / 380);
+      }
+      const hw = p.w / 2 * st.sc, hh = p.h / 2 * st.sc;
+      const cs = [[-hw, -hh, 0], [hw, -hh, 0], [hw, hh, 0], [-hw, hh, 0]].map(v => {
+        let w = ry(rx(rz(v, st.roll), st.pitch), st.yaw);
+        return proj(world([w[0] + st.X, w[1] + st.Y, w[2] + st.Z]));
+      });
+      const n = ry(rx([0, 0, 1], st.pitch), st.yaw);
+      const nz = world(n)[2];
+      draw.push({ p, cs, depth: (cs[0][2] + cs[1][2] + cs[2][2] + cs[3][2]) / 4 + (t >= p.dep + FLY ? p.tz * 2 : 0), shade: .42 + .58 * Math.abs(nz), flash, alpha });
+    }
+    draw.sort((a, b) => b.depth - a.depth);
+    for (const d of draw) {
+      if (d.alpha < .01) continue;
+      const c = d.cs;
+      x.globalAlpha = d.alpha * (1 - ex * .2);
+      x.beginPath(); x.moveTo(c[0][0], c[0][1]); x.lineTo(c[1][0], c[1][1]); x.lineTo(c[2][0], c[2][1]); x.lineTo(c[3][0], c[3][1]); x.closePath();
+      x.fillStyle = d.p.c; x.fill();
+      if (d.shade < .98) { x.fillStyle = `rgba(7,8,13,${(1 - d.shade).toFixed(3)})`; x.fill(); }
+      if (d.flash > 0) { x.fillStyle = `rgba(255,255,255,${(d.flash * .45).toFixed(3)})`; x.fill(); x.strokeStyle = `rgba(255,176,32,${d.flash.toFixed(3)})`; x.lineWidth = 1.5; x.stroke(); }
+    }
+    x.globalAlpha = 1;
+
+    const pct = Math.round(landed / P.length * 100);
+    if (pct !== lastPct) { lastPct = pct; pctEl.textContent = String(pct).padStart(3, "0") + "%"; }
+    if (t > T_BUILT + 120 && !box.classList.contains("fin") && exitAt === Infinity) { box.classList.add("fin"); setTimeout(() => exit(), 900); }
+    if (!ended) raf = requestAnimationFrame(frame);
+  }
+
+  function exit(){
+    if (exitAt !== Infinity) return;
+    exitAt = performance.now();
+    // replay the hero entrance as the intro leaves
+    root.classList.remove("ready"); void root.offsetWidth;
+    setTimeout(() => { box.classList.add("out"); startPage(); }, 260);
+    setTimeout(finish, 900);
+  }
+  function finish(){
+    if (ended) return; ended = true; cancelAnimationFrame(raf);
+    removeEventListener("resize", size);
+    locked.forEach(el => { el.inert = false; });
+    root.classList.remove("intro-on"); startPage();
+    const hadFocus = box.contains(document.activeElement);
+    box.remove();
+    if (hadFocus) { const h = $("#h1"); if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); } }
+  }
+  $("#introSkip").addEventListener("click", exit);
+  addEventListener("keydown", e => { if (e.key === "Escape" && !ended) exit(); });
+  setTimeout(exit, 9000); // safety net
+  raf = requestAnimationFrame(frame);
 })();
 
 /* ---------- rotating word ---------- */
@@ -1096,6 +1486,7 @@ function startPage(){ document.documentElement.classList.add("ready"); }
     els.forEach(e => io.observe(e));
   }
   const counters = document.querySelectorAll("[data-count]");
+  if (!REDUCED) counters.forEach(c => c.textContent = "0");
   const run = el => {
     const end = +el.dataset.count; if (REDUCED || !end) { el.textContent = end; return; }
     const t0 = performance.now(), d = 1400;
@@ -1149,7 +1540,7 @@ function startPage(){ document.documentElement.classList.add("ready"); }
 
 /* ---------- form, packages and payment ---------- */
 const linkFor = need => CONFIG.applyMode ? "" : ((CONFIG.paymentLinks || {})[need] || "");
-const isRedesign = need => /^Refacerea/.test(need);
+const isCustom = need => /^Soluție personalizată/.test(need);
 const sendLabel = () => linkFor($("#w").value) ? "Continuă la plată" : (CONFIG.applyMode ? "Trimite aplicația" : "Trimite cererea");
 /* speed pill, exclusivity checker and founding-client counter (honest numbers from CONFIG) */
 (function(){
@@ -1178,23 +1569,113 @@ const f = CONFIG.founders; if (!f || !$("#fLeft")) return;
 function pick(v){ $("#w").value = v; $("#w").dispatchEvent(new Event("change")); }
 document.querySelectorAll("[data-demo]").forEach(a => a.addEventListener("click", () => pick("Vreau întâi un demo gratuit")));
 document.querySelectorAll("[data-pick]").forEach(a => a.addEventListener("click", () => pick(a.dataset.pick)));
+/* ---------- 3D builder: alegi domeniul, numele, culoarea și stilul, vezi site-ul pe laptop și telefon ---------- */
+(function(){
+  const B = {
+    types: [
+      { id:"restaurant", label:"Restaurant", name:"Bistro Nou", kick:"Restaurant", t:"Gust de casă, <em>în centru.</em>", p:"Meniul zilei, programul și rezervări la un telefon distanță.", cta:"Rezervă o masă", items:["Meniul zilei","De la grătar","Deserturi"], tabs:["Meniu","Galerie","Contact"], form:"Restaurant, cafenea, fast-food" },
+      { id:"cafenea", label:"Cafenea", name:"Cafeneaua Ta", kick:"Cafenea", t:"Cafea bună, <em>de dimineață.</em>", p:"Espresso, prăjituri proaspete și un loc liniștit de stat.", cta:"Vezi meniul", items:["Espresso","Prăjituri","Mic dejun"], tabs:["Meniu","Despre","Contact"], form:"Restaurant, cafenea, fast-food" },
+      { id:"salon", label:"Salon", name:"Salon Aria", kick:"Salon de înfrumusețare", t:"Un look nou, <em>fără grabă.</em>", p:"Servicii cu prețuri clare și programări pe WhatsApp.", cta:"Programează-te", items:["Tuns & coafat","Vopsit","Manichiură"], tabs:["Servicii","Prețuri","Galerie"], form:"Salon, frizerie, cosmetică" },
+      { id:"service", label:"Service auto", name:"Auto Expert", kick:"Service auto", t:"Revizie rapidă, <em>preț clar.</em>", p:"Diagnoză, revizii și reparații, cu prețul spus dinainte.", cta:"Cere o programare", items:["Revizie","Diagnoză","Schimb ulei"], tabs:["Servicii","Prețuri","Contact"], form:"Service auto, meșteșugari, construcții" },
+      { id:"mester", label:"Meșter", name:"Instal Pro", kick:"Instalații și renovări", t:"Lucrări curate, <em>la termen.</em>", p:"Instalații, renovări și montaj, cu ofertă înainte de lucru.", cta:"Cere ofertă", items:["Instalații","Renovări","Montaj"], tabs:["Lucrări","Servicii","Contact"], form:"Service auto, meșteșugari, construcții" },
+      { id:"magazin", label:"Magazin", name:"Magazinul Tău", kick:"Magazin", t:"Produse alese, <em>aproape de tine.</em>", p:"Noutăți, oferte și programul magazinului, mereu la zi.", cta:"Vezi produsele", items:["Noutăți","Oferte","Program"], tabs:["Produse","Oferte","Contact"], form:"Magazin" }
+    ],
+    colors: [ ["Chihlimbar","#FFB020","#111"], ["Cobalt","#4C63FF","#fff"], ["Smarald","#1FA971","#fff"], ["Roz","#E86FA6","#111"], ["Teracotă","#D9653B","#fff"], ["Violet","#8B5CF6","#fff"] ],
+    styles: [ ["Modern", { "--hf":"var(--display)", "--hw":"800", "--hl":"-.04em", "--ht":"none", "--r":"10px" }],
+              ["Elegant", { "--hf":"var(--serif)", "--hw":"400", "--hl":"-.01em", "--ht":"none", "--r":"3px" }],
+              ["Îndrăzneț", { "--hf":"var(--display)", "--hw":"800", "--hl":"-.02em", "--ht":"uppercase", "--r":"16px" }] ],
+    modes: [ ["Luminos","light"], ["Întunecat","dark"] ],
+    packs: [ ["Basic","Site Basic (500 lei)"], ["Ultra","Site Ultra (1199 lei)"] ]
+  };
+  const st = { type:0, color:0, style:0, mode:0, pack:1, name:"" };
+  const radios = (el, name, arr, lab) => { $(el).innerHTML = arr.map((x, i) => `<label><input type="radio" name="${name}" value="${i}"${i === st[name] ? " checked" : ""}><span>${esc(lab(x))}</span></label>`).join(""); };
+  radios("#bType", "type", B.types, x => x.label);
+  radios("#bStyle", "style", B.styles, x => x[0]);
+  radios("#bMode", "mode", B.modes, x => x[0]);
+  radios("#bPack", "pack", B.packs, x => x[0]);
+  $("#bColor").innerHTML = B.colors.map((c, i) => `<label title="${c[0]}"><input type="radio" name="color" value="${i}" aria-label="${c[0]}"${i === 0 ? " checked" : ""}><span style="--c:${c[1]}"></span></label>`).join("");
+
+  function site(m){
+    const t = B.types[st.type], name = esc(st.name.trim() || t.name), ultra = st.pack === 1;
+    const links = ultra ? `<span class="ml">${t.tabs.map(x => `<span>${x}</span>`).join("")}</span>` : "";
+    return `<div class="mn"><span class="mb"><i></i>${name}</span>${links}<span class="mc">${esc(t.cta)}</span></div>
+      <div class="mh"><div><div class="mk">${esc(t.kick)}</div><div class="mt">${t.t}</div><p class="mp">${esc(t.p)}</p><span class="mc">${esc(t.cta)} →</span></div><div class="mi"></div></div>
+      <div class="mg">${t.items.map(x => `<div>${esc(x)}</div>`).join("")}</div>
+      <div class="mf"><span>Program · Adresă · Hartă</span><span>Sună · WhatsApp</span></div>`;
+  }
+  function render(anim){
+    const c = B.colors[st.color], sty = B.styles[st.style][1];
+    for (const id of ["#bSiteL", "#bSiteP"]) {
+      const el = $(id);
+      el.innerHTML = site();
+      el.classList.toggle("dark", B.modes[st.mode][1] === "dark");
+      el.style.setProperty("--a", c[1]); el.style.setProperty("--on", c[2]);
+      for (const k in sty) el.style.setProperty(k, sty[k]);
+      if (anim && !REDUCED) { el.classList.remove("swap"); void el.offsetWidth; el.classList.add("swap"); }
+    }
+    $("#bStage").style.setProperty("--bc", c[1]);
+    const t = B.types[st.type];
+    $("#bSummary").textContent = `Previzualizare: site pentru ${t.label.toLowerCase()}, „${st.name.trim() || t.name}”, culoare ${c[0].toLowerCase()}, stil ${B.styles[st.style][0].toLowerCase()}, fundal ${B.modes[st.mode][0].toLowerCase()}, pachet ${B.packs[st.pack][0]}.`;
+  }
+  $("#bForm").addEventListener("change", e => { const n = e.target.name; if (n in st && n !== "name") { st[n] = +e.target.value; render(true); } });
+  $("#bName").addEventListener("input", e => { st.name = e.target.value; render(false); });
+  $("#bForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const t = B.types[st.type], c = B.colors[st.color];
+    if (st.name.trim()) $("#b").value = st.name.trim();
+    $("#t").value = t.form;
+    pick("Vreau întâi un demo gratuit");
+    const line = `Design ales în constructor: ${t.label}, culoare ${c[0]}, stil ${B.styles[st.style][0]}, fundal ${B.modes[st.mode][0].toLowerCase()}, pachet ${B.packs[st.pack][0]}.`;
+    const m = $("#m"); m.value = m.value.replace(/^Design ales în constructor:.*\n?/m, "").trim(); m.value = line + (m.value ? "\n" + m.value : "");
+    $("#cerere").scrollIntoView({ behavior: REDUCED ? "auto" : "smooth" });
+    setTimeout(() => $("#n").focus({ preventScroll:true }), REDUCED ? 0 : 700);
+  });
+  render(false);
+
+  /* scale the scene to the available width, rotate with pointer drag and a slow idle sway */
+  const stage = $("#bStage"), fit = $("#bFit"), scene = $("#bScene");
+  const scale = () => { const s = Math.min(1, stage.clientWidth / 660); fit.style.transform = `scale(${s})`; fit.style.margin = `${-(430 * (1 - s)) / 2}px ${-(660 * (1 - s)) / 2}px`; };
+  scale(); addEventListener("resize", scale);
+  let ry = -18, rx = 8, drag = null, last = 0, vis = false;
+  const apply = () => { scene.style.setProperty("--ry", ry.toFixed(2) + "deg"); scene.style.setProperty("--rx", rx.toFixed(2) + "deg"); };
+  apply();
+  stage.addEventListener("pointerdown", e => { drag = { x:e.clientX, y:e.clientY, ry, rx }; stage.classList.add("drag"); stage.setPointerCapture(e.pointerId); });
+  stage.addEventListener("pointermove", e => { if (!drag) return; ry = Math.max(-34, Math.min(34, drag.ry + (e.clientX - drag.x) * .25)); rx = Math.max(-4, Math.min(20, drag.rx - (e.clientY - drag.y) * .15)); last = performance.now(); apply(); });
+  const end = () => { drag = null; stage.classList.remove("drag"); last = performance.now(); };
+  stage.addEventListener("pointerup", end); stage.addEventListener("pointercancel", end);
+  if (REDUCED) return;
+  new IntersectionObserver(es => { vis = es[0].isIntersecting; }).observe(stage);
+  (function idle(now){
+    if (vis && !drag && now - last > 2500) {
+      const tr = -18 + Math.sin(now / 2600) * 12, tx = 8 + Math.sin(now / 3400) * 3;
+      ry += (tr - ry) * .03; rx += (tx - rx) * .03; apply();
+    }
+    requestAnimationFrame(idle);
+  })(performance.now());
+})();
 $("#w").addEventListener("change", () => {
   $("#send").textContent = sendLabel();
-  $("#oldWrap").hidden = !isRedesign($("#w").value);
+  $("#oldWrap").hidden = !isCustom($("#w").value);
 });
+/* linkuri din celelalte pagini: /?pachet=basic#cerere preselectează opțiunea */
+{ const PK = { basic:"Site Basic (500 lei)", ultra:"Site Ultra (1199 lei)", personalizat:"Soluție personalizată (ofertă)", demo:"Vreau întâi un demo gratuit", sfat:"Nu știu încă, vreau un sfat" };
+  const q = new URLSearchParams(location.search).get("pachet"); if (q && PK[q]) pick(PK[q]); }
 if (CONFIG.terms) { $("#termsBox").hidden = false; $("#termsText").textContent = CONFIG.terms; $("#okTxt").textContent = "Sunt de acord să fiu contactat și am citit termenii și condițiile de rambursare."; }
 if (new URLSearchParams(location.search).get("platit") === "1") $("#paid").hidden = false;
 
+const FORM_T0 = performance.now();
 $("#form").addEventListener("submit", async e => {
   e.preventDefault();
   const f = e.target, err = $("#err");
   const need = [["n","Scrie-ți numele."],["b","Scrie numele afacerii."],["p","Lasă un număr de telefon ca să te pot suna."],["t","Alege domeniul afacerii."],["w","Alege de ce ai nevoie."]];
   for (const [id, msg] of need) { if (!$("#" + id).value.trim()) { err.textContent = msg; $("#" + id).focus(); return; } }
   if ($("#p").value.replace(/[^\d]/g, "").length < 9) { err.textContent = "Numărul de telefon pare incomplet."; $("#p").focus(); return; }
-  if (isRedesign($("#w").value) && !$("#old").value.trim()) { err.textContent = "Scrie adresa site-ului pe care vrei să-l refacem."; $("#old").focus(); return; }
   if (!$("#ok").checked) { err.textContent = "Bifează acordul ca să te pot contacta."; return; }
   err.textContent = "";
+  // protecție simplă anti-spam: câmp ascuns completat sau formular trimis în sub 3 secunde
+  if ($("#hpf").value || performance.now() - FORM_T0 < 3000) { f.hidden = true; $("#done").hidden = false; $("#talkStep").hidden = false; return; }
   const data = new URLSearchParams(new FormData(f));
+  data.delete("company_site");
   data.set("source", CONFIG.applyMode ? "site-web-aplicatie" : "site-web-500");
   const extra = [["Obiectiv", $("#goal").value], ["Texte și poze", $("#mat").value]].filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`).join("\n");
   if (extra) data.set("message", [$("#m").value.trim(), extra].filter(Boolean).join("\n\n"));
@@ -1203,9 +1684,17 @@ $("#form").addEventListener("submit", async e => {
   const reqId = "REQ-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
   data.set("request_id", reqId);
   try {
-    if (!CONFIG.webhookUrl) throw new Error("no webhook");
-    await fetch(CONFIG.webhookUrl, { method:"POST", mode:"no-cors", body:data });
+    if (!CONFIG.webhookUrl) throw new Error("no-webhook");
+    if (!navigator.onLine) throw new Error("offline");
+    // Trimitem o singură dată. Dacă serviciul permite citirea răspunsului (CORS), verificăm că a fost acceptat.
+    const ctrl = new AbortController(), tm = setTimeout(() => ctrl.abort(), 15000);
+    let res = null;
+    try { res = await fetch(CONFIG.webhookUrl, { method:"POST", body:data, signal:ctrl.signal }); }
+    catch (x) { if (x.name === "AbortError") throw x; /* răspuns ascuns de browser (CORS): cererea a plecat */ }
+    finally { clearTimeout(tm); }
+    if (res && !res.ok) throw new Error("http " + res.status);
     f.hidden = true; $("#done").hidden = false;
+    $("#doneId").textContent = "Cod cerere: " + reqId;
     const needV = $("#w").value, link = linkFor(needV), pays = !!link;
     $("#payStep").hidden = !pays; $("#talkStep").hidden = !!pays;
     if (pays) {
@@ -1216,9 +1705,11 @@ $("#form").addEventListener("submit", async e => {
       const em = $("#e").value.trim(); if (em) u.searchParams.set("prefilled_email", em);
       $("#payBtn").href = u.toString();
     }
-    $("#done").scrollIntoView({ block:"center" });
+    $("#done").scrollIntoView({ block:"center" }); const dt = $("#doneTitle"); if (dt && !$("#talkStep").hidden) dt.focus({ preventScroll:true });
   } catch (x) {
-    err.textContent = "Cererea nu a putut fi trimisă. Încearcă din nou sau contactează-mă direct.";
+    const direct = [CONFIG.phoneDisplay || CONFIG.phone, CONFIG.email].filter(Boolean).join(" sau ");
+    err.textContent = (x.message === "offline" ? "Nu ești conectat la internet. " : x.name === "AbortError" ? "Trimiterea a durat prea mult. " : "Aplicația nu a putut fi trimisă. ")
+      + "Datele tale au rămas în formular, încearcă din nou" + (direct ? " sau contactează-mă direct: " + direct + "." : " peste câteva minute.");
   } finally { b.disabled = false; b.textContent = sendLabel(); }
 });
 </script>
