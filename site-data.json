@@ -1,0 +1,12 @@
+{
+  "prices": {
+    "basic": "500",
+    "basic_std": "849",
+    "ultra": "1199",
+    "ultra_std": "1999"
+  },
+  "stripe": {
+    "basic": "https://buy.stripe.com/7sYdR3faG2qe4i74tceUU00",
+    "ultra": "https://buy.stripe.com/14A6oBbYu8OC01R6BkeUU03"
+  }
+}
