@@ -3,8 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>OHI Solutions · Site-uri care aduc clienți</title>
-<meta name="description" content="Site-uri rapide și moderne pentru afaceri locale. Site Basic 500 lei, Site Ultra 1199 lei, refacere 400 lei. Demo gratuit.">
+<title>Creare Site Web pentru Afaceri | OHI Solutions</title>
+<meta name="description" content="OHI Solutions creează site-uri web rapide, gândite pentru telefon, pentru restaurante, saloane, service-uri și afaceri locale. Vezi pachetele și cere un demo gratuit.">
+<link rel="canonical" href="https://ohis-gamma.vercel.app/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:site_name" content="OHI Solutions">
+<meta property="og:title" content="Creare Site Web pentru Afaceri | OHI Solutions">
+<meta property="og:description" content="OHI Solutions creează site-uri web rapide, gândite pentru telefon, pentru restaurante, saloane, service-uri și afaceri locale. Vezi pachetele și cere un demo gratuit.">
+<meta property="og:url" content="https://ohis-gamma.vercel.app/">
+<meta property="og:image" content="https://ohis-gamma.vercel.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/icon-512.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Organization", "@id": "https://ohis-gamma.vercel.app/#org", "name": "OHI Solutions", "url": "https://ohis-gamma.vercel.app/", "logo": "https://ohis-gamma.vercel.app/icon-512.png", "description": "Creare și refacere de site-uri web pentru afaceri locale."}, {"@context": "https://schema.org", "@type": "WebSite", "@id": "https://ohis-gamma.vercel.app/#website", "name": "OHI Solutions", "url": "https://ohis-gamma.vercel.app/", "inLanguage": "ro-RO", "publisher": {"@id": "https://ohis-gamma.vercel.app/#org"}}, {"@context": "https://schema.org", "@type": "Service", "name": "Creare site web pentru afaceri locale", "serviceType": "Web design", "provider": {"@id": "https://ohis-gamma.vercel.app/#org"}, "areaServed": {"@type": "Country", "name": "România"}, "url": "https://ohis-gamma.vercel.app/creare-site-web", "offers": [{"@type": "Offer", "name": "Site Basic", "price": "500", "priceCurrency": "RON", "url": "https://ohis-gamma.vercel.app/preturi"}, {"@type": "Offer", "name": "Site Ultra", "price": "1199", "priceCurrency": "RON", "url": "https://ohis-gamma.vercel.app/preturi"}, {"@type": "Offer", "name": "Refacerea site-ului", "price": "400", "priceCurrency": "RON", "url": "https://ohis-gamma.vercel.app/refacere-site-web"}]}]</script>
 <meta name="theme-color" content="#0B0D14">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -248,7 +264,7 @@ h2 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:
 .screen .sb div em{font-style:normal;font-weight:700}
 .screen .sb .go{background:#25D366;color:#fff;border-radius:999px;justify-content:center;font-weight:700;border:0;margin-top:.4rem;padding:.6rem}
 .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem}
-.chips span{border:1px solid var(--line);border-radius:999px;padding:.4rem .9rem;font-weight:600;font-size:.92rem;color:var(--muted)}
+.chips span,.chips a{border:1px solid var(--line);border-radius:999px;padding:.4rem .9rem;font-weight:600;font-size:.92rem;color:var(--muted)}
 .note{color:var(--muted);font-size:.9rem}
 
 /* pricing */
@@ -441,6 +457,23 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
   .js .hero .line > span,.js .fade,.js [data-r]{transform:none!important;opacity:1!important}
   .manifesto p .w{opacity:1}
 }
+.info{padding:clamp(4rem,8vw,6.5rem) 0 0}
+.igrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.4rem}
+@media (max-width:900px){.igrid{grid-template-columns:1fr}}
+.icard{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:1.6rem 1.5rem}
+.icard h3{font-family:var(--display);font-weight:800;letter-spacing:-.03em;font-size:1.35rem;margin:0 0 .8rem}
+.icard ul{margin:0;padding:0;list-style:none;display:grid;gap:.55rem;color:var(--muted)}
+.icard li{padding-left:1.4rem;position:relative}
+.icard li::before{content:"";position:absolute;left:0;top:.62em;width:.55rem;height:.55rem;border-radius:50%;background:var(--tag)}
+.more{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin:1.8rem 0 0}
+.more a,.tier .lnk,.foot-links a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--tag);text-underline-offset:4px;font-weight:600}
+.tier .lnk{display:inline-block;margin:-.3rem 0 1rem;font-size:.92rem}
+.chips a{text-decoration:none}
+.req{color:var(--tag);font-weight:700}
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+.foot-links{display:flex;flex-wrap:wrap;gap:.5rem 1.3rem;margin:0 0 1.6rem;font-size:.95rem}
+.foot-links a{font-weight:500;color:var(--muted)}
+.ok-note{color:var(--muted);font-size:.9rem}
 </style>
 </head>
 <body>
@@ -458,7 +491,7 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
 
 <header class="top" id="hdr">
   <div class="wrap">
-    <a class="brand" href="#top"><i aria-hidden="true"></i><span data-c="brand">OHI Solutions</span></a>
+    <a class="brand" href="/" aria-label="OHI Solutions, pagina principală"><i aria-hidden="true"></i><span data-c="brand">OHI Solutions</span></a>
     <nav class="links" aria-label="Meniu">
       <a href="#ce-primesti">Ce primești</a>
       <a href="#proces">Proces</a>
@@ -480,6 +513,8 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
     <a href="#demo"><span>Demo gratuit</span></a>
     <a href="#pret"><span>Prețuri</span></a>
     <a href="#cerere"><span>Contact</span></a>
+    <a href="/creare-site-web"><span>Cum lucrăm</span></a>
+    <a href="/blog"><span>Blog</span></a>
   </nav>
   <p style="margin:0;opacity:.85">Site-uri pentru afaceri locale, de la 400 lei.</p>
 </div>
@@ -489,10 +524,10 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
     <canvas id="field" aria-hidden="true"></canvas>
     <span class="scrollhint" aria-hidden="true">Derulează ↓</span>
     <div class="wrap">
-      <span class="eyebrow fade">Site-uri pentru afaceri locale</span>
+      <span class="eyebrow fade">Web design pentru firme mici</span>
       <h1 id="h1">
-        <span class="line"><span>Site-uri care</span></span>
-        <span class="line"><span>aduc clienți pentru</span></span>
+        <span class="line"><span>Creare site web</span></span>
+        <span class="line"><span>pentru</span></span>
         <span class="line"><span class="rot" id="rot" aria-hidden="true"><b class="in">restaurante.</b><b>saloane.</b><b>service-uri.</b><b>cafenele.</b><b>meșteri.</b></span><span class="sr">afaceri locale.</span></span>
       </h1>
       <div class="hero-bottom">
@@ -504,7 +539,7 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
           </div>
           <p class="cap" data-cap></p>
         </div>
-        <div class="badge fade" aria-label="Preț fix, de la 400 lei">
+        <div class="badge fade" aria-label="Site Basic: 500 lei, preț de lansare">
           <svg viewBox="0 0 100 100" aria-hidden="true"><defs><path id="circ" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><text><textPath href="#circ">PREȚ FIX · FĂRĂ ABONAMENT · DEMO GRATUIT ·</textPath></text></svg>
           <div class="c">500<small>LEI</small></div>
         </div>
@@ -528,10 +563,10 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
 
   <div class="wrap">
     <div class="stats" data-r>
-      <div class="stat"><b data-count="500">0</b><span>lei, preț de lansare</span></div>
-      <div class="stat"><b data-count="0">0</b><span>lei abonament lunar</span></div>
-      <div class="stat"><b data-count="6">0</b><span>lucruri incluse</span></div>
-      <div class="stat"><b data-count="0">0</b><span>lei pentru demo</span></div>
+      <div class="stat"><b data-count="500">500</b><span>lei, preț de lansare</span></div>
+      <div class="stat"><b data-count="0">0</b><span>lei abonament lunar la OHI</span></div>
+      <div class="stat"><b data-count="6">6</b><span>lucruri incluse</span></div>
+      <div class="stat"><b data-count="24">24</b><span>de ore până la demo-ul gratuit</span></div>
     </div>
   </div>
 
@@ -606,7 +641,7 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
         <span class="eyebrow">Exemplu</span>
         <h2 id="h-ex">Așa poate arăta <em>site-ul tău.</em></h2>
         <p class="lede">Program, meniu sau servicii cu prețuri, adresa pe hartă și un buton de WhatsApp. Tot ce caută un client, pe un singur ecran de telefon.</p>
-        <div class="chips"><span>Restaurante</span><span>Cafenele</span><span>Saloane</span><span>Service-uri</span><span>Meșteri</span><span>Magazine</span></div>
+        <div class="chips"><a href="/site-uri-restaurante">Restaurante</a><a href="/site-uri-restaurante">Cafenele</a><a href="/site-uri-saloane">Saloane</a><span>Service-uri</span><span>Meșteri</span><span>Magazine</span></div>
         <p class="note" style="margin-top:1.4rem">Exemplu de design pentru o afacere fictivă. Site-ul tău va avea numele, culorile și serviciile afacerii tale.</p>
       </div>
     </div>
@@ -654,11 +689,11 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
     </div>
   </section>
 
-  <section class="excl" id="exclusivitate" aria-labelledby="h-ex">
+  <section class="excl" id="exclusivitate" aria-labelledby="h-excl">
     <div class="wrap exgrid">
       <div>
         <span class="eyebrow">Exclusivitate pe zonă</span>
-        <h2 id="h-ex">Concurentul tău <em>nu primește</em> același site.</h2>
+        <h2 id="h-excl">Concurentul tău <em>nu primește</em> același site.</h2>
         <p class="lede">Cu Site Ultra îți rezervi zona: timp de 12 luni nu facem site pentru alt client din același domeniu, în același oraș sau cartier. Tu ieși în evidență, nu concurentul.</p>
       </div>
       <form class="excard" id="exForm" novalidate data-r>
@@ -668,6 +703,45 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
         <button class="btn btn-main" type="submit">Verifică zona <span class="arr">→</span></button>
         <p class="exout" id="exOut" role="status" aria-live="polite"></p>
       </form>
+    </div>
+  </section>
+
+  <section class="info" id="detalii" aria-labelledby="h-info">
+    <div class="wrap">
+      <span class="eyebrow">Spus clar</span>
+      <h2 id="h-info">Ce îmi trimiți și ce <em>primești.</em></h2>
+      <div class="igrid">
+        <article class="icard" data-r>
+          <h3>Ce îmi trimiți tu</h3>
+          <ul>
+            <li>Numele afacerii și logo-ul, dacă ai unul</li>
+            <li>Serviciile sau meniul, cu prețuri</li>
+            <li>Programul, adresa și datele de contact</li>
+            <li>Poze cu locul, produsele sau lucrările tale</li>
+            <li>La refacere: adresa site-ului actual și acces la domeniu</li>
+          </ul>
+        </article>
+        <article class="icard" data-r="2">
+          <h3>Ce primești la lansare</h3>
+          <ul>
+            <li>Site-ul publicat pe domeniul tău</li>
+            <li>Formular care îți trimite cererile clienților</li>
+            <li>Butoane de WhatsApp și apel, plus harta</li>
+            <li>Arată bine pe telefon, tabletă și calculator</li>
+            <li>Îți arăt cum primești mesajele de la clienți</li>
+          </ul>
+        </article>
+        <article class="icard" data-r="3">
+          <h3>Ce nu e inclus</h3>
+          <ul>
+            <li>Domeniul (ex. numeafacerii.ro), plătit separat, anual</li>
+            <li>Magazinul online, cu coș și plăți: ofertă separată</li>
+            <li>La Basic, textele scrise de la zero</li>
+            <li>Modificările după rundele incluse se stabilesc separat</li>
+          </ul>
+        </article>
+      </div>
+      <p class="more"><a href="/creare-site-web">Cum lucrăm, pas cu pas</a><a href="/preturi">Prețuri și diferențe între pachete</a><a href="/refacere-site-web">Refacerea unui site existent</a></p>
     </div>
   </section>
 
@@ -683,6 +757,7 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
           <div class="amt">500<small>lei</small></div>
           <p class="std">Preț standard după lansare: <b>849 lei</b></p>
           <p class="muted">Site de prezentare curat și rapid, pe o singură pagină.</p>
+          <a class="lnk" href="/preturi">Ce include Basic</a>
           <a class="btn btn-ghost" href="#cerere" data-pick="Site Basic (500 lei)">Alege Basic <span class="arr">→</span></a>
         </article>
         <article class="tier main" data-r="2">
@@ -699,6 +774,7 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
           <div class="amt">400<small>lei</small></div>
           <p class="std">&nbsp;</p>
           <p class="muted">Păstrăm conținutul site-ului tău actual, într-un design nou, rapid.</p>
+          <a class="lnk" href="/refacere-site-web">Cum funcționează refacerea</a>
           <a class="btn btn-ghost" href="#cerere" data-pick="Refacerea site-ului actual (400 lei)">Alege refacerea <span class="arr">→</span></a>
         </article>
       </div>
@@ -716,7 +792,7 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
 
       <div class="addon" data-r>
         <div><b>Vrei și un asistent AI care răspunde clienților?</b><span>Îl poți adăuga oricând, separat, de la RAI Solutions, serviciul nostru de asistenți AI.</span></div>
-        <a class="btn btn-ghost btn-sm" href="#cerere">Întreabă-mă <span class="arr">→</span></a>
+        <a class="btn btn-ghost btn-sm" href="https://rais-pi.vercel.app/" target="_blank" rel="noopener">Vezi RAI Solutions <span class="arr">→</span></a>
       </div>
     </div>
   </section>
@@ -739,12 +815,14 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
       </div>
       <div class="formcard">
         <form id="form" novalidate>
-          <div class="f"><label for="n">Numele tău</label><input id="n" name="name" autocomplete="name" required></div>
-          <div class="f"><label for="b">Numele afacerii</label><input id="b" name="business" autocomplete="organization" required></div>
-          <div class="f"><label for="p">Telefon</label><input id="p" name="phone" type="tel" inputmode="tel" autocomplete="tel" required></div>
+          <p class="ok-note f full" style="margin:0">Câmpurile cu <span class="req">*</span> sunt obligatorii.</p>
+          <div class="hp" aria-hidden="true"><label for="hpf">Nu completa acest câmp</label><input id="hpf" name="company_site" tabindex="-1" autocomplete="off"></div>
+          <div class="f"><label for="n">Numele tău <span class="req" aria-hidden="true">*</span></label><input id="n" name="name" autocomplete="name" required aria-required="true" aria-describedby="err"></div>
+          <div class="f"><label for="b">Numele afacerii <span class="req" aria-hidden="true">*</span></label><input id="b" name="business" autocomplete="organization" required aria-required="true" aria-describedby="err"></div>
+          <div class="f"><label for="p">Telefon <span class="req" aria-hidden="true">*</span></label><input id="p" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-required="true" aria-describedby="err"></div>
           <div class="f"><label for="e">Email <small>(opțional)</small></label><input id="e" name="email" type="email" autocomplete="email"></div>
-          <div class="f"><label for="t">Domeniul afacerii</label>
-            <select id="t" name="business_type" required>
+          <div class="f"><label for="t">Domeniul afacerii <span class="req" aria-hidden="true">*</span></label>
+            <select id="t" name="business_type" required aria-required="true" aria-describedby="err">
               <option value="">Alege</option>
               <option>Restaurant, cafenea, fast-food</option>
               <option>Salon, frizerie, cosmetică</option>
@@ -753,8 +831,8 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
               <option>Servicii profesionale</option>
               <option>Altceva</option>
             </select></div>
-          <div class="f"><label for="w">De ce ai nevoie</label>
-            <select id="w" name="need" required>
+          <div class="f"><label for="w">De ce ai nevoie <span class="req" aria-hidden="true">*</span></label>
+            <select id="w" name="need" required aria-required="true" aria-describedby="err">
               <option value="">Alege</option>
               <option>Site Basic (500 lei)</option>
               <option>Site Ultra (1199 lei)</option>
@@ -768,7 +846,7 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
           <div class="f"><label for="mat">Ai texte și poze?</label>
             <select id="mat"><option value="">Alege</option><option>Da, le am</option><option>Parțial</option><option>Nu, am nevoie de ajutor</option></select></div>
           <div class="f full"><label for="m">Spune-mi pe scurt despre afacere <small>(opțional)</small></label><textarea id="m" name="message" placeholder="Ce vinzi, unde ești, ai deja un site sau o pagină de Facebook?"></textarea></div>
-          <label class="chk"><input type="checkbox" id="ok" required> <span id="okTxt">Sunt de acord să fiu contactat în legătură cu această cerere.</span></label>
+          <label class="chk"><input type="checkbox" id="ok" required aria-required="true"> <span id="okTxt"><span class="req" aria-hidden="true">*</span> Sunt de acord să fiu contactat în legătură cu această cerere.</span></label>
           <details class="terms f full" id="termsBox" hidden><summary>Termeni și rambursare</summary><p id="termsText"></p></details>
           <p class="err" id="err" role="alert"></p>
           <button class="btn btn-main" id="send" type="submit">Trimite aplicația</button>
@@ -782,8 +860,9 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
             <p class="small" id="bundleNote" hidden></p>
           </div>
           <div id="talkStep" hidden>
-            <h3>Aplicația ta a fost primită</h3>
+            <h3 id="doneTitle" tabindex="-1">Aplicația ta a fost trimisă</h3>
             <p>Mulțumesc! O citesc personal și te contactez în cel mai scurt timp, ca să vedem dacă proiectul tău se potrivește și când avem loc.</p>
+            <p class="small" id="doneId"></p>
           </div>
         </div>
       </div>
@@ -794,6 +873,9 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
 <footer>
   <div class="wrap">
     <p class="bigword" id="bigword" aria-hidden="true">OHI.</p>
+    <nav class="foot-links" aria-label="Pagini">
+      <a href="/creare-site-web">Creare site web</a><a href="/preturi">Prețuri</a><a href="/refacere-site-web">Refacere site web</a><a href="/site-uri-restaurante">Site-uri pentru restaurante</a><a href="/site-uri-saloane">Site-uri pentru saloane</a><a href="/blog">Blog</a><a href="https://rais-pi.vercel.app/" rel="noopener">Asistent AI (RAI Solutions)</a>
+    </nav>
     <div class="foot"><span>© <span id="yr"></span> <span data-c="brand">OHI Solutions</span></span><span>Site-uri pentru afaceri locale · <a href="#cerere">Contact</a></span></div>
   </div>
 </footer>
@@ -1096,6 +1178,7 @@ function startPage(){ document.documentElement.classList.add("ready"); }
     els.forEach(e => io.observe(e));
   }
   const counters = document.querySelectorAll("[data-count]");
+  if (!REDUCED) counters.forEach(c => c.textContent = "0");
   const run = el => {
     const end = +el.dataset.count; if (REDUCED || !end) { el.textContent = end; return; }
     const t0 = performance.now(), d = 1400;
@@ -1178,6 +1261,9 @@ const f = CONFIG.founders; if (!f || !$("#fLeft")) return;
 function pick(v){ $("#w").value = v; $("#w").dispatchEvent(new Event("change")); }
 document.querySelectorAll("[data-demo]").forEach(a => a.addEventListener("click", () => pick("Vreau întâi un demo gratuit")));
 document.querySelectorAll("[data-pick]").forEach(a => a.addEventListener("click", () => pick(a.dataset.pick)));
+/* linkuri din celelalte pagini: /?pachet=basic#cerere preselectează opțiunea */
+{ const PK = { basic:"Site Basic (500 lei)", ultra:"Site Ultra (1199 lei)", refacere:"Refacerea site-ului actual (400 lei)", demo:"Vreau întâi un demo gratuit", sfat:"Nu știu încă, vreau un sfat" };
+  const q = new URLSearchParams(location.search).get("pachet"); if (q && PK[q]) pick(PK[q]); }
 $("#w").addEventListener("change", () => {
   $("#send").textContent = sendLabel();
   $("#oldWrap").hidden = !isRedesign($("#w").value);
@@ -1185,6 +1271,7 @@ $("#w").addEventListener("change", () => {
 if (CONFIG.terms) { $("#termsBox").hidden = false; $("#termsText").textContent = CONFIG.terms; $("#okTxt").textContent = "Sunt de acord să fiu contactat și am citit termenii și condițiile de rambursare."; }
 if (new URLSearchParams(location.search).get("platit") === "1") $("#paid").hidden = false;
 
+const FORM_T0 = performance.now();
 $("#form").addEventListener("submit", async e => {
   e.preventDefault();
   const f = e.target, err = $("#err");
@@ -1194,7 +1281,10 @@ $("#form").addEventListener("submit", async e => {
   if (isRedesign($("#w").value) && !$("#old").value.trim()) { err.textContent = "Scrie adresa site-ului pe care vrei să-l refacem."; $("#old").focus(); return; }
   if (!$("#ok").checked) { err.textContent = "Bifează acordul ca să te pot contacta."; return; }
   err.textContent = "";
+  // protecție simplă anti-spam: câmp ascuns completat sau formular trimis în sub 3 secunde
+  if ($("#hpf").value || performance.now() - FORM_T0 < 3000) { f.hidden = true; $("#done").hidden = false; $("#talkStep").hidden = false; return; }
   const data = new URLSearchParams(new FormData(f));
+  data.delete("company_site");
   data.set("source", CONFIG.applyMode ? "site-web-aplicatie" : "site-web-500");
   const extra = [["Obiectiv", $("#goal").value], ["Texte și poze", $("#mat").value]].filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`).join("\n");
   if (extra) data.set("message", [$("#m").value.trim(), extra].filter(Boolean).join("\n\n"));
@@ -1203,9 +1293,17 @@ $("#form").addEventListener("submit", async e => {
   const reqId = "REQ-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
   data.set("request_id", reqId);
   try {
-    if (!CONFIG.webhookUrl) throw new Error("no webhook");
-    await fetch(CONFIG.webhookUrl, { method:"POST", mode:"no-cors", body:data });
+    if (!CONFIG.webhookUrl) throw new Error("no-webhook");
+    if (!navigator.onLine) throw new Error("offline");
+    // Trimitem o singură dată. Dacă serviciul permite citirea răspunsului (CORS), verificăm că a fost acceptat.
+    const ctrl = new AbortController(), tm = setTimeout(() => ctrl.abort(), 15000);
+    let res = null;
+    try { res = await fetch(CONFIG.webhookUrl, { method:"POST", body:data, signal:ctrl.signal }); }
+    catch (x) { if (x.name === "AbortError") throw x; /* răspuns ascuns de browser (CORS): cererea a plecat */ }
+    finally { clearTimeout(tm); }
+    if (res && !res.ok) throw new Error("http " + res.status);
     f.hidden = true; $("#done").hidden = false;
+    $("#doneId").textContent = "Cod cerere: " + reqId;
     const needV = $("#w").value, link = linkFor(needV), pays = !!link;
     $("#payStep").hidden = !pays; $("#talkStep").hidden = !!pays;
     if (pays) {
@@ -1216,9 +1314,11 @@ $("#form").addEventListener("submit", async e => {
       const em = $("#e").value.trim(); if (em) u.searchParams.set("prefilled_email", em);
       $("#payBtn").href = u.toString();
     }
-    $("#done").scrollIntoView({ block:"center" });
+    $("#done").scrollIntoView({ block:"center" }); const dt = $("#doneTitle"); if (dt && !$("#talkStep").hidden) dt.focus({ preventScroll:true });
   } catch (x) {
-    err.textContent = "Cererea nu a putut fi trimisă. Încearcă din nou sau contactează-mă direct.";
+    const direct = [CONFIG.phone, CONFIG.email].filter(Boolean).join(" sau ");
+    err.textContent = (x.message === "offline" ? "Nu ești conectat la internet. " : x.name === "AbortError" ? "Trimiterea a durat prea mult. " : "Aplicația nu a putut fi trimisă. ")
+      + "Datele tale au rămas în formular, încearcă din nou" + (direct ? " sau scrie-mi direct: " + direct + "." : " peste câteva minute.");
   } finally { b.disabled = false; b.textContent = sendLabel(); }
 });
 </script>
