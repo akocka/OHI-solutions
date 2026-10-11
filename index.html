@@ -91,6 +91,11 @@ header.top.solid{background:color-mix(in srgb,var(--bg) 82%,transparent);backdro
 header.top.hide{transform:translateY(-110%)}
 header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:1rem}
 .brand{font-family:var(--display);font-weight:800;font-size:1.35rem;text-decoration:none;letter-spacing:-.03em;display:flex;align-items:center;gap:.5rem}
+.logo-svg{height:1.9rem;width:auto;display:block;overflow:visible}
+.logo-svg .lo{transform-box:fill-box;transform-origin:center;transition:transform .6s var(--ease)}
+.brand:hover .logo-svg .lo{transform:rotate(80deg)}
+.overlay .logo-svg{height:2.1rem}
+.intro .w .logo-svg{height:1.7rem;color:#F2F3F7}
 .brand i{width:.7rem;height:.7rem;border-radius:3px;background:var(--cobalt);display:inline-block;animation:spin 6s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .brand span small{font-family:var(--body);font-weight:600;font-size:.75rem;color:var(--muted);letter-spacing:.04em;margin-left:.15rem}
@@ -590,7 +595,7 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
 <div class="intro" id="intro" role="region" aria-label="Animație de introducere: construim un site">
   <canvas id="introCv" aria-hidden="true"></canvas>
   <div class="ui">
-    <div class="w" aria-hidden="true">OHI<b>.</b></div>
+    <div class="w" aria-hidden="true"><svg class="logo-svg intro-logo" viewBox="0 18 359 170" role="img" aria-hidden="true" focusable="false"><rect class="lo" x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#4C63FF" stroke-width="26" transform="rotate(-10 80.0 102.0)"/><path d="M233.89999999999998 160.0V61.0H255.35V160.0ZM168.95 160.0V61.0H190.55V160.0ZM181.7 118.75V101.05000000000001H242.45V118.75ZM277.4 160.0V61.0H299.45V160.0Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></div>
     <div class="ifin" id="introDone" aria-hidden="true">Site-ul tău, <em>gata.</em></div>
     <div class="row">
       <div class="st" aria-hidden="true">Asamblăm site-ul<span id="introPct">000%</span></div>
@@ -607,7 +612,7 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
 
 <header class="top" id="hdr">
   <div class="wrap">
-    <a class="brand" href="/" aria-label="OHI Solutions, pagina principală"><i aria-hidden="true"></i><span data-c="brand">OHI Solutions</span></a>
+    <a class="brand" href="/" aria-label="OHI Solutions, pagina principală"><svg class="logo-svg" viewBox="0 18 359 170" role="img" aria-hidden="true" focusable="false"><rect class="lo" x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#4C63FF" stroke-width="26" transform="rotate(-10 80.0 102.0)"/><path d="M233.89999999999998 160.0V61.0H255.35V160.0ZM168.95 160.0V61.0H190.55V160.0ZM181.7 118.75V101.05000000000001H242.45V118.75ZM277.4 160.0V61.0H299.45V160.0Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
     <nav class="links" aria-label="Meniu">
       <a href="#ce-primesti">Ce primești</a>
       <a href="#proiecte">Proiecte</a>
@@ -622,7 +627,7 @@ footer{padding:4rem 0 calc(env(safe-area-inset-bottom,0px) + 2rem);overflow:hidd
 </header>
 
 <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Meniu">
-  <div class="top"><span class="brand" style="color:#fff">OHI<span style="color:var(--tag)">.</span></span><button class="close" id="menuClose" type="button">Închide</button></div>
+  <div class="top"><span class="brand" style="color:#fff"><svg class="logo-svg" viewBox="0 18 359 170" role="img" aria-hidden="true" focusable="false"><rect class="lo" x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#4C63FF" stroke-width="26" transform="rotate(-10 80.0 102.0)"/><path d="M233.89999999999998 160.0V61.0H255.35V160.0ZM168.95 160.0V61.0H190.55V160.0ZM181.7 118.75V101.05000000000001H242.45V118.75ZM277.4 160.0V61.0H299.45V160.0Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></span><button class="close" id="menuClose" type="button">Închide</button></div>
   <nav>
     <a href="#ce-primesti"><span>Ce primești</span></a>
     <a href="#proiecte"><span>Proiecte</span></a>
