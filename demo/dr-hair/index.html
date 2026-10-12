@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Dr.Hair · Târgu Mureș (concept OHI)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<style>
+:root{--bg:#f6faf9;--ink:#0e2a2a;--mint:#19c2a0;--mint2:#c9f2e8;--mut:#5d7676;--line:#d7e7e4;--red:#ff5d5d}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--bg);color:var(--ink);font-family:"Space Grotesk",system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.demo{background:var(--ink);color:#fff;font-size:13px;text-align:center;padding:8px 14px}
+.demo a{text-decoration:underline}
+nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:rgba(246,250,249,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.lg{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px}
+.lg i{width:34px;height:34px;border-radius:10px;background:var(--mint);display:grid;place-items:center;color:#fff;font-style:normal;font-weight:700}
+.bk{background:var(--ink);color:#fff;padding:11px 16px;border-radius:12px;font-weight:700;font-size:14px}
+.hero{padding:44px 20px 60px;position:relative}
+.tag{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:var(--mint2);color:#0b6b58;font-size:13px;font-weight:700}
+.tag b{width:8px;height:8px;border-radius:50%;background:var(--mint);animation:pulse 1.4s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(25,194,160,.0)}0%{box-shadow:0 0 0 0 rgba(25,194,160,.6)}}
+h1{font-size:clamp(46px,12vw,110px);line-height:.95;letter-spacing:-.04em;margin:20px 0 16px;font-weight:700}
+h1 span{color:var(--mint)}
+.lede{color:var(--mut);font-size:17px;line-height:1.55;max-width:34ch}
+.ecg{margin:30px -20px 0;height:120px}
+.ecg path{fill:none;stroke:var(--mint);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 2.6s .3s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.btn{background:var(--mint);color:#fff;padding:16px 22px;border-radius:14px;font-weight:700;box-shadow:0 12px 30px rgba(25,194,160,.35)}
+.btn.o{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.vit{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:30px}
+.vit div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px}
+.vit b{display:block;font-size:26px}
+.vit span{font-size:12px;color:var(--mut)}
+section{padding:80px 20px}
+.k{font-family:"JetBrains Mono",monospace;color:var(--mint);font-size:13px}
+h2{font-size:clamp(36px,9vw,68px);line-height:1;letter-spacing:-.03em;margin:10px 0 26px;font-weight:700}
+/* diagnostic */
+.dx{background:#fff;border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 20px 50px rgba(14,42,42,.06)}
+.q{font-weight:700;font-size:20px;margin-bottom:14px}
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+.opts button{font:inherit;border:1px solid var(--line);background:var(--bg);padding:12px 16px;border-radius:12px;cursor:pointer;font-weight:500}
+.opts button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.rx{margin-top:20px;border-top:1px dashed var(--line);padding-top:18px;display:none}
+.rx.on{display:block;animation:fade .5s ease}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}}
+.rx .ttl{display:flex;align-items:center;gap:10px;font-weight:700;font-size:22px}
+.rx .ttl i{font-style:normal;font-family:Georgia,serif;font-size:34px;color:var(--mint)}
+.rx p{color:var(--mut);margin:8px 0 16px;line-height:1.5}
+.svc{display:grid;gap:12px}
+.s{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.s b{font-size:20px}.s small{display:block;color:var(--mut);margin-top:4px}
+.s em{font-style:normal;font-family:"JetBrains Mono",monospace;color:var(--mint);white-space:nowrap}
+.rate{display:flex;align-items:center;gap:18px;background:var(--ink);color:#fff;border-radius:24px;padding:26px}
+.rate b{font-size:72px;line-height:1}
+.rate span{color:#9fc4bf}
+.info{display:grid;gap:12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;line-height:1.8}
+.row{display:flex;justify-content:space-between;border-bottom:1px solid var(--line)}
+.open{display:inline-block;margin-top:10px;padding:6px 12px;border-radius:999px;background:var(--mint2);color:#0b6b58;font-weight:700;font-size:13px}
+footer{padding:40px 20px 90px;text-align:center;color:var(--mut);font-size:13px}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.fab{position:fixed;left:16px;right:16px;bottom:14px;z-index:40;background:var(--ink);color:#fff;text-align:center;padding:16px;border-radius:16px;font-weight:700;box-shadow:0 16px 40px rgba(14,42,42,.3)}
+@media(min-width:900px){section,.hero{padding-left:10vw;padding-right:10vw}.info{grid-template-columns:1fr 1fr}.fab{left:auto;width:340px}}
+</style>
+</head>
+<body>
+<div class="demo">Concept demo realizat de OHI Solutions pentru Dr.Hair · nu este site-ul oficial · <a href="https://ohis-gamma.vercel.app">ohis-gamma.vercel.app</a></div>
+<nav><a class="lg" href="#"><i>Dr</i>Dr.Hair</a><a class="bk" href="https://mero.ro/p/drhair" target="_blank" rel="noopener">Programează-te</a></nav>
+<header class="hero">
+  <div class="tag rv"><b></b><span id="openNow">Deschis 7 zile din 7</span></div>
+  <h1 class="rv">Diagnostic:<br><span>tunsoare perfectă.</span></h1>
+  <p class="lede rv">Barbershop pe Călărașilor 1, în Târgu Mureș. Tratăm fiecare tunsoare cu atenție de specialist.</p>
+  <svg class="ecg" viewBox="0 0 400 120" preserveAspectRatio="none"><path d="M0 70 H90 L105 70 L115 30 L128 105 L140 70 H200 L212 70 L222 15 L236 112 L248 70 H300 C320 70 330 40 350 40 S380 80 400 70"/></svg>
+  <div class="ctas rv"><a class="btn" href="https://mero.ro/p/drhair" target="_blank" rel="noopener">Rezervă online</a><a class="btn o" href="#dx">Fă-ți diagnosticul</a></div>
+  <div class="vit rv"><div><b>5.0</b><span>pe Google</span></div><div><b>159+</b><span>recenzii</span></div><div><b>7/7</b><span>zile deschis</span></div></div>
+</header>
+
+<section id="dx">
+  <div class="k rv">// consultație rapidă</div>
+  <h2 class="rv">Ce ți se potrivește?</h2>
+  <div class="dx rv">
+    <div class="q">Ce vrei să rezolvi azi?</div>
+    <div class="opts" id="o1"><button data-v="fade">Un fade curat</button><button data-v="clasic">Tunsoare clasică</button><button data-v="barba">Barba</button><button data-v="tot">Totul</button></div>
+    <div class="rx" id="rx"><div class="ttl"><i>℞</i><span id="rxT"></span></div><p id="rxP"></p><a class="btn" href="https://mero.ro/p/drhair" target="_blank" rel="noopener">Programează exact asta</a></div>
+  </div>
+</section>
+
+<section id="servicii">
+  <div class="k rv">// servicii</div>
+  <h2 class="rv">Tratamente</h2>
+  <div class="svc">
+    <div class="s rv"><div><b>Tunsoare</b><small>Consultanță + tuns + styling</small></div><em>— lei</em></div>
+    <div class="s rv"><div><b>Fade</b><small>Degrade precis, la mașină</small></div><em>— lei</em></div>
+    <div class="s rv"><div><b>Barbă</b><small>Contur și aranjat</small></div><em>— lei</em></div>
+    <div class="s rv"><div><b>Combo</b><small>Tunsoare + barbă</small></div><em>— lei</em></div>
+  </div>
+  <p class="rv" style="color:var(--mut);font-size:13px;margin-top:14px">Prețurile reale le completăm împreună. Programările merg direct în sistemul tău actual (mero.ro).</p>
+</section>
+
+<section>
+  <div class="rate rv"><b>5.0</b><div>★★★★★<br><span>din peste 159 de recenzii pe Google</span><br><a href="https://maps.google.com/?cid=15879631615318507007" target="_blank" rel="noopener" style="color:#7ff0d7;font-weight:700">Citește-le →</a></div></div>
+</section>
+
+<section id="contact">
+  <div class="k rv">// program</div>
+  <h2 class="rv">Cabinetul te așteaptă</h2>
+  <div class="info">
+    <div class="card rv"><div class="row"><span>Luni – Vineri</span><b>09:00 – 20:00</b></div><div class="row"><span>Sâmbătă</span><b>11:00 – 19:00</b></div><div class="row"><span>Duminică</span><b>12:00 – 18:00</b></div><span class="open" id="st"></span></div>
+    <div class="card rv">Str. Călărașilor 1, Târgu Mureș<br><a href="tel:+40754603997" style="font-weight:700">0754 603 997</a><p style="margin-top:14px"><a class="btn o" href="https://maps.google.com/?cid=15879631615318507007" target="_blank" rel="noopener">Deschide în Maps</a></p></div>
+  </div>
+</section>
+<footer>© 2026 Dr.Hair · Târgu Mureș · Concept realizat de OHI Solutions</footer>
+<a class="fab" href="https://mero.ro/p/drhair" target="_blank" rel="noopener">Rezervă online →</a>
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3)*80+'ms';io.observe(el)});
+const RX={fade:['Fade','Degrade curat, adaptat formei capului.'],clasic:['Tunsoare clasică','Formă atemporală, ușor de aranjat acasă.'],barba:['Barbă','Contur precis și aranjat. Arăți îngrijit toată săptămâna.'],tot:['Combo complet','Tunsoare + barbă. Tratamentul complet, o singură vizită.']};
+document.querySelectorAll('#o1 button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#o1 button').forEach(x=>x.classList.remove('on'));b.classList.add('on');const r=RX[b.dataset.v];document.getElementById('rxT').textContent=r[0];document.getElementById('rxP').textContent=r[1];const x=document.getElementById('rx');x.classList.remove('on');void x.offsetWidth;x.classList.add('on');});
+(function(){const d=new Date(),day=d.getDay(),h=d.getHours()+d.getMinutes()/60;const H={0:[12,18],6:[11,19]};const r=H[day]||[9,20];const o=h>=r[0]&&h<r[1];document.getElementById('st').textContent=o?'● Deschis acum':'○ Închis acum';})();
+</script>
+</body>
+</html>
