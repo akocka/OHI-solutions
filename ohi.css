@@ -400,3 +400,11 @@ nav .wrap .navr{display:flex;align-items:center;gap:8px;min-width:0}
   .fin p{display:none}
   .fic{text-align:left}
 }
+
+/* hero stack: positions as data-pos so phones glide between places instead of being repainted */
+.phone[data-pos="0"]{transform:rotate(-3deg);z-index:3;filter:none;opacity:1}
+.phone[data-pos="1"]{transform:translate3d(-46%,5%,-170px) rotateY(28deg) rotate(-7deg);filter:brightness(.5) saturate(.8);z-index:2;opacity:1}
+.phone[data-pos="2"]{transform:translate3d(46%,7%,-250px) rotateY(-28deg) rotate(6deg);filter:brightness(.38) saturate(.8);z-index:1;opacity:1}
+.phone[data-pos="out"]{transform:translate3d(120%,-6%,40px) rotateY(-40deg) rotate(12deg);opacity:0;z-index:4;transition:transform .55s cubic-bezier(.5,0,.75,0),opacity .45s ease-in}
+.phone[data-pos="in"]{transform:translate3d(46%,7%,-320px) rotateY(-28deg) rotate(6deg);filter:brightness(.38) saturate(.8);opacity:0;z-index:1}
+.phone{transition:transform .9s cubic-bezier(.22,.9,.24,1),opacity .6s ease,filter .9s ease;will-change:transform}

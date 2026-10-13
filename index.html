@@ -231,20 +231,25 @@ const REDUCE=matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* hero: auto-cycling 3D stack */
 let heroI=0;
-/* hero phones show the finished showcase sites (fictional businesses), not the builder sketch */
+/* hero phones show the finished showcase sites (fictional businesses), not the builder sketch.
+   Each phone keeps its own site; only their positions rotate, so the change is one smooth motion. */
 const SHOTS=["frizerie","cofetarie","service-auto"];
-function paintStack(){[0,1,2].forEach(s=>{const el=document.querySelector(`[data-slot="${s}"]`),k=SHOTS[(heroI+s)%SHOTS.length];el.innerHTML="";el.className="screen shotbg";el.style.backgroundImage=`url(/exemple/img/${k}.webp)`;el.style.backgroundColor="#0B0D14";el.style.animationDelay=(-s*5)+"s"})}
-function nextHero(){
-  const p0=document.querySelector(".p0"),p1=document.querySelector(".p1");
-  if(REDUCE){heroI=(heroI+1)%SHOTS.length;paintStack();return}
-  p0.classList.add("fly");p1.classList.add("up");
-  setTimeout(()=>{heroI=(heroI+1)%SHOTS.length;[p0,p1].forEach(p=>{p.style.transition="none"});p0.classList.remove("fly");p1.classList.remove("up");paintStack();void p0.offsetWidth;[p0,p1].forEach(p=>p.style.transition="")},560);
+const PH=[...document.querySelectorAll("#stack .phone")].reverse(); /* PH[0] is the front phone */
+PH.forEach((ph,i)=>{ph.className="phone";ph.dataset.pos=i;const el=ph.querySelector(".screen");el.innerHTML="";el.className="screen shotbg";
+  el.style.backgroundImage=`url(/exemple/img/${SHOTS[i]}.webp)`;el.style.backgroundColor="#0B0D14";el.style.animationDelay=(-i*7)+"s"});
+let busy=false;
+function nextHero(){if(busy)return;busy=true;
+  const front=PH.find(p=>p.dataset.pos==="0");
+  if(REDUCE){PH.forEach(p=>p.dataset.pos=(+p.dataset.pos+2)%3);busy=false;return}
+  front.dataset.pos="out";
+  PH.forEach(p=>{if(p!==front)p.dataset.pos=+p.dataset.pos-1});
+  setTimeout(()=>{front.style.transition="none";front.dataset.pos="in";void front.offsetWidth;front.style.transition="";front.dataset.pos="2";setTimeout(()=>busy=false,500)},520);
 }
-paintStack();let heroT=setInterval(nextHero,3800);
+let heroT=setInterval(nextHero,4200);
 (function(){const st=$("#stage"),sk=$("#stack");if(REDUCE)return;let hover=false,t=0;
   st.addEventListener("pointermove",e=>{if(e.pointerType!=="mouse")return;hover=true;const r=st.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;sk.style.transform=`rotateY(${x*18}deg) rotateX(${-y*12}deg)`});
   st.addEventListener("pointerleave",()=>{hover=false});
-  st.addEventListener("click",()=>{clearInterval(heroT);nextHero();heroT=setInterval(nextHero,3800)});
+  st.addEventListener("click",()=>{clearInterval(heroT);nextHero();heroT=setInterval(nextHero,4200)});
   (function idle(){t+=.01;if(!hover)sk.style.transform=`rotateY(${Math.sin(t)*8}deg) rotateX(${Math.cos(t*.7)*3}deg)`;requestAnimationFrame(idle)})();
 })();
 $("#freeLeft").textContent=5-FREE_TAKEN;
