@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Piston Garage · exemplu de site OHI</title>
+<style>
+/* Showcase site for a FICTIONAL auto service, made by OHI to show finished quality. */
+@font-face{font-family:"TK";src:url(fonts/Tektur-Medium.woff) format("woff");font-weight:500;font-display:swap}
+@font-face{font-family:"OF";src:url(fonts/Outfit-Regular.woff) format("woff");font-weight:400;font-display:swap}
+@font-face{font-family:"OF";src:url(fonts/Outfit-Bold.woff) format("woff");font-weight:700;font-display:swap}
+:root{--bg:#0F1114;--bg2:#15181D;--card:#1A1E24;--line:rgba(255,255,255,.09);--ink:#EEF1F5;--mut:#8D96A3;--y:#FFD23F;--o:#FF7A1A;--g:#2BC48A;--r:#FF4D4D}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--bg);color:var(--ink);font:400 16.5px/1.55 OF,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0}
+.demo{position:sticky;top:0;z-index:50;background:#FFB020;color:#14110A;font:700 12.5px/1.2 system-ui,sans-serif;padding:8px 16px;text-align:center}
+.demo a{text-decoration:underline}
+.w{max-width:1120px;margin:0 auto;padding-inline:20px}
+nav{position:sticky;top:31px;z-index:40;background:rgba(15,17,20,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .w{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font:500 20px/1 TK;text-transform:uppercase;letter-spacing:.04em}
+.logo b{width:30px;height:30px;border-radius:7px;background:var(--y);color:#111;display:grid;place-items:center;font:500 17px TK}
+.nl{display:none;gap:26px;font-size:15px;color:var(--mut)}
+@media(min-width:860px){.nl{display:flex}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:10px;padding:14px 22px;font-weight:700;font-size:15.5px;transition:transform .2s,background .2s}
+.btn.p{background:var(--y);color:#121212}
+.btn.p:hover{transform:translateY(-2px);background:#FFDE6B}
+.btn.o{border:1.5px solid var(--line);background:var(--card)}
+.btn.sm{padding:10px 16px;font-size:14.5px}
+.hero{position:relative;overflow:hidden;padding:52px 0 64px}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(transparent 0 calc(100% - 1px),var(--line) 0) 0 0/100% 48px,linear-gradient(90deg,transparent 0 calc(100% - 1px),var(--line) 0) 0 0/48px 100%;mask:radial-gradient(ellipse at 70% 40%,#000 10%,transparent 70%);opacity:.6}
+.hg{position:relative;display:grid;gap:34px;align-items:center}
+@media(min-width:900px){.hg{grid-template-columns:1.1fr .9fr}}
+.kick{display:inline-flex;align-items:center;gap:8px;font:500 12.5px TK;letter-spacing:.14em;text-transform:uppercase;color:var(--y)}
+h1{font:500 clamp(42px,8.6vw,96px)/1.12 TK;letter-spacing:-.02em;margin:16px 0 18px;text-transform:uppercase}
+h1 em{font-style:normal;color:var(--y)}
+.lede{color:var(--mut);font-size:18.5px;max-width:44ch}
+.hc{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.trust{display:grid;grid-template-columns:repeat(3,minmax(0,max-content));justify-content:start;gap:22px;line-height:1.3;margin-top:32px}
+.trust b{display:block;font:500 28px/1 TK;color:var(--ink)}
+.trust small{color:var(--mut);font-size:13.5px}
+.dash{position:relative;aspect-ratio:1.1;border-radius:24px;background:radial-gradient(circle at 50% 45%,#1E232B,#0B0D10 75%);border:1px solid var(--line);overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.dash svg{position:absolute;inset:0;width:100%;height:100%}
+.needle{transform-origin:200px 200px;animation:rev 4s cubic-bezier(.45,0,.2,1) infinite}
+@keyframes rev{0%,100%{transform:rotate(-120deg)}40%{transform:rotate(38deg)}55%{transform:rotate(20deg)}}
+.dash .read{position:absolute;left:0;right:0;bottom:12%;text-align:center;font:500 13px TK;letter-spacing:.2em;color:var(--mut);text-transform:uppercase}
+.dash .read b{display:block;font-size:30px;color:var(--g);letter-spacing:.06em}
+section{padding:84px 0}
+h2{font:500 clamp(36px,6vw,62px)/1.04 TK;text-transform:uppercase;letter-spacing:-.015em;margin:14px 0 12px}
+h2 em{font-style:normal;color:var(--y)}
+.sub{color:var(--mut);max-width:52ch;font-size:17.5px}
+.lights{display:grid;gap:18px;margin-top:34px}
+@media(min-width:900px){.lights{grid-template-columns:.9fr 1.1fr}}
+.lgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;min-width:0}.lights>*{min-width:0}
+.lt{aspect-ratio:1;padding:6px;text-align:center;line-height:1.2;border-radius:16px;background:var(--card);border:1.5px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:13px;color:var(--mut);transition:all .2s}
+.lt svg{width:42%;height:auto}
+.lt[aria-pressed=true]{border-color:currentColor;background:#20252D}
+.lt[aria-pressed=true] span{color:var(--ink)}
+.lexp{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:14px}
+.lvl{align-self:flex-start;font:500 12.5px TK;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border-radius:8px}
+.lexp h3{font:500 28px/1.1 TK;text-transform:uppercase}
+.lexp p{color:#C2C9D3}
+.lexp ul{list-style:none;display:flex;flex-direction:column;gap:8px;color:#C2C9D3;font-size:15.5px}
+.lexp li::before{content:"→";color:var(--y);margin-right:10px}
+.svcs{display:grid;gap:12px;margin-top:34px}
+@media(min-width:760px){.svcs{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1050px){.svcs{grid-template-columns:repeat(3,1fr)}}
+.sv{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s}
+.sv:hover{border-color:rgba(255,210,63,.45);transform:translateY(-3px)}
+.sv .n{font:500 13px TK;color:var(--mut);letter-spacing:.1em}
+.sv h3{font:500 22px/1.15 TK;text-transform:uppercase}
+.sv p{color:var(--mut);font-size:15px}
+.sv b{color:var(--y);font:500 18px TK;margin-top:6px}
+.steps{display:grid;gap:12px;margin-top:34px;counter-reset:s}
+@media(min-width:900px){.steps{grid-template-columns:repeat(4,1fr)}}
+.st{border-top:3px solid var(--line);padding-top:18px;position:relative}
+.st::before{counter-increment:s;content:"0" counter(s);font:500 44px/1 TK;color:rgba(255,210,63,.25);display:block;margin-bottom:10px}
+.st.on{border-top-color:var(--y)}
+.st b{font:500 19px TK;text-transform:uppercase;display:block;margin-bottom:6px}
+.st p{color:var(--mut);font-size:15px}
+.book{background:var(--bg2);border-block:1px solid var(--line)}
+.bk{display:grid;gap:18px;margin-top:34px}
+@media(min-width:900px){.bk{grid-template-columns:1.15fr .85fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:16px}
+.lbl{font:500 12px TK;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);display:block;margin-bottom:8px}
+.inp{width:100%;color-scheme:dark;background:#12151A;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px}
+.inp:focus{outline:2px solid var(--y);outline-offset:1px}
+textarea.inp{min-height:96px;resize:vertical}
+.two{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);border-radius:10px;padding:9px 13px;font-weight:700;font-size:14.5px}
+.chip[aria-pressed=true]{background:var(--y);color:#121212;border-color:var(--y)}
+.tk{display:flex;flex-direction:column;gap:12px}
+.tk .hd{display:flex;justify-content:space-between;align-items:center;font:500 13px TK;letter-spacing:.12em;color:var(--mut);text-transform:uppercase}
+.tk .id{color:var(--y)}
+.tk dl{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:15px}
+.tk dt{color:var(--mut)}.tk dd{text-align:right;font-weight:700;word-break:break-word}
+.tk .pb{white-space:pre-wrap;background:#12151A;border:1px dashed var(--line);border-radius:12px;padding:12px;font-size:14.5px;color:#C2C9D3;min-height:60px}
+.note{font-size:13px;color:var(--mut)}
+.visit{display:grid;gap:18px;margin-top:34px}
+@media(min-width:900px){.visit{grid-template-columns:1fr 1fr}}
+.map{position:relative;border-radius:20px;border:1px solid var(--line);overflow:hidden;min-height:260px;background:#13161B}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+.pin{position:absolute;left:46%;top:50%;transform:translate(-50%,-100%);background:var(--y);color:#121212;font-weight:700;font-size:13.5px;padding:7px 12px;border-radius:8px;white-space:nowrap}
+.hrs{display:grid;grid-template-columns:1fr auto;gap:9px;font-size:16px}
+.hrs span:nth-child(even){font-weight:700}
+.hrs .now{color:var(--y)}
+.rev{border:1.5px dashed var(--line);border-radius:14px;padding:16px;color:var(--mut);font-size:14.5px}
+.rev b{display:block;color:var(--ink);font:500 17px TK;text-transform:uppercase;margin-bottom:4px}
+footer{border-top:1px solid var(--line);padding:38px 0 110px;color:var(--mut);font-size:14px}
+footer .w{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between}
+.fab{position:fixed;left:16px;right:16px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:45;display:flex;gap:10px;max-width:520px;margin:0 auto}
+.fab a{flex:1;box-shadow:0 12px 30px rgba(0,0,0,.5)}
+nav .btn.sm{white-space:nowrap}@media(max-width:520px){nav .btn.sm{display:none}}
+@media(min-width:860px){.fab{display:none}footer{padding-bottom:38px}}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.needle{animation:none;transform:rotate(-20deg)}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo">Exemplu de site OHI · afacere fictivă · <a href="/">înapoi la OHI</a></div>
+<nav><div class="w">
+  <a class="logo" href="#"><b>P</b>Piston Garage</a>
+  <div class="nl"><a href="#martori">Martori bord</a><a href="#servicii">Servicii</a><a href="#cum">Cum lucrăm</a><a href="#programare">Programare</a></div>
+  <a class="btn p sm" href="#programare">Cere programare</a>
+</div></nav>
+
+<header class="hero"><div class="w hg">
+  <div>
+    <span class="kick">● Service auto · Târgu Mureș</span>
+    <h1>Prețul îl afli <em>înainte</em> să începem.</h1>
+    <p class="lede">Diagnoză clară, ofertă scrisă și reparații doar cu acordul tău. Programarea ajunge direct la recepție, cu problema deja descrisă.</p>
+    <div class="hc"><a class="btn p" href="#programare">Cere programare →</a><a class="btn o" href="#martori">Ce înseamnă martorul?</a></div>
+    <div class="trust"><div><b>24h</b><small>răspuns la ofertă</small></div><div><b>12 luni</b><small>garanție manoperă</small></div><div><b>0</b><small>surprize la plată</small></div></div>
+  </div>
+  <div class="dash" aria-hidden="true">
+    <svg viewBox="0 0 400 400">
+      <circle cx="200" cy="200" r="150" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="2"/>
+      <path d="M93 306A150 150 0 1 1 307 306" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="14" stroke-linecap="round"/>
+      <path d="M268 72A150 150 0 0 1 307 306" fill="none" stroke="#FF4D4D" stroke-width="14" stroke-linecap="round" opacity=".85"/>
+      <g stroke="rgba(238,241,245,.55)" stroke-width="3">
+        <line x1="200" y1="62" x2="200" y2="80"/><line x1="102" y1="102" x2="115" y2="115"/><line x1="298" y1="102" x2="285" y2="115"/><line x1="62" y1="200" x2="80" y2="200"/><line x1="338" y1="200" x2="320" y2="200"/>
+      </g>
+      <g font-family="TK" font-size="17" fill="#8D96A3" text-anchor="middle"><text x="95" y="290">0</text><text x="86" y="206">2</text><text x="122" y="128">4</text><text x="200" y="100">6</text><text x="278" y="128">8</text><text x="314" y="206">10</text></g>
+      <g class="needle"><path d="M200 200 L200 74" stroke="#FFD23F" stroke-width="5" stroke-linecap="round"/></g>
+      <circle cx="200" cy="200" r="16" fill="#0F1114" stroke="#FFD23F" stroke-width="4"/>
+    </svg>
+    <div class="read">Diagnoză<b>OK · 0 erori</b></div>
+  </div>
+</div></header>
+
+<section id="martori"><div class="w">
+  <span class="kick">Martori de bord</span>
+  <h2>Ți s-a aprins <em>un martor?</em></h2>
+  <p class="sub">Apasă pe el și află cât de grav e și ce trebuie să faci. Fără să suni pe nimeni.</p>
+  <div class="lights">
+    <div class="lgrid" id="lgrid"></div>
+    <div class="lexp" id="lexp" aria-live="polite"></div>
+  </div>
+</div></section>
+
+<section id="servicii" style="background:var(--bg2)"><div class="w">
+  <span class="kick">Servicii</span>
+  <h2>Ce reparăm, <em>de la cât.</em></h2>
+  <p class="sub">Prețuri orientative pentru manoperă. Prețul exact îl primești în ofertă, înainte de lucru.</p>
+  <div class="svcs">
+    <div class="sv rv"><span class="n">01</span><h3>Revizie completă</h3><p>Ulei, filtre și verificare în 30 de puncte.</p><b>de la 180 lei</b></div>
+    <div class="sv rv"><span class="n">02</span><h3>Diagnoză computerizată</h3><p>Citim erorile și îți explicăm pe limba ta.</p><b>de la 100 lei</b></div>
+    <div class="sv rv"><span class="n">03</span><h3>Frâne</h3><p>Plăcuțe, discuri și lichid de frână.</p><b>de la 150 lei</b></div>
+    <div class="sv rv"><span class="n">04</span><h3>Distribuție</h3><p>Kit complet, cu pompă de apă.</p><b>ofertă</b></div>
+    <div class="sv rv"><span class="n">05</span><h3>Climatizare</h3><p>Încărcare freon și igienizare.</p><b>de la 200 lei</b></div>
+    <div class="sv rv"><span class="n">06</span><h3>Pregătire ITP</h3><p>Verificăm tot ce se uită la ITP.</p><b>de la 120 lei</b></div>
+  </div>
+</div></section>
+
+<section id="cum"><div class="w">
+  <span class="kick">Cum lucrăm</span>
+  <h2>Patru pași, <em>zero surprize.</em></h2>
+  <div class="steps">
+    <div class="st on rv"><b>Diagnoză</b><p>Găsim cauza, nu ghicim.</p></div>
+    <div class="st on rv"><b>Ofertă scrisă</b><p>Primești prețul pe WhatsApp, cu piese și manoperă.</p></div>
+    <div class="st on rv"><b>Aprobi tu</b><p>Nu atingem nimic fără acordul tău.</p></div>
+    <div class="st on rv"><b>Reparăm</b><p>Îți dăm piesele vechi înapoi, dacă vrei.</p></div>
+  </div>
+</div></section>
+
+<section id="programare" class="book"><div class="w">
+  <span class="kick">Programare</span>
+  <h2>Spune-ne <em>ce are mașina.</em></h2>
+  <p class="sub">Recepția primește cererea gata completată și te sună cu ora exactă.</p>
+  <div class="bk">
+    <div class="panel">
+      <div class="two"><div><label class="lbl" for="car">Mașina</label><input class="inp" id="car" placeholder="Ex: Dacia Logan 2016"></div><div><label class="lbl" for="km">Kilometri</label><input class="inp" id="km" inputmode="numeric" placeholder="Ex: 145.000"></div></div>
+      <div><span class="lbl">Ce ai nevoie?</span><div class="chips" id="need"></div></div>
+      <div><label class="lbl" for="prob">Descrie problema</label><textarea class="inp" id="prob" placeholder="Ex: se aude un scârțâit când frânez, mai ales dimineața."></textarea></div>
+      <div><span class="lbl">Când poți aduce mașina?</span><div class="chips" id="when"></div></div>
+    </div>
+    <div class="panel tk">
+      <div class="hd"><span>Cerere de programare</span><span class="id" id="tid"></span></div>
+      <dl id="tsum"></dl>
+      <div class="pb" id="tprob"></div>
+      <a class="btn p" id="go" href="#">Trimite la recepție →</a>
+      <p class="note">Exemplu: pe site-ul tău, cererea ajunge la recepție pe WhatsApp sau pe email, cu toate detaliile.</p>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="w">
+  <span class="kick">Vizită</span>
+  <h2>Ne găsești <em>aici.</em></h2>
+  <div class="visit">
+    <div class="map"><svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice"><g stroke="rgba(255,255,255,.08)" stroke-width="12" fill="none"><path d="M-10 120 L410 100"/><path d="M180 -10 L170 270"/><path d="M-10 220 L410 240"/></g><g stroke="rgba(255,210,63,.18)" stroke-width="6" fill="none"><path d="M-10 60 Q200 20 410 70"/></g><rect x="190" y="130" width="60" height="40" rx="4" fill="rgba(255,210,63,.1)"/></svg><span class="pin">Piston Garage</span></div>
+    <div class="panel">
+      <span class="lbl" style="margin:0">Program</span>
+      <div class="hrs" id="hrs"></div>
+      <div class="rev"><b>☆☆☆☆☆ Recenziile tale Google</b>Pe site-ul real, aici apar recenziile adevărate ale clienților tăi, preluate de pe Google.</div>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="w"><span>© Piston Garage · afacere fictivă, exemplu de design</span><span>Site realizat de <a href="/" style="color:var(--y)">OHI Solutions</a></span></div></footer>
+<div class="fab"><a class="btn p" href="#programare">Cere programare</a><a class="btn o" href="#martori">Martori bord</a></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const ic={
+ eng:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"><path d="M8 20h6l3-4h10l3 4h4v4h4v-4h2v12h-2v-4h-4v6h-4l-3 3H17l-3-3H8z"/></svg>',
+ oil:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"><path d="M6 22l6 2h6l4-4h10l10-4-8 12H12z"/><path d="M40 30c0 2-1 4-2 4s-2-2-2-4 2-4 2-4 2 2 2 4z"/></svg>',
+ bat:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3"><rect x="7" y="15" width="34" height="22" rx="2"/><path d="M13 15v-4h6v4M29 15v-4h6v4M13 26h6M29 26h6M32 23v6"/></svg>',
+ temp:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3"><path d="M24 8v20"/><circle cx="24" cy="32" r="5"/><path d="M24 12h6M24 18h6M24 24h6M10 40c4-3 8-3 14 0s10 3 14 0"/></svg>',
+ brk:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3"><circle cx="24" cy="24" r="11"/><path d="M11 12a17 17 0 0 0 0 24M37 12a17 17 0 0 1 0 24M24 18v8M24 30v.5"/></svg>',
+ tpms:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 14c-4 6-4 14 0 20h24c4-6 4-14 0-20M10 38h28"/><path d="M24 18v8M24 30v.5"/></svg>'};
+const L=[["eng","Motor (check engine)","#FFB020","Atenție","Sistemul de motor sau de emisii a detectat o eroare. Mașina merge de obicei, dar problema se poate agrava.",["Dacă luminează continuu: programează o diagnoză în câteva zile","Dacă clipește: redu viteza și vino cât mai repede","Verifică întâi bușonul de benzină, să fie bine strâns"]],
+ ["oil","Presiune ulei","#FF4D4D","Oprește acum","Motorul nu mai are presiune de ulei suficientă. Mersul mai departe poate distruge motorul.",["Oprește în siguranță și închide motorul","Verifică nivelul uleiului cu joja","Nu porni din nou dacă nivelul e ok: sună-ne pentru tractare"]],
+ ["bat","Baterie / încărcare","#FF4D4D","Grav","Alternatorul nu mai încarcă bateria. Mașina merge doar până se descarcă bateria.",["Oprește consumatorii: aer condiționat, radio, încălzire scaune","Vino direct la service, fără opriri","Nu opri motorul pe drum, s-ar putea să nu mai pornească"]],
+ ["temp","Temperatură motor","#FF4D4D","Oprește acum","Motorul se supraîncălzește. Poate fi lichid de răcire puțin sau un ventilator defect.",["Oprește și lasă motorul să se răcească","Nu deschide vasul de expansiune cât e fierbinte","Sună-ne înainte să pleci din nou"]],
+ ["brk","Sistem de frânare","#FF4D4D","Grav","Frâna de mână e trasă, lichidul de frână e puțin sau plăcuțele sunt uzate.",["Verifică frâna de mână","Dacă rămâne aprins: nu mai circula, frânarea poate fi slabă","Programează urgent o verificare"]],
+ ["tpms","Presiune în roți","#FFB020","Atenție","Una dintre roți are presiune mai mică decât trebuie.",["Verifică presiunea la prima benzinărie","Uită-te după cuie sau tăieturi în anvelopă","Dacă revine după umflare, avem o vulcanizare rapidă"]]];
+let cur=0;
+function drawL(){$("#lgrid").innerHTML=L.map(([k,n,c],i)=>`<button class="lt" style="color:${c}" aria-pressed="${i===cur}" data-i="${i}">${ic[k]}<span>${n.split(" (")[0]}</span></button>`).join("");
+  const [,n,c,lv,d,todo]=L[cur];$("#lexp").innerHTML=`<span class="lvl" style="background:${c}22;color:${c}">● ${lv}</span><h3>${n}</h3><p>${d}</p><ul>${todo.map(t=>`<li>${t}</li>`).join("")}</ul><a class="btn p" href="#programare" style="align-self:flex-start">Programează o verificare →</a>`}
+$("#lgrid").addEventListener("click",e=>{const b=e.target.closest(".lt");if(b){cur=+b.dataset.i;drawL()}});drawL();
+/* booking ticket */
+const NEED=["Revizie","Diagnoză","Frâne","Climatizare","ITP","Altceva"],WHEN=["Cât mai repede","Săptămâna asta","Săptămâna viitoare"];
+const B={n:1,w:0},tid="#"+(1000+Math.floor(Math.random()*9000));
+function drawB(){$("#need").innerHTML=NEED.map((x,i)=>`<button class="chip" data-k="n" data-v="${i}" aria-pressed="${i===B.n}">${x}</button>`).join("");
+  $("#when").innerHTML=WHEN.map((x,i)=>`<button class="chip" data-k="w" data-v="${i}" aria-pressed="${i===B.w}">${x}</button>`).join("");
+  const car=$("#car").value.trim()||"—",km=$("#km").value.trim(),pr=$("#prob").value.trim();
+  $("#tid").textContent=tid;
+  $("#tsum").innerHTML=`<dt>Mașina</dt><dd>${car.replace(/[<>&]/g,"")}</dd>${km?`<dt>Kilometri</dt><dd>${km.replace(/[<>&]/g,"")}</dd>`:""}<dt>Serviciu</dt><dd>${NEED[B.n]}</dd><dt>Când</dt><dd>${WHEN[B.w]}</dd>`;
+  $("#tprob").textContent=pr||"Problema descrisă de client apare aici.";
+  $("#go").href="https://wa.me/?text="+encodeURIComponent(`Programare ${tid}: ${car}${km?", "+km+" km":""}. Serviciu: ${NEED[B.n]}. ${pr} Când: ${WHEN[B.w]}.`)}
+document.addEventListener("click",e=>{const b=e.target.closest(".chip[data-k]");if(!b)return;B[b.dataset.k]=+b.dataset.v;drawB()});
+["#car","#km","#prob"].forEach(id=>$(id).addEventListener("input",drawB));drawB();
+const H=[["Luni – Vineri","08:00 – 18:00"],["Sâmbătă","09:00 – 13:00"],["Duminică","Închis"]];
+const wd=new Date().getDay(),ci=wd===0?2:wd===6?1:0;
+$("#hrs").innerHTML=H.map(([a,b],i)=>`<span class="${i===ci?"now":""}">${a}${i===ci?" · azi":""}</span><span class="${i===ci?"now":""}">${b}</span>`).join("");
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target)}}),{threshold:.15});
+document.querySelectorAll(".rv").forEach((el,i)=>{el.style.transitionDelay=(i%3)*80+"ms";io.observe(el)});
+</script>
+</body>
+</html>

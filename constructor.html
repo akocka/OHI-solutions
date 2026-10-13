@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Constructor de site: construiește-ți site-ul pas cu pas | OHI Solutions</title>
+<meta name="description" content="Alege culorile, secțiunile și serviciile și vezi schița pe loc. Trimite designul și în 24 de ore primești site-ul real, construit de noi, fără avans.">
+<link rel="canonical" href="https://ohis-gamma.vercel.app/constructor">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:site_name" content="OHI Solutions">
+<meta property="og:title" content="Constructor de site: construiește-ți site-ul pas cu pas | OHI Solutions">
+<meta property="og:description" content="Alege culorile, secțiunile și serviciile și vezi schița pe loc. Trimite designul și în 24 de ore primești site-ul real, construit de noi, fără avans.">
+<meta property="og:url" content="https://ohis-gamma.vercel.app/constructor">
+<meta property="og:image" content="https://ohis-gamma.vercel.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0D14">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/icon-512.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="/ohi.css">
+<style>
+/* Builder page: steps on the left, live phone on the right (sticky on desktop, bottom sheet on phones). */
+.cb-head{padding-block:40px 10px}
+.cb-head h1{font:800 clamp(36px,6.5vw,64px)/1 var(--fd);letter-spacing:-.03em;margin:12px 0 12px;text-wrap:balance}
+.cb-head p{color:var(--mut);font-size:18px;max-width:60ch}
+.prog{margin-top:26px;display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.prog button{background:none;border:0;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:8px;padding:0;color:var(--mut);font-size:13px;font-weight:700;min-width:0}
+.prog button i{display:block;height:5px;border-radius:9px;background:rgba(255,255,255,.1);overflow:hidden;position:relative}
+.prog button i::after{content:"";position:absolute;inset:0;width:0;background:var(--amber);transition:width .4s}
+.prog button.past i::after,.prog button.cur i::after{width:100%}
+.prog button.cur{color:var(--ink)}
+.prog button span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:560px){.prog button span{font-size:0}.prog button.cur span{font-size:12px}}
+.wz{display:grid;gap:30px;padding-block:26px 120px}
+@media(min-width:980px){.wz{grid-template-columns:1.15fr .85fr;align-items:start}}
+.wz>*{min-width:0}
+.step{display:flex;flex-direction:column;gap:22px}
+.step h2{font:800 clamp(26px,4vw,36px)/1.05 var(--fd);margin:0}
+.step .lead-in{color:var(--mut);margin-top:-12px}
+.card{background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:18px}
+textarea.inp{min-height:96px;resize:vertical;font-weight:500;line-height:1.45}
+.grp>label,.grp>.lbl{flex-wrap:wrap}
+.opt{font-weight:500;text-transform:none;letter-spacing:0;color:var(--mut);font-size:12.5px}
+.ub{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:var(--cobalt);color:#fff;border-radius:6px;padding:2px 6px;margin-left:6px;vertical-align:1px}
+.pb{display:inline-block;font-size:11.5px;font-weight:800;color:var(--amber);margin-left:6px}
+.tog button span{min-width:0}
+.combos{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+.combo{display:flex;align-items:center;gap:10px;background:#0A0C13;border:1.5px solid var(--line);border-radius:14px;padding:10px 12px;cursor:pointer;font-weight:600;font-size:14px;text-align:left}
+.combo i{width:30px;height:30px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
+.combo[aria-pressed=true]{border-color:var(--amber)}
+.bgs{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(min-width:560px){.bgs{grid-template-columns:repeat(4,1fr)}}
+.bgc{border:1.5px solid var(--line);border-radius:16px;padding:8px;background:#0A0C13;cursor:pointer;display:flex;flex-direction:column;gap:8px;text-align:left;font-weight:700;font-size:14px}
+.bgc .sw2{height:54px;border-radius:10px}
+.bgc[aria-pressed=true]{border-color:var(--amber)}
+.bgc small{color:var(--mut);font-weight:500;font-size:12px}
+.sw2.anim{background-size:300% 300%!important;animation:bgmove 6s ease-in-out infinite}
+.fxs{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(min-width:560px){.fxs{grid-template-columns:repeat(4,1fr)}}
+.fx{border:1.5px solid var(--line);border-radius:16px;padding:12px;background:#0A0C13;cursor:pointer;display:flex;flex-direction:column;gap:6px;text-align:left}
+.fx .fi{font-size:24px}
+.fx b{font-weight:800;font-size:14.5px}
+.fx small{color:var(--mut);font-size:12px;line-height:1.35}
+.fx[aria-pressed=true]{border-color:var(--amber);background:rgba(255,176,32,.08)}
+.note-ultra{background:rgba(76,99,255,.12);border:1px solid rgba(123,140,255,.4);border-radius:14px;padding:12px 14px;font-size:14px;color:#D9DEFF}
+.svc-row{display:grid;grid-template-columns:1.2fr 1fr .8fr auto;gap:8px;align-items:center}
+.svc-row .inp{padding:11px 12px;font-size:15px}
+.svc-row button{width:40px;height:44px;border-radius:12px;border:1.5px solid var(--line);background:#0A0C13;cursor:pointer;font-size:18px;color:var(--mut)}
+@media(max-width:560px){.svc-row{grid-template-columns:1fr 1fr auto}.svc-row .d{display:none}}
+.svc-row.b{grid-template-columns:auto 1.2fr 1fr .8fr auto}
+@media(max-width:560px){.svc-row.b{grid-template-columns:auto 1fr 1fr auto}}
+.svc-row .ty{width:auto;padding:0 10px;font-size:12.5px;font-weight:700;color:var(--ink);white-space:nowrap}
+.svc-row .ty[data-t=p]{border-color:var(--amber);color:var(--amber)}
+.plans3.p4{grid-template-columns:1fr}
+@media(min-width:560px){.plans3.p4{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1180px){.plans3.p4{grid-template-columns:repeat(4,1fr)}}
+.pl.cu b::after{content:" 📞";font-size:14px}
+.call{background:rgba(255,176,32,.1);border:1px solid rgba(255,176,32,.45);border-radius:14px;padding:12px 14px;font-size:14px;color:#FFE3AE}
+.call b{color:#fff}
+/* Basic → Ultra question */
+.ask{position:fixed;inset:0;z-index:80;background:rgba(5,6,10,.78);backdrop-filter:blur(6px);display:grid;place-items:center;padding:16px}
+.ask-box{max-width:440px;width:100%;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:12px;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.ask-box h3{font:800 22px/1.15 var(--fd)}
+.ask-box p{color:var(--mut);font-size:15px}
+.ask-box .pr{display:flex;justify-content:space-between;background:#0A0C13;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:15px}
+.ask-box .pr b{color:var(--amber)}
+.ask-box .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.ask-box .row .btn{flex:1 1 160px;justify-content:center;text-align:center;white-space:normal}
+.add{align-self:flex-start;background:none;border:1.5px dashed var(--line);border-radius:12px;padding:10px 14px;font-weight:700;color:var(--cobalt2);cursor:pointer}
+.plans3{display:grid;gap:10px}
+@media(min-width:560px){.plans3{grid-template-columns:repeat(3,1fr)}}
+.pl,.cp{background:#0A0C13;border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:4px}
+.pl b,.cp b{font:800 17px var(--fd)}
+.pl span,.cp span{color:var(--mut);font-size:13.5px}
+.pl em,.cp em{font-style:normal;font-weight:800;color:var(--amber)}
+.pl[aria-pressed=true],.cp[aria-pressed=true]{border-color:var(--amber);background:rgba(255,176,32,.08)}
+.cps{display:grid;gap:8px}
+@media(min-width:560px){.cps{grid-template-columns:repeat(2,1fr)}}
+.est{background:#0A0C13;border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:6px 14px;font-size:15px}
+.est dt{color:var(--mut)}.est dd{font-weight:700;text-align:right}
+.est .tot{border-top:1px solid var(--line);padding-top:8px;margin-top:4px;font-weight:800;color:var(--ink)}
+.nav-steps{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.nav-steps .btn{min-width:140px}
+.sum{display:flex;flex-direction:column;gap:12px}
+.sum-g{background:#0A0C13;border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.sum-g header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.sum-g header b{font:800 16px var(--fd)}
+.sum-g header button{background:none;border:0;color:var(--cobalt2);font-weight:700;cursor:pointer;font-size:14px}
+.sum-g dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14.5px}
+.sum-g dt{color:var(--mut)}
+.sum-g dd{min-width:0;overflow-wrap:anywhere}
+.sw1{display:inline-block;width:14px;height:14px;border-radius:50%;vertical-align:-2px;margin-right:6px;box-shadow:0 0 0 1px rgba(255,255,255,.3)}
+.pv{display:none}
+@media(min-width:980px){.pv{display:flex;position:sticky;top:90px;flex-direction:column;align-items:center;gap:14px}}
+.pv .bphone{width:min(310px,100%)}
+.peek{position:fixed;left:16px;right:16px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;gap:10px}
+.peek .btn{flex:1;background:rgba(27,33,54,.92);backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(0,0,0,.4)}
+@media(min-width:980px){.peek{display:none}}
+.sheet{position:fixed;inset:0;z-index:70;background:rgba(5,6,10,.82);backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px}
+.sheet .bphone{width:min(290px,72vw)}
+.ok-wrap{text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px;padding-block:40px}
+.ok-wrap .ok{width:72px;height:72px;border-radius:50%;background:var(--ok);color:#06140D;display:grid;place-items:center;font-size:34px;font-weight:800}
+.ok-wrap h2{font:800 clamp(30px,5vw,44px)/1.05 var(--fd)}
+.ok-wrap p{color:var(--mut);max-width:52ch}
+.ok-wrap code{font-family:ui-monospace,Menlo,monospace;color:var(--mut)}
+.ok-wrap .row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="/" aria-label="OHI Solutions, pagina principală"><svg viewBox="0 18 359 170" role="img"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#4C63FF" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
+  <div class="links"><a href="/#cum">Cum lucrăm</a><a href="/preturi">Prețuri</a><a href="/constructor" style="color:var(--ink)">Constructor</a><a href="/solutii-personalizate">Soluții</a></div>
+</div></nav>
+
+<main class="wrap">
+  <header class="cb-head">
+    <span class="kick">Constructor de site</span>
+    <h1>Construiește-ți site-ul, <em class="s">pas cu pas.</em></h1>
+    <p>5 pași scurți. Vezi o schiță pe telefon la fiecare alegere, apoi trimiți totul dintr-un singur buton. În 24 de ore primești site-ul real, construit de noi, fără avans. <a href="#exemple" style="color:var(--cobalt2);font-weight:700;white-space:nowrap">Vezi exemple finale ↓</a></p>
+    <div class="prog" id="prog"></div>
+  </header>
+
+  <div class="ok-wrap" id="locked" hidden>
+    <span class="ok">✓</span><h2>Ai trimis deja designul</h2>
+    <p id="lockedTxt">Îl avem și lucrăm la demo-ul tău. Dacă vrei să schimbi ceva, scrie-ne sau sună-ne și spune-ne numele tău și al firmei.</p>
+    <code id="lockedId"></code>
+    <div class="row"><a class="btn a" id="lockedWa" href="#" target="_blank" rel="noopener">Scrie-ne pe WhatsApp</a><a class="btn g" href="tel:+40740267706">Sună: 0740 267 706</a></div>
+  </div>
+
+  <div class="wz" id="wz">
+    <form id="f" novalidate>
+      <section class="step" data-step="0">
+        <h2>1. Afacerea ta</h2><p class="lead-in">Pornim de la ce faci și cum te găsesc clienții.</p>
+        <div class="card">
+          <div class="grp"><span class="lbl">Domeniul *</span><div class="chips" id="niche"></div></div>
+          <div class="two">
+            <div class="grp"><label for="name">Numele afacerii *</label><input class="inp" id="name" maxlength="40" placeholder="Ex: Frizeria lui Andrei" autocomplete="organization"></div>
+            <div class="grp"><label for="city">Oraș / cartier</label><input class="inp" id="city" maxlength="40" value="Târgu Mureș"></div>
+          </div>
+          <div class="grp"><label for="slogan">Slogan <span class="opt">(opțional)</span></label><input class="inp" id="slogan" maxlength="80" placeholder="Ex: Tunsori ca la carte, fără așteptat"></div>
+          <div class="grp"><label for="about">Despre afacere <span class="opt">(2–3 propoziții, le îmbunătățim noi)</span></label><textarea class="inp" id="about" maxlength="600" placeholder="De când existați, ce faceți cel mai bine, ce vă face diferiți."></textarea></div>
+        </div>
+        <div class="card">
+          <div class="grp"><span class="lbl">Unde te găsim acum? <span class="opt">(opțional, de aici luăm poze și informații)</span></span></div>
+          <div class="two">
+            <div class="grp"><label for="lkFb">Facebook</label><input class="inp" id="lkFb" placeholder="facebook.com/…"></div>
+            <div class="grp"><label for="lkIg">Instagram</label><input class="inp" id="lkIg" placeholder="instagram.com/…"></div>
+            <div class="grp"><label for="lkMaps">Google Maps</label><input class="inp" id="lkMaps" placeholder="Link sau „căutați-ne după nume”"></div>
+            <div class="grp"><label for="lkWeb">Site actual</label><input class="inp" id="lkWeb" placeholder="Dacă ai deja unul"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="step" data-step="1" hidden>
+        <h2>2. Aspectul</h2><p class="lead-in">Culori, fundal, efecte 3D și logo. Poți schimba oricând.</p>
+        <div class="card">
+          <div class="grp"><span class="lbl">Combinații gata făcute</span><div class="combos" id="combos"></div></div>
+          <div class="grp"><span class="lbl">Culoarea principală</span><div class="sw" id="color"></div></div>
+          <div class="grp" id="c2wrap"><span class="lbl">A doua culoare <span class="opt">(pentru gradient)</span></span><div class="sw" id="color2"></div></div>
+        </div>
+        <div class="card">
+          <div class="grp"><span class="lbl">Fundal</span><div class="bgs" id="bgs"></div></div>
+          <div class="grp"><span class="lbl">Stilul</span><div class="seg" data-k="style"><button type="button" data-v="modern">Modern</button><button type="button" data-v="elegant">Elegant</button><button type="button" data-v="bold">Îndrăzneț</button></div></div>
+          <div class="grp"><span class="lbl">Logo</span><div class="seg" data-k="logo"><button type="button" data-v="have">Am logo</button><button type="button" data-v="need">Vreau unul</button><button type="button" data-v="text">Doar numele</button></div>
+            <small class="opt" id="logoHint"></small></div>
+          <p class="note-ultra" id="bgNote" hidden></p>
+        </div>
+        <div class="card">
+          <div class="grp"><span class="lbl">Efecte premium <span class="ub">Ultra</span> <span class="opt">(design 3D, ilustrații sau intro animat)</span></span><div class="fxs" id="fxs"></div></div>
+          <p class="note-ultra" id="fxNote" hidden></p>
+        </div>
+      </section>
+
+      <section class="step" data-step="2" hidden>
+        <h2>3. Conținutul</h2><p class="lead-in">Ce secțiuni vrei și ce servicii oferi.</p>
+        <div class="card">
+          <div class="grp"><span class="lbl">Secțiuni <span class="opt">— cele marcate <span class="ub" style="margin:0">Ultra</span> sunt în Site Ultra și acum gratuite pentru primii 5 clienți</span></span><div class="tog" id="secs"></div></div>
+          <p class="note-ultra" id="secNote" hidden></p>
+        </div>
+        <div class="card">
+          <div class="grp"><span class="lbl">Ce oferi și la ce preț <span class="opt">(prețul e opțional)</span></span>
+            <div class="seg" data-k="offer"><button type="button" data-v="svc">Servicii</button><button type="button" data-v="prod">Produse</button><button type="button" data-v="menu">Meniu</button><button type="button" data-v="both">Ambele</button></div>
+            <small class="opt" id="offerHint"></small></div>
+          <div id="svcs" style="display:flex;flex-direction:column;gap:8px"></div>
+          <button type="button" class="add" id="addSvc">+ Adaugă un serviciu</button>
+        </div>
+        <div class="card">
+          <div class="grp"><span class="lbl">Program</span><div class="seg" data-k="hoursPreset"><button type="button" data-v="L–V 09:00–18:00 · S 09:00–13:00">L–V + S</button><button type="button" data-v="L–S 09:00–20:00">L–S</button><button type="button" data-v="Non-stop">Non-stop</button><button type="button" data-v="custom">Altul</button></div>
+            <input class="inp" id="hoursCustom" placeholder="Ex: L–V 08:00–17:00, S 10:00–14:00" hidden></div>
+          <div class="grp"><span class="lbl">Cum se fac programările / comenzile?</span>
+            <div class="chips" id="bookVia"></div>
+            <input class="inp" id="bookLink" placeholder="Linkul tău de Mero / Fresha / Booksy" hidden></div>
+        </div>
+      </section>
+
+      <section class="step" data-step="3" hidden>
+        <h2>4. Pachet și extra</h2><p class="lead-in">Alege pachetul, funcțiile în plus și asistența.</p>
+        <div class="card">
+          <div class="grp"><span class="lbl">Pachet</span><div class="plans3" id="plans"></div><small class="opt"><a href="/preturi" style="text-decoration:underline">Compară pachetele în detaliu</a></small></div>
+          <div class="grp"><span class="lbl">Limba site-ului</span><div class="seg" data-k="lang"><button type="button" data-v="ro">Română</button><button type="button" data-v="rohu">RO + HU</button><button type="button" data-v="rohuen">RO + HU + EN</button></div></div>
+        </div>
+        <div class="card">
+          <div class="grp"><span class="lbl">Soluții personalizate <span class="ub">Ultra</span> <span class="opt">(opțional, prețul îl primești în ofertă)</span></span><div class="tog" id="extras"></div>
+            <small class="opt"><a href="/solutii-personalizate" style="text-decoration:underline">Vezi ce face fiecare</a></small></div>
+          <p class="note-ultra" id="exNote" hidden></p>
+          <p class="call" id="callNote" hidden>📞 <b>Soluțiile personalizate sunt la comandă (Custom).</b> Le discutăm la un apel scurt, de 10–15 minute, apoi primești prețul fix. Nu plătești nimic înainte de apel.</p>
+        </div>
+        <div class="card">
+          <div class="grp"><span class="lbl">Administrare și mentenanță <span class="opt">(opțional: ne ocupăm noi de site, cu modificări de texte, prețuri și poze, verificare lunară și suport prioritar)</span></span><div class="cps" id="care"></div></div>
+          <div class="grp"><label for="domain">Domeniu <span class="opt">(opțional: îl cumperi tu, pe numele tău; te ajutăm să-l alegi)</span></label><input class="inp" id="domain" placeholder="Ex: frizeriaandrei.ro, dacă ai deja unul sau unul preferat"></div>
+          <div class="grp"><label for="notes">Altceva ce trebuie să știm? <span class="opt">(opțional)</span></label><textarea class="inp" id="notes" maxlength="800" placeholder="Ex: avem 2 locații, culorile din logo, un site care ne place…"></textarea></div>
+        </div>
+        <dl class="est" id="est"></dl>
+      </section>
+
+      <section class="step" data-step="4" hidden>
+        <h2>5. Verifică și trimite</h2><p class="lead-in">Totul e salvat. Lasă-ne datele de contact și trimite o singură dată.</p>
+        <div class="sum" id="sum"></div>
+        <dl class="est" id="est2"></dl>
+        <p class="call" id="callNote2" hidden style="margin-bottom:14px">📞 <b>Ai ales o soluție Custom.</b> Te sunăm pentru un apel scurt, ca să stabilim detaliile și prețul. Lasă un număr la care poți răspunde.</p>
+        <div class="card">
+          <div class="two">
+            <div class="grp"><label for="cName">Numele tău *</label><input class="inp" id="cName" autocomplete="name"></div>
+            <div class="grp"><label for="cPhone">Telefon *</label><input class="inp" id="cPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="07xx xxx xxx"></div>
+          </div>
+          <div class="grp"><label for="cEmail">Email <span class="opt">(opțional)</span></label><input class="inp" id="cEmail" type="email" autocomplete="email"></div>
+          <div class="two">
+            <div class="grp"><span class="lbl">Cum preferi să te contactăm?</span><div class="seg" data-k="pref"><button type="button" data-v="WhatsApp">WhatsApp</button><button type="button" data-v="Telefon">Telefon</button><button type="button" data-v="Email">Email</button></div></div>
+            <div class="grp"><span class="lbl">Când e cel mai bine?</span><div class="seg" data-k="when"><button type="button" data-v="Dimineața">Dimineața</button><button type="button" data-v="După-amiaza">După-amiaza</button><button type="button" data-v="Oricând">Oricând</button></div></div>
+          </div>
+          <input class="hp" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <label class="chk"><input type="checkbox" id="okC"> <span>Sunt de acord să fiu contactat(ă) de OHI Solutions pentru acest demo. *</span></label>
+          <label class="chk"><input type="checkbox" id="okM"> <span>Vreau să primesc ocazional oferte și noutăți de la OHI (WhatsApp, SMS sau email). Mă pot dezabona oricând. Detalii în <a href="/confidentialitate" target="_blank" rel="noopener">politica de confidențialitate</a>.</span></label>
+          <p class="opt">Poți trimite o singură cerere. Pentru modificări după trimitere, ne suni sau ne scrii cu numele tău și al firmei.</p>
+          <p class="err" id="err" role="alert"></p>
+          <p class="pvnote" id="pvNote" hidden>Previzualizare: aici formularul nu trimite nimic. Pe site-ul live, cererea ajunge în CRM.</p>
+        </div>
+      </section>
+
+      <p class="err" id="stepErr" role="alert" style="margin-top:14px"></p>
+      <div class="nav-steps" style="margin-top:14px"><button type="button" class="btn g" id="back">← Înapoi</button><button type="button" class="btn a" id="next">Continuă →</button></div>
+    </form>
+
+    <div class="ok-wrap" id="done" hidden>
+      <span class="ok">✓</span><h2>Am primit designul tău!</h2>
+      <p>Pornind de la alegerile tale, îți construim site-ul real, cu design făcut de noi, și te contactăm în cel mult 24 de ore. Dacă ai logo sau poze, trimite-ni-le pe WhatsApp, cu codul de mai jos.</p>
+      <code id="doneId"></code>
+      <div class="row"><a class="btn a" id="doneWa" href="#" target="_blank" rel="noopener">Trimite logo și poze pe WhatsApp</a><a class="btn g" href="/">Înapoi la pagina principală</a></div>
+    </div>
+
+    <aside class="pv" aria-label="Previzualizare">
+      <div class="bphone"><span class="sketch">SCHIȚĂ</span><div class="screen live" id="scr"></div><span class="built hide" id="built">✓ Schiță actualizată</span></div>
+      <p class="hint">Asta e o schiță: păstrăm alegerile tale, iar designul final îl facem noi, mult mai frumos. <a href="#exemple" style="color:var(--cobalt2);font-weight:700">Vezi exemple finale ↓</a></p>
+    </aside>
+  </div>
+</main>
+<section class="finals-sec" id="exemple" style="background:var(--bg2);margin-top:60px"><div class="wrap">
+  <span class="kick">Site-uri finale</span>
+  <h2>Schița e doar începutul. <em class="s">Așa arată</em> site-ul final.</h2>
+  <p class="intro">În constructor alegi culorile, secțiunile și ce oferi. Site-ul real îl construim de la zero, cu design, poze și texte făcute pentru afacerea ta.</p>
+  <div class="finals">
+    <div class="fin"><a class="mphone" href="/exemple/frizerie" aria-label="Deschide exemplul de frizerie"><span class="shot" style="background-image:url(/exemple/img/frizerie.webp)"></span></a><h3>💈 Frizerie</h3><p>Alegi frizerul și ora, prețuri clare, echipa și programul.</p><a class="go" href="/exemple/frizerie">Deschide site-ul →</a></div>
+    <div class="fin"><a class="mphone" href="/exemple/cofetarie" aria-label="Deschide exemplul de cofetărie"><span class="shot" style="background-image:url(/exemple/img/cofetarie.webp)"></span></a><h3>🎂 Cofetărie</h3><p>Produse pe categorii, constructor de tort și vitrina zilei.</p><a class="go" href="/exemple/cofetarie">Deschide site-ul →</a></div>
+    <div class="fin"><a class="mphone" href="/exemple/service-auto" aria-label="Deschide exemplul de service auto"><span class="shot" style="background-image:url(/exemple/img/service-auto.webp)"></span></a><h3>🔧 Service auto</h3><p>Martori de bord explicați, prețuri orientative și cerere de programare.</p><a class="go" href="/exemple/service-auto">Deschide site-ul →</a></div>
+  </div>
+  <p class="swipe">← glisează pentru celelalte →</p>
+  <p class="fic">Exemplele sunt afaceri fictive, create de noi ca să vezi calitatea. Site-ul tău va avea designul lui.</p>
+  <details class="keepd"><summary>Ce păstrăm din schița ta și ce facem noi</summary><div class="keep">
+    <div class="k"><b>Păstrăm din schița ta</b><ul><li>Culorile și stilul ales</li><li>Secțiunile și ordinea lor</li><li>Serviciile, produsele și prețurile</li><li>Programul, programările, limba, pachetul</li></ul></div>
+    <div class="m"><b>Facem noi, mai bine</b><ul><li>Așezarea în pagină și fonturile</li><li>Pozele și ilustrațiile</li><li>Animațiile și efectele</li><li>Textele finale, scrise pentru Google</li></ul></div>
+  </div></details>
+</div></section>
+
+
+<div class="peek" id="peek"><button type="button" class="btn g" id="peekBtn">👁 Vezi schița</button></div>
+<div class="ask" id="ask" role="dialog" aria-modal="true" aria-labelledby="askT" hidden><div class="ask-box">
+  <h3 id="askT">Disponibil cu Site Ultra</h3><p id="askP"></p>
+  <div class="pr"><span>Site Basic → Site Ultra</span><b>+699 lei</b></div>
+  <p style="font-size:13.5px">Ultra are până la 5 pagini, design animat, efecte premium și acces la soluții personalizate. Cât mai sunt locuri, poți alege și pachetul Gratuit, care are toate funcțiile Ultra.</p>
+  <div class="row"><button type="button" class="btn a" id="askYes">Da, trec la Ultra</button><button type="button" class="btn g" id="askNo">Nu, rămân pe Basic</button></div>
+</div></div>
+<div class="sheet" id="sheet" hidden><div class="bphone"><span class="sketch">SCHIȚĂ · designul final îl facem noi</span><div class="screen live" id="scr2"></div></div><button type="button" class="btn a" id="closeSheet">Închide previzualizarea</button></div>
+
+<footer><div class="wrap"><span>© 2026 OHI Solutions · Târgu Mureș</span><span><a href="/confidentialitate">Confidențialitate</a> · <a href="/termeni">Termeni</a> · <a href="/blog">Blog</a></span></div></footer>
+
+<script src="/mock.js"></script>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const REDUCE=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const STEPS=["Afacerea","Aspectul","Conținutul","Pachet","Trimite"];
+const BOOK=[["form","Formular pe site"],["mero","Mero"],["fresha","Fresha"],["booksy","Booksy"],["whatsapp","WhatsApp"],["phone","Telefon"]];
+const PLANS=[["Gratuit (primele 5)","Gratuit","primele 5 afaceri, cu funcții Ultra","0 lei"],["Basic","Site Basic","o pagină, rapid","500 lei"],["Ultra","Site Ultra","până la 5 pagini, premium","1199 lei"],["Custom","Custom","site sau aplicație web la comandă","preț stabilit la apel"]];
+const COMBOS=[["Noapte & auriu","#C9A45C","#3A2C14"],["Ocean","#19A7A0","#4C63FF"],["Coral & piersică","#FF6B61","#FFB020"],["Pădure","#2F7A5B","#C9A45C"],["Lavandă","#8E5BD6","#E5679B"],["Neon","#4C63FF","#E5679B"],["Ciocolată","#7A3D2B","#E5679B"],["Grafit","#F2F3F7","#4C63FF"]];
+const BGS=[["light","Luminos","",0],["dark","Întunecat","",0],["gradient","Gradient","2 culori",1],["animated","În mișcare","gradient animat",1]];
+const ULTRA_SECS=SECTIONS.filter(s=>s[2]).map(s=>s[0]);
+const C={step:0,niche:"frizerie",name:"",city:"Târgu Mureș",slogan:"",about:"",lkFb:"",lkIg:"",lkMaps:"",lkWeb:"",
+  color:NICHES.frizerie.sw[0],color2:"#3A2C14",bg:"dark",fx:"none",style:"modern",logo:"have",
+  secs:{about:1,book:1,prices:1,map:1,contact:0,reviews:1,gallery:1,team:0,faq:0,offers:0,beforeafter:0,video:0,insta:0,blog:0,rai:0},
+  services:null,hoursPreset:"L–V 09:00–18:00 · S 09:00–13:00",hoursCustom:"",bookVia:"form",bookLink:"",
+  lang:"ro",plan:"Gratuit (primele 5)",extras:{},care:"none",domain:"",notes:"",cName:"",cPhone:"",cEmail:"",pref:"WhatsApp",when:"Oricând"};
+const defaultSvcs=k=>NICHES[k].items.map(([n,d,p])=>({n,d,p:p==="ofertă"?"":p}));
+try{const sv=JSON.parse(localStorage.getItem("ohi-build-full")||"null");if(sv&&NICHES[sv.niche])Object.assign(C,sv,{secs:Object.assign({},C.secs,sv.secs),extras:sv.extras||{}})}catch(e){}
+if(!C.services)C.services=defaultSvcs(C.niche);
+if(!C.offer)C.offer=offerDefault(C.niche);
+if(!C.bg)C.bg=NICHES[C.niche].dark?"dark":"light";
+const save=()=>{try{localStorage.setItem("ohi-build-full",JSON.stringify(C))}catch(e){}};
+const hours=()=>C.hoursPreset==="custom"?C.hoursCustom:C.hoursPreset;
+const isUltraBgKey=k=>k==="gradient"||k==="animated";const isUltraBg=()=>isUltraBgKey(C.bg);
+const anyUltraSec=()=>ULTRA_SECS.some(k=>C.secs[k]);
+const anyExtra=()=>Object.values(C.extras).some(Boolean);
+const model=()=>({niche:C.niche,name:C.name,slogan:C.slogan,city:C.city,about:C.about,color:C.color,color2:C.color2,bg:C.bg,fx:C.fx,style:C.style,lang:C.lang,secs:C.secs,services:C.services,offer:C.offer,hours:hours(),bookVia:C.bookVia});
+const isCustom=()=>C.plan==="Custom"||anyExtra();
+const offerName=()=>C.offer==="both"?"Servicii și produse":OFFER[C.offer][0];
+
+/* Ultra rules: Ultra-only options keep the free plan (first 5) or move Basic up to Ultra */
+/* Basic + an Ultra option: ask (+699 lei) instead of switching silently. "No" undoes the choice. */
+let askCb=null;
+function ensureUltra(reason,noteEl,undo){if(C.plan!=="Basic")return;
+  $("#askP").textContent=`${reason} face parte din Site Ultra. Pe Site Basic (o singură pagină) nu e inclus.`;
+  askCb=yes=>{if(yes){C.plan="Ultra";drawPlans();if(noteEl){noteEl.hidden=false;noteEl.textContent=`Am trecut pachetul pe Site Ultra, pentru ${reason.charAt(0).toLowerCase()+reason.slice(1)}.`}}
+    else{undo&&undo();if(noteEl)noteEl.hidden=true}drawAll();update()};
+  $("#ask").hidden=false;$("#askYes").focus()}
+function closeAsk(yes){$("#ask").hidden=true;const f=askCb;askCb=null;f&&f(yes)}
+function drawAll(){drawColors();drawBgs();drawFx();drawSecs();drawExtras();drawPlans();drawCustom()}
+function drawCustom(){const on=anyExtra();$("#callNote").hidden=!on;$("#callNote2").hidden=!isCustom()}
+function checkBasic(){if(C.plan!=="Basic")return "";const u=[];if(C.fx&&C.fx!=="none")u.push("efectul „"+EFFECTS.find(f=>f[0]===C.fx)[1]+"”");if(isUltraBg())u.push("fundalul "+BGS.find(b=>b[0]===C.bg)[1].toLowerCase());
+  ULTRA_SECS.forEach(k=>{if(C.secs[k])u.push(SECTIONS.find(s=>s[0]===k)[1])});if(anyExtra())u.push("soluțiile personalizate");return u.join(", ")}
+
+/* ---------- render controls ---------- */
+function drawProg(){$("#prog").innerHTML=STEPS.map((s,i)=>`<button type="button" data-go="${i}" class="${i<C.step?"past":""} ${i===C.step?"cur":""}" aria-label="Pasul ${i+1}: ${s}"><i></i><span>${i+1}. ${s}</span></button>`).join("")}
+function drawNiche(){$("#niche").innerHTML=KEYS.map(k=>`<button type="button" class="chip" data-n="${k}" aria-pressed="${k===C.niche}">${NICHES[k].ico} ${NICHES[k].label}</button>`).join("")}
+function swatches(id,key){const list=[...new Set([...NICHES[C.niche].sw,...EXTRA].map(c=>c.toUpperCase()))];
+  $(id).innerHTML=list.map(c=>`<button type="button" style="background:${c}" data-c="${c}" aria-label="Culoare ${c}" aria-pressed="${c===String(C[key]).toUpperCase()}"></button>`).join("")+`<label class="pick" title="Altă culoare"><input type="color" value="${String(C[key]).toLowerCase()}" aria-label="Alege orice culoare"></label>`;
+  const inp=$(id+" input");inp.addEventListener("input",e=>{C[key]=e.target.value;$$("#combos .combo").forEach(b=>b.setAttribute("aria-pressed","false"));update()});inp.addEventListener("change",drawColors)}
+function drawColors(){swatches("#color","color");swatches("#color2","color2");$("#c2wrap").hidden=!isUltraBg();
+  $("#combos").innerHTML=COMBOS.map(([n,a,b])=>`<button type="button" class="combo" data-a="${a}" data-b="${b}" aria-pressed="${C.color.toUpperCase()===a.toUpperCase()&&C.color2.toUpperCase()===b.toUpperCase()}"><i style="background:linear-gradient(135deg,${a} 50%,${b} 50%)"></i>${n}</button>`).join("")}
+function drawBgs(){$("#bgs").innerHTML=BGS.map(([k,l,s,u])=>{const g=k==="light"?"#FAF9F6":k==="dark"?"#0F1115":`linear-gradient(135deg,${C.color},${C.color2}${k==="animated"?","+C.color:""})`;
+  return `<button type="button" class="bgc" data-bg="${k}" aria-pressed="${k===C.bg}"><span class="sw2 ${k==="animated"?"anim":""}" style="background:${g}"></span><span>${l}${u?'<span class="ub">Ultra</span>':""}${s?`<br><small>${s}</small>`:""}</span></button>`}).join("")}
+const FXI={none:"○","3d":"🧊",draw:"✏️",intro:"🎬"};
+function drawFx(){$("#fxs").innerHTML=EFFECTS.map(([k,l,d])=>`<button type="button" class="fx" data-fx="${k}" aria-pressed="${k===(C.fx||"none")}"><span class="fi">${FXI[k]}</span><b>${l}</b><small>${d}</small></button>`).join("")}
+function drawSecs(){$("#secs").innerHTML=SECTIONS.map(([k,l,u,p])=>`<button type="button" data-s="${k}" aria-pressed="${!!C.secs[k]}"><i></i><span>${l}${u?'<span class="ub">Ultra</span>':""}${p?`<span class="pb">${p}</span>`:""}</span></button>`).join("")}
+function drawExtras(){$("#extras").innerHTML=EXTRAS.map(([k,l])=>`<button type="button" data-x="${k}" aria-pressed="${!!C.extras[k]}"><i></i><span>${l}</span></button>`).join("")}
+function drawCare(){$("#care").innerHTML=CARE.map(([k,l,p,d])=>`<button type="button" class="cp" data-c="${k}" aria-pressed="${k===C.care}"><b>${l}</b>${p?`<em>${p}</em>`:""}${d?`<span>${d}</span>`:'<span>poți adăuga oricând mai târziu</span>'}</button>`).join("")}
+const maxSvc=()=>C.offer==="both"?12:8;
+function drawSvcs(){const B=C.offer==="both",one=B?"Denumire":OFFER[C.offer][1];
+  $("#svcs").innerHTML=C.services.map((s,i)=>`<div class="svc-row${B?" b":""}" data-i="${i}">${B?`<button type="button" class="ty" data-ty="${i}" data-t="${s.t==="p"?"p":"s"}" aria-label="Tip: apasă ca să schimbi">${s.t==="p"?"Produs":"Serviciu"}</button>`:""}<input class="inp" data-f="n" value="${esc(s.n)}" placeholder="${one}" aria-label="${one} ${i+1}"><input class="inp d" data-f="d" value="${esc(s.d)}" placeholder="Descriere scurtă" aria-label="Descriere ${i+1}"><input class="inp" data-f="p" value="${esc(s.p)}" placeholder="Preț" aria-label="Preț ${i+1}"><button type="button" data-del="${i}" aria-label="Șterge rândul">×</button></div>`).join("");
+  $("#addSvc").textContent="+ Adaugă "+(B?"un rând":{svc:"un serviciu",prod:"un produs",menu:"un preparat"}[C.offer]);$("#addSvc").hidden=C.services.length>=maxSvc()}
+function drawBook(){$("#bookVia").innerHTML=BOOK.map(([k,l])=>`<button type="button" class="chip" data-b="${k}" aria-pressed="${k===C.bookVia}">${l}</button>`).join("");$("#bookLink").hidden=!["mero","fresha","booksy"].includes(C.bookVia)}
+function drawPlans(){$("#plans").classList.add("p4");$("#plans").innerHTML=PLANS.map(([v,t,d,p])=>`<button type="button" class="pl${v==="Custom"?" cu":""}" data-p="${esc(v)}" aria-pressed="${v===C.plan}"><b>${t}</b><span>${d}</span><em>${p}</em></button>`).join("");drawEst()}
+function drawSegs(){$$(".seg[data-k]").forEach(sg=>sg.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===C[sg.dataset.k])));
+  $("#hoursCustom").hidden=C.hoursPreset!=="custom";
+  $("#offerHint").textContent={svc:"Pe site apare „Servicii”. Bun pentru frizerii, saloane, service-uri, cabinete.",prod:"Pe site apare „Produse”. Bun pentru cofetării și magazine. Pentru coș și comenzi online, vezi „Magazin online” la pasul 4.",menu:"Pe site apare „Meniu”. Bun pentru restaurante și cafenele.",both:"Pe site apar două liste: Servicii și Produse. Apasă pe eticheta din stânga ca să schimbi tipul fiecărui rând."}[C.offer];
+  $("#logoHint").textContent={have:"Logo-ul ni-l trimiți pe WhatsApp după ce primim cererea.",need:"Îți propunem 2–3 variante de logo împreună cu demo-ul (logo-ul nou e la ofertă).",text:"Scriem numele afacerii frumos, fără simbol."}[C.logo]}
+function fillInputs(){["name","city","slogan","about","lkFb","lkIg","lkMaps","lkWeb","hoursCustom","bookLink","domain","notes","cName","cPhone","cEmail"].forEach(id=>{const el=$("#"+id);if(el)el.value=C[id]||""})}
+function estRows(){const site={"Gratuit (primele 5)":"0 lei o singură dată","Basic":"500 lei o singură dată","Ultra":"1199 lei o singură dată","Custom":"preț stabilit la apel"}[C.plan];const care=CARE.find(c=>c[0]===C.care);const rows=[[C.plan==="Custom"?"Proiect Custom 📞":"Site "+C.plan.replace(/\s*\(.*\)/,""),site]];
+  if(C.secs.rai)rows.push(["Asistent RAI 24/7",`${PRICES.raiSetup} lei instalare + ${PRICES.raiMonth} lei/lună`]);
+  if(anyExtra())rows.push(["Soluții personalizate (Custom) 📞","preț stabilit la apel"]);
+  if(C.care!=="none")rows.push(["Administrare: "+care[1].toLowerCase(),care[2]]);
+  if(C.logo==="need")rows.push(["Logo nou","în oferta noastră"]);return rows}
+function drawEst(){const h=`<dt style="grid-column:1/-1;font-weight:800;color:var(--ink)">Estimare</dt>`+estRows().map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join("")+`<dt class="tot" style="grid-column:1/-1;color:var(--mut);font-weight:500;font-size:13px">Plătești doar după ce aprobi demo-ul. Domeniul îl plătești separat, la registrator.</dt>`;
+  ["#est","#est2"].forEach(id=>{const el=$(id);if(el)el.innerHTML=h})}
+
+/* ---------- preview ---------- */
+let t;
+function preview(){[$("#scr"),$("#scr2")].forEach(sc=>{if(!sc)return;paint(sc,model());const c=sc.querySelector(".s-chat");c&&c.classList.add("on")});
+  const sc=$("#scr");sc.classList.remove("wire");void sc.offsetWidth;if(!REDUCE)sc.classList.add("wire");clearTimeout(t);$("#built").classList.add("hide");
+  t=setTimeout(()=>{sc.classList.remove("wire");$("#built").classList.remove("hide")},REDUCE?0:700)}
+let deb;function update(soft){save();drawEst();if(soft){clearTimeout(deb);deb=setTimeout(preview,350)}else preview()}
+
+/* ---------- steps ---------- */
+function show(i){C.step=i;$$(".step").forEach(s=>s.hidden=+s.dataset.step!==i);drawProg();$("#back").style.visibility=i?"visible":"hidden";
+  $("#next").textContent=i===4?"Trimite designul →":"Continuă →";$("#stepErr").textContent="";if(i===4)drawSum();save();
+  const top=$(".cb-head").getBoundingClientRect().bottom+scrollY-90;if(scrollY>top)scrollTo({top,behavior:REDUCE?"auto":"smooth"})}
+function check(i){if(i===0&&!C.name.trim()){$("#name").focus();return "Scrie numele afacerii, ca să-l punem pe site."}
+  if(i===3){const u=checkBasic();if(u)return `Ai ales ${u}, care fac parte din Site Ultra. Alege Ultra (sau Gratuit, cât mai sunt locuri) ori scoate-le.`}return ""}
+$("#next").onclick=()=>{if(C.step<4){const e=check(C.step);if(e){$("#stepErr").textContent=e;return}show(C.step+1)}else submit()};
+$("#back").onclick=()=>show(Math.max(0,C.step-1));
+$("#prog").addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(!b)return;const to=+b.dataset.go;if(to>0&&!C.name.trim()){show(0);$("#stepErr").textContent=check(0);return}show(to)});
+
+/* ---------- summary ---------- */
+function drawSum(){const N=NICHES[C.niche],secs=SECTIONS.filter(([k])=>C.secs[k]).map(([,l])=>l).join(", ")||"—",svc=C.services.filter(s=>s.n.trim()).map(s=>s.n+(s.p?` (${s.p})`:"")).join(", ")||"—";
+  const L={modern:"Modern",elegant:"Elegant",bold:"Îndrăzneț"},LG={have:"am logo",need:"vreau logo",text:"doar numele"},LA={ro:"română",rohu:"română + maghiară",rohuen:"română + maghiară + engleză"};
+  const ex=EXTRAS.filter(([k])=>C.extras[k]).map(([,l])=>l).join(", ")||"—";
+  const g=(title,step,rows)=>`<div class="sum-g"><header><b>${title}</b><button type="button" data-go="${step}">Editează</button></header><dl>${rows.map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl></div>`;
+  $("#sum").innerHTML=g("Afacerea",0,[["Nume",esc(C.name)],["Domeniu",N.label],["Oraș",esc(C.city)],["Slogan",esc(C.slogan)||"—"]])
+   +g("Aspectul",1,[["Culori",`<span class="sw1" style="background:${C.color}"></span>${C.color}${isUltraBg()?` <span class="sw1" style="background:${C.color2};margin-left:8px"></span>${C.color2}`:""}`],["Fundal",BGS.find(b=>b[0]===C.bg)[1]],["Efect",EFFECTS.find(f=>f[0]===(C.fx||"none"))[1]],["Stil",L[C.style]],["Logo",LG[C.logo]]])
+   +g("Conținutul",2,[["Secțiuni",secs],[offerName(),esc(svc)],["Program",esc(hours())||"—"],["Programări",BOOK.find(b=>b[0]===C.bookVia)[1]+(C.bookLink?` · ${esc(C.bookLink)}`:"")]])
+   +g("Pachet și extra",3,[["Pachet",esc(C.plan)],["Limba",LA[C.lang]],["Soluții",ex+(anyExtra()?" · Custom, discutăm la apel":"")],["Administrare",CARE.find(c=>c[0]===C.care)[1]],["Domeniu",esc(C.domain)||"—"]]);drawEst()}
+$("#sum").addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(b)show(+b.dataset.go)});
+
+/* ---------- events ---------- */
+$("#niche").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;const k=b.dataset.n;const keep=C.services.some(s=>s.n.trim())&&JSON.stringify(C.services)!==JSON.stringify(defaultSvcs(C.niche));
+  if(C.offer===offerDefault(C.niche))C.offer=offerDefault(k);C.niche=k;C.color=NICHES[k].sw[0];if(!keep)C.services=defaultSvcs(k);if(!isUltraBg())C.bg=NICHES[k].dark?"dark":"light";drawNiche();drawColors();drawBgs();drawSegs();drawSvcs();update()});
+$("#color").addEventListener("click",e=>{const b=e.target.closest("button[data-c]");if(!b)return;C.color=b.dataset.c;drawColors();drawBgs();update()});
+$("#color2").addEventListener("click",e=>{const b=e.target.closest("button[data-c]");if(!b)return;C.color2=b.dataset.c;drawColors();drawBgs();update()});
+$("#combos").addEventListener("click",e=>{const b=e.target.closest(".combo");if(!b)return;C.color=b.dataset.a;C.color2=b.dataset.b;if(!isUltraBg()&&C.plan!=="Basic"){C.bg="gradient";}drawColors();drawBgs();update()});
+$("#bgs").addEventListener("click",e=>{const b=e.target.closest(".bgc");if(!b)return;const was=C.bg;C.bg=b.dataset.bg;if(isUltraBg())ensureUltra("Fundalul "+BGS.find(x=>x[0]===C.bg)[1].toLowerCase(),$("#bgNote"),()=>{C.bg=isUltraBgKey(was)?(NICHES[C.niche].dark?"dark":"light"):was});else $("#bgNote").hidden=true;drawColors();drawBgs();update()});
+$("#fxs").addEventListener("click",e=>{const b=e.target.closest(".fx");if(!b)return;C.fx=b.dataset.fx;if(C.fx!=="none")ensureUltra("Efectul „"+EFFECTS.find(f=>f[0]===C.fx)[1]+"”",$("#fxNote"),()=>{C.fx="none"});else $("#fxNote").hidden=true;drawFx();update()});
+$("#secs").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const k=b.dataset.s;C.secs[k]=C.secs[k]?0:1;
+  if(C.secs[k]&&ULTRA_SECS.includes(k))ensureUltra("Secțiunea „"+SECTIONS.find(s=>s[0]===k)[1]+"”",$("#secNote"),()=>{C.secs[k]=0});drawSecs();update()});
+$("#extras").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const k=b.dataset.x;const first=!anyExtra();C.extras[k]=C.extras[k]?0:1;if(C.extras[k]){if(first)C.pref="Telefon";ensureUltra("Soluția „"+EXTRAS.find(x=>x[0]===k)[1]+"”",$("#exNote"),()=>{C.extras[k]=0;drawCustom()})}drawExtras();drawCustom();drawSegs();save();drawEst()});
+$("#askYes").onclick=()=>closeAsk(true);$("#askNo").onclick=()=>closeAsk(false);
+$("#ask").addEventListener("click",e=>{if(e.target.id==="ask")closeAsk(false)});
+addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("#ask").hidden)closeAsk(false)});
+$("#care").addEventListener("click",e=>{const b=e.target.closest(".cp");if(!b)return;C.care=b.dataset.c;drawCare();save();drawEst()});
+$("#bookVia").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;C.bookVia=b.dataset.b;drawBook();update()});
+$("#plans").addEventListener("click",e=>{const b=e.target.closest(".pl");if(!b)return;C.plan=b.dataset.p;if(C.plan==="Custom")C.pref="Telefon";drawPlans();drawCustom();drawSegs();save();$("#stepErr").textContent=""});
+$$(".seg[data-k]").forEach(sg=>sg.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;C[sg.dataset.k]=b.dataset.v;drawSegs();if(sg.dataset.k==="offer")drawSvcs();update()}));
+["name","city","slogan","about","hoursCustom","bookLink"].forEach(id=>$("#"+id).addEventListener("input",e=>{C[id]=e.target.value;update(true)}));
+["lkFb","lkIg","lkMaps","lkWeb","domain","notes","cName","cPhone","cEmail"].forEach(id=>$("#"+id).addEventListener("input",e=>{C[id]=e.target.value;save()}));
+$("#svcs").addEventListener("input",e=>{const r=e.target.closest(".svc-row");if(!r)return;C.services[+r.dataset.i][e.target.dataset.f]=e.target.value;update(true)});
+$("#svcs").addEventListener("click",e=>{const ty=e.target.closest("[data-ty]");if(ty){const s=C.services[+ty.dataset.ty];s.t=s.t==="p"?"s":"p";drawSvcs();update();return}const b=e.target.closest("[data-del]");if(!b)return;C.services.splice(+b.dataset.del,1);if(!C.services.length)C.services.push({n:"",d:"",p:""});drawSvcs();update()});
+$("#addSvc").onclick=()=>{if(C.services.length<maxSvc()){C.services.push({n:"",d:"",p:""});drawSvcs();$("#svcs .svc-row:last-child input").focus()}};
+$("#peekBtn").onclick=()=>{$("#sheet").hidden=false;preview()};$("#closeSheet").onclick=()=>$("#sheet").hidden=true;
+$("#sheet").addEventListener("click",e=>{if(e.target.id==="sheet")$("#sheet").hidden=true});
+
+/* ---------- submit: everything in one request to the CRM, once per visitor ---------- */
+const T0=performance.now();
+function summaryText(){const N=NICHES[C.niche];const secs=SECTIONS.filter(([k])=>C.secs[k]).map(([,l])=>l).join(", ");
+  const svc=C.services.filter(s=>s.n.trim()).map(s=>`- ${C.offer==="both"?(s.t==="p"?"[produs] ":"[serviciu] "):""}${s.n}${s.d?` (${s.d})`:""}${s.p?`: ${s.p}`:""}`).join("\n");
+  const ex=EXTRAS.filter(([k])=>C.extras[k]).map(([,l])=>l).join(", ");const care=CARE.find(c=>c[0]===C.care);
+  return [`CONSTRUCTOR COMPLET`,`Afacere: ${C.name} · ${N.label} · ${C.city}`,C.slogan&&`Slogan: ${C.slogan}`,C.about&&`Despre: ${C.about}`,
+    `Linkuri: ${[C.lkFb&&"FB "+C.lkFb,C.lkIg&&"IG "+C.lkIg,C.lkMaps&&"Maps "+C.lkMaps,C.lkWeb&&"Site "+C.lkWeb].filter(Boolean).join(" | ")||"—"}`,
+    `Aspect: culori ${C.color}${isUltraBg()?" + "+C.color2:""}, fundal ${C.bg}, efect ${EFFECTS.find(f=>f[0]===(C.fx||"none"))[1]}, stil ${C.style}, logo ${C.logo}`,`Secțiuni: ${secs||"—"}`,`${offerName()}:\n${svc||"—"}`,
+    `Program: ${hours()||"—"}`,`Programări: ${C.bookVia}${C.bookLink?" "+C.bookLink:""}`,`Limba: ${C.lang}`,`Pachet: ${C.plan}`,`Soluții personalizate: ${ex?ex+" → CUSTOM, necesită apel":"—"}`,
+    `Administrare și mentenanță: ${care[1]}${care[2]?" ("+care[2]+")":""}`,`Asistent RAI: ${C.secs.rai?"DA":"nu"}`,C.domain&&`Domeniu: ${C.domain}`,C.notes&&`Note: ${C.notes}`,isCustom()&&`!!! CUSTOM: programează un apel înainte de ofertă`,`Contact preferat: ${C.pref}, ${C.when}`].filter(Boolean).join("\n")}
+function showLocked(r){$("#wz").hidden=true;$("#prog").hidden=true;$("#peek").hidden=true;$("#locked").hidden=false;$("#lockedId").textContent=r.id?"Cod cerere: "+r.id:"";
+  $("#lockedWa").href="https://wa.me/"+WA+"?text="+encodeURIComponent(`Salut! Sunt ${r.name||""}${r.biz?" de la "+r.biz:""}. Am trimis deja designul${r.id?" (cod "+r.id+")":""} și aș vrea o modificare: `)}
+async function submit(){
+  const err=$("#err");C.cName=$("#cName").value.trim();C.cPhone=$("#cPhone").value.trim();C.cEmail=$("#cEmail").value.trim();
+  if(leadLocked()){showLocked(leadLocked());return}
+  if(!C.cName){err.textContent="Scrie-ți numele.";$("#cName").focus();return}
+  if(C.cPhone.replace(/\D/g,"").length<9){err.textContent="Lasă un număr de telefon complet, ca să te putem suna.";$("#cPhone").focus();return}
+  if(C.cEmail&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(C.cEmail)){err.textContent="Adresa de email pare greșită.";$("#cEmail").focus();return}
+  if(!$("#okC").checked){err.textContent="Bifează acordul ca să te putem contacta pentru demo.";return}
+  const u=checkBasic();if(u){err.textContent=`Ai ales ${u}, care fac parte din Site Ultra. Schimbă pachetul la pasul 4.`;return}
+  err.textContent="";const id=reqId(),mk=$("#okM").checked,N=NICHES[C.niche];
+  const finish=()=>{lockLead({id,name:C.cName,biz:C.name});$("#f").hidden=true;$(".pv").style.display="none";$("#peek").hidden=true;$("#done").hidden=false;$("#doneId").textContent="Cod cerere: "+id;
+    $("#doneWa").href="https://wa.me/"+WA+"?text="+encodeURIComponent(`Salut! Am trimis designul pentru ${C.name} din constructor (cod ${id}). Vă trimit logo-ul și pozele.`);
+    try{localStorage.removeItem("ohi-build-full")}catch(e){};scrollTo({top:0,behavior:"smooth"})};
+  if($("#hp").value||performance.now()-T0<4000){finish();return}
+  const care=CARE.find(c=>c[0]===C.care);
+  const design={...model(),logo:C.logo,links:{fb:C.lkFb,ig:C.lkIg,maps:C.lkMaps,web:C.lkWeb},bookLink:C.bookLink,plan:C.plan,extras:EXTRAS.filter(([k])=>C.extras[k]).map(([k])=>k),care:C.care,domain:C.domain,notes:C.notes};
+  const btn=$("#next");btn.disabled=true;btn.textContent="Se trimite…";
+  try{
+    await sendLead({created_at:new Date().toISOString(),source:"site-constructor-complet",request_id:id,
+      name:C.cName,business:C.name,phone:C.cPhone,email:C.cEmail,business_type:N.label,website:C.lkWeb,
+      need:`Site nou · constructor complet · pachet: ${C.plan.replace(/\s*\(.*\)/,"")}${anyExtra()&&C.plan!=="Custom"?" + Custom":""}${isCustom()?" · necesită apel":""}`,message:summaryText(),
+      marketing_consent:mk?"da":"nu",consent_at:new Date().toISOString(),preferred_contact:`${isCustom()?"Apel (custom) · ":""}${C.pref}, ${C.when}`,
+      care_plan:care[1]+(care[2]?" · "+care[2]:""),rai:C.secs.rai?"da":"nu",extras:design.extras.join(","),domain:C.domain,design_json:JSON.stringify(design)});
+    finish();
+  }catch(x){btn.disabled=false;btn.textContent="Trimite designul →";err.textContent="Nu s-a putut trimite. Încearcă din nou sau sună-ne la 0740 267 706."}
+}
+
+/* ---------- init ---------- */
+if(!LIVE)$("#pvNote").hidden=false;
+const q=new URLSearchParams(location.search);
+if(q.get("nisa")&&NICHES[q.get("nisa")]){C.niche=q.get("nisa");C.color=NICHES[C.niche].sw[0];C.services=defaultSvcs(C.niche);C.offer=offerDefault(C.niche)}
+if(q.get("pachet")){const m={basic:"Basic",ultra:"Ultra",gratuit:"Gratuit (primele 5)",custom:"Custom"}[q.get("pachet")];if(m)C.plan=m}
+if(q.get("extra")){q.get("extra").split(",").forEach(k=>{if(EXTRAS.some(x=>x[0]===k))C.extras[k]=1});if(C.plan==="Basic")C.plan="Ultra"}
+const lk=leadLocked();
+if(lk&&!q.has("demo"))showLocked(lk);
+drawNiche();drawColors();drawBgs();drawFx();drawSecs();drawExtras();drawCare();drawSvcs();drawBook();drawPlans();drawSegs();drawCustom();fillInputs();show(q.get("extra")?3:0);preview();
+</script>
+</body>
+</html>

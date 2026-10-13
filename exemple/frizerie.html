@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Atelierul Brici · exemplu de site OHI</title>
+<style>
+/* Showcase site for a FICTIONAL barbershop, made by OHI to show finished quality. */
+@font-face{font-family:"BS";src:url(fonts/BigShoulders-Bold.woff) format("woff");font-weight:700;font-display:swap}
+@font-face{font-family:"WS";src:url(fonts/WorkSans-Regular.woff) format("woff");font-weight:400;font-display:swap}
+@font-face{font-family:"WS";src:url(fonts/WorkSans-Bold.woff) format("woff");font-weight:700;font-display:swap}
+:root{--bg:#0E0D0B;--bg2:#16140F;--card:#1D1A14;--line:rgba(232,213,170,.14);--ink:#F3ECDD;--mut:#A79D88;--brass:#C9A45C;--brass2:#E6C987;--red:#B5432F}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.55 WS,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+.demo{position:sticky;top:0;z-index:50;display:flex;justify-content:center;gap:10px;align-items:center;background:#FFB020;color:#14110A;font:700 12.5px/1.2 system-ui,sans-serif;padding:8px 16px;text-align:center}
+.demo a{text-decoration:underline}
+.w{max-width:1120px;margin:0 auto;padding-inline:20px}
+nav{position:sticky;top:33px;z-index:40;background:rgba(14,13,11,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .w{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font:700 22px/1 BS;letter-spacing:.06em;text-transform:uppercase}
+.logo svg{width:30px;height:30px}
+.nl{display:none;gap:26px;font-size:14.5px;color:var(--mut)}
+.nl a:hover{color:var(--ink)}
+@media(min-width:860px){.nl{display:flex}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:4px;padding:14px 22px;font-weight:700;font-size:15px;letter-spacing:.02em;transition:transform .2s,background .2s}
+.btn.p{background:var(--brass);color:#16120A}
+.btn.p:hover{background:var(--brass2);transform:translateY(-2px)}
+.btn.o{border:1.5px solid var(--line);color:var(--ink)}
+.btn.sm{padding:10px 16px;font-size:14px}
+/* hero */
+.hero{position:relative;overflow:hidden;padding:56px 0 70px}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(600px 380px at 85% 20%,rgba(201,164,92,.18),transparent 70%),repeating-linear-gradient(90deg,transparent 0 79px,rgba(232,213,170,.04) 79px 80px)}
+.hg{position:relative;display:grid;gap:36px;align-items:center}
+@media(min-width:900px){.hg{grid-template-columns:1.15fr .85fr}}
+.kick{display:inline-flex;align-items:center;gap:10px;font-size:12.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--brass)}
+.kick::before{content:"";width:28px;height:1.5px;background:var(--brass)}
+h1{font:700 clamp(56px,11vw,124px)/1.03 BS;text-transform:uppercase;letter-spacing:-.005em;margin:18px 0 20px}
+h1 em{font-style:normal;color:var(--brass);display:block}
+.lede{color:var(--mut);font-size:18px;max-width:44ch}
+.hc{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.meta{display:flex;flex-wrap:wrap;gap:22px;margin-top:34px;font-size:14px;color:var(--mut)}
+.meta b{display:block;font:700 30px/1 BS;color:var(--ink);letter-spacing:.02em}
+.pole{position:relative;aspect-ratio:4/5;border-radius:6px;background:linear-gradient(160deg,#221E16,#121009);border:1px solid var(--line);overflow:hidden;display:grid;place-items:center}
+.pole .stripe{position:absolute;left:76%;top:-10%;width:54px;height:120%;transform:translateX(-50%) rotate(0deg);border-radius:27px;background:repeating-linear-gradient(-45deg,var(--ink) 0 18px,var(--red) 18px 36px,var(--ink) 36px 54px,#2D4E8C 54px 72px);background-size:100% 102px;animation:pole 3s linear infinite;opacity:.9;box-shadow:inset -10px 0 18px rgba(0,0,0,.4),inset 8px 0 14px rgba(255,255,255,.25)}
+@media(max-width:899px){.pole{aspect-ratio:16/11}.av{aspect-ratio:2.2}.badge,.badge-in{width:40%;top:40%}.pole .tag b{font-size:17px}}
+.badge{position:absolute;left:8%;top:50%;transform:translateY(-58%);width:56%;max-width:280px;animation:spin 40s linear infinite}
+.badge text{font:700 15px BS;letter-spacing:.32em;fill:#C9A45C;text-transform:uppercase}
+@keyframes spin{to{transform:translateY(-58%) rotate(360deg)}}
+.badge-in{position:absolute;left:8%;top:50%;transform:translateY(-58%);width:56%;max-width:280px;aspect-ratio:1;display:grid;place-items:center}
+.badge-in svg{width:42%}
+@keyframes pole{to{background-position:0 102px}}
+.pole .cap{position:absolute;left:76%;transform:translateX(-50%);width:76px;height:26px;border-radius:8px;background:linear-gradient(90deg,#8E7340,var(--brass2),#8E7340)}
+.pole .cap.t{top:12%}.pole .cap.b{bottom:12%}
+.pole .tag{position:absolute;left:22px;bottom:20px;right:42%;display:flex;justify-content:space-between;align-items:flex-end;font-size:13px;color:var(--mut)}
+.pole .tag b{font:700 22px/1 BS;color:var(--ink);text-transform:uppercase;letter-spacing:.04em}
+.open{display:inline-flex;align-items:center;gap:8px;background:rgba(43,196,138,.12);color:#7BE0B5;border:1px solid rgba(43,196,138,.35);padding:6px 10px;border-radius:99px;font-weight:700;font-size:12.5px}
+.open i{width:7px;height:7px;border-radius:50%;background:#2BC48A;box-shadow:0 0 0 4px rgba(43,196,138,.2)}
+section{padding:84px 0}
+h2{font:700 clamp(40px,7vw,72px)/.92 BS;text-transform:uppercase;margin:14px 0 14px}
+h2 em{font-style:normal;color:var(--brass)}
+.sub{color:var(--mut);max-width:52ch;font-size:17px}
+/* services */
+.menu{margin-top:38px;display:grid;gap:0 54px}
+@media(min-width:860px){.menu{grid-template-columns:1fr 1fr}}
+.it{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:20px 0;border-bottom:1px dashed var(--line)}
+.it h3{font:700 26px/1 BS;text-transform:uppercase;letter-spacing:.02em}
+.it .pr{font:700 26px/1 BS;color:var(--brass)}
+.it p{color:var(--mut);font-size:14.5px}
+.it .t{font-size:13px;color:var(--mut);text-align:right}
+/* team */
+.team{display:grid;gap:14px;margin-top:38px}
+@media(min-width:760px){.team{grid-template-columns:repeat(3,1fr)}}
+.bb{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:22px;display:flex;flex-direction:column;gap:14px;transition:border-color .2s}
+.bb:hover{border-color:rgba(201,164,92,.5)}
+.av{width:100%;aspect-ratio:1.3;border-radius:4px;display:grid;place-items:center;font:700 82px/1 BS;color:rgba(243,236,221,.92);position:relative;overflow:hidden}
+.av::after{content:"Poza ta aici";position:absolute;bottom:10px;right:12px;font:600 11px WS;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.bb h3{font:700 28px/1 BS;text-transform:uppercase}
+.bb p{color:var(--mut);font-size:14.5px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:12.5px;border:1px solid var(--line);padding:4px 9px;border-radius:99px;color:#D8CCB2}
+/* booking */
+.book{background:var(--bg2);border-block:1px solid var(--line)}
+.bk{margin-top:36px;display:grid;gap:18px}
+@media(min-width:900px){.bk{grid-template-columns:1.2fr .8fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:22px;display:flex;flex-direction:column;gap:18px}
+.lbl{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin-bottom:8px;display:block}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{border:1.5px solid var(--line);border-radius:4px;padding:10px 14px;font-weight:700;font-size:14.5px;transition:all .15s}
+.opt[aria-pressed=true]{background:var(--brass);border-color:var(--brass);color:#16120A}
+.opt:disabled{opacity:.3;text-decoration:line-through;cursor:not-allowed}
+.days .opt{display:flex;flex-direction:column;align-items:center;min-width:58px;padding:8px 10px;line-height:1.15}
+.days .opt small{font-weight:400;font-size:12px;opacity:.8}
+.sumb{display:flex;flex-direction:column;gap:14px}
+.sumb dl{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:15px}
+.sumb dt{color:var(--mut)}.sumb dd{text-align:right;font-weight:700}
+.sumb .tot{border-top:1px dashed var(--line);padding-top:12px;display:flex;justify-content:space-between;font:700 28px/1 BS}
+.note{font-size:13px;color:var(--mut)}
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:36px}
+@media(min-width:860px){.gal{grid-template-columns:repeat(4,1fr)}}
+.gal div{aspect-ratio:1;border-radius:4px;border:1px solid var(--line);display:grid;place-items:center;position:relative;overflow:hidden}
+.gal div:nth-child(1){grid-row:span 2;aspect-ratio:auto}
+.gal svg{width:44%;opacity:.85}
+.gal span{position:absolute;left:10px;bottom:10px;font:700 15px BS;text-transform:uppercase;letter-spacing:.06em;color:rgba(243,236,221,.8)}
+/* reviews + visit */
+.two{display:grid;gap:18px;margin-top:36px}
+@media(min-width:900px){.two{grid-template-columns:1fr 1fr}}
+.rev{border:1.5px dashed var(--line);border-radius:6px;padding:26px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.rev .st{font-size:26px;letter-spacing:4px;color:var(--brass)}
+.rev b{font:700 30px/1 BS;text-transform:uppercase}
+.rev p{color:var(--mut);font-size:15px}
+.map{position:relative;border-radius:6px;border:1px solid var(--line);overflow:hidden;min-height:260px;background:#14120E}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+.map .pin{position:absolute;left:54%;top:44%;transform:translate(-50%,-100%);background:var(--brass);color:#16120A;font-weight:700;font-size:13px;padding:7px 11px;border-radius:4px;white-space:nowrap}
+.map .pin::after{content:"";position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);border:6px solid transparent;border-bottom:0;border-top-color:var(--brass)}
+.hrs{display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:6px;font-size:15.5px}
+.hrs span:nth-child(even){font-weight:700}
+.hrs .now{color:var(--brass2)}
+footer{border-top:1px solid var(--line);padding:40px 0 110px;color:var(--mut);font-size:14px}
+footer .w{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between}
+.fab{position:fixed;left:16px;right:16px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:45;display:flex;gap:10px;max-width:520px;margin:0 auto}
+.fab a{flex:1;box-shadow:0 12px 30px rgba(0,0,0,.5)}
+@media(min-width:860px){.fab{display:none}footer{padding-bottom:40px}}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.pole .stripe,.badge{animation:none}html{scroll-behavior:auto}}
+@media(max-width:899px){.badge,.badge-in{width:46%;left:6%;top:50%}.pole .tag{display:none}}
+</style>
+</head>
+<body>
+<div class="demo">Exemplu de site OHI · afacere fictivă · <a href="/">înapoi la OHI</a></div>
+<nav><div class="w">
+  <a class="logo" href="#"><svg viewBox="0 0 32 32" fill="none" stroke="#C9A45C" stroke-width="2.2"><circle cx="9" cy="23" r="4.5"/><circle cx="23" cy="23" r="4.5"/><path d="M12 20 26 4M20 20 6 4"/></svg>Atelierul Brici</a>
+  <div class="nl"><a href="#servicii">Servicii</a><a href="#echipa">Echipa</a><a href="#programare">Programare</a><a href="#vizita">Program</a></div>
+  <a class="btn p sm" href="#programare">Programează-te</a>
+</div></nav>
+
+<header class="hero"><div class="w hg">
+  <div>
+    <span class="open" id="open"><i></i>Deschis acum</span>
+    <h1>Tunsori făcute <em>cu răbdare.</em></h1>
+    <p class="lede">Fade, clasic sau barbă la brici, cu prosop cald. Îți alegi frizerul și ora direct de pe telefon, în 30 de secunde.</p>
+    <div class="hc"><a class="btn p" href="#programare">Alege ora liberă →</a><a class="btn o" href="#servicii">Vezi prețurile</a></div>
+    <div class="meta"><div><b>3</b>frizeri</div><div><b>45'</b>pe tunsoare, fără grabă</div><div><b>L–S</b>09–20</div></div>
+  </div>
+  <div class="pole" aria-hidden="true"><svg class="badge" viewBox="0 0 200 200"><defs><path id="c" d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0"/></defs><circle cx="100" cy="100" r="96" fill="none" stroke="rgba(201,164,92,.35)"/><circle cx="100" cy="100" r="62" fill="none" stroke="rgba(201,164,92,.35)"/><text><textPath href="#c">Atelierul Brici · Est. 2019 · Târgu Mureș ·</textPath></text></svg><div class="badge-in"><svg viewBox="0 0 32 32" fill="none" stroke="#E6C987" stroke-width="1.6"><circle cx="9" cy="23" r="4.5"/><circle cx="23" cy="23" r="4.5"/><path d="M12 20 26 4M20 20 6 4"/></svg></div><span class="cap t"></span><span class="stripe"></span><span class="cap b"></span>
+    <div class="tag"><div><b>Str. Exemplului 12</b><br>Târgu Mureș</div><span>din 2019</span></div></div>
+</div></header>
+
+<section id="servicii"><div class="w">
+  <span class="kick">Servicii și prețuri</span>
+  <h2>Ce facem, <em>cât costă.</em></h2>
+  <p class="sub">Prețuri fixe, afișate. Fără surprize la final.</p>
+  <div class="menu">
+    <div class="it rv"><h3>Tunsoare clasică</h3><span class="pr">50 lei</span><p>Foarfecă și mașină, spălat și styling</p><span class="t">45 min</span></div>
+    <div class="it rv"><h3>Skin fade</h3><span class="pr">60 lei</span><p>Degrade până la piele, contur curat</p><span class="t">50 min</span></div>
+    <div class="it rv"><h3>Barbă la brici</h3><span class="pr">40 lei</span><p>Prosop cald, contur, ulei de barbă</p><span class="t">30 min</span></div>
+    <div class="it rv"><h3>Tunsoare + barbă</h3><span class="pr">85 lei</span><p>Pachetul complet, cel mai ales</p><span class="t">75 min</span></div>
+    <div class="it rv"><h3>Tunsoare copii</h3><span class="pr">35 lei</span><p>Până la 12 ani, cu răbdare</p><span class="t">30 min</span></div>
+    <div class="it rv"><h3>Ceară & sprâncene</h3><span class="pr">20 lei</span><p>Nas, urechi și aranjat sprâncene</p><span class="t">15 min</span></div>
+  </div>
+</div></section>
+
+<section id="echipa" style="background:var(--bg2)"><div class="w">
+  <span class="kick">Echipa</span>
+  <h2>Alegi <em>frizerul.</em></h2>
+  <p class="sub">Fiecare are stilul lui. Alege-l pe cel care ți se potrivește.</p>
+  <div class="team">
+    <div class="bb rv"><div class="av" style="background:linear-gradient(150deg,#3A2E1A,#1A150D)">M</div><h3>Mihai</h3><p>Fondator, 9 ani în meserie. Răbdare infinită pentru fade-uri.</p><div class="chips"><span>Skin fade</span><span>Clasic</span></div></div>
+    <div class="bb rv"><div class="av" style="background:linear-gradient(150deg,#3B1F1A,#1A0F0C)">R</div><h3>Robert</h3><p>Barba e specialitatea lui: contur la brici și prosop cald.</p><div class="chips"><span>Barbă</span><span>Brici</span></div></div>
+    <div class="bb rv"><div class="av" style="background:linear-gradient(150deg,#1D2A3A,#0D131B)">A</div><h3>Alex</h3><p>Tunsori moderne, texturi și stiluri pe care le vezi pe Instagram.</p><div class="chips"><span>Modern</span><span>Copii</span></div></div>
+  </div>
+</div></section>
+
+<section id="programare" class="book"><div class="w">
+  <span class="kick">Programare online</span>
+  <h2>Ora ta, <em>în 30 de secunde.</em></h2>
+  <p class="sub">Alegi serviciul, frizerul și ora. Primești confirmarea pe WhatsApp.</p>
+  <div class="bk">
+    <div class="panel">
+      <div><span class="lbl">1 · Serviciul</span><div class="opts" id="svc"></div></div>
+      <div><span class="lbl">2 · Frizerul</span><div class="opts" id="brb"></div></div>
+      <div><span class="lbl">3 · Ziua</span><div class="opts days" id="day"></div></div>
+      <div><span class="lbl">4 · Ora</span><div class="opts" id="hr"></div></div>
+    </div>
+    <div class="panel sumb">
+      <span class="lbl" style="margin:0">Rezervarea ta</span>
+      <dl id="sum"></dl>
+      <div class="tot"><span>Total</span><span id="tot"></span></div>
+      <a class="btn p" id="go" href="#">Confirmă pe WhatsApp →</a>
+      <p class="note">Exemplu: pe site-ul tău, rezervarea ajunge la tine pe WhatsApp, în Google Calendar sau direct în Mero.</p>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="w">
+  <span class="kick">Galerie</span>
+  <h2>Lucrări <em>recente.</em></h2>
+  <p class="sub">Aici apar pozele tale reale, din salon și de pe Instagram.</p>
+  <div class="gal">
+    <div style="background:linear-gradient(160deg,#2A2216,#14110B)"><svg viewBox="0 0 64 64" fill="none" stroke="#C9A45C" stroke-width="2"><circle cx="18" cy="46" r="8"/><circle cx="46" cy="46" r="8"/><path d="M23 40 52 8M41 40 12 8"/></svg><span>Skin fade</span></div>
+    <div style="background:linear-gradient(160deg,#2E1A15,#140B09)"><svg viewBox="0 0 64 64" fill="none" stroke="#E6C987" stroke-width="2"><path d="M10 40h44l-6 8H16z"/><path d="M14 40V20a18 18 0 0 1 36 0v20"/></svg><span>Clasic</span></div>
+    <div style="background:linear-gradient(160deg,#1B2533,#0C1117)"><svg viewBox="0 0 64 64" fill="none" stroke="#C9A45C" stroke-width="2"><path d="M8 44 44 8l12 12-36 36H8z"/><path d="M38 14l12 12"/></svg><span>Barbă</span></div>
+    <div style="background:linear-gradient(160deg,#262016,#100D08)"><svg viewBox="0 0 64 64" fill="none" stroke="#E6C987" stroke-width="2"><circle cx="32" cy="26" r="14"/><path d="M12 58c3-12 11-18 20-18s17 6 20 18"/></svg><span>Modern</span></div>
+    <div style="background:linear-gradient(160deg,#2A1A12,#120B07)"><svg viewBox="0 0 64 64" fill="none" stroke="#C9A45C" stroke-width="2"><rect x="12" y="10" width="40" height="44" rx="4"/><path d="M20 22h24M20 32h24M20 42h14"/></svg><span>Copii</span></div>
+  </div>
+</div></section>
+
+<section id="vizita" style="background:var(--bg2)"><div class="w">
+  <span class="kick">Vizită</span>
+  <h2>Ne găsești <em>aici.</em></h2>
+  <div class="two">
+    <div class="map"><svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice"><g stroke="rgba(232,213,170,.12)" stroke-width="10" fill="none"><path d="M-10 70 L410 120"/><path d="M60 -10 L130 270"/><path d="M-10 200 L410 170"/><path d="M290 -10 L250 270"/></g><g stroke="rgba(232,213,170,.06)" stroke-width="4" fill="none"><path d="M-10 30 L410 20"/><path d="M190 -10 L210 270"/><path d="M-10 245 L410 230"/><path d="M350 -10 L370 270"/></g><rect x="150" y="130" width="70" height="30" rx="3" fill="rgba(43,196,138,.12)"/></svg><span class="pin">Atelierul Brici</span></div>
+    <div class="panel">
+      <span class="lbl" style="margin:0">Program</span>
+      <div class="hrs" id="hrs"></div>
+      <div class="rev" style="margin-top:8px"><span class="st">☆☆☆☆☆</span><b>Recenziile tale Google</b><p>Pe site-ul real, aici apar recenziile adevărate ale clienților tăi, preluate de pe Google.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="w"><span>© Atelierul Brici · afacere fictivă, exemplu de design</span><span>Site realizat de <a href="/" style="color:var(--brass)">OHI Solutions</a></span></div></footer>
+<div class="fab"><a class="btn p" href="#programare">Programează-te</a><a class="btn o" href="#vizita" style="background:var(--card)">Unde suntem</a></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const SV=[["Tunsoare clasică",50,45],["Skin fade",60,50],["Barbă la brici",40,30],["Tunsoare + barbă",85,75]];
+const BB=["Mihai","Robert","Alex","Oricine"];
+const HR=["09:30","10:15","11:00","12:30","14:00","15:30","16:15","17:45","18:30"];
+const S={s:3,b:0,d:0,h:2};
+const days=[...Array(6)].map((_,i)=>{const d=new Date();d.setDate(d.getDate()+i);if(d.getDay()===0)d.setDate(d.getDate()+1);return d});
+const DN=["Dum","Lun","Mar","Mie","Joi","Vin","Sâm"];
+const busy=(d,h)=>((d*7+h*3+S.b*5)%4===0);
+function draw(){
+  $("#svc").innerHTML=SV.map(([n,p],i)=>`<button class="opt" data-k="s" data-v="${i}" aria-pressed="${i===S.s}">${n} · ${p} lei</button>`).join("");
+  $("#brb").innerHTML=BB.map((n,i)=>`<button class="opt" data-k="b" data-v="${i}" aria-pressed="${i===S.b}">${n}</button>`).join("");
+  $("#day").innerHTML=days.map((d,i)=>`<button class="opt" data-k="d" data-v="${i}" aria-pressed="${i===S.d}">${i===0?"Azi":DN[d.getDay()]}<small>${d.getDate()}.${String(d.getMonth()+1).padStart(2,"0")}</small></button>`).join("");
+  if(busy(S.d,S.h))S.h=HR.findIndex((_,i)=>!busy(S.d,i));
+  $("#hr").innerHTML=HR.map((h,i)=>`<button class="opt" data-k="h" data-v="${i}" aria-pressed="${i===S.h}" ${busy(S.d,i)?"disabled":""}>${h}</button>`).join("");
+  const sv=SV[S.s],d=days[S.d];
+  $("#sum").innerHTML=`<dt>Serviciu</dt><dd>${sv[0]}</dd><dt>Frizer</dt><dd>${BB[S.b]}</dd><dt>Când</dt><dd>${S.d===0?"Azi":DN[d.getDay()]+" "+d.getDate()+"."+String(d.getMonth()+1).padStart(2,"0")}, ${HR[S.h]}</dd><dt>Durată</dt><dd>${sv[2]} min</dd>`;
+  $("#tot").textContent=sv[1]+" lei";
+  $("#go").href="https://wa.me/?text="+encodeURIComponent(`Salut! Aș vrea o programare: ${sv[0]} la ${BB[S.b]}, ${HR[S.h]}.`);
+}
+document.addEventListener("click",e=>{const b=e.target.closest(".opt[data-k]");if(!b||b.disabled)return;S[b.dataset.k]=+b.dataset.v;draw()});
+draw();
+const H=[["Luni – Vineri","09:00 – 20:00"],["Sâmbătă","09:00 – 16:00"],["Duminică","Închis"]];
+const wd=new Date().getDay(),cur=wd===0?2:wd===6?1:0;
+$("#hrs").innerHTML=H.map(([a,b],i)=>`<span class="${i===cur?"now":""}">${a}${i===cur?" · azi":""}</span><span class="${i===cur?"now":""}">${b}</span>`).join("");
+(function(){const n=new Date(),d=n.getDay(),h=n.getHours()+n.getMinutes()/60,end=d===0?0:d===6?16:20,o=d!==0&&h>=9&&h<end;const el=$("#open");
+  el.innerHTML=o?`<i></i>Deschis acum · până la ${end}:00`:`<i style="background:#A79D88;box-shadow:none"></i>Închis acum · programează-te online`;if(!o){el.style.cssText="background:rgba(255,255,255,.06);color:#D8CCB2;border-color:rgba(232,213,170,.2)"}})();
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target)}}),{threshold:.15});
+document.querySelectorAll(".rv").forEach((el,i)=>{el.style.transitionDelay=(i%3)*80+"ms";io.observe(el)});
+</script>
+</body>
+</html>

@@ -2,16 +2,16 @@
 <html lang="ro">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Soluții Web Personalizate pentru Afaceri Locale | OHI Solutions</title>
-<meta name="description" content="Site-uri și funcții la comandă: programări online, site în română și maghiară, meniu cu cod QR, magazin online mic, integrări. Ofertă scrisă cu preț fix.">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Soluții web personalizate: magazin, meniu QR, rezervări | OHI Solutions</title>
+<meta name="description" content="Funcții extra la comandă pentru Site Ultra: magazin mic, meniu QR, rezervări, programări în Google Calendar, vouchere. Le discutăm la un apel scurt, apoi primești prețul fix.">
 <link rel="canonical" href="https://ohis-gamma.vercel.app/solutii-personalizate">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ro_RO">
 <meta property="og:site_name" content="OHI Solutions">
-<meta property="og:title" content="Soluții Web Personalizate pentru Afaceri Locale | OHI Solutions">
-<meta property="og:description" content="Site-uri și funcții la comandă: programări online, site în română și maghiară, meniu cu cod QR, magazin online mic, integrări. Ofertă scrisă cu preț fix.">
+<meta property="og:title" content="Soluții web personalizate: magazin, meniu QR, rezervări | OHI Solutions">
+<meta property="og:description" content="Funcții extra la comandă pentru Site Ultra: magazin mic, meniu QR, rezervări, programări în Google Calendar, vouchere. Le discutăm la un apel scurt, apoi primești prețul fix.">
 <meta property="og:url" content="https://ohis-gamma.vercel.app/solutii-personalizate">
 <meta property="og:image" content="https://ohis-gamma.vercel.app/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -21,73 +21,110 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/icon-512.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:wght@400;600;700&family=Instrument+Serif:ital@1&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:wght@400;600;700&family=Instrument+Serif:ital@1&display=swap"></noscript>
-<link rel="stylesheet" href="/pagini.css">
-<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Acasă", "item": "https://ohis-gamma.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "Soluții personalizate", "item": "https://ohis-gamma.vercel.app/solutii-personalizate"}]}, {"@context": "https://schema.org", "@type": "Service", "name": "Soluții web personalizate", "description": "Site-uri și funcții web construite la comandă pentru afaceri locale: programări online, site bilingv, meniu QR, magazin online mic, integrări.", "serviceType": "Web design", "provider": {"@type": "Organization", "@id": "https://ohis-gamma.vercel.app/#org", "name": "OHI Solutions", "url": "https://ohis-gamma.vercel.app/", "telephone": "+40740267706", "address": {"@type": "PostalAddress", "addressLocality": "Târgu Mureș", "addressCountry": "RO"}}, "areaServed": {"@type": "Country", "name": "România"}, "url": "https://ohis-gamma.vercel.app/solutii-personalizate"}]</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="/ohi.css">
+<style>
+/* Custom solutions: pick modules → they travel into the builder on an Ultra site. */
+.sh{padding-block:48px 10px}
+.sh h1{font:800 clamp(40px,7vw,76px)/.98 var(--fd);letter-spacing:-.035em;margin:12px 0 14px;text-wrap:balance}
+.sh p{color:var(--mut);font-size:19px;max-width:60ch}
+.only{display:inline-flex;align-items:center;gap:10px;margin-top:20px;background:rgba(76,99,255,.12);border:1px solid rgba(123,140,255,.4);border-radius:14px;padding:12px 16px;color:#D9DEFF;font-size:15px}
+.only b{color:#fff}
+.mods{display:grid;gap:14px;margin-top:34px}
+@media(min-width:720px){.mods{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1100px){.mods{grid-template-columns:repeat(3,1fr)}}
+.mod{position:relative;background:var(--card);border:1.5px solid var(--line);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:10px;cursor:pointer;text-align:left;transition:border-color .2s,transform .2s}
+.mod:hover{transform:translateY(-3px)}
+.mod[aria-pressed=true]{border-color:var(--amber);background:linear-gradient(180deg,rgba(255,176,32,.08),var(--card))}
+.mod .ico{font-size:34px}
+.mod h3{font:800 22px/1.1 var(--fd)}
+.mod p{color:var(--mut);font-size:15px}
+.mod ul{list-style:none;display:flex;flex-direction:column;gap:6px;font-size:14.5px;color:#C6CAD9}
+.mod li::before{content:"✓";color:var(--ok);font-weight:800;margin-right:8px}
+.mod .for{font-size:13px;color:var(--mut);margin-top:auto}
+.mod .tick{position:absolute;top:18px;right:18px;width:28px;height:28px;border-radius:9px;border:2px solid var(--line);display:grid;place-items:center}
+.mod[aria-pressed=true] .tick{background:var(--amber);border-color:var(--amber)}
+.mod[aria-pressed=true] .tick::after{content:"";width:7px;height:13px;border:solid #14110A;border-width:0 3px 3px 0;transform:rotate(45deg) translate(-1px,-2px)}
+.flow{display:grid;gap:12px;margin-top:30px;counter-reset:f}
+@media(min-width:900px){.flow{grid-template-columns:repeat(3,1fr)}}
+.fl{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
+.fl::before{counter-increment:f;content:"0" counter(f);font:800 40px/1 var(--fd);color:rgba(255,176,32,.3);display:block;margin-bottom:10px}
+.fl b{font:800 19px var(--fd);display:block;margin-bottom:6px}
+.fl p{color:var(--mut);font-size:15px}
+.selbar{position:fixed;left:16px;right:16px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:40;max-width:760px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(27,33,54,.95);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:999px;padding:8px 8px 8px 20px;box-shadow:0 14px 40px rgba(0,0,0,.45);transform:translateY(140%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.selbar.on{transform:none}
+.selbar span{font-weight:700;font-size:15px;min-width:0}
+.selbar .btn{padding:12px 18px;white-space:normal;text-align:center}
+.other{margin-top:20px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;background:var(--bg2);border:1px dashed rgba(255,255,255,.18);border-radius:20px;padding:22px}
+.other b{font:800 20px var(--fd)}
+.other p{color:var(--mut);font-size:15px}
+@media(prefers-reduced-motion:reduce){.selbar,.mod{transition:none}}
+</style>
 </head>
 <body>
-<a class="skip" href="#continut">Sari la conținut</a>
-<header class="top">
-  <div class="wrap bar">
-    <a class="brand" href="/" aria-label="OHI Solutions, pagina principală"><svg class="logo-svg" viewBox="0 18 359 170" role="img" aria-hidden="true" focusable="false"><rect class="lo" x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#4C63FF" stroke-width="26" transform="rotate(-10 80.0 102.0)"/><path d="M233.89999999999998 160.0V61.0H255.35V160.0ZM168.95 160.0V61.0H190.55V160.0ZM181.7 118.75V101.05000000000001H242.45V118.75ZM277.4 160.0V61.0H299.45V160.0Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
-    <nav class="nav" aria-label="Principal"><a href="/creare-site-web">Cum lucrăm</a><a href="/preturi">Prețuri</a><a href="/solutii-personalizate" aria-current="page">La comandă</a><a href="/blog">Blog</a></nav>
-    <a class="btn btn-main btn-sm" href="/?pachet=demo#cerere">Demo gratuit</a>
+<nav><div class="wrap">
+  <a class="brand" href="/" aria-label="OHI Solutions, pagina principală"><svg viewBox="0 18 359 170" role="img"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#4C63FF" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
+  <div class="links"><a href="/#cum">Cum lucrăm</a><a href="/preturi">Prețuri</a><a href="/constructor">Constructor</a><a href="/solutii-personalizate" style="color:var(--ink)">Soluții</a></div>
+  <a class="btn a" href="/constructor?pachet=ultra">Construiește-ți site-ul</a>
+</div></nav>
+
+<main>
+<section class="sh"><div class="wrap">
+  <span class="kick">Soluții personalizate</span>
+  <h1>Funcții extra pentru <em class="s">Site Ultra.</em></h1>
+  <p>Când un site de prezentare nu e de ajuns: comenzi, rezervări, vouchere, meniu QR. Alege ce îți trebuie și îl adăugăm pe site-ul tău Ultra. Fiecare soluție e făcută la comandă (Custom), așa că o discutăm la un apel scurt, apoi primești prețul fix.</p>
+  <div class="only">⭐ <span>Disponibile <b>doar cu Site Ultra sau un proiect Custom</b>. 📞 Prețul îl stabilim împreună, la un apel de 10–15 minute.</span></div>
+  <div class="mods" id="mods"></div>
+  <div class="other"><div><b>Ai nevoie de altceva?</b><p>Descrie-ne ideea pe scurt și te sunăm să o discutăm. Apoi primești prețul fix.</p></div><a class="btn g" id="otherWa" href="#" target="_blank" rel="noopener">Scrie-ne pe WhatsApp</a></div>
+</div></section>
+
+<section style="background:var(--bg2)"><div class="wrap">
+  <span class="kick">Cum funcționează</span>
+  <h2>Alegi, vorbim, <em class="s">apoi</em> decizi.</h2>
+  <div class="flow">
+    <div class="fl"><b>Alegi funcțiile</b><p>Bifezi ce vrei aici și le duci în constructor, împreună cu site-ul Ultra.</p></div>
+    <div class="fl"><b>Vorbim la telefon</b><p>Te sunăm pentru un apel scurt, ca să înțelegem exact ce îți trebuie. Apoi primești prețul fix pentru fiecare funcție.</p></div>
+    <div class="fl"><b>Plătești doar ce aprobi</b><p>Păstrezi doar funcțiile pe care le vrei. Fără avans înainte de demo.</p></div>
   </div>
-</header>
-<main id="continut">
-  <div class="wrap narrow">
-    <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Acasă</a></li><li aria-current="page">Soluții personalizate</li></ol></nav>
-    <h1>Soluții web personalizate</h1>
-    
-    <p class="lead">Basic și Ultra acoperă ce are nevoie majoritatea afacerilor locale. Când ai nevoie de ceva în plus, construim exact ce îți trebuie: îmi spui ce vrei să facă site-ul, iar eu îți trimit o ofertă scrisă, cu preț fix și termen.</p>
-    <div class="prose">
-<h2>Ce putem construi</h2>
-<ul>
-<li><b>Programări online.</b> Clienții își aleg ziua și ora direct de pe site, iar tu primești cererea pe telefon sau pe e-mail.</li>
-<li><b>Site în română și maghiară</b> (sau engleză). Util în Târgu Mureș și în zonă, unde mulți clienți caută în maghiară.</li>
-<li><b>Meniu digital cu cod QR.</b> Pentru restaurante și cafenele: meniul se schimbă ușor, fără să retipărești nimic.</li>
-<li><b>Magazin online mic.</b> Câteva zeci de produse, cu plată cu cardul.</li>
-<li><b>Pagini în plus sau secțiuni speciale.</b> Oferte, proiecte, cariere, catalog de produse.</li>
-<li><b>Legături cu alte servicii.</b> Formulare care ajung într-un tabel, plăți online, hartă, recenzii.</li>
-</ul>
-<p>Dacă ai altă idee, scrie-mi. Îți spun sincer dacă o putem face și cât ar costa, sau dacă nu merită banii.</p>
+</div></section>
 
-<h2>Cum lucrăm</h2>
-<ol class="steps">
-<li><h3>Îmi spui ce ai nevoie</h3><p>Alegi „Soluție personalizată” în formular și descrii pe scurt ce vrei să facă site-ul.</p></li>
-<li><h3>Primești oferta scrisă</h3><p>În 24 de ore îți trimit ce include, prețul fix și termenul. Fără costuri ascunse.</p></li>
-<li><h3>Vezi un demo</h3><p>Îți arăt prima parte construită, ca să vezi direct cum va arăta și cum funcționează.</p></li>
-<li><h3>Construim și lansăm</h3><p>Dacă îți place, plătești și termin proiectul. Îți arăt apoi cum îl folosești.</p></li>
-</ol>
-
-<h2>Ai deja un site?</h2>
-<p>Putem porni de la site-ul tău actual: păstrăm textele, produsele și pozele și le aducem într-un design nou, adaptat pentru telefon. Pentru asta ai nevoie de acces la domeniu, adică la contul unde a fost cumpărată adresa site-ului.</p>
-
-<h2>Ce nu promit</h2>
-<p>Nu promit locul întâi în Google sau un număr anume de clienți. Promit o ofertă clară, un preț care nu se schimbă pe parcurs și un site făcut ca să fie ușor de folosit.</p>
-
-<h2>Preț</h2>
-<p>Prețul depinde de ce trebuie construit, de aceea îl primești în scris înainte de orice plată. Pentru un site obișnuit de prezentare, pachetele <a href="/preturi">Basic și Ultra</a> au prețuri fixe și sunt de obicei varianta mai simplă.</p>
-</div>
+<section><div class="wrap">
+  <span class="kick">Întrebări</span>
+  <h2>Ce ne întreabă <em class="s">toată lumea.</em></h2>
+  <div class="faq">
+    <details open><summary>De ce doar cu Site Ultra?</summary><p>Funcțiile extra au nevoie de mai multe pagini și de designul complet din Ultra. Pe Site Basic, care are o singură pagină, nu ar funcționa bine. Dacă ai deja Basic, treci pe Ultra plătind doar diferența.</p></details>
+    <details><summary>Cât costă o funcție?</summary><p>Depinde de cât de complexă e pentru afacerea ta. De aceea o discutăm întâi la un apel scurt, apoi îți trimitem prețul fix, înainte să plătești ceva.</p></details><details><summary>Am nevoie de o aplicație web întreagă, nu doar de o funcție.</summary><p>Alege „Custom” în constructor sau scrie-ne. Pentru proiecte mari stabilim totul la un apel: ce face, cât durează și cât costă.</p></details>
+    <details><summary>Pot adăuga o funcție mai târziu?</summary><p>Da. Ne scrii și îți facem oferta pentru funcția nouă.</p></details>
   </div>
-  <section class="band" aria-labelledby="h-cta">
-    <div class="wrap narrow">
-      <h2 id="h-cta">Vezi cum ar arăta <em>site-ul tău.</em></h2>
-      <p>Completează formularul în două minute și primești gratuit, în 24 de ore, prima pagină a site-ului, cu numele și serviciile afacerii tale.</p>
-      <p class="ctas"><a class="btn btn-main" href="/?pachet=demo#cerere">Cere demo-ul gratuit <span aria-hidden="true">→</span></a><a class="btn btn-ghost" href="/preturi">Vezi prețurile</a></p>
-    </div>
-  </section>
+</div></section>
 </main>
-<footer class="foot">
-  <div class="wrap">
-    <nav class="foot-links" aria-label="Pagini">
-      <a href="/">Acasă</a><a href="/creare-site-web">Creare site web</a><a href="/preturi">Prețuri</a><a href="/solutii-personalizate">Soluții personalizate</a><a href="/site-uri-restaurante">Site-uri pentru restaurante</a><a href="/site-uri-saloane">Site-uri pentru saloane</a><a href="/site-uri-service-auto">Site-uri pentru service auto</a><a href="/blog">Blog</a><a href="https://rais-pi.vercel.app/" rel="noopener">Asistent AI (RAI Solutions)</a><a href="/confidentialitate">Confidențialitate</a><a href="/termeni">Termeni</a>
-    </nav>
-    <p>© <span id="yr">2026</span> OHI Solutions · Târgu Mureș · <a href="tel:+40740267706">0740 267 706</a> · <a href="/?pachet=demo#cerere">Formular</a></p>
-  </div>
-</footer>
-<script>document.getElementById("yr").textContent=new Date().getFullYear()</script>
+
+<div class="selbar" id="bar" aria-live="polite"><span id="barTxt"></span><a class="btn a" id="barGo" href="/constructor?pachet=ultra" style="white-space:nowrap">Adaugă la Ultra →</a></div>
+
+<footer><div class="wrap" style="padding-bottom:70px"><span>© 2026 OHI Solutions · Târgu Mureș</span><span><a href="/confidentialitate">Confidențialitate</a> · <a href="/termeni">Termeni</a> · <a href="/blog">Blog</a></span></div></footer>
+
+<script src="/mock.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+const INFO={
+ shop:["🛒",["Produse cu poze, descriere și preț","Coș și comandă trimisă direct la tine","Plată la livrare sau online, la cerere"],"cofetării, magazine, producători locali"],
+ qr:["📱",["Cod QR pentru mese sau vitrină","Meniu cu poze, alergeni și prețuri","Îl actualizezi oricând, fără reprintare"],"restaurante, cafenele, baruri"],
+ table:["🍽️",["Clientul alege data, ora și câte persoane","Cererea ajunge pe WhatsApp sau email","Confirmi tu, dintr-un mesaj"],"restaurante, pensiuni"],
+ gcal:["📅",["Clientul vede doar orele libere","Programarea intră direct în Google Calendar","Un calendar separat pentru fiecare angajat"],"frizerii, saloane, cabinete"],
+ voucher:["🎁",["Voucher pe o sumă sau pe un serviciu","Trimis frumos pe email sau WhatsApp","Ideal pentru sărbători și zile de naștere"],"saloane, restaurante, spa"],
+ loyalty:["⭐",["Card digital, fără cartonașe pierdute","Recompensă după un număr de vizite","Clienții revin mai des"],"frizerii, cafenele, spălătorii auto"],
+ cake:["🧁",["Clientul alege pas cu pas ce vrea","Comanda ajunge gata scrisă, fără mesaje lungi","Merge pentru torturi, meniuri, pachete"],"cofetării, catering, florării"],
+ multi:["📍",["Fiecare locație cu program, hartă și telefon","Clientul alege locația cea mai apropiată","Un singur site pentru toate"],"afaceri cu mai multe puncte"],
+ lang3:["🌍",["Încă o limbă pe lângă RO, HU, EN","De exemplu germană, pentru turiști","Buton simplu de schimbare a limbii"],"pensiuni, restaurante turistice"]};
+let pick={};try{pick=JSON.parse(localStorage.getItem("ohi-extras")||"{}")}catch(e){}
+function draw(){$("#mods").innerHTML=EXTRAS.map(([k,l,d])=>{const[i,b,f]=INFO[k]||["✨",[],""];return `<button type="button" class="mod" data-x="${k}" aria-pressed="${!!pick[k]}"><span class="tick"></span><span class="ico">${i}</span><h3>${l}</h3><p>${d.charAt(0).toUpperCase()+d.slice(1)}.</p><ul>${b.map(x=>`<li>${x}</li>`).join("")}</ul><span class="for">Potrivit pentru: ${f}</span></button>`}).join("");bar()}
+function bar(){const sel=EXTRAS.filter(([k])=>pick[k]);$("#bar").classList.toggle("on",sel.length>0);
+  $("#barTxt").textContent=sel.length===1?`1 funcție aleasă: ${sel[0][1]}`:`${sel.length} funcții alese`;
+  $("#barGo").href="/constructor?pachet=ultra&extra="+sel.map(([k])=>k).join(",");try{localStorage.setItem("ohi-extras",JSON.stringify(pick))}catch(e){}}
+$("#mods").addEventListener("click",e=>{const b=e.target.closest(".mod");if(!b)return;pick[b.dataset.x]=pick[b.dataset.x]?0:1;b.setAttribute("aria-pressed",!!pick[b.dataset.x]);bar()});
+$("#otherWa").href="https://wa.me/"+WA+"?text="+encodeURIComponent("Salut! Am nevoie de o funcție specială pentru site-ul meu: ");
+draw();
+</script>
 </body>
 </html>

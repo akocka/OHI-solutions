@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Fragă & Fistic · exemplu de site OHI</title>
+<style>
+/* Showcase site for a FICTIONAL cake shop, made by OHI to show finished quality. */
+@font-face{font-family:"GL";src:url(fonts/Gloock-Regular.woff) format("woff");font-display:swap}
+@font-face{font-family:"OF";src:url(fonts/Outfit-Regular.woff) format("woff");font-weight:400;font-display:swap}
+@font-face{font-family:"OF";src:url(fonts/Outfit-Bold.woff) format("woff");font-weight:700;font-display:swap}
+:root{--bg:#FBF4EB;--bg2:#F4E7D8;--card:#FFFDF9;--ink:#3A2117;--mut:#8A6C5C;--line:rgba(58,33,23,.12);--rasp:#C93C5A;--rasp2:#E7768C;--pist:#8DB06A;--cream:#FFF6E6}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.55 OF,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0}
+.demo{position:sticky;top:0;z-index:50;background:#FFB020;color:#14110A;font:700 12.5px/1.2 system-ui,sans-serif;padding:8px 16px;text-align:center}
+.demo a{text-decoration:underline}
+.w{max-width:1120px;margin:0 auto;padding-inline:20px}
+nav{position:sticky;top:31px;z-index:40;background:rgba(251,244,235,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .w{display:flex;align-items:center;justify-content:space-between;height:66px}
+.logo{display:flex;align-items:center;gap:10px;font:400 25px/1 GL}
+.logo i{width:30px;height:30px;border-radius:50%;background:conic-gradient(var(--rasp) 0 50%,var(--pist) 50%);display:block;box-shadow:inset 0 0 0 4px var(--bg)}
+.nl{display:none;gap:26px;font-size:15px;color:var(--mut)}
+@media(min-width:860px){.nl{display:flex}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:14px 24px;font-weight:700;font-size:15.5px;transition:transform .2s,box-shadow .2s}
+.btn.p{background:var(--rasp);color:#fff;box-shadow:0 10px 24px rgba(201,60,90,.28)}
+.btn.p:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(201,60,90,.35)}
+.btn.o{border:1.5px solid var(--ink)}
+.btn.sm{padding:10px 18px;font-size:14.5px}
+.hero{padding:48px 0 70px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;width:620px;height:620px;right:-160px;top:-120px;border-radius:50%;background:radial-gradient(circle,rgba(231,118,140,.25),transparent 65%)}
+.hg{position:relative;display:grid;gap:30px;align-items:center}
+@media(min-width:900px){.hg{grid-template-columns:1.05fr .95fr}}
+.kick{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--rasp)}
+h1{font:400 clamp(52px,9.5vw,104px)/1.02 GL;letter-spacing:-.02em;margin:14px 0 18px}
+h1 em{font-style:normal;color:var(--rasp)}
+.lede{color:var(--mut);font-size:19px;max-width:42ch}
+.hc{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.pills span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:14px}
+.cakebox{position:relative;aspect-ratio:1;max-width:520px;width:100%;justify-self:center}
+.plate{position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle at 50% 40%,#fff,var(--bg2) 70%);box-shadow:0 30px 80px rgba(58,33,23,.12)}
+.cake{position:absolute;inset:0;width:100%;height:100%}
+.spr{position:absolute;width:8px;height:3px;border-radius:2px;animation:fall 6s linear infinite;opacity:0}
+@keyframes fall{0%{transform:translateY(-20px) rotate(0);opacity:0}10%{opacity:1}100%{transform:translateY(260px) rotate(540deg);opacity:0}}
+.badge{position:absolute;right:2%;top:10%;background:var(--ink);color:var(--cream);border-radius:50%;width:112px;height:112px;display:grid;place-items:center;text-align:center;font:400 15px/1.15 GL;transform:rotate(12deg);box-shadow:0 12px 30px rgba(58,33,23,.25)}
+.badge b{display:block;font-size:30px;color:var(--rasp2)}
+section{padding:84px 0}
+h2{font:400 clamp(40px,6.5vw,66px)/1.04 GL;letter-spacing:-.015em;margin:12px 0 12px}
+h2 em{font-style:normal;color:var(--rasp)}
+.sub{color:var(--mut);max-width:50ch;font-size:18px}
+.tabs{display:flex;gap:8px;margin-top:30px;overflow-x:auto;scrollbar-width:none}
+.tabs button{flex:0 0 auto;border:1.5px solid var(--line);border-radius:999px;padding:9px 16px;font-weight:700;font-size:15px;background:var(--card)}
+.tabs button[aria-selected=true]{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.prods{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:22px}
+@media(min-width:900px){.prods{grid-template-columns:repeat(4,1fr)}}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:12px;display:flex;flex-direction:column;gap:8px;transition:transform .25s}
+.pc:hover{transform:translateY(-4px)}
+.ph{aspect-ratio:1;border-radius:16px;display:grid;place-items:center;position:relative;overflow:hidden}
+.ph svg{width:62%}
+.ph small{position:absolute;left:10px;top:10px;background:rgba(255,255,255,.85);border-radius:99px;padding:3px 9px;font-size:11.5px;font-weight:700}
+.pc h3{font:400 21px/1.15 GL;padding-inline:4px}
+.pc p{font-size:14px;color:var(--mut);padding-inline:4px}
+.pc b{padding:0 4px 4px;color:var(--rasp)}
+.order{background:var(--ink);color:var(--cream)}
+.order .sub{color:#D4BFAF}
+.order h2 em{color:var(--rasp2)}
+.ob{display:grid;gap:18px;margin-top:34px}
+@media(min-width:900px){.ob{grid-template-columns:1.2fr .8fr}}
+.panel{background:rgba(255,246,230,.06);border:1px solid rgba(255,246,230,.14);border-radius:24px;padding:22px;display:flex;flex-direction:column;gap:18px}
+.lbl{font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#D4BFAF;display:block;margin-bottom:9px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{border:1.5px solid rgba(255,246,230,.2);border-radius:999px;padding:9px 15px;font-weight:700;font-size:14.5px;display:flex;align-items:center;gap:8px}
+.opt i{width:14px;height:14px;border-radius:50%}
+.opt[aria-pressed=true]{background:var(--cream);color:var(--ink);border-color:var(--cream)}
+.inp{width:100%;color-scheme:dark;background:rgba(255,246,230,.07);border:1.5px solid rgba(255,246,230,.2);border-radius:14px;padding:12px 14px;color:var(--cream)}
+.inp::placeholder{color:rgba(255,246,230,.45)}
+.two{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+.prev{display:flex;flex-direction:column;gap:14px}
+.mini{aspect-ratio:1.25;border-radius:18px;background:radial-gradient(circle at 50% 60%,rgba(255,246,230,.12),transparent 70%);display:grid;place-items:center}
+.mini svg{width:66%}
+.prev dl{display:grid;grid-template-columns:auto 1fr;gap:7px 14px;font-size:15px}
+.prev dt{color:#D4BFAF}.prev dd{text-align:right;font-weight:700}
+.prev .tot{display:flex;justify-content:space-between;align-items:baseline;border-top:1px dashed rgba(255,246,230,.25);padding-top:12px;font:400 30px/1 GL}
+.prev .tot small{font:400 13px OF;color:#D4BFAF}
+.note{font-size:13px;color:#C2AB99}
+.today{display:grid;gap:10px;margin-top:30px}
+@media(min-width:860px){.today{grid-template-columns:repeat(3,1fr)}}
+.td{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 16px}
+.td i{width:46px;height:46px;border-radius:14px;flex:0 0 auto}
+.td div{flex:1}
+.td b{font:400 19px GL;display:block}
+.td small{color:var(--mut);font-size:13.5px}
+.td span{font-weight:700;color:var(--rasp)}
+.td .left{font-size:12px;font-weight:700;color:var(--pist)}
+.visit{display:grid;gap:18px;margin-top:34px}
+@media(min-width:900px){.visit{grid-template-columns:1fr 1fr}}
+.vcard{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.hrs{display:grid;grid-template-columns:1fr auto;gap:9px;font-size:16px}
+.hrs span:nth-child(even){font-weight:700}
+.hrs .now{color:var(--rasp)}
+.map{border-radius:24px;overflow:hidden;min-height:250px;position:relative;background:#F1E3D2;border:1px solid var(--line)}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+.pin{position:absolute;left:50%;top:46%;transform:translate(-50%,-100%);background:var(--rasp);color:#fff;font-weight:700;font-size:13.5px;padding:7px 12px;border-radius:99px;white-space:nowrap;box-shadow:0 8px 18px rgba(201,60,90,.3)}
+.rev{border:1.5px dashed var(--line);border-radius:18px;padding:18px;color:var(--mut);font-size:14.5px}
+.rev b{display:block;color:var(--ink);font:400 20px GL;margin-bottom:4px}
+footer{border-top:1px solid var(--line);padding:38px 0 110px;color:var(--mut);font-size:14px}
+footer .w{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between}
+.fab{position:fixed;left:16px;right:16px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:45;display:flex;gap:10px;max-width:520px;margin:0 auto}
+.fab a{flex:1}
+.fab .o{background:var(--card)}
+@media(min-width:860px){.fab{display:none}footer{padding-bottom:38px}}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.spr{display:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo">Exemplu de site OHI · afacere fictivă · <a href="/">înapoi la OHI</a></div>
+<nav><div class="w">
+  <a class="logo" href="#"><i></i>Fragă &amp; Fistic</a>
+  <div class="nl"><a href="#produse">Produse</a><a href="#comanda">Comandă un tort</a><a href="#azi">Azi în vitrină</a><a href="#vizita">Program</a></div>
+  <a class="btn p sm" href="#comanda">Comandă un tort</a>
+</div></nav>
+
+<header class="hero"><div class="w hg">
+  <div>
+    <span class="kick">Cofetărie artizanală · Târgu Mureș</span>
+    <h1>Torturi care se <em>termină primele.</em></h1>
+    <p class="lede">Făcute în fiecare dimineață, cu unt adevărat și fructe de sezon. Îți alegi tortul pe site și îl ridici gata, fără telefoane.</p>
+    <div class="hc"><a class="btn p" href="#comanda">Construiește-ți tortul →</a><a class="btn o" href="#produse">Vezi produsele</a></div>
+    <div class="pills"><span>🎂 Torturi la comandă</span><span>🥐 Prăjituri zilnic</span><span>🌿 Variante fără zahăr</span></div>
+  </div>
+  <div class="cakebox" aria-hidden="true" id="cakebox">
+    <div class="plate"></div>
+    <svg class="cake" viewBox="0 0 400 400">
+      <ellipse cx="200" cy="318" rx="140" ry="26" fill="rgba(58,33,23,.12)"/>
+      <path d="M86 210h228v96c0 16-51 28-114 28S86 322 86 306z" fill="#F7D9C4"/>
+      <path d="M86 250c30 10 70 12 114 12s84-2 114-12v14c-30 10-70 12-114 12s-84-2-114-12z" fill="#C93C5A"/>
+      <ellipse cx="200" cy="210" rx="114" ry="28" fill="#FFF3E8"/>
+      <path d="M86 210c0 14 51 28 114 28s114-14 114-28v18c-8 4-10 22-18 22s-8-12-16-12-10 26-20 26-10-18-20-18-8 14-18 14-10-20-22-20-10 24-22 24-10-16-20-16-10 10-18 10-10-22-20-22-8 16-16 16-10-26-20-26z" fill="#C93C5A"/>
+      <path d="M126 150h148v60c0 12-33 20-74 20s-74-8-74-20z" fill="#F7D9C4"/>
+      <ellipse cx="200" cy="150" rx="74" ry="18" fill="#FFF3E8"/>
+      <path d="M126 150c0 10 33 18 74 18s74-8 74-18v14c-6 2-8 16-14 16s-6-10-12-10-8 18-14 18-8-12-14-12-6 10-12 10-8-14-14-14-8 16-14 16-8-10-14-10-6 8-12 8-8-16-14-16z" fill="#8DB06A"/>
+      <circle cx="176" cy="138" r="13" fill="#C93C5A"/><circle cx="204" cy="132" r="13" fill="#D9526D"/><circle cx="228" cy="140" r="12" fill="#C93C5A"/>
+      <path d="M176 125c2-6 8-8 12-6M204 119c2-6 8-8 12-6" stroke="#8DB06A" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <rect x="196" y="78" width="8" height="42" rx="3" fill="#FFF3E8" stroke="#E7768C" stroke-width="2"/>
+      <path d="M200 58c8 10 8 18 0 22-8-4-8-12 0-22z" fill="#FFB020"><animate attributeName="d" dur="1.2s" repeatCount="indefinite" values="M200 58c8 10 8 18 0 22-8-4-8-12 0-22z;M200 55c10 12 7 20 0 25-7-5-10-13 0-25z;M200 58c8 10 8 18 0 22-8-4-8-12 0-22z"/></path>
+    </svg>
+    <div class="badge"><div><b>48h</b>tort gata<br>la comandă</div></div>
+  </div>
+</div></header>
+
+<section id="produse"><div class="w">
+  <span class="kick">Produse</span>
+  <h2>Ce găsești <em>la noi.</em></h2>
+  <p class="sub">Prețuri afișate, fără să întrebi. Pentru evenimente, îți facem ofertă.</p>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="prods" id="prods"></div>
+</div></section>
+
+<section id="comanda" class="order"><div class="w">
+  <span class="kick" style="color:var(--rasp2)">Comandă online</span>
+  <h2>Construiește-ți <em>tortul.</em></h2>
+  <p class="sub">Alegi mărimea, gustul și data. Comanda ajunge la cofetărie gata scrisă, pe WhatsApp.</p>
+  <div class="ob">
+    <div class="panel">
+      <div><span class="lbl">1 · Mărimea</span><div class="opts" id="sz"></div></div>
+      <div><span class="lbl">2 · Gustul</span><div class="opts" id="fl"></div></div>
+      <div><span class="lbl">3 · Decor</span><div class="opts" id="dc"></div></div>
+      <div class="two"><div><span class="lbl">4 · Data</span><input class="inp" type="date" id="dt"></div><div><span class="lbl">Mesaj pe tort</span><input class="inp" id="msg" maxlength="30" placeholder="La mulți ani, Ana!"></div></div>
+    </div>
+    <div class="panel prev">
+      <div class="mini"><svg viewBox="0 0 200 160" id="mini"></svg></div>
+      <dl id="sum"></dl>
+      <div class="tot"><span>Estimare</span><span id="tot"></span></div>
+      <a class="btn p" id="go" href="#">Trimite comanda pe WhatsApp →</a>
+      <p class="note">Exemplu: pe site-ul tău, comanda ajunge exact cum vrei: pe WhatsApp, pe email sau într-un tabel.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="azi"><div class="w">
+  <span class="kick">Azi în vitrină</span>
+  <h2>Proaspete, <em>de azi.</em></h2>
+  <p class="sub">Lista se schimbă zilnic, direct de pe telefonul cofetăriei.</p>
+  <div class="today">
+    <div class="td rv"><i style="background:linear-gradient(135deg,#C93C5A,#F2A5B3)"></i><div><b>Tartă cu zmeură</b><small class="left">● mai sunt 6</small></div><span>16 lei</span></div>
+    <div class="td rv"><i style="background:linear-gradient(135deg,#8DB06A,#D7E8BF)"></i><div><b>Eclair cu fistic</b><small class="left">● mai sunt 9</small></div><span>14 lei</span></div>
+    <div class="td rv"><i style="background:linear-gradient(135deg,#5A3424,#B98B6B)"></i><div><b>Amandină</b><small class="left" style="color:#C9893C">● ultimele 2</small></div><span>12 lei</span></div>
+  </div>
+</div></section>
+
+<section id="vizita" style="background:var(--bg2)"><div class="w">
+  <span class="kick">Vizită</span>
+  <h2>Treci <em>pe la noi.</em></h2>
+  <div class="visit">
+    <div class="map"><svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice"><g stroke="#FFF9F1" stroke-width="12" fill="none"><path d="M-10 90 L410 60"/><path d="M110 -10 L150 270"/><path d="M-10 210 L410 190"/><path d="M300 -10 L280 270"/></g><circle cx="230" cy="130" r="40" fill="rgba(141,176,106,.25)"/></svg><span class="pin">Fragă &amp; Fistic</span></div>
+    <div class="vcard">
+      <span class="kick" style="color:var(--mut)">Program</span>
+      <div class="hrs" id="hrs"></div>
+      <div class="rev"><b>☆☆☆☆☆ Recenziile tale Google</b>Pe site-ul real, aici apar recenziile adevărate ale clienților tăi, preluate de pe Google.</div>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="w"><span>© Fragă &amp; Fistic · afacere fictivă, exemplu de design</span><span>Site realizat de <a href="/" style="color:var(--rasp)">OHI Solutions</a></span></div></footer>
+<div class="fab"><a class="btn p" href="#comanda">Comandă un tort</a><a class="btn o" href="#vizita">Unde suntem</a></div>
+
+<script>
+const $=s=>document.querySelector(s);
+/* products */
+const TAB={Torturi:[["Tort Fragă & Fistic","mousse de fistic, zmeură","de la 190 lei","#F7D9C4","Cel mai cerut"],["Tort ciocolată belgiană","3 straturi, ganache","de la 180 lei","#E8CDB8",""],["Tort fructe de pădure","cremă de vanilie","de la 175 lei","#F2D5DC",""],["Tort fără zahăr","îndulcit natural","de la 210 lei","#E2ECD3","Nou"]],
+ Prăjituri:[["Tartă cu zmeură","cremă de vanilie","16 lei","#F2D5DC",""],["Eclair cu fistic","cremă de fistic","14 lei","#E2ECD3",""],["Amandină","clasică, cu rom","12 lei","#E8CDB8",""],["Savarină","frișcă proaspătă","13 lei","#FFF0DA",""]],
+ Evenimente:[["Candy bar","pentru nunți și botezuri","ofertă","#F2D5DC",""],["Tort etajat","2–5 etaje","ofertă","#FFF0DA",""],["Prăjituri asortate","la kilogram","ofertă","#E8CDB8",""],["Mini-deserturi","în pahar","ofertă","#E2ECD3",""]]};
+const ico=(c,k)=>k==="Prăjituri"?`<svg viewBox="0 0 100 100"><path d="M18 62h64l-8 18H26z" fill="#C9893C"/><path d="M20 62c0-16 14-28 30-28s30 12 30 28z" fill="${c==="#E2ECD3"?"#8DB06A":"#C93C5A"}"/><circle cx="50" cy="30" r="7" fill="#C93C5A"/></svg>`
+ :`<svg viewBox="0 0 100 100"><path d="M18 46h64v28c0 5-14 9-32 9s-32-4-32-9z" fill="#FFF8EF"/><ellipse cx="50" cy="46" rx="32" ry="9" fill="#fff"/><path d="M18 46c0 5 14 9 32 9s32-4 32-9v7c-3 1-4 8-7 8s-3-5-6-5-4 9-7 9-3-6-7-6-3 6-6 6-4-8-7-8-3 7-7 7-3-5-6-5-3 4-6 4-3-8-6-8z" fill="${c==="#E2ECD3"?"#8DB06A":c==="#E8CDB8"?"#5A3424":"#C93C5A"}"/><circle cx="50" cy="38" r="5" fill="#C93C5A"/></svg>`;
+let tab="Torturi";
+function drawProds(){$("#tabs").innerHTML=Object.keys(TAB).map(k=>`<button role="tab" aria-selected="${k===tab}" data-t="${k}">${k}</button>`).join("");
+  $("#prods").innerHTML=TAB[tab].map(([n,d,p,c,b])=>`<div class="pc"><div class="ph" style="background:${c}">${b?`<small>${b}</small>`:""}${ico(c,tab)}</div><h3>${n}</h3><p>${d}</p><b>${p}</b></div>`).join("")}
+$("#tabs").addEventListener("click",e=>{const b=e.target.closest("[data-t]");if(b){tab=b.dataset.t;drawProds()}});drawProds();
+/* cake builder */
+const SZ=[["1 kg","6–8 pers.",190],["1,5 kg","10–12 pers.",270],["2 kg","14–16 pers.",350],["3 kg","20+ pers.",510]];
+const FL=[["Fistic & zmeură","#8DB06A","#C93C5A"],["Ciocolată","#5A3424","#3A2117"],["Fructe de pădure","#9B3A6B","#C93C5A"],["Vanilie & caramel","#D9A35B","#B5762E"]];
+const DC=[["Fructe proaspete",0],["Flori comestibile",25],["Figurină",40],["Simplu",0]];
+const O={s:0,f:0,d:0};
+const d0=new Date();d0.setDate(d0.getDate()+3);$("#dt").value=d0.toISOString().slice(0,10);$("#dt").min=new Date(Date.now()+2*864e5).toISOString().slice(0,10);
+function mini(){const [,a,b]=FL[O.f],h=[34,40,46,54][O.s];
+  return `<ellipse cx="100" cy="138" rx="70" ry="10" fill="rgba(0,0,0,.25)"/><path d="M40 ${130-h}h120v${h}c0 8-27 14-60 14s-60-6-60-14z" fill="#FFF3E8"/><path d="M40 ${130-h+h*.5}h120v10H40z" fill="${a}" opacity=".85"/><ellipse cx="100" cy="${130-h}" rx="60" ry="13" fill="#fff"/><path d="M40 ${130-h}c0 7 27 13 60 13s60-6 60-13v9c-4 2-5 11-9 11s-4-7-8-7-5 12-9 12-4-8-8-8-4 7-8 7-5-10-9-10-4 11-8 11-4-7-8-7-4 5-8 5-4-11-9-11z" fill="${a}"/>${O.d===0?`<circle cx="86" cy="${124-h}" r="6" fill="#C93C5A"/><circle cx="101" cy="${121-h}" r="6" fill="#9B3A6B"/><circle cx="115" cy="${125-h}" r="5" fill="#C93C5A"/>`:O.d===1?`<circle cx="90" cy="${123-h}" r="5" fill="#F2A5B3"/><circle cx="104" cy="${121-h}" r="5" fill="#FFD27A"/><circle cx="114" cy="${125-h}" r="4" fill="#B9A3E3"/>`:O.d===2?`<rect x="94" y="${100-h}" width="12" height="22" rx="5" fill="${b}"/><circle cx="100" cy="${97-h}" r="7" fill="${b}"/>`:""}`}
+function draw(){
+  $("#sz").innerHTML=SZ.map(([n,p],i)=>`<button class="opt" data-k="s" data-v="${i}" aria-pressed="${i===O.s}">${n} · ${p}</button>`).join("");
+  $("#fl").innerHTML=FL.map(([n,c],i)=>`<button class="opt" data-k="f" data-v="${i}" aria-pressed="${i===O.f}"><i style="background:${c}"></i>${n}</button>`).join("");
+  $("#dc").innerHTML=DC.map(([n,p],i)=>`<button class="opt" data-k="d" data-v="${i}" aria-pressed="${i===O.d}">${n}${p?` +${p}`:""}</button>`).join("");
+  $("#mini").innerHTML=mini();
+  const dt=$("#dt").value?new Date($("#dt").value).toLocaleDateString("ro-RO",{weekday:"long",day:"numeric",month:"long"}):"—",msg=$("#msg").value.trim();
+  $("#sum").innerHTML=`<dt>Mărime</dt><dd>${SZ[O.s][0]}</dd><dt>Gust</dt><dd>${FL[O.f][0]}</dd><dt>Decor</dt><dd>${DC[O.d][0]}</dd><dt>Ridicare</dt><dd>${dt}</dd>${msg?`<dt>Mesaj</dt><dd>„${msg.replace(/[<>&]/g,"")}”</dd>`:""}`;
+  const t=SZ[O.s][2]+DC[O.d][1];$("#tot").innerHTML=`${t} lei <small>orientativ</small>`;
+  $("#go").href="https://wa.me/?text="+encodeURIComponent(`Bună! Aș vrea un tort de ${SZ[O.s][0]}, ${FL[O.f][0]}, decor ${DC[O.d][0].toLowerCase()}, pentru ${dt}${msg?`, cu mesajul „${msg}”`:""}.`)}
+document.addEventListener("click",e=>{const b=e.target.closest(".opt[data-k]");if(!b)return;O[b.dataset.k]=+b.dataset.v;draw()});
+["#dt","#msg"].forEach(id=>$(id).addEventListener("input",draw));draw();
+/* hours */
+const H=[["Luni – Vineri","08:00 – 19:00"],["Sâmbătă","09:00 – 17:00"],["Duminică","09:00 – 13:00"]];
+const wd=new Date().getDay(),cur=wd===0?2:wd===6?1:0;
+$("#hrs").innerHTML=H.map(([a,b],i)=>`<span class="${i===cur?"now":""}">${a}${i===cur?" · azi":""}</span><span class="${i===cur?"now":""}">${b}</span>`).join("");
+/* sprinkles */
+if(!matchMedia("(prefers-reduced-motion: reduce)").matches){const box=$("#cakebox"),C=["#C93C5A","#8DB06A","#FFB020","#E7768C","#B9A3E3"];
+  for(let i=0;i<16;i++){const s=document.createElement("i");s.className="spr";s.style.cssText=`left:${18+Math.random()*64}%;top:${Math.random()*20}%;background:${C[i%5]};animation-delay:${Math.random()*6}s;animation-duration:${5+Math.random()*3}s`;box.appendChild(s)}}
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target)}}),{threshold:.15});
+document.querySelectorAll(".rv").forEach((el,i)=>{el.style.transitionDelay=(i%3)*80+"ms";io.observe(el)});
+</script>
+</body>
+</html>
