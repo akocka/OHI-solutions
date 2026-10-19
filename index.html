@@ -47,6 +47,27 @@
 @media(min-width:900px){.anchor:has(.plans3){grid-template-columns:1fr}.plans3{grid-template-columns:repeat(3,1fr)!important}}
 .once{margin-top:14px;color:var(--mut);font-size:15px}.once b{color:#C6CAD9}
 </style>
+<style>
+/* quick demo form */
+.qgrid{display:grid;gap:34px}
+@media(min-width:980px){.qgrid{grid-template-columns:1fr .9fr;align-items:start}}
+.qgrid>*{min-width:0}
+.qsteps{list-style:none;counter-reset:q;display:flex;flex-direction:column;gap:14px;margin-top:26px}
+.qsteps li{counter-increment:q;display:grid;grid-template-columns:40px 1fr;column-gap:14px;align-items:start}
+.qsteps li::before{content:counter(q);grid-row:span 2;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font:800 17px var(--fd);background:rgba(255,176,32,.14);color:var(--amber);border:1px solid rgba(255,176,32,.45)}
+.qsteps b{font:800 18px var(--fd)}
+.qsteps span{color:var(--mut);font-size:15px}
+.qalt{margin-top:24px;color:var(--mut);font-size:15px}
+.qalt a{color:var(--cobalt2);font-weight:700}
+.qform{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 30px 70px rgba(0,0,0,.35)}
+.qform .lf{display:flex;flex-direction:column;gap:12px}
+.qform .f{display:flex;flex-direction:column;gap:6px;font-weight:700;font-size:14.5px}
+.qchips{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.qchips button{border:1.5px solid var(--line);background:#0A0C13;color:var(--ink);font:700 14.5px var(--fb);padding:12px 10px;border-radius:14px;cursor:pointer;text-align:left}
+.qchips button[aria-pressed=true]{border-color:var(--amber);background:rgba(255,176,32,.12)}
+#qOther{margin-top:8px}
+.qform .btn{width:100%;white-space:normal;text-align:center}
+</style>
 </head>
 <body>
 <div class="ohi-intro" id="intro" aria-hidden="true">
@@ -58,7 +79,7 @@
 <nav><div class="wrap">
   <a class="brand" href="#top" aria-label="OHI Solutions"><svg viewBox="0 18 359 170" role="img"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#4C63FF" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
   <div class="links"><a href="#cum">Cum lucrăm</a><a href="#exemple">Exemple</a><a href="/preturi">Prețuri</a><a href="/constructor">Constructor</a></div>
-  <a class="btn a" href="#construieste">Construiește-ți site-ul</a>
+  <a class="btn a" href="#construieste">Vreau demo gratuit</a>
 </div></nav>
 
 <header class="hero" id="top">
@@ -122,13 +143,13 @@
     <div class="plans plans3">
       <div class="plan"><h3>Start</h3><div class="price"><b>99</b><span>lei / lună</span></div>
         <ul><li>Site de o pagină, perfect pe telefon</li><li>Găzduire și domeniu .ro incluse</li><li>Pregătit pentru Google</li><li>1 modificare pe lună</li></ul>
-        <a class="btn g" href="#construieste" data-plan="Basic">Vreau demo Start</a></div>
+        <a class="btn g" href="#construieste" data-plan="Start">Vreau demo Start</a></div>
       <div class="plan top"><span class="pill">Recomandat</span><h3>Business</h3><div class="price"><b>199</b><span>lei / lună</span></div>
         <ul><li>Până la 5 pagini, design animat</li><li>Programări sau comenzi online</li><li>Administrare inclusă</li><li>Profil Google Business</li><li>Exclusivitate pe zonă</li></ul>
-        <a class="btn c" href="#construieste" data-plan="Ultra">Vreau demo Business</a></div>
+        <a class="btn c" href="#construieste" data-plan="Business">Vreau demo Business</a></div>
       <div class="plan"><h3>Pro</h3><div class="price"><b>299</b><span>lei / lună</span></div>
         <ul><li>Tot ce e în Business</li><li>Asistent RAI 24/7 inclus</li><li>Modificări prioritare</li></ul>
-        <a class="btn g" href="#construieste" data-plan="Ultra">Vreau demo Pro</a></div>
+        <a class="btn g" href="#construieste" data-plan="Pro">Vreau demo Pro</a></div>
     </div>
   </div>
   <p class="once">Contract 12 luni, 0 lei la început, prima lună după ce aprobi demo-ul. Preferi o singură plată? <b>Start 500 lei</b> sau <b>Business 1.199 lei</b>.</p>
@@ -191,55 +212,45 @@
     <div class="m"><b>Facem noi, mai bine</b><ul><li>Așezarea în pagină și fonturile</li><li>Pozele și ilustrațiile</li><li>Animațiile și efectele</li><li>Textele finale, scrise pentru Google</li></ul></div>
   </div></details>
 </div></section>
-<section class="builder" id="construieste"><div class="wrap">
-  <span class="kick">Constructor</span>
-  <h2>Construiește-ți site-ul. <em class="s">Acum.</em></h2>
-  <p class="intro">Alege tot ce vrei și vezi pe loc schița pe telefon. Trimite-ne designul și în 24 de ore primești site-ul real, construit de noi, cu textele și pozele tale.</p>
-  <a class="btn g" href="/constructor" style="margin-top:16px;white-space:normal;text-align:center">Vrei mai multe opțiuni? Constructorul complet, în 5 pași →</a>
-  <div class="bgrid">
-    <div class="ctrl">
-      <div class="two">
-        <div class="grp"><label for="bName"><i>1</i>Numele afacerii</label><input class="inp" id="bName" maxlength="28" placeholder="Ex: Frizeria lui Andrei" autocomplete="organization"></div>
-        <div class="grp"><label for="bSlogan"><i>2</i>Slogan (opțional)</label><input class="inp" id="bSlogan" maxlength="70" placeholder="Ex: Tunsori ca la carte"></div>
-      </div>
-      <div class="grp"><span class="lbl"><i>3</i>Domeniul</span><div class="chips" id="bNiche"></div></div>
-      <div class="grp"><span class="lbl"><i>4</i>Culoarea principală</span><div class="sw" id="bColor"></div></div>
-      <div class="two">
-        <div class="grp"><span class="lbl"><i>5</i>Stilul</span><div class="seg" id="bStyle"><button type="button" data-v="modern" aria-pressed="true">Modern</button><button type="button" data-v="elegant" aria-pressed="false">Elegant</button><button type="button" data-v="bold" aria-pressed="false">Îndrăzneț</button></div></div>
-        <div class="grp"><span class="lbl"><i>6</i>Fundal</span><div class="seg" id="bTheme"><button type="button" data-v="auto" aria-pressed="true">Potrivit</button><button type="button" data-v="light" aria-pressed="false">Luminos</button><button type="button" data-v="dark" aria-pressed="false">Întunecat</button></div></div>
-      </div>
-      <div class="grp"><span class="lbl"><i>7</i>Secțiuni</span><div class="tog" id="bSec"></div></div>
-      <div class="two">
-        <div class="grp"><span class="lbl"><i>8</i>Limba site-ului</span><div class="seg" id="bLang"><button type="button" data-v="ro" aria-pressed="true">Română</button><button type="button" data-v="rohu" aria-pressed="false">RO + HU</button></div></div>
-        <div class="grp"><span class="lbl"><i>9</i>Pachet</span><div class="seg" id="bPlan"><button type="button" data-v="Gratuit (primele 5)" aria-pressed="true">Gratuit*</button><button type="button" data-v="Basic" aria-pressed="false">Start</button><button type="button" data-v="Ultra" aria-pressed="false">Business</button></div></div>
-      </div>
-      <small style="color:var(--mut);font-size:13px">* Cât timp mai sunt locuri gratuite. Previzualizarea folosește texte și prețuri de exemplu; site-ul real îl facem cu textele și pozele tale.</small>
-    </div>
-    <div class="prev">
-      <div class="bphone"><span class="sketch">SCHIȚĂ</span><div class="screen live" id="bScreen"></div><span class="built hide" id="bBuilt">✓ Schița ta e gata</span></div>
-      <p class="hint">Asta e o schiță cu alegerile tale. Site-ul final îl construim noi, mult mai frumos. <a href="#exemple" style="color:var(--cobalt2);font-weight:700">Vezi exemple finale ↑</a></p>
-      <form class="lead" id="leadForm" novalidate>
-        <div id="leadFields" class="lf">
-          <h3>Primește varianta reală în 24 de ore</h3>
-          <p class="sub">Designul tău se salvează odată cu cererea. Te contactăm noi, fără avans.</p>
-          <label class="f" for="lName"><span>Numele tău *</span><input class="inp" id="lName" name="name" autocomplete="name" required></label>
-          <label class="f" for="lPhone"><span>Telefon *</span><input class="inp" id="lPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="07xx xxx xxx" required></label>
-          <label class="f" for="lEmail"><span>Email (opțional)</span><input class="inp" id="lEmail" name="email" type="email" autocomplete="email"></label>
-          <input class="hp" id="lHp" name="company_site" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <label class="chk"><input type="checkbox" id="lOk"> <span>Sunt de acord să fiu contactat(ă) de OHI Solutions pentru acest demo. *</span></label>
-          <label class="chk"><input type="checkbox" id="lMk"> <span>Vreau să primesc ocazional oferte și noutăți de la OHI (WhatsApp, SMS sau email). Mă pot dezabona oricând. Detalii în <a href="/confidentialitate" target="_blank" rel="noopener">politica de confidențialitate</a>.</span></label>
-          <p class="err" id="lErr" role="alert"></p>
-          <button class="btn a" type="submit" id="lSend">Trimite designul →</button>
-          <a class="btn g" href="tel:+40740267706">Sau sună: 0740 267 706</a>
-          <p class="pvnote" id="pvNote" hidden>Previzualizare: aici formularul nu trimite nimic. Pe site-ul live, cererea ajunge în CRM.</p>
-        </div>
-        <div class="done" id="leadDone" hidden>
-          <span class="ok">✓</span><h3>Am primit designul!</h3><p class="sub">Te contactăm în cel mult 24 de ore cu demo-ul tău.</p><code id="leadId"></code>
-          <a class="btn a" id="leadWa" href="#" target="_blank" rel="noopener">Vreau mai repede: scrie-ne pe WhatsApp</a>
-        </div>
-      </form>
-    </div>
+<section class="quick" id="construieste"><div class="wrap qgrid">
+  <div class="qtxt">
+    <span class="kick">Demo gratuit</span>
+    <h2>Spune-ne cine ești. <em class="s">Restul</em> îl facem noi.</h2>
+    <p class="intro">Durează 30 de secunde. Cu acordul tău, luăm textele și pozele de pe pagina ta de Facebook sau Instagram, construim site-ul și ți-l trimitem pe telefon.</p>
+    <ol class="qsteps">
+      <li><b>Completezi formularul</b><span>Numele afacerii, domeniul și telefonul.</span></li>
+      <li><b>Te sunăm noi</b><span>Câteva întrebări scurte despre ce oferi.</span></li>
+      <li><b>Primești demo-ul în 24 de ore</b><span>Îți place? Abia atunci alegi pachetul.</span></li>
+    </ol>
+    <p class="qalt">Vrei să alegi tu culorile și secțiunile? <a href="/constructor">Încearcă constructorul →</a></p>
   </div>
+  <form class="lead qform" id="leadForm" novalidate>
+    <div id="leadFields" class="lf">
+      <h3>Vreau demo-ul gratuit</h3>
+      <p class="sub" id="qPlanNote">Fără avans și fără obligații.</p>
+      <label class="f" for="qBiz"><span>Numele afacerii *</span><input class="inp" id="qBiz" name="business" autocomplete="organization" maxlength="60" placeholder="Ex: Frizeria lui Andrei" required></label>
+      <div class="f"><span id="qTypeL">Domeniul *</span><div class="qchips" id="qType" role="group" aria-labelledby="qTypeL">
+        <button type="button" data-v="Salon / frizerie" aria-pressed="false">💈 Salon / frizerie</button>
+        <button type="button" data-v="Restaurant / cafenea" aria-pressed="false">🍽️ Restaurant / cafenea</button>
+        <button type="button" data-v="Service auto" aria-pressed="false">🔧 Service auto</button>
+        <button type="button" data-v="Altceva" aria-pressed="false">✨ Altceva</button>
+      </div><input class="inp" id="qOther" maxlength="60" placeholder="Ce fel de afacere ai?" hidden></div>
+      <label class="f" for="lName"><span>Numele tău *</span><input class="inp" id="lName" name="name" autocomplete="name" required></label>
+      <label class="f" for="lPhone"><span>Telefon *</span><input class="inp" id="lPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="07xx xxx xxx" required></label>
+      <label class="f" for="qLink"><span>Pagina de Facebook sau Instagram (opțional)</span><input class="inp" id="qLink" name="website" inputmode="url" placeholder="Ex: facebook.com/frizerialuiandrei"></label>
+      <input class="hp" id="lHp" name="company_site" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="chk"><input type="checkbox" id="lOk"> <span>Sunt de acord să fiu contactat(ă) de OHI Solutions pentru acest demo. *</span></label>
+      <label class="chk"><input type="checkbox" id="lMk"> <span>Vreau să primesc ocazional oferte și noutăți de la OHI (WhatsApp, SMS sau email). Mă pot dezabona oricând. Detalii în <a href="/confidentialitate" target="_blank" rel="noopener">politica de confidențialitate</a>.</span></label>
+      <p class="err" id="lErr" role="alert"></p>
+      <button class="btn a" type="submit" id="lSend">Vreau demo-ul gratuit →</button>
+      <a class="btn g" href="tel:+40740267706">Sau sună: 0740 267 706</a>
+      <p class="pvnote" id="pvNote" hidden>Previzualizare: aici formularul nu trimite nimic. Pe site-ul live, cererea ajunge în CRM.</p>
+    </div>
+    <div class="done" id="leadDone" hidden>
+      <span class="ok">✓</span><h3>Am primit cererea!</h3><p class="sub">Te sunăm în cel mult 24 de ore și pornim demo-ul tău.</p><code id="leadId"></code>
+      <a class="btn g" href="tel:+40740267706">Vreau mai repede: sună-ne</a>
+    </div>
+  </form>
 </div></section>
 
 <footer><div class="wrap"><span>© 2026 OHI Solutions · Târgu Mureș</span><span><a href="/confidentialitate">Confidențialitate</a> · <a href="/termeni">Termeni</a> · <a href="/blog">Blog</a></span></div></footer>
@@ -313,65 +324,43 @@ document.querySelectorAll(".slide").forEach(el=>{if(!REDUCE&&el.getBoundingClien
 $("#seats").innerHTML=Array.from({length:10},(_,i)=>{const free=i<5,taken=free?i<FREE_TAKEN:(i-5)<LAUNCH_TAKEN;if(i===0)return `<div class="seat free taken client" role="img" aria-label="Loc ocupat de un client fondator"><svg viewBox="0 0 120 64" aria-hidden="true"><rect x="10" y="10" width="28" height="54" fill="#6B6F75"/><rect x="44" y="4" width="28" height="60" fill="#7D7A5E"/><rect x="78" y="0" width="28" height="64" fill="#A87447"/><text x="58" y="56" text-anchor="middle" font-family="Archivo,Arial,sans-serif" font-weight="800" font-size="40" fill="#fff" letter-spacing="2">bbb</text></svg></div>`;return `<div class="seat ${free?"free":"launch"} ${taken?"taken":""}">${taken?"✓":(free?"0 lei":"lansare")}</div>`}).join("");
 $("#seatsTaken").textContent=FREE_TAKEN+LAUNCH_TAKEN;
 
-/* builder */
-const B={niche:"frizerie",name:"",slogan:"",color:NICHES.frizerie.sw[0],style:"modern",theme:"auto",lang:"ro",plan:"Gratuit (primele 5)",secs:{book:1,prices:1,map:1,rai:0,gallery:0,reviews:0}};
-function drawNiche(){$("#bNiche").innerHTML=KEYS.map(k=>`<button type="button" class="chip" data-n="${k}" aria-pressed="${k===B.niche}">${NICHES[k].ico} ${NICHES[k].label}</button>`).join("")}
-function drawColors(){const list=[...new Set([...NICHES[B.niche].sw,...EXTRA].map(c=>c.toUpperCase()))];
-  $("#bColor").innerHTML=list.map(c=>`<button type="button" style="background:${c}" data-c="${c}" aria-label="Culoare ${c}" aria-pressed="${c===B.color.toUpperCase()}"></button>`).join("")+`<label class="pick" title="Altă culoare"><input type="color" id="bPick" value="${B.color.toLowerCase()}" aria-label="Alege orice culoare"></label>`;
-  $("#bPick").addEventListener("input",e=>{B.color=e.target.value;build()});$("#bPick").addEventListener("change",drawColors)}
-function drawSecs(){$("#bSec").innerHTML=SECS.map(([k,l])=>`<button type="button" data-s="${k}" aria-pressed="${!!B.secs[k]}"><i></i>${l}</button>`).join("")}
-function segs(id,key){$(id).addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;B[key]=b.dataset.v;$(id).querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));build()})}
-function setNiche(k){B.niche=k;B.color=NICHES[k].sw[0];drawNiche();drawColors();build()}
-let bt;
-function build(){
-  const sc=$("#bScreen");clearTimeout(bt);$("#bBuilt").classList.add("hide");
-  paint(sc,B);sc.classList.remove("wire");void sc.offsetWidth;sc.classList.add("wire");
-  bt=setTimeout(()=>{sc.classList.remove("wire");$("#bBuilt").classList.remove("hide");const c=sc.querySelector(".s-chat");c&&c.classList.add("on")},REDUCE?0:800);
-  try{localStorage.setItem("ohi-design",JSON.stringify(B))}catch(e){}
-}
-function designSummary(){const N=NICHES[B.niche];const secs=SECS.filter(([k])=>B.secs[k]).map(([,l])=>l).join(", ")||"de stabilit";
-  return `Domeniu: ${N.label}\nCuloare: ${B.color}\nStil: ${({modern:"Modern",elegant:"Elegant",bold:"Îndrăzneț"})[B.style]}\nFundal: ${({auto:"potrivit",light:"luminos",dark:"întunecat"})[B.theme]}\nSecțiuni: ${secs}\nLimba: ${B.lang==="rohu"?"română + maghiară":"română"}\nPachet: ${B.plan}${B.slogan.trim()?"\nSlogan: "+B.slogan.trim():""}`}
-$("#bNiche").addEventListener("click",e=>{const b=e.target.closest(".chip");if(b)setNiche(b.dataset.n)});
-$("#bColor").addEventListener("click",e=>{const b=e.target.closest("button[data-c]");if(!b)return;B.color=b.dataset.c;drawColors();build()});
-$("#bSec").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;B.secs[b.dataset.s]=B.secs[b.dataset.s]?0:1;drawSecs();build()});
-segs("#bStyle","style");segs("#bTheme","theme");segs("#bLang","lang");segs("#bPlan","plan");
-document.querySelectorAll("[data-plan]").forEach(a=>a.addEventListener("click",()=>{const v=a.dataset.plan;B.plan=v;$("#bPlan").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.v===v));build()}));
-let deb;["#bName","#bSlogan"].forEach(id=>$(id).addEventListener("input",e=>{B[id==="#bName"?"name":"slogan"]=e.target.value;clearTimeout(deb);deb=setTimeout(build,450)}));
-try{const sv=JSON.parse(localStorage.getItem("ohi-design")||"null");if(sv&&NICHES[sv.niche]){Object.assign(B,sv,{secs:Object.assign({},B.secs,sv.secs)});
-  $("#bName").value=B.name||"";$("#bSlogan").value=B.slogan||"";
-  [["#bStyle","style"],["#bTheme","theme"],["#bLang","lang"],["#bPlan","plan"]].forEach(([id,k])=>$(id).querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.v===B[k])))}}catch(e){}
-drawNiche();drawColors();drawSecs();build();
-$("#bScreen").classList.add("live");
-/* lead form: contact + design saved together in the CRM (Leads), design in its own fields */
+/* quick demo form → same webhook as before (CRM "Leads") */
+const Q={type:"",plan:""};
+$("#qType").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;Q.type=b.dataset.v;
+  $("#qType").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  $("#qOther").hidden=Q.type!=="Altceva";if(Q.type==="Altceva")$("#qOther").focus()});
+document.querySelectorAll("[data-plan]").forEach(a=>a.addEventListener("click",()=>{Q.plan=a.dataset.plan;
+  $("#qPlanNote").textContent=`Pachet ales: ${Q.plan}. Fără avans și fără obligații, îl poți schimba oricând.`}));
+{const qp=(new URLSearchParams(location.search).get("pachet")||"").toLowerCase(),pm={basic:"Start",start:"Start",ultra:"Business",business:"Business",pro:"Pro",gratuit:"Gratuit (primele 5)"}[qp];
+  if(pm){Q.plan=pm;$("#qPlanNote").textContent=`Pachet ales: ${pm}. Fără avans și fără obligații, îl poți schimba oricând.`}}
 if(!LIVE)$("#pvNote").hidden=false;
 const T0=performance.now();
 $("#leadForm").addEventListener("submit",async e=>{
-  e.preventDefault();const err=$("#lErr"),name=$("#lName").value.trim(),phone=$("#lPhone").value.trim(),email=$("#lEmail").value.trim();
+  e.preventDefault();const err=$("#lErr"),biz=$("#qBiz").value.trim(),name=$("#lName").value.trim(),phone=$("#lPhone").value.trim(),link=$("#qLink").value.trim();
+  const type=Q.type==="Altceva"?($("#qOther").value.trim()||"Altceva"):Q.type;
+  if(!biz){err.textContent="Scrie numele afacerii.";$("#qBiz").focus();return}
+  if(!Q.type){err.textContent="Alege domeniul afacerii.";$("#qType button").focus();return}
   if(!name){err.textContent="Scrie-ți numele.";$("#lName").focus();return}
   if(phone.replace(/\D/g,"").length<9){err.textContent="Lasă un număr de telefon complet, ca să te putem suna.";$("#lPhone").focus();return}
-  if(email&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){err.textContent="Adresa de email pare greșită.";$("#lEmail").focus();return}
   if(!$("#lOk").checked){err.textContent="Bifează acordul ca să te putem contacta pentru demo.";return}
-  const prev=leadLocked();if(prev){err.textContent=`Ai trimis deja o cerere${prev.id?" (cod "+prev.id+")":""}. Pentru modificări, sună-ne sau scrie-ne pe WhatsApp cu numele tău și al firmei.`;return}
+  const prev=leadLocked();if(prev){err.textContent=`Ai trimis deja o cerere${prev.id?" (cod "+prev.id+")":""}. Pentru modificări, sună-ne la 0740 267 706.`;return}
   err.textContent="";
-  const reqId="REQ-"+Date.now().toString(36).toUpperCase()+"-"+Math.random().toString(36).slice(2,6).toUpperCase();
-  const N=NICHES[B.niche],biz=B.name.trim()||"(nespecificat)",mk=$("#lMk").checked;
-  const finish=()=>{lockLead({id:reqId,name,biz});$("#leadFields").hidden=true;$("#leadDone").hidden=false;$("#leadId").textContent="Cod cerere: "+reqId;
-    $("#leadWa").href="https://wa.me/"+WA+"?text="+encodeURIComponent(`Salut! Am trimis designul pentru ${biz} din constructor (cod ${reqId}).`)};
+  const reqId="REQ-"+Date.now().toString(36).toUpperCase()+"-"+Math.random().toString(36).slice(2,6).toUpperCase(),mk=$("#lMk").checked;
+  const finish=()=>{lockLead({id:reqId,name,biz});$("#leadFields").hidden=true;$("#leadDone").hidden=false;$("#leadId").textContent="Cod cerere: "+reqId};
   if($("#lHp").value||performance.now()-T0<3000){finish();return}
   const data=new URLSearchParams({
-    created_at:new Date().toISOString(),source:"site-constructor",request_id:reqId,
-    name,business:biz,phone,email,business_type:N.label,website:"",
-    need:`Site nou · demo din constructor · pachet: ${B.plan}`,
-    message:"Design ales în constructor:\n"+designSummary()+`\nMarketing: ${mk?"DA":"nu"}`,
-    marketing_consent:mk?"da":"nu",consent_at:new Date().toISOString(),
-    design_json:JSON.stringify({niche:B.niche,color:B.color,style:B.style,theme:B.theme,lang:B.lang,plan:B.plan,slogan:B.slogan,secs:B.secs})
+    created_at:new Date().toISOString(),source:"site-demo-rapid",request_id:reqId,
+    name,business:biz,phone,email:"",business_type:type,website:link,
+    need:`Site nou · demo gratuit · pachet: ${Q.plan||"nealeas"}`,
+    message:`Cerere demo rapid.\nDomeniu: ${type}\nFacebook/Instagram: ${link||"-"}\nPachet: ${Q.plan||"nealeas"}\nMarketing: ${mk?"DA":"nu"}`,
+    marketing_consent:mk?"da":"nu",consent_at:new Date().toISOString(),design_json:""
   });
   const btn=$("#lSend");btn.disabled=true;btn.textContent="Se trimite…";
   if(!LIVE){setTimeout(finish,600);return}
   try{const ctrl=new AbortController(),tm=setTimeout(()=>ctrl.abort(),15000);let res=null;
     try{res=await fetch(WEBHOOK,{method:"POST",body:data,signal:ctrl.signal})}catch(x){if(x.name==="AbortError")throw x}finally{clearTimeout(tm)}
     if(res&&!res.ok)throw new Error("http "+res.status);finish();
-  }catch(x){btn.disabled=false;btn.textContent="Trimite designul →";err.textContent="Nu s-a putut trimite. Încearcă din nou sau sună-ne la 0740 267 706."}
+  }catch(x){btn.disabled=false;btn.textContent="Vreau demo-ul gratuit →";err.textContent="Nu s-a putut trimite. Încearcă din nou sau sună-ne la 0740 267 706."}
 });
 const hi="https://wa.me/"+WA+"?text=";
 if($("#waHero"))$("#waHero").href=hi+encodeURIComponent("Salut! Vreau să aflu mai multe despre site-urile gratuite pentru primele 5 afaceri.");
