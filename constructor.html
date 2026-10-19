@@ -83,7 +83,7 @@ textarea.inp{min-height:96px;resize:vertical;font-weight:500;line-height:1.45}
 .pl.cu b::after{content:" 📞";font-size:14px}
 .call{background:rgba(255,176,32,.1);border:1px solid rgba(255,176,32,.45);border-radius:14px;padding:12px 14px;font-size:14px;color:#FFE3AE}
 .call b{color:#fff}
-/* Basic → Ultra question */
+/* Start → Business question */
 .ask{position:fixed;inset:0;z-index:80;background:rgba(5,6,10,.78);backdrop-filter:blur(6px);display:grid;place-items:center;padding:16px}
 .ask-box{max-width:440px;width:100%;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:12px;box-shadow:0 24px 60px rgba(0,0,0,.5)}
 .ask-box h3{font:800 22px/1.15 var(--fd)}
@@ -192,7 +192,7 @@ textarea.inp{min-height:96px;resize:vertical;font-weight:500;line-height:1.45}
           <p class="note-ultra" id="bgNote" hidden></p>
         </div>
         <div class="card">
-          <div class="grp"><span class="lbl">Efecte premium <span class="ub">Ultra</span> <span class="opt">(design 3D, ilustrații sau intro animat)</span></span><div class="fxs" id="fxs"></div></div>
+          <div class="grp"><span class="lbl">Efecte premium <span class="ub">Business</span> <span class="opt">(design 3D, ilustrații sau intro animat)</span></span><div class="fxs" id="fxs"></div></div>
           <p class="note-ultra" id="fxNote" hidden></p>
         </div>
       </section>
@@ -200,7 +200,7 @@ textarea.inp{min-height:96px;resize:vertical;font-weight:500;line-height:1.45}
       <section class="step" data-step="2" hidden>
         <h2>3. Conținutul</h2><p class="lead-in">Ce secțiuni vrei și ce servicii oferi.</p>
         <div class="card">
-          <div class="grp"><span class="lbl">Secțiuni <span class="opt">— cele marcate <span class="ub" style="margin:0">Ultra</span> sunt în Site Ultra și acum gratuite pentru primii 5 clienți</span></span><div class="tog" id="secs"></div></div>
+          <div class="grp"><span class="lbl">Secțiuni <span class="opt">— cele marcate <span class="ub" style="margin:0">Business</span> sunt în Business și acum gratuite pentru primii 5 clienți</span></span><div class="tog" id="secs"></div></div>
           <p class="note-ultra" id="secNote" hidden></p>
         </div>
         <div class="card">
@@ -226,7 +226,7 @@ textarea.inp{min-height:96px;resize:vertical;font-weight:500;line-height:1.45}
           <div class="grp"><span class="lbl">Limba site-ului</span><div class="seg" data-k="lang"><button type="button" data-v="ro">Română</button><button type="button" data-v="rohu">RO + HU</button><button type="button" data-v="rohuen">RO + HU + EN</button></div></div>
         </div>
         <div class="card">
-          <div class="grp"><span class="lbl">Soluții personalizate <span class="ub">Ultra</span> <span class="opt">(opțional, prețul îl primești în ofertă)</span></span><div class="tog" id="extras"></div>
+          <div class="grp"><span class="lbl">Soluții personalizate <span class="ub">Business</span> <span class="opt">(opțional, prețul îl primești în ofertă)</span></span><div class="tog" id="extras"></div>
             <small class="opt"><a href="/solutii-personalizate" style="text-decoration:underline">Vezi ce face fiecare</a></small></div>
           <p class="note-ultra" id="exNote" hidden></p>
           <p class="call" id="callNote" hidden>📞 <b>Soluțiile personalizate sunt la comandă (Custom).</b> Le discutăm la un apel scurt, de 10–15 minute, apoi primești prețul fix. Nu plătești nimic înainte de apel.</p>
@@ -300,10 +300,10 @@ textarea.inp{min-height:96px;resize:vertical;font-weight:500;line-height:1.45}
 
 <div class="peek" id="peek"><button type="button" class="btn g" id="peekBtn">👁 Vezi schița</button></div>
 <div class="ask" id="ask" role="dialog" aria-modal="true" aria-labelledby="askT" hidden><div class="ask-box">
-  <h3 id="askT">Disponibil cu Site Ultra</h3><p id="askP"></p>
-  <div class="pr"><span>Site Basic → Site Ultra</span><b>+699 lei</b></div>
-  <p style="font-size:13.5px">Ultra are până la 5 pagini, design animat, efecte premium și acces la soluții personalizate. Cât mai sunt locuri, poți alege și pachetul Gratuit, care are toate funcțiile Ultra.</p>
-  <div class="row"><button type="button" class="btn a" id="askYes">Da, trec la Ultra</button><button type="button" class="btn g" id="askNo">Nu, rămân pe Basic</button></div>
+  <h3 id="askT">Disponibil cu Business</h3><p id="askP"></p>
+  <div class="pr"><span>Start → Business</span><b>+699 lei</b></div>
+  <p style="font-size:13.5px">Business are până la 5 pagini, design animat, efecte premium și acces la soluții personalizate. Cât mai sunt locuri, poți alege și pachetul Gratuit, care are toate funcțiile Business.</p>
+  <div class="row"><button type="button" class="btn a" id="askYes">Da, trec la Business</button><button type="button" class="btn g" id="askNo">Nu, rămân pe Start</button></div>
 </div></div>
 <div class="sheet" id="sheet" hidden><div class="bphone"><span class="sketch">SCHIȚĂ · designul final îl facem noi</span><div class="screen live" id="scr2"></div></div><button type="button" class="btn a" id="closeSheet">Închide previzualizarea</button></div>
 
@@ -315,7 +315,7 @@ const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const REDUCE=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const STEPS=["Afacerea","Aspectul","Conținutul","Pachet","Trimite"];
 const BOOK=[["form","Formular pe site"],["mero","Mero"],["fresha","Fresha"],["booksy","Booksy"],["whatsapp","WhatsApp"],["phone","Telefon"]];
-const PLANS=[["Gratuit (primele 5)","Gratuit","primele 5 afaceri, cu funcții Ultra","0 lei"],["Basic","Site Basic","o pagină, rapid","500 lei"],["Ultra","Site Ultra","până la 5 pagini, premium","1199 lei"],["Custom","Custom","site sau aplicație web la comandă","preț stabilit la apel"]];
+const PLANS=[["Gratuit (primele 5)","Gratuit","primele 5 afaceri, cu funcții Business","0 lei"],["Basic","Start","o pagină, rapid","500 lei"],["Ultra","Business","până la 5 pagini, premium","1199 lei"],["Custom","Custom","site sau aplicație web la comandă","preț stabilit la apel"]];
 const COMBOS=[["Noapte & auriu","#C9A45C","#3A2C14"],["Ocean","#19A7A0","#4C63FF"],["Coral & piersică","#FF6B61","#FFB020"],["Pădure","#2F7A5B","#C9A45C"],["Lavandă","#8E5BD6","#E5679B"],["Neon","#4C63FF","#E5679B"],["Ciocolată","#7A3D2B","#E5679B"],["Grafit","#F2F3F7","#4C63FF"]];
 const BGS=[["light","Luminos","",0],["dark","Întunecat","",0],["gradient","Gradient","2 culori",1],["animated","În mișcare","gradient animat",1]];
 const ULTRA_SECS=SECTIONS.filter(s=>s[2]).map(s=>s[0]);
@@ -338,12 +338,12 @@ const model=()=>({niche:C.niche,name:C.name,slogan:C.slogan,city:C.city,about:C.
 const isCustom=()=>C.plan==="Custom"||anyExtra();
 const offerName=()=>C.offer==="both"?"Servicii și produse":OFFER[C.offer][0];
 
-/* Ultra rules: Ultra-only options keep the free plan (first 5) or move Basic up to Ultra */
-/* Basic + an Ultra option: ask (+699 lei) instead of switching silently. "No" undoes the choice. */
+/* Business rules: Business-only options keep the free plan (first 5) or move Start up to Business */
+/* Start + an Business option: ask (+699 lei) instead of switching silently. "No" undoes the choice. */
 let askCb=null;
 function ensureUltra(reason,noteEl,undo){if(C.plan!=="Basic")return;
-  $("#askP").textContent=`${reason} face parte din Site Ultra. Pe Site Basic (o singură pagină) nu e inclus.`;
-  askCb=yes=>{if(yes){C.plan="Ultra";drawPlans();if(noteEl){noteEl.hidden=false;noteEl.textContent=`Am trecut pachetul pe Site Ultra, pentru ${reason.charAt(0).toLowerCase()+reason.slice(1)}.`}}
+  $("#askP").textContent=`${reason} face parte din Business. Pe Start (o singură pagină) nu e inclus.`;
+  askCb=yes=>{if(yes){C.plan="Ultra";drawPlans();if(noteEl){noteEl.hidden=false;noteEl.textContent=`Am trecut pachetul pe Business, pentru ${reason.charAt(0).toLowerCase()+reason.slice(1)}.`}}
     else{undo&&undo();if(noteEl)noteEl.hidden=true}drawAll();update()};
   $("#ask").hidden=false;$("#askYes").focus()}
 function closeAsk(yes){$("#ask").hidden=true;const f=askCb;askCb=null;f&&f(yes)}
@@ -361,10 +361,10 @@ function swatches(id,key){const list=[...new Set([...NICHES[C.niche].sw,...EXTRA
 function drawColors(){swatches("#color","color");swatches("#color2","color2");$("#c2wrap").hidden=!isUltraBg();
   $("#combos").innerHTML=COMBOS.map(([n,a,b])=>`<button type="button" class="combo" data-a="${a}" data-b="${b}" aria-pressed="${C.color.toUpperCase()===a.toUpperCase()&&C.color2.toUpperCase()===b.toUpperCase()}"><i style="background:linear-gradient(135deg,${a} 50%,${b} 50%)"></i>${n}</button>`).join("")}
 function drawBgs(){$("#bgs").innerHTML=BGS.map(([k,l,s,u])=>{const g=k==="light"?"#FAF9F6":k==="dark"?"#0F1115":`linear-gradient(135deg,${C.color},${C.color2}${k==="animated"?","+C.color:""})`;
-  return `<button type="button" class="bgc" data-bg="${k}" aria-pressed="${k===C.bg}"><span class="sw2 ${k==="animated"?"anim":""}" style="background:${g}"></span><span>${l}${u?'<span class="ub">Ultra</span>':""}${s?`<br><small>${s}</small>`:""}</span></button>`}).join("")}
+  return `<button type="button" class="bgc" data-bg="${k}" aria-pressed="${k===C.bg}"><span class="sw2 ${k==="animated"?"anim":""}" style="background:${g}"></span><span>${l}${u?'<span class="ub">Business</span>':""}${s?`<br><small>${s}</small>`:""}</span></button>`}).join("")}
 const FXI={none:"○","3d":"🧊",draw:"✏️",intro:"🎬"};
 function drawFx(){$("#fxs").innerHTML=EFFECTS.map(([k,l,d])=>`<button type="button" class="fx" data-fx="${k}" aria-pressed="${k===(C.fx||"none")}"><span class="fi">${FXI[k]}</span><b>${l}</b><small>${d}</small></button>`).join("")}
-function drawSecs(){$("#secs").innerHTML=SECTIONS.map(([k,l,u,p])=>`<button type="button" data-s="${k}" aria-pressed="${!!C.secs[k]}"><i></i><span>${l}${u?'<span class="ub">Ultra</span>':""}${p?`<span class="pb">${p}</span>`:""}</span></button>`).join("")}
+function drawSecs(){$("#secs").innerHTML=SECTIONS.map(([k,l,u,p])=>`<button type="button" data-s="${k}" aria-pressed="${!!C.secs[k]}"><i></i><span>${l}${u?'<span class="ub">Business</span>':""}${p?`<span class="pb">${p}</span>`:""}</span></button>`).join("")}
 function drawExtras(){$("#extras").innerHTML=EXTRAS.map(([k,l])=>`<button type="button" data-x="${k}" aria-pressed="${!!C.extras[k]}"><i></i><span>${l}</span></button>`).join("")}
 function drawCare(){$("#care").innerHTML=CARE.map(([k,l,p,d])=>`<button type="button" class="cp" data-c="${k}" aria-pressed="${k===C.care}"><b>${l}</b>${p?`<em>${p}</em>`:""}${d?`<span>${d}</span>`:'<span>poți adăuga oricând mai târziu</span>'}</button>`).join("")}
 const maxSvc=()=>C.offer==="both"?12:8;
@@ -398,7 +398,7 @@ function show(i){C.step=i;$$(".step").forEach(s=>s.hidden=+s.dataset.step!==i);d
   $("#next").textContent=i===4?"Trimite designul →":"Continuă →";$("#stepErr").textContent="";if(i===4)drawSum();save();
   const top=$(".cb-head").getBoundingClientRect().bottom+scrollY-90;if(scrollY>top)scrollTo({top,behavior:REDUCE?"auto":"smooth"})}
 function check(i){if(i===0&&!C.name.trim()){$("#name").focus();return "Scrie numele afacerii, ca să-l punem pe site."}
-  if(i===3){const u=checkBasic();if(u)return `Ai ales ${u}, care fac parte din Site Ultra. Alege Ultra (sau Gratuit, cât mai sunt locuri) ori scoate-le.`}return ""}
+  if(i===3){const u=checkBasic();if(u)return `Ai ales ${u}, care fac parte din Business. Alege Business (sau Gratuit, cât mai sunt locuri) ori scoate-le.`}return ""}
 $("#next").onclick=()=>{if(C.step<4){const e=check(C.step);if(e){$("#stepErr").textContent=e;return}show(C.step+1)}else submit()};
 $("#back").onclick=()=>show(Math.max(0,C.step-1));
 $("#prog").addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(!b)return;const to=+b.dataset.go;if(to>0&&!C.name.trim()){show(0);$("#stepErr").textContent=check(0);return}show(to)});
@@ -459,7 +459,7 @@ async function submit(){
   if(C.cPhone.replace(/\D/g,"").length<9){err.textContent="Lasă un număr de telefon complet, ca să te putem suna.";$("#cPhone").focus();return}
   if(C.cEmail&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(C.cEmail)){err.textContent="Adresa de email pare greșită.";$("#cEmail").focus();return}
   if(!$("#okC").checked){err.textContent="Bifează acordul ca să te putem contacta pentru demo.";return}
-  const u=checkBasic();if(u){err.textContent=`Ai ales ${u}, care fac parte din Site Ultra. Schimbă pachetul la pasul 4.`;return}
+  const u=checkBasic();if(u){err.textContent=`Ai ales ${u}, care fac parte din Business. Schimbă pachetul la pasul 4.`;return}
   err.textContent="";const id=reqId(),mk=$("#okM").checked,N=NICHES[C.niche];
   const finish=()=>{lockLead({id,name:C.cName,biz:C.name});$("#f").hidden=true;$(".pv").style.display="none";$("#peek").hidden=true;$("#done").hidden=false;$("#doneId").textContent="Cod cerere: "+id;
     $("#doneWa").href="https://wa.me/"+WA+"?text="+encodeURIComponent(`Salut! Am trimis designul pentru ${C.name} din constructor (cod ${id}). Vă trimit logo-ul și pozele.`);

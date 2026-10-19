@@ -95,7 +95,7 @@ async function sendLead(fields){
 (function(){
   const nav=document.querySelector("nav .wrap");if(!nav)return;
   const here=(location.pathname.split("/").pop()||"/").replace(/\.html$/,"")||"index";
-  const L=[["Pagini",[["/","Acasă",""],["/#cum","Cum lucrăm",""],["/preturi","Prețuri","pachete și comparație"],["/constructor","Constructor","construiește-ți site-ul"],["/solutii-personalizate","Soluții personalizate","funcții extra pentru Site Ultra"],["/blog","Blog","sfaturi pentru afaceri locale"]]],
+  const L=[["Pagini",[["/","Acasă",""],["/#cum","Cum lucrăm",""],["/preturi","Prețuri","pachete și comparație"],["/constructor","Constructor","construiește-ți site-ul"],["/solutii-personalizate","Soluții personalizate","funcții extra pentru pachetul Business"],["/blog","Blog","sfaturi pentru afaceri locale"]]],
            ["Site-uri pe domenii",[["/site-uri-saloane","Saloane și frizerii",""],["/site-uri-restaurante","Restaurante și cafenele",""],["/site-uri-service-auto","Service-uri auto",""]]],
            ["Altele",[["https://rais-pi.vercel.app/","Asistent AI (RAI)","răspunde clienților 24/7"],["/#intrebari","Întrebări frecvente",""]]]];
   const cta=nav.querySelector(":scope > .btn");const wrap=document.createElement("div");wrap.className="navr";nav.appendChild(wrap);if(cta)wrap.appendChild(cta);
@@ -103,7 +103,7 @@ async function sendLead(fields){
   const d=document.createElement("div");d.className="drawer";d.setAttribute("aria-hidden","true");
   d.innerHTML=`<div class="dpanel" role="dialog" aria-label="Meniu"><div class="dtop"><b>Meniu</b><button type="button" class="dclose" aria-label="Închide meniul">×</button></div>`+
     L.map(([t,items])=>`<div class="dsec">${t}</div>`+items.map(([h,n,s])=>{const k=h.replace(/^\//,"").replace(/\.html.*$/,"").replace(/#.*/,"")||"index";const cur=k===here&&!h.includes("#");return `<a class="dlink ${cur?"cur":""}" href="${h}"${h.startsWith("http")?' target="_blank" rel="noopener"':""}><span>${n}${s?`<br><small>${s}</small>`:""}</span><span>→</span></a>`}).join("")).join("")+
-    `<div class="dcta"><a class="btn a" href="/constructor">Construiește-ți site-ul</a><a class="btn g" href="https://wa.me/${WA}" target="_blank" rel="noopener">WhatsApp</a><a class="btn g" href="tel:+${WA}">Sună: 0740 267 706</a></div></div>`;
+    `<div class="dcta"><a class="btn a" href="/constructor">Construiește-ți site-ul</a><a class="btn g" href="tel:+${WA}">Sună: 0740 267 706</a></div></div>`;
   document.body.appendChild(d);
   const open=v=>{d.classList.toggle("open",v);d.setAttribute("aria-hidden",String(!v));b.setAttribute("aria-expanded",String(v));document.documentElement.style.overflow=v?"hidden":"";if(v)d.querySelector(".dclose").focus()};
   b.onclick=()=>open(true);d.querySelector(".dclose").onclick=()=>open(false);

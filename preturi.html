@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Prețuri site web Târgu Mureș: Basic 500 lei, Ultra 1199 lei | OHI Solutions</title>
-<meta name="description" content="Prețuri clare pentru site-uri în Târgu Mureș: Site Basic 500 lei, Site Ultra 1199 lei, administrare de la 127 lei/lună, asistent RAI. Demo gratuit, plătești doar dacă îți place.">
+<title>Prețuri site web Târgu Mureș: de la 99 lei/lună sau 500 lei o dată | OHI Solutions</title>
+<meta name="description" content="Prețuri clare pentru site-uri în Târgu Mureș: Start 500 lei, Business 1199 lei, administrare de la 127 lei/lună, asistent RAI. Demo gratuit, plătești doar dacă îți place.">
 <link rel="canonical" href="https://ohis-gamma.vercel.app/preturi">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ro_RO">
 <meta property="og:site_name" content="OHI Solutions">
-<meta property="og:title" content="Prețuri site web Târgu Mureș: Basic 500 lei, Ultra 1199 lei | OHI Solutions">
-<meta property="og:description" content="Prețuri clare pentru site-uri în Târgu Mureș: Site Basic 500 lei, Site Ultra 1199 lei, administrare de la 127 lei/lună, asistent RAI. Demo gratuit, plătești doar dacă îți place.">
+<meta property="og:title" content="Prețuri site web Târgu Mureș: de la 99 lei/lună sau 500 lei o dată | OHI Solutions">
+<meta property="og:description" content="Prețuri clare pentru site-uri în Târgu Mureș: Start 500 lei, Business 1199 lei, administrare de la 127 lei/lună, asistent RAI. Demo gratuit, plătești doar dacă îți place.">
 <meta property="og:url" content="https://ohis-gamma.vercel.app/preturi">
 <meta property="og:image" content="https://ohis-gamma.vercel.app/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -108,6 +108,31 @@ td .y{color:var(--ok);font-weight:800}td .n{color:rgba(255,255,255,.25)}td small
 .cta .row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 section[id]{scroll-margin-top:140px}
 </style>
+<style>
+/* packages: monthly or one-time */
+.seg{display:inline-flex;background:#0A0C13;border:1.5px solid var(--line);border-radius:999px;padding:5px;gap:4px;margin-top:26px;max-width:100%}
+.seg button{border:0;background:transparent;color:var(--mut);font:700 15px var(--fb);padding:11px 18px;border-radius:999px;cursor:pointer;display:flex;gap:8px;align-items:center}
+.seg button[aria-pressed=true]{background:var(--cobalt);color:#fff}
+.seg button small{font-weight:700;font-size:12px;background:rgba(43,196,138,.18);color:#7FE3B8;padding:3px 8px;border-radius:999px}
+.seg button[aria-pressed=true] small{background:rgba(255,255,255,.18);color:#fff}
+.pane[hidden]{display:none}
+.price .per{font:600 16px var(--fb);color:var(--mut)}
+.pc .tot{font-size:13.5px;color:var(--mut);border-top:1px dashed var(--line);padding-top:10px;margin-top:-4px}
+.pc .tot b{color:#C6CAD9}
+.pc .zero{display:inline-flex;align-self:flex-start;gap:6px;font-weight:700;font-size:13px;color:#7FE3B8;background:rgba(43,196,138,.12);border:1px solid rgba(43,196,138,.35);border-radius:999px;padding:5px 11px}
+.pc.onlym{border-style:dashed}
+.rules{margin-top:18px;display:grid;gap:12px}
+@media(min-width:900px){.rules{grid-template-columns:repeat(3,1fr)}}
+.rule{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:18px 20px}
+.rule b{display:block;font:800 17px var(--fd);margin-bottom:6px}
+.rule p{color:var(--mut);font-size:14.5px}
+.freebar{margin-top:14px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;border:1px solid rgba(255,176,32,.5);background:linear-gradient(90deg,rgba(255,176,32,.12),var(--card));border-radius:20px;padding:18px 20px}
+.freebar b{font:800 19px var(--fd)}
+.freebar p{color:var(--mut);font-size:15px;margin-top:4px}
+.freebar .mini{display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-size:13.5px;color:var(--mut)}
+.freebar .mini i{width:46px;height:26px;background:#17181B;border:1px solid rgba(255,176,32,.5);border-radius:7px;padding:3px 5px;display:grid;place-items:center}
+.freebar .mini i svg{width:100%;height:auto}
+</style>
 </head>
 <body>
 <nav><div class="wrap">
@@ -120,38 +145,54 @@ section[id]{scroll-margin-top:140px}
 <header class="ph"><div class="wrap">
   <span class="kick">Prețuri</span>
   <h1>Prețuri clare. <em class="s">Fără</em> surprize.</h1>
-  <p>Plătești o dată pentru site, doar după ce vezi demo-ul. Tot ce e lunar e opțional și se poate opri oricând.</p>
+  <p>Trei pachete: Start, Business și Pro. Le plătești lunar, cu totul inclus, sau o singură dată. În ambele cazuri vezi site-ul gata înainte să plătești ceva.</p>
 </div></header>
 
 <div class="jump"><div class="wrap">
-  <a href="#site"><i>1</i>Site-ul <small>o singură dată</small></a>
-  <a href="#lunar"><i>2</i>Lunar <small>opțional</small></a>
+  <a href="#site"><i>1</i>Pachete <small>lunar sau o dată</small></a>
+  <a href="#lunar"><i>2</i>Mentenanță <small>la plata unică</small></a>
   <a href="#extra"><i>3</i>Extra <small>la ofertă</small></a>
   <a href="#plata">Cum plătești</a>
 </div></div>
 
 <section id="site"><div class="wrap">
-  <div class="grp-h"><div><span class="num">1</span><h2>Site-ul tău</h2><p>Alegi pachetul. Plătești o singură dată, după ce aprobi demo-ul.</p></div><span class="tag-pay">💳 O singură plată · prețuri de lansare</span></div>
-  <div class="p3">
-    <div class="pc free"><span class="pill">Primele 5</span><h3>Gratuit</h3><p class="for">Pentru primele 5 afaceri din Târgu Mureș.</p>
-      <div class="price"><b>0</b><span>lei</span></div>
-      <ul><li>Funcțiile din Site Ultra</li><li>Efecte 3D, ilustrații sau intro</li><li>Programări sau comenzi online</li><li class="no">Exclusivitate pe zonă</li></ul>
-      <p class="for" style="margin-top:-6px">În schimbul unei recenzii și al acordului să-l arătăm.</p>
-      <a class="btn a" href="/constructor?pachet=gratuit">Ocupă un loc</a></div>
-    <div class="pc"><h3>Site Basic</h3><p class="for">O pagină curată și rapidă, ca să fii găsit și contactat.</p>
-      <div class="price"><b>500</b><span>lei</span><s>849 lei</s></div>
-      <ul><li>O pagină, toate informațiile</li><li>Perfect pe telefon</li><li>Apel, WhatsApp și hartă</li><li>Pregătit pentru Google</li></ul>
-      <a class="btn g" href="/constructor?pachet=basic">Vreau demo Basic</a></div>
-    <div class="pc top"><span class="pill">Cel mai ales</span><h3>Site Ultra</h3><p class="for">Site premium, cu funcții care aduc clienți.</p>
-      <div class="price"><b>1199</b><span>lei</span><s>1999 lei</s></div>
-      <ul><li>Până la 5 pagini, design animat</li><li>Efecte 3D, ilustrații sau intro animat</li><li>Programări sau comenzi online</li><li>Texte scrise pentru Google</li><li>Exclusivitate pe zonă 12 luni</li><li>Acces la soluții personalizate</li></ul>
-      <a class="btn c" href="/constructor?pachet=ultra">Vreau demo Ultra</a></div>
+  <div class="grp-h"><div><span class="num">1</span><h2>Pachete, <em class="s">cum vrei tu.</em></h2><p>Același site, două feluri de a plăti. Vezi site-ul gata înainte de orice plată.</p></div></div>
+  <div class="seg" role="group" aria-label="Mod de plată"><button type="button" data-mode="lunar" aria-pressed="true">Lunar <small>totul inclus</small></button><button type="button" data-mode="unic" aria-pressed="false">O singură plată</button></div>
+  <div class="pane" data-pane="lunar">
+  <div class="p3"><div class="pc "><h3>Start</h3><p class="for">Pentru afaceri noi care vor să fie găsite din prima zi.</p>
+      <div class="price"><b>99</b><span class="per">lei / lună</span></div>
+      <span class="zero">0 lei la început · contract 12 luni</span><ul><li>Site de o pagină, perfect pe telefon</li><li>Apel, WhatsApp și hartă</li><li>Găzduire și domeniu .ro incluse</li><li>Pregătit pentru Google</li><li>1 modificare pe lună (texte, prețuri, poze)</li></ul><p class="tot">Total pe 12 luni: <b>1.188 lei</b>, plătiți lunar</p>
+      <a class="btn g" href="/constructor?pachet=basic">Vreau demo Start</a></div><div class="pc top"><span class="pill">Recomandat</span><h3>Business</h3><p class="for">Pentru afaceri care vor ca site-ul să aducă clienți, nu doar să existe.</p>
+      <div class="price"><b>199</b><span class="per">lei / lună</span></div>
+      <span class="zero">0 lei la început · contract 12 luni</span><ul><li>Până la 5 pagini, design animat</li><li>Programări sau comenzi online</li><li>Găzduire și domeniu .ro incluse</li><li>Administrare inclusă: până la 5 modificări pe lună</li><li>Profil Google Business completat și legat de site</li><li>Exclusivitate pe zonă cât timp ești abonat</li></ul><p class="tot">Total pe 12 luni: <b>2.388 lei</b>. Separat ar fi 2.719 lei (Business cu plată unică + administrare 12 luni)</p>
+      <a class="btn c" href="/constructor?pachet=ultra">Vreau demo Business</a></div><div class="pc "><h3>Pro</h3><p class="for">Pentru cine primește multe întrebări și vrea să răspundă și noaptea.</p>
+      <div class="price"><b>299</b><span class="per">lei / lună</span></div>
+      <span class="zero">0 lei la început · contract 12 luni</span><ul><li>Tot ce e în Business</li><li>Asistent RAI 24/7 pe site, fără taxa de instalare</li><li>Răspunde în română, maghiară și engleză</li><li>Până la 10 modificări pe lună, în 48 de ore</li><li>Răspuns prioritar</li></ul><p class="tot">Total pe 12 luni: <b>3.588 lei</b>. Separat ar fi 4.219 lei (Business + RAI + instalare)</p>
+      <a class="btn g" href="/constructor?pachet=ultra">Vreau demo Pro</a></div></div>
+  <div class="rules">
+    <div class="rule"><b>Plătești prima lună după demo</b><p>Fără avans și fără taxă de pornire. Abonamentul începe abia după ce îți place site-ul și îl punem live.</p></div>
+    <div class="rule"><b>După 12 luni, alegi tu</b><p>Continui lunar și poți opri oricând, cu 30 de zile înainte. Domeniul e mereu pe numele tău.</p></div>
+    <div class="rule"><b>Vrei să ieși mai devreme?</b><p>Plătești doar diferența până la prețul cu plată unică (Start 500 lei, Business 1.199 lei) și site-ul rămâne al tău.</p></div>
   </div>
+  </div>
+  <div class="pane" data-pane="unic" hidden>
+  <div class="p3"><div class="pc "><h3>Start</h3><p class="for">O pagină curată și rapidă, ca să fii găsit și contactat.</p>
+      <div class="price"><b>500</b><span class="per">lei</span><s>849 lei</s></div>
+      <ul><li>O pagină, toate informațiile</li><li>Perfect pe telefon</li><li>Apel, WhatsApp și hartă</li><li>Pregătit pentru Google</li></ul>
+      <a class="btn g" href="/constructor?pachet=basic">Vreau demo Start</a></div><div class="pc top"><span class="pill">Recomandat</span><h3>Business</h3><p class="for">Site premium, cu funcții care aduc clienți.</p>
+      <div class="price"><b>1199</b><span class="per">lei</span><s>1999 lei</s></div>
+      <ul><li>Până la 5 pagini, design animat</li><li>Efecte 3D, ilustrații sau intro animat</li><li>Programări sau comenzi online</li><li>Texte scrise pentru Google</li><li>Exclusivitate pe zonă 12 luni</li><li>Acces la soluții personalizate</li></ul>
+      <a class="btn c" href="/constructor?pachet=ultra">Vreau demo Business</a></div><div class="pc onlym"><h3>Pro</h3><p class="for">Business cu asistentul RAI inclus.</p>
+      <div class="price"><b>299</b><span class="per">lei / lună</span></div>
+      <p class="for">Pro există doar ca abonament, pentru că asistentul RAI e un serviciu lunar. La plata unică, îl poți adăuga separat (mai jos).</p>
+      <button type="button" class="btn g" data-mode-go="lunar">Vezi abonamentul Pro</button></div></div>
+  <p class="anch" style="margin-top:14px">La plata unică, administrarea și asistentul RAI sunt opționale: le găsești mai jos, la pasul 2.</p>
+  </div>
+  <div class="freebar"><div style="min-width:0"><b>🎁 Primele 5 afaceri din Târgu Mureș: site-ul gratuit</b><p>Cu funcțiile din Business, în schimbul unei recenzii și al acordului să-l arătăm. Fără contract.</p><span class="mini"><i><svg viewBox="0 0 120 64" aria-hidden="true"><rect x="10" y="10" width="28" height="54" fill="#6B6F75"/><rect x="44" y="4" width="28" height="60" fill="#7D7A5E"/><rect x="78" y="0" width="28" height="64" fill="#A87447"/><text x="58" y="56" text-anchor="middle" font-family="Archivo,Arial,sans-serif" font-weight="800" font-size="40" fill="#fff" letter-spacing="2">bbb</text></svg></i>1 loc ocupat · mai sunt 4</span></div><a class="btn a" href="/constructor?pachet=gratuit">Ocupă un loc</a></div>
   <div class="custom-row" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:var(--bg2);border:1px dashed rgba(255,176,32,.45);border-radius:20px;padding:18px 20px"><div style="min-width:0"><b style="font:800 19px var(--fd)">📞 Custom: site sau aplicație web la comandă</b><p style="color:var(--mut);font-size:15px;margin-top:4px">Pentru proiecte care nu încap într-un pachet. Le discutăm la un apel scurt, apoi primești prețul fix.</p></div><a class="btn g" href="/constructor?pachet=custom" style="white-space:normal;text-align:center">Cere un apel</a></div>
   <p class="anch"><b>Comparație:</b> la o agenție, un site de prezentare pornește des de la 2.500–5.000 lei, iar domeniul și găzduirea se plătesc de multe ori separat.</p>
-  <details class="cmp"><summary>Vezi comparația completă a pachetelor</summary>
-    <div class="tbl"><table>
-      <thead><tr><th>Ce include</th><th>Gratuit</th><th>Basic</th><th class="hl">Ultra</th></tr></thead>
+  <details class="cmp"><summary>Vezi comparația completă a funcțiilor</summary><div class="tbl"><table>
+      <thead><tr><th>Ce include</th><th>Gratuit</th><th>Start</th><th class="hl">Business / Pro</th></tr></thead>
       <tbody>
         <tr><td>Demo gratuit înainte de plată</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
         <tr><td>Design cu numele, culorile și logo-ul tău</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
@@ -171,7 +212,7 @@ section[id]{scroll-margin-top:140px}
 </div></section>
 
 <section id="lunar" style="background:var(--bg2)"><div class="wrap">
-  <div class="grp-h"><div><span class="num">2</span><h2>Lunar, <em class="s">doar dacă vrei.</em></h2><p>Nimic nu e obligatoriu. Le poți adăuga oricând, la orice pachet.</p></div><span class="tag-pay">🔁 Opțional · se oprește oricând</span></div>
+  <div class="grp-h"><div><span class="num">2</span><h2>Mentenanță, <em class="s">doar dacă vrei.</em></h2><p>Pentru site-urile cu plată unică. La abonamente, administrarea e deja inclusă.</p></div><span class="tag-pay">🔁 Opțional · se oprește oricând</span></div>
   <div class="m2">
     <div class="box"><h3>🛠️ Administrare și mentenanță</h3>
       <p class="d">Noi avem grijă de site, tu de afacere. Ne trimiți ce vrei schimbat și ne ocupăm noi.</p>
@@ -190,7 +231,7 @@ section[id]{scroll-margin-top:140px}
 <section id="extra"><div class="wrap">
   <div class="grp-h"><div><span class="num">3</span><h2>Extra, <em class="s">la ofertă.</em></h2><p>Soluțiile Custom le discutăm la un apel scurt, apoi primești prețul fix. Plătești doar ce aprobi.</p></div><span class="tag-pay">📄 Preț fix, în ofertă</span></div>
   <div class="x3">
-    <div class="ad"><span class="i">🧩</span><b>Soluții personalizate</b><p>Magazin mic, meniu QR, rezervări, vouchere, card de fidelitate. Doar cu Site Ultra sau Custom. 📞 Prețul se stabilește la apel.</p><a href="/solutii-personalizate">Vezi toate soluțiile →</a></div>
+    <div class="ad"><span class="i">🧩</span><b>Soluții personalizate</b><p>Magazin mic, meniu QR, rezervări, vouchere, card de fidelitate. Doar cu Business sau Custom. 📞 Prețul se stabilește la apel.</p><a href="/solutii-personalizate">Vezi toate soluțiile →</a></div>
     <div class="ad"><span class="i">🎨</span><b>Logo nou</b><p>2–3 variante de logo, gândite pentru site, Facebook și firmă.</p><em>La ofertă</em></div>
     <div class="ad"><span class="i">📍</span><b>Profil Google Business</b><p>Te ajutăm să-l creezi sau să-l completezi și îl legăm de site.</p><em>La ofertă</em></div>
     <div class="ad"><span class="i">🌐</span><b>Domeniul (.ro)</b><p>Îl cumperi tu, pe numele tău, anual, la registrator. Te ajutăm să-l alegi și îl conectăm gratuit.</p><em>Plătit separat</em></div>
@@ -212,11 +253,11 @@ section[id]{scroll-margin-top:140px}
   <span class="kick">Întrebări despre preț</span>
   <h2>Ce ne întreabă <em class="s">toată lumea.</em></h2>
   <div class="faq">
-    <details open><summary>Există costuri lunare obligatorii?</summary><p>Nu. Plătești o dată pentru site, iar domeniul îl plătești anual, la registrator. Administrarea (de la 127 lei/lună) și asistentul RAI (99,99 lei/lună) sunt opționale.</p></details>
+    <details open><summary>Există costuri lunare obligatorii?</summary><p>Doar dacă alegi un abonament (Start, Business sau Pro): contract de 12 luni, cu găzduire, domeniu și modificări incluse. Cu plata unică, plătești o dată pentru site, iar domeniul îl plătești anual, la registrator; administrarea (de la 127 lei/lună) și asistentul RAI (99,99 lei/lună) sunt opționale.</p></details>
     <details><summary>Ce înseamnă „preț de lansare”?</summary><p>Suntem la început, așa că primii clienți prind un preț mai mic. După lansare, trecem la prețurile standard afișate tăiat.</p></details>
-    <details><summary>Ce primesc dacă iau un loc gratuit?</summary><p>Un site cu funcțiile din Site Ultra, fără exclusivitatea pe zonă. În schimb, îți cerem o recenzie sinceră și acordul să arătăm site-ul în portofoliu. Locurile sunt doar 5.</p></details>
-    <details><summary>Pot trece mai târziu de la Basic la Ultra?</summary><p>Da, oricând. Îți facem o ofertă pentru ce adăugăm.</p></details>
-    <details><summary>Cum plătesc?</summary><p>După ce aprobi demo-ul, primești un link de plată online, securizat, cu cardul. Administrarea lunară se plătește automat în fiecare lună sau o dată, pentru 3, 6 sau 12 luni.</p></details>
+    <details><summary>Ce primesc dacă iau un loc gratuit?</summary><p>Un site cu funcțiile din Business, fără exclusivitatea pe zonă. În schimb, îți cerem o recenzie sinceră și acordul să arătăm site-ul în portofoliu. Locurile sunt doar 5.</p></details>
+    <details><summary>Pot trece mai târziu de la Start la Business?</summary><p>Da, oricând. Îți facem o ofertă pentru ce adăugăm.</p></details>
+    <details><summary>Cum plătesc?</summary><p>După ce aprobi demo-ul, primești un link de plată online, securizat, cu cardul. Abonamentul se plătește automat în fiecare lună. Administrarea la plata unică se plătește lunar sau o dată, pentru 3, 6 sau 12 luni.</p></details>
   </div>
 </div></section>
 
@@ -230,5 +271,11 @@ section[id]{scroll-margin-top:140px}
 <footer><div class="wrap"><span>© 2026 OHI Solutions · Târgu Mureș</span><span><a href="/confidentialitate">Confidențialitate</a> · <a href="/termeni">Termeni</a> · <a href="/blog">Blog</a></span></div></footer>
 <script src="/mock.js"></script>
 <script>document.getElementById("terms").innerHTML=CARE.filter(c=>c[0]!=="none").map(([k,l,p,d])=>`<div class="term ${k==="m12"?"best":""}"><small>${k==="m1"?"Lunar":l.replace(" plătite înainte","")}</small><b>${p.replace("/lună","")}</b><span>${k==="m1"?"pe lună, fără angajament":d}</span>${k==="m12"?"<em>Cel mai avantajos</em>":""}</div>`).join("");</script>
+<script>
+(function(){const bs=document.querySelectorAll('.seg button'),ps=document.querySelectorAll('.pane');
+function go(m){bs.forEach(x=>x.setAttribute('aria-pressed',x.dataset.mode===m));ps.forEach(p=>p.hidden=p.dataset.pane!==m)}
+bs.forEach(b=>b.addEventListener('click',()=>go(b.dataset.mode)));
+document.querySelectorAll('[data-mode-go]').forEach(b=>b.addEventListener('click',()=>{go(b.dataset.modeGo);document.getElementById('site').scrollIntoView({behavior:'smooth'})}));})();
+</script>
 </body>
 </html>
