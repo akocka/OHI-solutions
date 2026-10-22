@@ -263,5 +263,7 @@ $("#hrs").innerHTML=H.map(([a,b],i)=>`<span class="${i===ci?"now":""}">${a}${i==
 const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target)}}),{threshold:.15});
 document.querySelectorAll(".rv").forEach((el,i)=>{el.style.transitionDelay=(i%3)*80+"ms";io.observe(el)});
 </script>
+<script src="/exemple/fx.js"></script>
+<script src="/motion.js"></script>
 </body>
 </html>
