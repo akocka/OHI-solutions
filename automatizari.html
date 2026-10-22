@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>OHI Autopilot: automatizări și asistent AI pentru afaceri locale | OHI Solutions</title>
-<meta name="description" content="OHI Autopilot leagă site-ul de emailul, tabelul și telefonul tău: fiecare cerere e salvată, primește răspuns imediat și nu se pierde. Plus asistentul RAI 24/7 și cereri automate de recenzii.">
+<title>OHI Autopilot: automatizări pentru afaceri locale | OHI Solutions</title>
+<meta name="description" content="OHI Autopilot leagă site-ul de emailul, tabelul și telefonul tău: fiecare cerere e salvată, primește răspuns imediat și nu se pierde. Plus cereri automate de recenzii Google după lucrare.">
 <link rel="canonical" href="https://ohis-gamma.vercel.app/automatizari">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ro_RO">
 <meta property="og:site_name" content="OHI Solutions">
-<meta property="og:title" content="OHI Autopilot: automatizări și asistent AI pentru afaceri locale">
+<meta property="og:title" content="OHI Autopilot: automatizări pentru afaceri locale">
 <meta property="og:description" content="Fiecare cerere salvată, răspuns imediat clientului, recenzii cerute automat. Îl configurăm noi, tu primești clienții.">
 <meta property="og:url" content="https://ohis-gamma.vercel.app/automatizari">
 <meta property="og:image" content="https://ohis-gamma.vercel.app/og-image.png">
@@ -54,7 +54,7 @@
 .flowv .foot{margin-top:14px;font-size:12.5px;color:var(--mut)}
 /* modules */
 .mods3{display:grid;gap:16px;margin-top:34px}
-@media(min-width:900px){.mods3{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:900px){.mods3{grid-template-columns:repeat(2,1fr)}}
 .m3{position:relative;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:26px;display:flex;flex-direction:column;gap:12px;overflow:hidden}
 .m3::after{content:"";position:absolute;inset:auto -30% -50% auto;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,var(--g,rgba(76,99,255,.18)),transparent 65%);pointer-events:none}
 .m3 .ico{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:26px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
@@ -63,12 +63,6 @@
 .m3 p{color:var(--mut);font-size:15.5px}
 .m3 ul{list-style:none;display:flex;flex-direction:column;gap:8px;font-size:15px;color:#C9CDDC;margin-top:4px}
 .m3 li{display:flex;gap:9px}.m3 li::before{content:"✓";color:var(--ok);font-weight:800}
-/* RAI chat demo */
-.chat{margin-top:6px;background:#0C0F1A;border:1px solid var(--line);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:8px;font-size:13.5px}
-.chat .b{max-width:86%;padding:8px 11px;border-radius:13px;line-height:1.35}
-.chat .u{align-self:flex-end;background:var(--cobalt);color:#fff;border-bottom-right-radius:4px}
-.chat .r{align-self:flex-start;background:#1B2136;border-bottom-left-radius:4px}
-.chat .lbl{font-size:11.5px;color:var(--mut);text-align:center}
 /* real example */
 .real{display:grid;gap:26px;align-items:center;background:linear-gradient(135deg,#1A1F33,#121626);border:1px solid rgba(255,176,32,.3);border-radius:28px;padding:28px}
 @media(min-width:900px){.real{grid-template-columns:1fr 1.1fr;padding:40px}}
@@ -135,22 +129,12 @@
 
 <section style="background:var(--bg2)"><div class="wrap">
   <span class="kick">Ce include</span>
-  <h2>Trei module. <em class="s">Alegi</em> ce îți trebuie.</h2>
+  <h2>Două module. <em class="s">Alegi</em> ce îți trebuie.</h2>
   <div class="mods3">
     <article class="m3"><span class="ico">⚡</span><span class="n">MODUL 01</span><h3>Cereri automate</h3>
       <p>Nicio cerere pierdută prin mesaje, apeluri ratate sau emailuri citite târziu.</p>
       <ul><li>Fiecare cerere salvată într-un tabel Google Sheets</li><li>Email instant către tine sau echipă</li><li>Răspuns automat trimis clientului</li><li>Reamintire dacă cererea n-a primit răspuns</li><li>Status: nou, sunat, ofertă trimisă, câștigat</li></ul></article>
-    <article class="m3" style="--g:rgba(255,176,32,.16)"><span class="ico">🤖</span><span class="n">MODUL 02</span><h3>Asistentul RAI 24/7</h3>
-      <p>Un asistent pe site care răspunde la întrebările de bază și preia cererea, inclusiv seara și în weekend.</p>
-      <ul><li>Răspunde din informațiile aprobate de tine</li><li>Preia numele, telefonul și ce dorește clientul</li><li>Cererea intră direct în fluxul de la modulul 01</li></ul>
-      <div class="chat" aria-label="Exemplu de conversație">
-        <span class="lbl">Exemplu de conversație (demo)</span>
-        <span class="b u">Bună, lucrați și sâmbăta?</span>
-        <span class="b r">Bună! Programul este luni–vineri, 9–18. Vreți să las o cerere și vă sunăm luni dimineață?</span>
-        <span class="b u">Da, vă rog.</span>
-        <span class="b r">Perfect. Îmi lăsați numele și un număr de telefon?</span>
-      </div></article>
-    <article class="m3" style="--g:rgba(43,196,138,.15)"><span class="ico">⭐</span><span class="n">MODUL 03</span><h3>Recenzii și follow-up</h3>
+    <article class="m3" style="--g:rgba(43,196,138,.15)"><span class="ico">⭐</span><span class="n">MODUL 02</span><h3>Recenzii și follow-up</h3>
       <p>Clienții mulțumiți uită să lase recenzii. Autopilot le amintește, la momentul potrivit.</p>
       <ul><li>Mesaj cu linkul de recenzie Google după lucrare</li><li>Follow-up după o ofertă trimisă</li><li>Mai multe recenzii înseamnă mai multă încredere pe Google Maps</li></ul></article>
   </div>
@@ -189,11 +173,11 @@
   <div>
     <span class="kick">Preț</span>
     <h2>Prețul depinde de <em class="s">ce</em> automatizăm.</h2>
-    <p class="intro" style="color:var(--mut);margin-top:14px;max-width:52ch">Un flux simplu de cereri costă altfel decât un asistent AI cu reamintiri și recenzii. De aceea vorbim întâi 15 minute, apoi primești prețul fix, înainte să plătești ceva.</p>
+    <p class="intro" style="color:var(--mut);margin-top:14px;max-width:52ch">Un flux simplu de cereri costă altfel decât unul cu reamintiri, statusuri și recenzii. De aceea vorbim întâi 15 minute, apoi primești prețul fix, înainte să plătești ceva.</p>
     <div class="faq">
       <details open><summary>Trebuie să am site făcut de OHI?</summary><p>Nu neapărat. Autopilot merge cel mai simplu cu site-urile noastre, dar de multe ori îl putem lega și de site-ul pe care îl ai deja. Verificăm la discuție.</p></details>
       <details><summary>Unde rămân datele clienților?</summary><p>În contul tău Google: tabelul și emailurile sunt ale tale. Noi doar configurăm legăturile.</p></details>
-      <details><summary>Ce se întâmplă dacă asistentul nu știe un răspuns?</summary><p>Nu inventează. Preia datele clientului și îți transmite cererea, ca să răspunzi tu.</p></details>
+      <details><summary>Ce văd clienții mei?</summary><p>Un mesaj scurt și clar, scris împreună cu tine, imediat după ce trimit cererea. Fără spam: doar mesajele pe care le aprobi.</p></details>
       <details><summary>Pot începe doar cu un modul?</summary><p>Da. Majoritatea încep cu Cererile automate și adaugă restul mai târziu.</p></details>
     </div>
   </div>
@@ -203,8 +187,7 @@
       <p style="color:var(--mut);font-size:14px;margin-top:-6px">Gratuit, fără obligații. Te sunăm noi.</p>
       <div class="f"><span>Ce te interesează?</span><div class="chips" id="aMods">
         <button type="button" data-v="Cereri automate" aria-pressed="false">⚡ Cereri automate</button>
-        <button type="button" data-v="Asistent RAI" aria-pressed="false">🤖 Asistent RAI</button>
-        <button type="button" data-v="Recenzii și follow-up" aria-pressed="false">⭐ Recenzii</button>
+                <button type="button" data-v="Recenzii și follow-up" aria-pressed="false">⭐ Recenzii</button>
       </div></div>
       <label class="f"><span>Numele afacerii *</span><input class="inp" id="aBiz" maxlength="60" autocomplete="organization"></label>
       <label class="f"><span>Numele tău *</span><input class="inp" id="aName" autocomplete="name"></label>

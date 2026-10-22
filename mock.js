@@ -95,7 +95,7 @@ async function sendLead(fields){
 (function(){
   const nav=document.querySelector("nav .wrap");if(!nav)return;
   const here=(location.pathname.split("/").pop()||"/").replace(/\.html$/,"")||"index";
-  const L=[["Pagini",[["/","Acasă",""],["/#cum","Cum lucrăm",""],["/preturi","Prețuri","pachete și comparație"],["/constructor","Trimite datele","pentru demo-ul tău gratuit"],["/automatizari","OHI Autopilot","automatizări, asistent AI, recenzii"],["/solutii-personalizate","Soluții personalizate","funcții extra pentru pachetul Business"],["/blog","Blog","sfaturi pentru afaceri locale"]]],
+  const L=[["Pagini",[["/","Acasă",""],["/#cum","Cum lucrăm",""],["/preturi","Prețuri","pachete și comparație"],["/constructor","Trimite datele","pentru demo-ul tău gratuit"],["/automatizari","OHI Autopilot","cereri automate și recenzii"],["/solutii-personalizate","Soluții personalizate","funcții extra pentru pachetul Business"],["/blog","Blog","sfaturi pentru afaceri locale"]]],
            ["Site-uri pe domenii",[["/site-uri-saloane","Saloane și frizerii",""],["/site-uri-restaurante","Restaurante și cafenele",""],["/site-uri-service-auto","Service-uri auto",""]]],
            ["Altele",[["https://rais-pi.vercel.app/","Asistent AI (RAI)","răspunde clienților 24/7"],["/#intrebari","Întrebări frecvente",""]]]];
   const cta=nav.querySelector(":scope > .btn");const wrap=document.createElement("div");wrap.className="navr";nav.appendChild(wrap);if(cta)wrap.appendChild(cta);
