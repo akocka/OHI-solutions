@@ -277,8 +277,23 @@ form{background:#151A2B}input,.qchips button{background:#0B0D14}
 .big-tel{border-bottom-color:rgba(255,176,32,.5)}
 :focus-visible{outline-color:var(--amber)}
 </style>
+<style>/* 3D journey layer */
+[hidden]{display:none!important}
+#space{position:fixed;inset:0;width:100vw;height:100vh;height:100lvh;z-index:0;pointer-events:none;display:block}
+header{z-index:30}main,footer{position:relative;z-index:1}
+.has-space body{background:transparent}
+.has-space .hero::before,.has-space .hero::after{display:none}
+.has-space .final{background:linear-gradient(180deg,rgba(11,13,20,0),rgba(11,13,20,.35))}
+.has-space .rule{border-top-color:rgba(255,255,255,.06)}
+.has-space .sub,.has-space .lede{text-shadow:0 1px 18px rgba(11,13,20,.9)}
+.has-space footer{background:rgba(11,13,20,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.has-space .ex,.has-space form{background:rgba(21,26,43,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.has-space .mod .ic{background:rgba(21,26,43,.85)}
+</style>
+<script type="importmap">{"imports":{"three":"/vendor/three/three.module.js","three/addons/":"/vendor/three/addons/"}}</script>
 </head>
 <body class="intro">
+<canvas id="space" aria-hidden="true"></canvas>
 <header id="hd"><div class="wrap hd">
   <a class="logo" href="#top" aria-label="OHI Solutions"><svg viewBox="0 18 359 170" role="img"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#3346E8" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
   <nav id="nav"><a href="#cum">Cum lucrăm</a><a href="#client">Clienți</a><a href="#exemple" data-off="40">Exemple</a><a href="/automatizari">Automatizări</a><a href="#intrebari" data-off="40">Întrebări</a><a class="mlink" href="/blog">Blog</a><a class="mlink" href="tel:+40740267706">Sună: 0740 267 706</a></nav>
@@ -414,6 +429,7 @@ form{background:#151A2B}input,.qchips button{background:#0B0D14}
 </main>
 <footer><div class="wrap"><span>© 2026 OHI Solutions, Târgu Mureș</span><span><a href="/automatizari">Automatizări</a>&nbsp;&nbsp;<a href="/blog">Blog</a>&nbsp;&nbsp;<a href="/confidentialitate">Confidențialitate</a>&nbsp;&nbsp;<a href="/termeni">Termeni</a></span></div></footer>
 <script src="/motion.js"></script>
+<script type="module" src="/space.js"></script>
 <script>
 (function(){
   const {reduce,fine,clamp}=window.OHI;
