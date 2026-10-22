@@ -14,76 +14,73 @@
 <meta property="og:description" content="Spune-ne ce faci, ce prețuri ai și unde te găsesc clienții. Noi facem designul și în 24 de ore primești demo-ul site-ului tău, gratuit și fără avans.">
 <meta property="og:url" content="https://ohis-gamma.vercel.app/constructor">
 <meta property="og:image" content="https://ohis-gamma.vercel.app/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0B0D14">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/icon-512.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
-<link rel="stylesheet" href="/ohi.css">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+<link rel="stylesheet" href="/pages.css">
+<script type="importmap">{"imports":{"three":"/vendor/three/three.module.js","three/addons/":"/vendor/three/addons/"}}</script>
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Organization", "@id": "https://ohis-gamma.vercel.app/#org", "name": "OHI Solutions", "url": "https://ohis-gamma.vercel.app/", "logo": "https://ohis-gamma.vercel.app/icon-512.png", "telephone": "+40740267706", "address": {"@type": "PostalAddress", "addressLocality": "Târgu Mureș", "addressCountry": "RO"}}]</script>
 <style>
-.br-head{padding-block:40px 6px;max-width:760px}
-.br-head h1{font:800 clamp(36px,6.5vw,62px)/1 var(--fd);letter-spacing:-.03em;margin:12px 0 12px;text-wrap:balance}
-.br-head p{color:var(--mut);font-size:18px;max-width:58ch}
-.trust{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.trust span{display:inline-flex;gap:7px;align-items:center;font-weight:700;font-size:14px;background:rgba(43,196,138,.1);border:1px solid rgba(43,196,138,.35);color:#BFF2DA;border-radius:999px;padding:7px 13px}
-.trust span::before{content:"✓";color:var(--ok)}
-.brgrid{display:grid;gap:26px;margin:30px 0 80px}
-@media(min-width:1000px){.brgrid{grid-template-columns:1fr 340px;align-items:start}}
-.brgrid>*{min-width:0}
-.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;margin-bottom:14px}
-.card h2{font:800 21px var(--fd);display:flex;gap:12px;align-items:center;margin-bottom:4px}
-.card h2 i{font-style:normal;width:30px;height:30px;border-radius:50%;background:var(--amber);color:#14110A;display:grid;place-items:center;font-size:14px;flex:0 0 auto}
-.card .d{color:var(--mut);font-size:14.5px;margin-bottom:14px}
-.row2{display:grid;gap:12px}
-@media(min-width:640px){.row2{grid-template-columns:1fr 1fr}}
-.fl{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
-.fl>span{font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
-textarea.inp{min-height:110px;resize:vertical;font:500 16px/1.45 var(--fb)}
-.chips2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-@media(min-width:640px){.chips2{grid-template-columns:repeat(4,1fr)}}
-.chips2 button,.seg2 button{border:1.5px solid var(--line);background:#0A0C13;color:var(--ink);font:700 14.5px var(--fb);padding:12px 10px;border-radius:14px;cursor:pointer;text-align:left}
-.chips2 button[aria-pressed=true],.seg2 button[aria-pressed=true]{border-color:var(--amber);background:rgba(255,176,32,.12)}
-.seg2{display:flex;flex-wrap:wrap;gap:8px}
-.seg2 button{text-align:center;padding:10px 14px}
-.cks{display:grid;gap:8px}
-@media(min-width:640px){.cks{grid-template-columns:1fr 1fr}}
-.ck{display:flex;gap:10px;align-items:center;background:#0A0C13;border:1.5px solid var(--line);border-radius:14px;padding:11px 13px;font-weight:600;font-size:15px;cursor:pointer}
-.ck input{width:19px;height:19px;accent-color:var(--amber);flex:0 0 auto}
-.ck:has(input:checked){border-color:var(--amber)}
-.opt{color:var(--mut);font-weight:500;text-transform:none;letter-spacing:0}
-.side{position:sticky;top:90px;display:flex;flex-direction:column;gap:14px}
-.side .box{background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:20px}
-.side h3{font:800 18px var(--fd);margin-bottom:10px}
-.side ol{padding-left:18px;color:#C6CAD9;font-size:15px;display:flex;flex-direction:column;gap:8px}
-.side p{color:var(--mut);font-size:14.5px}
-.side a{color:var(--cobalt2);font-weight:700}
-.sendc .btn{width:100%;white-space:normal;text-align:center}
-.sendc .err{color:var(--err);font-weight:700;min-height:1.2em;margin:6px 0}
-.pv{color:var(--amber);font-size:13px;margin-top:8px}
-.done{text-align:center;padding:40px 22px}
-.done .ok{display:inline-grid;place-items:center;width:64px;height:64px;border-radius:50%;background:rgba(43,196,138,.15);color:var(--ok);font-size:32px;font-weight:800;margin-bottom:12px}
-.done h2{font:800 28px var(--fd);justify-content:center}
-.done p{color:var(--mut);margin-top:6px}
-.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.cn{padding:140px 0 90px}
+#brief{background:none!important;padding:0!important;display:block!important;border-radius:0;backdrop-filter:none!important}
+.br-head h1{font-weight:700;font-size:clamp(34px,4.4vw,60px);line-height:1.02;letter-spacing:-.04em;max-width:18ch}
+.br-head h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}.br-head h1 .ln>span{display:block;transform:translateY(105%);transition:transform 1.1s var(--ease)}
+.ready .br-head h1 .ln>span{transform:none}.br-head h1 .ln:nth-child(2)>span{transition-delay:.08s}
+.br-head .kick{display:none}
+.br-head>p{margin-top:20px;font-size:clamp(17px,1.5vw,20px);color:var(--slate);max-width:56ch}
+.trust{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:20px;font-size:14.5px;color:var(--slate)}
+.trust span{display:inline-flex;align-items:center;gap:8px}.trust span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--amber)}
+.brgrid{display:grid;gap:22px;margin-top:44px;align-items:start}
+@media(min-width:1000px){.brgrid{grid-template-columns:1fr 340px}}
+#brief .card{padding:26px;border-radius:22px;background:rgba(21,26,43,.85);box-shadow:inset 0 0 0 1px var(--line);margin-bottom:16px;display:grid;gap:14px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+#brief .card h2{font-size:22px;font-weight:700;letter-spacing:-.02em;display:flex;align-items:center;gap:12px;max-width:none;margin:0;line-height:1.2}
+#brief .card h2 i{font-style:normal;flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--amber);color:#14110A;font-size:15px}
+#brief .d{color:var(--slate);font-size:15px;margin-top:-6px}
+.row2{display:grid;gap:14px}@media(min-width:700px){.row2{grid-template-columns:1fr 1fr}}
+.fl{display:grid;gap:7px;font-size:14px;font-weight:500;color:#C6CAD4}
+.opt{font-style:normal;color:var(--slate);font-weight:400}
+.inp{font:500 16px var(--f);color:#fff;background:#0B0D14;border:1.5px solid #262C42;border-radius:12px;padding:12px 14px;width:100%;transition:border-color .2s}
+textarea.inp{min-height:110px;resize:vertical;line-height:1.5}
+.inp:focus{outline:none;border-color:var(--cobalt)}
+.chips2,.seg2{display:flex;flex-wrap:wrap;gap:8px}
+.chips2 button,.seg2 button{font:500 14.5px var(--f);color:#E3E5EB;background:#0B0D14;border:1.5px solid #262C42;border-radius:999px;padding:9px 14px;cursor:pointer;transition:border-color .2s,background .2s}
+.chips2 button[aria-pressed=true],.seg2 button[aria-pressed=true]{border-color:var(--amber);background:rgba(255,176,32,.14);color:#fff}
+.cks{display:flex;flex-wrap:wrap;gap:8px}
+.ck{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border-radius:12px;background:#0B0D14;box-shadow:inset 0 0 0 1.5px #262C42;font-size:14.5px;cursor:pointer}
+.ck input{accent-color:var(--amber);width:16px;height:16px}
+.ck:has(input:checked){box-shadow:inset 0 0 0 1.5px var(--amber);background:rgba(255,176,32,.1)}
+#brief .btn{justify-self:start;height:54px}
+.pv{font-size:13.5px;color:var(--slate)}
+#briefDone{text-align:center;justify-items:center}#briefDone .ok{width:56px;height:56px;border-radius:50%;background:var(--cobalt);display:grid;place-items:center;font-size:26px}
+.side{display:grid;gap:14px;position:sticky;top:96px}
+.side .box{padding:22px;border-radius:20px;background:rgba(21,26,43,.75);box-shadow:inset 0 0 0 1px var(--line)}
+.side h3{font-size:17px;margin-bottom:8px}.side p,.side li{color:var(--slate);font-size:15px}
+.side ol{padding-left:20px;display:grid;gap:6px}.side li::marker{color:var(--amber)}
+.side a{color:var(--ink)}
+.rm .br-head h1 .ln>span{transform:none}
 </style>
 </head>
-<body>
-<nav><div class="wrap">
-  <a class="brand" href="/" aria-label="OHI Solutions, pagina principală"><svg viewBox="0 18 359 170" role="img"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#4C63FF" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
-  <div class="links"><a href="/#cum">Cum lucrăm</a><a href="/preturi">Prețuri</a><a href="/constructor" style="color:var(--ink)">Trimite datele</a><a href="/automatizari">Automatizări</a></div>
-</div></nav>
-
-<main class="wrap">
-<header class="br-head">
+<body class="intro inner">
+<canvas id="space" aria-hidden="true"></canvas>
+<header id="hd"><div class="wrap hd">
+  <a class="logo" href="/" aria-label="OHI Solutions, pagina principală"><svg viewBox="0 18 359 170" role="img"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#4C63FF" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
+  <nav id="nav"><a href="/creare-site-web">Site-uri</a><a href="/automatizari">Automatizări</a><a href="/asistent-ai">Asistent AI</a><a href="/preturi">Prețuri</a><a href="/#exemple">Exemple</a><a class="mlink" href="/blog">Blog</a><a class="mlink" href="tel:+40740267706">Sună: 0740 267 706</a></nav>
+  <a class="btn p hcta" href="#brief" data-mag=".25"><span class="lb">Cere demo gratuit</span></a>
+  <button class="burger" id="burger" type="button" aria-label="Meniu" aria-expanded="false" aria-controls="nav"><i></i><i></i></button>
+</div></header>
+<main id="top">
+<div class="cn"><div class="wrap">
+<div class="br-head">
   <span class="kick">Demo gratuit</span>
-  <h1>Spune-ne despre afacerea ta. <em class="s">Designul</em> îl facem noi.</h1>
+  <h1><span class="ln"><span>Spune-ne despre afacerea ta.</span></span><span class="ln"><span>Designul îl facem noi.</span></span></h1>
   <p>Fără culori de ales și fără pași complicați. Ne dai informațiile pe care le-ar căuta un client, iar noi construim site-ul și ți-l trimitem pe telefon în 24 de ore.</p>
   <div class="trust"><span>Nu plătești nimic acum</span><span>Fără obligații</span><span>Durează 2–3 minute</span></div>
-</header>
+</div>
 
 <div class="brgrid">
 <form id="brief" novalidate>
@@ -119,7 +116,7 @@ textarea.inp{min-height:110px;resize:vertical;font:500 16px/1.45 var(--fb)}
     <div class="cks" id="fWant"><label class="ck"><input type="checkbox" value="Programări online"> <span>Programări online</span></label><label class="ck"><input type="checkbox" value="Listă de prețuri sau meniu"> <span>Listă de prețuri sau meniu</span></label><label class="ck"><input type="checkbox" value="Galerie de poze"> <span>Galerie de poze</span></label><label class="ck"><input type="checkbox" value="Recenzii de la clienți"> <span>Recenzii de la clienți</span></label><label class="ck"><input type="checkbox" value="Hartă și program"> <span>Hartă și program</span></label><label class="ck"><input type="checkbox" value="Site în română și maghiară"> <span>Site în română și maghiară</span></label></div>
     <div class="fl" id="fExtraWrap" hidden style="margin-top:14px"><span>Funcții extra alese</span><div class="cks" id="fExtra"></div></div>
     <div class="fl" style="margin-top:14px"><span id="fPlanL">Pachet <i class="opt">(îl poți schimba oricând)</i></span><div class="seg2" id="fPlan" role="group" aria-labelledby="fPlanL"><button type="button" data-v="" aria-pressed="true">Nu știu încă</button><button type="button" data-v="Gratuit (primele 5)" aria-pressed="false">Loc gratuit</button><button type="button" data-v="Start" aria-pressed="false">Start</button><button type="button" data-v="Business" aria-pressed="false">Business</button><button type="button" data-v="Pro" aria-pressed="false">Pro</button></div>
-      <p class="d" style="margin:6px 0 0"><a href="/preturi" style="color:var(--cobalt2);font-weight:700">Vezi ce include fiecare pachet →</a></p></div>
+      <p class="d" style="margin:6px 0 0"><a href="/preturi" style="color:var(--amber);font-weight:600">Vezi ce include fiecare pachet</a></p></div>
   </section>
 
   <section class="card sendc">
@@ -133,13 +130,13 @@ textarea.inp{min-height:110px;resize:vertical;font:500 16px/1.45 var(--fb)}
     <label class="chk"><input type="checkbox" id="lOk"> <span>Sunt de acord să fiu contactat(ă) de OHI Solutions pentru acest demo. *</span></label>
     <label class="chk" style="margin-top:8px"><input type="checkbox" id="lMk"> <span>Vreau să primesc ocazional oferte și noutăți de la OHI (WhatsApp, SMS sau email). Mă pot dezabona oricând. Detalii în <a href="/confidentialitate" target="_blank" rel="noopener">politica de confidențialitate</a>.</span></label>
     <p class="err" id="lErr" role="alert"></p>
-    <button class="btn a" type="submit" id="lSend">Trimite datele →</button>
+    <button class="btn p" type="submit" id="lSend" data-mag=".2"><span class="lb">Trimite datele</span></button>
     <p class="pv" id="pvNote" hidden>Previzualizare: aici formularul nu trimite nimic. Pe site-ul live, cererea ajunge la noi.</p>
   </section>
  </div>
  <section class="card done" id="briefDone" hidden>
    <span class="ok">✓</span><h2>Am primit datele!</h2><p>Te sunăm în cel mult 24 de ore și pornim demo-ul tău.</p><p><code id="leadId"></code></p>
-   <p style="margin-top:16px"><a class="btn g" href="tel:+40740267706">Vreau mai repede: sună-ne</a></p>
+   <p style="margin-top:16px"><a class="btn s" href="tel:+40740267706">Vreau mai repede: sună-ne</a></p>
  </section>
 </form>
 
@@ -149,10 +146,9 @@ textarea.inp{min-height:110px;resize:vertical;font:500 16px/1.45 var(--fb)}
   <div class="box"><h3>Preferi să vorbim?</h3><p>Sună-ne la <a href="tel:+40740267706">0740 267 706</a> și completăm împreună în 5 minute.</p></div>
 </aside>
 </div>
+</div></div>
 </main>
-
-<footer><div class="wrap"><span>© 2026 OHI Solutions · Târgu Mureș</span><span><a href="/confidentialitate">Confidențialitate</a> · <a href="/termeni">Termeni</a> · <a href="/blog">Blog</a></span></div></footer>
-
+<footer><div class="wrap"><span>© 2026 OHI Solutions, Târgu Mureș</span><span><a href="/preturi">Prețuri</a>&nbsp;&nbsp;<a href="/automatizari">Automatizări</a>&nbsp;&nbsp;<a href="/blog">Blog</a>&nbsp;&nbsp;<a href="/confidentialitate">Confidențialitate</a>&nbsp;&nbsp;<a href="/termeni">Termeni</a></span></div></footer>
 <script src="/mock.js"></script>
 <script>
 const $=s=>document.querySelector(s);
@@ -204,5 +200,9 @@ $("#brief").addEventListener("submit",async e=>{
   }catch(x){btn.disabled=false;btn.textContent="Trimite datele →";err.textContent="Nu s-a putut trimite. Încearcă din nou sau sună-ne la 0740 267 706."}
 });
 </script>
+<script src="/motion.js"></script>
+<script type="module" src="/space.js"></script>
+<script src="/site.js"></script>
+
 </body>
 </html>
