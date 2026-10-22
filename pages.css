@@ -95,4 +95,4 @@ html{background:#0B0D14}
 .ctabox h2{font-size:clamp(28px,3.4vw,42px);max-width:none}
 .ctabox p{color:#C9CDDC;margin-top:10px;max-width:52ch}
 .ctabox .ctarow{margin-top:0}
-body:has(.xbar.on) .oa-btn{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+body:has(.xbar.on) .oa-btn{bottom:calc(92px + env(safe-area-inset-bottom,0px))}body:has(.xbar.on) .oa-p{bottom:calc(164px + env(safe-area-inset-bottom,0px))}body:has(.xbar.on) .oa-tease{bottom:calc(162px + env(safe-area-inset-bottom,0px))}
