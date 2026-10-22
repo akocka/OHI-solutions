@@ -55,8 +55,8 @@
 <canvas id="space" aria-hidden="true"></canvas>
 <header id="hd"><div class="wrap hd">
   <a class="logo" href="/" aria-label="OHI Solutions, pagina principală"><svg viewBox="0 18 359 170" role="img"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#4C63FF" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
-  <nav id="nav"><a href="/creare-site-web">Site-uri</a><a href="/automatizari">Automatizări</a><a href="/asistent-ai" aria-current="page">Asistent AI</a><a href="/preturi">Prețuri</a><a href="/#exemple">Exemple</a><a class="mlink" href="/blog">Blog</a><a class="mlink" href="tel:+40740267706">Sună: 0740 267 706</a></nav>
-  <a class="btn p hcta" href="#demo" data-mag=".25"><span class="lb">Cere demo gratuit</span></a>
+  <nav id="nav"><a href="/creare-site-web">Site-uri</a><a href="/automatizari">Automatizări</a><a href="/asistent-ai" aria-current="page">Asistent AI</a><a href="/preturi">Prețuri</a><a href="/contact">Despre și contact</a><a class="mlink" href="/blog">Blog</a><a class="mlink" href="tel:+40740267706">Sună: 0740 267 706</a></nav>
+  <a class="btn p hcta" href="/contact#demo" data-mag=".25"><span class="lb">Cere demo gratuit</span></a>
   <button class="burger" id="burger" type="button" aria-label="Meniu" aria-expanded="false" aria-controls="nav"><i></i><i></i></button>
 </div></header>
 <main id="top">
@@ -65,7 +65,7 @@
     <nav class="crumb" aria-label="Navigare"><a href="/">Acasă</a><span>/</span><span>Asistent AI</span></nav>
     <h1><span class="ln"><span>Un asistent care</span></span><span class="ln"><span>răspunde clienților,</span></span><span class="ln"><span>și seara.</span></span></h1>
     <p class="lede fade d1">Asistentul AI făcut de OHI stă pe site-ul tău, răspunde la întrebările de bază și preia datele clientului când tu nu poți răspunde. În română, maghiară și engleză.</p>
-    <div class="ctarow fade d2"><a class="btn p" href="#demo" data-mag=".35"><span class="lb">Vreau asistentul</span></a><a class="btn s" href="/preturi" data-mag=".25"><span class="lb">Vezi prețurile</span></a></div>
+    <div class="ctarow fade d2"><a class="btn p" href="/contact#demo" data-mag=".35"><span class="lb">Vreau asistentul</span></a><a class="btn s" href="/preturi" data-mag=".25"><span class="lb">Vezi prețurile</span></a></div>
     <p class="pnote fade d3">Inclus în Pro · separat 99,99 lei pe lună</p>
   </div>
   <figure class="aichat fade d2" aria-label="Exemplu de conversație (demo)">
@@ -80,10 +80,7 @@
   <div class="feat c3">
     <div class="fc" data-rv data-tilt="5"><span class="ic">💬</span><h3>Răspunde la întrebări</h3><p>Prețuri, program, adresă, servicii, parcare. Răspunsuri scurte, din informațiile tale.</p></div>
     <div class="fc" data-rv="2" data-tilt="5"><span class="ic">📝</span><h3>Preia cererea</h3><p>Când clientul vrea o programare sau o ofertă, îi cere numele și telefonul și ți le trimite.</p></div>
-    <div class="fc" data-rv="3" data-tilt="5"><span class="ic">🌙</span><h3>Lucrează și seara</h3><p>Cele mai multe întrebări vin când ești ocupat sau închis. Asistentul nu lasă clientul fără răspuns.</p></div>
-    <div class="fc" data-rv data-tilt="5"><span class="ic">🌍</span><h3>Trei limbi</h3><p>Română, maghiară și engleză, după limba în care scrie clientul.</p></div>
     <div class="fc" data-rv="2" data-tilt="5"><span class="ic">🛑</span><h3>Nu inventează</h3><p>Dacă nu știe, spune asta și transmite întrebarea mai departe, către tine.</p></div>
-    <div class="fc" data-rv="3" data-tilt="5"><span class="ic">⚡</span><h3>Legat de automatizări</h3><p>Cererile pot intra direct în tabelul și emailul tău, la fel ca formularul de pe site.</p></div>
   </div>
 </div></section>
 
@@ -101,7 +98,7 @@
     <b>Inclus în Pro</b>
     <div class="price"><b data-count="99">99</b><span>,99 lei pe lună, separat</span></div>
     <p>La site-urile cu plată unică se adaugă 300 lei instalare, o singură dată.</p>
-    <a class="btn p" href="#demo" data-plan="Pro" data-mag=".3"><span class="lb">Alege Pro</span></a>
+    <a class="btn p" href="/contact?pachet=pro#demo" data-plan="Pro" data-mag=".3"><span class="lb">Alege Pro</span></a>
   </div>
 </div></section>
 
@@ -116,37 +113,12 @@
   </div>
 </div></section>
 
-<section class="final" id="demo"><div class="wrap fgrid">
-  <div>
-    <h2 data-rv>Vrei un asistent pe site?</h2>
-    <p class="sub" data-rv="2">Lasă-ne datele și te sunăm să vedem ce întrebări primești cel mai des.</p>
-    <a class="big-tel" href="tel:+40740267706" data-rv="3">0740 267 706</a>
-  </div>
-  <form class="lead" id="leadForm" novalidate data-rv="2" data-source="site-asistent-ai" data-topic="Asistent AI">
-    <div id="leadFields" class="lf">
-      <p class="fnote" id="planNote">Fără avans și fără obligații.</p>
-      <label>Numele afacerii<input id="qBiz" autocomplete="organization" maxlength="60" placeholder="Ex: Frizeria lui Andrei"></label>
-      <div class="lbl"><span id="qTypeL">Domeniul</span><div class="qchips" id="qType" role="group" aria-labelledby="qTypeL">
-        <button type="button" data-v="Salon / frizerie" aria-pressed="false">Salon / frizerie</button>
-        <button type="button" data-v="Restaurant / cafenea" aria-pressed="false">Restaurant / cafenea</button>
-        <button type="button" data-v="Service auto" aria-pressed="false">Service auto</button>
-        <button type="button" data-v="Altceva" aria-pressed="false">Altceva</button>
-      </div><input id="qOther" maxlength="60" placeholder="Ce fel de afacere ai?" hidden></div>
-      <label>Numele tău<input id="lName" autocomplete="name"></label>
-      <label>Telefon<input id="lPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="07xx xxx xxx"></label>
-      <label>Site-ul tău (opțional)<input id="qLink" inputmode="url" placeholder="facebook.com/afacereata"></label>
-      <input class="hp" id="lHp" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <label class="chk"><input type="checkbox" id="lOk"><span>Sunt de acord să fiu contactat(ă) de OHI Solutions pentru această cerere.</span></label>
-      <label class="chk"><input type="checkbox" id="lMk"><span>Vreau să primesc ocazional noutăți de la OHI. Mă pot dezabona oricând. Detalii în <a href="/confidentialitate" target="_blank" rel="noopener">politica de confidențialitate</a>.</span></label>
-      <p class="err" id="lErr" role="alert"></p>
-      <button class="btn p" type="submit" id="lSend" data-mag=".2"><span class="lb">Trimite cererea</span></button>
-      <p class="fnote" id="pvNote">Fără avans și fără obligații.</p>
-    </div>
-    <div class="done" id="leadDone" hidden><span class="okc">✓</span><b>Am primit cererea.</b><p>Te sunăm în cel mult 24 de ore.</p><code id="leadId"></code></div>
-  </form>
-</div></section>
+<section class="ctab"><div class="wrap"><div class="ctabox" data-rv>
+  <div><h2>Vrei un asistent pe site?</h2><p>Îl vezi funcționând pe demo-ul tău gratuit.</p></div>
+  <div class="ctarow"><a class="btn p" href="/contact?pachet=pro#demo" data-mag=".3"><span class="lb">Cere demo gratuit</span></a><a class="btn s" href="/#cum" data-mag=".25"><span class="lb">Încearcă demo-ul live</span></a></div>
+</div></div></section>
 </main>
-<footer><div class="wrap"><span>© 2026 OHI Solutions, Târgu Mureș</span><span><a href="/preturi">Prețuri</a>&nbsp;&nbsp;<a href="/automatizari">Automatizări</a>&nbsp;&nbsp;<a href="/blog">Blog</a>&nbsp;&nbsp;<a href="/confidentialitate">Confidențialitate</a>&nbsp;&nbsp;<a href="/termeni">Termeni</a></span></div></footer>
+<footer><div class="wrap"><span>© 2026 OHI Solutions, Târgu Mureș</span><span><a href="/contact">Despre și contact</a>&nbsp;&nbsp;<a href="/preturi">Prețuri</a>&nbsp;&nbsp;<a href="/automatizari">Automatizări</a>&nbsp;&nbsp;<a href="/blog">Blog</a>&nbsp;&nbsp;<a href="/confidentialitate">Confidențialitate</a>&nbsp;&nbsp;<a href="/termeni">Termeni</a></span></div></footer>
 <script src="/motion.js"></script>
 <script type="module" src="/space.js"></script>
 <script src="/site.js"></script>
@@ -162,5 +134,6 @@
   const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){play();io.disconnect()}},{threshold:.3});io.observe(document.getElementById('aibody'));
 })();
 </script>
+<script src="/assistant.js" defer></script>
 </body>
 </html>

@@ -20,7 +20,7 @@
   const lock=r=>{try{localStorage.setItem(LOCK,JSON.stringify({...r,at:Date.now()}))}catch(e){}};
   const Q={type:"",plan:""};const T0=performance.now();
   const qp=(new URLSearchParams(location.search).get('pachet')||'').toLowerCase();
-  const PL={start:'Start',basic:'Start',business:'Business',ultra:'Business',pro:'Pro'};
+  const PL={start:'Start',basic:'Start',business:'Business',ultra:'Business',pro:'Pro',gratuit:'Gratuit (primele 5)'};
   const planNote=$('#planNote');
   function setPlan(p){Q.plan=p||'';if(planNote)planNote.textContent=Q.plan?`Pachet ales: ${Q.plan}. Îl poți schimba oricând.`:'Fără avans și fără obligații.'}
   if(PL[qp])setPlan(PL[qp]);

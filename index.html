@@ -26,13 +26,32 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/site.css">
+<link rel="stylesheet" href="/demo.css">
 <script type="importmap">{"imports":{"three":"/vendor/three/three.module.js","three/addons/":"/vendor/three/addons/"}}</script>
+<style>
+.ldgrid{display:grid;gap:50px;align-items:center}
+@media(min-width:960px){.ldgrid{grid-template-columns:1fr .8fr}}
+.ldform{display:grid;gap:16px;margin-top:30px;max-width:520px}
+.ldform label{display:grid;gap:7px;font-size:14px;font-weight:500;color:#C6CAD4}
+.ldform input{font:500 17px var(--f);color:#fff;background:rgba(11,13,20,.85);border:1.5px solid #262C42;border-radius:12px;height:52px;padding:0 14px}
+.ldform input:focus{outline:none;border-color:var(--amber)}
+.ldform .qchips button{background:rgba(11,13,20,.85)}
+.ldform .qchips button[aria-pressed=true]{border-color:var(--amber);background:rgba(255,176,32,.14)}
+.ldsw{display:flex;gap:10px}
+.ldsw button{width:34px;height:34px;border-radius:50%;border:0;background:var(--c);cursor:pointer;box-shadow:0 0 0 2px rgba(255,255,255,.1);transition:transform .2s,box-shadow .2s}
+.ldsw button[aria-pressed=true]{box-shadow:0 0 0 2px #0B0D14,0 0 0 4px var(--amber);transform:scale(1.08)}
+.ldform .btn{justify-self:start;margin-top:6px}
+.ldph{justify-self:center;width:min(300px,78vw)}
+.ldph .phone{height:auto;aspect-ratio:9/18.6}
+.ldph .screen{height:100%}
+.ldcap{margin-top:14px;text-align:center;font-size:13.5px;color:var(--slate)}
+</style>
 </head>
 <body class="intro">
 <canvas id="space" aria-hidden="true"></canvas>
 <header id="hd"><div class="wrap hd">
   <a class="logo" href="#top" aria-label="OHI Solutions"><svg viewBox="0 18 359 170" role="img"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#3346E8" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
-  <nav id="nav"><a href="/creare-site-web">Site-uri</a><a href="/automatizari">Automatizări</a><a href="/asistent-ai">Asistent AI</a><a href="/preturi">Prețuri</a><a href="#exemple" data-off="40">Exemple</a><a class="mlink" href="/blog">Blog</a><a class="mlink" href="tel:+40740267706">Sună: 0740 267 706</a></nav>
+  <nav id="nav"><a href="/creare-site-web">Site-uri</a><a href="/automatizari">Automatizări</a><a href="/asistent-ai">Asistent AI</a><a href="/preturi">Prețuri</a><a href="/contact">Despre și contact</a><a class="mlink" href="/blog">Blog</a><a class="mlink" href="tel:+40740267706">Sună: 0740 267 706</a></nav>
   <a class="btn p hcta" href="#demo" data-mag=".25"><span class="lb">Cere demo gratuit</span></a>
   <button class="burger" id="burger" type="button" aria-label="Meniu" aria-expanded="false" aria-controls="nav"><i></i><i></i></button>
 </div></header>
@@ -55,27 +74,21 @@
   </figure>
 </div><span class="scrollcue" aria-hidden="true"></span></div>
 
-<section class="story rule" id="cum" data-pin><div class="pin"><div class="wrap sgrid">
+<section class="rule" id="cum"><div class="wrap ldgrid">
   <div>
-    <h2>Vezi site-ul înainte să plătești.</h2>
-    <p class="sub">La majoritatea firmelor, un site începe cu un avans. La noi începe cu site-ul tău, gata.</p>
-    <ol class="steps" id="steps">
-      <li class="step on"><b>Ne spui cine ești</b><span>Numele afacerii, ce oferi și un telefon. Durează un minut.</span></li>
-      <li class="step"><b>Primești demo-ul</b><span>În 24 de ore îți trimitem site-ul pe telefon, cu textele și pozele tale.</span></li>
-      <li class="step"><b>Decizi</b><span>Îți place? Alegi pachetul și îl publicăm. Nu? Nu datorezi nimic.</span></li>
-    </ol>
+    <h2 data-rv>Încearcă acum. Vezi cum ar arăta site-ul tău.</h2>
+    <p class="sub" data-rv="2">Scrie numele afacerii, alege domeniul și culoarea. Asta e prima schiță; demo-ul adevărat îl facem cu serviciile și pozele tale, în 24 de ore.</p>
+    <div class="ldform" data-rv="3">
+      <label>Numele afacerii<input id="ldName" maxlength="40" placeholder="Ex: Frizeria lui Andrei" autocomplete="off"></label>
+      <div class="lbl"><span>Domeniul</span><div class="qchips" id="ldNiche" role="group" aria-label="Domeniul">
+        <button type="button" data-v="frizerie" aria-pressed="true">Frizerie</button><button type="button" data-v="salon" aria-pressed="false">Salon</button><button type="button" data-v="restaurant" aria-pressed="false">Restaurant</button><button type="button" data-v="cofetarie" aria-pressed="false">Cofetărie</button><button type="button" data-v="service" aria-pressed="false">Service auto</button><button type="button" data-v="pensiune" aria-pressed="false">Pensiune</button><button type="button" data-v="altceva" aria-pressed="false">Altceva</button>
+      </div></div>
+      <div class="lbl"><span>Culoarea</span><div class="ldsw" id="ldSw" role="group" aria-label="Culoarea"></div></div>
+      <a class="btn p" href="#demo" id="ldGo" data-mag=".3"><span class="lb">Vreau demo-ul real, gratuit</span></a>
+    </div>
   </div>
-  <div class="sphone"><div class="srig"><div class="phone"><div class="screen" id="sscreen">
-    <div class="scr on"><div class="mform"><h4>Cere demo-ul gratuit</h4><p>Fără avans și fără obligații.</p>
-      <div class="mf"><small>Numele afacerii</small><b>Frizeria lui Andrei</b></div>
-      <div class="mf"><small>Domeniul</small><b>Salon / frizerie</b></div>
-      <div class="mf"><small>Telefon</small><b>07xx xxx xxx</b></div>
-      <div class="mbtn">Trimite cererea</div></div></div>
-    <div class="scr"><div class="mlock"><span class="t">09:41</span><span class="d">a doua zi</span>
-      <div class="note"><i>OHI</i><div><b>Demo-ul tău e gata</b><span>Deschide linkul ca să vezi site-ul Frizeria lui Andrei.</span></div></div></div></div>
-    <div class="scr"><img src="/clienti/bbb-m.webp" alt="" width="390" height="844"></div>
-  </div></div></div></div>
-</div></div></section>
+  <div class="ldph" data-rv="2"><div class="phone"><div class="screen live" id="ldScreen"></div></div><p class="ldcap">Schiță generată acum, în browserul tău.</p></div>
+</div></section>
 
 <section class="rule" id="client"><div class="wrap client">
   <div>
@@ -163,7 +176,8 @@
   </form>
 </div></section>
 </main>
-<footer><div class="wrap"><span>© 2026 OHI Solutions, Târgu Mureș</span><span><a href="/automatizari">Automatizări</a>&nbsp;&nbsp;<a href="/blog">Blog</a>&nbsp;&nbsp;<a href="/confidentialitate">Confidențialitate</a>&nbsp;&nbsp;<a href="/termeni">Termeni</a></span></div></footer>
+<footer><div class="wrap"><span>© 2026 OHI Solutions, Târgu Mureș</span><span><a href="/contact">Despre și contact</a>&nbsp;&nbsp;<a href="/preturi">Prețuri</a>&nbsp;&nbsp;<a href="/automatizari">Automatizări</a>&nbsp;&nbsp;<a href="/blog">Blog</a>&nbsp;&nbsp;<a href="/confidentialitate">Confidențialitate</a>&nbsp;&nbsp;<a href="/termeni">Termeni</a></span></div></footer>
+<script src="/mock.js"></script>
 <script src="/motion.js"></script>
 <script type="module" src="/space.js"></script>
 <script src="/site.js"></script>
@@ -172,15 +186,27 @@
   const {reduce,fine,clamp}=window.OHI;
   const hd=document.getElementById('hd');
   const rig=document.getElementById('rig'),stage=document.getElementById('stage');
-  const story=document.getElementById('cum'),steps=[...document.querySelectorAll('#steps .step')],scs=[...document.querySelectorAll('#sscreen .scr')];
-  const stepsEl=document.getElementById('steps');let last=-1;
   OHI.onFrame((mx,my)=>{
     if(fine&&!reduce&&rig){rig.style.setProperty('--rx',(mx*16).toFixed(2)+'deg');rig.style.setProperty('--ry',(-my*10).toFixed(2)+'deg')}
-    const p=parseFloat(getComputedStyle(story).getPropertyValue('--p'))||0;
-    stepsEl.style.setProperty('--p',p);story.querySelector('.srig').style.setProperty('--p',p);
-    const i=innerWidth<960?-1:Math.min(2,Math.floor(p*3));
-    if(i!==last&&i>=0){last=i;steps.forEach((s,k)=>s.classList.toggle('on',k===i));scs.forEach((s,k)=>s.classList.toggle('on',k===i))}
   });
+  /* live demo: renders a first sketch of the visitor's site in the phone */
+  (function(){
+    const scr=document.getElementById('ldScreen'),nm=document.getElementById('ldName'),ni=document.getElementById('ldNiche'),sw=document.getElementById('ldSw');
+    const st={niche:'frizerie',color:NICHES.frizerie.sw[0],name:''};let t=0;
+    function swatches(){sw.innerHTML=NICHES[st.niche].sw.map((c,i)=>`<button type="button" style="--c:${c}" aria-label="Culoarea ${i+1}" aria-pressed="${c===st.color}"></button>`).join('')}
+    function draw(anim){paint(scr,{niche:st.niche,name:st.name,color:st.color,secs:{book:1,prices:1,map:1,reviews:1}});
+      if(anim&&!reduce){scr.classList.remove('built');[...scr.querySelectorAll('.scroll>*')].forEach((e,i)=>e.style.transitionDelay=(i*.07)+'s');void scr.offsetWidth;requestAnimationFrame(()=>scr.classList.add('built'))}else scr.classList.add('built')}
+    nm.addEventListener('input',()=>{st.name=nm.value;clearTimeout(t);t=setTimeout(()=>draw(false),120)});
+    ni.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st.niche=b.dataset.v;st.color=NICHES[st.niche].sw[0];ni.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));swatches();draw(true)});
+    sw.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st.color=b.style.getPropertyValue('--c');swatches();draw(false)});
+    document.getElementById('ldGo').addEventListener('click',()=>{const biz=document.getElementById('qBiz');if(biz&&st.name)biz.value=st.name;
+      const map={frizerie:'Salon / frizerie',salon:'Salon / frizerie',restaurant:'Restaurant / cafenea',cofetarie:'Altceva',service:'Service auto',pensiune:'Altceva',altceva:'Altceva'};
+      const btn=document.querySelector(`#qType button[data-v="${map[st.niche]}"]`);if(btn)btn.click();
+      if(map[st.niche]==='Altceva'){const o=document.getElementById('qOther');if(o&&!o.value)o.value=NICHES[st.niche].label}});
+    swatches();
+    new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){draw(true);o.disconnect()}},{threshold:.3}).observe(scr);
+    draw(false);scr.classList.remove('built');
+  })();
 
   /* founders seats */
   const FREE_TAKEN=1;
@@ -189,5 +215,6 @@
   document.getElementById('seatsLeft').textContent=5-FREE_TAKEN;
 })();
 </script>
+<script src="/assistant.js" defer></script>
 </body>
 </html>

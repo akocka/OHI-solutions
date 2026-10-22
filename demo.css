@@ -1,0 +1,79 @@
+/* Live demo phone: site preview renderer styles (from the original builder). Used with mock.js paint(). */
+.screen{--fd:var(--f)}
+.screen{position:relative;height:100%;border-radius:34px;overflow:hidden;background:var(--sb);color:var(--si);transition:background .4s}
+.scroll{position:absolute;inset:0;overflow:hidden;padding-bottom:16px}
+.screen.live .scroll{overflow-y:auto;scrollbar-width:none}
+.screen.live .scroll::-webkit-scrollbar{display:none}
+.s-nav{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:50px 16px 12px}
+.s-logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:14.5px;min-width:0}
+.s-logo span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.s-mark{width:28px;height:28px;border-radius:calc(var(--sr,14px)*.6);background:var(--sa);color:var(--sai);display:grid;place-items:center;font-size:13px;flex:0 0 auto}
+.s-right{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.s-lang{font-size:10px;font-weight:800;border:1px solid currentColor;border-radius:999px;padding:2px 6px;opacity:.75}
+.s-burger{width:20px;height:13px;border-top:2px solid currentColor;border-bottom:2px solid currentColor;position:relative;opacity:.8}
+.s-burger::after{content:"";position:absolute;left:0;right:0;top:3.5px;border-top:2px solid currentColor}
+.s-hero{margin:4px 11px 0;border-radius:var(--sr,22px);padding:24px 16px 20px;background:var(--sh);position:relative;overflow:hidden}
+.s-hero .tag{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sa)}
+.s-hero h3{font-family:var(--shf);font-weight:var(--shw,800);text-transform:var(--stt,none);font-size:28px;line-height:1;margin:8px 0;letter-spacing:-.02em;word-break:break-word}
+.s-hero p{font-size:12.5px;opacity:.78;line-height:1.4}
+.s-cta{display:inline-block;margin-top:13px;background:var(--sa);color:var(--sai);font-weight:800;font-size:12.5px;padding:10px 15px;border-radius:var(--sbr,999px)}
+.s-hero .deco{position:absolute;right:-18px;bottom:-18px;width:110px;height:110px;border-radius:50%;background:var(--sa);opacity:.16}
+.s-h4{margin:16px 14px 8px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
+.s-feat{margin:11px 11px 0;display:flex;align-items:center;gap:10px;background:var(--sc);border-radius:calc(var(--sr,22px)*.7);padding:11px 13px;font-size:12px;font-weight:700}
+.s-feat i{width:26px;height:26px;border-radius:8px;background:var(--sa);color:var(--sai);display:grid;place-items:center;font-style:normal;flex:0 0 auto}
+.s-list{margin:0 11px;display:flex;flex-direction:column;gap:7px}
+.s-item{display:flex;justify-content:space-between;align-items:center;background:var(--sc);border-radius:calc(var(--sr,22px)*.6);padding:11px 13px;font-size:12.5px;font-weight:600}
+.s-item small{font-weight:500;opacity:.6}
+.s-item b{color:var(--sa);font-size:12px;white-space:nowrap}
+.s-slots{margin:0 11px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.s-slots span{background:var(--sc);border-radius:10px;padding:8px 0;text-align:center;font-size:11.5px;font-weight:700}
+.s-slots span.on{background:var(--sa);color:var(--sai)}
+.s-gal{margin:0 11px;display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:56px 56px;gap:6px}
+.s-gal i{border-radius:12px;background:linear-gradient(135deg,var(--sa),var(--sc));opacity:.85}
+.s-gal i:first-child{grid-row:span 2;opacity:1}
+.s-rev{margin:0 11px;background:var(--sc);border-radius:calc(var(--sr,22px)*.6);padding:12px 13px;display:flex;align-items:center;gap:10px}
+.s-rev b{font-size:22px}
+.s-rev span{color:var(--sa);letter-spacing:2px;font-size:13px}
+.s-rev small{display:block;opacity:.6;font-size:11px;letter-spacing:0}
+.s-map{margin:12px 11px 0;height:70px;border-radius:calc(var(--sr,22px)*.7);background:var(--sc);position:relative;overflow:hidden}
+.s-map::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(35deg,transparent 0 18px,rgba(127,127,127,.12) 18px 20px),repeating-linear-gradient(-55deg,transparent 0 26px,rgba(127,127,127,.1) 26px 28px)}
+.s-map::after{content:"";position:absolute;left:58%;top:32%;width:14px;height:14px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--sa)}
+.s-chat{position:absolute;right:11px;bottom:12px;display:flex;align-items:flex-end;gap:7px;opacity:0;transform:translateY(10px);transition:.5s .3s;z-index:4}
+.s-chat.on{opacity:1;transform:none}
+.s-chat span{background:#fff;color:#111;font-size:11px;font-weight:600;padding:8px 10px;border-radius:14px 14px 4px 14px;box-shadow:0 8px 20px rgba(0,0,0,.25);max-width:140px}
+.s-chat i{width:36px;height:36px;border-radius:50%;background:var(--cobalt);display:grid;place-items:center;flex:0 0 auto;box-shadow:0 8px 20px rgba(76,99,255,.45)}
+.s-chat i svg{width:19px;height:19px}
+.screen.wire{background:#070912}
+.screen.wire .s-hero,.screen.wire .s-feat,.screen.wire .s-item,.screen.wire .s-map,.screen.wire .s-cta,.screen.wire .s-mark,.screen.wire .s-slots span,.screen.wire .s-gal i,.screen.wire .s-rev{background:transparent!important;outline:1.5px solid rgba(255,255,255,.55);outline-offset:-1.5px}
+.screen.wire *{color:transparent!important}
+.screen.wire .s-burger,.screen.wire .deco,.screen.wire .s-map::after,.screen.wire .s-lang{opacity:0}
+.scan{position:absolute;left:0;right:0;height:80px;top:-80px;background:linear-gradient(180deg,transparent,rgba(123,140,255,.35),transparent);pointer-events:none;opacity:0;z-index:5}
+.screen.wire .scan{opacity:1;animation:scan .9s linear}
+.mphone .screen{border-radius:28px}
+.mphone .scroll{transform:scale(.84);transform-origin:top left;width:119%;height:119%}
+/* extra site-preview blocks (builder page) */
+.s-about{margin:0 11px;background:var(--sc);border-radius:calc(var(--sr,22px)*.6);padding:12px 13px;font-size:12px;line-height:1.45;opacity:.9}
+.s-ext{margin:0 11px;background:var(--sa);color:var(--sai);border-radius:var(--sbr,999px);padding:11px 13px;font-size:12.5px;font-weight:800;text-align:center}
+.s-team{margin:0 11px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.s-team i{aspect-ratio:1;border-radius:50%;border:2px dashed var(--sa);opacity:.7}
+.s-hours{margin:0 11px 0;background:var(--sc);border-radius:calc(var(--sr,22px)*.6);padding:10px 13px;font-size:11.5px;font-weight:700}
+.screen.wire .s-about,.screen.wire .s-ext,.screen.wire .s-hours,.screen.wire .s-team i{background:transparent!important;outline:1.5px solid rgba(255,255,255,.55);outline-offset:-1.5px}
+.s-vid{margin:0 11px;height:80px;border-radius:calc(var(--sr,22px)*.6);background:linear-gradient(135deg,var(--sa),var(--sc));display:grid;place-items:center;font-size:22px;color:var(--sai)}
+.screen[data-bg=animated]{background-size:300% 300%!important;animation:bgmove 9s ease-in-out infinite}
+.s-draw{position:absolute;right:6px;top:8px;width:96px;height:64px;fill:none;stroke:var(--sa);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:240;stroke-dashoffset:240;animation:sdraw 2.4s ease forwards;z-index:1}
+.s-intro{position:absolute;inset:0;z-index:6;background:var(--sb);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;animation:sintro 2.2s ease forwards;pointer-events:none}
+.s-intro .s-mark{width:54px;height:54px;font-size:24px;border-radius:16px;animation:sintroMark 1.2s cubic-bezier(.2,.8,.2,1) both}
+.s-intro b{font-size:15px;animation:sintroTxt 1.2s .3s ease both}
+.s-hero h3,.s-hero p,.s-hero .tag,.s-cta{position:relative;z-index:2}
+@media(prefers-reduced-motion:reduce){.s-3d{animation:none}.s-draw{animation:none;stroke-dashoffset:0}.s-intro{display:none}}
+.screen.shotbg{background-size:100% auto!important;background-repeat:no-repeat!important;background-position:50% 0;animation:shotscroll 26s ease-in-out infinite alternate}
+@keyframes scan{to{top:100%}}
+@keyframes bgmove{0%,100%{background-position:0% 30%}50%{background-position:100% 70%}}
+@keyframes sdraw{to{stroke-dashoffset:0}}
+@keyframes sintro{0%,60%{opacity:1}100%{opacity:0;visibility:hidden}}
+@keyframes sintroMark{from{transform:scale(.2) rotate(-90deg);opacity:0}}
+@keyframes sintroTxt{from{transform:translateY(10px);opacity:0}}
+@keyframes shotscroll{0%,8%{background-position:50% 0}92%,100%{background-position:50% 100%}}
+/* build-in animation for the live demo */
+.ldph .screen .scroll>*{opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .6s var(--ease)}
+.ldph .screen.built .scroll>*{opacity:1;transform:none}
