@@ -13,6 +13,7 @@ function start() {
   try { renderer = new THREE.WebGLRenderer({ canvas: cvs, antialias: true, alpha: false, powerPreference: 'high-performance' }); }
   catch (e) { return; }
   const mobile = innerWidth < 760;
+  const inner = document.body.classList.contains('inner');
   renderer.setPixelRatio(Math.min(devicePixelRatio, mobile ? 1.5 : 1.75));
   renderer.setClearColor(0x0B0D14, 1);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -42,7 +43,7 @@ function start() {
   outer.holes.push(roundedRect(new THREE.Path(), 1.6, 1.6, 0.36));
   const ringGeo = new THREE.ExtrudeGeometry(outer, { depth: 0.34, bevelEnabled: true, bevelThickness: 0.07, bevelSize: 0.06, bevelSegments: 5, curveSegments: 24 });
   ringGeo.center();
-  const ringMat = new THREE.MeshPhysicalMaterial({ color: 0x4C63FF, metalness: 0.55, roughness: 0.22, clearcoat: 1, clearcoatRoughness: 0.15, emissive: 0x1a2380, emissiveIntensity: 0.35, transparent: true, opacity: mobile ? 0.38 : 0.92 });
+  const ringMat = new THREE.MeshPhysicalMaterial({ color: 0x4C63FF, metalness: 0.55, roughness: 0.22, clearcoat: 1, clearcoatRoughness: 0.15, emissive: 0x1a2380, emissiveIntensity: 0.35, transparent: true, opacity: mobile ? 0.38 : (inner ? 0.5 : 0.92) });
 
   /* gates along the path; z = depth where each section lives */
   const GATES = [
@@ -52,11 +53,13 @@ function start() {
     { pos: [3.0, -0.5, -42], s: 1.0, tilt: -0.2 },      // seats / automations
     { pos: [0.9, 0.0, -61], s: 1.25, tilt: -0.17 },     // final: logo lockup behind the form
   ];
+  if (inner) GATES.forEach((g, i) => { g.pos = [5.6 + (i % 2) * 0.5, g.pos[1], g.pos[2]]; g.s *= 0.85; });
   const gates = GATES.map((g, i) => {
     const m = new THREE.Mesh(ringGeo, ringMat);
     m.position.set(...g.pos); m.scale.setScalar(g.s); m.rotation.z = g.tilt; m.userData = { ...g, i };
     scene.add(m); return m;
   });
+  if (inner) gates.forEach((g, i) => { if (i > 0) g.visible = false; });
 
   /* the amber dot */
   const dot = new THREE.Mesh(new THREE.SphereGeometry(0.13, 40, 40),
@@ -134,13 +137,13 @@ function start() {
       g.position.y = g.userData.pos[1] + Math.sin(t * 0.6 + i * 1.7) * 0.08;
     });
     /* final gate settles flat so it reads as the logo */
-    const fin = gates[4], fk = Math.min(1, Math.max(0, (sp - 0.86) / 0.12));
+    const fin = gates[4], fk = inner ? 0 : Math.min(1, Math.max(0, (sp - 0.86) / 0.12));
     fin.rotation.y *= 1 - fk; fin.rotation.x *= 1 - fk;
 
     /* amber dot: drifts ahead of the camera, then lands at the logo position of the final gate */
-    const ahead = new THREE.Vector3((mobile ? 2.5 : 2.2) + Math.sin(t * 0.7) * 0.5, 0.9 + Math.cos(t * 0.9) * 0.35, cam.position.z - 6);
+    const ahead = new THREE.Vector3((mobile ? 2.5 : (inner ? 4.6 : 2.2)) + Math.sin(t * 0.7) * 0.5, 0.9 + Math.cos(t * 0.9) * 0.35, cam.position.z - 6);
     const land = new THREE.Vector3(fin.position.x + 1.55 * fin.scale.x * 0.98, fin.position.y - 0.62 * fin.scale.x, fin.position.z + 0.2);
-    dot.position.lerpVectors(ahead, land, fk * fk);
+    dot.position.lerpVectors(ahead, land, inner ? 0 : fk * fk);
     halo.material.opacity = 0.7 + Math.sin(t * 2) * 0.15;
 
     kCob.position.set(cam.position.x - 3, cam.position.y + 2, cam.position.z - 6);

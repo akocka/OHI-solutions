@@ -1,0 +1,89 @@
+/* OHI inner pages: page hero, billing toggle, comparison, add-ons, facts, product blocks. Builds on /site.css */
+.ph{position:relative;padding:150px 0 70px}
+.ph h1{font-weight:700;font-size:clamp(40px,6vw,78px);line-height:1;letter-spacing:-.045em;max-width:15ch}
+.ph h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.ph h1 .ln>span{display:block;transform:translateY(105%);transition:transform 1.1s var(--ease)}
+.ready .ph h1 .ln>span{transform:none}
+.ph h1 .ln:nth-child(2)>span{transition-delay:.08s}.ph h1 .ln:nth-child(3)>span{transition-delay:.16s}
+.ph .lede{margin-top:24px;font-size:clamp(18px,1.6vw,21px);line-height:1.55;color:var(--slate);max-width:52ch}
+.crumb{display:flex;gap:8px;font-size:14px;color:var(--slate);margin-bottom:22px}
+.crumb a{text-decoration:none}.crumb a:hover{color:var(--ink)}
+.rm .ph h1 .ln>span{transform:none}
+
+/* billing toggle */
+.bill{display:inline-flex;position:relative;margin-top:34px;padding:5px;border-radius:999px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--line)}
+.bill button{position:relative;z-index:1;font:600 15px var(--f);color:var(--slate);background:none;border:0;border-radius:999px;padding:11px 20px;cursor:pointer;transition:color .3s}
+.bill button[aria-pressed=true]{color:#14110A}
+.bill i{position:absolute;z-index:0;top:5px;bottom:5px;left:5px;border-radius:999px;background:var(--amber);transition:transform .55s var(--ease),width .55s var(--ease)}
+.bill small{display:block;font-size:11.5px;font-weight:500;opacity:.8;margin-top:1px}
+
+/* plan cards (extends .plan from site.css) */
+.pl-set{display:none}.pl-set.on{display:grid}
+.plan .who{color:var(--slate);font-size:15px;margin-top:-8px;min-height:3em}
+.plan .tot{font-size:13.5px;color:var(--slate);border-top:1px solid var(--line);padding-top:12px}
+.plan .price{flex-wrap:wrap;row-gap:4px}
+.plan .was{font-size:16px;color:var(--slate);text-decoration:line-through;white-space:nowrap;margin-left:2px}
+.plan .price span{white-space:nowrap}
+.plan .tag{font-size:12.5px;font-weight:600;color:var(--amber)}
+.plan.ghost{background:transparent;box-shadow:inset 0 0 0 1.5px dashed var(--line);border:1.5px dashed var(--line)}
+.has-space .plan{background:rgba(21,26,43,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.has-space .plan.hl{box-shadow:0 0 0 2px var(--amber),0 40px 80px -40px rgba(255,176,32,.35)}
+.plan.hl h3 small{color:#14110A;background:var(--amber)}
+.plan li a{color:var(--ink);text-underline-offset:3px}
+
+/* facts row */
+.facts3{display:grid;gap:14px;margin-top:40px}
+@media(min-width:900px){.facts3{grid-template-columns:repeat(3,1fr)}}
+.f3{padding:22px;border-radius:20px;background:rgba(21,26,43,.6);box-shadow:inset 0 0 0 1px var(--line)}
+.f3 b{display:block;font-size:18px;margin-bottom:6px}
+.f3 span{color:var(--slate);font-size:15.5px}
+
+/* comparison */
+.cmp{margin-top:34px;border-radius:20px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line);background:rgba(21,26,43,.6)}
+.cmp summary{list-style:none;cursor:pointer;padding:20px 22px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.cmp summary::-webkit-details-marker{display:none}
+.cmp summary::after{content:"";width:11px;height:11px;border:solid var(--slate);border-width:0 2px 2px 0;transform:rotate(45deg);transition:transform .35s var(--ease)}
+.cmp[open] summary::after{transform:rotate(-135deg)}
+.tbl{overflow-x:auto;padding:0 6px 10px}
+.tbl table{width:100%;min-width:560px;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{padding:12px 16px;text-align:center;border-top:1px solid var(--line)}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl thead th{font-size:13.5px;color:var(--slate);font-weight:600;border-top:0}
+.tbl .y{color:var(--amber);font-weight:700}.tbl .n{color:var(--slate)}
+
+/* add-ons */
+.adds{display:grid;gap:16px;margin-top:clamp(36px,5vw,56px)}
+@media(min-width:900px){.adds{grid-template-columns:repeat(3,1fr)}}
+.add{position:relative;display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:22px;background:rgba(21,26,43,.82);box-shadow:inset 0 0 0 1px var(--line);text-decoration:none;transition:transform .6s var(--ease),box-shadow .4s;overflow:hidden}
+.add:hover{box-shadow:inset 0 0 0 1px rgba(76,99,255,.5),0 30px 60px -40px rgba(0,0,0,.7)}
+.add .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(255,176,32,.12);font-size:22px}
+.add h3{font-weight:700;font-size:20px}
+.add p{color:var(--slate);font-size:15.5px}
+.add .pr{margin-top:auto;font-weight:700;font-size:17px}
+.add .pr small{display:block;font-weight:500;font-size:13.5px;color:var(--slate);margin-top:2px}
+.add .go{font-weight:600;font-size:14.5px;color:var(--amber)}
+
+/* strip for founders seats on inner pages */
+.strip5{display:grid;gap:22px;align-items:center;margin-top:40px;padding:26px;border-radius:24px;background:linear-gradient(120deg,rgba(255,176,32,.12),rgba(76,99,255,.10));box-shadow:inset 0 0 0 1px rgba(255,176,32,.3)}
+@media(min-width:900px){.strip5{grid-template-columns:1fr auto}}
+.strip5 b{font-size:20px}.strip5 p{color:var(--slate);margin-top:4px}
+
+/* product page blocks */
+.feat{display:grid;gap:16px;margin-top:clamp(36px,5vw,56px)}
+@media(min-width:760px){.feat{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1100px){.feat.c3{grid-template-columns:repeat(3,1fr)}}
+.fc{padding:26px;border-radius:22px;background:rgba(21,26,43,.78);box-shadow:inset 0 0 0 1px var(--line);display:flex;flex-direction:column;gap:10px;transition:transform .6s var(--ease)}
+.fc .ic{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:rgba(76,99,255,.16);font-size:21px}
+.fc h3{font-weight:700;font-size:20px;letter-spacing:-.01em}
+.fc p{color:var(--slate);font-size:15.5px}
+.split{display:grid;gap:44px;align-items:center}
+@media(min-width:960px){.split{grid-template-columns:1fr 1fr}}
+.ticks{list-style:none;display:grid;gap:12px;margin-top:26px}
+.ticks li{position:relative;padding-left:30px;font-size:17px}
+.ticks li::before{content:"";position:absolute;left:0;top:.35em;width:18px;height:18px;border-radius:6px;background:rgba(255,176,32,.16);box-shadow:inset 0 0 0 1.5px var(--amber)}
+.ticks li::after{content:"";position:absolute;left:5px;top:.62em;width:8px;height:4px;border:solid var(--amber);border-width:0 0 2px 2px;transform:rotate(-45deg)}
+.ctarow{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.pnote{color:var(--slate);font-size:14.5px;margin-top:18px}
+
+/* inner pages: 3D rings sit further back so cards stay clean */
+html{background:#0B0D14}
