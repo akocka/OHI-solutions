@@ -69,7 +69,7 @@ const preset=k=>({niche:k,color:NICHES[k].sw[0],theme:"auto",style:"modern",secs
 const PRICES={free:0,basic:500,ultra:1199,raiMonth:"99,99",raiSetup:300};
 const SECTIONS=[["about","Despre noi"],["book","Programare / comenzi"],["prices","Prețuri"],["map","Program și hartă"],["contact","Formular de contact"],["reviews","Recenzii Google"],["gallery","Galerie"],["team","Echipa"],["faq","Întrebări frecvente"],
   ["offers","Oferte și cupoane",1],["beforeafter","Înainte și după",1],["video","Video de prezentare",1],["insta","Instagram pe site",1],["blog","Noutăți / blog",1],
-  ["rai","Asistent RAI 24/7",0,"+99,99 lei/lună"]];
+  ["rai","Asistent AI 24/7",0,"+99,99 lei/lună"]];
 const EXTRAS=[["shop","Magazin mic","câteva produse, coș și comandă"],["qr","Meniu QR","meniul pe telefon, schimbat oricând"],["table","Rezervare de masă","alegi ora și numărul de persoane"],["gcal","Programări în Google Calendar","fiecare programare intră direct în calendarul tău"],
   ["voucher","Vouchere cadou","clienții cumpără un voucher pentru altcineva"],["loyalty","Card de fidelitate","a 10-a vizită gratuită, de exemplu"],["cake","Constructor de comandă","tort, meniu sau pachet ales pas cu pas"],["multi","Mai multe locații","fiecare locație cu program și hartă"],["lang3","Încă o limbă","de ex. germană, pe lângă RO, HU, EN"]];
 const EFFECTS=[["none","Fără efecte","design curat"],["3d","Element 3D","obiect 3D care se rotește în prima secțiune"],["draw","Ilustrații desenate","desene animate de mână, unice pentru tine"],["intro","Intro animat","logo-ul tău apare animat la deschidere"]];
@@ -97,7 +97,7 @@ async function sendLead(fields){
   const here=(location.pathname.split("/").pop()||"/").replace(/\.html$/,"")||"index";
   const L=[["Pagini",[["/","Acasă",""],["/#cum","Cum lucrăm",""],["/preturi","Prețuri","pachete și comparație"],["/constructor","Trimite datele","pentru demo-ul tău gratuit"],["/automatizari","OHI Autopilot","automatizări, asistent AI, recenzii"],["/solutii-personalizate","Soluții personalizate","funcții extra pentru pachetul Business"],["/blog","Blog","sfaturi pentru afaceri locale"]]],
            ["Site-uri pe domenii",[["/site-uri-saloane","Saloane și frizerii",""],["/site-uri-restaurante","Restaurante și cafenele",""],["/site-uri-service-auto","Service-uri auto",""]]],
-           ["Altele",[["https://rais-pi.vercel.app/","Asistent AI (RAI)","răspunde clienților 24/7"],["/#intrebari","Întrebări frecvente",""]]]];
+           ["Altele",[["/automatizari#rai","Asistent AI","răspunde clienților 24/7"],["/#intrebari","Întrebări frecvente",""]]]];
   const cta=nav.querySelector(":scope > .btn");const wrap=document.createElement("div");wrap.className="navr";nav.appendChild(wrap);if(cta)wrap.appendChild(cta);
   const b=document.createElement("button");b.type="button";b.className="mbtn";b.setAttribute("aria-label","Deschide meniul");b.setAttribute("aria-expanded","false");b.innerHTML="<i></i><span>Meniu</span>";wrap.appendChild(b);
   const d=document.createElement("div");d.className="drawer";d.setAttribute("aria-hidden","true");
