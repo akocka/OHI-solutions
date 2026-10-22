@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Asistent AI pentru site: răspunde clienților și seara | OHI Solutions</title>
+<meta name="description" content="Asistentul AI făcut de OHI răspunde pe site-ul tău la prețuri, program și servicii și preia datele clientului, în română, maghiară și engleză. Inclus în Pro.">
+<link rel="canonical" href="https://ohis-gamma.vercel.app/asistent-ai">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:site_name" content="OHI Solutions">
+<meta property="og:title" content="Asistent AI pentru site: răspunde clienților și seara | OHI Solutions">
+<meta property="og:description" content="Asistentul AI făcut de OHI răspunde pe site-ul tău la prețuri, program și servicii și preia datele clientului, în română, maghiară și engleză. Inclus în Pro.">
+<meta property="og:url" content="https://ohis-gamma.vercel.app/asistent-ai">
+<meta property="og:image" content="https://ohis-gamma.vercel.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0D14">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/icon-512.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+<link rel="stylesheet" href="/pages.css">
+<script type="importmap">{"imports":{"three":"/vendor/three/three.module.js","three/addons/":"/vendor/three/addons/"}}</script>
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Organization", "@id": "https://ohis-gamma.vercel.app/#org", "name": "OHI Solutions", "url": "https://ohis-gamma.vercel.app/", "logo": "https://ohis-gamma.vercel.app/icon-512.png", "telephone": "+40740267706", "address": {"@type": "PostalAddress", "addressLocality": "Târgu Mureș", "addressCountry": "RO"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Ce se întâmplă dacă asistentul nu știe răspunsul?", "acceptedAnswer": {"@type": "Answer", "text": "Nu inventează. Spune că transmite întrebarea, preia numele și telefonul clientului și îți trimite cererea, ca să răspunzi tu."}}, {"@type": "Question", "name": "De unde știe ce să răspundă?", "acceptedAnswer": {"@type": "Answer", "text": "Din informațiile aprobate de tine: servicii, prețuri, program, adresă și întrebările frecvente. Le scriem împreună la configurare și le schimbăm oricând."}}, {"@type": "Question", "name": "În ce limbi răspunde?", "acceptedAnswer": {"@type": "Answer", "text": "În română, maghiară și engleză, în funcție de limba în care scrie clientul."}}, {"@type": "Question", "name": "Cât costă?", "acceptedAnswer": {"@type": "Answer", "text": "Este inclus în pachetul Pro. Separat costă 99,99 lei pe lună, plus 300 lei instalare la site-urile cu plată unică."}}, {"@type": "Question", "name": "Merge și pe site-ul pe care îl am deja?", "acceptedAnswer": {"@type": "Answer", "text": "De cele mai multe ori, da. Verificăm la o discuție scurtă cum se poate adăuga."}}]}]</script>
+<style>
+.ph .split h1{font-size:clamp(38px,4.6vw,64px);max-width:none}
+.aichat{justify-self:center;width:min(100%,420px);border-radius:26px;background:rgba(21,26,43,.9);box-shadow:0 0 0 1px var(--line),0 50px 90px -40px rgba(0,0,0,.8);overflow:hidden;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.aihead{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.av{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--cobalt);font-weight:700;font-size:14px}
+.aihead b{display:block;font-size:15px}.aihead small{display:flex;align-items:center;gap:6px;color:var(--slate);font-size:12.5px}
+.aihead small i{width:7px;height:7px;border-radius:50%;background:#2BC48A}
+.aibody{display:flex;flex-direction:column;gap:9px;padding:18px;min-height:360px}
+.bub{display:flex;opacity:0;transform:translateY(10px) scale(.98);transition:opacity .45s var(--ease),transform .55s var(--ease)}
+.bub.on{opacity:1;transform:none}
+.bub span{max-width:82%;padding:10px 13px;border-radius:16px;font-size:14.5px;line-height:1.4}
+.bub.u{justify-content:flex-end}.bub.u span{background:var(--cobalt);color:#fff;border-bottom-right-radius:5px}
+.bub.r span{background:#232A42;border-bottom-left-radius:5px}
+.typing{display:none;gap:4px;padding:12px 14px;background:#232A42;border-radius:16px;width:max-content}
+.typing.on{display:flex}.typing i{width:6px;height:6px;border-radius:50%;background:var(--slate);animation:tp 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes tp{50%{transform:translateY(-4px);opacity:.5}}
+.aichat figcaption{padding:12px 18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--slate)}
+.aiprice{padding:32px;border-radius:24px;background:rgba(21,26,43,.85);box-shadow:0 0 0 2px var(--amber),0 40px 80px -40px rgba(255,176,32,.3);display:flex;flex-direction:column;gap:14px}
+.aiprice>b{font-size:14px;color:var(--amber)}
+.aiprice .price{display:flex;align-items:baseline}.aiprice .price b{font-size:64px;font-weight:700;letter-spacing:-.04em;line-height:1}
+.aiprice .price span{color:var(--slate);font-size:16px}
+.aiprice p{color:var(--slate)}.aiprice .btn{align-self:flex-start}
+.rm .bub{opacity:1;transform:none}
+</style>
+</head>
+<body class="intro inner">
+<canvas id="space" aria-hidden="true"></canvas>
+<header id="hd"><div class="wrap hd">
+  <a class="logo" href="/" aria-label="OHI Solutions, pagina principală"><svg viewBox="0 18 359 170" role="img"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#4C63FF" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
+  <nav id="nav"><a href="/creare-site-web">Site-uri</a><a href="/automatizari">Automatizări</a><a href="/asistent-ai" aria-current="page">Asistent AI</a><a href="/preturi">Prețuri</a><a href="/#exemple">Exemple</a><a class="mlink" href="/blog">Blog</a><a class="mlink" href="tel:+40740267706">Sună: 0740 267 706</a></nav>
+  <a class="btn p hcta" href="#demo" data-mag=".25"><span class="lb">Cere demo gratuit</span></a>
+  <button class="burger" id="burger" type="button" aria-label="Meniu" aria-expanded="false" aria-controls="nav"><i></i><i></i></button>
+</div></header>
+<main id="top">
+<div class="ph"><div class="wrap split" style="align-items:center">
+  <div>
+    <nav class="crumb" aria-label="Navigare"><a href="/">Acasă</a><span>/</span><span>Asistent AI</span></nav>
+    <h1><span class="ln"><span>Un asistent care</span></span><span class="ln"><span>răspunde clienților,</span></span><span class="ln"><span>și seara.</span></span></h1>
+    <p class="lede fade d1">Asistentul AI făcut de OHI stă pe site-ul tău, răspunde la întrebările de bază și preia datele clientului când tu nu poți răspunde. În română, maghiară și engleză.</p>
+    <div class="ctarow fade d2"><a class="btn p" href="#demo" data-mag=".35"><span class="lb">Vreau asistentul</span></a><a class="btn s" href="/preturi" data-mag=".25"><span class="lb">Vezi prețurile</span></a></div>
+    <p class="pnote fade d3">Inclus în Pro · separat 99,99 lei pe lună</p>
+  </div>
+  <figure class="aichat fade d2" aria-label="Exemplu de conversație (demo)">
+    <div class="aihead"><span class="av">AI</span><div><b>Asistent · Atelierul Brici</b><small><i></i>online acum</small></div></div>
+    <div class="aibody" id="aibody"><div class="bub u" style="--d:0"><span>Bună, cât costă o tunsoare cu barbă?</span></div><div class="bub r" style="--d:1"><span>Bună! Tunsoarea cu barbă costă 90 de lei și durează cam 45 de minute. Vreți să vă programez?</span></div><div class="bub u" style="--d:2"><span>Da, mâine după 17?</span></div><div class="bub r" style="--d:3"><span>Sigur. Îmi lăsați numele și un număr de telefon? Frizerul vă confirmă ora într-un mesaj.</span></div><div class="bub u" style="--d:4"><span>Andrei, 0740 000 000</span></div><div class="bub r" style="--d:5"><span>Mulțumesc, Andrei! Am trimis cererea. Primiți confirmarea în curând.</span></div><div class="typing" id="typing"><i></i><i></i><i></i></div></div>
+    <figcaption>Exemplu de conversație pentru o afacere fictivă.</figcaption>
+  </figure>
+</div></div>
+
+<section class="rule"><div class="wrap">
+  <h2 data-rv>Ce face, concret.</h2>
+  <div class="feat c3">
+    <div class="fc" data-rv data-tilt="5"><span class="ic">💬</span><h3>Răspunde la întrebări</h3><p>Prețuri, program, adresă, servicii, parcare. Răspunsuri scurte, din informațiile tale.</p></div>
+    <div class="fc" data-rv="2" data-tilt="5"><span class="ic">📝</span><h3>Preia cererea</h3><p>Când clientul vrea o programare sau o ofertă, îi cere numele și telefonul și ți le trimite.</p></div>
+    <div class="fc" data-rv="3" data-tilt="5"><span class="ic">🌙</span><h3>Lucrează și seara</h3><p>Cele mai multe întrebări vin când ești ocupat sau închis. Asistentul nu lasă clientul fără răspuns.</p></div>
+    <div class="fc" data-rv data-tilt="5"><span class="ic">🌍</span><h3>Trei limbi</h3><p>Română, maghiară și engleză, după limba în care scrie clientul.</p></div>
+    <div class="fc" data-rv="2" data-tilt="5"><span class="ic">🛑</span><h3>Nu inventează</h3><p>Dacă nu știe, spune asta și transmite întrebarea mai departe, către tine.</p></div>
+    <div class="fc" data-rv="3" data-tilt="5"><span class="ic">⚡</span><h3>Legat de automatizări</h3><p>Cererile pot intra direct în tabelul și emailul tău, la fel ca formularul de pe site.</p></div>
+  </div>
+</div></section>
+
+<section class="rule"><div class="wrap split">
+  <div>
+    <h2 data-rv>Îl configurăm împreună.</h2>
+    <ul class="ticks" data-rv="2">
+      <li>Ne spui serviciile, prețurile și programul</li>
+      <li>Scriem împreună răspunsurile la întrebările frecvente</li>
+      <li>Îl testăm cu întrebări reale înainte să-l pornim</li>
+      <li>Îl actualizăm oricând se schimbă ceva la tine</li>
+    </ul>
+  </div>
+  <div class="aiprice" data-rv="2" data-tilt="5">
+    <b>Inclus în Pro</b>
+    <div class="price"><b data-count="99">99</b><span>,99 lei pe lună, separat</span></div>
+    <p>La site-urile cu plată unică se adaugă 300 lei instalare, o singură dată.</p>
+    <a class="btn p" href="#demo" data-plan="Pro" data-mag=".3"><span class="lb">Alege Pro</span></a>
+  </div>
+</div></section>
+
+<section class="rule" id="intrebari"><div class="wrap qa">
+  <h2 data-rv>Ce ne întreabă toată lumea.</h2>
+  <div class="faq" data-rv="2">
+    <details open><summary>Ce se întâmplă dacă asistentul nu știe răspunsul?</summary><p>Nu inventează. Spune că transmite întrebarea, preia numele și telefonul clientului și îți trimite cererea, ca să răspunzi tu.</p></details>
+    <details><summary>De unde știe ce să răspundă?</summary><p>Din informațiile aprobate de tine: servicii, prețuri, program, adresă și întrebările frecvente. Le scriem împreună la configurare și le schimbăm oricând.</p></details>
+    <details><summary>În ce limbi răspunde?</summary><p>În română, maghiară și engleză, în funcție de limba în care scrie clientul.</p></details>
+    <details><summary>Cât costă?</summary><p>Este inclus în pachetul Pro. Separat costă 99,99 lei pe lună, plus 300 lei instalare la site-urile cu plată unică.</p></details>
+    <details><summary>Merge și pe site-ul pe care îl am deja?</summary><p>De cele mai multe ori, da. Verificăm la o discuție scurtă cum se poate adăuga.</p></details>
+  </div>
+</div></section>
+
+<section class="final" id="demo"><div class="wrap fgrid">
+  <div>
+    <h2 data-rv>Vrei un asistent pe site?</h2>
+    <p class="sub" data-rv="2">Lasă-ne datele și te sunăm să vedem ce întrebări primești cel mai des.</p>
+    <a class="big-tel" href="tel:+40740267706" data-rv="3">0740 267 706</a>
+  </div>
+  <form class="lead" id="leadForm" novalidate data-rv="2" data-source="site-asistent-ai" data-topic="Asistent AI">
+    <div id="leadFields" class="lf">
+      <p class="fnote" id="planNote">Fără avans și fără obligații.</p>
+      <label>Numele afacerii<input id="qBiz" autocomplete="organization" maxlength="60" placeholder="Ex: Frizeria lui Andrei"></label>
+      <div class="lbl"><span id="qTypeL">Domeniul</span><div class="qchips" id="qType" role="group" aria-labelledby="qTypeL">
+        <button type="button" data-v="Salon / frizerie" aria-pressed="false">Salon / frizerie</button>
+        <button type="button" data-v="Restaurant / cafenea" aria-pressed="false">Restaurant / cafenea</button>
+        <button type="button" data-v="Service auto" aria-pressed="false">Service auto</button>
+        <button type="button" data-v="Altceva" aria-pressed="false">Altceva</button>
+      </div><input id="qOther" maxlength="60" placeholder="Ce fel de afacere ai?" hidden></div>
+      <label>Numele tău<input id="lName" autocomplete="name"></label>
+      <label>Telefon<input id="lPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="07xx xxx xxx"></label>
+      <label>Site-ul tău (opțional)<input id="qLink" inputmode="url" placeholder="facebook.com/afacereata"></label>
+      <input class="hp" id="lHp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="chk"><input type="checkbox" id="lOk"><span>Sunt de acord să fiu contactat(ă) de OHI Solutions pentru această cerere.</span></label>
+      <label class="chk"><input type="checkbox" id="lMk"><span>Vreau să primesc ocazional noutăți de la OHI. Mă pot dezabona oricând. Detalii în <a href="/confidentialitate" target="_blank" rel="noopener">politica de confidențialitate</a>.</span></label>
+      <p class="err" id="lErr" role="alert"></p>
+      <button class="btn p" type="submit" id="lSend" data-mag=".2"><span class="lb">Trimite cererea</span></button>
+      <p class="fnote" id="pvNote">Fără avans și fără obligații.</p>
+    </div>
+    <div class="done" id="leadDone" hidden><span class="okc">✓</span><b>Am primit cererea.</b><p>Te sunăm în cel mult 24 de ore.</p><code id="leadId"></code></div>
+  </form>
+</div></section>
+</main>
+<footer><div class="wrap"><span>© 2026 OHI Solutions, Târgu Mureș</span><span><a href="/preturi">Prețuri</a>&nbsp;&nbsp;<a href="/automatizari">Automatizări</a>&nbsp;&nbsp;<a href="/blog">Blog</a>&nbsp;&nbsp;<a href="/confidentialitate">Confidențialitate</a>&nbsp;&nbsp;<a href="/termeni">Termeni</a></span></div></footer>
+<script src="/motion.js"></script>
+<script type="module" src="/space.js"></script>
+<script src="/site.js"></script>
+<script>
+(function(){
+  const bs=[...document.querySelectorAll('#aibody .bub')],ty=document.getElementById('typing');
+  if(window.OHI&&OHI.reduce){bs.forEach(b=>b.classList.add('on'));return}
+  let run=false;
+  function play(){if(run)return;run=true;bs.forEach(b=>b.classList.remove('on'));let i=0;
+    (function next(){if(i>=bs.length){setTimeout(()=>{run=false;play()},5200);return}
+      const b=bs[i];if(b.classList.contains('r')){ty.classList.add('on');b.parentNode.insertBefore(ty,b);setTimeout(()=>{ty.classList.remove('on');b.classList.add('on');i++;setTimeout(next,700)},1100)}
+      else{b.classList.add('on');i++;setTimeout(next,900)}})()}
+  const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){play();io.disconnect()}},{threshold:.3});io.observe(document.getElementById('aibody'));
+})();
+</script>
+</body>
+</html>
