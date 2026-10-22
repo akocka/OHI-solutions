@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>OHI Autopilot: automatizări și asistent AI pentru afaceri locale | OHI Solutions</title>
+<meta name="description" content="OHI Autopilot leagă site-ul de emailul, tabelul și telefonul tău: fiecare cerere e salvată, primește răspuns imediat și nu se pierde. Plus asistentul RAI 24/7 și cereri automate de recenzii.">
+<link rel="canonical" href="https://ohis-gamma.vercel.app/automatizari">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:site_name" content="OHI Solutions">
+<meta property="og:title" content="OHI Autopilot: automatizări și asistent AI pentru afaceri locale">
+<meta property="og:description" content="Fiecare cerere salvată, răspuns imediat clientului, recenzii cerute automat. Îl configurăm noi, tu primești clienții.">
+<meta property="og:url" content="https://ohis-gamma.vercel.app/automatizari">
+<meta property="og:image" content="https://ohis-gamma.vercel.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0D14">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/icon-512.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="/ohi.css">
+<style>
+/* OHI Autopilot product page */
+.ah{padding-block:40px 70px;position:relative;overflow:hidden}
+.ah::before{content:"";position:absolute;right:-20%;top:-30%;width:80vw;max-width:1000px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(76,99,255,.22),rgba(76,99,255,0) 62%);pointer-events:none}
+.agrid{display:grid;gap:40px;align-items:center;position:relative}
+@media(min-width:980px){.agrid{grid-template-columns:1.02fr .98fr}}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,176,32,.12);border:1px solid rgba(255,176,32,.4);color:#FFD27A;border-radius:999px;padding:7px 13px;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 4px rgba(255,176,32,.2);animation:pulse 1.8s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(255,176,32,0)}}
+.ah h1{font:800 clamp(40px,6.4vw,74px)/.98 var(--fd);letter-spacing:-.035em;margin:16px 0 16px;text-wrap:balance}
+.ah .lede{color:var(--mut);font-size:clamp(17px,1.6vw,19.5px);max-width:56ch}
+.ah .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.ah .cta .btn{margin-top:0;padding:14px 22px;font-size:16px}
+.ah .note{margin-top:12px;color:var(--mut);font-size:14px}
+/* flow visual */
+.flowv{position:relative;background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:28px;padding:22px;box-shadow:0 40px 80px rgba(0,0,0,.35)}
+.flowv h4{font:700 13px var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+.flowv h4 span{color:var(--ok);display:inline-flex;align-items:center;gap:6px}
+.flowv h4 span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ok)}
+.chain{position:relative;display:flex;flex-direction:column;gap:12px}
+.chain::before{content:"";position:absolute;left:25px;top:24px;bottom:24px;width:2px;background:linear-gradient(var(--cobalt2),var(--amber));opacity:.35}
+.anode{position:relative;display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:16px;padding:11px 14px 11px 11px;opacity:.45;transition:opacity .4s,border-color .4s,background .4s}
+.anode .ic{position:relative;z-index:1;width:30px;height:30px;flex:none;border-radius:10px;display:grid;place-items:center;background:#0E1120;border:1px solid var(--line);font-size:16px}
+.anode b{display:block;font:700 15px var(--fd)}
+.anode small{display:block;color:var(--mut);font-size:13px}
+.anode .t{margin-left:auto;font:600 12px var(--fb);color:var(--mut);white-space:nowrap}
+.anode.on{opacity:1;border-color:rgba(123,140,255,.45);background:rgba(76,99,255,.08)}
+.anode.on .ic{border-color:var(--cobalt2)}
+.anode.past{opacity:.9}
+.flowv .foot{margin-top:14px;font-size:12.5px;color:var(--mut)}
+/* modules */
+.mods3{display:grid;gap:16px;margin-top:34px}
+@media(min-width:900px){.mods3{grid-template-columns:repeat(3,1fr)}}
+.m3{position:relative;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:26px;display:flex;flex-direction:column;gap:12px;overflow:hidden}
+.m3::after{content:"";position:absolute;inset:auto -30% -50% auto;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,var(--g,rgba(76,99,255,.18)),transparent 65%);pointer-events:none}
+.m3 .ico{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:26px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
+.m3 .n{font:800 13px var(--fb);letter-spacing:.14em;color:var(--mut)}
+.m3 h3{font:800 25px/1.08 var(--fd);letter-spacing:-.02em}
+.m3 p{color:var(--mut);font-size:15.5px}
+.m3 ul{list-style:none;display:flex;flex-direction:column;gap:8px;font-size:15px;color:#C9CDDC;margin-top:4px}
+.m3 li{display:flex;gap:9px}.m3 li::before{content:"✓";color:var(--ok);font-weight:800}
+/* RAI chat demo */
+.chat{margin-top:6px;background:#0C0F1A;border:1px solid var(--line);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:8px;font-size:13.5px}
+.chat .b{max-width:86%;padding:8px 11px;border-radius:13px;line-height:1.35}
+.chat .u{align-self:flex-end;background:var(--cobalt);color:#fff;border-bottom-right-radius:4px}
+.chat .r{align-self:flex-start;background:#1B2136;border-bottom-left-radius:4px}
+.chat .lbl{font-size:11.5px;color:var(--mut);text-align:center}
+/* real example */
+.real{display:grid;gap:26px;align-items:center;background:linear-gradient(135deg,#1A1F33,#121626);border:1px solid rgba(255,176,32,.3);border-radius:28px;padding:28px}
+@media(min-width:900px){.real{grid-template-columns:1fr 1.1fr;padding:40px}}
+.real .logo{display:inline-flex;align-items:center;gap:12px;font:800 18px var(--fd)}
+.real .logo svg{height:34px;width:auto}
+.real h3{font:800 clamp(26px,3vw,36px)/1.05 var(--fd);letter-spacing:-.02em;margin:14px 0 10px}
+.real p{color:var(--mut)}
+.steps-r{display:flex;flex-direction:column;gap:10px}
+.steps-r div{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.steps-r b{font:800 14px var(--fd);color:var(--amber);min-width:22px}
+.steps-r span{font-size:15px}
+/* how */
+.flow3{display:grid;gap:12px;margin-top:30px;counter-reset:f}
+@media(min-width:900px){.flow3{grid-template-columns:repeat(3,1fr)}}
+.fl3{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px}
+.fl3::before{counter-increment:f;content:"0" counter(f);font:800 42px/1 var(--fd);color:rgba(123,140,255,.35);display:block;margin-bottom:10px}
+.fl3 b{font:800 20px var(--fd);display:block;margin-bottom:6px}
+.fl3 p{color:var(--mut);font-size:15.5px}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.tools span{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px}
+/* form */
+.agrid2{display:grid;gap:30px;align-items:start}
+@media(min-width:900px){.agrid2{grid-template-columns:1fr 420px}}
+.aform .chips{display:flex;flex-wrap:wrap;gap:8px}
+.aform .chips button{background:#0A0C13;border:1.5px solid var(--line);border-radius:999px;padding:9px 13px;font-weight:600;font-size:14px;cursor:pointer}
+.aform .chips button[aria-pressed=true]{border-color:var(--amber);background:rgba(255,176,32,.12);color:#FFD27A}
+.aform .err{color:var(--err);font-size:14px;min-height:1em}
+.aform .ok{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;color:var(--mut)}
+.aform .ok input{margin-top:3px}
+.adone{text-align:center;padding:20px 6px}
+.adone b{font:800 22px var(--fd);display:block;margin:8px 0}
+@media(prefers-reduced-motion:reduce){.badge i{animation:none}.anode{opacity:1;transition:none}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="/" aria-label="OHI Solutions, pagina principală"><svg viewBox="0 18 359 170" role="img"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#4C63FF" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
+  <div class="links"><a href="/#cum">Cum lucrăm</a><a href="/preturi">Prețuri</a><a href="/automatizari" style="color:var(--ink)">Automatizări</a><a href="/solutii-personalizate">Soluții</a></div>
+  <a class="btn a" href="#discutie">Vreau o discuție</a>
+</div></nav>
+
+<main>
+<section class="ah"><div class="wrap agrid">
+  <div>
+    <span class="badge"><i></i>Nou · OHI Autopilot</span>
+    <h1>Afacerea ta răspunde clienților. <em class="s">Chiar</em> și când tu lucrezi.</h1>
+    <p class="lede">OHI Autopilot leagă site-ul de emailul, tabelul și telefonul tău. Fiecare cerere e salvată, clientul primește răspuns pe loc, iar după lucrare i se cere o recenzie. Noi configurăm totul, tu te ocupi de clienți.</p>
+    <div class="cta"><a class="btn a" href="#discutie">Vreau o discuție de 15 minute →</a><a class="btn g" href="tel:+40740267706">Sună: 0740 267 706</a></div>
+    <p class="note">Merge cu site-urile OHI și, de cele mai multe ori, cu site-ul pe care îl ai deja. Verificăm la discuție.</p>
+  </div>
+  <div class="flowv" aria-label="Exemplu: ce se întâmplă automat cu o cerere">
+    <h4>O cerere nouă, pas cu pas <span>automat</span></h4>
+    <div class="chain" id="chain">
+      <div class="anode"><span class="ic">📝</span><span><b>Cerere pe site</b><small>Clientul completează formularul</small></span><span class="t">0 sec</span></div>
+      <div class="anode"><span class="ic">📊</span><span><b>Salvată în Google Sheets</b><small>Nume, telefon, ce vrea, de unde a venit</small></span><span class="t">câteva sec</span></div>
+      <div class="anode"><span class="ic">📧</span><span><b>Email la tine</b><small>Știi imediat că ai un client nou</small></span><span class="t">câteva sec</span></div>
+      <div class="anode"><span class="ic">💬</span><span><b>Răspuns automat clientului</b><small>„Am primit cererea, te sunăm curând.”</small></span><span class="t">câteva sec</span></div>
+      <div class="anode"><span class="ic">⏰</span><span><b>Reamintire dacă nu ai sunat</b><small>Nicio cerere nu rămâne uitată</small></span><span class="t">la 48 h</span></div>
+      <div class="anode"><span class="ic">⭐</span><span><b>Cerere de recenzie Google</b><small>După ce ai terminat lucrarea</small></span><span class="t">după lucrare</span></div>
+    </div>
+    <p class="foot">Exemplu de flux. Pașii și textele le stabilim împreună, după afacerea ta.</p>
+  </div>
+</div></section>
+
+<section style="background:var(--bg2)"><div class="wrap">
+  <span class="kick">Ce include</span>
+  <h2>Trei module. <em class="s">Alegi</em> ce îți trebuie.</h2>
+  <div class="mods3">
+    <article class="m3"><span class="ico">⚡</span><span class="n">MODUL 01</span><h3>Cereri automate</h3>
+      <p>Nicio cerere pierdută prin mesaje, apeluri ratate sau emailuri citite târziu.</p>
+      <ul><li>Fiecare cerere salvată într-un tabel Google Sheets</li><li>Email instant către tine sau echipă</li><li>Răspuns automat trimis clientului</li><li>Reamintire dacă cererea n-a primit răspuns</li><li>Status: nou, sunat, ofertă trimisă, câștigat</li></ul></article>
+    <article class="m3" style="--g:rgba(255,176,32,.16)"><span class="ico">🤖</span><span class="n">MODUL 02</span><h3>Asistentul RAI 24/7</h3>
+      <p>Un asistent pe site care răspunde la întrebările de bază și preia cererea, inclusiv seara și în weekend.</p>
+      <ul><li>Răspunde din informațiile aprobate de tine</li><li>Preia numele, telefonul și ce dorește clientul</li><li>Cererea intră direct în fluxul de la modulul 01</li></ul>
+      <div class="chat" aria-label="Exemplu de conversație">
+        <span class="lbl">Exemplu de conversație (demo)</span>
+        <span class="b u">Bună, lucrați și sâmbăta?</span>
+        <span class="b r">Bună! Programul este luni–vineri, 9–18. Vreți să las o cerere și vă sunăm luni dimineață?</span>
+        <span class="b u">Da, vă rog.</span>
+        <span class="b r">Perfect. Îmi lăsați numele și un număr de telefon?</span>
+      </div></article>
+    <article class="m3" style="--g:rgba(43,196,138,.15)"><span class="ico">⭐</span><span class="n">MODUL 03</span><h3>Recenzii și follow-up</h3>
+      <p>Clienții mulțumiți uită să lase recenzii. Autopilot le amintește, la momentul potrivit.</p>
+      <ul><li>Mesaj cu linkul de recenzie Google după lucrare</li><li>Follow-up după o ofertă trimisă</li><li>Mai multe recenzii înseamnă mai multă încredere pe Google Maps</li></ul></article>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="real">
+    <div>
+      <span class="kick" style="color:var(--amber)">Exemplu real</span>
+      <div style="margin-top:12px" class="logo"><svg viewBox="0 0 120 64" aria-hidden="true"><rect x="10" y="10" width="28" height="54" fill="#6B6F75"/><rect x="44" y="4" width="28" height="60" fill="#7D7A5E"/><rect x="78" y="0" width="28" height="64" fill="#A87447"/><text x="58" y="56" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="40" fill="#fff" letter-spacing="2">bbb</text></svg>Big Big Boon</div>
+      <h3>Construcții modulare, Mureș. Cererile vin singure în tabel și pe email.</h3>
+      <p>Am făcut site-ul bigbigboon.ro în română, maghiară și engleză și l-am legat de un flux automat. Fiecare cerere de ofertă ajunge în același moment în Google Sheets și pe emailul firmei.</p>
+      <a class="btn g" href="https://www.bigbigboon.ro" target="_blank" rel="noopener" style="margin-top:18px">Vezi site-ul live ↗</a>
+    </div>
+    <div class="steps-r">
+      <div><b>01</b><span>Clientul cere ofertă pe site, în limba lui</span></div>
+      <div><b>02</b><span>Cererea e salvată automat în Google Sheets</span></div>
+      <div><b>03</b><span>Firma primește emailul cu toate detaliile</span></div>
+      <div><b>04</b><span>Urmează: răspuns automat și reamintiri</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section style="background:var(--bg2)"><div class="wrap">
+  <span class="kick">Cum lucrăm</span>
+  <h2>Vorbim, configurăm, <em class="s">apoi</em> rulează.</h2>
+  <div class="flow3">
+    <div class="fl3"><b>Discuție de 15 minute</b><p>Ne spui cum primești acum clienții și unde se pierd cereri. Îți propunem ce merită automatizat și ce nu.</p></div>
+    <div class="fl3"><b>Configurăm și testăm</b><p>Legăm site-ul de emailul și tabelul tău, scriem mesajele împreună și testăm cu cereri de probă înainte de pornire.</p></div>
+    <div class="fl3"><b>Rulează, noi îl întreținem</b><p>Tu primești clienții. Dacă se schimbă ceva în afacere, ajustăm fluxul.</p></div>
+  </div>
+  <div class="tools"><span>Gmail</span><span>Google Sheets</span><span>Google Calendar</span><span>Google Business Profile</span><span>Site-ul tău</span></div>
+</div></section>
+
+<section id="discutie"><div class="wrap agrid2">
+  <div>
+    <span class="kick">Preț</span>
+    <h2>Prețul depinde de <em class="s">ce</em> automatizăm.</h2>
+    <p class="intro" style="color:var(--mut);margin-top:14px;max-width:52ch">Un flux simplu de cereri costă altfel decât un asistent AI cu reamintiri și recenzii. De aceea vorbim întâi 15 minute, apoi primești prețul fix, înainte să plătești ceva.</p>
+    <div class="faq">
+      <details open><summary>Trebuie să am site făcut de OHI?</summary><p>Nu neapărat. Autopilot merge cel mai simplu cu site-urile noastre, dar de multe ori îl putem lega și de site-ul pe care îl ai deja. Verificăm la discuție.</p></details>
+      <details><summary>Unde rămân datele clienților?</summary><p>În contul tău Google: tabelul și emailurile sunt ale tale. Noi doar configurăm legăturile.</p></details>
+      <details><summary>Ce se întâmplă dacă asistentul nu știe un răspuns?</summary><p>Nu inventează. Preia datele clientului și îți transmite cererea, ca să răspunzi tu.</p></details>
+      <details><summary>Pot începe doar cu un modul?</summary><p>Da. Majoritatea încep cu Cererile automate și adaugă restul mai târziu.</p></details>
+    </div>
+  </div>
+  <form class="lead aform" id="aForm" novalidate>
+    <div id="aFields" style="display:flex;flex-direction:column;gap:12px">
+      <h3 style="font:800 22px var(--fd)">Vreau o discuție despre Autopilot</h3>
+      <p style="color:var(--mut);font-size:14px;margin-top:-6px">Gratuit, fără obligații. Te sunăm noi.</p>
+      <div class="f"><span>Ce te interesează?</span><div class="chips" id="aMods">
+        <button type="button" data-v="Cereri automate" aria-pressed="false">⚡ Cereri automate</button>
+        <button type="button" data-v="Asistent RAI" aria-pressed="false">🤖 Asistent RAI</button>
+        <button type="button" data-v="Recenzii și follow-up" aria-pressed="false">⭐ Recenzii</button>
+      </div></div>
+      <label class="f"><span>Numele afacerii *</span><input class="inp" id="aBiz" maxlength="60" autocomplete="organization"></label>
+      <label class="f"><span>Numele tău *</span><input class="inp" id="aName" autocomplete="name"></label>
+      <label class="f"><span>Telefon *</span><input class="inp" id="aPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="07xx xxx xxx"></label>
+      <label class="f"><span>Site-ul tău (opțional)</span><input class="inp" id="aSite" inputmode="url" placeholder="Ex: afacereamea.ro"></label>
+      <input id="aHp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+      <label class="ok"><input type="checkbox" id="aOk"> <span>Sunt de acord să fiu contactat de OHI Solutions pentru această cerere.</span></label>
+      <p class="err" id="aErr" aria-live="polite"></p>
+      <button class="btn a" id="aSend" type="submit" style="padding:15px 20px;font-size:16px">Trimite cererea →</button>
+    </div>
+    <div class="adone" id="aDone" hidden><span style="font-size:38px">✅</span><b>Mulțumim! Te sunăm curând.</b><p style="color:var(--mut)" id="aId"></p></div>
+  </form>
+</div></section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 OHI Solutions · Târgu Mureș</span><span><a href="/confidentialitate">Confidențialitate</a> · <a href="/termeni">Termeni</a> · <a href="/blog">Blog</a></span></div></footer>
+
+<script src="/mock.js"></script>
+<script>
+(function(){
+  const q=s=>document.querySelector(s);
+  /* flow animation */
+  const nodes=[...document.querySelectorAll('#chain .anode')];let k=0;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function step(){nodes.forEach((n,i)=>{n.classList.toggle('on',i===k);n.classList.toggle('past',i<k)});k=(k+1)%(nodes.length+1);if(k===0)setTimeout(()=>nodes.forEach(n=>n.classList.remove('on','past')),900)}
+  if(reduce)nodes.forEach(n=>n.classList.add('past'));else{step();setInterval(step,1300)}
+  /* form */
+  const pick=new Set();
+  q('#aMods').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const v=b.dataset.v;pick.has(v)?pick.delete(v):pick.add(v);b.setAttribute('aria-pressed',pick.has(v))});
+  const T0=performance.now();let sent=false;
+  q('#aForm').addEventListener('submit',async e=>{
+    e.preventDefault();const err=q('#aErr');
+    const biz=q('#aBiz').value.trim(),name=q('#aName').value.trim(),phone=q('#aPhone').value.trim(),site=q('#aSite').value.trim();
+    if(!biz){err.textContent='Scrie numele afacerii.';q('#aBiz').focus();return}
+    if(!name){err.textContent='Scrie-ți numele.';q('#aName').focus();return}
+    if(phone.replace(/\D/g,'').length<9){err.textContent='Lasă un număr de telefon complet, ca să te putem suna.';q('#aPhone').focus();return}
+    if(!q('#aOk').checked){err.textContent='Bifează acordul ca să te putem contacta.';return}
+    if(sent)return;sent=true;err.textContent='';
+    const id='AUT-'+Date.now().toString(36).toUpperCase()+'-'+Math.random().toString(36).slice(2,6).toUpperCase();
+    const finish=()=>{q('#aFields').hidden=true;q('#aDone').hidden=false;q('#aId').textContent='Cod cerere: '+id};
+    if(q('#aHp').value||performance.now()-T0<3000){finish();return}
+    const mods=[...pick].join(', ')||'nealeas';
+    const data=new URLSearchParams({created_at:new Date().toISOString(),source:'site-autopilot',request_id:id,name,business:biz,phone,email:'',business_type:'',website:site,
+      need:'OHI Autopilot · '+mods,message:'Cerere discuție Autopilot.\nModule: '+mods+'\nSite: '+(site||'-'),marketing_consent:'nu',consent_at:new Date().toISOString(),design_json:''});
+    const btn=q('#aSend');btn.disabled=true;btn.textContent='Se trimite…';
+    try{
+      if(typeof LIVE!=='undefined'&&!LIVE){finish();return}
+      const ctrl=new AbortController(),tm=setTimeout(()=>ctrl.abort(),15000);
+      const res=await fetch(WEBHOOK,{method:'POST',body:data,signal:ctrl.signal});clearTimeout(tm);
+      if(!res.ok)throw new Error(res.status);finish();
+    }catch(x){sent=false;btn.disabled=false;btn.textContent='Trimite cererea →';err.textContent='Nu s-a putut trimite. Încearcă din nou sau sună la 0740 267 706.'}
+  });
+})();
+</script>
+</body>
+</html>

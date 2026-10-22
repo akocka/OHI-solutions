@@ -68,6 +68,22 @@
 #qOther{margin-top:8px}
 .qform .btn{width:100%;white-space:normal;text-align:center}
 </style>
+<style>
+/* home: OHI Autopilot teaser */
+.apl{padding-block:70px}
+.aplbox{position:relative;display:grid;gap:28px;align-items:center;background:linear-gradient(135deg,#1A2040,#121626 60%);border:1px solid rgba(123,140,255,.35);border-radius:30px;padding:28px;overflow:hidden}
+.aplbox::before{content:"";position:absolute;right:-120px;top:-160px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(76,99,255,.35),transparent 65%);pointer-events:none}
+@media(min-width:980px){.aplbox{grid-template-columns:1.1fr .9fr;padding:44px}}
+.aplb{display:inline-flex;align-items:center;gap:8px;background:rgba(255,176,32,.12);border:1px solid rgba(255,176,32,.4);color:#FFD27A;border-radius:999px;padding:7px 13px;font-weight:700;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase}
+.aplb i{width:8px;height:8px;border-radius:50%;background:var(--amber)}
+.aplbox .intro{color:var(--mut);margin-top:14px;max-width:56ch}
+.aplcta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}.aplcta .btn{margin-top:0;padding:13px 20px;font-size:15px}
+.aplmods{position:relative;display:flex;flex-direction:column;gap:12px}
+.aplm{display:grid;grid-template-columns:44px 1fr;column-gap:14px;align-items:center;background:rgba(11,13,20,.55);border:1px solid var(--line);border-radius:18px;padding:14px 16px;transition:transform .2s,border-color .2s}
+.aplm:hover{transform:translateX(4px);border-color:rgba(123,140,255,.5)}
+.aplm span{grid-row:span 2;width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:rgba(255,255,255,.05);font-size:22px}
+.aplm b{font:800 17px var(--fd)}.aplm small{color:var(--mut);font-size:13.5px}
+</style>
 </head>
 <body>
 <div class="ohi-intro" id="intro" aria-hidden="true">
@@ -78,7 +94,7 @@
 </div>
 <nav><div class="wrap">
   <a class="brand" href="#top" aria-label="OHI Solutions"><svg viewBox="0 18 359 170" role="img"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#4C63FF" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
-  <div class="links"><a href="#cum">Cum lucrăm</a><a href="#exemple">Exemple</a><a href="/preturi">Prețuri</a><a href="/constructor">Trimite datele</a></div>
+  <div class="links"><a href="#cum">Cum lucrăm</a><a href="#exemple">Exemple</a><a href="/preturi">Prețuri</a><a href="/automatizari">Automatizări</a><a href="/constructor">Trimite datele</a></div>
   <a class="btn a" href="#construieste">Vreau demo gratuit</a>
 </div></nav>
 
@@ -155,6 +171,22 @@
   <p class="once">Contract 12 luni, 0 lei la început, prima lună după ce aprobi demo-ul. Preferi o singură plată? <b>Start 500 lei</b> sau <b>Business 1.199 lei</b>.</p>
   <p style="margin-top:18px"><a href="/preturi" style="color:var(--cobalt2);font-weight:700">Vezi toate detaliile, comparația completă și opțiunile în plus →</a></p>
   <div class="custom"><div><b>Ai nevoie de mai mult?</b><br><span>Magazin mic, meniu QR, rezervări, vouchere. Se adaugă pe Business, la comandă (Custom): le discutăm la un apel scurt, apoi primești prețul fix.</span></div><a class="btn g" href="/solutii-personalizate">Vezi soluțiile personalizate</a></div>
+</div></section>
+
+<section id="autopilot" class="apl"><div class="wrap">
+  <div class="aplbox">
+    <div>
+      <span class="aplb"><i></i>Nou · OHI Autopilot</span>
+      <h2>Site-ul aduce cererea. <em class="s">Autopilot</em> nu o lasă să se piardă.</h2>
+      <p class="intro">Fiecare cerere salvată în tabel, email instant la tine, răspuns automat clientului, reamintiri și cereri de recenzie Google. Plus asistentul RAI, care răspunde pe site 24/7. Noi configurăm totul.</p>
+      <div class="aplcta"><a class="btn a" href="/automatizari">Vezi cum funcționează →</a><a class="btn g" href="https://www.bigbigboon.ro" target="_blank" rel="noopener">Exemplu real: Big Big Boon ↗</a></div>
+    </div>
+    <div class="aplmods">
+      <a href="/automatizari" class="aplm"><span>⚡</span><b>Cereri automate</b><small>Sheets, email, răspuns automat, reamintiri</small></a>
+      <a href="/automatizari" class="aplm"><span>🤖</span><b>Asistentul RAI 24/7</b><small>Răspunde și preia cereri, și seara</small></a>
+      <a href="/automatizari" class="aplm"><span>⭐</span><b>Recenzii și follow-up</b><small>Cere recenzia Google după lucrare</small></a>
+    </div>
+  </div>
 </div></section>
 
 <section id="nise" style="padding-bottom:60px">
