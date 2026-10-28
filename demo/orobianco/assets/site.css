@@ -558,3 +558,20 @@ html,body{overflow-x:clip}
 @media(max-width:860px){.mres{bottom:calc(12px + env(safe-area-inset-bottom))!important}footer{padding-bottom:90px}}
 .mcat{scroll-margin-top:150px}
 @media(max-width:860px){.fbot{padding-bottom:104px}}
+/* ===== form fields: identical width/height on every browser (iOS date inputs were wider) ===== */
+input,select,textarea{box-sizing:border-box;max-width:100%;min-width:0;display:block}
+input:not([type=checkbox]):not([type=radio]),select{height:54px}
+input[type=date]{-webkit-appearance:none;appearance:none;width:100%;line-height:normal;text-align:left;color:#2a2118}
+input[type=date]::-webkit-date-and-time-value{text-align:left;margin:0}
+input[type=date]::-webkit-calendar-picker-indicator{opacity:.55}
+select{-webkit-appearance:none;appearance:none;padding-right:44px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b6a2c' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M7 10l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;background-size:16px}
+.rform label{display:block;min-width:0}.rform .row{min-width:0}.rform .row>*{min-width:0}
+/* "Another day" chip */
+.chipdate{position:relative;gap:8px;padding:10px 16px!important;overflow:hidden;cursor:pointer}
+.chipdate svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;flex:none}
+.chipdate input{position:absolute!important;inset:0;width:100%!important;height:100%!important;opacity:0;cursor:pointer;padding:0!important;border:0!important;min-height:0!important}
+.chipdate .cdl{white-space:nowrap}
+.chips{flex-wrap:nowrap}
+.chipdate{display:inline-flex!important;align-items:center;flex-direction:row;text-transform:none!important;letter-spacing:normal!important;font:500 14px/1 Inter,sans-serif!important;color:#2a2118;margin:0}
+.chipdate.on{color:#fff6ea}
+@media(max-width:420px){.chips button,.chipdate{padding:10px 13px!important;font-size:13.5px!important}}
