@@ -214,7 +214,14 @@ document.querySelectorAll('.ring3d').forEach(ring=>{
     ring.style.perspective=R+'px';const cy=H*(dark?.5:.52);ring.style.perspectiveOrigin=`50% ${cy+ch*(dark?1.05:.85)}px`;
     cards.forEach(c=>c.remove());cards=[];
     for(let i=0;i<N;i++){const c=tpl[i%tpl.length].cloneNode(true);Object.assign(c.style,{width:cw+'px',height:ch+'px',margin:`${-ch/2}px 0 0 ${-cw/2}px`,top:cy+'px'});c._v=null;ring.appendChild(c);cards.push(c)}
-    if(L!=='ro')cards.forEach(c=>c.querySelectorAll('[data-t]').forEach(e=>{const v=T[L][e.dataset.t];if(v)e.innerHTML=v}));render()}
+    if(L!=='ro')cards.forEach(c=>c.querySelectorAll('[data-t]').forEach(e=>{const v=T[L][e.dataset.t];if(v)e.innerHTML=v}));fitAll();render()}
+  /* shrink each label until it sits fully inside its card (width, and height for dish names) */
+  function fit(el,maxH){el.style.fontSize='';el.style.letterSpacing='';let fs=parseFloat(getComputedStyle(el).fontSize),n=0;const over=()=>el.scrollWidth>el.clientWidth||(maxH&&el.scrollHeight>maxH);
+    while(over()&&fs>7&&n++<60){fs-=.5;el.style.fontSize=fs+'px';if(fs<9.5&&el.classList.contains('rck'))el.style.letterSpacing='.08em'}}
+  function fitAll(){const done={};cards.forEach(c=>{const key=c.querySelector('img').getAttribute('src')+L;const ch=c.offsetHeight;
+    if(done[key]){done[key].forEach(([sel,fs,ls])=>{const e=c.querySelector(sel);if(e){e.style.fontSize=fs;e.style.letterSpacing=ls}});return}
+    const rec=[];c.querySelectorAll('.rck,.rce,.rcn').forEach(e=>{fit(e,e.classList.contains('rcn')?ch*.36:e.classList.contains('rce')?Math.max(ch*.2,34):0);rec.push(['.'+e.className.split(' ')[0],e.style.fontSize,e.style.letterSpacing])});done[key]=rec})}
+  hooks.push(fitAll);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitAll);
   let N=0;
   function render(){for(let i=0;i<cards.length;i++){const c=cards[i];let a=((i*step+phase)%360+540)%360-180;const vis=Math.abs(a)<=cull;
       if(vis!==c._v){c.style.visibility=vis?'visible':'hidden';c._v=vis}if(!vis)continue;

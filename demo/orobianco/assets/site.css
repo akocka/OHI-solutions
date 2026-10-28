@@ -702,3 +702,11 @@ select{-webkit-appearance:none;appearance:none;padding-right:44px;background-ima
 @media(max-width:380px){.hxa .gr .stars{display:none}}
 @media(max-width:860px){.hxa .ctas{flex-wrap:nowrap;gap:10px}.hxa .ctas .btn{padding:14px 18px;font-size:14px;white-space:nowrap}
  .rcn{font-size:16px;top:28px;left:11px;right:8px}.rck{left:11px;top:11px;font-size:8.5px}.rce{left:11px;bottom:10px;font-size:14px}}
+/* card labels: give every label a fixed box so the fitter can measure it */
+.rce{right:11px;white-space:nowrap;overflow:visible}
+.rck{right:11px;white-space:nowrap}
+.rcn{overflow-wrap:normal;word-break:normal}
+.rcn em{white-space:normal}
+.rce{white-space:normal;line-height:1.08;top:auto}
+@media(max-width:860px){.mnavp{overflow-y:auto;visibility:hidden;transition:transform .6s var(--ease),visibility 0s .6s}body.mopen .mnavp{visibility:visible;transition:transform .6s var(--ease),visibility 0s}
+ .mnavp a{font-size:clamp(24px,7vw,34px)}}
