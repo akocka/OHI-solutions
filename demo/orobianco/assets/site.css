@@ -575,3 +575,6 @@ select{-webkit-appearance:none;appearance:none;padding-right:44px;background-ima
 .chipdate{display:inline-flex!important;align-items:center;flex-direction:row;text-transform:none!important;letter-spacing:normal!important;font:500 14px/1 Inter,sans-serif!important;color:#2a2118;margin:0}
 .chipdate.on{color:#fff6ea}
 @media(max-width:420px){.chips button,.chipdate{padding:10px 13px!important;font-size:13.5px!important}}
+/* WhatsApp submit */
+.wabtn{gap:10px}.waico{width:20px;height:20px;flex:none}
+.wafb{margin-top:12px;font-size:14px;color:var(--mute)}.wafb a{color:var(--terra);font-weight:600;text-decoration:underline;text-underline-offset:3px}
