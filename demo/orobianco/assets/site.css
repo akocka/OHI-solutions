@@ -675,3 +675,30 @@ select{-webkit-appearance:none;appearance:none;padding-right:44px;background-ima
  .qbook .btn{flex:1 1 100%;justify-content:center}
 }
 @media(prefers-reduced-motion:reduce){.hxin{opacity:1;animation:none}.hxarr{stroke-dashoffset:0;animation:none}}
+/* ===== hero v1 final order: headline → wheel → badges → buttons ===== */
+.hxa{padding-top:100px;padding-bottom:28px}
+.hxa .hxh{margin-top:6px}
+.hxa .ring3d{min-height:340px;margin:6px 0 0}
+.hxfoot{position:relative;z-index:4;display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:4px}
+.hxfoot .ctas{margin-top:0}
+.hxa .n1{right:3%;top:auto;bottom:-46px}
+.hxa .n2{left:auto;right:calc(50% + 230px);top:auto;bottom:6px}
+@media(max-width:860px){
+ .hxa{padding-top:86px;padding-bottom:22px}
+ .hxa .ring3d{min-height:260px}
+ .hxfoot{gap:12px}
+ .hxa .gr{font-size:12.5px;padding:7px 12px}.hxa .live{font-size:12.5px;padding:7px 12px}
+ .hxa .hxbad{gap:8px}
+}
+.hxa .n1{top:34px;bottom:auto;right:5%}
+.hxa .n1 .hxarr{margin-right:10px}
+@media(max-width:860px){
+ .hxa{min-height:auto}
+ .hxa .ring3d{flex:0 0 auto;height:clamp(210px,34svh,290px);min-height:0}
+ .hxa .hxbad{flex-wrap:nowrap}
+ .hxa .live,.hxa .gr{font-size:12px;padding:6px 10px;white-space:nowrap;gap:6px}
+ .hxa .gr .stars{letter-spacing:0}
+}
+@media(max-width:380px){.hxa .gr .stars{display:none}}
+@media(max-width:860px){.hxa .ctas{flex-wrap:nowrap;gap:10px}.hxa .ctas .btn{padding:14px 18px;font-size:14px;white-space:nowrap}
+ .rcn{font-size:16px;top:28px;left:11px;right:8px}.rck{left:11px;top:11px;font-size:8.5px}.rce{left:11px;bottom:10px;font-size:14px}}
