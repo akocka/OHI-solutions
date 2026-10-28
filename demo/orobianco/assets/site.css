@@ -617,3 +617,61 @@ select{-webkit-appearance:none;appearance:none;padding-right:44px;background-ima
 .ctaband h2 em{background:none!important;-webkit-text-fill-color:#fff6ea}
 @media(prefers-reduced-motion:reduce){.arch{clip-path:none;animation:none}.archline,.hfood>img,.hdrink>img{opacity:1;animation:none;transform:none}.steam2{display:none}
  .js .pgal figure.rv::before{display:none}.js .pgal figure.rv img{transform:none}.js h2.rv em,.js .phero h1 em{background:none;color:#a8823f}}
+
+/* ===== HERO TESTS: shared ===== */
+.hx{position:relative;min-height:100svh;display:flex;flex-direction:column;overflow:hidden;padding-top:104px}
+.hxtxt{position:relative;z-index:4;text-align:center;display:flex;flex-direction:column;align-items:center}
+.hxbad{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.hxh{font:400 clamp(44px,6.4vw,96px)/1.0 Lora,Georgia,serif;letter-spacing:-.02em;margin:22px 0 0;color:#2a2118}
+.hxh .hxl{display:block}.hxh em{font-style:italic;color:#a8823f}
+.hxp{max-width:46ch;margin:18px auto 0;color:var(--mute);font-size:clamp(15.5px,1.35vw,19px)}
+.hx .ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.ring3d{position:relative;flex:1 1 auto;min-height:330px;width:100%;transform-style:preserve-3d;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;z-index:2}
+.ring3d.grab{cursor:grabbing}
+.rc{position:absolute;left:50%;border-radius:18px;overflow:hidden;background:#1b1712;backface-visibility:hidden;will-change:transform;transform:translate3d(0,0,0)}
+.rc>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
+.rcs{position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(20,14,8,.7))}
+.rce{position:absolute;left:14px;bottom:13px;color:#fff6ea;font:italic 400 clamp(15px,1.3vw,19px) Lora,serif;z-index:2}
+.rc.cut{background:radial-gradient(90% 60% at 50% 70%,color-mix(in srgb,var(--c) 70%,#fff 30%),var(--c))}
+.rc.cut>img{inset:auto -14% 4% -14%;width:128%;height:auto;object-fit:contain;filter:drop-shadow(0 18px 18px rgba(0,0,0,.35))}
+.rck{position:absolute;left:14px;top:14px;font:600 9.5px Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,246,234,.8)}
+.rcn{position:absolute;left:14px;right:12px;top:32px;font:400 clamp(19px,1.7vw,26px)/1.02 Lora,serif;color:#fff6ea}
+.rcn em{display:block;font-style:italic;color:#ffe2b8}
+.rdim{position:absolute;inset:0;background:#f6f0e4;opacity:0;pointer-events:none;z-index:3}
+.hxin{opacity:0;animation:hxIn 1.1s var(--d,0s) cubic-bezier(.16,1,.3,1) forwards}
+@keyframes hxIn{from{opacity:0;transform:translateY(22px);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+.ring3d.hxin{animation-name:hxRing}
+@keyframes hxRing{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+/* version 1: cream arc with handwritten notes */
+.hxa{background:radial-gradient(50% 40% at 50% 100%,rgba(196,66,43,.12),transparent 70%),radial-gradient(40% 35% at 10% 20%,rgba(111,125,60,.12),transparent 70%)}
+.hxnote{position:absolute;font:500 clamp(18px,1.7vw,26px)/1 "Caveat","Segoe Print","Bradley Hand",cursive;color:#b9562f;display:flex;align-items:flex-start;gap:4px;pointer-events:none}
+.hxarr{width:70px;height:70px;fill:none;stroke:#b9562f;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:240;stroke-dashoffset:240;animation:draw 1.2s 1.6s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.n1{right:4%;top:58%;transform:rotate(8deg);flex-direction:column;align-items:flex-end}.n1 .hxarr{margin-right:30px}
+.n2{left:6%;top:76%;transform:rotate(-8deg);align-items:center}.n2 .hxarr{width:56px;height:40px}
+.ring3d[data-theme=light] .rc{box-shadow:0 30px 50px -30px rgba(70,40,10,.45)}
+/* version 2: dark stage with frosted quick-booking bar */
+.hxb{background:radial-gradient(60% 50% at 50% 100%,rgba(185,86,47,.28),transparent 70%),radial-gradient(40% 40% at 15% 10%,rgba(111,125,60,.18),transparent 70%),#14110d;color:#f4efe6}
+.hxb .hxh{color:#f4efe6}.hxb .hxh em{color:#ecd6a6}.hxb .hxp{color:#cfc3ad}
+.hxb .live,.hxb .gr{background:rgba(255,255,255,.07);border-color:rgba(210,178,119,.25);color:#f4efe6;box-shadow:none}
+.hxb .rdim{background:#14110d}
+.hxb .rc{box-shadow:0 30px 60px rgba(0,0,0,.55);outline:1px solid rgba(255,255,255,.08);outline-offset:-1px}
+.hxb .ring3d{min-height:360px;margin-bottom:-40px}
+.qbook{position:relative;z-index:5;align-self:center;display:flex;align-items:flex-end;gap:10px;margin:0 16px 34px;padding:10px 10px 10px 18px;border-radius:24px;
+  background:rgba(30,25,19,.62);-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);border:1px solid rgba(210,178,119,.28);box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
+.qbook label{display:flex;flex-direction:column;gap:4px;min-width:96px}
+.qbook label span{font:600 10px Inter,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#d2b277}
+.qbook select{height:46px;background-color:rgba(255,255,255,.06);color:#f4efe6;border:1px solid rgba(210,178,119,.25);border-radius:14px;padding:0 40px 0 14px;font-size:15px}
+.qbook select option{color:#2a2118}
+.qbook .btn{height:46px;white-space:nowrap}
+@media(max-width:860px){
+ .hx{padding-top:88px}
+ .hxh{font-size:clamp(38px,11vw,56px)}
+ .ring3d{min-height:270px}
+ .hxnote{display:none}
+ .hxb .ring3d{min-height:280px;margin-bottom:-30px}
+ .qbook{flex-wrap:wrap;margin:0 12px 96px;padding:12px;gap:8px;justify-content:center}
+ .qbook label{flex:1 1 28%;min-width:0}.qbook select{padding:0 30px 0 10px;font-size:14px;width:100%}
+ .qbook .btn{flex:1 1 100%;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){.hxin{opacity:1;animation:none}.hxarr{stroke-dashoffset:0;animation:none}}

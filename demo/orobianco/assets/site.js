@@ -119,7 +119,7 @@ let lastY=scrollY;
 function hdrDyn(){const y=scrollY;hdr.classList.toggle('solid',y>40);
   if(y>lastY+6&&y>320&&!document.body.classList.contains('mopen')&&!document.querySelector('.lang.open'))hdr.classList.add('hide');
   else if(y<lastY-6||y<320)hdr.classList.remove('hide');lastY=y;
-  let dk=false;document.querySelectorAll('.spin .stage,.strip,footer,.ctaband').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<44&&r.bottom>44)dk=true});hdr.classList.toggle('dark',dk);syncBar()}
+  let dk=false;document.querySelectorAll('.spin .stage,.strip,footer,.ctaband,.hero-dark').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<44&&r.bottom>44)dk=true});hdr.classList.toggle('dark',dk);syncBar()}
 /* menu category bar docks right under the island header and follows it */
 const hw=hdr.querySelector('.wrap'),mbar=document.querySelector('.mbar'),mwrap=document.getElementById('menuWrap');
 function syncBar(){if(!mbar||!mbar.offsetParent)return;const t=hdr.classList.contains('hide')?10:Math.round(hw.getBoundingClientRect().bottom+8);
@@ -200,4 +200,38 @@ addEventListener('scroll',()=>requestAnimationFrame(tick),{passive:true});addEve
   size();addEventListener('resize',size);let vis=true;new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(c);
   (function f(t){if(vis){x.clearRect(0,0,W,H);for(const p of P){p.y-=p.s;p.x+=Math.sin(t/1600+p.p)*.15;if(p.y<-5){p.y=H+5;p.x=Math.random()*W}x.globalAlpha=p.o*(.6+.4*Math.sin(t/700+p.p));x.fillStyle='#e6cf9f';x.beginPath();x.arc(p.x,p.y,p.r,0,6.283);x.fill()}}requestAnimationFrame(f)})(0)})();
 (function(){let s=null;try{s=localStorage.getItem("oroLang")}catch(e){}if(s&&s!=="ro")setLang(s)})();
+
+/* ===== 3D card ring (hero tests) =====
+   Cards sit on a cylinder with the camera at its centre: translate3d(R·sin a, 0, R·(1−cos a)) rotateY(−a)
+   with perspective = R, so edge cards come closer and look taller, like the inside of a drum.
+   Auto-drifts, follows drag 1:1, coasts with momentum, and only animates while the hero is on screen. */
+document.querySelectorAll('.ring3d').forEach(ring=>{
+  const tpl=[...ring.querySelectorAll('.rc')];tpl.forEach(c=>c.remove());if(!tpl.length)return;
+  const dark=ring.dataset.theme==='dark',RAD=Math.PI/180;let cards=[],R=800,step=12,cull=48,phase=0,vel=0,drag=false,lastX=0,lastT=0,running=false,prev=0,W0=0;
+  function build(){const W=ring.clientWidth,H=ring.clientHeight;if(!W||!H)return;W0=W;const mob=W<700;
+    const ch=Math.min(H*(dark?.78:.8),mob?(dark?260:240):420),cw=ch*(mob?.5:(dark?.47:.6)),gap=mob?12:20;
+    const R0=mob?W*1.15:Math.max(W*.62,cw*5);N=Math.max(1,Math.round(2*Math.PI*R0/(cw+gap)/tpl.length))*tpl.length;R=N*(cw+gap)/(2*Math.PI);step=360/N;cull=mob?52:46;
+    ring.style.perspective=R+'px';const cy=H*(dark?.5:.52);ring.style.perspectiveOrigin=`50% ${cy+ch*(dark?1.05:.85)}px`;
+    cards.forEach(c=>c.remove());cards=[];
+    for(let i=0;i<N;i++){const c=tpl[i%tpl.length].cloneNode(true);Object.assign(c.style,{width:cw+'px',height:ch+'px',margin:`${-ch/2}px 0 0 ${-cw/2}px`,top:cy+'px'});c._v=null;ring.appendChild(c);cards.push(c)}
+    if(L!=='ro')cards.forEach(c=>c.querySelectorAll('[data-t]').forEach(e=>{const v=T[L][e.dataset.t];if(v)e.innerHTML=v}));render()}
+  let N=0;
+  function render(){for(let i=0;i<cards.length;i++){const c=cards[i];let a=((i*step+phase)%360+540)%360-180;const vis=Math.abs(a)<=cull;
+      if(vis!==c._v){c.style.visibility=vis?'visible':'hidden';c._v=vis}if(!vis)continue;
+      const r=a*RAD,co=Math.cos(r);c.style.transform=`translate3d(${(R*Math.sin(r)).toFixed(1)}px,0,${(R*(1-co)).toFixed(1)}px) rotateY(${(-a).toFixed(2)}deg)`;
+      const dm=c.lastChild;dm.style.opacity=Math.min(.75,(1/co-1)*(dark?2.4:1.6)).toFixed(3)}}
+  function tick(t){if(!running)return;const dt=Math.min((t-prev)/1000,.1);prev=t;
+    if(!drag){if(Math.abs(vel)>.3){phase+=vel*dt;vel*=Math.pow(.05,dt)}else vel=0;if(!reduce)phase-=(dark?3.2:4.2)*dt}
+    render();requestAnimationFrame(tick)}
+  function start(){if(running)return;running=true;prev=performance.now();requestAnimationFrame(tick)}
+  new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)start();else running=false})}).observe(ring);
+  document.addEventListener('visibilitychange',()=>{prev=performance.now()});
+  ring.addEventListener('pointerdown',e=>{drag=true;lastX=e.clientX;lastT=performance.now();vel=0;ring.classList.add('grab');ring.setPointerCapture(e.pointerId)});
+  ring.addEventListener('pointermove',e=>{if(!drag)return;const now=performance.now(),d=(e.clientX-lastX)/R/RAD;phase+=d;const dt=Math.max(.008,(now-lastT)/1000);vel=vel*.6+(d/dt)*.4;lastX=e.clientX;lastT=now;if(!running)render()});
+  const up=()=>{if(!drag)return;drag=false;ring.classList.remove('grab');vel=Math.max(-90,Math.min(90,vel))};ring.addEventListener('pointerup',up);ring.addEventListener('pointercancel',up);
+  let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{if(Math.abs(ring.clientWidth-W0)>40)build()},150)});
+  build()});
+/* quick booking bar → WhatsApp */
+(function(){const f=document.getElementById('qbook');if(!f)return;f.onsubmit=e=>{e.preventDefault();const m=WM[L]||WM.ro,d=new Date();d.setDate(d.getDate()+ +f.d.value);
+  const msg=[m.hi,'📅 '+fmtD(d),'🕖 '+f.t.value,'👥 '+f.g.value+' '+m.p,'',m.bye].join('\n'),url='https://wa.me/'+WA_NR+'?text='+encodeURIComponent(msg);const w=window.open(url,'_blank');if(!w)location.href=url}})();
 window.__ok=1;
