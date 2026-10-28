@@ -1,7 +1,7 @@
 /* Orobianco demo · shared script */
 const C={
-hu:{nHome:"Főoldal",nMenu:"Étlap",nEv:"Események",nAbout:"Rólunk",cRes:"Asztalfoglalás",open:"Nyitva minden nap",fDate:"Dátum",fTime:"Időpont",fG:"Személyek",fN:"Név",fP:"Telefon",fM:"Megjegyzés (opcionális)",fMp:"Évforduló, gyerekszék, allergiák...",fS:"Foglalási kérés küldése",okH:"Köszönjük!",okP:"A kérés megérkezett az étteremhez. Telefonon visszaigazoljuk. (Demo: semmi nem lett elküldve.)",sCall:"Hívj minket",sWa:"Írj nekünk",sOpen:"Nyitvatartás",sOpenV:"Minden nap, 12:00 – 23:00",dMF:"Hétfő – Péntek",dSa:"Szombat",dSu:"Vasárnap",fHours:"Nyitvatartás",fLinks:"Oldalak",fCont:"Kapcsolat",demo:"Weboldal-javaslat az OHI Solutions-tól az Orobianco számára. Nem a hivatalos oldal.",ctaH:"Foglalj asztalt <em>ma estére</em>",ctaP:"Online kérés két perc alatt, vagy hívj minket közvetlenül.",ctaB:"Asztalfoglalás"},
-en:{nHome:"Home",nMenu:"Menu",nEv:"Events",nAbout:"About",cRes:"Book a table",open:"Open daily",fDate:"Date",fTime:"Time",fG:"Guests",fN:"Name",fP:"Phone",fM:"Notes (optional)",fMp:"Anniversary, high chair, allergies...",fS:"Send booking request",okH:"Thank you!",okP:"Your request reached the restaurant. We will confirm by phone. (Demo: nothing was sent.)",sCall:"Call us",sWa:"Send us a message",sOpen:"Opening hours",sOpenV:"Daily, 12:00 – 23:00",dMF:"Monday – Friday",dSa:"Saturday",dSu:"Sunday",fHours:"Opening hours",fLinks:"Pages",fCont:"Contact",demo:"Website proposal by OHI Solutions for Orobianco. Not the official site.",ctaH:"Book a table <em>for tonight</em>",ctaP:"An online request in two minutes, or call us directly.",ctaB:"Book a table"}};
+hu:{nBlog:"Blog",bCall:"Hívás",q1:"Mikor jöttök?",q2:"Hány fő?",q3:"Adataitok",dToday:"Ma",dTom:"Holnap",pers:"fő",fTrust:"Nincs fiók, nincs fizetés. Mi hívunk vissza a visszaigazolásért.",pair:"Ajánlott mellé:",chef:"Ajánlat",nHome:"Főoldal",nMenu:"Étlap",nEv:"Események",nAbout:"Rólunk",cRes:"Asztalfoglalás",open:"Nyitva minden nap",fDate:"Dátum",fTime:"Időpont",fG:"Személyek",fN:"Név",fP:"Telefon",fM:"Megjegyzés (opcionális)",fMp:"Évforduló, gyerekszék, allergiák...",fS:"Foglalási kérés küldése",okH:"Köszönjük!",okP:"A kérés megérkezett az étteremhez. Telefonon visszaigazoljuk. (Demo: semmi nem lett elküldve.)",sCall:"Hívj minket",sWa:"Írj nekünk",sOpen:"Nyitvatartás",sOpenV:"Minden nap, 12:00 – 23:00",dMF:"Hétfő – Péntek",dSa:"Szombat",dSu:"Vasárnap",fHours:"Nyitvatartás",fLinks:"Oldalak",fCont:"Kapcsolat",demo:"Weboldal-javaslat az OHI Solutions-tól az Orobianco számára. Nem a hivatalos oldal.",ctaH:"Foglalj asztalt <em>ma estére</em>",ctaP:"Online kérés két perc alatt, vagy hívj minket közvetlenül.",ctaB:"Asztalfoglalás"},
+en:{nBlog:"Blog",bCall:"Call",q1:"When are you coming?",q2:"How many guests?",q3:"Your details",dToday:"Today",dTom:"Tomorrow",pers:"guests",fTrust:"No account, no payment. We call you to confirm.",pair:"Pairs well with:",chef:"Recommended",nHome:"Home",nMenu:"Menu",nEv:"Events",nAbout:"About",cRes:"Book a table",open:"Open daily",fDate:"Date",fTime:"Time",fG:"Guests",fN:"Name",fP:"Phone",fM:"Notes (optional)",fMp:"Anniversary, high chair, allergies...",fS:"Send booking request",okH:"Thank you!",okP:"Your request reached the restaurant. We will confirm by phone. (Demo: nothing was sent.)",sCall:"Call us",sWa:"Send us a message",sOpen:"Opening hours",sOpenV:"Daily, 12:00 – 23:00",dMF:"Monday – Friday",dSa:"Saturday",dSu:"Sunday",fHours:"Opening hours",fLinks:"Pages",fCont:"Contact",demo:"Website proposal by OHI Solutions for Orobianco. Not the official site.",ctaH:"Book a table <em>for tonight</em>",ctaP:"An online request in two minutes, or call us directly.",ctaB:"Book a table"}};
 const PT=window.PT||{hu:{},en:{}};
 const T={ro:{},hu:Object.assign({},C.hu,PT.hu),en:Object.assign({},C.en,PT.en)};
 document.querySelectorAll('[data-t]').forEach(e=>T.ro[e.dataset.t]=e.innerHTML);
@@ -10,8 +10,12 @@ let L='ro';const hooks=[];
 function setLang(l){L=l;document.documentElement.lang=l;try{localStorage.setItem('oroLang',l)}catch(e){}
   document.querySelectorAll('[data-t]').forEach(e=>{const v=T[l][e.dataset.t]??T.ro[e.dataset.t];if(v!=null)e.innerHTML=v});
   document.querySelectorAll('[data-tp]').forEach(e=>{e.placeholder=T[l][e.dataset.tp]??T.ro[e.dataset.tp]});
-  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));hooks.forEach(f=>f())}
-document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+  document.querySelectorAll('button[data-l]').forEach(b=>b.classList.toggle('on',b.dataset.l===l));const lc=document.getElementById('lcode');if(lc)lc.textContent=l.toUpperCase();const lg=document.getElementById('lang');if(lg){lg.classList.remove('open');document.getElementById('lcur').setAttribute('aria-expanded','false')}hooks.forEach(f=>f())}
+document.querySelectorAll('button[data-l]').forEach(b=>b.onclick=e=>{e.stopPropagation();setLang(b.dataset.l)});
+(function(){const lg=document.getElementById('lang'),lb=document.getElementById('lcur');if(!lg)return;
+  lb.onclick=e=>{e.stopPropagation();const o=lg.classList.toggle('open');lb.setAttribute('aria-expanded',o)};
+  document.addEventListener('click',()=>{lg.classList.remove('open');lb.setAttribute('aria-expanded','false')});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')lg.classList.remove('open')})})();
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,fine=matchMedia('(pointer:fine)').matches;
 
 /* ===== menu data (example dishes; prices left blank on purpose) ===== */
@@ -49,7 +53,8 @@ const MENU=[
 const PRICE={ro:"— lei",hu:"— lej",en:"— lei"};
 (function(){const w=document.getElementById('menuWrap');if(!w)return;const nav=document.getElementById('mnav');let vegOnly=false;
   function draw(){nav.innerHTML=MENU.map(c=>`<a href="#${c.id}">${c[L]}</a>`).join('');
-    w.innerHTML=MENU.map(c=>{const it=c.items.filter(i=>!vegOnly||i[2]==='v');if(!it.length)return'';return `<section class="mcat rv in" id="${c.id}"><h3>${c[L]}</h3>${it.map(i=>`<div class="mitem"><div><h4>${i[0]}${i[2]==='v'?' <span class="vtag" title="vegetarian">V</span>':''}</h4><p>${i[1][L]}</p></div><span class="dots"></span><span class="pr">${PRICE[L]}</span></div>`).join('')}</section>`}).join('')}
+    const CHEF={antipasti:'Burrata',pasta:'Tagliatelle al ragù',risotto:'Risotto ai funghi',secondi:'Tagliata di manzo',dolci:'Tiramisù'};const PAIR={secondi:'Vino rosso della casa',pasta:'Vino rosso della casa',risotto:'Vino bianco della casa'};const ICO={antipasti:'🫒',zuppe:'🥣',pasta:'🍝',risotto:'🍚',secondi:'🥩',dolci:'🍰',vini:'🍷'};const lbl=k=>(T[L]&&T[L][k])||{chef:'Recomandat',pair:'Perfect cu:'}[k];
+  w.innerHTML=MENU.map(c=>{const it=c.items.filter(i=>!vegOnly||i[2]==='v');if(!it.length)return'';return `<section class="mcat rv in" id="${c.id}"><h3><span class="cico">${ICO[c.id]||''}</span>${c[L]}</h3>${it.map(i=>{const chef=CHEF[c.id]===i[0];return `<div class="mitem${chef?' star':''}"><div><h4>${i[0]}${i[2]==='v'?' <span class="vtag" title="vegetarian">V</span>':''}${chef?` <span class="ctag">★ ${lbl('chef')}</span>`:''}</h4><p>${i[1][L]}</p>${chef&&PAIR[c.id]?`<p class="pair">🍷 ${lbl('pair')} ${PAIR[c.id]}</p>`:''}</div><span class="dots"></span><span class="pr">${PRICE[L]}</span></div>`}).join('')}</section>`}).join('')}
   draw();hooks.push(draw);const vb=document.getElementById('veg');if(vb)vb.onclick=()=>{vegOnly=!vegOnly;vb.classList.toggle('on',vegOnly);draw()};
   const io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){nav.querySelectorAll('a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-40% 0px -55% 0px'});
   new MutationObserver(()=>w.querySelectorAll('.mcat').forEach(s=>io2.observe(s))).observe(w,{childList:true});w.querySelectorAll('.mcat').forEach(s=>io2.observe(s))})();
@@ -60,9 +65,40 @@ document.querySelectorAll('select[data-guests]').forEach(g=>{for(let n=1;n<=(+g.
 document.querySelectorAll('input[type=date]').forEach(d=>d.min=new Date().toISOString().slice(0,10));
 document.querySelectorAll('form.rform').forEach(f=>f.onsubmit=e=>{e.preventDefault();[...f.children].forEach(c=>{if(!c.classList.contains('ok'))c.style.display='none'});f.querySelector('.ok').classList.add('on')});
 
+
+/* ===== live open/closed status (daily 12:00–23:00) ===== */
+(function(){const el=document.getElementById('live');if(!el)return;const t=document.getElementById('liveT');
+  function upd(){const n=new Date(),m=n.getHours()*60+n.getMinutes(),open=m>=720&&m<1380;el.classList.toggle('off',!open);
+    const W={ro:[open?(m>=1320?'Deschis · se închide la 23:00':'Deschis acum'):(m<720?'Deschidem azi la 12:00':'Închis · deschidem mâine la 12:00')],
+             hu:[open?(m>=1320?'Nyitva · 23:00-kor zár':'Most nyitva'):(m<720?'Ma 12:00-kor nyitunk':'Zárva · holnap 12:00-kor nyitunk')],
+             en:[open?(m>=1320?'Open · closes at 23:00':'Open now'):(m<720?'Opening today at 12:00':'Closed · opens tomorrow at 12:00')]};t.textContent=W[L][0]}
+  upd();setInterval(upd,60000);hooks.push(upd)})();
+/* ===== hero dish: slow spin + follows scroll a little ===== */
+setTimeout(function(){const h=document.getElementById('hdish');if(!h||!window.DISH)return;h.innerHTML=window.DISH[0];let a=0;
+  (function f(){a+=reduce?0:.06;h.firstElementChild.style.transform=`rotate(${a+scrollY*.08}deg)`;requestAnimationFrame(f)})()},0);
+/* ===== 3-tap reservation ===== */
+document.querySelectorAll('form.qform').forEach(f=>{const slots=f.querySelector('[data-slots]'),day=f.querySelector('[data-day]'),st=f.querySelector('[data-stepper]');
+  const times=['12:30','13:00','14:00','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00'];
+  slots.innerHTML=times.map((t,i)=>`<button type="button" class="${t==='19:30'?'on':''}">${t}</button>`).join('');
+  slots.onclick=e=>{const b=e.target.closest('button');if(!b)return;slots.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b))};
+  day.onclick=e=>{const b=e.target.closest('button');if(!b)return;day.querySelectorAll('button,.chipdate').forEach(x=>x.classList.toggle('on',x===b))};
+  const di=day.querySelector('input');di.min=new Date().toISOString().slice(0,10);di.onchange=()=>{day.querySelectorAll('button').forEach(x=>x.classList.remove('on'));di.parentElement.classList.add('on')};
+  let n=2;const v=st.querySelector('[data-v]');st.onclick=e=>{const b=e.target.closest('button');if(!b)return;n=Math.max(1,Math.min(20,n+ +b.dataset.s));v.textContent=n;v.animate([{transform:'scale(1.3)'},{transform:'scale(1)'}],{duration:250})}});
+
+/* ===== hero photo parallax ===== */
+(function(){const f=document.getElementById('hfood'),d=document.getElementById('hdrink');if(!f||reduce)return;let mx=0,my=0;
+  addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
+  (function loop(){const y=scrollY;f.style.transform=`translate(${mx*-14}px,${y*-.12+my*-10}px) rotate(${y*.06+mx*4}deg)`;d.style.transform=`translate(${mx*18}px,${y*-.22+my*12}px) rotate(${6+mx*-5}deg)`;requestAnimationFrame(loop)})()})();
+/* ===== blog covers reuse the dish illustrations ===== */
+setTimeout(()=>{document.querySelectorAll('[data-dish]').forEach(el=>{if(window.DISH)el.innerHTML=window.DISH[+el.dataset.dish]||''})},0);
 /* ===== header, mobile CTA, reveals, motion ===== */
 const hdr=document.getElementById('hdr'),mres=document.getElementById('mres');
-function onS(){hdr.classList.toggle('solid',scrollY>40);if(!mres)return;const f=document.querySelector('form.rform'),s=document.getElementById('spec');
+let lastY=scrollY;
+function hdrDyn(){const y=scrollY;hdr.classList.toggle('solid',y>40);
+  if(y>lastY+6&&y>320&&!document.body.classList.contains('mopen')&&!document.querySelector('.lang.open'))hdr.classList.add('hide');
+  else if(y<lastY-6||y<320)hdr.classList.remove('hide');lastY=y;
+  let dk=false;document.querySelectorAll('.spin .stage,.strip,footer,.ctaband').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<44&&r.bottom>44)dk=true});hdr.classList.toggle('dark',dk)}
+function onS(){hdrDyn();if(!mres)return;const f=document.querySelector('form.rform'),s=document.getElementById('spec');
   const inForm=f&&(r=>r.top<innerHeight&&r.bottom>0)(f.getBoundingClientRect()),inSpin=s&&(r=>r.top<=0&&r.bottom>=innerHeight)(s.getBoundingClientRect());
   mres.classList.toggle('on',scrollY>innerHeight*.6&&!inForm&&!inSpin)}
 addEventListener('scroll',onS,{passive:true});onS();
@@ -107,22 +143,27 @@ const tira=plate(`<g transform="rotate(12 200 200)"><rect x="128" y="128" width=
 <rect x="128" y="128" width="144" height="144" rx="8" fill="none" stroke="#3b1f0e" stroke-width="2"/></g>
 ${leaf(250,140,-35,1.2,'#4f8f32')}${leaf(255,150,20,.9,'#3e7a27')}${specks(30,200,200,128,['#5a3019'],1.4)}
 <path d="M110 290q30-14 60 0" stroke="#e8c27a" stroke-width="5" fill="none" stroke-linecap="round" opacity=".8"/>`);
-const D=[
- {svg:soup,n:"01",ro:["Zuppa","<em>di pomodoro</em>","Supă cremoasă de roșii, busuioc proaspăt și crutoane aurii."],hu:["Zuppa","<em>di pomodoro</em>","Krémes paradicsomleves friss bazsalikommal és aranyló kruttonnal."],en:["Zuppa","<em>di pomodoro</em>","Creamy tomato soup with fresh basil and golden croutons."]},
- {svg:pasta,n:"02",ro:["Tagliatelle","<em>al ragù</em>","Paste lungi, sos de carne gătit încet, parmezan."],hu:["Tagliatelle","<em>al ragù</em>","Hosszú tészta, lassan főtt húsraguval és parmezánnal."],en:["Tagliatelle","<em>al ragù</em>","Long pasta, slow-cooked meat sauce, parmesan."]},
- {svg:risotto,n:"03",ro:["Risotto","<em>ai funghi</em>","Orez carnaroli, ciuperci și o cremozitate fără grabă."],hu:["Risotto","<em>ai funghi</em>","Carnaroli rizs, gomba és türelmes krémesség."],en:["Risotto","<em>ai funghi</em>","Carnaroli rice, mushrooms and unhurried creaminess."]},
- {svg:steak,n:"04",ro:["Tagliata","<em>di manzo</em>","Vită la grătar, feliată, cu rucola și parmezan."],hu:["Tagliata","<em>di manzo</em>","Grillezett, szeletelt marhahús rukkolával és parmezánnal."],en:["Tagliata","<em>di manzo</em>","Grilled sliced beef with rocket and parmesan."]},
- {svg:tira,n:"05",ro:["Tiramisù","<em>della casa</em>","Mascarpone, cafea și cacao, finalul perfect."],hu:["Tiramisù","<em>della casa</em>","Mascarpone, kávé és kakaó, a tökéletes befejezés."],en:["Tiramisù","<em>della casa</em>","Mascarpone, coffee and cocoa, the perfect finish."]}];
-const pw=document.getElementById('pw'),tx=document.getElementById('dtxt'),dots=document.getElementById('ddots'),ring=document.getElementById('ring'),sec=document.getElementById('spec');
-D.forEach((d,i)=>{const el=document.createElement('div');el.className='dish';el.innerHTML=d.svg;pw.insertBefore(el,ring);d.el=el;
+window.__D=1;const D=[
+ {img:"/demo/orobianco/img/pasta-mare.webp",n:"01",ro:["Spaghetti","<em>ai frutti di mare</em>","Midii, creveți, calamar și roșii cherry, cu ierburi proaspete."],hu:["Spaghetti","<em>ai frutti di mare</em>","Kagyló, garnélarák, tintahal és koktélparadicsom friss fűszerekkel."],en:["Spaghetti","<em>ai frutti di mare</em>","Mussels, prawns, squid and cherry tomatoes with fresh herbs."]},
+ {img:"/demo/orobianco/img/pizza.webp",n:"02",ro:["Pizza","<em>Margherita</em>","Sos de roșii, mozzarella topită și busuioc, cu blat crocant."],hu:["Pizza","<em>Margherita</em>","Paradicsomszósz, olvadt mozzarella és bazsalikom ropogós tésztán."],en:["Pizza","<em>Margherita</em>","Tomato sauce, melted mozzarella and basil on a crisp base."]},
+ {img:"/demo/orobianco/img/creveti.webp",n:"03",ro:["Gamberi","<em>al pomodoro</em>","Creveți în sos de roșii, brânză și crostini cu usturoi."],hu:["Gamberi","<em>al pomodoro</em>","Garnélarák paradicsomszószban, sajttal és fokhagymás crostinivel."],en:["Gamberi","<em>al pomodoro</em>","Prawns in tomato sauce with cheese and garlic crostini."]},
+ {img:"/demo/orobianco/img/steak.webp",n:"04",ro:["Bistecca","<em>con asparagi</em>","Vită la grătar, cimbru proaspăt și sparanghel trecut prin tigaie."],hu:["Bistecca","<em>con asparagi</em>","Grillezett marhahús friss kakukkfűvel és serpenyős spárgával."],en:["Bistecca","<em>con asparagi</em>","Grilled beef, fresh thyme and pan-seared asparagus."]},
+ {img:"/demo/orobianco/img/file.webp",n:"05",ro:["Filetto","<em>di manzo</em>","Medalion de vită la grătar, pe crostino, cu cimbru."],hu:["Filetto","<em>di manzo</em>","Grillezett marhamedalion crostinin, kakukkfűvel."],en:["Filetto","<em>di manzo</em>","Grilled beef medallion on a crostino, with thyme."]}];
+window.DISH=D.map(d=>`<img src="${d.img}" alt="">`);const pw=document.getElementById('pw'),tx=document.getElementById('dtxt'),dots=document.getElementById('ddots'),ring=document.getElementById('ring'),sec=document.getElementById('spec');
+D.forEach((d,i)=>{const el=document.createElement('div');el.className='dish';el.innerHTML=`<img src="${d.img}" alt="${d.ro[0]} ${d.ro[1].replace(/<[^>]+>/g,'')}" loading="lazy">`;pw.insertBefore(el,ring);d.el=el;
   const t=document.createElement('div');t.className='dish-t';tx.appendChild(t);d.t=t;dots.appendChild(document.createElement('i'))});
 function txt(){D.forEach(d=>{const v=d[L]||d.ro;d.t.innerHTML=`<span class="n">${d.n} / 0${D.length}</span><h3>${v[0]} ${v[1]}</h3><p>${v[2]}</p>`})}
 txt();const _set=setLang;setLang=function(l){_set(l);txt()};
-let cur=-1;
+let cur=-1,tgt=0,cs=null,vis=false;
+/* eased rotation: follows scroll smoothly instead of jumping with each scroll event */
+(function rl(){if(vis||cs===null){cs=cs===null?tgt:cs+(tgt-cs)*(reduce?1:.09);const sc=innerWidth<=860?.86:.74;
+  D.forEach((d,k)=>{const lp=cs-k-.5;if(Math.abs(lp)>1.8&&d._done)return;d._done=Math.abs(lp)>1.8;
+    d.el.firstChild.style.transform=`translate3d(0,${(lp*-18).toFixed(2)}px,0) rotate(${(lp*-38).toFixed(2)}deg) scale(${sc})`})}
+  requestAnimationFrame(rl)})();
 function tick(){const r=sec.getBoundingClientRect(),total=r.height-innerHeight,p=Math.min(1,Math.max(0,-r.top/total));
   const i=Math.min(D.length-1,Math.floor(p*D.length*.999));
   if(i!==cur){cur=i;D.forEach((d,k)=>{d.el.classList.toggle('on',k===i);d.t.classList.toggle('on',k===i)});[...dots.children].forEach((d,k)=>d.classList.toggle('on',k<=i))}
-  const rot=p*720;D.forEach(d=>d.el.firstChild.style.setProperty('--r',rot+'deg'));ring.style.setProperty('--p',p)}
+  tgt=p*D.length;vis=r.top<innerHeight&&r.bottom>0;ring.style.setProperty('--p',p)}
 addEventListener('scroll',()=>requestAnimationFrame(tick),{passive:true});addEventListener('resize',tick);tick();
 })();
 /* gold dust */
@@ -131,3 +172,4 @@ addEventListener('scroll',()=>requestAnimationFrame(tick),{passive:true});addEve
   size();addEventListener('resize',size);let vis=true;new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(c);
   (function f(t){if(vis){x.clearRect(0,0,W,H);for(const p of P){p.y-=p.s;p.x+=Math.sin(t/1600+p.p)*.15;if(p.y<-5){p.y=H+5;p.x=Math.random()*W}x.globalAlpha=p.o*(.6+.4*Math.sin(t/700+p.p));x.fillStyle='#e6cf9f';x.beginPath();x.arc(p.x,p.y,p.r,0,6.283);x.fill()}}requestAnimationFrame(f)})(0)})();
 (function(){let s=null;try{s=localStorage.getItem("oroLang")}catch(e){}if(s&&s!=="ro")setLang(s)})();
+window.__ok=1;

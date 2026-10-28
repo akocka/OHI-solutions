@@ -1,36 +1,42 @@
 <!doctype html>
 <html lang="ro"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__ok)document.documentElement.classList.remove("js")},3500)</script>
 <meta name="robots" content="noindex,nofollow">
 <title>Rezervare · Orobianco (demo)</title>
 <meta name="description" content="Rezervă o masă la Orobianco, Târgu Mureș. Demo.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" href="/demo/orobianco/assets/lora.woff" as="font" type="font/woff" crossorigin>
-<link rel="stylesheet" href="/demo/orobianco/assets/base.css">
+<link rel="stylesheet" href="/demo/orobianco/assets/site.css">
 </head><body>
+<div class="bgfx" aria-hidden="true"><i></i><i></i><i></i></div><span class="leaf" style="left:8vw;--t:24s;--d:0s;--dx:6vw;--rot:320deg"><svg viewBox="0 0 30 14"><path d="M1 7C8-1 22-1 29 7C22 15 8 15 1 7Z" fill="#8a9a52"/><path d="M3 7H27" stroke="#5f6d33" stroke-width=".8"/></svg></span><span class="leaf" style="left:27vw;--t:30s;--d:6s;--dx:-5vw;--rot:-280deg"><svg viewBox="0 0 30 14"><path d="M1 7C8-1 22-1 29 7C22 15 8 15 1 7Z" fill="#8a9a52"/><path d="M3 7H27" stroke="#5f6d33" stroke-width=".8"/></svg></span><span class="leaf" style="left:48vw;--t:27s;--d:12s;--dx:7vw;--rot:360deg"><svg viewBox="0 0 30 14"><path d="M1 7C8-1 22-1 29 7C22 15 8 15 1 7Z" fill="#8a9a52"/><path d="M3 7H27" stroke="#5f6d33" stroke-width=".8"/></svg></span><span class="leaf" style="left:66vw;--t:33s;--d:3s;--dx:-6vw;--rot:300deg"><svg viewBox="0 0 30 14"><path d="M1 7C8-1 22-1 29 7C22 15 8 15 1 7Z" fill="#8a9a52"/><path d="M3 7H27" stroke="#5f6d33" stroke-width=".8"/></svg></span><span class="leaf" style="left:84vw;--t:29s;--d:9s;--dx:5vw;--rot:-340deg"><svg viewBox="0 0 30 14"><path d="M1 7C8-1 22-1 29 7C22 15 8 15 1 7Z" fill="#8a9a52"/><path d="M3 7H27" stroke="#5f6d33" stroke-width=".8"/></svg></span><span class="leaf" style="left:38vw;--t:35s;--d:17s;--dx:-4vw;--rot:260deg"><svg viewBox="0 0 30 14"><path d="M1 7C8-1 22-1 29 7C22 15 8 15 1 7Z" fill="#8a9a52"/><path d="M3 7H27" stroke="#5f6d33" stroke-width=".8"/></svg></span>
 <div class="glow" id="glow"></div>
 <header class="hdr" id="hdr"><div class="wrap">
   <a class="brand" href="/demo/orobianco">Oro<i>bianco</i></a>
-  <nav class="nav"><a href="/demo/orobianco" data-t="nHome">Acasă</a><a href="/demo/orobianco/meniu" data-t="nMenu">Meniu</a><a href="/demo/orobianco/evenimente" data-t="nEv">Evenimente</a><a href="/demo/orobianco/despre" data-t="nAbout">Despre noi</a></nav>
-  <div class="lang" role="group" aria-label="Limba"><button class="on" data-l="ro">RO</button><button data-l="hu">HU</button><button data-l="en">EN</button></div>
+  <nav class="nav"><a href="/demo/orobianco" data-t="nHome">Acasă</a><a href="/demo/orobianco/meniu" data-t="nMenu">Meniu</a><a href="/demo/orobianco/evenimente" data-t="nEv">Evenimente</a><a href="/demo/orobianco/despre" data-t="nAbout">Despre noi</a><a href="/demo/orobianco/blog" data-t="nBlog">Blog</a></nav>
+  <div class="lang" id="lang"><button class="lcur" id="lcur" type="button" aria-label="Limba / Nyelv / Language" aria-expanded="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.5 4 5.7 4 9s-1.4 6.5-4 9c-2.6-2.5-4-5.7-4-9s1.4-6.5 4-9z"/></svg><span id="lcode">RO</span></button><div class="lpop" role="menu"><button class="on" data-l="ro" role="menuitem"><b>RO</b>Română</button><button data-l="hu" role="menuitem"><b>HU</b>Magyar</button><button data-l="en" role="menuitem"><b>EN</b>English</button></div></div>
   <a class="btn p" href="/demo/orobianco/rezervare" data-mag><span data-t="cRes">Rezervă o masă</span></a>
   <button class="burger" id="burger" aria-label="Meniu"><i></i></button>
 </div></header>
-<nav class="mnavp"><a href="/demo/orobianco" data-t="nHome">Acasă</a><a href="/demo/orobianco/meniu" data-t="nMenu">Meniu</a><a href="/demo/orobianco/evenimente" data-t="nEv">Evenimente</a><a href="/demo/orobianco/despre" data-t="nAbout">Despre noi</a><a href="/demo/orobianco/rezervare" data-t="cRes">Rezervă o masă</a></nav>
+<nav class="mnavp"><a href="/demo/orobianco" data-t="nHome">Acasă</a><a href="/demo/orobianco/meniu" data-t="nMenu">Meniu</a><a href="/demo/orobianco/evenimente" data-t="nEv">Evenimente</a><a href="/demo/orobianco/despre" data-t="nAbout">Despre noi</a><a href="/demo/orobianco/blog" data-t="nBlog">Blog</a><a href="/demo/orobianco/rezervare" data-t="cRes">Rezervă o masă</a><div class="mlang"><button class="on" data-l="ro">Română</button><button data-l="hu">Magyar</button><button data-l="en">English</button></div></nav>
 <section class="phero"><div class="wrap">
   <p class="eyebrow" data-t="rE">Rezervări</p>
   <h1 data-t="rH">Masa voastră <em>vă așteaptă</em></h1>
   <p class="sub" data-t="rP">Trimiteți cererea online și vă confirmăm telefonic, sau sunați-ne direct.</p>
 </div></section>
-<section><div class="wrap"><div class="rbox" style="margin-top:0"><form class="rform rv">
-  <div class="row"><label><span data-t="fDate">Data</span><input type="date" required></label>
-    <label><span data-t="fTime">Ora</span><select required data-times></select></label></div>
-  <div class="row"><label><span data-t="fG">Persoane</span><select data-guests="12" data-def="2"></select></label>
-    <label><span data-t="fN">Nume</span><input required autocomplete="name"></label></div>
+<section><div class="wrap"><div class="rbox" style="margin-top:0"><form class="rform rv qform">
+  <div class="qstep"><span class="qn">1</span><span data-t="q1">Când veniți?</span></div>
+  <div class="chips" data-day><button type="button" class="on" data-d="0" data-t="dToday">Azi</button><button type="button" data-d="1" data-t="dTom">Mâine</button><label class="chipdate"><input type="date" aria-label="Altă dată"></label></div>
+  <div class="slots" data-slots></div>
+  <div class="qstep"><span class="qn">2</span><span data-t="q2">Câte persoane?</span></div>
+  <div class="stepper" data-stepper><button type="button" data-s="-1" aria-label="Mai puțin">−</button><b data-v>2</b><button type="button" data-s="1" aria-label="Mai mult">+</button><span data-t="pers">persoane</span></div>
+  <div class="qstep"><span class="qn">3</span><span data-t="q3">Datele voastre</span></div>
+  <label><span data-t="fN">Nume</span><input required autocomplete="name"></label>
   <label><span data-t="fP">Telefon</span><input type="tel" required autocomplete="tel" placeholder="07xx xxx xxx"></label>
   <label><span data-t="fM">Mențiuni (opțional)</span><textarea data-tp="fMp" placeholder="Aniversare, scaun pentru copil, alergii..."></textarea></label>
   <button class="btn p" type="submit" data-mag style="justify-content:center"><span data-t="fS">Trimite cererea de rezervare</span></button>
+  <p class="micro" style="text-align:center" data-t="fTrust">Fără cont, fără plată. Vă sunăm noi pentru confirmare.</p>
   <div class="ok"><h3 data-t="okH">Mulțumim!</h3><p data-t="okP">Cererea a ajuns la restaurant. Vă confirmăm rezervarea telefonic. (Demo: nu s-a trimis nimic.)</p></div>
 </form><div class="side rv d1">
   <a href="tel:+40743373146"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-3 2a11 11 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span><small data-t="sCall">Sună direct</small><b>+40 743 373 146</b></span></a>
@@ -54,10 +60,10 @@
 <footer style="padding:0;border-top:1px solid var(--line)"><div class="wrap ff">
   <div><span class="brand">Oro<i>bianco</i></span><p style="margin-top:14px">Piața Bernády György 2<br>540072 Târgu Mureș</p></div>
   <div><h5 data-t="fHours">Program</h5><p data-t="sOpenV">Zilnic, 12:00 – 23:00</p></div>
-  <div><h5 data-t="fLinks">Pagini</h5><a href="/demo/orobianco/meniu" data-t="nMenu">Meniu</a><a href="/demo/orobianco/evenimente" data-t="nEv">Evenimente</a><a href="/demo/orobianco/despre" data-t="nAbout">Despre noi</a><a href="/demo/orobianco/rezervare" data-t="cRes">Rezervă o masă</a></div>
+  <div><h5 data-t="fLinks">Pagini</h5><a href="/demo/orobianco/meniu" data-t="nMenu">Meniu</a><a href="/demo/orobianco/evenimente" data-t="nEv">Evenimente</a><a href="/demo/orobianco/despre" data-t="nAbout">Despre noi</a><a href="/demo/orobianco/blog" data-t="nBlog">Blog</a><a href="/demo/orobianco/rezervare" data-t="cRes">Rezervă o masă</a></div>
   <div><h5 data-t="fCont">Contact</h5><a href="tel:+40743373146">+40 743 373 146</a><a href="https://wa.me/40743373146" target="_blank" rel="noopener">WhatsApp</a></div>
 </div></footer>
-<div class="mres" id="mres"><a class="btn p" href="/demo/orobianco/rezervare" style="width:100%;justify-content:center"><span data-t="cRes">Rezervă o masă</span></a></div>
+<div class="mres" id="mres"><a class="mb" href="tel:+40743373146"><span>📞</span><b data-t="bCall">Sună</b></a><a class="mb" href="/demo/orobianco/meniu"><span>📖</span><b data-t="nMenu">Meniu</b></a><a class="btn p" href="/demo/orobianco/rezervare" style="flex:1.6;justify-content:center"><span data-t="cRes">Rezervă o masă</span></a></div>
 <div class="demo"><b>Demo</b> · <span data-t="demo">Propunere de website realizată de OHI Solutions pentru Orobianco. Nu este site-ul oficial.</span></div>
 <script>window.PT={"hu": {"rE": "Foglalás", "rH": "Az asztalotok <em>vár</em>", "rP": "Küldjétek el a kérést online, és telefonon visszaigazoljuk, vagy hívjatok közvetlenül.", "e6": "Helyszín", "h2f": "Marosvásárhely <em>központjában</em>"}, "en": {"rE": "Reservations", "rH": "Your table <em>is waiting</em>", "rP": "Send the request online and we confirm by phone, or call us directly.", "e6": "Location", "h2f": "In the centre of <em>Târgu Mureș</em>"}};</script>
 <script src="/demo/orobianco/assets/site.js" defer></script>
