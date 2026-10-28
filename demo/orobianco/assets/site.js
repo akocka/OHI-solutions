@@ -97,7 +97,13 @@ let lastY=scrollY;
 function hdrDyn(){const y=scrollY;hdr.classList.toggle('solid',y>40);
   if(y>lastY+6&&y>320&&!document.body.classList.contains('mopen')&&!document.querySelector('.lang.open'))hdr.classList.add('hide');
   else if(y<lastY-6||y<320)hdr.classList.remove('hide');lastY=y;
-  let dk=false;document.querySelectorAll('.spin .stage,.strip,footer,.ctaband').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<44&&r.bottom>44)dk=true});hdr.classList.toggle('dark',dk)}
+  let dk=false;document.querySelectorAll('.spin .stage,.strip,footer,.ctaband').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<44&&r.bottom>44)dk=true});hdr.classList.toggle('dark',dk);syncBar()}
+/* menu category bar docks right under the island header and follows it */
+const hw=hdr.querySelector('.wrap'),mbar=document.querySelector('.mbar'),mwrap=document.getElementById('menuWrap');
+function syncBar(){if(!mbar||!mbar.offsetParent)return;const t=hdr.classList.contains('hide')?10:Math.round(hw.getBoundingClientRect().bottom+8);
+  document.documentElement.style.setProperty('--mt',t+'px');mbar.classList.toggle('solid',hdr.classList.contains('solid'));
+  if(mwrap)mbar.classList.toggle('gone',mwrap.getBoundingClientRect().bottom<t+90)}
+hdr.addEventListener('transitionend',syncBar);hw.addEventListener('transitionend',syncBar);addEventListener('resize',syncBar);addEventListener('hashchange',()=>setTimeout(syncBar,50));
 function onS(){hdrDyn();if(!mres)return;const f=document.querySelector('form.rform'),s=document.getElementById('spec');
   const inForm=f&&(r=>r.top<innerHeight&&r.bottom>0)(f.getBoundingClientRect()),inSpin=s&&(r=>r.top<=0&&r.bottom>=innerHeight)(s.getBoundingClientRect());
   mres.classList.toggle('on',scrollY>innerHeight*.6&&!inForm&&!inSpin)}

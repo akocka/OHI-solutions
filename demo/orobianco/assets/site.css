@@ -540,3 +540,21 @@ html,body{overflow-x:clip}
 .dish img{transition:none!important;filter:none!important;will-change:transform;backface-visibility:hidden}
 .dish{filter:drop-shadow(0 40px 40px rgba(0,0,0,.55))}
 .dish:not(.on){filter:none}
+/* ===== menu category bar docked to the island ===== */
+.mbar{top:var(--mt,86px);background:none!important;border:0!important;-webkit-backdrop-filter:none;backdrop-filter:none;pointer-events:none;transition:top .55s var(--ease),opacity .35s,transform .45s var(--ease)}
+.mbar .wrap{pointer-events:auto;max-width:1180px;width:calc(100% - 28px);margin:0 auto;padding:7px 8px;gap:6px;border-radius:999px;
+  background:rgba(255,251,243,.72);-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
+  border:1px solid rgba(168,130,63,.22);box-shadow:0 16px 34px -22px rgba(70,45,15,.35),inset 0 1px 0 rgba(255,255,255,.7);transition:max-width .7s var(--ease)}
+.mbar.solid .wrap{max-width:1020px}
+.mbar.gone{opacity:0;transform:translateY(-14px)}.mbar.gone .wrap{pointer-events:none}
+.mbar nav a,.mbar .chip{padding:8px 15px!important;font-size:13.5px!important;border-radius:999px;white-space:nowrap}
+.mbar nav{display:flex;gap:4px}
+.mbar nav a.on,.mbar nav a.cur{background:#2a2118!important;color:#fff6ea!important;border-color:#2a2118!important}
+@media(max-width:860px){.mbar .wrap{width:calc(100% - 20px);padding:5px 6px}}
+/* footer demo note (replaces the fixed bottom strip) */
+.demo{display:none!important}
+.fbot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:22px 0 30px;margin-top:40px;border-top:1px solid rgba(210,178,119,.16);font-size:12.5px;color:#8f846f}
+.fdemo{opacity:.7}
+@media(max-width:860px){.mres{bottom:calc(12px + env(safe-area-inset-bottom))!important}footer{padding-bottom:90px}}
+.mcat{scroll-margin-top:150px}
+@media(max-width:860px){.fbot{padding-bottom:104px}}
