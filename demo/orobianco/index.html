@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ro"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Ristorante italiano în Târgu Mureș · Orobianco (demo)</title>
+<meta name="description" content="Orobianco, restaurant italian în centrul Târgu Mureșului. Demo realizat de OHI Solutions.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" href="/demo/orobianco/assets/lora.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="/demo/orobianco/assets/base.css">
+</head><body>
+<div class="glow" id="glow"></div>
+<header class="hdr" id="hdr"><div class="wrap">
+  <a class="brand" href="/demo/orobianco">Oro<i>bianco</i></a>
+  <nav class="nav"><a href="/demo/orobianco" data-t="nHome" class="cur">Acasă</a><a href="/demo/orobianco/meniu" data-t="nMenu">Meniu</a><a href="/demo/orobianco/evenimente" data-t="nEv">Evenimente</a><a href="/demo/orobianco/despre" data-t="nAbout">Despre noi</a></nav>
+  <div class="lang" role="group" aria-label="Limba"><button class="on" data-l="ro">RO</button><button data-l="hu">HU</button><button data-l="en">EN</button></div>
+  <a class="btn p" href="/demo/orobianco/rezervare" data-mag><span data-t="cRes">Rezervă o masă</span></a>
+  <button class="burger" id="burger" aria-label="Meniu"><i></i></button>
+</div></header>
+<nav class="mnavp"><a href="/demo/orobianco" data-t="nHome">Acasă</a><a href="/demo/orobianco/meniu" data-t="nMenu">Meniu</a><a href="/demo/orobianco/evenimente" data-t="nEv">Evenimente</a><a href="/demo/orobianco/despre" data-t="nAbout">Despre noi</a><a href="/demo/orobianco/rezervare" data-t="cRes">Rezervă o masă</a></nav>
+<section class="hero" id="top">
+  <canvas id="dust"></canvas>
+  <div class="in wrap">
+    <svg class="plate" viewBox="0 0 200 120" aria-hidden="true">
+      <circle cx="100" cy="70" r="44" style="--l:277"/>
+      <circle class="d2" cx="100" cy="70" r="30" style="--l:189"/>
+      <line class="d3" x1="34" y1="34" x2="34" y2="108" style="--l:74"/>
+      <path class="d3" d="M28 34v18c0 5 12 5 12 0V34" style="--l:60"/>
+      <path class="d4" d="M166 108V34c-8 6-10 20-10 30h10" style="--l:120"/>
+    </svg>
+    <h1 id="h1"><span>Oro</span><em>bianco</em></h1>
+    <p class="tag" data-t="tag">Ristorante italiano în inima Târgu Mureșului. O seară lungă, un pahar de vin bun și farfurii de povestit.</p>
+    <div class="ctas"><a class="btn p" href="/demo/orobianco/rezervare" data-mag><span data-t="cRes">Rezervă o masă</span><span>→</span></a><a class="btn o" href="/demo/orobianco/meniu" data-mag><span data-t="cMenu">Vezi meniul</span></a></div>
+  </div>
+  <div class="scroll" aria-hidden="true"></div>
+</section>
+<div class="strip"><div class="wrap">
+  <span><i></i><b data-t="open">Deschis zilnic</b>&nbsp;12:00 – 23:00</span>
+  <span><i></i>Piața Bernády György 2, Târgu Mureș</span>
+  <span><i></i><a href="tel:+40743373146"><b>+40 743 373 146</b></a></span>
+</div></div>
+<section id="exp"><div class="wrap">
+  <p class="eyebrow rv" data-t="e1">Experiența Orobianco</p>
+  <h2 class="rv d1" data-t="h2a" style="margin-top:18px">Mai mult decât o cină.<br><em>O seară întreagă.</em></h2>
+  <div class="exp">
+    <a class="card rv" data-tilt href="/demo/orobianco/meniu"><svg viewBox="0 0 48 48"><path d="M8 30h32M10 30c0 7 6 12 14 12s14-5 14-12"/><path d="M18 22c0-4 3-4 3-8M26 22c0-4 3-4 3-8"/></svg><h3 data-t="c1h">Bucătărie italiană</h3><p data-t="c1p">Rețete italiene clasice și farfurii gândite până la ultimul detaliu, servite cu grijă.</p></a>
+    <a class="card rv d1" data-tilt href="/demo/orobianco/meniu#vini"><svg viewBox="0 0 48 48"><path d="M16 6h16l-2 14a6 6 0 0 1-12 0z"/><path d="M24 26v14M17 42h14"/></svg><h3 data-t="c2h">Vinuri și cocktailuri</h3><p data-t="c2p">Un pahar potrivit pentru fiecare fel, recomandat de o echipă care știe ce servește.</p></a>
+    <a class="card rv d2" data-tilt href="/demo/orobianco/evenimente"><svg viewBox="0 0 48 48"><path d="M10 40V20l14-10 14 10v20z"/><path d="M19 40V28h10v12"/><path d="M6 40h36"/></svg><h3 data-t="c3h">Evenimente private</h3><p data-t="c3p">Aniversări, cine de afaceri sau momente în doi, organizate liniștit, fără grija detaliilor.</p></a>
+  </div>
+</div></section>
+<section class="spin" id="spec" aria-label="Specialitățile casei"><div class="stage"><div class="wrap grid">
+  <div class="left">
+    <p class="eyebrow" data-t="e7">Specialitățile casei</p>
+    <div class="txt" id="dtxt" style="margin-top:26px"></div>
+    <div class="dots2" id="ddots"></div>
+    <span class="ph-note" data-t="phNote">Ilustrație · aici vin fotografiile voastre</span>
+  </div>
+  <div class="plateWrap" id="pw"><div class="ring" id="ring"></div></div>
+</div></div></section>
+<section class="menu"><div class="wrap">
+  <p class="eyebrow rv" data-t="hmE">Descoperă</p>
+  <h2 class="rv d1" style="margin-top:18px" data-t="hmH">Tot ce vă așteaptă <em>la Orobianco</em></h2>
+  <div class="teas">
+    <a class="tea rv" href="/demo/orobianco/meniu" data-tilt><span class="eyebrow" data-t="t1e">Meniu</span><h3 data-t="t1h">Meniul complet</h3><p data-t="t1p">Antipasti, paste, risotto, feluri principale și deserturi, cu prețuri clare.</p><span class="go" data-t="t1g">Vezi meniul →</span></a>
+    <a class="tea rv d1" href="/demo/orobianco/evenimente" data-tilt><span class="eyebrow" data-t="t2e">Evenimente</span><h3 data-t="t2h">Seri private</h3><p data-t="t2p">Pachete pentru aniversări, cine de afaceri și grupuri, plus vouchere cadou.</p><span class="go" data-t="t2g">Vezi pachetele →</span></a>
+    <a class="tea rv d2" href="/demo/orobianco/despre" data-tilt><span class="eyebrow" data-t="t3e">Despre noi</span><h3 data-t="t3h">Povestea noastră</h3><p data-t="t3p">Oamenii, bucătăria și atmosfera din spatele fiecărei seri.</p><span class="go" data-t="t3g">Citește →</span></a>
+  </div>
+</div></section>
+<section id="loc"><div class="wrap">
+  <p class="eyebrow rv" data-t="e6">Locație</p>
+  <h2 class="rv d1" style="margin-top:18px" data-t="h2f">În centrul <em>Târgu Mureșului</em></h2>
+  <div class="loc">
+    <div class="hours rv">
+      <p class="eyebrow" style="margin-bottom:14px" data-t="sOpen">Program</p>
+      <div><span data-t="dMF">Luni – Vineri</span><span>12:00 – 23:00</span></div>
+      <div><span data-t="dSa">Sâmbătă</span><span>12:00 – 23:00</span></div>
+      <div><span data-t="dSu">Duminică</span><span>12:00 – 23:00</span></div>
+      <p style="margin-top:18px;color:var(--mute)">Piața Bernády György 2<br>540072 Târgu Mureș</p>
+    </div>
+    <div class="map rv d1"><iframe loading="lazy" title="Hartă Orobianco" src="https://www.google.com/maps?q=Pia%C8%9Ba%20Bern%C3%A1dy%20Gy%C3%B6rgy%202%2C%20T%C3%A2rgu%20Mure%C8%99&output=embed" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+  </div>
+</div></section>
+<section class="ctaband"><div class="wrap">
+  <h2 class="rv" data-t="ctaH">Rezervă o masă <em>pentru diseară</em></h2>
+  <p class="rv d1" data-t="ctaP">Cerere online în două minute, sau sună-ne direct.</p>
+  <div class="rv d2" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><a class="btn p" href="/demo/orobianco/rezervare" data-mag><span data-t="ctaB">Rezervă o masă</span><span>→</span></a><a class="btn o" href="tel:+40743373146" data-mag><span>+40 743 373 146</span></a></div>
+</div></section>
+<footer style="padding:0;border-top:1px solid var(--line)"><div class="wrap ff">
+  <div><span class="brand">Oro<i>bianco</i></span><p style="margin-top:14px">Piața Bernády György 2<br>540072 Târgu Mureș</p></div>
+  <div><h5 data-t="fHours">Program</h5><p data-t="sOpenV">Zilnic, 12:00 – 23:00</p></div>
+  <div><h5 data-t="fLinks">Pagini</h5><a href="/demo/orobianco/meniu" data-t="nMenu">Meniu</a><a href="/demo/orobianco/evenimente" data-t="nEv">Evenimente</a><a href="/demo/orobianco/despre" data-t="nAbout">Despre noi</a><a href="/demo/orobianco/rezervare" data-t="cRes">Rezervă o masă</a></div>
+  <div><h5 data-t="fCont">Contact</h5><a href="tel:+40743373146">+40 743 373 146</a><a href="https://wa.me/40743373146" target="_blank" rel="noopener">WhatsApp</a></div>
+</div></footer>
+<div class="mres" id="mres"><a class="btn p" href="/demo/orobianco/rezervare" style="width:100%;justify-content:center"><span data-t="cRes">Rezervă o masă</span></a></div>
+<div class="demo"><b>Demo</b> · <span data-t="demo">Propunere de website realizată de OHI Solutions pentru Orobianco. Nu este site-ul oficial.</span></div>
+<script>window.PT={"hu": {"tag": "Olasz étterem Marosvásárhely szívében. Egy hosszú este, egy pohár jó bor és emlékezetes fogások.", "cMenu": "Étlap megtekintése", "e1": "Az Orobianco élmény", "h2a": "Több mint egy vacsora.<br><em>Egy egész este.</em>", "c1h": "Olasz konyha", "c1p": "Klasszikus olasz receptek és az utolsó részletig átgondolt fogások.", "c2h": "Borok és koktélok", "c2p": "Minden fogáshoz a megfelelő ital, egy hozzáértő csapat ajánlásával.", "c3h": "Privát események", "c3p": "Évfordulók, üzleti vacsorák vagy kettesben töltött esték.", "e7": "A ház különlegességei", "phNote": "Illusztráció · ide kerülnek a saját fotóitok", "hmE": "Fedezd fel", "hmH": "Minden, ami vár <em>az Orobiancóban</em>", "t1e": "Étlap", "t1h": "A teljes étlap", "t1p": "Előételek, tészták, rizottók, főételek és desszertek, világos árakkal.", "t1g": "Étlap →", "t2e": "Események", "t2h": "Privát esték", "t2p": "Csomagok évfordulókra, üzleti vacsorákra és csoportoknak, plusz ajándékutalványok.", "t2g": "Csomagok →", "t3e": "Rólunk", "t3h": "A történetünk", "t3p": "Az emberek, a konyha és a hangulat minden este mögött.", "t3g": "Tovább →", "e6": "Helyszín", "h2f": "Marosvásárhely <em>központjában</em>", "e3": "Galéria", "h2c": "A hangulat <em>képekben</em>", "phSala": "Az étterem fotója", "phFel": "Különleges fogás", "phBar": "A bár és a borok", "phDesert": "Desszert", "phEchipa": "A csapat"}, "en": {"tag": "An Italian restaurant in the heart of Târgu Mureș. A long evening, a good glass of wine and dishes worth talking about.", "cMenu": "See the menu", "e1": "The Orobianco experience", "h2a": "More than a dinner.<br><em>A whole evening.</em>", "c1h": "Italian cuisine", "c1p": "Classic Italian recipes and plates thought through to the last detail.", "c2h": "Wines and cocktails", "c2p": "The right glass for every course, recommended by a team that knows.", "c3h": "Private events", "c3p": "Anniversaries, business dinners or evenings for two.", "e7": "House specialities", "phNote": "Illustration · your own photos go here", "hmE": "Discover", "hmH": "Everything waiting for you <em>at Orobianco</em>", "t1e": "Menu", "t1h": "The full menu", "t1p": "Starters, pasta, risotto, mains and desserts, with clear prices.", "t1g": "See the menu →", "t2e": "Events", "t2h": "Private evenings", "t2p": "Packages for anniversaries, business dinners and groups, plus gift vouchers.", "t2g": "See packages →", "t3e": "About", "t3h": "Our story", "t3p": "The people, the kitchen and the atmosphere behind every evening.", "t3g": "Read →", "e6": "Location", "h2f": "In the centre of <em>Târgu Mureș</em>", "e3": "Gallery", "h2c": "The atmosphere, <em>in pictures</em>", "phSala": "Dining room photo", "phFel": "Signature dish", "phBar": "The bar and wines", "phDesert": "Dessert", "phEchipa": "The team"}};</script>
+<script src="/demo/orobianco/assets/site.js" defer></script>
+</body></html>

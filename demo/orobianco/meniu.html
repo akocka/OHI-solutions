@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ro"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Meniu · Orobianco (demo)</title>
+<meta name="description" content="Meniul restaurantului Orobianco: antipasti, paste, risotto, feluri principale, deserturi, vinuri. Demo.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" href="/demo/orobianco/assets/lora.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="/demo/orobianco/assets/base.css">
+</head><body>
+<div class="glow" id="glow"></div>
+<header class="hdr" id="hdr"><div class="wrap">
+  <a class="brand" href="/demo/orobianco">Oro<i>bianco</i></a>
+  <nav class="nav"><a href="/demo/orobianco" data-t="nHome">Acasă</a><a href="/demo/orobianco/meniu" data-t="nMenu" class="cur">Meniu</a><a href="/demo/orobianco/evenimente" data-t="nEv">Evenimente</a><a href="/demo/orobianco/despre" data-t="nAbout">Despre noi</a></nav>
+  <div class="lang" role="group" aria-label="Limba"><button class="on" data-l="ro">RO</button><button data-l="hu">HU</button><button data-l="en">EN</button></div>
+  <a class="btn p" href="/demo/orobianco/rezervare" data-mag><span data-t="cRes">Rezervă o masă</span></a>
+  <button class="burger" id="burger" aria-label="Meniu"><i></i></button>
+</div></header>
+<nav class="mnavp"><a href="/demo/orobianco" data-t="nHome">Acasă</a><a href="/demo/orobianco/meniu" data-t="nMenu">Meniu</a><a href="/demo/orobianco/evenimente" data-t="nEv">Evenimente</a><a href="/demo/orobianco/despre" data-t="nAbout">Despre noi</a><a href="/demo/orobianco/rezervare" data-t="cRes">Rezervă o masă</a></nav>
+<section class="phero"><div class="wrap">
+  <p class="eyebrow" data-t="mE">Meniu</p>
+  <h1 data-t="mH">Meniul <em>Orobianco</em></h1>
+  <p class="sub" data-t="mP">Bucătărie italiană, de la antipasti la dolci, plus vinuri și cocktailuri.</p>
+  <div class="note"><span>✦</span><span data-t="mNote"><b>Meniu exemplu.</b> Felurile și prețurile reale le completăm împreună cu voi; le puteți schimba oricând.</span></div>
+</div></section>
+<div class="mbar"><div class="wrap"><nav id="mnav"></nav><button class="chip" id="veg" data-t="veg">Doar vegetariene</button></div></div>
+<section style="padding-top:20px"><div class="wrap"><div id="menuWrap"></div>
+  <p class="legend" data-t="leg"><span class="vtag">V</span> vegetarian · Vă rugăm să ne spuneți despre orice alergie; informațiile despre alergeni sunt disponibile la cerere.</p>
+</div></section>
+<section class="ctaband"><div class="wrap">
+  <h2 class="rv" data-t="ctaH">Rezervă o masă <em>pentru diseară</em></h2>
+  <p class="rv d1" data-t="ctaP">Cerere online în două minute, sau sună-ne direct.</p>
+  <div class="rv d2" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><a class="btn p" href="/demo/orobianco/rezervare" data-mag><span data-t="ctaB">Rezervă o masă</span><span>→</span></a><a class="btn o" href="tel:+40743373146" data-mag><span>+40 743 373 146</span></a></div>
+</div></section>
+<footer style="padding:0;border-top:1px solid var(--line)"><div class="wrap ff">
+  <div><span class="brand">Oro<i>bianco</i></span><p style="margin-top:14px">Piața Bernády György 2<br>540072 Târgu Mureș</p></div>
+  <div><h5 data-t="fHours">Program</h5><p data-t="sOpenV">Zilnic, 12:00 – 23:00</p></div>
+  <div><h5 data-t="fLinks">Pagini</h5><a href="/demo/orobianco/meniu" data-t="nMenu">Meniu</a><a href="/demo/orobianco/evenimente" data-t="nEv">Evenimente</a><a href="/demo/orobianco/despre" data-t="nAbout">Despre noi</a><a href="/demo/orobianco/rezervare" data-t="cRes">Rezervă o masă</a></div>
+  <div><h5 data-t="fCont">Contact</h5><a href="tel:+40743373146">+40 743 373 146</a><a href="https://wa.me/40743373146" target="_blank" rel="noopener">WhatsApp</a></div>
+</div></footer>
+<div class="mres" id="mres"><a class="btn p" href="/demo/orobianco/rezervare" style="width:100%;justify-content:center"><span data-t="cRes">Rezervă o masă</span></a></div>
+<div class="demo"><b>Demo</b> · <span data-t="demo">Propunere de website realizată de OHI Solutions pentru Orobianco. Nu este site-ul oficial.</span></div>
+<script>window.PT={"hu": {"mE": "Étlap", "mH": "Az <em>Orobianco</em> étlapja", "mP": "Olasz konyha az előételektől a desszertekig, borokkal és koktélokkal.", "mNote": "<b>Minta étlap.</b> A valódi fogásokat és árakat együtt töltjük ki; bármikor módosíthatók.", "veg": "Csak vegetáriánus", "leg": "<span class=\"vtag\">V</span> vegetáriánus · Kérjük, jelezzétek, ha allergiátok van; az allergénekről kérésre tájékoztatunk."}, "en": {"mE": "Menu", "mH": "The <em>Orobianco</em> menu", "mP": "Italian cooking from antipasti to dolci, plus wines and cocktails.", "mNote": "<b>Sample menu.</b> We fill in the real dishes and prices together with you; editable anytime.", "veg": "Vegetarian only", "leg": "<span class=\"vtag\">V</span> vegetarian · Please tell us about any allergy; allergen information is available on request."}};</script>
+<script src="/demo/orobianco/assets/site.js" defer></script>
+</body></html>
