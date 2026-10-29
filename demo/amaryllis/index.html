@@ -150,6 +150,18 @@ footer{padding:60px 0 50px;border-top:1px solid var(--line)}.fb{display:flex;jus
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}}
 
 .fab{display:none!important}
+
+/* --- fixes --- */
+.ilang{display:flex;gap:0}.ilang button{border:0;background:none;color:#fff;opacity:.5;font:600 11.5px Inter;letter-spacing:.08em;padding:0 8px;min-height:36px;cursor:pointer}.ilang button.on{opacity:1}
+.isb{display:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:none;cursor:pointer;position:relative}
+.isb i,.isb i::before,.isb i::after{position:absolute;left:11px;right:11px;height:1.6px;background:#fff;content:""}.isb i{top:19px}.isb i::before{top:-6px;left:0;right:0}.isb i::after{top:6px;left:0;right:0}
+.lang button{min-height:36px}.cb button{padding:10px 0}
+.wart{width:min(520px,100%);max-height:none}
+.dlg{position:fixed;inset:0;z-index:120;display:grid;place-items:center;background:rgba(10,8,9,.7);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);padding:20px}
+.dlg[hidden]{display:none}.dbox{position:relative;width:min(520px,100%);padding:30px;border-radius:26px;background:#211c1e;border:1px solid var(--line)}
+.dbox h3{font:300 28px Fraunces,serif;margin-bottom:16px}.dbox pre{white-space:pre-wrap;font:400 15px/1.6 Inter;padding:18px;border-radius:16px;background:rgba(255,255,255,.04);border:1px dashed var(--rose)}
+.dx{position:absolute;top:14px;right:16px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:none;font-size:22px;cursor:pointer}
+@media (max-width:900px),(max-aspect-ratio:4/5){.isb{display:block}.ilang{display:none}.ip{padding:9px 14px;font-size:13px}.isl{gap:8px}}
 </style>
 </head>
 <body>
@@ -157,7 +169,9 @@ footer{padding:60px 0 50px;border-top:1px solid var(--line)}.fb{display:flex;jus
 <header class="isle" id="isle"><div class="isl">
   <a class="ib" href="#top"><svg viewBox="0 0 66 62"><path d="M33 4C38 18 46 24 62 31C46 38 38 44 33 58C28 44 20 38 4 31C20 24 28 18 33 4Z"/></svg><span>Amaryllis</span></a>
   <nav><a href="#ocazii" data-t="n2">Ocazii</a><a href="#atelier" data-t="n1">Atelier</a><a href="#nunti" data-t="n3">Nunți</a><a href="#vizita" data-t="n4">Contact</a></nav>
+  <div class="ilang"><button class="on" data-l="ro">RO</button><button data-l="hu">HU</button><button data-l="en">EN</button></div>
   <a class="ip" href="#atelier"><span data-t="pill">Comandă un buchet</span></a>
+  <button class="isb" id="isb" aria-label="Meniu" aria-controls="sheet"><i></i></button>
 </div></header>
 
 <main>
@@ -190,11 +204,11 @@ footer{padding:60px 0 50px;border-top:1px solid var(--line)}.fb{display:flex;jus
 <section class="occ" id="ocazii"><div class="pin">
   <div class="ohead wrap"><p class="eye" data-t="oE">Ocazii</p><h2 data-t="oH">Pentru fiecare <em>poveste</em></h2></div>
   <div class="track" id="track">
-    <article class="card" data-o="love"><canvas data-b="love"></canvas><div class="cb"><span class="cn">01</span><h3 data-t="o1">Dragoste</h3><p data-t="o1p">Trandafiri roșii și amaryllis, pentru „te iubesc” spus fără cuvinte.</p><button data-t="oGo" data-pick="love">Alege →</button></div></article>
-    <article class="card" data-o="bday"><canvas data-b="bday"></canvas><div class="cb"><span class="cn">02</span><h3 data-t="o2">Aniversare</h3><p data-t="o2p">Culori vesele și flori de sezon, pentru o zi de neuitat.</p><button data-t="oGo" data-pick="bday">Alege →</button></div></article>
-    <article class="card" data-o="thanks"><canvas data-b="thanks"></canvas><div class="cb"><span class="cn">03</span><h3 data-t="o3">Mulțumesc</h3><p data-t="o3p">Un gest mic care rămâne în minte mult timp.</p><button data-t="oGo" data-pick="thanks">Alege →</button></div></article>
-    <article class="card" data-o="baby"><canvas data-b="baby"></canvas><div class="cb"><span class="cn">04</span><h3 data-t="o4">Bun venit, bebe</h3><p data-t="o4p">Tonuri pastel, pentru cea mai mică nouă persoană.</p><button data-t="oGo" data-pick="baby">Alege →</button></div></article>
-    <article class="card" data-o="calm"><canvas data-b="calm"></canvas><div class="cb"><span class="cn">05</span><h3 data-t="o5">Condoleanțe</h3><p data-t="o5p">Alb și verde liniștit, pentru momentele grele.</p><button data-t="oGo" data-pick="calm">Alege →</button></div></article>
+    <article class="card" data-o="love"><canvas data-b="love" role="img" aria-label="Buchet cu trandafiri roșii și amaryllis"></canvas><div class="cb"><span class="cn">01</span><h3 data-t="o1">Dragoste</h3><p data-t="o1p">Trandafiri roșii și amaryllis, pentru „te iubesc” spus fără cuvinte.</p><button data-t="oGo" data-pick="love">Alege →</button></div></article>
+    <article class="card" data-o="bday"><canvas data-b="bday" role="img" aria-label="Buchet cu trandafiri galbeni și portocalii"></canvas><div class="cb"><span class="cn">02</span><h3 data-t="o2">Aniversare</h3><p data-t="o2p">Culori vesele și flori de sezon, pentru o zi de neuitat.</p><button data-t="oGo" data-pick="bday">Alege →</button></div></article>
+    <article class="card" data-o="thanks"><canvas data-b="thanks" role="img" aria-label="Buchet cu trandafiri roz pal"></canvas><div class="cb"><span class="cn">03</span><h3 data-t="o3">Mulțumesc</h3><p data-t="o3p">Un gest mic care rămâne în minte mult timp.</p><button data-t="oGo" data-pick="thanks">Alege →</button></div></article>
+    <article class="card" data-o="baby"><canvas data-b="baby" role="img" aria-label="Buchet în tonuri pastel de lila"></canvas><div class="cb"><span class="cn">04</span><h3 data-t="o4">Bun venit, bebe</h3><p data-t="o4p">Tonuri pastel, pentru cea mai mică nouă persoană.</p><button data-t="oGo" data-pick="baby">Alege →</button></div></article>
+    <article class="card" data-o="calm"><canvas data-b="calm" role="img" aria-label="Buchet alb cu verdeață"></canvas><div class="cb"><span class="cn">05</span><h3 data-t="o5">Condoleanțe</h3><p data-t="o5p">Alb și verde liniștit, pentru momentele grele.</p><button data-t="oGo" data-pick="calm">Alege →</button></div></article>
   </div>
   <div class="prog wrap"><i id="prog"></i></div>
 </div></section>
@@ -240,7 +254,7 @@ footer{padding:60px 0 50px;border-top:1px solid var(--line)}.fb{display:flex;jus
     <ol class="steps"><li class="rv"><b>01</b><div><h3 data-t="w1">Ne cunoaștem</h3><p data-t="w1p">Ne povestiți despre rochie, locație și culorile nunții.</p></div></li>
       <li class="rv"><b>02</b><div><h3 data-t="w2">Propunerea</h3><p data-t="w2p">Primiți o schiță a buchetului și a aranjamentelor.</p></div></li>
       <li class="rv"><b>03</b><div><h3 data-t="w3">Ziua cea mare</h3><p data-t="w3p">Livrăm totul proaspăt, la timp, ca voi să vă bucurați.</p></div></li></ol>
-    <a class="btn rv" href="https://wa.me/40745265516?text=Bun%C4%83%20ziua!%20A%C8%99%20dori%20o%20ofert%C4%83%20pentru%20flori%20de%20nunt%C4%83." target="_blank" rel="noopener"><span data-t="wC">Programează o discuție</span><span>→</span></a></div>
+    <a class="btn rv" href="#" id="wedBtn"><span data-t="wC">Programează o discuție</span><span>→</span></a></div>
   <div class="wart"><canvas id="wc" role="img" aria-label="Amaryllis alb"></canvas></div>
 </div></section>
 
@@ -256,7 +270,9 @@ footer{padding:60px 0 50px;border-top:1px solid var(--line)}.fb{display:flex;jus
 </div></section>
 </main>
 <footer><div class="wrap fb"><span class="fbrand">AMAR<em>YLLIS</em></span><span data-t="foot">Propunere de website realizată de OHI Solutions pentru Florăria Amaryllis. Nu este site-ul oficial. Ilustrațiile florale sunt desenate în cod.</span></div></footer>
-<a class="fab" id="fab" href="#atelier"><span data-t="pill">Comandă un buchet</span></a>
+<div class="dlg" id="dlg" hidden><div class="dbox" role="dialog" aria-modal="true" aria-labelledby="dlgH"><button class="dx" id="dx" aria-label="Închide">×</button>
+  <p class="eye" data-t="dE">Demo</p><h3 id="dlgH" data-t="dH">Mesajul care ar ajunge la florărie</h3><pre id="dlgT"></pre>
+  <p class="fine" data-t="dP">În versiunea live, butonul deschide WhatsApp cu acest mesaj gata scris, direct către Florăria Amaryllis.</p></div></div>
 <script>/* ===== Flora: botanical canvas painters (Hippeastrum + bouquets) ===== */
 const Flora=(()=>{
 const PAL={
@@ -351,14 +367,14 @@ return {PAL,plant,halftone,bouquet};})();
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,touch=matchMedia('(hover:none)').matches;
 /* ---------- i18n ---------- */
-const T={hu:{n1:'Műhely',n2:'Alkalmak',n3:'Esküvők',n4:'Kapcsolat',pill:'Csokor rendelése',cl:'Friss virágok,<br>szívvel kötve.',cr:'Hippeastrum ‘Red Lion’<br><em>illusztráció · Marosvásárhely</em>',cue:'Fedezd fel',
+const T={hu:{dE:'Demo',dH:'Ez az üzenet érkezne a virágbolthoz',dP:'Az élő verzióban a gomb megnyitja a WhatsAppot ezzel a kész üzenettel, közvetlenül az Amaryllis Virágbolthoz.',n1:'Műhely',n2:'Alkalmak',n3:'Esküvők',n4:'Kapcsolat',pill:'Csokor rendelése',cl:'Friss virágok,<br>szívvel kötve.',cr:'Hippeastrum ‘Red Lion’<br><em>illusztráció · Marosvásárhely</em>',cue:'Fedezd fel',
  mE:'Amaryllis Virágbolt · Marosvásárhely',mT:'Minden csokor egy egyszerű kérdéssel kezdődik: kinek szól? A többit mi intézzük, friss virágokkal, figyelmes kezekkel és azzal a gondossággal, amit a pillanataitok megérdemelnek.',mP:'170+ Google-értékelésből',mR:'Értékelések ↗',
  oE:'Alkalmak',oH:'Minden <em>történethez</em>',o1:'Szerelem',o1p:'Vörös rózsák és amarilliszek, a ki nem mondott „szeretlek”-hez.',o2:'Születésnap',o2p:'Vidám színek és szezonális virágok egy felejthetetlen naphoz.',o3:'Köszönöm',o3p:'Apró gesztus, amire sokáig emlékeznek.',o4:'Isten hozott, baba',o4p:'Pasztell tónusok a legkisebb új családtagnak.',o5:'Részvét',o5p:'Fehér és csendes zöld a nehéz pillanatokra.',oGo:'Kiválasztom →',
  aE:'A te műhelyed',aH:'Állítsd össze <em>a csokrod</em>',aP:'Válaszd ki az alkalmat, a színeket és a méretet, a virágkötőnk pedig elkészíti nektek.',f1:'Alkalom',f2:'Színek',f3:'Méret',sS:'kicsi',sM:'klasszikus',sL:'bőséges',pr:'már',prEx:'(példaár)',f4:'Üzenet a kártyán',f4p:'Írj egy rövid üzenetet...',f5:'Szállítás napja',f6:'Kinek',f6p:'Név, városrész',send:'Rendelés küldése WhatsAppon',fine:'Néhány percen belül visszaigazoljuk az elérhetőséget és a végső árat, nyitvatartási időben.',noteDef:'Szeretettel, neked.',
  bFrom:'a világ bármely pontjáról',bE:'Messze, mégis közel',bH:'Rendelj <em>bármely országból</em>',bP:'Távol vagy a szeretteidtől? Írj nekünk WhatsAppon, mindent megbeszélünk, és a csokrot egyenesen az ajtajukhoz visszük Marosvásárhelyen.',bQ:'Ügyfeleink még Ausztráliából is rendeltek tőlünk.',bS:'A virágbolt Google-értékeléseiből',
  wE:'Esküvők',wH:'A menyasszonyi csokor, <em>ahogy megálmodtad</em>',w1:'Megismerkedünk',w1p:'Mesélsz a ruháról, a helyszínről és az esküvő színeiről.',w2:'A javaslat',w2p:'Vázlatot kapsz a csokorról és a díszekről.',w3:'A nagy nap',w3p:'Mindent frissen és időben szállítunk, hogy ti csak örüljetek.',wC:'Beszélgetés egyeztetése',
  vE:'Látogass el hozzánk',vH:'Várunk <em>a virágboltban</em>',vA:'Cím',vO:'Nyitvatartás',vOv:'Hétfő – Szombat 9:00 – 20:00<br>Vasárnap 9:00 – 18:00',vT:'Telefon',foot:'Weboldal-javaslat az OHI Solutions-tól az Amaryllis Virágbolt számára. Nem a hivatalos oldal. A virágillusztrációk kódban készültek.'},
- en:{n1:'Atelier',n2:'Occasions',n3:'Weddings',n4:'Contact',pill:'Order a bouquet',cl:'Fresh flowers,<br>arranged with heart.',cr:'Hippeastrum ‘Red Lion’<br><em>illustration · Târgu Mureș</em>',cue:'Discover',
+ en:{dE:'Demo',dH:'The message the florist would receive',dP:'In the live version, the button opens WhatsApp with this message ready, straight to Florăria Amaryllis.',n1:'Atelier',n2:'Occasions',n3:'Weddings',n4:'Contact',pill:'Order a bouquet',cl:'Fresh flowers,<br>arranged with heart.',cr:'Hippeastrum ‘Red Lion’<br><em>illustration · Târgu Mureș</em>',cue:'Discover',
  mE:'Amaryllis Florist · Târgu Mureș',mT:'Every bouquet begins with one simple question: who is it for? We take care of the rest, with fresh flowers, careful hands and the attention your moments deserve.',mP:'from 170+ Google reviews',mR:'Read the reviews ↗',
  oE:'Occasions',oH:'For every <em>story</em>',o1:'Love',o1p:'Red roses and amaryllis, for an “I love you” without words.',o2:'Birthday',o2p:'Cheerful colours and seasonal flowers for an unforgettable day.',o3:'Thank you',o3p:'A small gesture remembered for a long time.',o4:'Welcome, baby',o4p:'Pastel tones for the newest little person.',o5:'Sympathy',o5p:'White and quiet green, for difficult moments.',oGo:'Choose →',
  aE:'Your atelier',aH:'Compose <em>your bouquet</em>',aP:'Pick the occasion, colours and size, and our florist arranges it for you.',f1:'Occasion',f2:'Colours',f3:'Size',sS:'small',sM:'classic',sL:'generous',pr:'from',prEx:'(sample price)',f4:'Card message',f4p:'Write a short message...',f5:'Delivery date',f6:'For whom',f6p:'Name, neighbourhood',send:'Send the order on WhatsApp',fine:'We confirm availability and the final price within minutes, during opening hours.',noteDef:'With love, for you.',
@@ -374,7 +390,7 @@ $$('[data-l]').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
 /* ---------- hero: halftone apple-blossom → red lion morph reveal ---------- */
 const MAXP=60,HEAD=140,AMP=44,BP=24,FADE=.92,SAMPLE=8;
 const fc=$('#fc'),fx=fc.getContext('2d'),box=$('#flower'),stage=$('#top');
-let W=0,H=0,front,reveal,mask,mx,tmp,tx,dpr=Math.min(devicePixelRatio||1,1.5),scl=1,pts=[],head=0,hover=false,px=0,py=0,lx=-1e9,ly=-1e9,time=0,dirty=true,auto=null,heroVis=true;
+let W=0,H=0,front,reveal,mask,mx,tmp,tx,dpr=Math.min(devicePixelRatio||1,touch?1.25:1.5),scl=1,pts=[],head=0,hover=false,px=0,py=0,lx=-1e9,ly=-1e9,time=0,dirty=true,auto=null,heroVis=true;
 const RAMP=[[255,197,220],[253,134,219],[176,96,255],[110,70,230]];
 function buildHero(){const r=box.getBoundingClientRect();if(!r.width)return;W=Math.round(r.width*dpr);H=Math.round(r.height*dpr);fc.width=W;fc.height=H;scl=W/r.width;
   const pale=document.createElement('canvas');pale.width=W;pale.height=H;Flora.plant(pale.getContext('2d'),W,H,'apple');front=Flora.halftone(pale,W,H,Math.max(5,Math.round(W/120)),RAMP);
@@ -400,7 +416,7 @@ setTimeout(()=>document.documentElement.classList.remove('anim'),2600);
 
 /* ---------- island header + floating order button ---------- */
 const isle=$('#isle'),fab=$('#fab'),atel=$('#atelier');
-function chrome(){const past=scrollY>innerHeight*.8;isle.classList.toggle('on',past);const ar=atel.getBoundingClientRect();fab.classList.toggle('on',past&&!(ar.top<innerHeight&&ar.bottom>0))}
+function chrome(){const past=scrollY>innerHeight*.8;isle.classList.toggle('on',past);}
 /* ---------- manifesto: words light up ---------- */
 const mt=$('#mtext');let words=[];
 function splitM(){const txt=mt.textContent;const c=txt.indexOf(':'),q=txt.indexOf('?');mt.innerHTML='';let pos=0;
@@ -436,7 +452,12 @@ const fd=$('#fDate'),iso=d=>new Date(d.getTime()-d.getTimezoneOffset()*6e4).toIS
 const M={ro:{hi:'Bună ziua! Aș dori un buchet de la Florăria Amaryllis:',o:'Ocazie',c:'Culori',s:'Mărime',d:'Livrare',w:'Pentru',m:'Mesaj pe felicitare',bye:'Mulțumesc!'},hu:{hi:'Jó napot! Csokrot szeretnék rendelni az Amaryllis Virágboltból:',o:'Alkalom',c:'Színek',s:'Méret',d:'Szállítás',w:'Kinek',m:'Üzenet a kártyán',bye:'Köszönöm!'},en:{hi:'Hello! I would like a bouquet from Florăria Amaryllis:',o:'Occasion',c:'Colours',s:'Size',d:'Delivery',w:'For',m:'Card message',bye:'Thank you!'}};
 $('#aform').onsubmit=e=>{e.preventDefault();const m=M[L],occN=$(`#fOcc button[data-v="${S.occ}"]`).textContent,dt=new Date(fd.value+'T12:00').toLocaleDateString({ro:'ro-RO',hu:'hu-HU',en:'en-GB'}[L],{weekday:'long',day:'numeric',month:'long'});
   const lines=[m.hi,`💐 ${m.o}: ${occN}`,`🎨 ${m.c}: ${BQ[S.pal][L]}`,`📏 ${m.s}: ${S.size}`,`📅 ${m.d}: ${dt}`,`👤 ${m.w}: ${$('#fWho').value}`];if(msg.value.trim())lines.push(`💌 ${m.m}: „${msg.value.trim()}”`);lines.push('',m.bye);
-  const url='https://wa.me/40745265516?text='+encodeURIComponent(lines.join('\n'));const w=window.open(url,'_blank');if(!w)location.href=url};
+  showDlg(lines.join('\n'))};
+/* ---------- demo dialog ---------- */
+const dlg=$('#dlg');let lastFocus=null;function showDlg(txt){$('#dlgT').textContent=txt;lastFocus=document.activeElement;dlg.hidden=false;$('#dx').focus()}
+function hideDlg(){dlg.hidden=true;if(lastFocus)lastFocus.focus()}$('#dx').onclick=hideDlg;dlg.addEventListener('click',e=>{if(e.target===dlg)hideDlg()});addEventListener('keydown',e=>{if(e.key==='Escape'&&!dlg.hidden)hideDlg()});
+const WM={ro:'Bună ziua! Aș dori o ofertă pentru flori de nuntă. Data nunții: ... Locația: ...',hu:'Jó napot! Ajánlatot szeretnék esküvői virágokra. Az esküvő dátuma: ... Helyszín: ...',en:'Hello! I would like a quote for wedding flowers. Wedding date: ... Venue: ...'};
+$('#wedBtn').onclick=e=>{e.preventDefault();showDlg(WM[L])};
 /* ---------- wedding art (white amaryllis) ---------- */
 const wc=$('#wc');new IntersectionObserver((es,o)=>{if(!es[0].isIntersecting)return;o.disconnect();const r=wc.getBoundingClientRect();wc.width=Math.round(r.width*dpr);wc.height=Math.round(r.height*dpr);Flora.plant(wc.getContext('2d'),wc.width,wc.height,'white');
   wc.animate([{opacity:0,transform:'translateY(30px)'},{opacity:1,transform:'none'}],{duration:1400,easing:'cubic-bezier(.16,1,.3,1)'})},{rootMargin:'200px'}).observe(wc);
@@ -447,10 +468,10 @@ openNow();hooks.push(openNow);
 /* ---------- reveal + scroll loop ---------- */
 const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target)}}),{threshold:.15});$$('.rv').forEach(e=>rio.observe(e));
 let tick=false;function onScroll(){if(tick)return;tick=true;requestAnimationFrame(()=>{tick=false;chrome();lightM();pinMove()})}
-addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',()=>{onScroll();clearTimeout(window._rb);window._rb=setTimeout(buildHero,200)});onScroll();
+addEventListener('scroll',onScroll,{passive:true});let lastW=innerWidth,lastH=innerHeight;addEventListener('resize',()=>{onScroll();clearTimeout(window._rb);window._rb=setTimeout(()=>{if(Math.abs(innerWidth-lastW)>40||Math.abs(innerHeight-lastH)>120){lastW=innerWidth;lastH=innerHeight;buildHero()}},200)});onScroll();
 /* ---------- menu ---------- */
 const bt=$('#burger'),sh=$('#sheet');function menu(o){document.body.classList.toggle('open',o);bt.setAttribute('aria-expanded',o);o?sh.removeAttribute('inert'):sh.setAttribute('inert','')}
-bt.onclick=()=>menu(!document.body.classList.contains('open'));$('#scrim').onclick=()=>menu(false);$$('.sheet a').forEach(a=>a.addEventListener('click',()=>menu(false)));addEventListener('keydown',e=>{if(e.key==='Escape')menu(false)});
+bt.onclick=()=>menu(!document.body.classList.contains('open'));$('#isb').onclick=()=>menu(true);$('#scrim').onclick=()=>menu(false);$$('.sheet a').forEach(a=>a.addEventListener('click',()=>menu(false)));addEventListener('keydown',e=>{if(e.key==='Escape')menu(false)});
 try{const s=localStorage.getItem('amLang');if(s&&s!=='ro')setLang(s)}catch(e){}
 drawBQ();
 </script>
