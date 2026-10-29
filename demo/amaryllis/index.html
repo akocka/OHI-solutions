@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ro" class="anim">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#161414">
+<meta name="robots" content="noindex,nofollow">
+<title>Florăria Amaryllis · Demo OHI Solutions</title>
+<meta name="description" content="Propunere de website pentru Florăria Amaryllis din Târgu Mureș, realizată de OHI Solutions. Nu este site-ul oficial.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#fff;--surface:#161414;--reveal:cubic-bezier(.16,1,.3,1);--soft:cubic-bezier(.25,.8,.28,1)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--surface)}
+body{font-family:Inter,Arial,Helvetica,sans-serif;color:#fff;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.viewport{position:fixed;inset:0;background:var(--surface)}
+.stage{position:absolute;inset:0;contain:strict;isolation:isolate;touch-action:none;
+  background:radial-gradient(40% 50% at 60% 55%,rgba(253,134,219,.10),transparent 70%),radial-gradient(60% 60% at 20% 110%,rgba(140,30,60,.18),transparent 70%)}
+.grain{position:absolute;inset:0;z-index:0;opacity:.06;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* brand + nav + pill */
+.brand{position:absolute;z-index:4;top:2.4dvh;left:3.85vw;display:flex;align-items:center;gap:12px}
+.brand svg{width:clamp(30px,min(3vw,4.8dvh),56px);height:auto;stroke:#fff;stroke-width:4;fill:none;stroke-linecap:round}
+.nav{position:absolute;z-index:4;inset:0;pointer-events:none;list-style:none}
+.nav li{position:absolute;top:3.5dvh}
+.nav a{pointer-events:auto;font-size:clamp(13px,min(1.2vw,2dvh),22px);letter-spacing:.01em;opacity:.92;transition:opacity .3s}
+.nav a:hover{opacity:.6}
+.nav li:nth-child(1){left:10vw}.nav li:nth-child(2){left:16.6vw}.nav li:nth-child(3){left:23.4vw}.nav li:nth-child(4){left:30.6vw}
+.pill{position:absolute;z-index:4;top:2.3dvh;right:7.5vw;height:clamp(36px,4.5dvh,56px);padding:0 clamp(16px,1.6vw,28px);display:flex;align-items:center;gap:10px;border-radius:999px;background:#fff;color:#161414;font-size:clamp(13px,min(1.1vw,1.9dvh),20px);font-weight:500;letter-spacing:.02em}
+.lang{position:absolute;z-index:4;top:2.3dvh;right:calc(7.5vw + clamp(215px,16.5vw,330px));height:clamp(36px,4.5dvh,56px);display:flex;align-items:center;gap:2px}
+.lang button{border:0;background:none;color:#fff;opacity:.5;font:600 12px Inter;letter-spacing:.08em;padding:6px 7px;cursor:pointer}.lang button.on{opacity:1}
+/* wordmark */
+.word{position:absolute;z-index:1;top:13.5dvh;left:3.6vw;font-family:Fraunces,"Times New Roman",serif;font-weight:300;font-size:min(14.4vw,33dvh);line-height:.86;letter-spacing:.005em;white-space:nowrap}
+.word .m{display:block;overflow:hidden;padding:.06em .02em .12em;margin:-.06em -.02em -.12em}
+.word .i{display:block}
+.word .w{color:#fff}
+.word .p{background:linear-gradient(180deg,#ffc5dc 0%,#fd86db 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* flower */
+.flower{position:absolute;z-index:2;top:3dvh;left:61vw;height:112dvh;aspect-ratio:1000/1400;transform:translateX(-50%);pointer-events:none}
+.flower canvas{width:100%;height:100%;display:block}
+/* corner copy + rating */
+.corner{position:absolute;z-index:3;bottom:4.4dvh;color:#f7f7f7;font-size:clamp(14px,min(1.35vw,2.1dvh),26px);line-height:1.25;letter-spacing:.005em}
+.corner.l{left:3.2vw}.corner.r{right:3.6vw;text-align:right}
+.corner .ci{display:block}
+.rate{position:absolute;z-index:3;left:50%;bottom:4.2dvh;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,.08);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.14);font-size:13px;white-space:nowrap}
+.rate b{font-weight:600}.rate .st{color:#ffc5dc;letter-spacing:1px}
+.hint{position:absolute;z-index:3;left:50vw;top:auto;bottom:11dvh;transform:translate(-50%,-50%);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);pointer-events:none;transition:opacity .8s}
+.hint.off{opacity:0}
+.demo{position:absolute;z-index:3;left:50%;top:9.2dvh;transform:translateX(-50%);font-size:11px;letter-spacing:.06em;color:rgba(255,255,255,.45);white-space:nowrap}
+/* mobile chrome */
+.burger,.scrim,.sheet{display:none}
+/* entrance */
+@keyframes orb-word{from{transform:translateY(118%)}to{transform:none}}
+@keyframes orb-subject{from{opacity:0;transform:translateX(-50%) translateY(3.4dvh)}to{opacity:1;transform:translateX(-50%)}}
+@keyframes orb-corner{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes orb-quiet{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@keyframes orb-dim{from{opacity:0}to{opacity:1}}
+.anim .brand{animation:orb-quiet 620ms 100ms var(--soft) both}
+.anim .nav li{animation:orb-dim 550ms var(--soft) both}
+.anim .nav li:nth-child(1){animation-delay:180ms}.anim .nav li:nth-child(2){animation-delay:225ms}.anim .nav li:nth-child(3){animation-delay:270ms}.anim .nav li:nth-child(4){animation-delay:315ms}
+.anim .pill,.anim .lang{animation:orb-quiet 620ms 340ms var(--soft) both}
+.anim .word .i{animation:orb-word 1150ms 300ms var(--reveal) both}
+.anim .flower{animation:orb-subject 1150ms 660ms var(--reveal) both}
+.anim .corner .ci,.anim .rate{animation:orb-corner 720ms 980ms var(--soft) both}
+.anim .demo{animation:orb-dim 720ms 1100ms var(--soft) both}
+@media (max-width:1200px),(max-aspect-ratio:1/1){.word{left:0;width:100%;text-align:center}}
+@media (max-width:900px),(max-aspect-ratio:4/5){
+  .nav,.pill,.lang{display:none}
+  .burger{display:grid;place-items:center;position:absolute;z-index:12;top:2.2dvh;right:5vw;width:46px;height:46px;border-radius:50%;background:#fff;border:0;cursor:pointer}
+  .burger i,.burger i::before,.burger i::after{display:block;width:18px;height:1.8px;background:#161414;content:"";transition:transform .35s var(--soft)}
+  .burger i{position:relative}.burger i::before{position:absolute;top:-6px}.burger i::after{position:absolute;top:6px}
+  .open .burger i{background:transparent}.open .burger i::before{transform:translateY(6px) rotate(45deg)}.open .burger i::after{transform:translateY(-6px) rotate(-45deg)}
+  .scrim{display:block;position:absolute;inset:0;z-index:9;background:rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:opacity .4s;border:0}
+  .sheet{display:flex;flex-direction:column;gap:6px;position:absolute;z-index:10;top:0;left:0;right:0;padding:90px 7vw 28px;background:rgba(30,26,28,.86);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-radius:0 0 28px 28px;transform:translateY(-105%);transition:transform .5s var(--soft);visibility:hidden}
+  .open .sheet{transform:none;visibility:visible}.open .scrim{opacity:1;pointer-events:auto}
+  .sheet a{font:300 32px Fraunces,serif;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+  .sheet .sp{margin-top:16px;padding:14px 20px;border-radius:999px;background:#fff;color:#161414;font:500 16px Inter;text-align:center;border:0}
+  .sheet .sl{display:flex;gap:8px;margin-top:12px}.sheet .sl button{flex:1;padding:10px 0;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:none;color:#fff;font:500 14px Inter}.sheet .sl button.on{background:#fff;color:#161414}
+  .anim .burger{animation:orb-quiet 600ms 120ms var(--soft) both}
+}
+@media (max-aspect-ratio:4/5){
+  .word{top:11dvh;font-size:min(15.6vw,18dvh)}
+  .flower{top:auto;bottom:9dvh;left:50vw;height:min(68dvh,132vw)}
+  .hint{display:none}
+  .corner{font-size:13.5px;bottom:3dvh;max-width:44vw}
+  .rate{bottom:auto;top:calc(11dvh + min(15.6vw,18dvh)*0.86 + 14px);font-size:12px;padding:7px 12px}
+  .demo{top:calc(11dvh + min(15.6vw,18dvh)*0.86 + 52px);font-size:10px}
+}
+@media (prefers-reduced-motion:reduce){.anim *{animation:none!important}.anim .stage{animation:orb-dim 280ms both!important}}
+</style>
+</head>
+<body>
+<main class="viewport"><section class="stage" id="stage">
+  <div class="grain"></div>
+  <a class="brand" href="#" aria-label="Florăria Amaryllis"><svg viewBox="0 0 66 62"><path d="M33 4C38 18 46 24 62 31C46 38 38 44 33 58C28 44 20 38 4 31C20 24 28 18 33 4Z"/><circle cx="33" cy="31" r="4"/></svg></a>
+  <ul class="nav"><li><a href="#" data-t="n1">Buchete</a></li><li><a href="#" data-t="n2">Ocazii</a></li><li><a href="#" data-t="n3">Nunți</a></li><li><a href="tel:+40745265516" data-t="n4">Contact</a></li></ul>
+  <div class="lang" id="lang"><button class="on" data-l="ro">RO</button><button data-l="hu">HU</button><button data-l="en">EN</button></div>
+  <a class="pill" href="https://wa.me/40745265516" target="_blank" rel="noopener"><span data-t="pill">Comandă un buchet</span><span>→</span></a>
+  <h1 class="word" aria-label="Amaryllis"><span class="m"><span class="i"><span class="w">AMAR</span><span class="p">YLLIS</span></span></span></h1>
+  <div class="flower" id="flower"><canvas id="fc" aria-label="Floare de amaryllis ilustrată" role="img"></canvas></div>
+  <span class="hint" id="hint" data-t="hint">Mișcați cursorul peste floare</span>
+  <p class="corner l"><span class="ci" data-t="cl">Flori proaspete,<br>aranjate cu suflet.</span></p>
+  <p class="corner r"><span class="ci" data-t="cr">Buchete pentru orice ocazie,<br>livrate în Târgu Mureș.</span></p>
+  <a class="rate" href="https://www.google.com/maps/search/?api=1&query=Flor%C4%83ria+Amaryllis+T%C3%A2rgu+Mure%C8%99" target="_blank" rel="noopener"><span class="st">★★★★★</span><b>4,9</b><span data-t="rate">pe Google · 170+ recenzii</span></a>
+  <span class="demo" data-t="demo">Demo · Propunere OHI Solutions, nu site-ul oficial</span>
+  <button class="scrim" id="scrim" aria-label="Închide meniul" tabindex="-1"></button>
+  <nav class="sheet" id="sheet" aria-label="Meniu" inert><a href="#" data-t="n1">Buchete</a><a href="#" data-t="n2">Ocazii</a><a href="#" data-t="n3">Nunți</a><a href="tel:+40745265516" data-t="n4">Contact</a>
+    <a class="sp" href="https://wa.me/40745265516" target="_blank" rel="noopener" data-t="pill">Comandă un buchet</a>
+    <div class="sl"><button class="on" data-l="ro">Română</button><button data-l="hu">Magyar</button><button data-l="en">English</button></div></nav>
+  <button class="burger" id="burger" aria-label="Meniu" aria-expanded="false" aria-controls="sheet"><i></i></button>
+</section></main>
+<script>
+/* ---------- texts ---------- */
+const T={hu:{n1:'Csokrok',n2:'Alkalmak',n3:'Esküvők',n4:'Kapcsolat',pill:'Csokor rendelése',hint:'Vidd a kurzort a virág fölé',cl:'Friss virágok,<br>szívvel kötve.',cr:'Csokrok minden alkalomra,<br>házhoz Marosvásárhelyen.',rate:'a Google-on · 170+ értékelés',demo:'Demo · OHI Solutions javaslat, nem a hivatalos oldal'},
+ en:{n1:'Bouquets',n2:'Occasions',n3:'Weddings',n4:'Contact',pill:'Order a bouquet',hint:'Move your cursor over the flower',cl:'Fresh flowers,<br>arranged with heart.',cr:'Bouquets for every occasion,<br>delivered in Târgu Mureș.',rate:'on Google · 170+ reviews',demo:'Demo · OHI Solutions proposal, not the official site'}};
+T.ro={};document.querySelectorAll('[data-t]').forEach(e=>{if(!(e.dataset.t in T.ro))T.ro[e.dataset.t]=e.innerHTML});
+function setLang(l){document.documentElement.lang=l;document.querySelectorAll('[data-t]').forEach(e=>{const v=(T[l]||{})[e.dataset.t]??T.ro[e.dataset.t];if(v!=null)e.innerHTML=v});document.querySelectorAll('[data-l]').forEach(b=>b.classList.toggle('on',b.dataset.l===l));try{localStorage.setItem('amLang',l)}catch(e){}}
+document.querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+try{const s=localStorage.getItem('amLang');if(s&&s!=='ro')setLang(s)}catch(e){}
+
+/* ---------- the amaryllis, drawn in code (1000×1400 design space) ---------- */
+function drawAmaryllis(g,W,H,mode){g.save();g.scale(W/1000,H/1400);
+  const R=mode==='red';
+  // leaves + stem
+  const leaf=(pts,c1,c2)=>{const gr=g.createLinearGradient(0,600,0,1400);gr.addColorStop(0,c1);gr.addColorStop(1,c2);g.fillStyle=gr;g.beginPath();g.moveTo(...pts[0]);for(let i=1;i<pts.length;i+=3)g.bezierCurveTo(...pts[i],...pts[i+1],...pts[i+2]);g.closePath();g.fill()};
+  leaf([[470,1400],[430,1150],[300,900],[180,760],[300,860],[470,1060],[540,1400]],R?'#5f8d3a':'#cfe6b8',R?'#1f3d1c':'#7da870');
+  leaf([[540,1400],[600,1120],[760,920],[860,830],[760,960],[640,1140],[610,1400]],R?'#6a9a42':'#d6ebc0',R?'#24441f':'#86b07a');
+  const sg=g.createLinearGradient(470,0,540,0);sg.addColorStop(0,R?'#2e5a24':'#9cc28c');sg.addColorStop(.5,R?'#7fb050':'#e2f2d2');sg.addColorStop(1,R?'#2a5220':'#93ba84');
+  g.fillStyle=sg;g.beginPath();g.moveTo(482,1400);g.bezierCurveTo(486,1100,492,820,496,560);g.lineTo(530,560);g.bezierCurveTo(528,820,526,1100,532,1400);g.closePath();g.fill();
+  // second bloom (side, smaller) then main bloom
+  bloom(g,690,470,.58,-.5,R,2);bloom(g,500,500,1,0,R,1);g.restore()}
+function bloom(g,cx,cy,s,rot,R,seed){g.save();g.translate(cx,cy);g.rotate(rot);g.scale(s,s);
+  // back glow
+  const halo=g.createRadialGradient(0,0,20,0,0,420);halo.addColorStop(0,R?'rgba(255,90,90,.35)':'rgba(255,200,230,.25)');halo.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=halo;g.beginPath();g.arc(0,0,420,0,7);g.fill();
+  const petal=(a,len,wid,layer)=>{g.save();g.rotate(a);
+    const gr=g.createLinearGradient(0,0,0,-len);
+    if(R){gr.addColorStop(0,'#fff3d8');gr.addColorStop(.18,'#ff5a4e');gr.addColorStop(.55,'#c4122b');gr.addColorStop(1,'#7a0418')}
+    else{gr.addColorStop(0,'#ffffff');gr.addColorStop(.25,'#ffe1ee');gr.addColorStop(.7,'#f7a7cf');gr.addColorStop(1,'#d66aa6')}
+    g.fillStyle=gr;g.beginPath();g.moveTo(0,0);g.bezierCurveTo(wid*.9,-len*.18,wid*1.05,-len*.62,wid*.18,-len*.97);g.quadraticCurveTo(0,-len*1.04,-wid*.18,-len*.97);g.bezierCurveTo(-wid*1.05,-len*.62,-wid*.9,-len*.18,0,0);g.fill();
+    // center stripe + veins
+    g.strokeStyle=R?'rgba(255,230,200,.55)':'rgba(255,255,255,.7)';g.lineWidth=10;g.beginPath();g.moveTo(0,-20);g.quadraticCurveTo(4,-len*.4,0,-len*.82);g.stroke();
+    g.strokeStyle=R?'rgba(90,0,20,.35)':'rgba(190,80,140,.28)';g.lineWidth=2.5;for(let k=-3;k<=3;k++){if(!k)continue;g.beginPath();g.moveTo(k*6,-30);g.quadraticCurveTo(k*wid*.2,-len*.5,k*wid*.07,-len*.9);g.stroke()}
+    // edge shade
+    g.strokeStyle=R?'rgba(60,0,10,.45)':'rgba(180,70,130,.35)';g.lineWidth=3;g.stroke();g.restore()};
+  for(let i=0;i<3;i++)petal(i*2.094+.35,330,150,0);
+  for(let i=0;i<3;i++)petal(i*2.094+1.4,300,135,1);
+  // throat
+  const th=g.createRadialGradient(0,0,0,0,0,90);th.addColorStop(0,R?'#e8f0a0':'#f4ffd8');th.addColorStop(1,R?'rgba(255,90,70,0)':'rgba(255,230,240,0)');g.fillStyle=th;g.beginPath();g.arc(0,0,90,0,7);g.fill();
+  // stamens
+  for(let i=0;i<6;i++){const a=-1.9+i*.3+(seed*.05),L=150+((i*37)%40);g.strokeStyle=R?'#ffe9c2':'#ffffff';g.lineWidth=4;g.beginPath();g.moveTo(0,0);const ex=Math.cos(a)*L,ey=Math.sin(a)*L;g.quadraticCurveTo(ex*.4,ey*.4-30,ex,ey);g.stroke();
+    g.fillStyle=R?'#f2c230':'#fff2a8';g.beginPath();g.ellipse(ex,ey,13,6,a,0,7);g.fill()}
+  g.restore()}
+/* halftone print of the pale bloom: dots sized by ink, coloured pink → magenta → violet */
+function halftone(src,W,H,step){const c=document.createElement('canvas');c.width=W;c.height=H;const g=c.getContext('2d');
+  const d=src.getContext('2d').getImageData(0,0,W,H).data;const col=[[255,197,220],[253,134,219],[176,96,255],[110,70,230]];
+  for(let y=step/2;y<H;y+=step){const off=((y/step|0)%2)*step/2;for(let x=step/2+off;x<W;x+=step){const i=((y|0)*W+(x|0))*4,a=d[i+3]/255;if(a<.06)continue;
+    const lum=(d[i]*.3+d[i+1]*.59+d[i+2]*.11)/255,ink=Math.min(1,.25+(1-lum)*1.4);const r=step*.52*Math.sqrt(a)*Math.sqrt(ink)+step*.08;
+    const t=Math.min(.999,Math.max(0,(1-lum)*1.25+Math.max(0,(y/H)-.42)*1.3)),k=t*3,j=Math.floor(k),f=k-j,c0=col[j],c1=col[Math.min(3,j+1)];
+    g.fillStyle=`rgb(${c0[0]+(c1[0]-c0[0])*f|0},${c0[1]+(c1[1]-c0[1])*f|0},${c0[2]+(c1[2]-c0[2])*f|0})`;g.globalAlpha=Math.min(1,a*1.2);g.beginPath();g.arc(x,y,r,0,6.284);g.fill()}}
+  return c}
+
+/* ---------- morph-reveal trail ---------- */
+const MAXP=60,HEAD=140,AMP=44,BP=24,FADE=.92,SAMPLE=8;
+const fc=document.getElementById('fc'),fx=fc.getContext('2d'),box=document.getElementById('flower'),stage=document.getElementById('stage'),hint=document.getElementById('hint');
+let W=0,H=0,front,reveal,mask,mx,tmp,tx,dpr=Math.min(devicePixelRatio||1,1.5),scale=1;
+function build(){const r=box.getBoundingClientRect();if(!r.width)return;W=Math.round(r.width*dpr);H=Math.round(r.height*dpr);fc.width=W;fc.height=H;scale=W/r.width;
+  const pale=document.createElement('canvas');pale.width=W;pale.height=H;drawAmaryllis(pale.getContext('2d'),W,H,'pale');
+  front=halftone(pale,W,H,Math.max(5,Math.round(W/115)));
+  reveal=document.createElement('canvas');reveal.width=W;reveal.height=H;drawAmaryllis(reveal.getContext('2d'),W,H,'red');
+  mask=document.createElement('canvas');mask.width=W;mask.height=H;mx=mask.getContext('2d');tmp=document.createElement('canvas');tmp.width=W;tmp.height=H;tx=tmp.getContext('2d');dirty=true}
+let pts=[],head=0,hover=false,px=0,py=0,lx=-1e9,ly=-1e9,time=0,dirty=true,auto=null;
+function blob(g,cx,cy,r,t,seed){if(r<2)return;const P=[];for(let i=0;i<BP;i++){const a=i/BP*Math.PI*2,n=(Math.sin(a*3+t*1.4+seed)*.45+Math.sin(a*5-t*.9+seed*2.3)*.3+Math.cos(a*2+t*1.8+seed*.7)*.25)*AMP*(r/HEAD),rr=r+n;P.push([cx+Math.cos(a)*rr,cy+Math.sin(a)*rr])}
+  g.beginPath();const m=(p,q)=>[(p[0]+q[0])/2,(p[1]+q[1])/2];let s=m(P[BP-1],P[0]);g.moveTo(s[0],s[1]);for(let i=0;i<BP;i++){const p=P[i],q=m(p,P[(i+1)%BP]);g.quadraticCurveTo(p[0],p[1],q[0],q[1])}g.closePath();g.fill()}
+function toCanvas(x,y){const r=box.getBoundingClientRect();return [(x-r.left)*scale,(y-r.top)*scale]}
+stage.addEventListener('pointermove',e=>{if(e.pointerType==='touch'&&!e.isPrimary)return;hover=true;auto=null;[px,py]=toCanvas(e.clientX,e.clientY);hint.classList.add('off')});
+stage.addEventListener('pointerenter',e=>{hover=true});stage.addEventListener('pointerleave',()=>{hover=false});stage.addEventListener('pointerup',e=>{if(e.pointerType==='touch')hover=false});
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function frame(){requestAnimationFrame(frame);if(!front)return;
+  if(auto){const k=(performance.now()-auto.t0)/auto.dur;if(k>=1){auto=null;hover=false}else{hover=true;const a=k*Math.PI*2.4;px=W*(.5+.26*Math.sin(a*1.3));py=H*(.36+.16*Math.sin(a*2+.6))}}
+  const target=hover?HEAD*dpr*(W/(700*dpr)):0;head+=(target-head)*(hover?.14:.04);
+  if(hover&&head>5&&Math.hypot(px-lx,py-ly)>SAMPLE*dpr){pts.push({x:px,y:py,r:head,a:1,s:Math.random()*100});lx=px;ly=py;if(pts.length>MAXP)pts.shift()}
+  pts.forEach(p=>{p.a*=FADE;p.r*=.995});pts=pts.filter(p=>p.a>=.01);time+=.016;
+  if(!pts.length&&!dirty)return;dirty=false;
+  mx.clearRect(0,0,W,H);pts.forEach(p=>{mx.globalAlpha=Math.min(1,p.a*1.6);mx.fillStyle='#fff';blob(mx,p.x,p.y,p.r,time,p.s)});mx.globalAlpha=1;
+  fx.clearRect(0,0,W,H);fx.globalCompositeOperation='source-over';fx.drawImage(front,0,0);
+  if(pts.length){fx.globalCompositeOperation='destination-out';fx.drawImage(mask,0,0);fx.globalCompositeOperation='source-over';
+    tx.clearRect(0,0,W,H);tx.globalCompositeOperation='source-over';tx.drawImage(reveal,0,0);tx.globalCompositeOperation='destination-in';tx.drawImage(mask,0,0);tx.globalCompositeOperation='source-over';fx.drawImage(tmp,0,0)}}
+let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(build,150)});
+(document.fonts?document.fonts.ready:Promise.resolve()).then(()=>{build();requestAnimationFrame(frame)});setTimeout(()=>{if(!front){build();requestAnimationFrame(frame)}},1500);
+/* a gentle automatic reveal so phones (and first-time visitors) see the trick */
+if(!reduce){setTimeout(()=>{if(!pts.length)auto={t0:performance.now(),dur:2600}},2100);
+  if(matchMedia('(hover:none)').matches)setInterval(()=>{if(!pts.length&&!auto)auto={t0:performance.now(),dur:2600}},8000)}
+/* entrance cleanup */
+setTimeout(()=>document.documentElement.classList.remove('anim'),2600);
+/* mobile menu */
+const b=document.getElementById('burger'),sh=document.getElementById('sheet'),sc=document.getElementById('scrim');
+function menu(o){stage.classList.toggle('open',o);b.setAttribute('aria-expanded',o);o?sh.removeAttribute('inert'):sh.setAttribute('inert','')}
+b.onclick=()=>menu(!stage.classList.contains('open'));sc.onclick=()=>menu(false);addEventListener('keydown',e=>{if(e.key==='Escape')menu(false)});
+</script>
+</body></html>
