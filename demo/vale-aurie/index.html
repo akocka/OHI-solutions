@@ -1,0 +1,97 @@
+<!doctype html><html lang="ro"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Crama Vale Aurie · Concept 3D (demo OHI Solutions)</title>
+<meta name="description" content="Concept de website 3D pentru o cramă, realizat de OHI Solutions. Brand fictiv.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/demo/vale-aurie/style.css">
+<script>document.documentElement.classList.add("js");try{if(sessionStorage.getItem("vaIntro"))document.documentElement.classList.add("nointro")}catch(e){}setTimeout(function(){if(!window.__ok)document.documentElement.classList.remove("js")},4000)</script>
+<script type="importmap">{"imports":{"three":"/demo/vale-aurie/vendor/three/three.module.js","three/addons/":"/demo/vale-aurie/vendor/three/addons/"}}</script>
+</head><body data-v="red">
+<div class="intro" aria-hidden="true"><div class="iglass"><i></i></div><div class="iname"><span>Crama</span> <em>Vale Aurie</em></div><div class="isub">Mureș · România</div></div>
+<div class="bgx" aria-hidden="true"></div>
+<canvas id="gl" aria-label="Sticlă de vin 3D"></canvas>
+<div class="bigword" aria-hidden="true" id="bigword">NEAGRĂ</div>
+
+<header class="hdr" id="hdr"><div class="isl">
+  <a class="brand" href="#top"><i>Vale</i> Aurie</a>
+  <nav class="nav"><a href="#note" data-t="nNotes">Degustare</a><a href="#crama" data-t="nCellar">Crama</a><a href="#cadouri" data-t="nGifts">Cadouri</a></nav>
+  <div class="lang" id="lang"><button class="lcur" id="lcur" type="button" aria-label="Limba / Nyelv / Language"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.5 4 5.7 4 9s-1.4 6.5-4 9c-2.6-2.5-4-5.7-4-9s1.4-6.5 4-9z"/></svg><span id="lcode">RO</span></button>
+    <div class="lpop"><button class="on" data-l="ro"><b>RO</b>Română</button><button data-l="hu"><b>HU</b>Magyar</button><button data-l="en"><b>EN</b>English</button></div></div>
+  <a class="btn gold sm" href="#cadouri"><span data-t="cOrder">Comandă</span></a>
+</div></header>
+
+<main>
+<section class="s hero" id="top" data-pose="0,-.1,.7,0" data-pose-m="0,-.45,.68,0">
+  <div class="wrap hgrid">
+    <div class="hl">
+      <p class="eyebrow rv" data-t="hE">Crama Vale Aurie · Mureș</p>
+      <h1 class="rv"><span data-t="hH1">Vin făcut</span><br><em data-t="hH2">cu răbdare.</em></h1>
+      <p class="lead rv" data-t="hP">Struguri culeși manual, fermentați lent și maturați fără grabă. Rotiți sticla și alegeți-vă vinul.</p>
+      <div class="ctas rv"><a class="btn gold" href="#cadouri"><span data-t="cGift">Cadouri pentru companii</span><span>→</span></a><a class="btn line" href="#note"><span data-t="cNotes">Note de degustare</span></a></div>
+    </div>
+    <div class="hr rv">
+      <div class="vcard"><span class="vk" data-vt="kind">Vin roșu sec</span><h2 class="vn" data-vt="name">Fetească Neagră</h2><p class="vd" data-vt="desc">Cireșe negre, prune coapte și un final catifelat, ușor condimentat.</p>
+        <div class="vmeta"><span><b data-vt="abv">13,5%</b><small data-t="mAbv">alcool</small></span><span><b data-vt="temp">16°C</b><small data-t="mTemp">servire</small></span><span><b>— lei</b><small data-t="mPrice">preț exemplu</small></span></div></div>
+    </div>
+  </div>
+  <div class="vsw" role="tablist" aria-label="Soiuri">
+    <button class="vprev" aria-label="Anterior">←</button>
+    <button class="vdot on" data-v="red"><i style="--c:#8c1a2b"></i><span data-t="vRed">Roșu</span></button>
+    <button class="vdot" data-v="white"><i style="--c:#d6aa3c"></i><span data-t="vWhite">Alb</span></button>
+    <button class="vdot" data-v="rose"><i style="--c:#e06a62"></i><span data-t="vRose">Rosé</span></button>
+    <button class="vnext" aria-label="Următor">→</button>
+  </div>
+  <div class="dragzone" id="drag" aria-hidden="true"></div>
+  <span class="draghint" data-t="drag">Trageți pentru a roti sticla</span>
+</section>
+
+<section class="s notes" id="note" data-pose="-1.3,-.12,.8,.06" data-pose-m="0,1.05,.62,0">
+  <div class="wrap ngrid"><div></div><div class="ncol">
+    <p class="eyebrow rv" data-t="nE">Note de degustare</p>
+    <h2 class="rv"><span data-vt="name">Fetească Neagră</span><br><em data-t="nH">în pahar</em></h2>
+    <div class="nlist">
+      <div class="ni rv"><span class="nic">👃</span><div><b data-t="n1">Aromă</b><p data-vt="nose">Cireșe negre, prune uscate, o notă de vanilie.</p></div></div>
+      <div class="ni rv"><span class="nic">👅</span><div><b data-t="n2">Gust</b><p data-vt="taste">Corp mediu spre plin, taninuri fine, final lung.</p></div></div>
+      <div class="ni rv"><span class="nic">🍽️</span><div><b data-t="n3">Se potrivește cu</b><p data-vt="pair">Friptură de vită, tocăniță, brânzeturi maturate.</p></div></div>
+    </div>
+    <p class="note rv" data-t="noteEx">Notele, prețurile și numele sunt exemple pentru acest concept.</p>
+  </div></div>
+</section>
+
+<section class="s cellar" id="crama" data-pose="1.32,-.12,.8,-.06" data-pose-m="0,1.05,.62,0">
+  <div class="wrap cgrid"><div class="ccol">
+    <p class="eyebrow rv" data-t="cE">Din vie în pahar</p>
+    <h2 class="rv" data-t="cH">Trei pași, <em>fără scurtături</em></h2>
+    <ol class="steps">
+      <li class="rv"><span>01</span><div><b data-t="c1">Cules manual</b><p data-t="c1p">Strugurii sunt aleși bob cu bob, în dimineți răcoroase de toamnă.</p></div></li>
+      <li class="rv"><span>02</span><div><b data-t="c2">Fermentare lentă</b><p data-t="c2p">La temperatură controlată, ca aromele să rămână curate.</p></div></li>
+      <li class="rv"><span>03</span><div><b data-t="c3">Maturare cu răbdare</b><p data-t="c3p">Luni întregi de odihnă înainte ca vinul să ajungă în sticlă.</p></div></li>
+    </ol>
+  </div><div></div></div>
+</section>
+
+<section class="s gifts" id="cadouri" data-pose="0,3.8,.7,0" data-pose-m="0,4.2,.6,0">
+  <div class="wrap">
+    <div class="ghead"><p class="eyebrow rv" data-t="gE">Cadouri pentru companii</p>
+      <h2 class="rv" data-t="gH">Cadoul de Crăciun <em>pe care îl țin minte</em></h2>
+      <p class="lead rv" data-t="gP">Cutii cadou cu vinurile noastre, cu felicitare personalizată și logo-ul companiei voastre. Comenzi de la 10 cutii.</p></div>
+    <div class="boxes">
+      <label class="box rv"><input type="radio" name="box" value="2" checked><span class="bx"><b>2</b><small data-t="bot">sticle</small></span><span class="bt" data-t="b1">Cutia Duo</span><span class="bp" data-t="b1p">Roșu + alb, felicitare</span></label>
+      <label class="box rv best"><input type="radio" name="box" value="3"><span class="tag" data-t="pop">Cea mai aleasă</span><span class="bx"><b>3</b><small data-t="bot">sticle</small></span><span class="bt" data-t="b2">Cutia Trio</span><span class="bp" data-t="b2p">Toate trei soiurile, logo gravat</span></label>
+      <label class="box rv"><input type="radio" name="box" value="6"><span class="bx"><b>6</b><small data-t="bot">sticle</small></span><span class="bt" data-t="b3">Lada Crama</span><span class="bp" data-t="b3p">Ladă de lemn, pentru parteneri</span></label>
+    </div>
+    <form class="order rv" id="order">
+      <label><span data-t="oQ">Număr de cutii</span><div class="step"><button type="button" data-s="-5">−</button><b id="qty">20</b><button type="button" data-s="5">+</button></div></label>
+      <label><span data-t="oC">Companie</span><input name="co" placeholder="SC Exemplu SRL" required></label>
+      <label><span data-t="oD">Livrare până la</span><input name="d" type="date" required></label>
+      <button class="btn gold" type="submit"><span data-t="oS">Cere oferta pe WhatsApp</span></button>
+    </form>
+    <div class="preview" id="preview" hidden><b data-t="pvH">Demo · mesajul care ar ajunge la cramă:</b><pre id="pvT"></pre></div>
+  </div>
+</section>
+</main>
+<footer><div class="wrap fb"><span class="brand"><i>Vale</i> Aurie</span><span data-t="foot">Concept de website 3D realizat de OHI Solutions. „Crama Vale Aurie” este un brand fictiv.</span><span data-t="age">Consumați alcool cu moderație. Doar pentru persoane peste 18 ani.</span></div></footer>
+<script src="/demo/vale-aurie/app.js" type="module"></script>
+</body></html>
