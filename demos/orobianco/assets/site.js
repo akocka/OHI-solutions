@@ -1,0 +1,244 @@
+/* Orobianco demo · shared script */
+const C={
+hu:{waS:"Küldés WhatsAppon",waT:"Megnyílik a WhatsApp a kész üzenettel. Nyomjátok meg a Küldést, és gyorsan visszaigazoljuk.",waTe:"Megnyílik a WhatsApp a kitöltött részletekkel. A kérés semmire nem kötelez.",waOkH:"Majdnem kész!",waOkP:"Nyomjátok meg a „Küldés” gombot a WhatsAppban. Hamarosan visszaigazoljuk a foglalást.",waOkPe:"Nyomjátok meg a „Küldés” gombot a WhatsAppban. Hamarosan jelentkezünk a részletekkel.",waFb:"Nem nyílt meg a WhatsApp?",waAgain:"Újranyitás",waCall:"Hívjatok minket",dOther:"Másik nap",nBlog:"Blog",bCall:"Hívás",q1:"Mikor jöttök?",q2:"Hány fő?",q3:"Adataitok",dToday:"Ma",dTom:"Holnap",pers:"fő",fTrust:"Nincs fiók, nincs fizetés. Mi hívunk vissza a visszaigazolásért.",pair:"Ajánlott mellé:",chef:"Ajánlat",nHome:"Főoldal",nMenu:"Étlap",nEv:"Események",nAbout:"Rólunk",cRes:"Asztalfoglalás",open:"Nyitva minden nap",fDate:"Dátum",fTime:"Időpont",fG:"Személyek",fN:"Név",fP:"Telefon",fM:"Megjegyzés (opcionális)",fMp:"Évforduló, gyerekszék, allergiák...",fS:"Foglalási kérés küldése",okH:"Köszönjük!",okP:"A kérés megérkezett az étteremhez. Telefonon visszaigazoljuk. (Demo: semmi nem lett elküldve.)",sCall:"Hívj minket",sWa:"Írj nekünk",sOpen:"Nyitvatartás",sOpenV:"Minden nap, 12:00 – 23:00",dMF:"Hétfő – Péntek",dSa:"Szombat",dSu:"Vasárnap",fHours:"Nyitvatartás",fLinks:"Oldalak",fCont:"Kapcsolat",demo:"Weboldal-javaslat az OHI Solutions-tól az Orobianco számára. Nem a hivatalos oldal.",ctaH:"Foglalj asztalt <em>ma estére</em>",ctaP:"Online kérés két perc alatt, vagy hívj minket közvetlenül.",ctaB:"Asztalfoglalás"},
+en:{waS:"Send via WhatsApp",waT:"WhatsApp opens with the message ready. Tap Send and we confirm quickly.",waTe:"WhatsApp opens with the details filled in. The request commits you to nothing.",waOkH:"Almost done!",waOkP:"Tap “Send” in WhatsApp. We will confirm your booking shortly.",waOkPe:"Tap “Send” in WhatsApp. We will get back to you with details shortly.",waFb:"WhatsApp didn’t open?",waAgain:"Open again",waCall:"Call us",dOther:"Another day",nBlog:"Blog",bCall:"Call",q1:"When are you coming?",q2:"How many guests?",q3:"Your details",dToday:"Today",dTom:"Tomorrow",pers:"guests",fTrust:"No account, no payment. We call you to confirm.",pair:"Pairs well with:",chef:"Recommended",nHome:"Home",nMenu:"Menu",nEv:"Events",nAbout:"About",cRes:"Book a table",open:"Open daily",fDate:"Date",fTime:"Time",fG:"Guests",fN:"Name",fP:"Phone",fM:"Notes (optional)",fMp:"Anniversary, high chair, allergies...",fS:"Send booking request",okH:"Thank you!",okP:"Your request reached the restaurant. We will confirm by phone. (Demo: nothing was sent.)",sCall:"Call us",sWa:"Send us a message",sOpen:"Opening hours",sOpenV:"Daily, 12:00 – 23:00",dMF:"Monday – Friday",dSa:"Saturday",dSu:"Sunday",fHours:"Opening hours",fLinks:"Pages",fCont:"Contact",demo:"Website proposal by OHI Solutions for Orobianco. Not the official site.",ctaH:"Book a table <em>for tonight</em>",ctaP:"An online request in two minutes, or call us directly.",ctaB:"Book a table"}};
+const PT=window.PT||{hu:{},en:{}};
+const T={ro:{},hu:Object.assign({},C.hu,PT.hu),en:Object.assign({},C.en,PT.en)};
+document.querySelectorAll('[data-t]').forEach(e=>T.ro[e.dataset.t]=e.innerHTML);
+document.querySelectorAll('[data-tp]').forEach(e=>T.ro[e.dataset.tp]=e.placeholder);
+let L='ro';const hooks=[];
+function setLang(l){L=l;document.documentElement.lang=l;try{localStorage.setItem('oroLang',l)}catch(e){}
+  document.querySelectorAll('[data-t]').forEach(e=>{const v=T[l][e.dataset.t]??T.ro[e.dataset.t];if(v!=null)e.innerHTML=v});
+  document.querySelectorAll('[data-tp]').forEach(e=>{e.placeholder=T[l][e.dataset.tp]??T.ro[e.dataset.tp]});
+  document.querySelectorAll('button[data-l]').forEach(b=>b.classList.toggle('on',b.dataset.l===l));const lc=document.getElementById('lcode');if(lc)lc.textContent=l.toUpperCase();const lg=document.getElementById('lang');if(lg){lg.classList.remove('open');document.getElementById('lcur').setAttribute('aria-expanded','false')}hooks.forEach(f=>f())}
+document.querySelectorAll('button[data-l]').forEach(b=>b.onclick=e=>{e.stopPropagation();setLang(b.dataset.l)});
+(function(){const lg=document.getElementById('lang'),lb=document.getElementById('lcur');if(!lg)return;
+  lb.onclick=e=>{e.stopPropagation();const o=lg.classList.toggle('open');lb.setAttribute('aria-expanded',o)};
+  document.addEventListener('click',()=>{lg.classList.remove('open');lb.setAttribute('aria-expanded','false')});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')lg.classList.remove('open')})})();
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,fine=matchMedia('(pointer:fine)').matches;
+
+/* ===== menu data (example dishes; prices left blank on purpose) ===== */
+const MENU=[
+ {id:"antipasti",ro:"Antipasti",hu:"Előételek",en:"Starters",items:[
+  ["Bruschetta al pomodoro",{ro:"Pâine prăjită, roșii, busuioc, ulei de măsline",hu:"Pirított kenyér, paradicsom, bazsalikom, olívaolaj",en:"Toasted bread, tomatoes, basil, olive oil"},"v"],
+  ["Burrata",{ro:"Burrata cremoasă, roșii cherry, pesto",hu:"Krémes burrata, koktélparadicsom, pesto",en:"Creamy burrata, cherry tomatoes, pesto"},"v"],
+  ["Carpaccio di manzo",{ro:"Vită feliată subțire, rucola, parmezan",hu:"Vékonyra szelt marhahús, rukkola, parmezán",en:"Thinly sliced beef, rocket, parmesan"},""],
+  ["Tagliere italiano",{ro:"Mezeluri și brânzeturi italiene",hu:"Olasz felvágottak és sajtok",en:"Italian cured meats and cheeses"},""]]},
+ {id:"zuppe",ro:"Zuppe",hu:"Levesek",en:"Soups",items:[
+  ["Zuppa di pomodoro",{ro:"Supă cremoasă de roșii, busuioc, crutoane",hu:"Krémes paradicsomleves, bazsalikom, krutton",en:"Creamy tomato soup, basil, croutons"},"v"],
+  ["Minestrone",{ro:"Supă de legume de sezon",hu:"Szezonális zöldségleves",en:"Seasonal vegetable soup"},"v"]]},
+ {id:"pasta",ro:"Pasta",hu:"Tészták",en:"Pasta",items:[
+  ["Tagliatelle al ragù",{ro:"Sos de carne gătit încet, parmezan",hu:"Lassan főtt húsragu, parmezán",en:"Slow-cooked meat sauce, parmesan"},""],
+  ["Spaghetti alle vongole",{ro:"Scoici, usturoi, vin alb, pătrunjel",hu:"Kagyló, fokhagyma, fehérbor, petrezselyem",en:"Clams, garlic, white wine, parsley"},""],
+  ["Ravioli ricotta e spinaci",{ro:"Ricotta, spanac, unt cu salvie",hu:"Ricotta, spenót, zsályás vaj",en:"Ricotta, spinach, sage butter"},"v"],
+  ["Penne all'arrabbiata",{ro:"Sos de roșii iute, usturoi, ardei",hu:"Csípős paradicsomszósz, fokhagyma, chili",en:"Spicy tomato sauce, garlic, chilli"},"v"]]},
+ {id:"risotto",ro:"Risotto",hu:"Rizottó",en:"Risotto",items:[
+  ["Risotto ai funghi",{ro:"Orez carnaroli, ciuperci, parmezan",hu:"Carnaroli rizs, gomba, parmezán",en:"Carnaroli rice, mushrooms, parmesan"},"v"],
+  ["Risotto ai frutti di mare",{ro:"Fructe de mare, vin alb, lămâie",hu:"Tenger gyümölcsei, fehérbor, citrom",en:"Seafood, white wine, lemon"},""]]},
+ {id:"secondi",ro:"Secondi",hu:"Főételek",en:"Main courses",items:[
+  ["Tagliata di manzo",{ro:"Vită la grătar, rucola, parmezan",hu:"Grillezett marha, rukkola, parmezán",en:"Grilled beef, rocket, parmesan"},""],
+  ["Branzino al forno",{ro:"Lup de mare la cuptor, legume",hu:"Sült tengeri sügér, zöldségek",en:"Baked sea bass, vegetables"},""],
+  ["Pollo alla cacciatora",{ro:"Pui cu roșii, măsline și ierburi",hu:"Csirke paradicsommal, olívával, fűszernövényekkel",en:"Chicken with tomatoes, olives and herbs"},""],
+  ["Saltimbocca alla romana",{ro:"Vițel, prosciutto, salvie",hu:"Borjú, prosciutto, zsálya",en:"Veal, prosciutto, sage"},""]]},
+ {id:"dolci",ro:"Dolci",hu:"Desszertek",en:"Desserts",items:[
+  ["Tiramisù",{ro:"Mascarpone, cafea, cacao",hu:"Mascarpone, kávé, kakaó",en:"Mascarpone, coffee, cocoa"},"v"],
+  ["Panna cotta",{ro:"Sos de fructe de pădure",hu:"Erdei gyümölcsszósz",en:"Forest berry sauce"},"v"],
+  ["Cannoli siciliani",{ro:"Cu ricotta dulce",hu:"Édes ricottával",en:"With sweet ricotta"},"v"]]},
+ {id:"vini",ro:"Vini & cocktail",hu:"Borok & koktélok",en:"Wines & cocktails",items:[
+  ["Vino della casa",{ro:"Alb, roșu sau rosé, la pahar",hu:"Fehér, vörös vagy rozé, pohárral",en:"White, red or rosé, by the glass"},""],
+  ["Prosecco",{ro:"La pahar sau la sticlă",hu:"Pohárral vagy palackkal",en:"By the glass or bottle"},""],
+  ["Aperol Spritz",{ro:"Aperol, prosecco, apă minerală, portocală",hu:"Aperol, prosecco, szóda, narancs",en:"Aperol, prosecco, soda, orange"},""],
+  ["Negroni",{ro:"Gin, vermut roșu, Campari",hu:"Gin, vörös vermut, Campari",en:"Gin, red vermouth, Campari"},""]]}];
+const PRICE={ro:"— lei",hu:"— lej",en:"— lei"};
+(function(){const w=document.getElementById('menuWrap');if(!w)return;const nav=document.getElementById('mnav');let vegOnly=false;
+  function draw(){nav.innerHTML=MENU.map(c=>`<a href="#${c.id}">${c[L]}</a>`).join('');
+    const CHEF={antipasti:'Burrata',pasta:'Tagliatelle al ragù',risotto:'Risotto ai funghi',secondi:'Tagliata di manzo',dolci:'Tiramisù'};const PAIR={secondi:'Vino rosso della casa',pasta:'Vino rosso della casa',risotto:'Vino bianco della casa'};const ICO={antipasti:'🫒',zuppe:'🥣',pasta:'🍝',risotto:'🍚',secondi:'🥩',dolci:'🍰',vini:'🍷'};const lbl=k=>(T[L]&&T[L][k])||{chef:'Recomandat',pair:'Perfect cu:'}[k];
+  w.innerHTML=MENU.map(c=>{const it=c.items.filter(i=>!vegOnly||i[2]==='v');if(!it.length)return'';return `<section class="mcat rv in" id="${c.id}"><h3><span class="cico">${ICO[c.id]||''}</span>${c[L]}</h3>${it.map(i=>{const chef=CHEF[c.id]===i[0];return `<div class="mitem${chef?' star':''}"><div><h4>${i[0]}${i[2]==='v'?' <span class="vtag" title="vegetarian">V</span>':''}${chef?` <span class="ctag">★ ${lbl('chef')}</span>`:''}</h4><p>${i[1][L]}</p>${chef&&PAIR[c.id]?`<p class="pair">🍷 ${lbl('pair')} ${PAIR[c.id]}</p>`:''}</div><span class="dots"></span><span class="pr">${PRICE[L]}</span></div>`}).join('')}</section>`}).join('')}
+  draw();hooks.push(draw);const vb=document.getElementById('veg');if(vb)vb.onclick=()=>{vegOnly=!vegOnly;vb.classList.toggle('on',vegOnly);draw()};
+  const io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){nav.querySelectorAll('a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-40% 0px -55% 0px'});
+  new MutationObserver(()=>w.querySelectorAll('.mcat').forEach(s=>io2.observe(s))).observe(w,{childList:true});w.querySelectorAll('.mcat').forEach(s=>io2.observe(s))})();
+
+/* ===== forms ===== */
+document.querySelectorAll('select[data-times]').forEach(t=>{for(let h=12;h<=22;h++)for(const m of['00','30']){if(h===22&&m==='30')continue;t.add(new Option(h+':'+m))}});
+document.querySelectorAll('select[data-guests]').forEach(g=>{for(let n=1;n<=(+g.dataset.guests||12);n++)g.add(new Option(n));g.value=g.dataset.def||'2'});
+document.querySelectorAll('input[type=date]').forEach(d=>d.min=new Date().toISOString().slice(0,10));
+/* ===== WhatsApp booking: builds a ready-to-send message for the restaurant ===== */
+const WA_NR='40743373146';
+const WM={ro:{hi:'Bună ziua! Aș dori să rezerv o masă la Orobianco:',hiE:'Bună ziua! Aș dori o ofertă pentru un eveniment la Orobianco:',p:'persoane',name:'Nume',note:'Mențiuni',type:'Eveniment',flex:'dată de stabilit',bye:'Mulțumesc!'},
+ hu:{hi:'Jó napot! Asztalt szeretnék foglalni az Orobiancóban:',hiE:'Jó napot! Ajánlatot szeretnék kérni egy eseményre az Orobiancóban:',p:'fő',name:'Név',note:'Megjegyzés',type:'Esemény',flex:'időpont egyeztetendő',bye:'Köszönöm!'},
+ en:{hi:'Hello! I would like to book a table at Orobianco:',hiE:'Hello! I would like a quote for an event at Orobianco:',p:'guests',name:'Name',note:'Notes',type:'Event',flex:'date to be agreed',bye:'Thank you!'}};
+const DLOC={ro:'ro-RO',hu:'hu-HU',en:'en-GB'};
+function fmtD(d){const t=d.toLocaleDateString(DLOC[L],{weekday:'long',day:'numeric',month:'long'});return t.charAt(0).toUpperCase()+t.slice(1)}
+function openWA(f,msg){const url='https://wa.me/'+WA_NR+'?text='+encodeURIComponent(msg);
+  [...f.children].forEach(c=>{if(!c.classList.contains('ok'))c.style.display='none'});const ok=f.querySelector('.ok');ok.classList.add('on');ok.querySelectorAll('.walink').forEach(a=>a.href=url);
+  const w=window.open(url,'_blank');if(!w)location.href=url}
+document.querySelectorAll('form.rform').forEach(f=>f.onsubmit=e=>{e.preventDefault();const m=WM[L]||WM.ro,val=s=>{const x=f.querySelector(s);return x?x.value.trim():''};
+  const name=val('input[autocomplete=name]')||val('.row input:not([type=date])')||val('input:not([type=date]):not([type=hidden])'),note=val('textarea');let lines;
+  if(f.classList.contains('qform')){const day=f.querySelector('[data-day]'),on=day.querySelector('button.on'),di=day.querySelector('input');
+    let d=new Date();if(on)d.setDate(d.getDate()+ +on.dataset.d);else if(di.value)d=new Date(di.value+'T12:00');
+    const t=(f.querySelector('[data-slots] button.on')||{}).textContent||'',g=f.querySelector('[data-stepper] [data-v]').textContent;
+    lines=[m.hi,'📅 '+fmtD(d),'🕖 '+t,'👥 '+g+' '+m.p,'👤 '+name]}
+  else{const type=f.querySelector('select').selectedOptions[0].textContent,di=f.querySelector('input[type=date]'),g=f.querySelectorAll('select')[1].value;
+    lines=[m.hiE,'🎉 '+m.type+': '+type,'📅 '+(di.value?fmtD(new Date(di.value+'T12:00')):m.flex),'👥 '+g+' '+m.p,'👤 '+name]}
+  if(note)lines.push('📝 '+note);lines.push('',m.bye);openWA(f,lines.join('\n'))});
+
+
+/* ===== live open/closed status (daily 12:00–23:00) ===== */
+(function(){const el=document.getElementById('live');if(!el)return;const t=document.getElementById('liveT');
+  function upd(){const n=new Date(),m=n.getHours()*60+n.getMinutes(),open=m>=720&&m<1380;el.classList.toggle('off',!open);
+    const W={ro:[open?(m>=1320?'Deschis · se închide la 23:00':'Deschis acum'):(m<720?'Deschidem azi la 12:00':'Închis · deschidem mâine la 12:00')],
+             hu:[open?(m>=1320?'Nyitva · 23:00-kor zár':'Most nyitva'):(m<720?'Ma 12:00-kor nyitunk':'Zárva · holnap 12:00-kor nyitunk')],
+             en:[open?(m>=1320?'Open · closes at 23:00':'Open now'):(m<720?'Opening today at 12:00':'Closed · opens tomorrow at 12:00')]};t.textContent=W[L][0]}
+  upd();setInterval(upd,60000);hooks.push(upd)})();
+/* ===== hero dish: slow spin + follows scroll a little ===== */
+setTimeout(function(){const h=document.getElementById('hdish');if(!h||!window.DISH)return;h.innerHTML=window.DISH[0];let a=0;
+  (function f(){a+=reduce?0:.06;h.firstElementChild.style.transform=`rotate(${a+scrollY*.08}deg)`;requestAnimationFrame(f)})()},0);
+/* ===== 3-tap reservation ===== */
+document.querySelectorAll('form.qform').forEach(f=>{const slots=f.querySelector('[data-slots]'),day=f.querySelector('[data-day]'),st=f.querySelector('[data-stepper]');
+  const times=['12:30','13:00','14:00','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00'];
+  slots.innerHTML=times.map((t,i)=>`<button type="button" class="${t==='19:30'?'on':''}">${t}</button>`).join('');
+  slots.onclick=e=>{const b=e.target.closest('button');if(!b)return;slots.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b))};
+  day.onclick=e=>{const b=e.target.closest('button');if(!b)return;day.querySelectorAll('button,.chipdate').forEach(x=>x.classList.toggle('on',x===b))};
+  const di=day.querySelector('input'),cdl=day.querySelector('.cdl'),cd=di.parentElement;di.min=new Date().toISOString().slice(0,10);
+  const LOC={ro:'ro-RO',hu:'hu-HU',en:'en-GB'};
+  function showD(){if(!di.value){cdl.textContent=(T[L]&&T[L].dOther)||'Altă zi';return}const d=new Date(di.value+'T12:00');let t=d.toLocaleDateString(LOC[L],{weekday:'short',day:'numeric',month:'short'});cdl.textContent=t.charAt(0).toUpperCase()+t.slice(1)}
+  cd.addEventListener('click',e=>{if(e.target===di)return;e.preventDefault();try{di.showPicker()}catch(_){di.focus();di.click()}});
+  di.onchange=()=>{day.querySelectorAll('button').forEach(x=>x.classList.remove('on'));cd.classList.toggle('on',!!di.value);showD()};hooks.push(showD);
+  let n=2;const v=st.querySelector('[data-v]');st.onclick=e=>{const b=e.target.closest('button');if(!b)return;n=Math.max(1,Math.min(20,n+ +b.dataset.s));v.textContent=n;v.animate([{transform:'scale(1.3)'},{transform:'scale(1)'}],{duration:250})}});
+
+/* ===== hero photo parallax ===== */
+(function(){const f=document.getElementById('hfood'),d=document.getElementById('hdrink');if(!f||reduce)return;let mx=0,my=0;
+  addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
+  (function loop(){const y=scrollY;f.style.transform=`translate(${mx*-14}px,${y*-.12+my*-10}px) rotate(${y*.06+mx*4}deg)`;d.style.transform=`translate(${mx*18}px,${y*-.22+my*12}px) rotate(${6+mx*-5}deg)`;requestAnimationFrame(loop)})()})();
+/* ===== blog covers reuse the dish illustrations ===== */
+setTimeout(()=>{document.querySelectorAll('[data-dish]').forEach(el=>{if(window.DISH)el.innerHTML=window.DISH[+el.dataset.dish]||''})},0);
+/* ===== header, mobile CTA, reveals, motion ===== */
+const hdr=document.getElementById('hdr'),mres=document.getElementById('mres');
+let lastY=scrollY;
+function hdrDyn(){const y=scrollY;hdr.classList.toggle('solid',y>40);
+  if(y>lastY+6&&y>320&&!document.body.classList.contains('mopen')&&!document.querySelector('.lang.open'))hdr.classList.add('hide');
+  else if(y<lastY-6||y<320)hdr.classList.remove('hide');lastY=y;
+  let dk=false;document.querySelectorAll('.spin .stage,.strip,footer,.ctaband,.hero-dark').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<44&&r.bottom>44)dk=true});hdr.classList.toggle('dark',dk);syncBar()}
+/* menu category bar docks right under the island header and follows it */
+const hw=hdr.querySelector('.wrap'),mbar=document.querySelector('.mbar'),mwrap=document.getElementById('menuWrap');
+function syncBar(){if(!mbar||!mbar.offsetParent)return;const t=hdr.classList.contains('hide')?10:Math.round(hw.getBoundingClientRect().bottom+8);
+  document.documentElement.style.setProperty('--mt',t+'px');mbar.classList.toggle('solid',hdr.classList.contains('solid'));
+  if(mwrap)mbar.classList.toggle('gone',mwrap.getBoundingClientRect().bottom<t+90)}
+hdr.addEventListener('transitionend',syncBar);hw.addEventListener('transitionend',syncBar);addEventListener('resize',syncBar);addEventListener('hashchange',()=>setTimeout(syncBar,50));
+function onS(){hdrDyn();if(!mres)return;const f=document.querySelector('form.rform'),s=document.getElementById('spec');
+  const inForm=f&&(r=>r.top<innerHeight&&r.bottom>0)(f.getBoundingClientRect()),inSpin=s&&(r=>r.top<=0&&r.bottom>=innerHeight)(s.getBoundingClientRect());
+  mres.classList.toggle('on',scrollY>innerHeight*.6&&!inForm&&!inSpin)}
+addEventListener('scroll',onS,{passive:true});onS();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+const burger=document.getElementById('burger');if(burger)burger.onclick=()=>document.body.classList.toggle('mopen');
+if(fine&&!reduce){
+  document.querySelectorAll('[data-mag]').forEach(b=>{b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;b.style.transform=`translate(${x*.25}px,${y*.35}px)`;if(b.firstElementChild)b.firstElementChild.style.transform=`translate(${x*.12}px,${y*.12}px)`});
+    b.addEventListener('mouseleave',()=>{b.style.transform='';if(b.firstElementChild)b.firstElementChild.style.transform=''})});
+  document.querySelectorAll('[data-tilt]').forEach(c=>{c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(900px) rotateY(${x*7}deg) rotateX(${-y*7}deg) translateY(-4px)`});c.addEventListener('mouseleave',()=>c.style.transform='')});
+  const g=document.getElementById('glow');if(g)addEventListener('mousemove',e=>{g.style.opacity=1;g.style.left=e.clientX+'px';g.style.top=e.clientY+'px'},{passive:true});
+}
+(function(){const h=document.getElementById('h1');if(!h)return;let i=0;h.querySelectorAll('span,em').forEach(p=>{const t=p.textContent;p.textContent='';[...t].forEach(c=>{const s=document.createElement('span');s.className='ch';s.textContent=c;s.style.animationDelay=(.25+i++*.07)+'s';p.appendChild(s)})})})();
+
+/* ===== signature dishes (illustrated placeholders, swap for real cut-out photos) ===== */
+(function(){if(!document.getElementById("spec"))return;
+const R=(s=>()=>(s=(s*16807)%2147483647)/2147483647)(7);
+const plate=(inner)=>`<svg viewBox="0 0 400 400"><defs>
+<radialGradient id="pl" cx="45%" cy="40%" r="60%"><stop offset="0" stop-color="#fbf8f2"/><stop offset=".75" stop-color="#ece5d8"/><stop offset="1" stop-color="#cfc5b3"/></radialGradient>
+<radialGradient id="well" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#fffdf8"/><stop offset="1" stop-color="#e3dccd"/></radialGradient></defs>
+<circle cx="200" cy="200" r="190" fill="url(#pl)"/><circle cx="200" cy="200" r="190" fill="none" stroke="#c9a96e" stroke-width="2" opacity=".7"/>
+<circle cx="200" cy="200" r="182" fill="none" stroke="#c9a96e" stroke-width=".8" opacity=".5"/>
+<circle cx="200" cy="200" r="132" fill="url(#well)"/><circle cx="200" cy="200" r="132" fill="none" stroke="#d8cfbd" stroke-width="3"/>${inner}</svg>`;
+function specks(n,cx,cy,rad,cols,sz){let s='';for(let i=0;i<n;i++){const a=R()*6.283,r=Math.sqrt(R())*rad;s+=`<circle cx="${(cx+Math.cos(a)*r).toFixed(1)}" cy="${(cy+Math.sin(a)*r).toFixed(1)}" r="${(sz*(.5+R())).toFixed(1)}" fill="${cols[i%cols.length]}"/>`}return s}
+function leaf(x,y,a,s,c){return `<path transform="translate(${x} ${y}) rotate(${a}) scale(${s})" d="M0 0C8-10 22-10 30 0C22 10 8 10 0 0Z" fill="${c}"/><path transform="translate(${x} ${y}) rotate(${a}) scale(${s})" d="M2 0H27" stroke="#2f5a1f" stroke-width=".8" opacity=".6"/>`}
+const soup=plate(`<defs><radialGradient id="sp" cx="45%" cy="40%" r="60%"><stop offset="0" stop-color="#f07a3a"/><stop offset="1" stop-color="#b8411a"/></radialGradient></defs>
+<circle cx="200" cy="200" r="112" fill="url(#sp)"/><circle cx="200" cy="200" r="112" fill="none" stroke="#8f3214" stroke-width="2" opacity=".5"/>
+<path d="M200 200m-60 0a60 60 0 1 0 120 0a45 45 0 1 0-90 0a30 30 0 1 0 60 0a15 15 0 1 0-30 0" fill="none" stroke="#fff6ea" stroke-width="7" stroke-linecap="round" opacity=".92"/>
+${specks(26,200,200,95,['#3f7a2a','#2f5f1f'],1.6)}${leaf(232,150,20,1.1,'#4f8f32')}${leaf(238,160,-40,.9,'#3e7a27')}
+${[[150,250],[260,240],[170,140]].map(([x,y])=>`<rect x="${x}" y="${y}" width="16" height="16" rx="3" fill="#d9a35a" stroke="#a8722f" transform="rotate(${R()*60} ${x+8} ${y+8})"/>`).join('')}`);
+let nest='';for(let i=0;i<70;i++){const a=R()*6.283,r=20+R()*80,w=30+R()*60;nest+=`<path d="M${(200+Math.cos(a)*r).toFixed(1)} ${(200+Math.sin(a)*r).toFixed(1)}q${(R()*w-w/2).toFixed(1)} ${(R()*w-w/2).toFixed(1)} ${(R()*w-w/2).toFixed(1)} ${(R()*w-w/2).toFixed(1)}" stroke="${['#f1cf7c','#e7bd63','#f5da93'][i%3]}" stroke-width="7" fill="none" stroke-linecap="round"/>`}
+const pasta=plate(`<circle cx="200" cy="200" r="98" fill="#e9c46e"/>${nest}<circle cx="200" cy="200" r="42" fill="#9c2a17"/>${specks(40,200,200,40,['#b8401f','#7a1f10','#c85a2c'],3)}
+${specks(14,200,200,70,['#fff8e6','#f3e8cc'],3.2)}${leaf(206,178,-30,1,'#4f8f32')}${leaf(196,186,60,.8,'#3e7a27')}`);
+const risotto=plate(`<circle cx="200" cy="200" r="104" fill="#efe2bf"/>${specks(260,200,200,100,['#f7edd2','#e3d1a5','#fffaf0'],2.6)}
+${Array.from({length:9},(_,i)=>{const a=i/9*6.283+R(),r=40+R()*45,x=200+Math.cos(a)*r,y=200+Math.sin(a)*r;return `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(R()*360).toFixed(0)})"><path d="M-14 4C-14-12 14-12 14 4Z" fill="#8a5a33"/><rect x="-4" y="2" width="8" height="12" rx="3" fill="#c9a07a"/></g>`}).join('')}
+${specks(30,200,200,95,['#3f7a2a'],1.4)}<ellipse cx="170" cy="170" rx="18" ry="8" fill="#fff" opacity=".35"/>`);
+const steak=plate(`${Array.from({length:7},(_,i)=>{const a=-60+i*20;return `<g transform="rotate(${a} 200 200)"><rect x="196" y="98" width="34" height="112" rx="10" fill="#6b2f1d"/><rect x="200" y="104" width="26" height="100" rx="8" fill="#c0505a"/><rect x="204" y="110" width="18" height="88" rx="6" fill="#d97a7f"/></g>`}).join('')}
+${Array.from({length:16},()=>leaf(140+R()*120,215+R()*70,R()*360,.9+R()*.5,['#3f7a2a','#4f8f32','#5aa03a'][Math.floor(R()*3)])).join('')}
+${Array.from({length:8},()=>`<path d="M${(150+R()*110).toFixed(0)} ${(220+R()*55).toFixed(0)}l14-4l4 10l-15 3z" fill="#f3e3b4" opacity=".95"/>`).join('')}`);
+const tira=plate(`<g transform="rotate(12 200 200)"><rect x="128" y="128" width="144" height="144" rx="8" fill="#6a3d22"/><rect x="128" y="128" width="144" height="144" rx="8" fill="url(#cc)"/>
+<defs><pattern id="cc" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#5a3019"/><circle cx="2" cy="2" r="1.2" fill="#7a4a2a"/><circle cx="5" cy="4.5" r=".8" fill="#4a2512"/></pattern></defs>
+<rect x="128" y="128" width="144" height="144" rx="8" fill="none" stroke="#3b1f0e" stroke-width="2"/></g>
+${leaf(250,140,-35,1.2,'#4f8f32')}${leaf(255,150,20,.9,'#3e7a27')}${specks(30,200,200,128,['#5a3019'],1.4)}
+<path d="M110 290q30-14 60 0" stroke="#e8c27a" stroke-width="5" fill="none" stroke-linecap="round" opacity=".8"/>`);
+window.__D=1;const D=[
+ {img:"img/pasta-mare.webp",n:"01",ro:["Spaghetti","<em>ai frutti di mare</em>","Midii, creveți, calamar și roșii cherry, cu ierburi proaspete."],hu:["Spaghetti","<em>ai frutti di mare</em>","Kagyló, garnélarák, tintahal és koktélparadicsom friss fűszerekkel."],en:["Spaghetti","<em>ai frutti di mare</em>","Mussels, prawns, squid and cherry tomatoes with fresh herbs."]},
+ {img:"img/pizza.webp",n:"02",ro:["Pizza","<em>Margherita</em>","Sos de roșii, mozzarella topită și busuioc, cu blat crocant."],hu:["Pizza","<em>Margherita</em>","Paradicsomszósz, olvadt mozzarella és bazsalikom ropogós tésztán."],en:["Pizza","<em>Margherita</em>","Tomato sauce, melted mozzarella and basil on a crisp base."]},
+ {img:"img/creveti.webp",n:"03",ro:["Gamberi","<em>al pomodoro</em>","Creveți în sos de roșii, brânză și crostini cu usturoi."],hu:["Gamberi","<em>al pomodoro</em>","Garnélarák paradicsomszószban, sajttal és fokhagymás crostinivel."],en:["Gamberi","<em>al pomodoro</em>","Prawns in tomato sauce with cheese and garlic crostini."]},
+ {img:"img/steak.webp",n:"04",ro:["Bistecca","<em>con asparagi</em>","Vită la grătar, cimbru proaspăt și sparanghel trecut prin tigaie."],hu:["Bistecca","<em>con asparagi</em>","Grillezett marhahús friss kakukkfűvel és serpenyős spárgával."],en:["Bistecca","<em>con asparagi</em>","Grilled beef, fresh thyme and pan-seared asparagus."]},
+ {img:"img/file.webp",n:"05",ro:["Filetto","<em>di manzo</em>","Medalion de vită la grătar, pe crostino, cu cimbru."],hu:["Filetto","<em>di manzo</em>","Grillezett marhamedalion crostinin, kakukkfűvel."],en:["Filetto","<em>di manzo</em>","Grilled beef medallion on a crostino, with thyme."]}];
+window.DISH=D.map(d=>`<img src="${d.img}" alt="">`);const pw=document.getElementById('pw'),tx=document.getElementById('dtxt'),dots=document.getElementById('ddots'),ring=document.getElementById('ring'),sec=document.getElementById('spec');
+D.forEach((d,i)=>{const el=document.createElement('div');el.className='dish';el.innerHTML=`<img src="${d.img}" alt="${d.ro[0]} ${d.ro[1].replace(/<[^>]+>/g,'')}" loading="lazy">`;pw.insertBefore(el,ring);d.el=el;
+  const t=document.createElement('div');t.className='dish-t';tx.appendChild(t);d.t=t;dots.appendChild(document.createElement('i'))});
+function txt(){D.forEach(d=>{const v=d[L]||d.ro;d.t.innerHTML=`<span class="n">${d.n} / 0${D.length}</span><h3>${v[0]} ${v[1]}</h3><p>${v[2]}</p>`})}
+txt();const _set=setLang;setLang=function(l){_set(l);txt()};
+let cur=-1,tgt=0,cs=null,vis=false;
+/* eased rotation: follows scroll smoothly instead of jumping with each scroll event */
+(function rl(){if(vis||cs===null){cs=cs===null?tgt:cs+(tgt-cs)*(reduce?1:.09);const sc=innerWidth<=860?.86:.74;
+  D.forEach((d,k)=>{const lp=cs-k-.5;if(Math.abs(lp)>1.8&&d._done)return;d._done=Math.abs(lp)>1.8;
+    d.el.firstChild.style.transform=`translate3d(0,${(lp*-18).toFixed(2)}px,0) rotate(${(lp*-38).toFixed(2)}deg) scale(${sc})`})}
+  requestAnimationFrame(rl)})();
+function tick(){const r=sec.getBoundingClientRect(),total=r.height-innerHeight,p=Math.min(1,Math.max(0,-r.top/total));
+  const i=Math.min(D.length-1,Math.floor(p*D.length*.999));
+  if(i!==cur){cur=i;D.forEach((d,k)=>{d.el.classList.toggle('on',k===i);d.t.classList.toggle('on',k===i)});[...dots.children].forEach((d,k)=>d.classList.toggle('on',k<=i))}
+  tgt=p*D.length;vis=r.top<innerHeight&&r.bottom>0;ring.style.setProperty('--p',p)}
+addEventListener('scroll',()=>requestAnimationFrame(tick),{passive:true});addEventListener('resize',tick);tick();
+})();
+/* gold dust */
+(function(){const c=document.getElementById('dust');if(reduce||!c)return;const x=c.getContext('2d');let W,H,P=[];
+  function size(){const r=c.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);W=c.width=r.width*d;H=c.height=r.height*d;P=Array.from({length:Math.round(r.width/18)},()=>({x:Math.random()*W,y:Math.random()*H,r:(Math.random()*1.6+.4)*d,s:(Math.random()*.25+.05)*d,o:Math.random()*.6+.2,p:Math.random()*6.3}))}
+  size();addEventListener('resize',size);let vis=true;new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(c);
+  (function f(t){if(vis){x.clearRect(0,0,W,H);for(const p of P){p.y-=p.s;p.x+=Math.sin(t/1600+p.p)*.15;if(p.y<-5){p.y=H+5;p.x=Math.random()*W}x.globalAlpha=p.o*(.6+.4*Math.sin(t/700+p.p));x.fillStyle='#e6cf9f';x.beginPath();x.arc(p.x,p.y,p.r,0,6.283);x.fill()}}requestAnimationFrame(f)})(0)})();
+(function(){let s=null;try{s=localStorage.getItem("oroLang")}catch(e){}if(s&&s!=="ro")setLang(s)})();
+
+/* ===== 3D card ring (hero tests) =====
+   Cards sit on a cylinder with the camera at its centre: translate3d(R·sin a, 0, R·(1−cos a)) rotateY(−a)
+   with perspective = R, so edge cards come closer and look taller, like the inside of a drum.
+   Auto-drifts, follows drag 1:1, coasts with momentum, and only animates while the hero is on screen. */
+document.querySelectorAll('.ring3d').forEach(ring=>{
+  const tpl=[...ring.querySelectorAll('.rc')];tpl.forEach(c=>c.remove());if(!tpl.length)return;
+  const dark=ring.dataset.theme==='dark',RAD=Math.PI/180;let cards=[],R=800,step=12,cull=48,phase=0,vel=0,drag=false,lastX=0,lastT=0,running=false,prev=0,W0=0;
+  function build(){const W=ring.clientWidth,H=ring.clientHeight;if(!W||!H)return;W0=W;const mob=W<700;
+    const ch=Math.min(H*(dark?.78:.8),mob?(dark?260:240):420),cw=ch*(mob?.5:(dark?.47:.6)),gap=mob?12:20;
+    const R0=mob?W*1.15:Math.max(W*.62,cw*5);N=Math.max(1,Math.round(2*Math.PI*R0/(cw+gap)/tpl.length))*tpl.length;R=N*(cw+gap)/(2*Math.PI);step=360/N;cull=mob?52:46;
+    ring.style.perspective=R+'px';const cy=H*(dark?.5:.52);ring.style.perspectiveOrigin=`50% ${cy+ch*(dark?1.05:.85)}px`;
+    cards.forEach(c=>c.remove());cards=[];
+    for(let i=0;i<N;i++){const c=tpl[i%tpl.length].cloneNode(true);Object.assign(c.style,{width:cw+'px',height:ch+'px',margin:`${-ch/2}px 0 0 ${-cw/2}px`,top:cy+'px'});c._v=null;ring.appendChild(c);cards.push(c)}
+    if(L!=='ro')cards.forEach(c=>c.querySelectorAll('[data-t]').forEach(e=>{const v=T[L][e.dataset.t];if(v)e.innerHTML=v}));fitAll();render()}
+  /* shrink each label until it sits fully inside its card (width, and height for dish names) */
+  function fit(el,maxH){el.style.fontSize='';el.style.letterSpacing='';let fs=parseFloat(getComputedStyle(el).fontSize),n=0;const over=()=>el.scrollWidth>el.clientWidth||(maxH&&el.scrollHeight>maxH);
+    while(over()&&fs>7&&n++<60){fs-=.5;el.style.fontSize=fs+'px';if(fs<9.5&&el.classList.contains('rck'))el.style.letterSpacing='.08em'}}
+  function fitAll(){const done={};cards.forEach(c=>{const key=c.querySelector('img').getAttribute('src')+L;const ch=c.offsetHeight;
+    if(done[key]){done[key].forEach(([sel,fs,ls])=>{const e=c.querySelector(sel);if(e){e.style.fontSize=fs;e.style.letterSpacing=ls}});return}
+    const rec=[];c.querySelectorAll('.rck,.rce,.rcn').forEach(e=>{fit(e,e.classList.contains('rcn')?ch*.36:e.classList.contains('rce')?Math.max(ch*.2,34):0);rec.push(['.'+e.className.split(' ')[0],e.style.fontSize,e.style.letterSpacing])});done[key]=rec})}
+  hooks.push(fitAll);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitAll);
+  let N=0;
+  function render(){for(let i=0;i<cards.length;i++){const c=cards[i];let a=((i*step+phase)%360+540)%360-180;const vis=Math.abs(a)<=cull;
+      if(vis!==c._v){c.style.visibility=vis?'visible':'hidden';c._v=vis}if(!vis)continue;
+      const r=a*RAD,co=Math.cos(r);c.style.transform=`translate3d(${(R*Math.sin(r)).toFixed(1)}px,0,${(R*(1-co)).toFixed(1)}px) rotateY(${(-a).toFixed(2)}deg)`;
+      const dm=c.lastChild;dm.style.opacity=Math.min(.75,(1/co-1)*(dark?2.4:1.6)).toFixed(3)}}
+  function tick(t){if(!running)return;const dt=Math.min((t-prev)/1000,.1);prev=t;
+    if(!drag){if(Math.abs(vel)>.3){phase+=vel*dt;vel*=Math.pow(.05,dt)}else vel=0;if(!reduce)phase-=(dark?3.2:4.2)*dt}
+    render();requestAnimationFrame(tick)}
+  function start(){if(running)return;running=true;prev=performance.now();requestAnimationFrame(tick)}
+  new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)start();else running=false})}).observe(ring);
+  document.addEventListener('visibilitychange',()=>{prev=performance.now()});
+  ring.addEventListener('pointerdown',e=>{drag=true;lastX=e.clientX;lastT=performance.now();vel=0;ring.classList.add('grab');ring.setPointerCapture(e.pointerId)});
+  ring.addEventListener('pointermove',e=>{if(!drag)return;const now=performance.now(),d=(e.clientX-lastX)/R/RAD;phase+=d;const dt=Math.max(.008,(now-lastT)/1000);vel=vel*.6+(d/dt)*.4;lastX=e.clientX;lastT=now;if(!running)render()});
+  const up=()=>{if(!drag)return;drag=false;ring.classList.remove('grab');vel=Math.max(-90,Math.min(90,vel))};ring.addEventListener('pointerup',up);ring.addEventListener('pointercancel',up);
+  let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{if(Math.abs(ring.clientWidth-W0)>40)build()},150)});
+  build()});
+/* quick booking bar → WhatsApp */
+(function(){const f=document.getElementById('qbook');if(!f)return;f.onsubmit=e=>{e.preventDefault();const m=WM[L]||WM.ro,d=new Date();d.setDate(d.getDate()+ +f.d.value);
+  const msg=[m.hi,'📅 '+fmtD(d),'🕖 '+f.t.value,'👥 '+f.g.value+' '+m.p,'',m.bye].join('\n'),url='https://wa.me/'+WA_NR+'?text='+encodeURIComponent(msg);const w=window.open(url,'_blank');if(!w)location.href=url}})();
+window.__ok=1;

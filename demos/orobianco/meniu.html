@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ro"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__ok)document.documentElement.classList.remove("js")},3500)</script>
+<meta name="robots" content="noindex,nofollow">
+<title>Meniu · Orobianco (demo)</title>
+<meta name="description" content="Meniul restaurantului Orobianco: antipasti, paste, risotto, feluri principale, deserturi, vinuri. Demo.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/lora.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+</head><body>
+<div class="bgfx" aria-hidden="true"><i></i><i></i><i></i></div><span class="leaf" style="left:8vw;--t:24s;--d:0s;--dx:6vw;--rot:320deg"><svg viewBox="0 0 30 14"><path d="M1 7C8-1 22-1 29 7C22 15 8 15 1 7Z" fill="#8a9a52"/><path d="M3 7H27" stroke="#5f6d33" stroke-width=".8"/></svg></span><span class="leaf" style="left:27vw;--t:30s;--d:6s;--dx:-5vw;--rot:-280deg"><svg viewBox="0 0 30 14"><path d="M1 7C8-1 22-1 29 7C22 15 8 15 1 7Z" fill="#8a9a52"/><path d="M3 7H27" stroke="#5f6d33" stroke-width=".8"/></svg></span><span class="leaf" style="left:48vw;--t:27s;--d:12s;--dx:7vw;--rot:360deg"><svg viewBox="0 0 30 14"><path d="M1 7C8-1 22-1 29 7C22 15 8 15 1 7Z" fill="#8a9a52"/><path d="M3 7H27" stroke="#5f6d33" stroke-width=".8"/></svg></span><span class="leaf" style="left:66vw;--t:33s;--d:3s;--dx:-6vw;--rot:300deg"><svg viewBox="0 0 30 14"><path d="M1 7C8-1 22-1 29 7C22 15 8 15 1 7Z" fill="#8a9a52"/><path d="M3 7H27" stroke="#5f6d33" stroke-width=".8"/></svg></span><span class="leaf" style="left:84vw;--t:29s;--d:9s;--dx:5vw;--rot:-340deg"><svg viewBox="0 0 30 14"><path d="M1 7C8-1 22-1 29 7C22 15 8 15 1 7Z" fill="#8a9a52"/><path d="M3 7H27" stroke="#5f6d33" stroke-width=".8"/></svg></span><span class="leaf" style="left:38vw;--t:35s;--d:17s;--dx:-4vw;--rot:260deg"><svg viewBox="0 0 30 14"><path d="M1 7C8-1 22-1 29 7C22 15 8 15 1 7Z" fill="#8a9a52"/><path d="M3 7H27" stroke="#5f6d33" stroke-width=".8"/></svg></span>
+<div class="glow" id="glow"></div>
+<header class="hdr" id="hdr"><div class="wrap">
+  <a class="brand" href="index.html">Oro<i>bianco</i></a>
+  <nav class="nav"><a href="index.html" data-t="nHome">Acasă</a><a href="meniu.html" data-t="nMenu" class="cur">Meniu</a><a href="evenimente.html" data-t="nEv">Evenimente</a><a href="despre.html" data-t="nAbout">Despre noi</a><a href="blog.html" data-t="nBlog">Blog</a></nav>
+  <div class="lang" id="lang"><button class="lcur" id="lcur" type="button" aria-label="Limba / Nyelv / Language" aria-expanded="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.5 4 5.7 4 9s-1.4 6.5-4 9c-2.6-2.5-4-5.7-4-9s1.4-6.5 4-9z"/></svg><span id="lcode">RO</span></button><div class="lpop" role="menu"><button class="on" data-l="ro" role="menuitem"><b>RO</b>Română</button><button data-l="hu" role="menuitem"><b>HU</b>Magyar</button><button data-l="en" role="menuitem"><b>EN</b>English</button></div></div>
+  <a class="btn p" href="rezervare.html" data-mag><span data-t="cRes">Rezervă o masă</span></a>
+  <button class="burger" id="burger" aria-label="Meniu"><i></i></button>
+</div></header>
+<nav class="mnavp"><a href="index.html" data-t="nHome">Acasă</a><a href="meniu.html" data-t="nMenu">Meniu</a><a href="evenimente.html" data-t="nEv">Evenimente</a><a href="despre.html" data-t="nAbout">Despre noi</a><a href="blog.html" data-t="nBlog">Blog</a><a href="rezervare.html" data-t="cRes">Rezervă o masă</a><div class="mlang"><button class="on" data-l="ro">Română</button><button data-l="hu">Magyar</button><button data-l="en">English</button></div></nav>
+<section class="phero"><div class="wrap">
+  <p class="eyebrow" data-t="mE">Meniu</p>
+  <h1 data-t="mH">Meniul <em>Orobianco</em></h1>
+  <p class="sub" data-t="mP">Bucătărie italiană, de la antipasti la dolci, plus vinuri și cocktailuri.</p>
+  <div class="note"><span>✦</span><span data-t="mNote"><b>Meniu exemplu.</b> Felurile și prețurile reale le completăm împreună cu voi; le puteți schimba oricând.</span></div>
+</div></section>
+<div class="mbar"><div class="wrap"><nav id="mnav"></nav><button class="chip" id="veg" data-t="veg">Doar vegetariene</button></div></div>
+<section style="padding-top:20px"><div class="wrap"><div id="menuWrap"></div>
+  <p class="legend" data-t="leg"><span class="vtag">V</span> vegetarian · Vă rugăm să ne spuneți despre orice alergie; informațiile despre alergeni sunt disponibile la cerere.</p>
+</div></section>
+<section class="ctaband"><div class="wrap">
+  <h2 class="rv" data-t="ctaH">Rezervă o masă <em>pentru diseară</em></h2>
+  <p class="rv d1" data-t="ctaP">Cerere online în două minute, sau sună-ne direct.</p>
+  <div class="rv d2" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><a class="btn p" href="rezervare.html" data-mag><span data-t="ctaB">Rezervă o masă</span><span>→</span></a><a class="btn o" href="tel:+40743373146" data-mag><span>+40 743 373 146</span></a></div>
+</div></section>
+<footer style="padding:0;border-top:1px solid var(--line)"><div class="wrap ff">
+  <div><span class="brand">Oro<i>bianco</i></span><p style="margin-top:14px">Piața Bernády György 2<br>540072 Târgu Mureș</p></div>
+  <div><h5 data-t="fHours">Program</h5><p data-t="sOpenV">Zilnic, 12:00 – 23:00</p></div>
+  <div><h5 data-t="fLinks">Pagini</h5><a href="meniu.html" data-t="nMenu">Meniu</a><a href="evenimente.html" data-t="nEv">Evenimente</a><a href="despre.html" data-t="nAbout">Despre noi</a><a href="blog.html" data-t="nBlog">Blog</a><a href="rezervare.html" data-t="cRes">Rezervă o masă</a></div>
+  <div><h5 data-t="fCont">Contact</h5><a href="tel:+40743373146">+40 743 373 146</a><a href="https://wa.me/40743373146" target="_blank" rel="noopener">WhatsApp</a></div>
+</div><div class="wrap fbot"><span>© Orobianco Ristorante</span><span class="fdemo"><span data-t="demo">Propunere de website realizată de OHI Solutions pentru Orobianco. Nu este site-ul oficial.</span></span></div></footer>
+<div class="mres" id="mres"><a class="mb" href="tel:+40743373146"><span>📞</span><b data-t="bCall">Sună</b></a><a class="mb" href="meniu.html"><span>📖</span><b data-t="nMenu">Meniu</b></a><a class="btn p" href="rezervare.html" style="flex:1.6;justify-content:center"><span data-t="cRes">Rezervă o masă</span></a></div>
+
+<script>window.PT={"hu": {"mE": "Étlap", "mH": "Az <em>Orobianco</em> étlapja", "mP": "Olasz konyha az előételektől a desszertekig, borokkal és koktélokkal.", "mNote": "<b>Minta étlap.</b> A valódi fogásokat és árakat együtt töltjük ki; bármikor módosíthatók.", "veg": "Csak vegetáriánus", "leg": "<span class=\"vtag\">V</span> vegetáriánus · Kérjük, jelezzétek, ha allergiátok van; az allergénekről kérésre tájékoztatunk."}, "en": {"mE": "Menu", "mH": "The <em>Orobianco</em> menu", "mP": "Italian cooking from antipasti to dolci, plus wines and cocktails.", "mNote": "<b>Sample menu.</b> We fill in the real dishes and prices together with you; editable anytime.", "veg": "Vegetarian only", "leg": "<span class=\"vtag\">V</span> vegetarian · Please tell us about any allergy; allergen information is available on request."}};</script>
+<script src="assets/site.js" defer></script>
+</body></html>
