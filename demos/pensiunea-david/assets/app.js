@@ -78,4 +78,5 @@ document.querySelectorAll('.bk').forEach(f=>{const t=new Date(),t2=new Date(Date
   const set=i=>{fr.forEach((f,k)=>f.classList.toggle('on',k===i));st.forEach((s,k)=>s.classList.toggle('on',k===i));dots.forEach((d,k)=>d.classList.toggle('on',k===i))};set(0);
   const io3=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)set(+e.target.dataset.i)}),{rootMargin:'-45% 0px -45% 0px'});st.forEach(s=>io3.observe(s))})();
 try{const s=localStorage.getItem('davidLang');if(s&&s!=='ro')setLang(s)}catch(e){}
+try{sessionStorage.setItem('dIntro','1')}catch(e){}
 window.__ok=1;

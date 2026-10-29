@@ -1,6 +1,6 @@
 <!doctype html><html lang="ro"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__ok)document.documentElement.classList.remove("js")},3500)</script>
+<script>document.documentElement.classList.add("js");try{if(sessionStorage.getItem("dIntro"))document.documentElement.classList.add("nointro")}catch(e){}setTimeout(function(){if(!window.__ok)document.documentElement.classList.remove("js")},3500)</script>
 <meta name="robots" content="noindex,nofollow">
 <title>Rezervare · Pensiunea David (demo)</title><meta name="description" content="Rezervați direct la Pensiunea David, pe WhatsApp sau telefonic. Demo.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="assets/style.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LodgingBusiness", "name": "Pensiunea David", "telephone": "+40 743 531 995", "address": {"@type": "PostalAddress", "streetAddress": "Str. 22 Decembrie 1989 nr. 55", "postalCode": "540124", "addressLocality": "Târgu Mureș", "addressCountry": "RO"}}</script>
 </head><body>
+<div class="intro" aria-hidden="true"><div class="ibox"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44"/></svg><span class="iD">D</span></div><div class="iname"><span>Pensiunea</span> <em>David</em></div><div class="iline"></div><div class="isub">Târgu Mureș</div></div>
 <div class="bg" aria-hidden="true"><i></i><i></i></div>
 <header class="hdr" id="hdr"><div class="isl">
   <a class="brand" href="index.html"><span class="bm">D</span><span>Pensiunea <i>David</i></span></a>
