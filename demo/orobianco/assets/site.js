@@ -178,13 +178,17 @@ window.__D=1;const D=[
  {img:"/demo/orobianco/img/hd/steak.webp",n:"04",ro:["Bistecca","<em>con asparagi</em>","Vită la grătar, cimbru proaspăt și sparanghel trecut prin tigaie."],hu:["Bistecca","<em>con asparagi</em>","Grillezett marhahús friss kakukkfűvel és serpenyős spárgával."],en:["Bistecca","<em>con asparagi</em>","Grilled beef, fresh thyme and pan-seared asparagus."]},
  {img:"/demo/orobianco/img/hd/file.webp",n:"05",ro:["Filetto","<em>di manzo</em>","Medalion de vită la grătar, pe crostino, cu cimbru."],hu:["Filetto","<em>di manzo</em>","Grillezett marhamedalion crostinin, kakukkfűvel."],en:["Filetto","<em>di manzo</em>","Grilled beef medallion on a crostino, with thyme."]}];
 window.DISH=D.map(d=>`<img src="${d.img}" alt="">`);const pw=document.getElementById('pw'),tx=document.getElementById('dtxt'),dots=document.getElementById('ddots'),ring=document.getElementById('ring'),sec=document.getElementById('spec');
-D.forEach((d,i)=>{const el=document.createElement('div');el.className='dish';el.innerHTML=`<img src="${d.img}" alt="${d.ro[0]} ${d.ro[1].replace(/<[^>]+>/g,'')}" loading="lazy">`;pw.insertBefore(el,ring);d.el=el;
+D.forEach((d,i)=>{const el=document.createElement('div');el.className='dish';el.innerHTML=`<img src="${d.img}" alt="${d.ro[0]} ${d.ro[1].replace(/<[^>]+>/g,'')}" decoding="async" fetchpriority="low">`;pw.insertBefore(el,ring);d.el=el;
   const t=document.createElement('div');t.className='dish-t';tx.appendChild(t);d.t=t;dots.appendChild(document.createElement('i'))});
 function txt(){D.forEach(d=>{const v=d[L]||d.ro;d.t.innerHTML=`<span class="n">${d.n} / 0${D.length}</span><h3>${v[0]} ${v[1]}</h3><p>${v[2]}</p>`})}
 txt();const _set=setLang;setLang=function(l){_set(l);txt()};
 let cur=-1,tgt=0,cs=null,vis=false;
+/* preload + decode every dish before the section is reached, so fast scrolling never shows an empty frame */
+const warm=()=>D.forEach(d=>{const im=d.el.firstChild;if(im.decode)im.decode().catch(()=>{})});
+if('IntersectionObserver' in window){const wo=new IntersectionObserver(e=>{if(e[0].isIntersecting){warm();wo.disconnect()}},{rootMargin:'1500px 0px'});wo.observe(sec)}else warm();
+addEventListener('load',()=>setTimeout(warm,1200));
 /* eased rotation: follows scroll smoothly instead of jumping with each scroll event */
-(function rl(){if(vis||cs===null){cs=cs===null?tgt:cs+(tgt-cs)*(reduce?1:.09);const sc=innerWidth<=860?.86:.74;
+(function rl(){if(vis||cs===null){cs=cs===null?tgt:cs+(tgt-cs)*(reduce?1:.09);const sc=1;
   D.forEach((d,k)=>{const lp=cs-k-.5;if(Math.abs(lp)>1.8&&d._done)return;d._done=Math.abs(lp)>1.8;
     d.el.firstChild.style.transform=`translate3d(0,${(lp*-18).toFixed(2)}px,0) rotate(${(lp*-38).toFixed(2)}deg) scale(${sc})`})}
   requestAnimationFrame(rl)})();

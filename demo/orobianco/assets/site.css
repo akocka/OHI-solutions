@@ -777,5 +777,6 @@ select{-webkit-appearance:none;appearance:none;padding-right:44px;background-ima
 
 /* ===== crisp dish rotation: no scaled raster layers, HD images ===== */
 .dish{will-change:auto!important;transform:none!important}
-.dish img{will-change:auto!important;position:absolute;left:13%;top:13%;width:74%!important;height:74%!important;transform:translateY(var(--y,0)) rotate(var(--r,0deg))!important}
+.dish img{will-change:auto!important;position:absolute;left:13%;top:13%;width:74%!important;height:74%!important}
+.dish{transition:opacity .45s var(--ease)!important}
 @media(max-width:860px){.dish img{left:7%;top:7%;width:86%!important;height:86%!important}}
