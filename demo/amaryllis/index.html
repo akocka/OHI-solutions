@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#141213">
+<meta name="theme-color" content="#fbf9f7">
 <meta name="robots" content="noindex,nofollow">
 <title>Florăria Amaryllis · Târgu Mureș (demo)</title>
 <meta name="description" content="Propunere de website pentru Florăria Amaryllis din Târgu Mureș, realizată de OHI Solutions. Nu este site-ul oficial.">
@@ -162,6 +162,43 @@ footer{padding:60px 0 50px;border-top:1px solid var(--line)}.fb{display:flex;jus
 .dbox h3{font:300 28px Fraunces,serif;margin-bottom:16px}.dbox pre{white-space:pre-wrap;font:400 15px/1.6 Inter;padding:18px;border-radius:16px;background:rgba(255,255,255,.04);border:1px dashed var(--rose)}
 .dx{position:absolute;top:14px;right:16px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:none;font-size:22px;cursor:pointer}
 @media (max-width:900px),(max-aspect-ratio:4/5){.isb{display:block}.ilang{display:none}.ip{padding:9px 14px;font-size:13px}.isl{gap:8px}}
+
+/* ===================== LIGHT THEME ===================== */
+:root{--bg:#fbf9f7;--bg2:#f4efeb;--cream:#1d1719;--mute:#7a6c70;--rose:#e0559e;--pink:#c93a85;--line:rgba(40,20,30,.12)}
+html,body{background:var(--bg);color:var(--cream)}
+h2 em,h1 em{color:var(--rose)}
+.stage{background:radial-gradient(45% 55% at 60% 50%,rgba(253,134,219,.16),transparent 70%),radial-gradient(60% 60% at 15% 110%,rgba(224,85,158,.10),transparent 70%),#fbf9f7}
+.grain{opacity:.035}
+.brand svg,.ib svg{stroke:var(--cream)}
+.word .p,.fbrand em{background:linear-gradient(180deg,#f39bc6 0%,#d63d8f 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.corner{color:var(--cream)}
+.pill,.ip,.btn,.sheet .sp{background:#1d1719;color:#fff}
+.burger{background:#1d1719!important}.burger i,.burger i::before,.burger i::after{background:#fff!important}body.open .burger i{background:transparent!important}
+.cue i{background:linear-gradient(var(--rose),transparent)}
+.isl{background:rgba(255,255,255,.74);border-color:var(--line);box-shadow:0 18px 40px -26px rgba(60,20,40,.35)}
+.isl nav a:hover{background:rgba(40,20,30,.06);color:var(--cream)}
+.ilang button,.lang button{color:var(--cream)}
+.isb{border-color:var(--line)}.isb i,.isb i::before,.isb i::after{background:var(--cream)}
+.mtext .wd{color:rgba(29,23,25,.13)}.mtext .wd.lit{color:var(--cream)}.mtext .wd.acc.lit{color:var(--rose)}
+.proof .stars{color:#e0a23a}
+.card{background:#fff;border-color:var(--line);box-shadow:0 30px 60px -40px rgba(60,20,40,.35)}
+.card canvas{background:radial-gradient(60% 50% at 50% 40%,rgba(253,134,219,.16),transparent 70%),#fdf8f8}
+.atelier{background:linear-gradient(180deg,var(--bg),#f6eff0 40%,var(--bg))}
+.apreview{background:radial-gradient(60% 55% at 50% 40%,rgba(253,134,219,.18),transparent 70%),#fff;box-shadow:0 40px 80px -50px rgba(60,20,40,.4)}
+.note{background:#fffdf8;box-shadow:0 20px 40px -18px rgba(60,20,40,.35)}
+.chips button.on,.sizes button.on{background:#1d1719;color:#fff}.sizes button.on small{color:#cbbfc2}
+.sw button.on{border-color:#1d1719}
+.fl textarea,.fl input{background:#fff;color:var(--cream);color-scheme:light}
+.send{color:#fff;background:linear-gradient(135deg,#ef6fb0,#c93a85);box-shadow:0 20px 40px -20px rgba(201,58,133,.6)}
+.arc .plane path{fill:#1d1719}
+.wed{background:linear-gradient(180deg,var(--bg),#f3eef0)}
+.steps li,.vi{background:#fff}
+.open{background:#fff}
+.sheet{background:rgba(255,255,255,.95)!important}.sheet .sl button.on{background:#1d1719;color:#fff}
+.scrim{background:rgba(30,20,25,.25)!important}
+.dlg{background:rgba(250,246,244,.7)}.dbox{background:#fff;box-shadow:0 40px 80px -40px rgba(60,20,40,.45)}.dbox pre{background:#fbf6f8}
+footer{background:#f4efeb}
+.wart{border-radius:999px 999px 32px 32px;background:radial-gradient(60% 45% at 50% 38%,#f8d9e6,#efe3e6 70%);overflow:hidden;box-shadow:0 40px 80px -50px rgba(60,20,40,.45)}
 </style>
 </head>
 <body>
@@ -391,7 +428,7 @@ $$('[data-l]').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
 const MAXP=60,HEAD=140,AMP=44,BP=24,FADE=.92,SAMPLE=8;
 const fc=$('#fc'),fx=fc.getContext('2d'),box=$('#flower'),stage=$('#top');
 let W=0,H=0,front,reveal,mask,mx,tmp,tx,dpr=Math.min(devicePixelRatio||1,touch?1.25:1.5),scl=1,pts=[],head=0,hover=false,px=0,py=0,lx=-1e9,ly=-1e9,time=0,dirty=true,auto=null,heroVis=true;
-const RAMP=[[255,197,220],[253,134,219],[176,96,255],[110,70,230]];
+const RAMP=[[247,164,205],[226,80,160],[150,70,220],[90,50,200]];
 function buildHero(){const r=box.getBoundingClientRect();if(!r.width)return;W=Math.round(r.width*dpr);H=Math.round(r.height*dpr);fc.width=W;fc.height=H;scl=W/r.width;
   const pale=document.createElement('canvas');pale.width=W;pale.height=H;Flora.plant(pale.getContext('2d'),W,H,'apple');front=Flora.halftone(pale,W,H,Math.max(5,Math.round(W/120)),RAMP);
   reveal=document.createElement('canvas');reveal.width=W;reveal.height=H;Flora.plant(reveal.getContext('2d'),W,H,'red');
