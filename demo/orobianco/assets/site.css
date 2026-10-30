@@ -754,3 +754,28 @@ select{-webkit-appearance:none;appearance:none;padding-right:44px;background-ima
 @keyframes tick{to{transform:rotate(360deg)}}
 .card:hover .ic{transform:translateY(-3px);transition:transform .4s var(--ease)}
 @media(prefers-reduced-motion:reduce){.ic *,.ic-ph,.ic-wa,.ic-cl *{animation:none!important}.ic-wine .liq,.ic-wine .wave{transform:translateY(5px)}.ic-house .door{opacity:.6}}
+
+/* ===== intro (once per visit) ===== */
+#ointro{display:none}
+.oi-on #ointro{display:grid;position:fixed;inset:0;z-index:999;place-items:center;background:#f6f0e4;animation:oiOut .9s cubic-bezier(.7,0,.2,1) 2.15s forwards}
+.oi-box{position:relative;width:min(320px,78vw);aspect-ratio:1;display:grid;place-items:center}
+.oi-plate{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:#a8823f}
+.oi-c1{stroke-width:1.4;stroke-dasharray:580;stroke-dashoffset:580;animation:oiDraw 1.1s cubic-bezier(.6,0,.2,1) .1s forwards}
+.oi-c2{stroke-width:.8;opacity:.6;stroke-dasharray:470;stroke-dashoffset:470;animation:oiDraw 1.1s cubic-bezier(.6,0,.2,1) .35s forwards}
+.oi-word{font-family:"Lora",Georgia,serif;font-size:clamp(40px,11vw,62px);color:#2a2118;line-height:1;display:flex;overflow:hidden;padding:.1em 0}
+.oi-word span,.oi-word em{display:inline-block;transform:translateY(110%);animation:oiUp .9s cubic-bezier(.16,1,.3,1) forwards}
+.oi-a{animation-delay:.55s!important}
+.oi-b{color:#b9562f;font-style:italic;animation-delay:.7s!important}
+.oi-sub{position:absolute;bottom:26%;font:600 10.5px/1 Inter,system-ui,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#6e604e;opacity:0;animation:oiFade .8s ease 1.15s forwards}
+@keyframes oiDraw{to{stroke-dashoffset:0}}
+@keyframes oiUp{to{transform:none}}
+@keyframes oiFade{to{opacity:1}}
+@keyframes oiOut{0%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 0 100% 0);visibility:hidden}}
+.oi-on .hxin{animation-delay:calc(var(--d,0s) + 2.3s)}
+.oi-on .hxarr{animation-delay:3.8s}
+@media(prefers-reduced-motion:reduce){.oi-on #ointro{display:none}.oi-on .hxin{animation-delay:0s}}
+
+/* ===== crisp dish rotation: no scaled raster layers, HD images ===== */
+.dish{will-change:auto!important;transform:none!important}
+.dish img{will-change:auto!important;position:absolute;left:13%;top:13%;width:74%!important;height:74%!important;transform:translateY(var(--y,0)) rotate(var(--r,0deg))!important}
+@media(max-width:860px){.dish img{left:7%;top:7%;width:86%!important;height:86%!important}}

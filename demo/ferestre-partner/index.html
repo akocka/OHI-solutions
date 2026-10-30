@@ -647,7 +647,7 @@ function fit(vb){/* pad box to the container aspect so zoom target stays centere
   if(w/h<ar){const nw=h*ar;x-=(nw-w)/2;w=nw}else{const nh=w/ar;y-=(nh-h)/2;h=nh}return [x,y,w,h]}
 let aLast=-2;
 const avis=$('.anat-vis');
-function anat(){if(innerWidth<=900){avis.style.bottom=(innerHeight-acard.offsetTop+14)+'px';avis.style.top=(aintro.classList.contains('hide-x')?70:200)+'px'}else{avis.style.bottom='';avis.style.top=''}
+function anat(){if(innerWidth<=900){avis.style.bottom=(acard.offsetParent.clientHeight-acard.offsetTop+14)+'px';avis.style.top=(aintro.classList.contains('hide-x')?70:200)+'px'}else{avis.style.bottom='';avis.style.top=''}
   const r=atrack.getBoundingClientRect(),run=atrack.offsetHeight-innerHeight;
   const p=Math.min(1,Math.max(0,-r.top/run)),f=p*AS.length;let from,to,k,cur;
   if(f<1){from=fit(VB0);to=fit(AS[0].vb);k=ease(Math.min(1,Math.max(0,(f-.15)/.7)));cur=f<.6?-1:0}
