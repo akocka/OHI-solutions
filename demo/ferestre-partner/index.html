@@ -140,23 +140,38 @@ section{padding:120px 0}
 .sec-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:56px;flex-wrap:wrap}
 .sec-head .lead{max-width:44ch}
 
-/* anatomy */
-.anatomy{background:var(--paper)}
-.anat{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
-.anat-vis{position:sticky;top:100px;aspect-ratio:1;background:linear-gradient(160deg,#eef3f6,#f9f8f4);border-radius:28px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
-.anat-vis svg{width:88%;height:88%}
-.anat-vis .lbl{position:absolute;right:22px;bottom:18px;font-size:12px;color:var(--ink2)}
-.part{opacity:.5;transition:opacity .5s}
-.part.on{opacity:1}
-.part.on .hl{stroke:var(--warm);stroke-width:3}
-.steps{display:flex;flex-direction:column}
-.step{min-height:62vh;display:flex;flex-direction:column;justify-content:center;border-top:1px solid var(--line);padding:30px 0;opacity:.4;transition:opacity .5s}
-.step.on{opacity:1}
-.step .k{font-family:var(--serif);font-size:20px;color:var(--steel)}
-.step h3{font-size:42px;margin:6px 0 14px}
-.step p{color:var(--ink2);max-width:46ch}
-.anat-note{font-size:13px;color:var(--ink2);margin-top:20px}
-
+/* anatomy — pinned zoom story */
+.anatomy{background:var(--paper);padding:0}
+.anat-track{height:620vh;position:relative}
+.anat-pin{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:20px;padding:80px max(16px,calc((100vw - 1180px)/2)) 40px}
+.anat-vis{position:relative;height:100%;transition:top .5s;max-height:760px;display:grid;place-items:center}
+.anat-vis svg{width:100%;height:100%}
+.part{transition:opacity .5s}
+.dim .part{opacity:.22}
+.dim .part.on{opacity:1}
+.part.on .hl{stroke:var(--warm)!important}
+.anat-intro{position:absolute;left:max(16px,calc((100vw - 1180px)/2));top:96px;max-width:560px;transition:opacity .5s,transform .5s}
+.anat-intro h2{font-size:clamp(36px,4.6vw,60px);margin-top:10px}
+.acard{position:relative;background:#fff;border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:0 30px 70px -40px rgba(20,24,29,.35);transition:opacity .45s,transform .45s}
+.acard.hide{opacity:0;transform:translateY(20px)}
+.acard .k{font-family:var(--serif);font-size:20px;color:var(--steel)}
+.acard h3{font-size:clamp(32px,3.4vw,44px);margin:4px 0 12px}
+.acard p{color:var(--ink2)}
+.adots{display:flex;gap:6px;margin-top:20px}
+.adots i{height:4px;flex:1;border-radius:4px;background:var(--line);transition:background .3s}
+.adots i.on{background:var(--steel)}
+.anat-note{font-size:12px;color:var(--ink2);margin-top:14px}
+.hide-x{opacity:0;transform:translateY(-16px);pointer-events:none}
+@media(max-width:900px){
+  .anat-pin{display:block;padding:0}
+  .anat-vis{position:absolute;left:8px;right:8px;top:70px;bottom:330px;height:auto;max-height:none}
+  .acard{position:absolute;left:16px;right:16px;bottom:84px}
+  .anat-intro~.anat-vis{top:200px}
+  .dim~.x{}
+  .acard{padding:20px;border-radius:20px}
+  .acard h3{font-size:28px}.acard p{font-size:15px}
+  .anat-intro{top:84px;right:16px}
+}
 /* products */
 .prods{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
 .prod{grid-column:span 2;position:relative;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px;min-height:340px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s}
@@ -181,10 +196,11 @@ section{padding:120px 0}
 .config .lead{color:#aab4be}
 .cfg{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:stretch}
 .cfg-prev{background:radial-gradient(90% 70% at 50% 40%,#1d2a36,#111a23);border-radius:28px;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;min-height:520px;position:relative}
-.cfg-prev svg{width:100%;height:400px;overflow:visible}
-.cfg-sum{position:absolute;left:22px;right:22px;bottom:18px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.cfg-prev svg{width:100%;height:420px;overflow:visible}
+.cfg-sum{margin-top:20px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 .cfg-sum span{font-size:12px;border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:5px 10px;color:#cfd6dc}
-.cfg-form{display:flex;flex-direction:column;gap:22px}
+.cfg-form{display:flex;flex-direction:column;gap:30px}
+.grp{padding-bottom:26px;border-bottom:1px solid rgba(255,255,255,.07)}
 .grp>small{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#8b96a1;font-weight:700;margin-bottom:10px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:10px 16px;font-size:14px;font-weight:600;color:#dfe5ea;display:flex;align-items:center;gap:8px;transition:all .2s;min-height:44px}
@@ -280,7 +296,10 @@ dialog::backdrop{background:rgba(15,23,32,.55);backdrop-filter:blur(4px)}
   .pstep h3{margin:10px 0 4px}
   .pstep p{grid-column:2}
   .config{margin:0 8px;border-radius:28px;padding:84px 0}
-  .cfg-prev{min-height:400px}.cfg-prev svg{height:300px}
+  .cfg{gap:28px}
+  .cfg-prev{min-height:0;padding:28px 16px 22px}.cfg-prev svg{height:auto;aspect-ratio:1}
+  .cfg-form{gap:24px}.grp{padding-bottom:22px}
+  .dims{grid-template-columns:1fr 1fr!important}.dims .field:nth-child(3){grid-column:1/-1}
   .ccard{padding:28px}
   .crow{grid-template-columns:96px 1fr}
 }
@@ -365,55 +384,44 @@ dialog::backdrop{background:rgba(15,23,32,.55);backdrop-filter:blur(4px)}
 
 <!-- ANATOMY -->
 <section class="anatomy" id="anatomie">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div><p class="eyebrow">Ce nu se vede</p><h2 style="margin-top:12px">O fereastră bună<br>e <em>construită în straturi.</em></h2></div>
-      <p class="lead">Diferența dintre o fereastră care ține 3 ani și una care ține 30 stă în detalii pe care nu le vezi după montaj. Iată ce urmărim.</p>
-    </div>
-    <div class="anat">
-      <div class="anat-vis" aria-hidden="true">
-        <svg viewBox="0 0 400 400">
-          <defs>
-            <linearGradient id="gl" x1="0" x2="1"><stop offset="0" stop-color="#cfe6f3"/><stop offset="1" stop-color="#a9cde3"/></linearGradient>
-            <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0v6" stroke="#7d8b96" stroke-width="2"/></pattern>
-          </defs>
-          <!-- profile -->
-          <g class="part" data-p="0">
-            <path class="hl" d="M60 120h150v220H60z" fill="#f7f7f5" stroke="#b9c0c6" stroke-width="2"/>
-            <g fill="#fff" stroke="#c8ced3" stroke-width="2">
-              <rect x="72" y="134" width="38" height="56" rx="3"/><rect x="118" y="134" width="38" height="56" rx="3"/><rect x="164" y="134" width="34" height="56" rx="3"/>
-              <rect x="72" y="198" width="38" height="70" rx="3"/><rect x="164" y="198" width="34" height="70" rx="3"/>
-              <rect x="72" y="276" width="38" height="52" rx="3"/><rect x="118" y="276" width="38" height="52" rx="3"/><rect x="164" y="276" width="34" height="52" rx="3"/>
-            </g>
-          </g>
-          <!-- steel -->
-          <g class="part" data-p="1"><path class="hl" d="M118 198h38v70h-38z" fill="url(#hatch)" stroke="#5b6770" stroke-width="2"/></g>
-          <!-- gaskets -->
-          <g class="part" data-p="2"><g fill="#2b2f33"><rect class="hl" x="206" y="112" width="12" height="16" rx="4"/><rect class="hl" x="206" y="332" width="12" height="16" rx="4"/><rect class="hl" x="52" y="112" width="12" height="16" rx="4"/></g></g>
-          <!-- glazing -->
-          <g class="part" data-p="3">
-            <rect class="hl" x="222" y="40" width="14" height="300" fill="url(#gl)" stroke="#8fb5cc" stroke-width="1.5"/>
-            <rect class="hl" x="262" y="40" width="14" height="300" fill="url(#gl)" stroke="#8fb5cc" stroke-width="1.5"/>
-            <rect class="hl" x="302" y="40" width="14" height="300" fill="url(#gl)" stroke="#8fb5cc" stroke-width="1.5"/>
-            <rect x="236" y="300" width="26" height="14" fill="#3a4148"/><rect x="276" y="300" width="26" height="14" fill="#3a4148"/>
-            <g fill="#9fc3dc" opacity=".5"><circle cx="249" cy="120" r="2"/><circle cx="246" cy="180" r="2"/><circle cx="252" cy="240" r="2"/><circle cx="289" cy="100" r="2"/><circle cx="286" cy="200" r="2"/><circle cx="291" cy="260" r="2"/></g>
-          </g>
-          <!-- hardware -->
-          <g class="part" data-p="4"><circle class="hl" cx="40" cy="230" r="10" fill="#c9cdd1" stroke="#8a9198" stroke-width="2"/><rect class="hl" x="34" y="234" width="12" height="70" rx="6" fill="#d9dde1" stroke="#8a9198" stroke-width="2"/><path d="M60 230h12" stroke="#8a9198" stroke-width="3"/></g>
-          <g font-family="Manrope" font-size="12" fill="#4a525c"><text x="330" y="60">exterior</text><text x="8" y="60">interior</text></g>
-                  </svg>
-        <span class="lbl">Secțiune ilustrativă · profil + geam</span>
-      </div>
-      <div class="steps">
-        <div class="step" data-i="0"><span class="k">01</span><h3>Profil multicameral</h3><p>Camerele de aer din interiorul profilului încetinesc trecerea frigului. Cu cât sunt mai multe și mai bine gândite, cu atât rama rămâne caldă la atingere iarna.</p></div>
-        <div class="step" data-i="1"><span class="k">02</span><h3>Armătură din oțel</h3><p>În interiorul profilului PVC se află o armătură metalică. Ea ține fereastra dreaptă și etanșă ani la rând, inclusiv la casele noi care se „așază”.</p></div>
-        <div class="step" data-i="2"><span class="k">03</span><h3>Garnituri de etanșare</h3><p>Garniturile închid fereastra pe tot conturul. Ele opresc curentul, praful și o bună parte din zgomotul străzii.</p></div>
-        <div class="step" data-i="3"><span class="k">04</span><h3>Geam termoizolant</h3><p>Pachet dublu sau triplu, cu spațiu umplut cu gaz între foi. Vă ajutăm să alegeți în funcție de orientare, zgomot și buget, fără să plătiți pentru ce nu folosiți.</p></div>
-        <div class="step" data-i="4"><span class="k">05</span><h3>Feronerie &amp; montaj</h3><p>Feroneria oscilobatantă face fereastra ușor de folosit, iar montajul corect o face să funcționeze ani la rând. O fereastră bună, montată prost, rămâne o fereastră proastă.</p></div>
-        <p class="anat-note">Configurația exactă (număr de camere, tip de geam, feronerie) depinde de sistemul ales. O stabilim împreună la ofertă.</p>
-      </div>
-    </div>
+ <div class="anat-track" id="atrack">
+  <div class="anat-pin">
+   <div class="anat-intro" id="aintro"><p class="eyebrow">Ce nu se vede</p><h2>O fereastră bună e<br><em>construită în straturi.</em></h2></div>
+   <div class="anat-vis" aria-hidden="true">
+    <svg id="asvg" viewBox="-20 0 440 400" preserveAspectRatio="xMidYMid meet">
+     <defs>
+      <linearGradient id="gl" x1="0" x2="1"><stop offset="0" stop-color="#cfe6f3"/><stop offset="1" stop-color="#a9cde3"/></linearGradient>
+      <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0v6" stroke="#7d8b96" stroke-width="2"/></pattern>
+     </defs>
+     <g class="part" data-p="0">
+      <path class="hl" d="M60 120h150v220H60z" fill="#f7f7f5" stroke="#b9c0c6" stroke-width="2"/>
+      <g fill="#fff" stroke="#c8ced3" stroke-width="2">
+       <rect x="72" y="134" width="38" height="56" rx="3"/><rect x="118" y="134" width="38" height="56" rx="3"/><rect x="164" y="134" width="34" height="56" rx="3"/>
+       <rect x="72" y="198" width="38" height="70" rx="3"/><rect x="164" y="198" width="34" height="70" rx="3"/>
+       <rect x="72" y="276" width="38" height="52" rx="3"/><rect x="118" y="276" width="38" height="52" rx="3"/><rect x="164" y="276" width="34" height="52" rx="3"/>
+      </g>
+      <g fill="#9fc3dc" opacity=".55"><circle cx="91" cy="162" r="3"/><circle cx="137" cy="162" r="3"/><circle cx="181" cy="162" r="3"/><circle cx="91" cy="302" r="3"/><circle cx="181" cy="302" r="3"/></g>
+     </g>
+     <g class="part" data-p="1"><path class="hl" d="M118 198h38v70h-38z" fill="url(#hatch)" stroke="#5b6770" stroke-width="2"/></g>
+     <g class="part" data-p="2"><g fill="#2b2f33" class="hl" stroke="none"><rect class="hl" x="206" y="112" width="12" height="16" rx="4"/><rect class="hl" x="206" y="332" width="12" height="16" rx="4"/><rect class="hl" x="52" y="112" width="12" height="16" rx="4"/><rect class="hl" x="52" y="332" width="12" height="16" rx="4"/></g></g>
+     <g class="part" data-p="3">
+      <rect class="hl" x="222" y="40" width="14" height="300" fill="url(#gl)" stroke="#8fb5cc" stroke-width="1.5"/>
+      <rect class="hl" x="262" y="40" width="14" height="300" fill="url(#gl)" stroke="#8fb5cc" stroke-width="1.5"/>
+      <rect class="hl" x="302" y="40" width="14" height="300" fill="url(#gl)" stroke="#8fb5cc" stroke-width="1.5"/>
+      <rect x="236" y="300" width="26" height="14" fill="#3a4148"/><rect x="276" y="300" width="26" height="14" fill="#3a4148"/>
+      <g fill="#9fc3dc" opacity=".6"><circle cx="249" cy="120" r="2"/><circle cx="246" cy="180" r="2"/><circle cx="252" cy="240" r="2"/><circle cx="289" cy="100" r="2"/><circle cx="286" cy="200" r="2"/><circle cx="291" cy="260" r="2"/></g>
+     </g>
+     <g class="part" data-p="4"><circle class="hl" cx="40" cy="230" r="10" fill="#c9cdd1" stroke="#8a9198" stroke-width="2"/><rect class="hl" x="34" y="234" width="12" height="70" rx="6" fill="#d9dde1" stroke="#8a9198" stroke-width="2"/><path d="M50 230h10" stroke="#8a9198" stroke-width="3"/></g>
+     
+    </svg>
+   </div>
+   <div class="acard hide" id="acard" aria-live="polite">
+    <span class="k" id="ak">01</span><h3 id="ah">Profil multicameral</h3><p id="ap"></p>
+    <div class="adots" id="adots"><i></i><i></i><i></i><i></i><i></i></div>
+    <p class="anat-note">Secțiune ilustrativă. Configurația exactă depinde de sistemul ales.</p>
+   </div>
   </div>
+ </div>
 </section>
 
 <!-- PRODUCTS -->
@@ -625,14 +633,33 @@ function frame(t){requestAnimationFrame(frame);if(!heroVis||reduce)return;
 }
 requestAnimationFrame(frame);
 
-/* anatomy steps */
-const parts=$$('.part'),steps=$$('.step');
-function act(i){parts.forEach(p=>p.classList.toggle('on',+p.dataset.p<=i&&(+p.dataset.p===i||true)));
-  parts.forEach(p=>{const n=+p.dataset.p;p.classList.toggle('on',n<=i);p.querySelectorAll('.hl').forEach(h=>h.style.stroke=n===i?'#e9a23b':'');p.querySelectorAll('.hl').forEach(h=>h.style.strokeWidth=n===i?'3':'')});
-  steps.forEach((s,k)=>s.classList.toggle('on',k===i))}
-act(0);
-const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)act(+e.target.dataset.i)}),{rootMargin:'-45% 0px -45% 0px'});
-steps.forEach(s=>so.observe(s));
+/* anatomy — zoom story */
+const AS=[
+ {k:'01',t:'Profil multicameral',d:'Camerele de aer din interiorul profilului încetinesc trecerea frigului. Cu cât sunt mai multe și mai bine gândite, cu atât rama rămâne caldă la atingere iarna.',vb:[10,100,250,250]},
+ {k:'02',t:'Armătură din oțel',d:'În inima profilului stă o armătură metalică. Ea ține fereastra dreaptă și etanșă ani la rând, chiar și la casele noi care se „așază”.',vb:[72,168,130,130]},
+ {k:'03',t:'Garnituri de etanșare',d:'Garniturile închid fereastra pe tot conturul. Ele opresc curentul, praful și o bună parte din zgomotul străzii.',vb:[30,60,210,140]},
+ {k:'04',t:'Geam termoizolant',d:'Pachet dublu sau triplu, cu gaz între foi. Vă recomandăm sincer ce se potrivește casei: orientare, zgomot, buget.',vb:[196,30,150,300]},
+ {k:'05',t:'Feronerie & montaj',d:'Feroneria oscilobatantă face fereastra ușor de folosit, iar montajul corect o face să țină. O fereastră bună montată prost rămâne o fereastră proastă.',vb:[-10,200,120,120]}];
+const VB0=innerWidth>900?[-40,-150,480,560]:[-20,0,440,400],asvg=$('#asvg'),atrack=$('#atrack'),acard=$('#acard'),aintro=$('#aintro'),aparts=$$('.part'),adots=$$('#adots i');
+const lerp=(a,b,t)=>a+(b-a)*t,ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+function fit(vb){/* pad box to the container aspect so zoom target stays centered */
+  const r=asvg.getBoundingClientRect(),ar=r.width/Math.max(1,r.height);let [x,y,w,h]=vb;
+  if(w/h<ar){const nw=h*ar;x-=(nw-w)/2;w=nw}else{const nh=w/ar;y-=(nh-h)/2;h=nh}return [x,y,w,h]}
+let aLast=-2;
+const avis=$('.anat-vis');
+function anat(){if(innerWidth<=900){avis.style.bottom=(innerHeight-acard.offsetTop+14)+'px';avis.style.top=(aintro.classList.contains('hide-x')?70:200)+'px'}else{avis.style.bottom='';avis.style.top=''}
+  const r=atrack.getBoundingClientRect(),run=atrack.offsetHeight-innerHeight;
+  const p=Math.min(1,Math.max(0,-r.top/run)),f=p*AS.length;let from,to,k,cur;
+  if(f<1){from=fit(VB0);to=fit(AS[0].vb);k=ease(Math.min(1,Math.max(0,(f-.15)/.7)));cur=f<.6?-1:0}
+  else{const a=Math.min(AS.length-1,Math.floor(f)-1),b=Math.min(AS.length-1,a+1),tt=f-Math.floor(f);
+    from=fit(AS[a].vb);to=fit(AS[b].vb);k=ease(Math.min(1,Math.max(0,(tt-.5)/.45)));cur=tt<.72?a:b}
+  const vb=from.map((v,i)=>lerp(v,to[i],k));asvg.setAttribute('viewBox',vb.map(v=>v.toFixed(2)).join(' '));
+  aintro.classList.toggle('hide-x',f>.35);
+  if(cur!==aLast){aLast=cur;acard.classList.toggle('hide',cur<0);asvg.parentNode.classList.toggle('dim',cur>=0);
+    aparts.forEach(pt=>pt.classList.toggle('on',+pt.dataset.p===cur));
+    if(cur>=0){$('#ak').textContent=AS[cur].k;$('#ah').textContent=AS[cur].t;$('#ap').textContent=AS[cur].d;adots.forEach((d,i)=>d.classList.toggle('on',i<=cur))}}
+}
+addEventListener('scroll',anat,{passive:true});addEventListener('resize',anat);anat();
 
 /* process */
 const ps=$$('.pstep');const po=new IntersectionObserver(es=>{if(es[0].isIntersecting){ps.forEach((p,i)=>setTimeout(()=>p.classList.add('in'),i*260));po.disconnect()}},{threshold:.4});
