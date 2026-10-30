@@ -28,13 +28,32 @@ h1,h2,h3{font-weight:400;font-family:var(--serif);letter-spacing:-.01em;line-hei
 h2{font-size:clamp(38px,5.4vw,68px)}
 h2 em,h1 em{font-style:italic;color:var(--steel)}
 .lead{font-size:18px;color:var(--ink2);max-width:52ch}
-.btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 24px;border-radius:999px;font-weight:700;font-size:15px;text-decoration:none;transition:transform .25s,box-shadow .25s,background .25s}
+.ph-s{display:none}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 24px;border-radius:999px;font-weight:700;font-size:15px;text-decoration:none;transition:transform .25s,box-shadow .25s,background .25s}
 .btn-dark{background:var(--ink);color:#fff;box-shadow:0 10px 30px -12px rgba(20,24,29,.6)}
 .btn-dark:hover{transform:translateY(-2px);background:var(--steel2)}
 .btn-line{border:1.5px solid var(--ink);}
 .btn-line:hover{background:var(--ink);color:#fff}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
+
+/* ---------- intro ---------- */
+#intro{position:fixed;inset:0;z-index:100;background:var(--paper);display:grid;place-items:center;animation:introOut .8s cubic-bezier(.7,0,.2,1) 2.1s forwards}
+#intro .box{display:flex;flex-direction:column;align-items:center;gap:22px}
+#intro svg{width:120px;height:150px}
+#intro .fr{stroke-dasharray:540;stroke-dashoffset:540;animation:draw 1s cubic-bezier(.6,0,.2,1) .15s forwards}
+#intro .mu{stroke-dasharray:140;stroke-dashoffset:140;animation:draw .6s ease .85s forwards}
+#intro .gl{opacity:0;animation:fade .6s ease 1.1s forwards}
+#intro .nm{font-weight:800;font-size:20px;letter-spacing:-.01em;opacity:0;transform:translateY(8px);animation:up .6s ease 1.15s forwards}
+#intro .nm small{display:block;text-align:center;font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--steel);margin-top:4px}
+@keyframes draw{to{stroke-dashoffset:0}}@keyframes fade{to{opacity:1}}@keyframes up{to{opacity:1;transform:none}}
+@keyframes introOut{to{clip-path:inset(0 0 100% 0);visibility:hidden}}
+#intro{clip-path:inset(0 0 0 0)}
+.skip-intro #intro{display:none}
+.hero h1,.hero .lead,.hero-actions,.stage{animation:up .9s cubic-bezier(.2,.7,.2,1) both}
+.hero h1{animation-delay:2.35s}.hero .lead{animation-delay:2.45s}.hero-actions{animation-delay:2.55s}.stage{animation-delay:2.4s}
+.hero h1,.hero .lead,.hero-actions,.stage{transform:translateY(8px)}
+.skip-intro .hero h1,.skip-intro .hero .lead,.skip-intro .hero-actions,.skip-intro .stage{animation-delay:.05s}
 
 /* ---------- island header ---------- */
 .island{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:6px;padding:7px 7px 7px 18px;background:rgba(251,250,247,.82);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border:1px solid rgba(20,24,29,.08);border-radius:999px;box-shadow:0 12px 40px -18px rgba(20,24,29,.35);transition:transform .45s cubic-bezier(.2,.7,.2,1);width:max-content;max-width:calc(100% - 24px)}
@@ -52,7 +71,15 @@ h2 em,h1 em{font-style:italic;color:var(--steel)}
 .mnav a{font-family:var(--serif);font-size:44px;text-decoration:none;line-height:1.15}
 
 /* ---------- hero ---------- */
-.hero{position:relative;min-height:100svh;padding:120px 0 60px;display:flex;align-items:center;overflow:hidden;background:radial-gradient(120% 80% at 80% 30%,#fff 0%,var(--bg) 60%)}
+.hero{position:relative;padding:0!important;height:210vh;background:radial-gradient(120% 60% at 80% 20%,#fff 0%,var(--bg) 60%)}
+.hero-pin{position:sticky;top:0;height:100svh;display:flex;align-items:center;overflow:hidden;padding-top:60px}
+.hint{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;color:var(--ink2);margin-top:30px;transition:opacity .4s}
+.hint i{width:22px;height:34px;border:2px solid var(--ink2);border-radius:12px;position:relative}
+.hint i::after{content:"";position:absolute;left:50%;top:6px;width:4px;height:7px;margin-left:-2px;border-radius:2px;background:var(--ink2);animation:wheel 1.6s infinite}
+@keyframes wheel{0%{opacity:0;transform:translateY(-3px)}40%{opacity:1}100%{opacity:0;transform:translateY(9px)}}
+.caption{font-family:var(--serif);font-size:26px;text-align:center;min-height:1.3em;position:relative;width:100%}
+.caption span{position:absolute;left:0;right:0;transition:opacity .35s,transform .45s cubic-bezier(.2,.7,.2,1)}
+.caption .in{color:var(--steel)}
 .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;position:relative;z-index:2}
 .hero h1{font-size:clamp(52px,7.6vw,104px)}
 .hero .lead{margin:22px 0 32px}
@@ -65,7 +92,7 @@ h2 em,h1 em{font-style:italic;color:var(--steel)}
 
 .stage{position:relative;display:flex;flex-direction:column;align-items:center;gap:22px}
 .wall{position:relative;padding:34px;border-radius:26px;background:linear-gradient(160deg,#ebe7df,#ddd8cd);box-shadow:inset 0 2px 0 #fff,0 40px 80px -40px rgba(20,24,29,.45)}
-.win{position:relative;width:min(380px,74vw);aspect-ratio:380/480;perspective:1400px}
+.win{position:relative;width:min(380px,74vw,calc((100svh - 230px)*.79));aspect-ratio:380/480;perspective:1400px}
 .frame{position:absolute;inset:0;border-radius:6px;background:var(--fc,#fbfbfa);box-shadow:inset 0 0 0 1px rgba(0,0,0,.06),0 2px 0 rgba(0,0,0,.05),0 18px 30px -18px rgba(0,0,0,.4)}
 .outside{position:absolute;inset:22px;border-radius:2px;overflow:hidden;background:linear-gradient(#9fc3dc,#dbe9f1 70%,#efe6d6)}
 .outside svg{width:100%;height:100%}
@@ -75,18 +102,16 @@ h2 em,h1 em{font-style:italic;color:var(--steel)}
 @keyframes drive{from{transform:translateX(-80px)}to{transform:translateX(420px)}}
 .cloud{animation:float 40s linear infinite}
 @keyframes float{from{transform:translateX(-120px)}to{transform:translateX(380px)}}
-.sash{position:absolute;inset:14px;border-radius:3px;transform-origin:0% 50%;transition:transform 1.5s cubic-bezier(.65,0,.2,1);transform-style:preserve-3d;background:transparent}
+.sash{position:absolute;inset:14px;border-radius:3px;transform-origin:0% 50%;transform:rotateY(-62deg);transition:transform .12s linear;transform-style:preserve-3d;background:transparent}
 .sash .sf{position:absolute;inset:0;border:16px solid var(--fc,#fff);border-radius:3px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08),0 0 0 1px rgba(0,0,0,.08),0 10px 24px -10px rgba(0,0,0,.35);background:linear-gradient(115deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,0) 28%,rgba(255,255,255,0) 60%,rgba(255,255,255,.22) 72%,rgba(255,255,255,0) 80%),rgba(200,225,240,.12)}
 .sash .gasket{position:absolute;inset:14px;border:2px solid #2b2f33;border-radius:2px;opacity:.75}
 .handle{position:absolute;right:3px;top:50%;width:12px;height:50px;margin-top:-6px;transform-origin:6px 6px;transition:transform .5s cubic-bezier(.5,0,.2,1)}
 .handle i{position:absolute;left:0;top:0;width:12px;height:12px;border-radius:50%;background:#c9cdd1;box-shadow:inset 0 -2px 0 rgba(0,0,0,.2)}
 .handle b{position:absolute;left:3px;top:6px;width:6px;height:44px;border-radius:3px;background:linear-gradient(90deg,#e4e7ea,#a9afb5);box-shadow:0 2px 4px rgba(0,0,0,.25)}
-.win[data-s="open"] .sash{transform:rotateY(-62deg)}
-.win[data-s="tilt"] .sash{transform-origin:50% 100%;transform:rotateX(9deg)}
-.win[data-s="open"] .handle{transform:rotate(-90deg)}
-.win[data-s="tilt"] .handle{transform:rotate(180deg)}
-.room-glow{position:absolute;inset:-40px;border-radius:40px;background:radial-gradient(closest-side,rgba(233,162,59,.35),transparent);opacity:0;transition:opacity 1.6s;pointer-events:none;z-index:-1}
-.win[data-s="closed"]~.room-glow,.wall:has(.win[data-s="closed"]) .room-glow{opacity:1}
+.handle{transform:rotate(-90deg)}
+.win.shut .handle{transform:rotate(0)}
+.room-glow{position:absolute;inset:-40px;border-radius:40px;background:radial-gradient(closest-side,rgba(233,162,59,.35),transparent);opacity:0;transition:opacity .2s;pointer-events:none;z-index:-1}
+
 
 .ctrl{display:flex;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:5px;gap:4px;box-shadow:0 10px 30px -18px rgba(0,0,0,.3)}
 .ctrl button{padding:9px 16px;border-radius:999px;font-size:14px;font-weight:700;color:var(--ink2);display:flex;gap:8px;align-items:center;transition:background .25s,color .25s}
@@ -121,11 +146,11 @@ section{padding:120px 0}
 .anat-vis{position:sticky;top:100px;aspect-ratio:1;background:linear-gradient(160deg,#eef3f6,#f9f8f4);border-radius:28px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
 .anat-vis svg{width:88%;height:88%}
 .anat-vis .lbl{position:absolute;right:22px;bottom:18px;font-size:12px;color:var(--ink2)}
-.part{opacity:.22;transition:opacity .6s,filter .6s}
+.part{opacity:.5;transition:opacity .5s}
 .part.on{opacity:1}
 .part.on .hl{stroke:var(--warm);stroke-width:3}
 .steps{display:flex;flex-direction:column}
-.step{min-height:62vh;display:flex;flex-direction:column;justify-content:center;border-top:1px solid var(--line);padding:30px 0;opacity:.35;transition:opacity .5s}
+.step{min-height:62vh;display:flex;flex-direction:column;justify-content:center;border-top:1px solid var(--line);padding:30px 0;opacity:.4;transition:opacity .5s}
 .step.on{opacity:1}
 .step .k{font-family:var(--serif);font-size:20px;color:var(--steel)}
 .step h3{font-size:42px;margin:6px 0 14px}
@@ -143,7 +168,8 @@ section{padding:120px 0}
 .prod p{color:var(--ink2);font-size:15px;margin-top:6px}
 .prod .art{height:170px;display:grid;place-items:center}
 .prod .art svg{height:100%;width:auto;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
-.prod:hover .art svg{transform:scale(1.05) rotate(-1deg)}
+.prod.reveal{transform:none}
+.prod:hover .art svg{transform:translateY(-4px)}
 .tag{position:absolute;top:18px;right:18px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--bg);color:var(--ink2);border-radius:999px;padding:5px 10px}
 .prod.dark .tag{background:rgba(255,255,255,.1);color:#cfd6dc}
 .demo-note{font-size:13px;color:var(--ink2);margin-top:18px}
@@ -227,7 +253,20 @@ dialog::backdrop{background:rgba(15,23,32,.55);backdrop-filter:blur(4px)}
 
 @media(max-width:900px){
   section{padding:84px 0}
-  .hero{padding-top:100px}
+  .hero{height:190vh}
+  .hero-pin{padding-top:64px}
+  .hero .wrap{gap:18px!important}
+  .hero h1{font-size:44px}
+  .hero .lead{font-size:15px;margin:12px 0 16px}
+  .hero-actions .btn{height:46px;padding:0 18px;font-size:14px}
+  .win{width:min(70vw,calc((100svh - 400px)*.79))}
+  .hero .lead{display:none}
+  .hero-actions{flex-wrap:nowrap;margin-top:18px}
+  .ph-l{display:none}.ph-s{display:inline}
+  .wall{padding:18px}
+  .hint{display:none}
+  .caption{font-size:20px}
+  .stage{gap:12px}
   .hero .wrap,.anat,.cfg,.faq-grid,.cbox{grid-template-columns:1fr}
   .hero .wrap{gap:36px}
   .anat-vis{position:sticky;top:76px;z-index:2;aspect-ratio:auto;height:42vh}
@@ -245,7 +284,7 @@ dialog::backdrop{background:rgba(15,23,32,.55);backdrop-filter:blur(4px)}
   .ccard{padding:28px}
   .crow{grid-template-columns:96px 1fr}
 }
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){#intro{display:none}*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -271,9 +310,14 @@ dialog::backdrop{background:rgba(15,23,32,.55);backdrop-filter:blur(4px)}
   <a href="#produse">Produse</a><a href="#anatomie">Calitate</a><a href="#configurator">Configurator</a><a href="#proces">Proces</a><a href="#contact">Contact</a>
 </div>
 
+<div id="intro" aria-hidden="true"><div class="box">
+  <svg viewBox="0 0 120 150"><rect class="gl" x="10" y="10" width="100" height="130" rx="3" fill="#d7e8f2"/><rect class="fr" x="5" y="5" width="110" height="140" rx="5" fill="none" stroke="#14181d" stroke-width="5"/><path class="mu" d="M60 5v140" stroke="#14181d" stroke-width="4"/></svg>
+  <div class="nm">Ferestre Partner<small>Târgu Mureș</small></div></div></div>
+<script>try{if(sessionStorage.getItem('fpIntro'))document.documentElement.classList.add('skip-intro');sessionStorage.setItem('fpIntro','1')}catch(e){}</script>
 <main id="top">
 <!-- HERO -->
 <section class="hero" aria-label="Prezentare">
+ <div class="hero-pin">
   <canvas id="waves" aria-hidden="true"></canvas>
   <div class="wrap">
     <div>
@@ -283,19 +327,15 @@ dialog::backdrop{background:rgba(15,23,32,.55);backdrop-filter:blur(4px)}
       <div class="hero-actions">
         <a class="btn btn-dark" href="#configurator">Configurează-ți fereastra
           <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></a>
-        <a class="btn btn-line" href="tel:+40744201848">0744 201 848</a>
+        <a class="btn btn-line" href="tel:+40744201848"><span class="ph-l">0744 201 848</span><span class="ph-s">Sună</span></a>
       </div>
-      <div class="hero-note">
-        <span><i class="dot"></i><b>Montaj profesionist</b></span>
-        <span><i class="dot"></i><b>Consultanță</b> la alegere</span>
-        <span><i class="dot"></i>Str. Livezeni 4/A2</span>
-      </div>
+      <div class="hint" id="hint"><i></i>Derulați ca să închideți fereastra</div>
     </div>
 
     <div class="stage">
       <div class="wall">
         <div class="room-glow"></div>
-        <div class="win" id="win" data-s="open" role="img" aria-label="Fereastră ilustrată care se deschide și se închide">
+        <div class="win" id="win" role="img" aria-label="Fereastră ilustrată care se deschide și se închide">
           <div class="frame"></div>
           <div class="outside">
             <svg viewBox="0 0 336 436" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -317,33 +357,11 @@ dialog::backdrop{background:rgba(15,23,32,.55);backdrop-filter:blur(4px)}
         </div>
       </div>
 
-      <div class="ctrl" role="group" aria-label="Poziția ferestrei">
-        <button data-set="open" aria-pressed="true">Deschisă</button>
-        <button data-set="tilt" aria-pressed="false">Rabatată</button>
-        <button data-set="closed" aria-pressed="false">Închisă</button>
-      </div>
-      <div class="meters">
-        <div class="meter"><small>Zgomot din stradă</small><strong id="mNoise">Puternic</strong><div class="bar"><i id="bNoise" style="--v:92%;--c:#c2453a"></i></div></div>
-        <div class="meter"><small>Căldura din casă</small><strong id="mHeat">Se pierde</strong><div class="bar"><i id="bHeat" style="--v:28%;--c:#6f8a9d"></i></div></div>
-      </div>
-      <p class="illus">Ilustrație · valorile reale depind de profil și geam.</p>
+      <div class="caption" aria-live="polite"><span class="out" id="capOut">Afară: trafic, claxoane, frig.</span><span class="in" id="capIn" style="opacity:0">Înăuntru: liniște.</span></div>
     </div>
   </div>
+ </div>
 </section>
-
-<!-- PROOF -->
-<div class="strip">
-  <div class="wrap">
-    <a class="score" href="https://maps.google.com/?cid=1813664308690185193" target="_blank" rel="noopener">
-      <span class="n">5,0</span>
-      <span><span class="stars" aria-hidden="true">★★★★★</span><small>95 de recenzii pe Google · vezi toate ↗</small></span>
-    </a>
-    <div class="themes" aria-label="Ce menționează clienții">
-      <span>Seriozitate</span><span>Punctualitate</span><span>Atenție la detalii</span><span>Izolare fonică</span><span>Calitate în timp</span>
-    </div>
-    <p class="src">Temele care apar cel mai des în recenziile publice de pe Google.</p>
-  </div>
-</div>
 
 <!-- ANATOMY -->
 <section class="anatomy" id="anatomie">
@@ -532,8 +550,7 @@ dialog::backdrop{background:rgba(15,23,32,.55);backdrop-filter:blur(4px)}
     </div>
     <div class="ccard ink reveal">
       <div>
-        <span class="openstate" id="openstate"><i></i><span>—</span></span>
-        <h2 style="margin-top:22px;font-size:clamp(34px,4vw,50px)">O fereastră nouă<br>începe cu un mesaj.</h2>
+        <h2 style="font-size:clamp(34px,4vw,50px)">O fereastră nouă<br>începe cu un mesaj.</h2>
       </div>
       <div style="display:flex;flex-direction:column;gap:10px">
         <a class="btn" href="tel:+40744201848">Sunați acum</a>
@@ -579,18 +596,15 @@ $$('#mnav a').forEach(a=>a.onclick=()=>{mn.classList.remove('open');bg.setAttrib
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 $$('.reveal').forEach(el=>io.observe(el));
 
-/* hero window */
-const win=$('#win');let amp=1,target=1,userTouched=false;
-const S={open:{a:1,n:['Puternic','92%','#c2453a'],h:['Se pierde','28%','#6f8a9d']},
-         tilt:{a:.45,n:['Moderat','50%','#e9a23b'],h:['Aerisire','55%','#c9a06a']},
-         closed:{a:.03,n:['Aproape deloc','8%','#2c5a78'],h:['Rămâne în casă','94%','#e9a23b']}};
-function setState(s){win.dataset.s=s;target=S[s].a;
-  $$('.ctrl button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.set===s));
-  const [nt,nv,nc]=S[s].n,[ht,hv,hc]=S[s].h;
-  $('#mNoise').textContent=nt;$('#bNoise').style.cssText=`--v:${nv};--c:${nc}`;
-  $('#mHeat').textContent=ht;$('#bHeat').style.cssText=`--v:${hv};--c:${hc}`;}
-$$('.ctrl button').forEach(b=>b.onclick=()=>{userTouched=true;setState(b.dataset.set)});
-setTimeout(()=>{if(!userTouched)setState('closed')},2200);
+/* hero window — scroll closes it */
+const win=$('#win'),sash=win.querySelector('.sash'),glow=$('.room-glow'),hero=$('.hero');let amp=1,target=1;
+function onScroll(){const r=hero.getBoundingClientRect(),run=hero.offsetHeight-innerHeight;
+  const p=Math.min(1,Math.max(0,-r.top/(run*.8)));const e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
+  sash.style.transform=`rotateY(${-62*(1-e)}deg)`;win.classList.toggle('shut',p>.97);
+  target=Math.max(.03,1-e);glow.style.opacity=Math.max(0,(p-.6)/.4);
+  const sw=p>=.75;$('#capOut').style.cssText=`opacity:${sw?0:1};transform:translateY(${sw?-14:0}px)`;$('#capIn').style.cssText=`opacity:${sw?1:0};transform:translateY(${sw?0:14}px)`;
+  $('#hint').style.opacity=p>.05?0:1}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
 
 /* sound waves */
 const cv=$('#waves'),cx=cv.getContext('2d');let W,H,dpr;
@@ -681,12 +695,7 @@ const days=['Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă','Duminică'];
 const now=new Date(new Date().toLocaleString('en-US',{timeZone:'Europe/Bucharest'}));
 const di=(now.getDay()+6)%7,mins=now.getHours()*60+now.getMinutes();
 $('#hours').innerHTML=days.map((d,i)=>`<span class="${i===di?'today':''}">${d}</span><span class="${i===di?'today':''}">${i<5?'08:00–16:00':'Închis'}</span>`).join('');
-const open=di<5&&mins>=480&&mins<960;const os=$('#openstate');os.classList.toggle('on',open);
-let txt;if(open)txt='Deschis acum · până la 16:00';
-else if(di<5&&mins<480)txt='Închis acum · deschidem azi la 08:00';
-else if(di<4||di===6)txt='Închis acum · deschidem mâine la 08:00';
-else txt='Închis acum · deschidem luni la 08:00';
-os.querySelector('span').textContent=txt;
+
 })();
 </script>
 </body>
