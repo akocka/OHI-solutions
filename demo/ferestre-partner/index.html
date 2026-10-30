@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Ferestre Partner · Târgu Mureș (demo)</title>
+<meta name="description" content="Propunere de website (demo) realizată de OHI Solutions pentru Ferestre Partner, Târgu Mureș.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f2ed; --paper:#fbfaf7; --ink:#14181d; --ink2:#4a525c; --line:#dcd8cf;
+  --steel:#2c5a78; --steel2:#1c3d54; --sky:#cfe1ec; --warm:#e9a23b; --warm2:#f6d9a8;
+  --night:#0f1720; --r:18px;
+  --serif:"Instrument Serif",Georgia,serif; --sans:"Manrope",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block}
+a{color:inherit}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--steel)}
+h1,h2,h3{font-weight:400;font-family:var(--serif);letter-spacing:-.01em;line-height:1.02}
+h2{font-size:clamp(38px,5.4vw,68px)}
+h2 em,h1 em{font-style:italic;color:var(--steel)}
+.lead{font-size:18px;color:var(--ink2);max-width:52ch}
+.btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 24px;border-radius:999px;font-weight:700;font-size:15px;text-decoration:none;transition:transform .25s,box-shadow .25s,background .25s}
+.btn-dark{background:var(--ink);color:#fff;box-shadow:0 10px 30px -12px rgba(20,24,29,.6)}
+.btn-dark:hover{transform:translateY(-2px);background:var(--steel2)}
+.btn-line{border:1.5px solid var(--ink);}
+.btn-line:hover{background:var(--ink);color:#fff}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- island header ---------- */
+.island{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:6px;padding:7px 7px 7px 18px;background:rgba(251,250,247,.82);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border:1px solid rgba(20,24,29,.08);border-radius:999px;box-shadow:0 12px 40px -18px rgba(20,24,29,.35);transition:transform .45s cubic-bezier(.2,.7,.2,1);width:max-content;max-width:calc(100% - 24px)}
+.island.hide{transform:translate(-50%,-140%)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em;text-decoration:none;margin-right:10px;white-space:nowrap}
+.brand-mark{width:26px;height:26px}
+.island nav{display:flex;gap:2px}
+.island nav a{font-size:14px;font-weight:600;text-decoration:none;padding:9px 13px;border-radius:999px;color:var(--ink2);transition:background .2s,color .2s}
+.island nav a:hover{background:rgba(20,24,29,.06);color:var(--ink)}
+.island .cta{height:40px;padding:0 18px;font-size:14px;margin-left:6px}
+.burger{display:none;width:40px;height:40px;border-radius:50%;background:var(--ink);color:#fff;align-items:center;justify-content:center;margin-left:6px}
+@media(max-width:900px){.island nav{display:none}.burger{display:inline-flex}.island .cta{display:none}}
+.mnav{position:fixed;inset:0;z-index:49;background:var(--paper);display:flex;flex-direction:column;justify-content:center;padding:32px;gap:6px;visibility:hidden;opacity:0;transition:opacity .3s,visibility 0s .3s}
+.mnav.open{visibility:visible;opacity:1;transition:opacity .3s}
+.mnav a{font-family:var(--serif);font-size:44px;text-decoration:none;line-height:1.15}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;padding:120px 0 60px;display:flex;align-items:center;overflow:hidden;background:radial-gradient(120% 80% at 80% 30%,#fff 0%,var(--bg) 60%)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;position:relative;z-index:2}
+.hero h1{font-size:clamp(52px,7.6vw,104px)}
+.hero .lead{margin:22px 0 32px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-note{margin-top:34px;display:flex;gap:22px;flex-wrap:wrap;font-size:14px;color:var(--ink2)}
+.hero-note b{color:var(--ink)}
+.hero-note span{display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--steel)}
+#waves{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+
+.stage{position:relative;display:flex;flex-direction:column;align-items:center;gap:22px}
+.wall{position:relative;padding:34px;border-radius:26px;background:linear-gradient(160deg,#ebe7df,#ddd8cd);box-shadow:inset 0 2px 0 #fff,0 40px 80px -40px rgba(20,24,29,.45)}
+.win{position:relative;width:min(380px,74vw);aspect-ratio:380/480;perspective:1400px}
+.frame{position:absolute;inset:0;border-radius:6px;background:var(--fc,#fbfbfa);box-shadow:inset 0 0 0 1px rgba(0,0,0,.06),0 2px 0 rgba(0,0,0,.05),0 18px 30px -18px rgba(0,0,0,.4)}
+.outside{position:absolute;inset:22px;border-radius:2px;overflow:hidden;background:linear-gradient(#9fc3dc,#dbe9f1 70%,#efe6d6)}
+.outside svg{width:100%;height:100%}
+.car{animation:drive 7s linear infinite}
+.car.b{animation-duration:9.5s;animation-delay:-4s}
+.car.c{animation-duration:6s;animation-delay:-2s;animation-direction:reverse}
+@keyframes drive{from{transform:translateX(-80px)}to{transform:translateX(420px)}}
+.cloud{animation:float 40s linear infinite}
+@keyframes float{from{transform:translateX(-120px)}to{transform:translateX(380px)}}
+.sash{position:absolute;inset:14px;border-radius:3px;transform-origin:0% 50%;transition:transform 1.5s cubic-bezier(.65,0,.2,1);transform-style:preserve-3d;background:transparent}
+.sash .sf{position:absolute;inset:0;border:16px solid var(--fc,#fff);border-radius:3px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08),0 0 0 1px rgba(0,0,0,.08),0 10px 24px -10px rgba(0,0,0,.35);background:linear-gradient(115deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,0) 28%,rgba(255,255,255,0) 60%,rgba(255,255,255,.22) 72%,rgba(255,255,255,0) 80%),rgba(200,225,240,.12)}
+.sash .gasket{position:absolute;inset:14px;border:2px solid #2b2f33;border-radius:2px;opacity:.75}
+.handle{position:absolute;right:3px;top:50%;width:12px;height:50px;margin-top:-6px;transform-origin:6px 6px;transition:transform .5s cubic-bezier(.5,0,.2,1)}
+.handle i{position:absolute;left:0;top:0;width:12px;height:12px;border-radius:50%;background:#c9cdd1;box-shadow:inset 0 -2px 0 rgba(0,0,0,.2)}
+.handle b{position:absolute;left:3px;top:6px;width:6px;height:44px;border-radius:3px;background:linear-gradient(90deg,#e4e7ea,#a9afb5);box-shadow:0 2px 4px rgba(0,0,0,.25)}
+.win[data-s="open"] .sash{transform:rotateY(-62deg)}
+.win[data-s="tilt"] .sash{transform-origin:50% 100%;transform:rotateX(9deg)}
+.win[data-s="open"] .handle{transform:rotate(-90deg)}
+.win[data-s="tilt"] .handle{transform:rotate(180deg)}
+.room-glow{position:absolute;inset:-40px;border-radius:40px;background:radial-gradient(closest-side,rgba(233,162,59,.35),transparent);opacity:0;transition:opacity 1.6s;pointer-events:none;z-index:-1}
+.win[data-s="closed"]~.room-glow,.wall:has(.win[data-s="closed"]) .room-glow{opacity:1}
+
+.ctrl{display:flex;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:5px;gap:4px;box-shadow:0 10px 30px -18px rgba(0,0,0,.3)}
+.ctrl button{padding:9px 16px;border-radius:999px;font-size:14px;font-weight:700;color:var(--ink2);display:flex;gap:8px;align-items:center;transition:background .25s,color .25s}
+.ctrl button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.meters{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:min(380px,100%)}
+.meter{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.meter small{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);font-weight:700}
+.meter strong{display:block;font-size:15px;margin:2px 0 8px}
+.bar{height:6px;border-radius:6px;background:#e7e3da;overflow:hidden}
+.bar i{display:block;height:100%;width:var(--v,50%);border-radius:inherit;background:var(--c,var(--steel));transition:width 1.4s cubic-bezier(.65,0,.2,1),background 1s}
+.illus{font-size:11px;color:var(--ink2);opacity:.75}
+
+/* ---------- proof strip ---------- */
+.strip{background:var(--ink);color:#fff;padding:26px 0}
+.strip .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.score{display:flex;align-items:center;gap:16px;text-decoration:none}
+.score .n{font-family:var(--serif);font-size:54px;line-height:1}
+.stars{color:var(--warm);letter-spacing:2px}
+.score small{display:block;color:#aab4be;font-size:13px}
+.themes{display:flex;gap:10px;flex-wrap:wrap}
+.themes span{border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:8px 14px;font-size:14px;color:#dfe5ea}
+.strip .src{font-size:12px;color:#8b96a1;width:100%}
+
+/* ---------- sections ---------- */
+section{padding:120px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:56px;flex-wrap:wrap}
+.sec-head .lead{max-width:44ch}
+
+/* anatomy */
+.anatomy{background:var(--paper)}
+.anat{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.anat-vis{position:sticky;top:100px;aspect-ratio:1;background:linear-gradient(160deg,#eef3f6,#f9f8f4);border-radius:28px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.anat-vis svg{width:88%;height:88%}
+.anat-vis .lbl{position:absolute;right:22px;bottom:18px;font-size:12px;color:var(--ink2)}
+.part{opacity:.22;transition:opacity .6s,filter .6s}
+.part.on{opacity:1}
+.part.on .hl{stroke:var(--warm);stroke-width:3}
+.steps{display:flex;flex-direction:column}
+.step{min-height:62vh;display:flex;flex-direction:column;justify-content:center;border-top:1px solid var(--line);padding:30px 0;opacity:.35;transition:opacity .5s}
+.step.on{opacity:1}
+.step .k{font-family:var(--serif);font-size:20px;color:var(--steel)}
+.step h3{font-size:42px;margin:6px 0 14px}
+.step p{color:var(--ink2);max-width:46ch}
+.anat-note{font-size:13px;color:var(--ink2);margin-top:20px}
+
+/* products */
+.prods{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.prod{grid-column:span 2;position:relative;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px;min-height:340px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s}
+.prod:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(20,24,29,.35)}
+.prod.big{grid-column:span 3;min-height:400px}
+.prod.dark{background:var(--night);color:#fff;border-color:transparent}
+.prod.dark p{color:#aab4be}
+.prod h3{font-size:34px}
+.prod p{color:var(--ink2);font-size:15px;margin-top:6px}
+.prod .art{height:170px;display:grid;place-items:center}
+.prod .art svg{height:100%;width:auto;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.prod:hover .art svg{transform:scale(1.05) rotate(-1deg)}
+.tag{position:absolute;top:18px;right:18px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--bg);color:var(--ink2);border-radius:999px;padding:5px 10px}
+.prod.dark .tag{background:rgba(255,255,255,.1);color:#cfd6dc}
+.demo-note{font-size:13px;color:var(--ink2);margin-top:18px}
+
+/* configurator */
+.config{background:var(--night);color:#fff;border-radius:36px;margin:0 16px;padding:110px 0}
+.config .eyebrow{color:var(--warm)}
+.config h2 em{color:var(--warm2)}
+.config .lead{color:#aab4be}
+.cfg{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:stretch}
+.cfg-prev{background:radial-gradient(90% 70% at 50% 40%,#1d2a36,#111a23);border-radius:28px;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;min-height:520px;position:relative}
+.cfg-prev svg{width:100%;height:400px;overflow:visible}
+.cfg-sum{position:absolute;left:22px;right:22px;bottom:18px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.cfg-sum span{font-size:12px;border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:5px 10px;color:#cfd6dc}
+.cfg-form{display:flex;flex-direction:column;gap:22px}
+.grp>small{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#8b96a1;font-weight:700;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:10px 16px;font-size:14px;font-weight:600;color:#dfe5ea;display:flex;align-items:center;gap:8px;transition:all .2s;min-height:44px}
+.chip:hover{border-color:rgba(255,255,255,.5)}
+.chip[aria-pressed="true"]{background:#fff;color:var(--ink);border-color:#fff}
+.sw{width:16px;height:16px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+.dims{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:12px;color:#8b96a1;font-weight:600}
+.field input{height:48px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04);color:#fff;padding:0 14px;font:inherit;font-size:16px;width:100%}
+.field input:focus{outline:2px solid var(--warm);outline-offset:1px}
+.cfg-form .btn{background:var(--warm);color:var(--ink);justify-content:center;height:56px;font-size:16px}
+.cfg-form .btn:hover{transform:translateY(-2px);background:#f3b555}
+.fine{font-size:12px;color:#8b96a1}
+
+/* process */
+.proc{display:grid;grid-template-columns:repeat(5,1fr);gap:0;counter-reset:s;position:relative}
+.proc::before{content:"";position:absolute;left:0;right:0;top:27px;height:2px;background:linear-gradient(90deg,var(--steel) var(--p,0%),var(--line) var(--p,0%));transition:--p 1s}
+.pstep{position:relative;padding-right:22px}
+.pstep .n{width:56px;height:56px;border-radius:50%;background:var(--paper);border:2px solid var(--line);display:grid;place-items:center;font-family:var(--serif);font-size:24px;position:relative;z-index:1;transition:all .5s}
+.pstep.in .n{border-color:var(--steel);background:var(--steel);color:#fff}
+.pstep h3{font-size:28px;margin:22px 0 8px}
+.pstep p{font-size:15px;color:var(--ink2)}
+
+/* faq */
+.faq{background:var(--paper)}
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}
+details{border-top:1px solid var(--line);padding:22px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;font-size:20px;font-weight:700}
+summary::-webkit-details-marker{display:none}
+summary .pm{flex:none;width:30px;height:30px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;transition:transform .3s}
+details[open] summary .pm{transform:rotate(45deg);background:var(--ink);color:#fff}
+details p{color:var(--ink2);margin-top:12px;max-width:60ch}
+
+/* contact */
+.contact{padding-bottom:60px}
+.cbox{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+.ccard{background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:44px}
+.ccard.ink{background:var(--steel2);color:#fff;border-color:transparent;display:flex;flex-direction:column;justify-content:space-between;gap:30px}
+.ccard h2{margin-bottom:22px}
+.crow{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:16px 0;border-top:1px solid var(--line);font-size:16px}
+.crow small{color:var(--ink2);font-weight:600}
+.crow a{font-weight:700}
+.hours{display:grid;grid-template-columns:1fr auto;gap:4px 20px;font-size:15px}
+.hours .today{font-weight:800}
+.ccard.ink .btn{background:#fff;color:var(--ink);justify-content:center}
+.ccard.ink .btn.wa{background:#25d366;color:#08311a}
+.openstate{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.12)}
+.openstate i{width:8px;height:8px;border-radius:50%;background:#8b96a1}
+.openstate.on i{background:#4ade80;box-shadow:0 0 0 4px rgba(74,222,128,.25)}
+
+footer{padding:40px 0 110px;font-size:14px;color:var(--ink2)}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:26px}
+.demo-badge{position:fixed;left:14px;bottom:14px;z-index:40;font-size:12px;font-weight:700;background:var(--ink);color:#fff;border-radius:999px;padding:8px 14px;opacity:.88;text-decoration:none}
+.sticky-cta{position:fixed;right:14px;bottom:14px;z-index:40;display:none}
+@media(max-width:900px){.sticky-cta{display:inline-flex;height:46px}.demo-badge{bottom:18px;font-size:11px;padding:7px 11px}}
+
+dialog{margin:auto;border:0;border-radius:24px;padding:0;max-width:min(460px,calc(100% - 32px));box-shadow:0 40px 100px -30px rgba(0,0,0,.6)}
+dialog::backdrop{background:rgba(15,23,32,.55);backdrop-filter:blur(4px)}
+.dlg{padding:28px}
+.dlg h3{font-size:30px;margin-bottom:8px}
+.dlg p{color:var(--ink2);font-size:14px}
+.dlg pre{white-space:pre-wrap;background:#e8f8ee;border-radius:14px;padding:16px;margin:16px 0;font:14px/1.5 var(--sans);color:#14311f;max-height:44vh;overflow:auto}
+.dlg .row{display:flex;gap:10px;justify-content:flex-end}
+
+@media(max-width:900px){
+  section{padding:84px 0}
+  .hero{padding-top:100px}
+  .hero .wrap,.anat,.cfg,.faq-grid,.cbox{grid-template-columns:1fr}
+  .hero .wrap{gap:36px}
+  .anat-vis{position:sticky;top:76px;z-index:2;aspect-ratio:auto;height:42vh}
+  .step{min-height:48vh}
+  .step h3{font-size:34px}
+  .prods{grid-template-columns:1fr}
+  .prod,.prod.big{grid-column:auto;min-height:300px}
+  .proc{grid-template-columns:1fr;gap:26px}
+  .proc::before{left:27px;right:auto;top:0;bottom:0;width:2px;height:auto;background:var(--line)}
+  .pstep{display:grid;grid-template-columns:56px 1fr;gap:0 18px;padding:0}
+  .pstep h3{margin:10px 0 4px}
+  .pstep p{grid-column:2}
+  .config{margin:0 8px;border-radius:28px;padding:84px 0}
+  .cfg-prev{min-height:400px}.cfg-prev svg{height:300px}
+  .ccard{padding:28px}
+  .crow{grid-template-columns:96px 1fr}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="island" id="island">
+  <a class="brand" href="#top" aria-label="Ferestre Partner — început">
+    <svg class="brand-mark" viewBox="0 0 26 26" aria-hidden="true"><rect x="1.5" y="1.5" width="23" height="23" rx="3" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M13 2v22M2 13h22" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5h6v6h-6z" fill="#2c5a78"/></svg>
+    Ferestre Partner
+  </a>
+  <nav aria-label="Principal">
+    <a href="#produse">Produse</a>
+    <a href="#anatomie">Calitate</a>
+    <a href="#configurator">Configurator</a>
+    <a href="#proces">Proces</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a class="btn btn-dark cta" href="#configurator">Cere ofertă</a>
+  <button class="burger" id="burger" aria-label="Deschide meniul" aria-expanded="false">
+    <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
+</header>
+<div class="mnav" id="mnav" aria-hidden="true">
+  <a href="#produse">Produse</a><a href="#anatomie">Calitate</a><a href="#configurator">Configurator</a><a href="#proces">Proces</a><a href="#contact">Contact</a>
+</div>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero" aria-label="Prezentare">
+  <canvas id="waves" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Ferestre &amp; uși · Târgu Mureș</p>
+      <h1 style="margin-top:16px">Liniștea începe<br>la <em>fereastră.</em></h1>
+      <p class="lead">Ferestre din PVC și aluminiu, uși de intrare și plase anti-insecte, montate cu grijă în Târgu Mureș. Trafic afară, liniște înăuntru, căldura rămâne în casă.</p>
+      <div class="hero-actions">
+        <a class="btn btn-dark" href="#configurator">Configurează-ți fereastra
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></a>
+        <a class="btn btn-line" href="tel:+40744201848">0744 201 848</a>
+      </div>
+      <div class="hero-note">
+        <span><i class="dot"></i><b>Montaj profesionist</b></span>
+        <span><i class="dot"></i><b>Consultanță</b> la alegere</span>
+        <span><i class="dot"></i>Str. Livezeni 4/A2</span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="wall">
+        <div class="room-glow"></div>
+        <div class="win" id="win" data-s="open" role="img" aria-label="Fereastră ilustrată care se deschide și se închide">
+          <div class="frame"></div>
+          <div class="outside">
+            <svg viewBox="0 0 336 436" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs><linearGradient id="bld" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fa9bb"/><stop offset="1" stop-color="#6f8a9d"/></linearGradient></defs>
+              <g class="cloud" opacity=".8"><ellipse cx="60" cy="70" rx="46" ry="12" fill="#fff"/><ellipse cx="82" cy="62" rx="26" ry="12" fill="#fff"/></g>
+              <g class="cloud" style="animation-delay:-22s" opacity=".6"><ellipse cx="40" cy="120" rx="34" ry="9" fill="#fff"/></g>
+              <path d="M0 250h30v-60h34v40h20v-90h40v110h18v-50h36v-30h30v80h24v-40h40v-30h28v320H0z" fill="url(#bld)" opacity=".55"/>
+              <path d="M0 290h46v-50h42v30h30v-70h52v90h26v-40h46v60h34v-30h60v350H0z" fill="#5f7a8e" opacity=".7"/>
+              <g fill="#f6d9a8" opacity=".9"><rect x="140" y="220" width="8" height="10"/><rect x="156" y="220" width="8" height="10"/><rect x="140" y="240" width="8" height="10"/><rect x="236" y="260" width="8" height="10"/><rect x="60" y="260" width="8" height="10"/><rect x="290" y="270" width="8" height="10"/></g>
+              <rect x="0" y="352" width="336" height="84" fill="#3c4a55"/>
+              <path d="M0 392h336" stroke="#f1f1f1" stroke-width="3" stroke-dasharray="22 18" opacity=".7"/>
+              <g class="car"><rect x="0" y="366" width="64" height="20" rx="7" fill="#c2453a"/><rect x="10" y="356" width="38" height="14" rx="6" fill="#c2453a"/><circle cx="14" cy="388" r="6" fill="#111"/><circle cx="50" cy="388" r="6" fill="#111"/></g>
+              <g class="car b"><rect x="0" y="398" width="72" height="22" rx="7" fill="#e9e9e4"/><rect x="12" y="388" width="42" height="14" rx="6" fill="#e9e9e4"/><circle cx="16" cy="422" r="6" fill="#111"/><circle cx="56" cy="422" r="6" fill="#111"/></g>
+              <g class="car c"><rect x="0" y="372" width="90" height="26" rx="5" fill="#e0a73b"/><rect x="62" y="360" width="28" height="16" rx="4" fill="#e0a73b"/><circle cx="20" cy="400" r="7" fill="#111"/><circle cx="72" cy="400" r="7" fill="#111"/></g>
+              <path d="M300 352V230" stroke="#2b3640" stroke-width="4"/><path d="M300 232h-24" stroke="#2b3640" stroke-width="4"/><circle cx="274" cy="236" r="5" fill="#f6d9a8"/>
+            </svg>
+          </div>
+          <div class="sash"><div class="sf"></div><div class="gasket"></div><div class="handle"><i></i><b></b></div></div>
+        </div>
+      </div>
+
+      <div class="ctrl" role="group" aria-label="Poziția ferestrei">
+        <button data-set="open" aria-pressed="true">Deschisă</button>
+        <button data-set="tilt" aria-pressed="false">Rabatată</button>
+        <button data-set="closed" aria-pressed="false">Închisă</button>
+      </div>
+      <div class="meters">
+        <div class="meter"><small>Zgomot din stradă</small><strong id="mNoise">Puternic</strong><div class="bar"><i id="bNoise" style="--v:92%;--c:#c2453a"></i></div></div>
+        <div class="meter"><small>Căldura din casă</small><strong id="mHeat">Se pierde</strong><div class="bar"><i id="bHeat" style="--v:28%;--c:#6f8a9d"></i></div></div>
+      </div>
+      <p class="illus">Ilustrație · valorile reale depind de profil și geam.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<div class="strip">
+  <div class="wrap">
+    <a class="score" href="https://maps.google.com/?cid=1813664308690185193" target="_blank" rel="noopener">
+      <span class="n">5,0</span>
+      <span><span class="stars" aria-hidden="true">★★★★★</span><small>95 de recenzii pe Google · vezi toate ↗</small></span>
+    </a>
+    <div class="themes" aria-label="Ce menționează clienții">
+      <span>Seriozitate</span><span>Punctualitate</span><span>Atenție la detalii</span><span>Izolare fonică</span><span>Calitate în timp</span>
+    </div>
+    <p class="src">Temele care apar cel mai des în recenziile publice de pe Google.</p>
+  </div>
+</div>
+
+<!-- ANATOMY -->
+<section class="anatomy" id="anatomie">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><p class="eyebrow">Ce nu se vede</p><h2 style="margin-top:12px">O fereastră bună<br>e <em>construită în straturi.</em></h2></div>
+      <p class="lead">Diferența dintre o fereastră care ține 3 ani și una care ține 30 stă în detalii pe care nu le vezi după montaj. Iată ce urmărim.</p>
+    </div>
+    <div class="anat">
+      <div class="anat-vis" aria-hidden="true">
+        <svg viewBox="0 0 400 400">
+          <defs>
+            <linearGradient id="gl" x1="0" x2="1"><stop offset="0" stop-color="#cfe6f3"/><stop offset="1" stop-color="#a9cde3"/></linearGradient>
+            <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0v6" stroke="#7d8b96" stroke-width="2"/></pattern>
+          </defs>
+          <!-- profile -->
+          <g class="part" data-p="0">
+            <path class="hl" d="M60 120h150v220H60z" fill="#f7f7f5" stroke="#b9c0c6" stroke-width="2"/>
+            <g fill="#fff" stroke="#c8ced3" stroke-width="2">
+              <rect x="72" y="134" width="38" height="56" rx="3"/><rect x="118" y="134" width="38" height="56" rx="3"/><rect x="164" y="134" width="34" height="56" rx="3"/>
+              <rect x="72" y="198" width="38" height="70" rx="3"/><rect x="164" y="198" width="34" height="70" rx="3"/>
+              <rect x="72" y="276" width="38" height="52" rx="3"/><rect x="118" y="276" width="38" height="52" rx="3"/><rect x="164" y="276" width="34" height="52" rx="3"/>
+            </g>
+          </g>
+          <!-- steel -->
+          <g class="part" data-p="1"><path class="hl" d="M118 198h38v70h-38z" fill="url(#hatch)" stroke="#5b6770" stroke-width="2"/></g>
+          <!-- gaskets -->
+          <g class="part" data-p="2"><g fill="#2b2f33"><rect class="hl" x="206" y="112" width="12" height="16" rx="4"/><rect class="hl" x="206" y="332" width="12" height="16" rx="4"/><rect class="hl" x="52" y="112" width="12" height="16" rx="4"/></g></g>
+          <!-- glazing -->
+          <g class="part" data-p="3">
+            <rect class="hl" x="222" y="40" width="14" height="300" fill="url(#gl)" stroke="#8fb5cc" stroke-width="1.5"/>
+            <rect class="hl" x="262" y="40" width="14" height="300" fill="url(#gl)" stroke="#8fb5cc" stroke-width="1.5"/>
+            <rect class="hl" x="302" y="40" width="14" height="300" fill="url(#gl)" stroke="#8fb5cc" stroke-width="1.5"/>
+            <rect x="236" y="300" width="26" height="14" fill="#3a4148"/><rect x="276" y="300" width="26" height="14" fill="#3a4148"/>
+            <g fill="#9fc3dc" opacity=".5"><circle cx="249" cy="120" r="2"/><circle cx="246" cy="180" r="2"/><circle cx="252" cy="240" r="2"/><circle cx="289" cy="100" r="2"/><circle cx="286" cy="200" r="2"/><circle cx="291" cy="260" r="2"/></g>
+          </g>
+          <!-- hardware -->
+          <g class="part" data-p="4"><circle class="hl" cx="40" cy="230" r="10" fill="#c9cdd1" stroke="#8a9198" stroke-width="2"/><rect class="hl" x="34" y="234" width="12" height="70" rx="6" fill="#d9dde1" stroke="#8a9198" stroke-width="2"/><path d="M60 230h12" stroke="#8a9198" stroke-width="3"/></g>
+          <g font-family="Manrope" font-size="12" fill="#4a525c"><text x="330" y="60">exterior</text><text x="8" y="60">interior</text></g>
+                  </svg>
+        <span class="lbl">Secțiune ilustrativă · profil + geam</span>
+      </div>
+      <div class="steps">
+        <div class="step" data-i="0"><span class="k">01</span><h3>Profil multicameral</h3><p>Camerele de aer din interiorul profilului încetinesc trecerea frigului. Cu cât sunt mai multe și mai bine gândite, cu atât rama rămâne caldă la atingere iarna.</p></div>
+        <div class="step" data-i="1"><span class="k">02</span><h3>Armătură din oțel</h3><p>În interiorul profilului PVC se află o armătură metalică. Ea ține fereastra dreaptă și etanșă ani la rând, inclusiv la casele noi care se „așază”.</p></div>
+        <div class="step" data-i="2"><span class="k">03</span><h3>Garnituri de etanșare</h3><p>Garniturile închid fereastra pe tot conturul. Ele opresc curentul, praful și o bună parte din zgomotul străzii.</p></div>
+        <div class="step" data-i="3"><span class="k">04</span><h3>Geam termoizolant</h3><p>Pachet dublu sau triplu, cu spațiu umplut cu gaz între foi. Vă ajutăm să alegeți în funcție de orientare, zgomot și buget, fără să plătiți pentru ce nu folosiți.</p></div>
+        <div class="step" data-i="4"><span class="k">05</span><h3>Feronerie &amp; montaj</h3><p>Feroneria oscilobatantă face fereastra ușor de folosit, iar montajul corect o face să funcționeze ani la rând. O fereastră bună, montată prost, rămâne o fereastră proastă.</p></div>
+        <p class="anat-note">Configurația exactă (număr de camere, tip de geam, feronerie) depinde de sistemul ales. O stabilim împreună la ofertă.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="produse">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><p class="eyebrow">Gama</p><h2 style="margin-top:12px">Pentru fiecare<br><em>deschidere</em> din casă.</h2></div>
+      <p class="lead">De la o singură fereastră schimbată până la toată tâmplăria unei case noi.</p>
+    </div>
+    <div class="prods">
+      <article class="prod big reveal">
+        <span class="tag">Cel mai cerut</span>
+        <div class="art"><svg viewBox="0 0 200 170" aria-hidden="true"><rect x="40" y="10" width="120" height="150" rx="4" fill="#fff" stroke="#14181d" stroke-width="3"/><rect x="52" y="22" width="96" height="126" fill="#d7e8f2" stroke="#14181d" stroke-width="2"/><path d="M52 22l96 63-96 63M52 148l48-126 48 126" stroke="#2c5a78" stroke-width="1.5" fill="none" stroke-dasharray="5 4"/><rect x="141" y="76" width="5" height="22" rx="2" fill="#14181d"/></svg></div>
+        <div><h3>Ferestre PVC</h3><p>Izolare termică și fonică excelentă, întreținere minimă. Alb, antracit sau imitație lemn.</p></div>
+      </article>
+      <article class="prod big dark reveal">
+        <span class="tag">Premium</span>
+        <div class="art"><svg viewBox="0 0 240 170" aria-hidden="true"><rect x="10" y="20" width="220" height="140" rx="2" fill="#2a3138" stroke="#9aa5ae" stroke-width="3"/><rect x="20" y="30" width="96" height="120" fill="#3c5a70"/><rect x="124" y="30" width="96" height="120" fill="#4b6c84"/><path d="M60 90h32M70 84l-10 6 10 6" stroke="#f6d9a8" stroke-width="2" fill="none"/><path d="M20 30l40 120M116 30" stroke="rgba(255,255,255,.12)" stroke-width="10"/></svg></div>
+        <div><h3>Tâmplărie din aluminiu</h3><p>Profile subțiri, suprafețe mari de sticlă. Pentru terase, glisante și fațade moderne.</p></div>
+      </article>
+      <article class="prod reveal">
+        <div class="art"><svg viewBox="0 0 120 170" aria-hidden="true"><rect x="20" y="6" width="80" height="160" rx="3" fill="#2f3a44"/><rect x="30" y="18" width="20" height="136" rx="2" fill="#d7e8f2"/><rect x="82" y="78" width="4" height="30" rx="2" fill="#e9a23b"/></svg></div>
+        <div><h3>Uși de intrare</h3><p>Siguranță, izolare și un aspect pe măsura casei.</p></div>
+      </article>
+      <article class="prod reveal">
+        <div class="art"><svg viewBox="0 0 140 170" aria-hidden="true"><rect x="20" y="10" width="100" height="150" rx="3" fill="#fff" stroke="#14181d" stroke-width="3"/><g stroke="#4a525c" stroke-width=".8" opacity=".7"><path d="M28 18h84M28 26h84M28 34h84M28 42h84M28 50h84M28 58h84M28 66h84M28 74h84M28 82h84M28 90h84M28 98h84M28 106h84M28 114h84M28 122h84M28 130h84M28 138h84M28 146h84"/><path d="M36 18v134M44 18v134M52 18v134M60 18v134M68 18v134M76 18v134M84 18v134M92 18v134M100 18v134M108 18v134"/></g></svg></div>
+        <div><h3>Plase anti-insecte</h3><p>Fixe, rulou sau culisante, discrete și robuste.</p></div>
+      </article>
+      <article class="prod reveal">
+        <div class="art"><svg viewBox="0 0 180 170" aria-hidden="true"><rect x="10" y="10" width="160" height="150" rx="3" fill="#fff" stroke="#14181d" stroke-width="3"/><rect x="20" y="20" width="66" height="130" fill="#d7e8f2" stroke="#14181d" stroke-width="2"/><rect x="94" y="20" width="66" height="130" fill="#d7e8f2" stroke="#14181d" stroke-width="2"/><path d="M20 20l66 65-66 65" stroke="#2c5a78" stroke-dasharray="5 4" fill="none"/></svg></div>
+        <div><h3>Uși de balcon &amp; terasă</h3><p>Acces ușor afară, fără să pierdeți căldura dinăuntru.</p></div>
+      </article>
+    </div>
+    <p class="demo-note">Demo: gama exactă și fotografiile proiectelor reale se completează împreună cu Ferestre Partner.</p>
+  </div>
+</section>
+
+<!-- CONFIGURATOR -->
+<section class="config" id="configurator">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><p class="eyebrow">Configurator</p><h2 style="margin-top:12px">Desenați-o.<br><em>Noi o facem reală.</em></h2></div>
+      <p class="lead">Alegeți tipul, deschiderea și culoarea. Trimiteți schița și primiți o ofertă personalizată, fără să vă deplasați.</p>
+    </div>
+    <div class="cfg">
+      <div class="cfg-prev">
+        <svg id="prev" viewBox="0 0 400 400" role="img" aria-label="Previzualizare configurație"></svg>
+        <div class="cfg-sum" id="sum"></div>
+      </div>
+      <form class="cfg-form" id="cfg" novalidate>
+        <div class="grp"><small>Produs</small><div class="chips" data-k="type">
+          <button type="button" class="chip" data-v="Fereastră" aria-pressed="true">Fereastră</button>
+          <button type="button" class="chip" data-v="Fereastră dublă" aria-pressed="false">Fereastră dublă</button>
+          <button type="button" class="chip" data-v="Ușă balcon" aria-pressed="false">Ușă balcon</button>
+          <button type="button" class="chip" data-v="Ușă intrare" aria-pressed="false">Ușă intrare</button>
+        </div></div>
+        <div class="grp"><small>Deschidere</small><div class="chips" data-k="open">
+          <button type="button" class="chip" data-v="Oscilobatant" aria-pressed="true">Oscilobatant</button>
+          <button type="button" class="chip" data-v="Batant" aria-pressed="false">Batant</button>
+          <button type="button" class="chip" data-v="Fix" aria-pressed="false">Fix</button>
+        </div></div>
+        <div class="grp"><small>Culoare</small><div class="chips" data-k="color">
+          <button type="button" class="chip" data-v="Alb" aria-pressed="true"><i class="sw" style="background:#f7f7f5"></i>Alb</button>
+          <button type="button" class="chip" data-v="Antracit" aria-pressed="false"><i class="sw" style="background:#3b4146"></i>Antracit</button>
+          <button type="button" class="chip" data-v="Stejar auriu" aria-pressed="false"><i class="sw" style="background:linear-gradient(135deg,#b7793a,#8a5426)"></i>Stejar auriu</button>
+        </div></div>
+        <div class="grp"><small>Geam</small><div class="chips" data-k="glass">
+          <button type="button" class="chip" data-v="Dublu" aria-pressed="false">Dublu</button>
+          <button type="button" class="chip" data-v="Triplu" aria-pressed="true">Triplu</button>
+          <button type="button" class="chip" data-v="Nu știu, recomandați-mi" aria-pressed="false">Nu știu, recomandați-mi</button>
+        </div></div>
+        <div class="grp"><small>Dimensiuni aproximative &amp; cantitate</small>
+          <div class="dims">
+            <div class="field"><label for="w">Lățime (cm)</label><input id="w" type="number" inputmode="numeric" min="40" max="400" value="120"></div>
+            <div class="field"><label for="h">Înălțime (cm)</label><input id="h" type="number" inputmode="numeric" min="40" max="300" value="140"></div>
+            <div class="field"><label for="q">Bucăți</label><input id="q" type="number" inputmode="numeric" min="1" max="99" value="1"></div>
+          </div>
+        </div>
+        <div class="dims" style="grid-template-columns:1fr 1fr">
+          <div class="field"><label for="nm">Nume</label><input id="nm" autocomplete="name" placeholder="Numele dvs."></div>
+          <div class="field"><label for="loc">Localitate</label><input id="loc" placeholder="ex. Târgu Mureș"></div>
+        </div>
+        <button class="btn" type="submit">
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.2Z"/></svg>
+          Trimite schița pe WhatsApp</button>
+        <p class="fine">Dimensiunile sunt orientative. Măsurătorile finale se iau la fața locului, înainte de producție.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="proces">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><p class="eyebrow">Cum lucrăm</p><h2 style="margin-top:12px">De la prima discuție<br>la <em>ultimul șurub.</em></h2></div>
+      <p class="lead">Știți în fiecare moment ce urmează și când.</p>
+    </div>
+    <div class="proc" id="proc">
+      <div class="pstep"><span class="n">1</span><h3>Discuție</h3><p>Ne spuneți ce aveți nevoie: o fereastră sau o casă întreagă.</p></div>
+      <div class="pstep"><span class="n">2</span><h3>Măsurare</h3><p>Venim la fața locului și luăm măsurile exacte.</p></div>
+      <div class="pstep"><span class="n">3</span><h3>Ofertă</h3><p>Ofertă clară, pe produs, cu termen de livrare.</p></div>
+      <div class="pstep"><span class="n">4</span><h3>Producție</h3><p>Fiecare element e făcut pe dimensiunile casei dvs.</p></div>
+      <div class="pstep"><span class="n">5</span><h3>Montaj</h3><p>Montaj atent, curățenie la final, sfaturi de întreținere.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="intrebari">
+  <div class="wrap faq-grid">
+    <div class="reveal"><p class="eyebrow">Întrebări frecvente</p><h2 style="margin-top:12px">Înainte<br>să <em>sunați.</em></h2></div>
+    <div>
+      <details><summary>Geam dublu sau triplu?<span class="pm">+</span></summary><p>Triplul izolează mai bine, mai ales pe fațadele reci (nord) sau spre străzi aglomerate. Dublul poate fi suficient în alte situații. Vă recomandăm sincer, în funcție de casă și buget.</p></details>
+      <details><summary>PVC sau aluminiu?<span class="pm">+</span></summary><p>PVC-ul oferă un raport foarte bun între izolare și preț. Aluminiul permite profile mai subțiri și suprafețe mari de sticlă, potrivit pentru terase și design modern.</p></details>
+      <details><summary>Ce înseamnă „oscilobatant”?<span class="pm">+</span></summary><p>Fereastra se poate deschide complet (batant) sau doar rabata sus, pentru aerisire (oscilant), dintr-un singur mâner.</p></details>
+      <details><summary>Cât durează de la comandă la montaj?<span class="pm">+</span></summary><p>Depinde de produs și de sezon. Termenul exact îl găsiți scris în ofertă.</p></details>
+      <details><summary>Cum întrețin ferestrele?<span class="pm">+</span></summary><p>Curățați garniturile și ungeți feroneria o dată pe an. La montaj vă arătăm exact ce și cum.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap cbox">
+    <div class="ccard reveal">
+      <p class="eyebrow">Contact</p>
+      <h2 style="margin-top:12px">Treceți pe la <em>noi.</em></h2>
+      <div class="crow"><small>Adresă</small><a href="https://maps.google.com/?cid=1813664308690185193" target="_blank" rel="noopener">Strada Livezeni 4/A2, Târgu Mureș ↗</a></div>
+      <div class="crow"><small>Telefon</small><a href="tel:+40744201848">+40 744 201 848</a></div>
+      <div class="crow"><small>Program</small>
+        <div class="hours" id="hours"></div>
+      </div>
+    </div>
+    <div class="ccard ink reveal">
+      <div>
+        <span class="openstate" id="openstate"><i></i><span>—</span></span>
+        <h2 style="margin-top:22px;font-size:clamp(34px,4vw,50px)">O fereastră nouă<br>începe cu un mesaj.</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a class="btn" href="tel:+40744201848">Sunați acum</a>
+        <a class="btn wa" href="#configurator">Trimiteți o schiță pe WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© Ferestre Partner · SC Partner Alu Plast SRL · Târgu Mureș</span>
+    <span>Propunere de website realizată de <a href="https://ohis-gamma.vercel.app/">OHI Solutions</a></span>
+  </div>
+</footer>
+
+<a class="demo-badge" href="https://ohis-gamma.vercel.app/">Demo · OHI Solutions</a>
+<a class="btn btn-dark sticky-cta" href="#configurator">Cere ofertă</a>
+
+<dialog id="dlg">
+  <div class="dlg">
+    <h3>Previzualizare mesaj</h3>
+    <p>Aceasta este o propunere demo, deci mesajul nu se trimite. Pe site-ul final, butonul deschide WhatsApp direct către Ferestre Partner.</p>
+    <pre id="msg"></pre>
+    <div class="row"><button class="btn btn-dark" id="dlgClose" type="button">Am înțeles</button></div>
+  </div>
+</dialog>
+
+<script>
+(()=>{
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* island hide on scroll */
+let ly=scrollY;const isl=$('#island');
+addEventListener('scroll',()=>{const y=scrollY;isl.classList.toggle('hide',y>ly&&y>300&&!$('#mnav').classList.contains('open'));ly=y},{passive:true});
+const mn=$('#mnav'),bg=$('#burger');
+bg.onclick=()=>{const o=mn.classList.toggle('open');bg.setAttribute('aria-expanded',o);mn.setAttribute('aria-hidden',!o)};
+$$('#mnav a').forEach(a=>a.onclick=()=>{mn.classList.remove('open');bg.setAttribute('aria-expanded',false);mn.setAttribute('aria-hidden',true)});
+
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+$$('.reveal').forEach(el=>io.observe(el));
+
+/* hero window */
+const win=$('#win');let amp=1,target=1,userTouched=false;
+const S={open:{a:1,n:['Puternic','92%','#c2453a'],h:['Se pierde','28%','#6f8a9d']},
+         tilt:{a:.45,n:['Moderat','50%','#e9a23b'],h:['Aerisire','55%','#c9a06a']},
+         closed:{a:.03,n:['Aproape deloc','8%','#2c5a78'],h:['Rămâne în casă','94%','#e9a23b']}};
+function setState(s){win.dataset.s=s;target=S[s].a;
+  $$('.ctrl button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.set===s));
+  const [nt,nv,nc]=S[s].n,[ht,hv,hc]=S[s].h;
+  $('#mNoise').textContent=nt;$('#bNoise').style.cssText=`--v:${nv};--c:${nc}`;
+  $('#mHeat').textContent=ht;$('#bHeat').style.cssText=`--v:${hv};--c:${hc}`;}
+$$('.ctrl button').forEach(b=>b.onclick=()=>{userTouched=true;setState(b.dataset.set)});
+setTimeout(()=>{if(!userTouched)setState('closed')},2200);
+
+/* sound waves */
+const cv=$('#waves'),cx=cv.getContext('2d');let W,H,dpr;
+function rs(){dpr=Math.min(devicePixelRatio||1,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
+rs();let rT;addEventListener('resize',()=>{clearTimeout(rT);rT=setTimeout(rs,150)});
+let heroVis=true;new IntersectionObserver(e=>heroVis=e[0].isIntersecting).observe($('.hero'));
+let t0=performance.now();
+function frame(t){requestAnimationFrame(frame);if(!heroVis||reduce)return;
+  amp+=(target-amp)*.04;const r=win.getBoundingClientRect(),hr=cv.getBoundingClientRect();
+  const ox=r.left-hr.left+r.width/2,oy=r.top-hr.top+r.height/2;
+  cx.clearRect(0,0,W,H);if(amp<.02)return;
+  const tt=(t-t0)/1000;
+  for(let i=0;i<7;i++){const p=((tt*.32+i/7)%1);const rad=r.width*.55+p*Math.max(W,H)*.6;
+    const a=(1-p)*.22*amp;cx.beginPath();cx.strokeStyle=`rgba(44,90,120,${a})`;cx.lineWidth=1.4;
+    for(let k=0;k<=120;k++){const ang=k/120*Math.PI*2;const wob=Math.sin(ang*9+tt*3+i)*4*amp;
+      const x=ox+Math.cos(ang)*(rad+wob),y=oy+Math.sin(ang)*(rad+wob)*.8;k?cx.lineTo(x,y):cx.moveTo(x,y)}
+    cx.stroke()}
+}
+requestAnimationFrame(frame);
+
+/* anatomy steps */
+const parts=$$('.part'),steps=$$('.step');
+function act(i){parts.forEach(p=>p.classList.toggle('on',+p.dataset.p<=i&&(+p.dataset.p===i||true)));
+  parts.forEach(p=>{const n=+p.dataset.p;p.classList.toggle('on',n<=i);p.querySelectorAll('.hl').forEach(h=>h.style.stroke=n===i?'#e9a23b':'');p.querySelectorAll('.hl').forEach(h=>h.style.strokeWidth=n===i?'3':'')});
+  steps.forEach((s,k)=>s.classList.toggle('on',k===i))}
+act(0);
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)act(+e.target.dataset.i)}),{rootMargin:'-45% 0px -45% 0px'});
+steps.forEach(s=>so.observe(s));
+
+/* process */
+const ps=$$('.pstep');const po=new IntersectionObserver(es=>{if(es[0].isIntersecting){ps.forEach((p,i)=>setTimeout(()=>p.classList.add('in'),i*260));po.disconnect()}},{threshold:.4});
+po.observe($('#proc'));
+
+/* configurator */
+const st={type:'Fereastră',open:'Oscilobatant',color:'Alb',glass:'Triplu'};
+const COL={'Alb':['#f7f7f5','#d9dcde'],'Antracit':['#3b4146','#2a2f33'],'Stejar auriu':['#a96d33','#7d4a1f']};
+$$('.chips').forEach(g=>g.addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;
+  g.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',c===b));st[g.dataset.k]=b.dataset.v;
+  if(g.dataset.k==='type'){const d={'Fereastră':[120,140],'Fereastră dublă':[180,140],'Ușă balcon':[90,220],'Ușă intrare':[100,210]}[b.dataset.v];$('#w').value=d[0];$('#h').value=d[1]}
+  draw()}));
+['w','h','q'].forEach(id=>$('#'+id).addEventListener('input',draw));
+const NS='http://www.w3.org/2000/svg';
+function el(n,a,p){const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e}
+function draw(){const svg=$('#prev');svg.innerHTML='';
+  let w=Math.max(40,Math.min(400,+$('#w').value||120)),h=Math.max(40,Math.min(300,+$('#h').value||140));
+  const sc=Math.min(300/w,300/h),W=w*sc,H=h*sc,x0=200-W/2,y0=190-H/2,[c,cd]=COL[st.color];
+  const g=el('g',{},svg);
+  el('rect',{x:x0-14,y:y0+H,width:W+28,height:8,rx:2,fill:'rgba(255,255,255,.08)'},g);
+  el('rect',{x:x0,y:y0,width:W,height:H,rx:3,fill:c,stroke:cd,'stroke-width':1.5},g);
+  const door=st.type.startsWith('Ușă'),entry=st.type==='Ușă intrare',n=st.type==='Fereastră dublă'?2:1,f=Math.max(9,Math.min(16,W*.06));
+  for(let i=0;i<n;i++){const sx=x0+f+i*(W-f)/n,sw=(W-f)/n-f,sy=y0+f,sh=H-2*f;
+    el('rect',{x:sx,y:sy,width:sw,height:sh,rx:2,fill:c,stroke:cd},g);
+    const gi=f*.7;
+    if(entry){el('rect',{x:sx+gi,y:sy+gi,width:sw*.28,height:sh-2*gi,fill:'#9cc4dc',opacity:.9},g);
+      el('rect',{x:sx+sw*.42,y:sy+gi,width:sw*.5,height:sh-2*gi,fill:'none',stroke:cd,'stroke-width':1},g)}
+    else{const gr=el('rect',{x:sx+gi,y:sy+gi,width:sw-2*gi,height:sh-2*gi,fill:'url(#pg)'},g);
+      el('path',{d:`M${sx+gi+8} ${sy+gi+sh*.55}L${sx+gi+sw*.45} ${sy+gi+6}`,stroke:'rgba(255,255,255,.35)','stroke-width':6,'stroke-linecap':'round'},g)}
+    const ix=sx+gi,iy=sy+gi,iw=sw-2*gi,ih=sh-2*gi,left=!(n===2&&i===1);
+    const dash={stroke:st.color==='Alb'?'#2c5a78':'#f6d9a8','stroke-width':1.6,fill:'none','stroke-dasharray':'6 5'};
+    if(st.open!=='Fix'&&!entry){ /* hinge on one side: lines meet at hinge side */
+      const hx=left?ix:ix+iw,ox=left?ix+iw:ix;
+      el('path',Object.assign({d:`M${ox} ${iy}L${hx} ${iy+ih/2}L${ox} ${iy+ih}`},dash),g);
+      if(st.open==='Oscilobatant'&&!door||st.open==='Oscilobatant'&&st.type==='Ușă balcon')el('path',Object.assign({d:`M${ix} ${iy}L${ix+iw/2} ${iy+ih}L${ix+iw} ${iy}`},dash),g);
+      el('rect',{x:ox+(left?-f*.75:f*.35)-2,y:iy+ih/2-14,width:5,height:28,rx:2.5,fill:st.color==='Alb'?'#c9cdd1':'#d8b37a'},g)}
+    if(entry){el('rect',{x:sx+sw-f*.2-6,y:sy+sh/2-20,width:6,height:40,rx:3,fill:'#e9a23b'},g)}
+  }
+  const defs=el('defs',{},svg);const lg=el('linearGradient',{id:'pg',x1:0,y1:0,x2:1,y2:1},defs);
+  el('stop',{offset:0,'stop-color':'#bcd9ea'},lg);el('stop',{offset:1,'stop-color':'#7fa9c4'},lg);
+  /* dims */
+  const dc={stroke:'#8b96a1','stroke-width':1};
+  el('path',Object.assign({d:`M${x0} ${y0+H+26}h${W}M${x0} ${y0+H+20}v12M${x0+W} ${y0+H+20}v12`},dc),svg);
+  const t1=el('text',{x:200,y:y0+H+46,'text-anchor':'middle',fill:'#cfd6dc','font-size':13,'font-family':'Manrope','font-weight':700},svg);t1.textContent=w+' cm';
+  el('path',Object.assign({d:`M${x0+W+26} ${y0}v${H}M${x0+W+20} ${y0}h12M${x0+W+20} ${y0+H}h12`},dc),svg);
+  const t2=el('text',{x:x0+W+36,y:y0+H/2+4,fill:'#cfd6dc','font-size':13,'font-family':'Manrope','font-weight':700},svg);t2.textContent=h+' cm';
+  const q=Math.max(1,+$('#q').value||1);
+  const op=st.type==='Ușă intrare'?'Batant':st.open;
+  $('#sum').innerHTML=[st.type,op,st.color,'Geam '+st.glass.toLowerCase(),q+' buc.'].map(s=>`<span>${s}</span>`).join('');
+}
+draw();
+$('#cfg').addEventListener('submit',e=>{e.preventDefault();
+  const q=Math.max(1,+$('#q').value||1),nm=$('#nm').value.trim(),loc=$('#loc').value.trim();
+  const m=`Bună ziua! Aș dori o ofertă pentru:\n• ${st.type}, ${(st.type==='Ușă intrare'?'Batant':st.open).toLowerCase()}\n• Culoare: ${st.color}\n• Geam: ${st.glass}\n• Dimensiuni aprox.: ${$('#w').value} × ${$('#h').value} cm\n• Cantitate: ${q} buc.${loc?`\n• Localitate: ${loc}`:''}\n\nMulțumesc!${nm?`\n${nm}`:''}`;
+  $('#msg').textContent=m;$('#dlg').showModal()});
+$('#dlgClose').onclick=()=>$('#dlg').close();
+
+/* hours + open state (Europe/Bucharest) */
+const days=['Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă','Duminică'];
+const now=new Date(new Date().toLocaleString('en-US',{timeZone:'Europe/Bucharest'}));
+const di=(now.getDay()+6)%7,mins=now.getHours()*60+now.getMinutes();
+$('#hours').innerHTML=days.map((d,i)=>`<span class="${i===di?'today':''}">${d}</span><span class="${i===di?'today':''}">${i<5?'08:00–16:00':'Închis'}</span>`).join('');
+const open=di<5&&mins>=480&&mins<960;const os=$('#openstate');os.classList.toggle('on',open);
+let txt;if(open)txt='Deschis acum · până la 16:00';
+else if(di<5&&mins<480)txt='Închis acum · deschidem azi la 08:00';
+else if(di<4||di===6)txt='Închis acum · deschidem mâine la 08:00';
+else txt='Închis acum · deschidem luni la 08:00';
+os.querySelector('span').textContent=txt;
+})();
+</script>
+</body>
+</html>
