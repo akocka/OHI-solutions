@@ -315,6 +315,37 @@ section[data-ch]::before{content:attr(data-ch);position:absolute;right:4vw;top:c
 .arc .plane{animation:none!important;opacity:0}
 .arc .ap2{filter:drop-shadow(0 0 6px rgba(224,85,158,.5))}
 @media (prefers-reduced-motion:reduce){.zh{height:auto}.zh .stage{position:relative}.zfill,.zcap{display:none}.rail{display:none}}
+
+/* ===================== MOTION LAYER ===================== */
+.petals{position:fixed;inset:0;width:100%;height:100%;z-index:30;pointer-events:none;transition:opacity .8s}
+/* headings unveil like a curtain */
+.js h2.rv{clip-path:inset(0 0 100% 0);transform:translateY(30px);transition:clip-path 1.2s var(--reveal),transform 1.2s var(--reveal),opacity .6s}
+.js h2.rv.in{clip-path:inset(-10% -5% -20% -5%);transform:none}
+/* eyebrow hairline draws in */
+.eye::before{transform-origin:left;transition:transform 1s var(--reveal) .2s}
+.js .eye.rv::before{transform:scaleX(0)}.js .eye.rv.in::before{transform:scaleX(1)}
+/* card light follows the pointer */
+.card{transform-style:preserve-3d;transition:transform .5s var(--reveal),box-shadow .6s}
+.card .cb{position:relative}
+.card::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:inherit;background:radial-gradient(260px circle at var(--mx,50%) var(--my,30%),rgba(255,255,255,.35),transparent 60%);opacity:0;transition:opacity .4s}
+.card:hover::before{opacity:1}
+/* bouquet breathes and pops on every change */
+#bq{animation:sway 7s ease-in-out infinite;transform-origin:50% 90%}
+@keyframes sway{0%,100%{rotate:-1.2deg}50%{rotate:1.2deg}}
+#bq.pop{animation:sway 7s ease-in-out infinite,pop .7s cubic-bezier(.34,1.56,.64,1)}
+@keyframes pop{0%{scale:.94}100%{scale:1}}
+.note{animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -8px}}
+/* chips, swatches, sizes: tactile press */
+.chips button,.sw button,.sizes button{transition:transform .25s cubic-bezier(.34,1.56,.64,1),background .3s,color .3s,box-shadow .3s}
+.chips button:active,.sw button:active,.sizes button:active{transform:scale(.92)}
+.sw button.on{transform:scale(1.15)}
+.btn,.send,.pill,.ip{transition:translate .35s cubic-bezier(.34,1.56,.64,1),background-position .6s,transform .3s}
+/* contact cards lift */
+.vi{transition:transform .5s var(--reveal),border-color .3s,box-shadow .5s}.vi:hover{transform:translateY(-4px);box-shadow:0 24px 40px -28px rgba(120,40,80,.45)}
+/* wedding steps slide in from the side */
+.js .wed .steps li.rv{transform:translateX(-30px)}.js .wed .steps li.rv.in{transform:none}
+@media (prefers-reduced-motion:reduce){.petals{display:none}#bq,.note{animation:none}}
 </style>
 </head>
 <body>
@@ -329,6 +360,7 @@ section[data-ch]::before{content:attr(data-ch);position:absolute;right:4vw;top:c
 
 <nav class="rail" id="rail" aria-label="Capitole"><a href="#top" data-i="0"><i></i><span><em>I</em> <b data-t="ch1">Floarea</b></span></a><a href="#manifest" data-i="1"><i></i><span><em>II</em> <b data-t="ch2">Povestea</b></span></a><a href="#ocazii" data-i="2"><i></i><span><em>III</em> <b data-t="ch3">Ocazia</b></span></a><a href="#atelier" data-i="3"><i></i><span><em>IV</em> <b data-t="ch4">Atelierul</b></span></a><a href="#drum" data-i="4"><i></i><span><em>V</em> <b data-t="ch5">Drumul</b></span></a><a href="#nunti" data-i="5"><i></i><span><em>VI</em> <b data-t="ch6">Ziua cea mare</b></span></a><a href="#vizita" data-i="6"><i></i><span><em>VII</em> <b data-t="ch7">Florăria</b></span></a></nav>
 <div class="chtoast" id="chtoast" aria-hidden="true"><em></em><b></b></div>
+<canvas class="petals" id="petals" aria-hidden="true"></canvas>
 <main>
 <!-- HERO -->
 <div class="zh" id="zh">
@@ -603,7 +635,7 @@ const drawCard=c=>{if(c._d)return;c._d=1;c.width=640;c.height=800;const k=OCC[c.
 const bio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){drawCard(e.target);bio.unobserve(e.target)}}),{rootMargin:'400px'});$$('canvas[data-b]').forEach(c=>bio.observe(c));
 /* ---------- atelier builder ---------- */
 const S={occ:'love',pal:'passion',size:'M'},bq=$('#bq'),bg=bq.getContext('2d');
-function drawBQ(){bq.style.opacity=.35;requestAnimationFrame(()=>{bg.clearRect(0,0,800,1000);Flora.bouquet(bg,800,1000,Object.assign({size:S.size,seed:5+Object.keys(BQ).indexOf(S.pal)},BQ[S.pal]));bq.style.opacity=1});$('#palName').textContent=BQ[S.pal][L]}
+function drawBQ(){bq.classList.remove('pop');void bq.offsetWidth;bq.classList.add('pop');bq.style.opacity=.35;requestAnimationFrame(()=>{bg.clearRect(0,0,800,1000);Flora.bouquet(bg,800,1000,Object.assign({size:S.size,seed:5+Object.keys(BQ).indexOf(S.pal)},BQ[S.pal]));bq.style.opacity=1});$('#palName').textContent=BQ[S.pal][L]}
 function pick(group,v){$$(`#${group} button`).forEach(b=>b.classList.toggle('on',b.dataset.v===v))}
 $$('#fOcc button').forEach(b=>b.onclick=()=>{S.occ=b.dataset.v;S.pal=OCC[S.occ];pick('fOcc',S.occ);pick('fPal',S.pal);drawBQ()});
 $$('#fPal button').forEach(b=>b.onclick=()=>{S.pal=b.dataset.v;pick('fPal',S.pal);drawBQ()});
@@ -655,5 +687,27 @@ function story(){if(reduce)return;const vh=innerHeight,run=Math.max(1,zh.offsetH
     if(p>.9&&innerWidth<=1000){const a=railA[ch];toast.querySelector('em').textContent=a.querySelector('em').textContent;toast.querySelector('b').textContent=a.querySelector('b').textContent;toast.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>toast.classList.remove('show'),1700)}}
 }
 story();
+
+/* ---------- MOTION LAYER ---------- */
+/* 1. drifting petals (few, slow, pause when tab hidden or hero zooming) */
+(function(){const c=$('#petals');if(reduce||!c)return;const x=c.getContext('2d');let W,H,P=[],d=Math.min(devicePixelRatio||1,2);
+  const cols=['#f7a1c8','#e0559e','#fbd0e1','#e6c99a','#c4122b'];
+  function size(){W=c.width=innerWidth*d;H=c.height=innerHeight*d;const n=innerWidth<700?9:16;P=Array.from({length:n},()=>mk(true))}
+  function mk(any){return{x:Math.random()*W,y:any?Math.random()*H:-30*d,s:(6+Math.random()*9)*d,vy:(.25+Math.random()*.45)*d,vx:(Math.random()-.5)*.3*d,r:Math.random()*6.28,vr:(Math.random()-.5)*.02,w:Math.random()*6.28,c:cols[Math.random()*cols.length|0],o:.35+Math.random()*.35}}
+  size();addEventListener('resize',size);
+  (function f(){requestAnimationFrame(f);if(document.hidden)return;const hero=scrollY<$('#zh').offsetHeight-innerHeight*.9;c.style.opacity=hero?0:1;if(hero)return;x.clearRect(0,0,W,H);
+    for(const p of P){p.w+=.02;p.x+=p.vx+Math.sin(p.w)*.35*d;p.y+=p.vy;p.r+=p.vr;if(p.y>H+30*d)Object.assign(p,mk(false));
+      x.save();x.translate(p.x,p.y);x.rotate(p.r);x.scale(1,.55+.45*Math.sin(p.w*1.3));x.globalAlpha=p.o;x.fillStyle=p.c;
+      x.beginPath();x.moveTo(0,-p.s);x.bezierCurveTo(p.s*.9,-p.s*.6,p.s*.7,p.s*.7,0,p.s);x.bezierCurveTo(-p.s*.7,p.s*.7,-p.s*.9,-p.s*.6,0,-p.s);x.fill();x.restore()}})()})();
+/* 2. 3D tilt + light on occasion cards (pointer devices) */
+if(!touch&&!reduce)$$('.card').forEach(cd=>{cd.addEventListener('pointermove',e=>{const r=cd.getBoundingClientRect(),dx=(e.clientX-r.left)/r.width-.5,dy=(e.clientY-r.top)/r.height-.5;
+  cd.style.transform=`perspective(900px) rotateY(${dx*10}deg) rotateX(${-dy*10}deg) translateY(-6px)`;cd.style.setProperty('--mx',(dx+.5)*100+'%');cd.style.setProperty('--my',(dy+.5)*100+'%')});
+  cd.addEventListener('pointerleave',()=>cd.style.transform='')});
+/* 3. magnetic buttons */
+if(!touch&&!reduce)$$('.send,.btn,.pill,.ip').forEach(b=>{b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.translate=`${(e.clientX-r.left-r.width/2)*.18}px ${(e.clientY-r.top-r.height/2)*.25}px`});b.addEventListener('pointerleave',()=>b.style.translate='')});
+/* 4. staggered entrances for lists */
+$$('.steps li,.vlist .vi').forEach((el,i)=>el.style.transitionDelay=(i%3)*.12+'s');
+/* 5. occasion cards bloom in one after another when the gallery arrives */
+(function(){const cs=$$('.card');const o=new IntersectionObserver(es=>{if(!es[0].isIntersecting)return;o.disconnect();cs.forEach((c,i)=>c.animate([{opacity:0,transform:'translateY(60px) rotate(4deg) scale(.94)'},{opacity:1,transform:'none'}],{duration:1100,delay:i*120,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'}))},{threshold:.2});o.observe($('#ocazii'))})();
 </script>
 </body></html>
