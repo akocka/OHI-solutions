@@ -101,7 +101,7 @@ fieldset{border:0;margin-bottom:20px}legend,.fl>span{display:block;font:600 10.5
 .arc{width:100%;height:auto}.arc .city{font:500 13px Inter;fill:var(--mute);letter-spacing:.06em}
 .arc .ap{stroke-dashoffset:600;animation:dash 6s linear infinite}@keyframes dash{to{stroke-dashoffset:0}}
 .arc .pulse{transform-origin:540px 200px;animation:pl 2.4s ease-out infinite}@keyframes pl{0%{transform:scale(.5);opacity:1}100%{transform:scale(1.8);opacity:0}}
-.arc .plane{offset-path:path('M40 270 C 160 40, 420 30, 540 200');animation:fly 6s ease-in-out infinite}@keyframes fly{0%{offset-distance:0%;opacity:0}10%{opacity:1}90%{opacity:1}100%{offset-distance:100%;opacity:0}}
+.arc .plane{offset-path:path('M90 270 C 190 40, 420 30, 540 200');animation:fly 6s ease-in-out infinite}@keyframes fly{0%{offset-distance:0%;opacity:0}10%{opacity:1}90%{opacity:1}100%{offset-distance:100%;opacity:0}}
 .abroad h2{margin-bottom:18px}.quote{margin-top:28px;font:italic 300 clamp(22px,2vw,30px)/1.3 Fraunces,serif;color:var(--rose)}.qsrc{font-size:12px;color:var(--mute);letter-spacing:.06em}
 /* ---- weddings ---- */
 .wed{padding:clamp(90px,10vw,150px) 0;background:linear-gradient(180deg,var(--bg),#211b1d)}
@@ -199,6 +199,88 @@ h2 em,h1 em{color:var(--rose)}
 .dlg{background:rgba(250,246,244,.7)}.dbox{background:#fff;box-shadow:0 40px 80px -40px rgba(60,20,40,.45)}.dbox pre{background:#fbf6f8}
 footer{background:#f4efeb}
 .wart{border-radius:999px 999px 32px 32px;background:radial-gradient(60% 45% at 50% 38%,#f8d9e6,#efe3e6 70%);overflow:hidden;box-shadow:0 40px 80px -50px rgba(60,20,40,.45)}
+
+/* ===================== LUXE PASS =====================
+   Colour psychology:
+   · rose → magenta  = emotion & desire, used ONLY on actions (one action colour = easy decisions)
+   · champagne gold  = prestige & trust: ratings, numbers, hairlines
+   · deep plum       = luxury & intimacy, reserved for the weddings moment
+   · per-occasion tints let each feeling read instantly (red love, sun birthday, sage calm…) */
+:root{--gold:#b8925a;--gold2:#e6c99a;--plum:#2a0f22;--plum2:#4a1a3c;--blush:#fdf2f6;--sage:#7f9a82;
+  --grad:linear-gradient(120deg,#f7a1c8 0%,#e0559e 45%,#a8327a 100%)}
+body{background:linear-gradient(180deg,#fbf9f7 0%,#fdf4f7 30%,#fbf9f7 60%,#faf3ee 100%)}
+html{background:#fbf9f7}
+h2 em,h1 em{background:linear-gradient(100deg,#e25a9f,#b8337e 60%,#c58a4c);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.06em}
+.eye{display:inline-flex;align-items:center;gap:12px;color:#b8337e}
+.eye::before{content:"";width:28px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+/* hero */
+.stage{background:radial-gradient(42% 52% at 62% 48%,rgba(247,161,200,.30),transparent 70%),radial-gradient(30% 35% at 85% 15%,rgba(230,201,154,.28),transparent 70%),radial-gradient(55% 55% at 10% 105%,rgba(168,50,122,.14),transparent 70%),#fbf9f7}
+.word .p,.fbrand em{background:linear-gradient(175deg,#f7a1c8 0%,#e0559e 55%,#9c2c70 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.corner em{color:var(--gold)}
+.pill,.ip,.sheet .sp{background:var(--grad);background-size:160% 100%;color:#fff;box-shadow:0 14px 30px -14px rgba(176,45,120,.65);transition:background-position .6s,transform .3s}
+.pill:hover,.ip:hover{background-position:100% 0;transform:translateY(-1px)}
+/* aura blobs: slow living colour */
+.aura{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.aura i{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;animation:drift 22s ease-in-out infinite alternate}
+.aura i:nth-child(1){width:42vw;height:42vw;left:-10vw;top:10%;background:radial-gradient(circle,#ffd3e5,transparent 65%)}
+.aura i:nth-child(2){width:32vw;height:32vw;right:-6vw;top:35%;background:radial-gradient(circle,#f3dcc0,transparent 65%);animation-duration:28s}
+.aura i:nth-child(3){width:26vw;height:26vw;left:40%;bottom:-8vw;background:radial-gradient(circle,#e9d6f5,transparent 65%);animation-duration:34s}
+.aura.a2 i:nth-child(1){left:auto;right:-12vw}
+@keyframes drift{to{transform:translate(4vw,-3vw) scale(1.12)}}
+.manifest>.wrap,.atelier>.wrap{position:relative;z-index:1}
+@media(max-width:900px){.aura i{filter:blur(40px);opacity:.5}.aura i:nth-child(1){width:80vw;height:80vw}.aura i:nth-child(2){width:60vw;height:60vw}.aura i:nth-child(3){width:50vw;height:50vw}}
+/* manifesto proof in gold */
+.proof{border-top:1px solid transparent;border-image:linear-gradient(90deg,transparent,var(--gold2),transparent) 1}
+.proof>.cnt{background:linear-gradient(180deg,#d9b67e,#9c7440);-webkit-background-clip:text;background-clip:text;color:transparent}
+.proof .stars{color:var(--gold)}
+.mtext .wd.acc.lit{background:linear-gradient(100deg,#e25a9f,#b8337e);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* gold ribbon */
+.ribbon{overflow:hidden;padding:22px 0;border-block:1px solid rgba(184,146,90,.28);background:linear-gradient(90deg,#fbf5ee,#fdf0f5,#fbf5ee)}
+.rt{display:flex;width:max-content;animation:rib 48s linear infinite}
+.rt span{font:italic 300 clamp(22px,2.6vw,34px)/1 Fraunces,serif;color:#5b3a4c;white-space:nowrap;padding-right:.4em}
+.rt i{font-style:normal;color:var(--gold);font-size:.6em;vertical-align:middle;padding:0 .5em}
+@keyframes rib{to{transform:translateX(-50%)}}
+/* occasion cards: each feeling gets its own colour */
+.card{--t1:#ffe1ea;--t2:#e0559e;position:relative;transition:transform .6s var(--reveal),box-shadow .6s}
+.card[data-o="love"]{--t1:#ffd9df;--t2:#c4122b}
+.card[data-o="bday"]{--t1:#ffefcf;--t2:#e8962c}
+.card[data-o="thanks"]{--t1:#ffe6ee;--t2:#e07aa0}
+.card[data-o="baby"]{--t1:#efe3ff;--t2:#9b6cd0}
+.card[data-o="calm"]{--t1:#e6efe4;--t2:#6f8f74}
+.card canvas{background:radial-gradient(65% 55% at 50% 42%,var(--t1),#fffafb 75%)!important}
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(160deg,var(--t2),transparent 45%,rgba(184,146,90,.5));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.35;transition:opacity .5s;pointer-events:none}
+.card:hover{box-shadow:0 40px 70px -40px var(--t2)}.card:hover::after{opacity:1}
+.cn{color:var(--t2)}.cb button{color:var(--t2)}
+/* atelier */
+.atelier{background:transparent}
+.apreview{background:radial-gradient(60% 55% at 50% 40%,rgba(247,161,200,.28),transparent 70%),radial-gradient(40% 30% at 80% 90%,rgba(230,201,154,.30),transparent 70%),#fff;position:relative}
+.apreview::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:conic-gradient(from var(--ang,0deg),#f7a1c8,#e6c99a,#b8337e,#f7a1c8);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spinb 8s linear infinite;pointer-events:none;opacity:.8}
+@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes spinb{to{--ang:360deg}}
+.note{border:1px solid rgba(184,146,90,.35)}.note i{color:var(--gold)}
+.chips button.on,.sizes button.on{background:var(--plum);color:#fff;box-shadow:0 10px 20px -12px rgba(42,15,34,.6)}
+.sw button.on{border-color:var(--gold)}
+.price b{color:var(--plum2)}
+.send{position:relative;overflow:hidden;background:var(--grad)!important}
+.send::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:shine 4.5s ease-in-out infinite}
+@keyframes shine{0%,60%{left:-60%}100%{left:130%}}
+/* abroad */
+.abroad{padding:clamp(60px,8vw,130px) 0}
+.arc .city{fill:#8a6f78}
+.quote{background:linear-gradient(100deg,#e25a9f,#b8337e);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* weddings: the one deep-plum luxury moment */
+.wed{background:radial-gradient(60% 50% at 80% 40%,rgba(230,201,154,.16),transparent 70%),radial-gradient(50% 50% at 10% 90%,rgba(224,85,158,.22),transparent 70%),linear-gradient(180deg,#2a0f22,#1d0a18)!important;color:#f7ecf1}
+.wed h2,.wed h3{color:#fff}.wed h2 em{background:linear-gradient(100deg,#ffc1dc,#e6c99a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.wed .eye{color:var(--gold2)}.wed .eye::before{background:linear-gradient(90deg,transparent,var(--gold2))}
+.wed .steps li{background:rgba(255,255,255,.05)!important;border-color:rgba(230,201,154,.22)}
+.wed .steps b{color:var(--gold2)}.wed .steps p{color:#d9c3cd}
+.wed .btn{background:linear-gradient(120deg,#e6c99a,#c79d5f)!important;color:#2a0f22}
+.wart{background:radial-gradient(60% 45% at 50% 38%,#5a2448,#2a0f22 75%)!important;box-shadow:0 40px 90px -40px rgba(0,0,0,.7),0 0 0 1px rgba(230,201,154,.25)}
+/* visit + footer */
+.vi{background:#fff;border-color:rgba(184,146,90,.22)}.vi:hover{border-color:var(--gold)}
+.vi small{color:#b8337e}
+footer{background:linear-gradient(180deg,#f8eef2,#f4e9e2)}
+@media(max-width:700px){.arc .city{font-size:21px}.arc{margin-bottom:-10px}}
 </style>
 </head>
 <body>
@@ -231,11 +313,13 @@ footer{background:#f4efeb}
 <button class="scrim" id="scrim" aria-label="Închide" tabindex="-1"></button>
 
 <!-- MANIFESTO: words light up while scrolling; the rating lives here -->
-<section class="manifest" id="manifest"><div class="wrap">
+<section class="manifest" id="manifest"><div class="aura" aria-hidden="true"><i></i><i></i><i></i></div><div class="wrap">
   <p class="eye" data-t="mE">Florăria Amaryllis · Târgu Mureș</p>
   <p class="mtext" id="mtext" data-t="mT">Fiecare buchet începe cu o întrebare simplă: pentru cine este? Restul îl facem noi, cu flori proaspete, mâini atente și grija pe care o merită momentele voastre.</p>
   <div class="proof rv"><b class="cnt" data-to="4.9" data-dec="1">0,0</b><div><span class="stars">★★★★★</span><span data-t="mP">din 170+ recenzii pe Google</span></div><a href="https://www.google.com/maps/search/?api=1&query=Flor%C4%83ria+Amaryllis+T%C3%A2rgu+Mure%C8%99" target="_blank" rel="noopener" data-t="mR">Citiți recenziile ↗</a></div>
 </div></section>
+
+<div class="ribbon" aria-hidden="true"><div class="rt"><span>Hippeastrum <i>✦</i> Rosa <i>✦</i> Paeonia <i>✦</i> Ranunculus <i>✦</i> Tulipa <i>✦</i> Eustoma <i>✦</i> Eucalyptus <i>✦</i> Hippeastrum <i>✦</i> Rosa <i>✦</i> Paeonia <i>✦</i> Ranunculus <i>✦</i> Tulipa <i>✦</i> Eustoma <i>✦</i> Eucalyptus <i>✦</i> </span><span>Hippeastrum <i>✦</i> Rosa <i>✦</i> Paeonia <i>✦</i> Ranunculus <i>✦</i> Tulipa <i>✦</i> Eustoma <i>✦</i> Eucalyptus <i>✦</i> Hippeastrum <i>✦</i> Rosa <i>✦</i> Paeonia <i>✦</i> Ranunculus <i>✦</i> Tulipa <i>✦</i> Eustoma <i>✦</i> Eucalyptus <i>✦</i> </span></div></div>
 
 <!-- OCCASIONS: pinned horizontal gallery -->
 <section class="occ" id="ocazii"><div class="pin">
@@ -251,7 +335,7 @@ footer{background:#f4efeb}
 </div></section>
 
 <!-- ATELIER: live bouquet builder → WhatsApp -->
-<section class="atelier" id="atelier"><div class="wrap agrid">
+<section class="atelier" id="atelier"><div class="aura a2" aria-hidden="true"><i></i><i></i><i></i></div><div class="wrap agrid">
   <div class="apreview">
     <canvas id="bq" width="800" height="1000" role="img" aria-label="Previzualizare buchet"></canvas>
     <div class="note" id="note"><span id="noteTxt" data-t="noteDef">Cu drag, pentru tine.</span><i>— Amaryllis</i></div>
@@ -275,9 +359,9 @@ footer{background:#f4efeb}
 
 <!-- FROM ABROAD -->
 <section class="abroad"><div class="wrap bgrid">
-  <svg class="arc" viewBox="0 0 600 340" aria-hidden="true"><defs><linearGradient id="ag" x1="0" x2="1"><stop offset="0" stop-color="#ffc5dc" stop-opacity=".1"/><stop offset="1" stop-color="#fd86db"/></linearGradient></defs>
-    <path class="ap" d="M40 270 C 160 40, 420 30, 540 200" fill="none" stroke="url(#ag)" stroke-width="2.5" stroke-dasharray="6 8"/>
-    <circle cx="40" cy="270" r="6" fill="#ffc5dc"/><text x="40" y="300" text-anchor="middle" class="city" data-t="bFrom">oriunde în lume</text>
+  <svg class="arc" viewBox="0 70 600 260" aria-hidden="true"><defs><linearGradient id="ag" x1="0" x2="1"><stop offset="0" stop-color="#ffc5dc" stop-opacity=".1"/><stop offset="1" stop-color="#fd86db"/></linearGradient></defs>
+    <path class="ap" d="M90 270 C 190 40, 420 30, 540 200" fill="none" stroke="url(#ag)" stroke-width="2.5" stroke-dasharray="6 8"/>
+    <circle cx="90" cy="270" r="6" fill="#ffc5dc"/><text x="90" y="300" text-anchor="middle" class="city" data-t="bFrom">oriunde în lume</text>
     <circle class="pulse" cx="540" cy="200" r="22" fill="none" stroke="#fd86db"/><circle cx="540" cy="200" r="8" fill="#fd86db"/><text x="540" y="240" text-anchor="middle" class="city">Târgu Mureș</text>
     <g class="plane"><path d="M0 0l16 6-16 6 4-6z" fill="#fff"/></g></svg>
   <div><p class="eye rv" data-t="bE">De departe, dar aproape</p><h2 class="rv" data-t="bH">Comandați din <em>orice țară</em></h2>
