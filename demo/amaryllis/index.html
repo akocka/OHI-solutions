@@ -281,6 +281,40 @@ h2 em,h1 em{background:linear-gradient(100deg,#e25a9f,#b8337e 60%,#c58a4c);-webk
 .vi small{color:#b8337e}
 footer{background:linear-gradient(180deg,#f8eef2,#f4e9e2)}
 @media(max-width:700px){.arc .city{font-size:21px}.arc{margin-bottom:-10px}}
+
+/* ===================== STORY ===================== */
+.zh{position:relative;height:210svh}
+.zh .stage{position:sticky;top:0}
+#fc{transform-origin:50% 30%;will-change:transform}
+.zfill{position:absolute;inset:0;z-index:6;pointer-events:none;opacity:0;background:radial-gradient(circle at 50% 45%,#fff6f9 0%,#fbe4ee 45%,#f7d2e2 100%)}
+.zcap{position:absolute;z-index:7;left:50%;top:50%;transform:translate(-50%,-50%);opacity:0;text-align:center;pointer-events:none;width:min(90vw,900px)}
+.zcap span{display:block;font:italic 300 clamp(18px,1.6vw,24px) Fraunces,serif;color:var(--gold);letter-spacing:.3em;margin-bottom:14px}
+.zcap b{font:300 clamp(38px,6.4vw,96px)/1.02 Fraunces,serif;letter-spacing:-.02em;background:linear-gradient(100deg,#2a0f22,#a8327a 60%,#c58a4c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.manifest{background:radial-gradient(70% 60% at 50% 0%,#f7d2e2,transparent 70%)}
+/* chapter numerals */
+section[data-ch]::before{content:attr(data-ch);position:absolute;right:4vw;top:clamp(30px,5vw,70px);font:italic 300 clamp(90px,13vw,220px)/1 Fraunces,serif;color:rgba(184,146,90,.13);pointer-events:none;z-index:0}
+.wed[data-ch]::before{color:rgba(230,201,154,.10)}
+.occ[data-ch]::before{display:none}
+.zin{transform-origin:50% 0;will-change:transform,clip-path}
+/* story rail (desktop) */
+.rail{position:fixed;left:22px;top:50%;transform:translate(-20px,-50%);z-index:40;display:flex;flex-direction:column;gap:14px;opacity:0;pointer-events:none;transition:opacity .5s,transform .5s}
+.rail.on{opacity:1;transform:translate(0,-50%);pointer-events:auto}
+.rail a{display:flex;align-items:center;gap:10px;font-size:12px;color:#7a6c70}
+.rail i{width:8px;height:8px;border-radius:50%;border:1px solid rgba(184,146,90,.7);transition:all .4s}
+.rail span{opacity:0;transform:translateX(-6px);transition:all .35s;white-space:nowrap;background:rgba(255,255,255,.8);backdrop-filter:blur(8px);padding:4px 10px;border-radius:99px}
+.rail em{font-family:Fraunces,serif;color:var(--gold)}.rail b{font-weight:500}
+.rail a:hover span,.rail a.cur span{opacity:1;transform:none}
+.rail a.cur i{background:var(--grad);border-color:transparent;transform:scale(1.5);box-shadow:0 0 0 4px rgba(224,85,158,.15)}
+@media(max-width:1000px){.rail{display:none}}
+/* chapter toast (phones) */
+.chtoast{position:fixed;left:50%;top:86px;z-index:45;transform:translate(-50%,-10px);opacity:0;pointer-events:none;display:flex;gap:10px;align-items:baseline;padding:9px 16px;border-radius:99px;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);border:1px solid rgba(184,146,90,.3);box-shadow:0 14px 30px -18px rgba(60,20,40,.4);transition:opacity .4s,transform .4s}
+.chtoast.show{opacity:1;transform:translate(-50%,0)}
+.chtoast em{font:italic 300 15px Fraunces,serif;color:var(--gold)}.chtoast b{font:500 13px Inter;color:#2a0f22}
+@media(min-width:1001px){.chtoast{display:none}}
+/* journey path */
+.arc .plane{animation:none!important;opacity:0}
+.arc .ap2{filter:drop-shadow(0 0 6px rgba(224,85,158,.5))}
+@media (prefers-reduced-motion:reduce){.zh{height:auto}.zh .stage{position:relative}.zfill,.zcap{display:none}.rail{display:none}}
 </style>
 </head>
 <body>
@@ -293,9 +327,14 @@ footer{background:linear-gradient(180deg,#f8eef2,#f4e9e2)}
   <button class="isb" id="isb" aria-label="Meniu" aria-controls="sheet"><i></i></button>
 </div></header>
 
+<nav class="rail" id="rail" aria-label="Capitole"><a href="#top" data-i="0"><i></i><span><em>I</em> <b data-t="ch1">Floarea</b></span></a><a href="#manifest" data-i="1"><i></i><span><em>II</em> <b data-t="ch2">Povestea</b></span></a><a href="#ocazii" data-i="2"><i></i><span><em>III</em> <b data-t="ch3">Ocazia</b></span></a><a href="#atelier" data-i="3"><i></i><span><em>IV</em> <b data-t="ch4">Atelierul</b></span></a><a href="#drum" data-i="4"><i></i><span><em>V</em> <b data-t="ch5">Drumul</b></span></a><a href="#nunti" data-i="5"><i></i><span><em>VI</em> <b data-t="ch6">Ziua cea mare</b></span></a><a href="#vizita" data-i="6"><i></i><span><em>VII</em> <b data-t="ch7">Florăria</b></span></a></nav>
+<div class="chtoast" id="chtoast" aria-hidden="true"><em></em><b></b></div>
 <main>
 <!-- HERO -->
+<div class="zh" id="zh">
 <section class="stage" id="top">
+  <div class="zfill" id="zfill" aria-hidden="true"></div>
+  <p class="zcap" id="zcap" aria-hidden="true"><span>I</span><b data-t="z1">Totul începe cu o floare.</b></p>
   <div class="grain"></div>
   <a class="brand" href="#top" aria-label="Florăria Amaryllis"><svg viewBox="0 0 66 62"><path d="M33 4C38 18 46 24 62 31C46 38 38 44 33 58C28 44 20 38 4 31C20 24 28 18 33 4Z"/><circle cx="33" cy="31" r="4"/></svg></a>
   <ul class="nav"><li><a href="#ocazii" data-t="n2">Ocazii</a></li><li><a href="#atelier" data-t="n1">Atelier</a></li><li><a href="#nunti" data-t="n3">Nunți</a></li><li><a href="#vizita" data-t="n4">Contact</a></li></ul>
@@ -308,12 +347,13 @@ footer{background:linear-gradient(180deg,#f8eef2,#f4e9e2)}
   <a class="cue" href="#manifest" aria-label="Derulați"><span data-t="cue">Descoperă</span><i></i></a>
   <button class="burger" id="burger" aria-label="Meniu" aria-expanded="false" aria-controls="sheet"><i></i></button>
 </section>
+</div>
 <nav class="sheet" id="sheet" aria-label="Meniu" inert><a href="#ocazii" data-t="n2">Ocazii</a><a href="#atelier" data-t="n1">Atelier</a><a href="#nunti" data-t="n3">Nunți</a><a href="#vizita" data-t="n4">Contact</a>
   <a class="sp" href="#atelier" data-t="pill">Comandă un buchet</a><div class="sl"><button class="on" data-l="ro">Română</button><button data-l="hu">Magyar</button><button data-l="en">English</button></div></nav>
 <button class="scrim" id="scrim" aria-label="Închide" tabindex="-1"></button>
 
 <!-- MANIFESTO: words light up while scrolling; the rating lives here -->
-<section class="manifest" id="manifest"><div class="aura" aria-hidden="true"><i></i><i></i><i></i></div><div class="wrap">
+<section class="manifest" id="manifest" data-ch="II"><div class="aura" aria-hidden="true"><i></i><i></i><i></i></div><div class="wrap">
   <p class="eye" data-t="mE">Florăria Amaryllis · Târgu Mureș</p>
   <p class="mtext" id="mtext" data-t="mT">Fiecare buchet începe cu o întrebare simplă: pentru cine este? Restul îl facem noi, cu flori proaspete, mâini atente și grija pe care o merită momentele voastre.</p>
   <div class="proof rv"><b class="cnt" data-to="4.9" data-dec="1">0,0</b><div><span class="stars">★★★★★</span><span data-t="mP">din 170+ recenzii pe Google</span></div><a href="https://www.google.com/maps/search/?api=1&query=Flor%C4%83ria+Amaryllis+T%C3%A2rgu+Mure%C8%99" target="_blank" rel="noopener" data-t="mR">Citiți recenziile ↗</a></div>
@@ -322,7 +362,7 @@ footer{background:linear-gradient(180deg,#f8eef2,#f4e9e2)}
 <div class="ribbon" aria-hidden="true"><div class="rt"><span>Hippeastrum <i>✦</i> Rosa <i>✦</i> Paeonia <i>✦</i> Ranunculus <i>✦</i> Tulipa <i>✦</i> Eustoma <i>✦</i> Eucalyptus <i>✦</i> Hippeastrum <i>✦</i> Rosa <i>✦</i> Paeonia <i>✦</i> Ranunculus <i>✦</i> Tulipa <i>✦</i> Eustoma <i>✦</i> Eucalyptus <i>✦</i> </span><span>Hippeastrum <i>✦</i> Rosa <i>✦</i> Paeonia <i>✦</i> Ranunculus <i>✦</i> Tulipa <i>✦</i> Eustoma <i>✦</i> Eucalyptus <i>✦</i> Hippeastrum <i>✦</i> Rosa <i>✦</i> Paeonia <i>✦</i> Ranunculus <i>✦</i> Tulipa <i>✦</i> Eustoma <i>✦</i> Eucalyptus <i>✦</i> </span></div></div>
 
 <!-- OCCASIONS: pinned horizontal gallery -->
-<section class="occ" id="ocazii"><div class="pin">
+<section class="occ" id="ocazii" data-ch="III"><div class="pin">
   <div class="ohead wrap"><p class="eye" data-t="oE">Ocazii</p><h2 data-t="oH">Pentru fiecare <em>poveste</em></h2></div>
   <div class="track" id="track">
     <article class="card" data-o="love"><canvas data-b="love" role="img" aria-label="Buchet cu trandafiri roșii și amaryllis"></canvas><div class="cb"><span class="cn">01</span><h3 data-t="o1">Dragoste</h3><p data-t="o1p">Trandafiri roșii și amaryllis, pentru „te iubesc” spus fără cuvinte.</p><button data-t="oGo" data-pick="love">Alege →</button></div></article>
@@ -335,7 +375,7 @@ footer{background:linear-gradient(180deg,#f8eef2,#f4e9e2)}
 </div></section>
 
 <!-- ATELIER: live bouquet builder → WhatsApp -->
-<section class="atelier" id="atelier"><div class="aura a2" aria-hidden="true"><i></i><i></i><i></i></div><div class="wrap agrid">
+<section class="atelier zin" id="atelier" data-ch="IV"><div class="aura a2" aria-hidden="true"><i></i><i></i><i></i></div><div class="wrap agrid">
   <div class="apreview">
     <canvas id="bq" width="800" height="1000" role="img" aria-label="Previzualizare buchet"></canvas>
     <div class="note" id="note"><span id="noteTxt" data-t="noteDef">Cu drag, pentru tine.</span><i>— Amaryllis</i></div>
@@ -358,9 +398,9 @@ footer{background:linear-gradient(180deg,#f8eef2,#f4e9e2)}
 </div></section>
 
 <!-- FROM ABROAD -->
-<section class="abroad"><div class="wrap bgrid">
-  <svg class="arc" viewBox="0 70 600 260" aria-hidden="true"><defs><linearGradient id="ag" x1="0" x2="1"><stop offset="0" stop-color="#ffc5dc" stop-opacity=".1"/><stop offset="1" stop-color="#fd86db"/></linearGradient></defs>
-    <path class="ap" d="M90 270 C 190 40, 420 30, 540 200" fill="none" stroke="url(#ag)" stroke-width="2.5" stroke-dasharray="6 8"/>
+<section class="abroad zin" id="drum" data-ch="V"><div class="wrap bgrid">
+  <svg class="arc" viewBox="-10 70 650 260" aria-hidden="true"><defs><linearGradient id="ag" x1="0" x2="1"><stop offset="0" stop-color="#ffc5dc" stop-opacity=".1"/><stop offset="1" stop-color="#fd86db"/></linearGradient></defs>
+    <path class="ap" d="M90 270 C 190 40, 420 30, 540 200" fill="none" stroke="url(#ag)" stroke-width="2.5" stroke-dasharray="6 8"/><path class="ap2" id="ap2" d="M90 270 C 190 40, 420 30, 540 200" fill="none" stroke="#e0559e" stroke-width="3" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
     <circle cx="90" cy="270" r="6" fill="#ffc5dc"/><text x="90" y="300" text-anchor="middle" class="city" data-t="bFrom">oriunde în lume</text>
     <circle class="pulse" cx="540" cy="200" r="22" fill="none" stroke="#fd86db"/><circle cx="540" cy="200" r="8" fill="#fd86db"/><text x="540" y="240" text-anchor="middle" class="city">Târgu Mureș</text>
     <g class="plane"><path d="M0 0l16 6-16 6 4-6z" fill="#fff"/></g></svg>
@@ -370,7 +410,7 @@ footer{background:linear-gradient(180deg,#f8eef2,#f4e9e2)}
 </div></section>
 
 <!-- WEDDINGS -->
-<section class="wed" id="nunti"><div class="wrap wgrid">
+<section class="wed zin" id="nunti" data-ch="VI"><div class="wrap wgrid">
   <div class="wtext"><p class="eye rv" data-t="wE">Nunți</p><h2 class="rv" data-t="wH">Buchetul de mireasă, <em>așa cum l-ați visat</em></h2>
     <ol class="steps"><li class="rv"><b>01</b><div><h3 data-t="w1">Ne cunoaștem</h3><p data-t="w1p">Ne povestiți despre rochie, locație și culorile nunții.</p></div></li>
       <li class="rv"><b>02</b><div><h3 data-t="w2">Propunerea</h3><p data-t="w2p">Primiți o schiță a buchetului și a aranjamentelor.</p></div></li>
@@ -380,7 +420,7 @@ footer{background:linear-gradient(180deg,#f8eef2,#f4e9e2)}
 </div></section>
 
 <!-- VISIT -->
-<section class="visit" id="vizita"><div class="wrap vgrid">
+<section class="visit zin" id="vizita" data-ch="VII"><div class="wrap vgrid">
   <div><p class="eye rv" data-t="vE">Vizitați-ne</p><h2 class="rv" data-t="vH">Vă așteptăm <em>în florărie</em></h2>
     <p class="open rv" id="openNow"><i></i><span id="openT">Deschis acum</span></p></div>
   <div class="vlist">
@@ -502,6 +542,8 @@ const T={hu:{dE:'Demo',dH:'Ez az üzenet érkezne a virágbolthoz',dP:'Az élő 
  bFrom:'anywhere in the world',bE:'Far away, yet close',bH:'Order from <em>any country</em>',bP:'Far from your loved ones? Message us on WhatsApp, we settle everything together, and we deliver the bouquet right to their door in Târgu Mureș.',bQ:'Our customers have ordered from as far as Australia.',bS:'From the florist’s Google reviews',
  wE:'Weddings',wH:'The bridal bouquet, <em>just as you imagined</em>',w1:'We meet',w1p:'Tell us about the dress, the venue and your wedding colours.',w2:'The proposal',w2p:'You receive a sketch of the bouquet and arrangements.',w3:'The big day',w3p:'Everything delivered fresh and on time, so you can simply enjoy it.',wC:'Book a conversation',
  vE:'Visit us',vH:'Come and see us <em>in the shop</em>',vA:'Address',vO:'Opening hours',vOv:'Monday – Saturday 9:00 – 20:00<br>Sunday 9:00 – 18:00',vT:'Phone',foot:'Website proposal by OHI Solutions for Florăria Amaryllis. Not the official site. The flower illustrations are drawn in code.'}};
+Object.assign(T.hu,{z1:'Minden egy virággal kezdődik.',ch1:'A virág',ch2:'A történet',ch3:'Az alkalom',ch4:'A műhely',ch5:'Az út',ch6:'A nagy nap',ch7:'A virágbolt'});
+Object.assign(T.en,{z1:'It all begins with a flower.',ch1:'The flower',ch2:'The story',ch3:'The occasion',ch4:'The atelier',ch5:'The journey',ch6:'The big day',ch7:'The shop'});
 T.ro={};$$('[data-t]').forEach(e=>{if(!(e.dataset.t in T.ro))T.ro[e.dataset.t]=e.innerHTML});const TP={ro:{}};$$('[data-tp]').forEach(e=>TP.ro[e.dataset.tp]=e.placeholder);
 let L='ro';const hooks=[];
 function setLang(l){L=l;document.documentElement.lang=l;$$('[data-t]').forEach(e=>{const v=(T[l]||{})[e.dataset.t]??T.ro[e.dataset.t];if(v!=null)e.innerHTML=v});
@@ -537,7 +579,7 @@ setTimeout(()=>document.documentElement.classList.remove('anim'),2600);
 
 /* ---------- island header + floating order button ---------- */
 const isle=$('#isle'),fab=$('#fab'),atel=$('#atelier');
-function chrome(){const past=scrollY>innerHeight*.8;isle.classList.toggle('on',past);}
+function chrome(){const past=scrollY>$('#zh').offsetHeight-innerHeight*.6;isle.classList.toggle('on',past);}
 /* ---------- manifesto: words light up ---------- */
 const mt=$('#mtext');let words=[];
 function splitM(){const txt=mt.textContent;const c=txt.indexOf(':'),q=txt.indexOf('?');mt.innerHTML='';let pos=0;
@@ -588,12 +630,30 @@ function openNow(){const d=new Date(),day=d.getDay(),m=d.getHours()*60+d.getMinu
 openNow();hooks.push(openNow);
 /* ---------- reveal + scroll loop ---------- */
 const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target)}}),{threshold:.15});$$('.rv').forEach(e=>rio.observe(e));
-let tick=false;function onScroll(){if(tick)return;tick=true;requestAnimationFrame(()=>{tick=false;chrome();lightM();pinMove()})}
+let tick=false;function onScroll(){if(tick)return;tick=true;requestAnimationFrame(()=>{tick=false;chrome();lightM();pinMove();story()})}
 addEventListener('scroll',onScroll,{passive:true});let lastW=innerWidth,lastH=innerHeight;addEventListener('resize',()=>{onScroll();clearTimeout(window._rb);window._rb=setTimeout(()=>{if(Math.abs(innerWidth-lastW)>40||Math.abs(innerHeight-lastH)>120){lastW=innerWidth;lastH=innerHeight;buildHero()}},200)});onScroll();
 /* ---------- menu ---------- */
 const bt=$('#burger'),sh=$('#sheet');function menu(o){document.body.classList.toggle('open',o);bt.setAttribute('aria-expanded',o);o?sh.removeAttribute('inert'):sh.setAttribute('inert','')}
 bt.onclick=()=>menu(!document.body.classList.contains('open'));$('#isb').onclick=()=>menu(true);$('#scrim').onclick=()=>menu(false);$$('.sheet a').forEach(a=>a.addEventListener('click',()=>menu(false)));addEventListener('keydown',e=>{if(e.key==='Escape')menu(false)});
 try{const s=localStorage.getItem('amLang');if(s&&s!=='ro')setLang(s)}catch(e){}
 drawBQ();
+
+/* ---------- STORY: zoom into the flower, chapters, scroll-driven journey ---------- */
+const zh=$('#zh'),zfill=$('#zfill'),zcap=$('#zcap'),zword=$('.word'),zfade=$$('.brand,.nav,.pill,.lang,.corner,.cue'),zins=$$('.zin'),ap2=$('#ap2'),plane=$('.arc .plane'),drum=$('#drum');
+const rail=$('#rail'),railA=$$('#rail a'),toast=$('#chtoast'),chSecs=['#top','#manifest','#ocazii','#atelier','#drum','#nunti','#vizita'].map(s=>$(s));
+const clamp=v=>Math.min(1,Math.max(0,v)),sm=t=>t*t*(3-2*t);let curCh=-1,toastT=0;
+function story(){if(reduce)return;const vh=innerHeight,run=Math.max(1,zh.offsetHeight-vh),p=clamp(scrollY/run),e=sm(p);
+  fc.style.transform=`scale(${1+e*4.6})`;zword.style.transform=`translateY(${-e*26}vh) scale(${1-e*.08})`;zword.style.filter=`opacity(${clamp(1-e*1.8)})`;
+  zfade.forEach(el=>el.style.filter=`opacity(${clamp(1-p*3)})`);
+  zfill.style.opacity=clamp((p-.5)/.32);const c=clamp((p-.62)/.18)*(1-clamp((p-.94)/.06)*.0);zcap.style.opacity=c;zcap.style.transform=`translate(-50%,-50%) scale(${1.12-.12*c})`;
+  zins.forEach(s=>{const r=s.getBoundingClientRect();if(r.top>vh||r.bottom<0)return;const t=sm(clamp((vh-r.top)/(vh*.7)));
+    s.style.transform=`scale(${.9+.1*t})`;s.style.clipPath=`inset(0 round ${Math.round(56*(1-t))}px)`});
+  if(drum){const r=drum.getBoundingClientRect(),t=clamp((vh*.85-r.top)/(r.height*.9));ap2.style.strokeDashoffset=1-t;plane.style.offsetDistance=(t*100).toFixed(1)+'%';plane.style.opacity=t>0&&t<1?1:(t>=1?1:0)}
+  let ch=0;chSecs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<vh*.45)ch=i});if(p<.6)ch=0;
+  rail.classList.toggle('on',p>.9);
+  if(ch!==curCh){curCh=ch;railA.forEach((a,i)=>a.classList.toggle('cur',i===ch));
+    if(p>.9&&innerWidth<=1000){const a=railA[ch];toast.querySelector('em').textContent=a.querySelector('em').textContent;toast.querySelector('b').textContent=a.querySelector('b').textContent;toast.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>toast.classList.remove('show'),1700)}}
+}
+story();
 </script>
 </body></html>
