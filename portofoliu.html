@@ -36,7 +36,7 @@ a{color:inherit}
 .nav a{font-size:14.5px;font-weight:500;color:var(--mid);text-decoration:none;padding:8px 12px;border-radius:10px;transition:color .2s,background .2s}
 .nav a:hover,.nav a.on{color:var(--ink);background:rgba(255,255,255,.06)}
 .btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 20px;border-radius:12px;font:600 14.5px var(--f);text-decoration:none;transition:transform .3s,background .25s;pointer-events:auto}
-.btn.p{background:var(--acc);color:#fff;box-shadow:0 12px 30px -12px rgba(51,70,232,.7)}.btn.p:hover{background:#3D53F5;transform:translateY(-1px)}
+.btn.p{background:var(--amber);color:#14110A;box-shadow:0 12px 30px -12px rgba(255,176,32,.6)}.btn.p:hover{filter:brightness(1.05);transform:translateY(-1px)}
 .btn.s{background:var(--paper);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
 
 #hint{position:absolute;left:50%;top:33px;transform:translateX(-50%);font:400 11.5px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding-bottom:6px;border-bottom:1px solid var(--line);text-decoration:none}
@@ -62,7 +62,7 @@ a{color:inherit}
 .row i{font-style:normal;font:400 12px 'IBM Plex Mono',monospace;letter-spacing:.06em;white-space:nowrap}
 .cta{margin-top:90px;display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap}
 .cta p{color:var(--mid);max-width:34em;margin-top:14px}
-.cta a{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 24px;border-radius:14px;background:var(--acc);color:#fff;text-decoration:none;font-weight:600;box-shadow:0 12px 30px -12px rgba(51,70,232,.7)}
+.cta a{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 24px;border-radius:14px;background:var(--amber);color:#14110A;text-decoration:none;font-weight:600;box-shadow:0 12px 30px -12px rgba(255,176,32,.6)}
 .note{margin-top:60px;font-size:12.5px;color:var(--mid);max-width:60em}
 @media (max-width:760px){
   .top{left:18px;right:18px;top:18px}.bot{left:18px;right:18px;bottom:18px;grid-template-columns:1fr auto}.bot .mid{display:none}
@@ -72,6 +72,19 @@ a{color:inherit}
   .after{padding:90px 18px 70px}
 }
 @media (prefers-reduced-motion:reduce){#track{height:auto}.stage{position:relative}}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:0;background:var(--paper);box-shadow:inset 0 0 0 1.5px var(--line);cursor:pointer;place-items:center;align-content:center;gap:5px;margin-left:8px;pointer-events:auto}
+.burger i{display:block;width:18px;height:2px;border-radius:2px;background:var(--ink);transition:transform .3s}
+body.mopen .burger i:first-child{transform:translateY(3.5px) rotate(45deg)}body.mopen .burger i:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+.mnav{position:fixed;inset:0;z-index:40;background:rgba(11,13,20,.97);padding:100px 22px 30px;display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
+body.mopen .mnav{opacity:1;visibility:visible;transition:opacity .3s}
+.mnav a{font-size:24px;font-weight:500;color:var(--ink);text-decoration:none;padding:18px 0;border-bottom:1px solid var(--line)}.mnav a.on{color:var(--amber)}
+.top{z-index:50}
+/* starfield like the main page */
+.stage::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;background-image:radial-gradient(1px 1px at 12% 18%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 72% 12%,#fff 50%,transparent 51%),radial-gradient(1.2px 1.2px at 35% 62%,#cfd6ff 50%,transparent 51%),radial-gradient(1px 1px at 88% 48%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 55% 82%,#fff 50%,transparent 51%),radial-gradient(1.3px 1.3px at 20% 88%,#ffd58a 50%,transparent 51%),radial-gradient(1px 1px at 92% 85%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 46% 30%,#fff 50%,transparent 51%);background-size:420px 420px}
+/* caption sits under the headline, never on top of it */
+#cap{top:calc(50% + clamp(40px,6.7vw,130px)*1.12 + 18px)!important;width:22em}
+@media (max-width:900px){.nav{display:none}.burger{display:grid}}
+@media (max-width:760px){.hl{font-size:14vw}#cap{top:calc(50% + 14vw*1.12 + 16px)!important;font-size:10.5px}}
 </style>
 </head>
 <body>
@@ -90,7 +103,7 @@ a{color:inherit}
     <header class="top">
       <a class="logo" href="/" aria-label="OHI Solutions"><svg viewBox="0 18 359 170" role="img"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#3346E8" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
       <nav class="nav"><a href="/creare-site-web">Site-uri</a><a class="on" href="/portofoliu">Portofoliu</a><a href="/preturi">Prețuri</a><a href="/contact">Contact</a></nav>
-      <nav class="acts"><a class="btn s" href="tel:+40740267706">Sună</a><a class="btn p" href="/#demo">Cere demo gratuit</a></nav>
+      <nav class="acts"><a class="btn s" href="tel:+40740267706">Sună</a><a class="btn p" href="/#demo">Cere demo gratuit</a><button class="burger" id="burger" type="button" aria-label="Meniu" aria-expanded="false"><i></i><i></i></button></nav>
     </header>
     <footer class="bot">
       <p>Site-uri pentru firme din Mureș, gândite să aducă cereri, nu doar să arate bine.</p>
@@ -100,6 +113,9 @@ a{color:inherit}
     <div id="gridhint">ATINGE UN PROIECT CA SĂ-L DESCHIZI</div>
     <div id="name"></div>
   </main>
+</div>
+<nav class="mnav" id="mnav" aria-label="Meniu"><a href="/creare-site-web">Site-uri</a><a href="/automatizari">Automatizări</a><a href="/asistent-ai">Asistent AI</a><a href="/preturi">Prețuri</a><a href="/portofoliu" class="on">Portofoliu</a><a href="/contact">Despre și contact</a><a href="/blog">Blog</a><a href="tel:+40740267706">Sună: 0740 267 706</a></nav>
+<div hidden>
 </div>
 
 <section class="after">
@@ -121,6 +137,7 @@ a{color:inherit}
 
 <script type="module">
 import {ribbon} from '/ribbon.js';
+const bg=document.getElementById('burger');bg.addEventListener('click',()=>{const o=document.body.classList.toggle('mopen');bg.setAttribute('aria-expanded',o)});
 const $ = id => document.getElementById(id);
 const clamp = (x,a=0,b=1)=>Math.min(b,Math.max(a,x)), mix=(a,b,t)=>a+(b-a)*t, ease=t=>t*t*(3-2*t), out=t=>1-(1-t)**3, span=(p,a,b)=>clamp((p-a)/(b-a));
 const M='/portofoliu-media/';
@@ -130,7 +147,7 @@ const W=[['Big Big Boon · client','bbb','https://www.bigbigboon.ro'],['Orobianc
 ribbon({track:$('track'),canvas:$('gl'),nameEl:$('name'),base:[.08,.09,.13],
   cards:W.map(([title,f,href])=>({title,href,kind:'video',src:M+f+'.mp4',poster:M+f+'.webp'})),
   onP(pp){
-    const rise=1-out(span(pp,0,.12)), run=mix(-50,76,span(pp,0,.58));
+    const rise=(1-out(span(pp,0,.12)))*.5, run=mix(-50,76,span(pp,0,.58));
     const hlA=1-span(pp,.6,.66);$('l1').style.opacity=$('l2').style.opacity=hlA;
     $('l1').style.transform=`translate3d(${run}vw,${rise*34}vh,0)`;
     $('l2').style.transform=`translate3d(${-run}vw,${rise*34}vh,0)`;
