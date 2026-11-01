@@ -1,161 +1,83 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ro">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Portofoliu · OHI Solutions</title>
+<title>Portofoliu: site-uri create de OHI Solutions | Târgu Mureș</title>
 <meta name="description" content="Site-uri create de OHI Solutions în Târgu Mureș: proiecte pentru clienți și concepte de design, de la construcții modulare la restaurante și florării.">
-<meta name="robots" content="noindex,follow">
 <link rel="canonical" href="https://ohis-gamma.vercel.app/portofoliu">
-<link rel="icon" href="/favicon.ico">
+<meta name="robots" content="noindex, follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:site_name" content="OHI Solutions">
+<meta property="og:title" content="Portofoliu | OHI Solutions">
+<meta property="og:description" content="Site-uri create de OHI Solutions în Târgu Mureș: proiecte pentru clienți și concepte de design, de la construcții modulare la restaurante și florării.">
+<meta property="og:url" content="https://ohis-gamma.vercel.app/portofoliu">
+<meta property="og:image" content="https://ohis-gamma.vercel.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0D14">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/icon-512.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0B0D14;--paper:#151A2B;--ink:#F2F3F7;--mid:#9AA0B8;--line:rgba(255,255,255,.10);--acc:#4C63FF;--acc2:#7B8CFF;--amber:#FFB020;--f:"Schibsted Grotesk",system-ui,sans-serif}
-*{box-sizing:border-box;margin:0;padding:0}
-html{background:var(--bg)}
-body{font-family:var(--f);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit}
-#track{height:900vh}
-.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--bg)}
-.hl{position:absolute;left:0;right:0;font-weight:700;font-size:clamp(40px,6.7vw,130px);line-height:1;letter-spacing:-.05em;white-space:nowrap;text-align:center;will-change:transform}
-#l1{top:calc(50% - .98em)}#l2{top:calc(50% + .03em)}
-#l1 span,#l2 span{display:inline-block}#l1 span{margin-right:15vw}#l2 span{margin-left:15vw;color:var(--acc2)}
-#cap{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:16em;text-align:center;font-size:clamp(9px,.74vw,13px);font-weight:500;line-height:1.3;letter-spacing:.03em;text-transform:uppercase}
-#gl{position:absolute;inset:0;width:100%;height:100%;display:block}
-.top{position:absolute;left:32px;right:32px;top:26px;display:flex;align-items:center;pointer-events:none}
-.acts{margin-left:auto;display:flex;align-items:center;gap:7px;pointer-events:auto}
-#pager{display:flex;margin:-26px 0 0 28px;pointer-events:auto}
-#pager span{display:grid;place-items:center;width:44px;height:50px;border:1px solid var(--line);border-top:0;margin-left:-1px;font:400 11px 'IBM Plex Mono',monospace;color:var(--mid)}
-#glow{position:absolute;left:0;right:0;top:0;height:42%;background:radial-gradient(70% 100% at 50% 0%,rgba(76,99,255,.22),rgba(76,99,255,0))}
-#cross{position:absolute;left:32px;right:32px;top:37.5%;height:1px;background:var(--line)}
-#cross i{color:var(--amber)!important;position:absolute;left:50%;top:-.62em;margin-left:-.3em;font:400 13px 'IBM Plex Mono',monospace;color:var(--mid);background:var(--bg);padding:0 .3em;line-height:1.2;font-style:normal}
-.logo{display:flex;align-items:center;text-decoration:none;pointer-events:auto;color:var(--ink)}
-.logo svg{height:34px;width:auto}
-.nav{display:flex;gap:4px;margin-left:28px;pointer-events:auto}
-.nav a{font-size:14.5px;font-weight:500;color:var(--mid);text-decoration:none;padding:8px 12px;border-radius:10px;transition:color .2s,background .2s}
-.nav a:hover,.nav a.on{color:var(--ink);background:rgba(255,255,255,.06)}
-.btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 20px;border-radius:12px;font:600 14.5px var(--f);text-decoration:none;transition:transform .3s,background .25s;pointer-events:auto}
-.btn.p{background:var(--amber);color:#14110A;box-shadow:0 12px 30px -12px rgba(255,176,32,.6)}.btn.p:hover{filter:brightness(1.05);transform:translateY(-1px)}
-.btn.s{background:var(--paper);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+<link rel="stylesheet" href="/pages.css">
+<link rel="stylesheet" href="/ribbon.css">
+<script type="importmap">{"imports":{"three":"/vendor/three/three.module.js","three/addons/":"/vendor/three/addons/"}}</script>
 
-#hint{position:absolute;left:50%;top:33px;transform:translateX(-50%);font:400 11.5px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding-bottom:6px;border-bottom:1px solid var(--line);text-decoration:none}
-.bot{position:absolute;left:32px;right:32px;bottom:26px;display:grid;grid-template-columns:1fr auto 1fr;align-items:end;font-size:12.5px;line-height:1.35;pointer-events:none}
-.bot p{max-width:21em}
-.bot .mid{font:400 11.5px 'IBM Plex Mono',monospace;letter-spacing:.06em}
-.bot .mid s{text-decoration:none;color:var(--mid);margin:0 .9em}
-.bot .r{justify-self:end;display:flex;gap:12px;align-items:center;font:400 11.5px 'IBM Plex Mono',monospace;letter-spacing:.06em}
-.bot .r:after{content:"";width:22px;height:1px;background:var(--amber)}
-#rule{position:absolute;left:3.5vw;right:3.5vw;top:50%;height:1px;background:var(--line);transform-origin:left;transform:scaleX(0)}
-#name{position:absolute;left:0;top:0;padding:6px 11px;background:var(--acc);color:#fff;border-radius:99px;font-size:11.5px;font-weight:600;letter-spacing:.04em;pointer-events:none;opacity:0;transition:opacity .16s;white-space:nowrap}
-#gridhint{position:absolute;left:50%;bottom:72px;transform:translateX(-50%);font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:var(--mid);opacity:0;transition:opacity .4s;white-space:nowrap}
-/* list + CTA after the film */
-.after{max-width:1180px;margin:0 auto;padding:120px 32px 90px}
-.after h2{font-weight:400;font-size:clamp(34px,4.6vw,72px);letter-spacing:-.045em;line-height:1}
-.after h2{font-weight:700}.after h2 em{font-style:normal;color:var(--acc2)}
-.list{margin-top:56px;border-top:1px solid var(--line)}
-.row{display:grid;grid-template-columns:110px 1fr auto;gap:24px;align-items:center;padding:24px 0;border-bottom:1px solid var(--line);text-decoration:none;transition:padding .3s}
-.row:hover{padding-left:12px}.row:hover i{color:var(--acc2)}.row small{color:var(--amber)!important}
-.row small{font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:var(--mid);text-transform:uppercase}
-.row b{font-size:clamp(20px,2vw,28px);font-weight:500;letter-spacing:-.02em}
-.row span{display:block;color:var(--mid);font-size:14px;margin-top:4px}
-.row i{font-style:normal;font:400 12px 'IBM Plex Mono',monospace;letter-spacing:.06em;white-space:nowrap}
-.cta{margin-top:90px;display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap}
-.cta p{color:var(--mid);max-width:34em;margin-top:14px}
-.cta a{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 24px;border-radius:14px;background:var(--amber);color:#14110A;text-decoration:none;font-weight:600;box-shadow:0 12px 30px -12px rgba(255,176,32,.6)}
-.note{margin-top:60px;font-size:12.5px;color:var(--mid);max-width:60em}
-@media (max-width:760px){
-  .top{left:18px;right:18px;top:18px}.bot{left:18px;right:18px;bottom:18px;grid-template-columns:1fr auto}.bot .mid{display:none}
-  #hint,#pager{display:none}.bot p{max-width:17em;font-size:11px}
-  .acts .btn.s,.nav{display:none}.logo svg{height:28px}.btn{height:40px;padding:0 14px;font-size:13.5px}
-  .row{grid-template-columns:1fr auto}.row small{grid-column:1/-1}
-  .after{padding:90px 18px 70px}
-}
-@media (prefers-reduced-motion:reduce){#track{height:auto}.stage{position:relative}}
-.burger{display:none;width:44px;height:44px;border-radius:12px;border:0;background:var(--paper);box-shadow:inset 0 0 0 1.5px var(--line);cursor:pointer;place-items:center;align-content:center;gap:5px;margin-left:8px;pointer-events:auto}
-.burger i{display:block;width:18px;height:2px;border-radius:2px;background:var(--ink);transition:transform .3s}
-body.mopen .burger i:first-child{transform:translateY(3.5px) rotate(45deg)}body.mopen .burger i:last-child{transform:translateY(-3.5px) rotate(-45deg)}
-.mnav{position:fixed;inset:0;z-index:40;background:rgba(11,13,20,.97);padding:100px 22px 30px;display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
-body.mopen .mnav{opacity:1;visibility:visible;transition:opacity .3s}
-.mnav a{font-size:24px;font-weight:500;color:var(--ink);text-decoration:none;padding:18px 0;border-bottom:1px solid var(--line)}.mnav a.on{color:var(--amber)}
-.top{z-index:50}
-/* starfield like the main page */
-.stage::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;background-image:radial-gradient(1px 1px at 12% 18%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 72% 12%,#fff 50%,transparent 51%),radial-gradient(1.2px 1.2px at 35% 62%,#cfd6ff 50%,transparent 51%),radial-gradient(1px 1px at 88% 48%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 55% 82%,#fff 50%,transparent 51%),radial-gradient(1.3px 1.3px at 20% 88%,#ffd58a 50%,transparent 51%),radial-gradient(1px 1px at 92% 85%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 46% 30%,#fff 50%,transparent 51%);background-size:420px 420px}
-/* caption sits under the headline, never on top of it */
-#cap{top:calc(50% + clamp(40px,6.7vw,130px)*1.12 + 18px)!important;width:22em}
-@media (max-width:900px){.nav{display:none}.burger{display:grid}}
-@media (max-width:760px){.hl{font-size:14vw}#cap{top:calc(50% + 14vw*1.12 + 16px)!important;font-size:10.5px}}
-</style>
 </head>
-<body>
-<div id="track">
-  <main class="stage" id="stage">
-    <h1 aria-label="Site-uri care vând">
-      <div class="hl" id="l1" aria-hidden="true"><span>SITE-URI</span></div>
-      <div class="hl" id="l2" aria-hidden="true"><span>CARE VÂND</span></div>
-    </h1>
-    <div id="cap">Proiecte și concepte create de OHI Solutions, în Târgu Mureș.</div>
-    <div id="glow"></div>
-    <div id="cross"><i>+</i></div>
-    <div id="rule"></div>
-    <canvas id="gl" aria-label="Previzualizări animate ale site-urilor create de OHI Solutions"></canvas>
-    
-    <header class="top">
-      <a class="logo" href="/" aria-label="OHI Solutions"><svg viewBox="0 18 359 170" role="img"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#3346E8" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
-      <nav class="nav"><a href="/creare-site-web">Site-uri</a><a class="on" href="/portofoliu">Portofoliu</a><a href="/preturi">Prețuri</a><a href="/contact">Contact</a></nav>
-      <nav class="acts"><a class="btn s" href="tel:+40740267706">Sună</a><a class="btn p" href="/#demo">Cere demo gratuit</a><button class="burger" id="burger" type="button" aria-label="Meniu" aria-expanded="false"><i></i><i></i></button></nav>
-    </header>
-    <footer class="bot">
-      <p>Site-uri pentru firme din Mureș, gândite să aducă cereri, nu doar să arate bine.</p>
-      <div class="mid">WEB<s>/</s>3D<s>/</s>ANIMAȚIE<s>/</s>AUTOMATIZĂRI</div>
-      <div class="r">DERULEAZĂ</div>
-    </footer>
-    <div id="gridhint">ATINGE UN PROIECT CA SĂ-L DESCHIZI</div>
-    <div id="name"></div>
-  </main>
-</div>
-<nav class="mnav" id="mnav" aria-label="Meniu"><a href="/creare-site-web">Site-uri</a><a href="/automatizari">Automatizări</a><a href="/asistent-ai">Asistent AI</a><a href="/preturi">Prețuri</a><a href="/portofoliu" class="on">Portofoliu</a><a href="/contact">Despre și contact</a><a href="/blog">Blog</a><a href="tel:+40740267706">Sună: 0740 267 706</a></nav>
-<div hidden>
-</div>
-
-<section class="after">
-  <h2>Fiecare site, <em>construit pentru o afacere reală.</em></h2>
-  <div class="list">
-    <a class="row" href="https://www.bigbigboon.ro" target="_blank" rel="noopener"><small>Client</small><div><b>Big Big Boon</b><span>Construcții modulare · configurator 3D · blog SEO</span></div><i>bigbigboon.ro ↗</i></a>
-    <a class="row" href="/demo/orobianco"><small>Concept</small><div><b>Orobianco</b><span>Restaurant italian · meniu · rezervări pe WhatsApp</span></div><i>Vezi ↗</i></a>
-    <a class="row" href="/demo/amaryllis"><small>Concept</small><div><b>Florăria Amaryllis</b><span>Florărie · film la derulare · compune-ți buchetul</span></div><i>Vezi ↗</i></a>
-    <a class="row" href="/demo/ferestre-partner"><small>Concept</small><div><b>Ferestre Partner</b><span>Ferestre și uși · configurator · poveste la derulare</span></div><i>Vezi ↗</i></a>
-    <a class="row" href="/demo/vale-aurie"><small>Concept</small><div><b>Vale Aurie</b><span>Cramă (brand fictiv) · sticlă 3D · cadouri corporate</span></div><i>Vezi ↗</i></a>
-    <a class="row" href="/demo/pensiunea-david"><small>Concept</small><div><b>Pensiunea David</b><span>Pensiune · rezervare rapidă · ilustrații</span></div><i>Vezi ↗</i></a>
-  </div>
-  <div class="cta">
-    <div><h2>Următorul poate fi <em>al tău.</em></h2><p>Spune-ne ce face afacerea ta. Îți arătăm cum ar putea arăta site-ul, înainte să plătești ceva.</p></div>
-    <a href="/#demo">Cere demo gratuit →</a>
-  </div>
-  <p class="note">„Concept” înseamnă o propunere de design realizată de OHI Solutions, nu un site comandat sau aprobat de firma respectivă. Numele și fotografiile aparțin proprietarilor lor.</p>
+<body class="intro inner">
+<canvas id="space" aria-hidden="true"></canvas>
+<header id="hd"><div class="wrap hd">
+  <a class="logo" href="/" aria-label="OHI Solutions, pagina principală"><svg viewBox="0 18 359 170" role="img"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#4C63FF" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
+  <nav id="nav"><a href="/creare-site-web">Site-uri</a><a href="/automatizari">Automatizări</a><a href="/asistent-ai">Asistent AI</a><a href="/preturi" aria-current="page">Prețuri</a><a href="/portofoliu" aria-current="page">Portofoliu</a><a href="/contact">Despre și contact</a><a class="mlink" href="/blog">Blog</a><a class="mlink" href="tel:+40740267706">Sună: 0740 267 706</a></nav>
+  <a class="btn p hcta" href="/contact#demo" data-mag=".25"><span class="lb">Cere demo gratuit</span></a>
+  <button class="burger" id="burger" type="button" aria-label="Meniu" aria-expanded="false" aria-controls="nav"><i></i><i></i></button>
+</div></header>
+<main id="top">
+<div class="ph"><div class="wrap">
+  <nav class="crumb" aria-label="Navigare"><a href="/">Acasă</a><span>/</span><span>Portofoliu</span></nav>
+  <h1><span class="ln"><span>Site-uri create</span></span><span class="ln"><span>de noi, pentru</span></span><span class="ln"><span>afaceri reale.</span></span></h1>
+  <p class="lede fade d1">Un client real și concepte de design pentru firme din Mureș. Derulează ca să le vezi în mișcare.</p>
+  <div class="cta fade d2"><a class="btn p" href="/#demo" data-mag=".35"><span class="lb">Cere demo gratuit</span></a><a class="btn s" href="tel:+40740267706" data-mag=".25"><span class="lb">Sună la 0740 267 706</span></a></div>
+</div></div>
+<section class="rule rbsec" id="lucrari" data-speed="1.15">
+  <div class="rtrack"><div class="rstage">
+    <canvas aria-label="Previzualizări animate ale site-urilor create de OHI Solutions"></canvas>
+    <div class="rhead"><div class="wrap"><h2>Fiecare site, făcut pentru o afacere anume.</h2><p class="sub">Videoclipurile sunt site-urile reale, derulate. Atinge unul ca să-l deschizi.</p></div></div>
+    <p class="rhint">Atinge un site ca să-l <b>deschizi</b></p>
+    <div class="rname"></div>
+    <template class="rsrc"><a href="https://www.bigbigboon.ro" data-title="Big Big Boon · client" data-video="/portofoliu-media/bbb.mp4" data-poster="/portofoliu-media/bbb.webp"></a><a href="/demo/orobianco" data-title="Orobianco · concept" data-video="/portofoliu-media/orobianco.mp4" data-poster="/portofoliu-media/orobianco.webp"></a><a href="/demo/amaryllis" data-title="Florăria Amaryllis · concept" data-video="/portofoliu-media/amaryllis.mp4" data-poster="/portofoliu-media/amaryllis.webp"></a><a href="/demo/ferestre-partner" data-title="Ferestre Partner · concept" data-video="/portofoliu-media/ferestre.mp4" data-poster="/portofoliu-media/ferestre.webp"></a><a href="/demo/vale-aurie" data-title="Vale Aurie · concept" data-video="/portofoliu-media/valeaurie.mp4" data-poster="/portofoliu-media/valeaurie.webp"></a><a href="/demo/pensiunea-david" data-title="Pensiunea David · concept" data-video="/portofoliu-media/david.mp4" data-poster="/portofoliu-media/david.webp"></a><a href="https://www.bigbigboon.ro" data-title="Big Big Boon · configurator 3D" data-video="/portofoliu-media/bbb-build.mp4" data-poster="/portofoliu-media/bbb-build.webp"></a><a href="/demo/amaryllis" data-title="Amaryllis · atelier" data-video="/portofoliu-media/amaryllis-atelier.mp4" data-poster="/portofoliu-media/amaryllis-atelier.webp"></a></template>
+  </div></div>
+  <div class="wrap rfoot"></div>
 </section>
-
-<script type="module">
-import {ribbon} from '/ribbon.js';
-const bg=document.getElementById('burger');bg.addEventListener('click',()=>{const o=document.body.classList.toggle('mopen');bg.setAttribute('aria-expanded',o)});
-const $ = id => document.getElementById(id);
-const clamp = (x,a=0,b=1)=>Math.min(b,Math.max(a,x)), mix=(a,b,t)=>a+(b-a)*t, ease=t=>t*t*(3-2*t), out=t=>1-(1-t)**3, span=(p,a,b)=>clamp((p-a)/(b-a));
-const M='/portofoliu-media/';
-const W=[['Big Big Boon · client','bbb','https://www.bigbigboon.ro'],['Orobianco · concept','orobianco','/demo/orobianco'],['Florăria Amaryllis · concept','amaryllis','/demo/amaryllis'],
- ['Ferestre Partner · concept','ferestre','/demo/ferestre-partner'],['Vale Aurie · concept','valeaurie','/demo/vale-aurie'],['Pensiunea David · concept','david','/demo/pensiunea-david'],
- ['Big Big Boon · configurator 3D','bbb-build','https://www.bigbigboon.ro'],['Amaryllis · atelier','amaryllis-atelier','/demo/amaryllis']];
-ribbon({track:$('track'),canvas:$('gl'),nameEl:$('name'),base:[.08,.09,.13],
-  cards:W.map(([title,f,href])=>({title,href,kind:'video',src:M+f+'.mp4',poster:M+f+'.webp'})),
-  onP(pp){
-    const rise=(1-out(span(pp,0,.12)))*.5, run=mix(-50,76,span(pp,0,.58));
-    const hlA=1-span(pp,.6,.66);$('l1').style.opacity=$('l2').style.opacity=hlA;
-    $('l1').style.transform=`translate3d(${run}vw,${rise*34}vh,0)`;
-    $('l2').style.transform=`translate3d(${-run}vw,${rise*34}vh,0)`;
-    $('cap').style.opacity=1-span(pp,.52,.57);$('cap').style.transform=`translate(-50%,calc(-50% + ${rise*34}vh))`;
-    const intro=1-span(pp,0,.05);for(const id of ['cross','glow'])$(id).style.opacity=intro;
-    $('rule').style.transform=`scaleX(${ease(span(pp,.72,.86))})`;
-    $('gridhint').style.opacity=span(pp,.88,.95);
-  }});
-</script>
+<section class="rule"><div class="wrap">
+  <h2 data-rv>Toate proiectele.</h2>
+  <div class="pflist"><a class="pfrow" href="https://www.bigbigboon.ro" data-rv><small>Client</small><span><b>Big Big Boon</b><i>Construcții modulare · configurator 3D · blog SEO</i></span><em>bigbigboon.ro →</em></a><a class="pfrow" href="/demo/orobianco" data-rv><small>Concept</small><span><b>Orobianco</b><i>Restaurant italian · meniu · rezervări pe WhatsApp</i></span><em>Vezi site-ul →</em></a><a class="pfrow" href="/demo/amaryllis" data-rv><small>Concept</small><span><b>Florăria Amaryllis</b><i>Florărie · film la derulare · compune-ți buchetul</i></span><em>Vezi site-ul →</em></a><a class="pfrow" href="/demo/ferestre-partner" data-rv><small>Concept</small><span><b>Ferestre Partner</b><i>Ferestre și uși · configurator · poveste la derulare</i></span><em>Vezi site-ul →</em></a><a class="pfrow" href="/demo/vale-aurie" data-rv><small>Concept</small><span><b>Vale Aurie</b><i>Cramă (brand fictiv) · sticlă 3D · cadouri corporate</i></span><em>Vezi site-ul →</em></a><a class="pfrow" href="/demo/pensiunea-david" data-rv><small>Concept</small><span><b>Pensiunea David</b><i>Pensiune · rezervare rapidă · ilustrații</i></span><em>Vezi site-ul →</em></a></div>
+  <p class="fic" data-rv style="margin-top:26px">„Concept” înseamnă o propunere de design realizată de OHI Solutions, nu un site comandat sau aprobat de firma respectivă. Numele și fotografiile aparțin proprietarilor lor.</p>
+</div></section>
+<section class="rule"><div class="wrap">
+  <h2 data-rv>Următorul poate fi al tău.</h2>
+  <p class="sub" data-rv="2">Îți facem întâi site-ul, cu numele și serviciile tale. Plătești doar dacă îți place.</p>
+  <a class="btn p" href="/#demo" style="margin-top:28px" data-mag=".3" data-rv="3"><span class="lb">Cere demo gratuit</span></a>
+</div></section>
+<style>
+.pflist{margin-top:40px;display:grid;gap:12px}
+.pfrow{display:grid;grid-template-columns:96px 1fr auto;gap:20px;align-items:center;padding:22px 24px;border-radius:18px;background:var(--paper);box-shadow:inset 0 0 0 1.5px var(--line);text-decoration:none;color:var(--ink);transition:transform .4s,box-shadow .3s}
+.pfrow:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 1.5px rgba(255,176,32,.5)}
+.pfrow small{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#FFB020}
+.pfrow b{display:block;font-size:clamp(19px,1.8vw,24px);font-weight:700;letter-spacing:-.02em}
+.pfrow i{display:block;font-style:normal;color:var(--slate);font-size:15px;margin-top:3px}
+.pfrow em{font-style:normal;font-weight:600;font-size:14.5px;white-space:nowrap}
+@media(max-width:700px){.pfrow{grid-template-columns:1fr;gap:8px}.pfrow em{color:#FFB020}}
+</style>
+</main>
+<footer><div class="wrap"><span>© 2026 OHI Solutions, Târgu Mureș</span><span><a href="/contact">Despre și contact</a>&nbsp;&nbsp;<a href="/preturi">Prețuri</a>&nbsp;&nbsp;<a href="/automatizari">Automatizări</a>&nbsp;&nbsp;<a href="/blog">Blog</a>&nbsp;&nbsp;<a href="/confidentialitate">Confidențialitate</a>&nbsp;&nbsp;<a href="/termeni">Termeni</a></span></div></footer>
+<script src="/motion.js"></script>
+<script type="module" src="/space.js"></script>
+<script src="/site.js"></script>
+<script type="module" src="/ribbon-section.js"></script>
+<script src="/assistant.js" defer></script>
 </body>
 </html>

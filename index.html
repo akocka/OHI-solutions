@@ -26,6 +26,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/site.css">
+<link rel="stylesheet" href="/ribbon.css">
 <link rel="stylesheet" href="/demo.css">
 <script type="importmap">{"imports":{"three":"/vendor/three/three.module.js","three/addons/":"/vendor/three/addons/"}}</script>
 <style>
@@ -104,16 +105,16 @@
   <div class="view" data-prog><div class="browser"><div class="bar"><i></i><i></i><i></i><span>bigbigboon.ro</span></div><img src="/clienti/bbb-d.webp" alt="Pagina principală Big Big Boon pe desktop" width="1200" height="750" loading="lazy"></div></div>
 </div></section>
 
-<section class="rule" id="exemple"><div class="wrap">
-  <h2 data-rv>Așa arată un site făcut de noi.</h2>
-  <p class="sub" data-rv="2">Construim fiecare site de la zero, pentru domeniul tău. Atinge un telefon ca să deschizi exemplul.</p>
-  <div class="exs">
-    <a class="ex" href="/exemple/frizerie" data-rv data-tilt="7"><span class="exph"><span class="exsc" style="background-image:url(/exemple/img/frizerie.webp)"></span></span><b>Frizerie</b><span>Alegi frizerul și ora, prețuri clare, echipa și programul.</span></a>
-    <a class="ex" href="/exemple/cofetarie" data-rv="2" data-tilt="7"><span class="exph"><span class="exsc" style="background-image:url(/exemple/img/cofetarie.webp);animation-delay:-6s"></span></span><b>Cofetărie</b><span>Produse pe categorii, comandă de tort pas cu pas.</span></a>
-    <a class="ex" href="/exemple/service-auto" data-rv="3" data-tilt="7"><span class="exph"><span class="exsc" style="background-image:url(/exemple/img/service-auto.webp);animation-delay:-12s"></span></span><b>Service auto</b><span>Martori de bord explicați și cerere de programare.</span></a>
-  </div>
-  <p class="fic" data-rv>Exemplele sunt afaceri fictive, create de noi ca să vezi calitatea. Vezi și paginile pentru <a href="/site-uri-saloane">saloane</a>, <a href="/site-uri-restaurante">restaurante</a> și <a href="/site-uri-service-auto">service auto</a>.</p>
-</div></section>
+<section class="rule rbsec" id="exemple" data-speed="1.2">
+  <div class="rtrack"><div class="rstage">
+    <canvas aria-label="Previzualizări animate ale site-urilor create de OHI Solutions"></canvas>
+    <div class="rhead"><div class="wrap"><h2>Așa arată un site făcut de noi.</h2><p class="sub">Site-uri reale și concepte, construite de la zero în Târgu Mureș. Derulează și privește-le cum trec.</p></div></div>
+    <p class="rhint">Atinge un site ca să-l <b>deschizi</b></p>
+    <div class="rname"></div>
+    <template class="rsrc"><a href="https://www.bigbigboon.ro" data-title="Big Big Boon · client" data-video="/portofoliu-media/bbb.mp4" data-poster="/portofoliu-media/bbb.webp"></a><a href="/demo/orobianco" data-title="Orobianco · concept" data-video="/portofoliu-media/orobianco.mp4" data-poster="/portofoliu-media/orobianco.webp"></a><a href="/demo/amaryllis" data-title="Florăria Amaryllis · concept" data-video="/portofoliu-media/amaryllis.mp4" data-poster="/portofoliu-media/amaryllis.webp"></a><a href="/demo/ferestre-partner" data-title="Ferestre Partner · concept" data-video="/portofoliu-media/ferestre.mp4" data-poster="/portofoliu-media/ferestre.webp"></a><a href="/demo/vale-aurie" data-title="Vale Aurie · concept" data-video="/portofoliu-media/valeaurie.mp4" data-poster="/portofoliu-media/valeaurie.webp"></a><a href="/demo/pensiunea-david" data-title="Pensiunea David · concept" data-video="/portofoliu-media/david.mp4" data-poster="/portofoliu-media/david.webp"></a><a href="https://www.bigbigboon.ro" data-title="Big Big Boon · configurator 3D" data-video="/portofoliu-media/bbb-build.mp4" data-poster="/portofoliu-media/bbb-build.webp"></a><a href="/demo/amaryllis" data-title="Amaryllis · atelier" data-video="/portofoliu-media/amaryllis-atelier.mp4" data-poster="/portofoliu-media/amaryllis-atelier.webp"></a></template>
+  </div></div>
+  <div class="wrap rfoot"><a class="btn s" href="/portofoliu"><span class="lb">Vezi tot portofoliul</span></a><p class="fic" style="margin-top:22px">Vezi și exemplele pentru <a href="/exemple/frizerie">frizerie</a>, <a href="/exemple/cofetarie">cofetărie</a> și <a href="/exemple/service-auto">service auto</a>, sau paginile pentru <a href="/site-uri-saloane">saloane</a>, <a href="/site-uri-restaurante">restaurante</a> și <a href="/site-uri-service-auto">service auto</a>.</p></div>
+</section>
 
 <section class="rule" id="fondatori"><div class="wrap found">
   <div>
@@ -181,6 +182,7 @@
 <script src="/motion.js"></script>
 <script type="module" src="/space.js"></script>
 <script src="/site.js"></script>
+<script type="module" src="/ribbon-section.js"></script>
 <script>
 (function(){
   const {reduce,fine,clamp}=window.OHI;

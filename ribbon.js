@@ -9,7 +9,7 @@ const out = t => 1 - (1 - t) ** 3;
 const span = (p, a, b) => clamp((p - a) / (b - a));
 
 export function ribbon(cfg) {
-  const {track, canvas, cards: list, onP = () => {}, nameEl = null, base = [.075, .075, .075], edgeTint = 1, gridZ = 8} = cfg;
+  const {track, canvas, cards: list, onP = () => {}, nameEl = null, base = [.075, .075, .075], edgeTint = 1, gridZ = 8, speed = 1} = cfg;
   const stage = canvas.parentElement;
   const renderer = new THREE.WebGLRenderer({canvas, antialias: true, alpha: true, powerPreference: 'high-performance'});
   renderer.setClearColor(0, 0);
@@ -132,13 +132,14 @@ export function ribbon(cfg) {
   }
   const RIB_A = .14, RIB_B = .63;
   function render() {
-    onP(p);
-    const pr = span(p, RIB_A, RIB_B), head = mix(0, PATH_L + cards.length * STEP, pr);
+    const P = clamp(p * speed);
+    onP(P);
+    const pr = span(P, RIB_A, RIB_B), head = mix(0, PATH_L + cards.length * STEP, pr);
     for (const c of cards) {
       const s = head - c.i * STEP, end = PATH_L - CARD_W;
       if (s < end) { c.mesh.visible = s > CARD_W; c.rect = null; if (c.mesh.visible) poseRibbon(c, head); }
       else if (c.i < cols * rows) {
-        const st = mix(RIB_A, RIB_B, (end + c.i * STEP) / (PATH_L + cards.length * STEP)), q = out(span(p, st, st + .13));
+        const st = mix(RIB_A, RIB_B, (end + c.i * STEP) / (PATH_L + cards.length * STEP)), q = out(span(P, st, st + .13));
         c.mesh.visible = q > .001; if (c.mesh.visible) poseGrid(c, q);
       } else { c.mesh.visible = false; c.rect = null; }
     }
@@ -147,7 +148,7 @@ export function ribbon(cfg) {
 
   /* ---------- hover + click on the grid ---------- */
   const hitTest = e => {
-    if (p < .86) return null; const r = stage.getBoundingClientRect();
+    if (clamp(p * speed) < .86) return null; const r = stage.getBoundingClientRect();
     const nx = ((e.clientX - r.left) / W - .5), ny = (.5 - (e.clientY - r.top) / H); let hit = null;
     for (const c of cards) { const g = c.rect; if (!g) continue; const x = nx * g.vw, y = ny * g.vh; if (Math.abs(x - g.x) < g.w / 2 && Math.abs(y - g.y) < g.h / 2) hit = c; }
     return hit;
