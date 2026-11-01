@@ -376,6 +376,14 @@ h2 em,h1 em{background-image:linear-gradient(100deg,#a8324d,#7a1d33 60%,#b8925a)
 .wart:hover .wimg{transform:scale(1.04)}
 .wart{aspect-ratio:900/1118!important}
 .wed h2 em{background-image:linear-gradient(100deg,#f3c9d2,#e6c99a)!important}
+
+/* ===================== SCROLL FILM (Kling clip as frame sequence) ===================== */
+.seq{position:absolute;inset:0;width:100%;height:100%;z-index:1;display:block;animation:hpIn 1.2s .3s var(--reveal) both}
+.seqshade{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(251,248,244,.86) 0%,rgba(251,248,244,.35) 26%,transparent 45%,transparent 80%,rgba(251,248,244,.55) 100%)}
+.hphoto{display:none!important}
+.stage{background:#f3eee8}
+.corner{text-shadow:0 1px 12px rgba(255,255,255,.8)}
+@media (max-width:1200px),(max-aspect-ratio:1/1){.seqshade{background:linear-gradient(180deg,rgba(251,248,244,.9) 0%,rgba(251,248,244,.4) 22%,transparent 38%,transparent 78%,rgba(251,248,244,.75) 100%)}}
 </style>
 </head>
 <body>
@@ -395,6 +403,7 @@ h2 em,h1 em{background-image:linear-gradient(100deg,#a8324d,#7a1d33 60%,#b8925a)
 <!-- HERO -->
 <div class="zh" id="zh">
 <section class="stage" id="top">
+  <canvas class="seq" id="seq" aria-hidden="true"></canvas><div class="seqshade" aria-hidden="true"></div>
   <div class="zfill" id="zfill" aria-hidden="true"></div>
   <p class="zcap" id="zcap" aria-hidden="true"><span>I</span><b data-t="z1">Totul începe cu o floare.</b></p>
   <div class="grain"></div>
@@ -701,6 +710,15 @@ bt.onclick=()=>menu(!document.body.classList.contains('open'));$('#isb').onclick
 try{const s=localStorage.getItem('amLang');if(s&&s!=='ro')setLang(s)}catch(e){}
 drawBQ();
 
+/* ---------- SCROLL FILM: Kling clip as a frame sequence, scrubbed by scroll ---------- */
+const SEQ_N=61,SEQ_URL=i=>'/demo/amaryllis/frames/f'+String(i+1).padStart(3,'0')+'.webp',seqC=document.getElementById('seq'),seqX=seqC.getContext('2d'),seqI=[];let seqCur=-1,seqWant=0;
+function seqSize(){const d=Math.min(devicePixelRatio||1,2);seqC.width=Math.round(seqC.clientWidth*d);seqC.height=Math.round(seqC.clientHeight*d);seqCur=-1;seqPaint(seqWant)}
+function seqPaint(i){let k=i;while(k>=0&&!(seqI[k]&&seqI[k].complete&&seqI[k].naturalWidth))k--;if(k<0)return;if(k===seqCur)return;seqCur=k;const im=seqI[k],W=seqC.width,H=seqC.height,s=Math.max(W/im.naturalWidth,H/im.naturalHeight),w=im.naturalWidth*s,h=im.naturalHeight*s;
+  const mob=W<H;seqX.drawImage(im,(W-w)/2+(mob?w*.0:0),(H-h)*(mob?.5:.42),w,h)}
+function seqLoad(i){const im=new Image();im.decoding='async';im.src=SEQ_URL(i);im.onload=()=>{if(Math.abs(i-seqWant)<3||seqCur<0)seqPaint(seqWant)};seqI[i]=im}
+seqLoad(0);addEventListener('load',()=>{for(let i=1;i<SEQ_N;i++)seqLoad(i)});setTimeout(()=>{if(!seqI[1])for(let i=1;i<SEQ_N;i++)seqLoad(i)},2500);
+addEventListener('resize',()=>{clearTimeout(window._sq);window._sq=setTimeout(seqSize,150)});requestAnimationFrame(seqSize);
+function seqDraw(p){seqWant=Math.round(clamp(p/.78)*(SEQ_N-1));seqPaint(seqWant)}
 /* ---------- STORY: zoom into the flower, chapters, scroll-driven journey ---------- */
 const hph=$('#hphoto'),zh=$('#zh'),zfill=$('#zfill'),zcap=$('#zcap'),zword=$('.word'),zfade=$$('.brand,.nav,.pill,.lang,.corner,.cue'),zins=$$('.zin'),ap2=$('#ap2'),plane=$('.arc .plane'),drum=$('#drum');
 const rail=$('#rail'),railA=$$('#rail a'),toast=$('#chtoast'),chSecs=['#top','#manifest','#ocazii','#atelier','#drum','#nunti','#vizita'].map(s=>$(s));
@@ -708,7 +726,7 @@ const clamp=v=>Math.min(1,Math.max(0,v)),sm=t=>t*t*(3-2*t);let curCh=-1,toastT=0
 function story(){if(reduce)return;const vh=innerHeight,run=Math.max(1,zh.offsetHeight-vh),p=clamp(scrollY/run),e=sm(p);
   hph.style.transform=`scale(${1+e*3.4})`;hph.style.borderRadius=`${Math.round(999*(1-e))}px ${Math.round(999*(1-e))}px ${Math.round(28*(1-e))}px ${Math.round(28*(1-e))}px`;zword.style.transform=`translateY(${-e*26}vh) scale(${1-e*.08})`;zword.style.filter=`opacity(${clamp(1-e*1.8)})`;
   zfade.forEach(el=>el.style.filter=`opacity(${clamp(1-p*3)})`);
-  zfill.style.opacity=clamp((p-.5)/.32);const c=clamp((p-.62)/.18)*(1-clamp((p-.94)/.06)*.0);zcap.style.opacity=c;zcap.style.transform=`translate(-50%,-50%) scale(${1.12-.12*c})`;
+  seqDraw(p);zfill.style.opacity=clamp((p-.74)/.2);const c=clamp((p-.82)/.12)*(1-clamp((p-.94)/.06)*.0);zcap.style.opacity=c;zcap.style.transform=`translate(-50%,-50%) scale(${1.12-.12*c})`;
   zins.forEach(s=>{const r=s.getBoundingClientRect();if(r.top>vh||r.bottom<0)return;const t=sm(clamp((vh-r.top)/(vh*.7)));
     s.style.transform=`scale(${.9+.1*t})`;s.style.clipPath=`inset(0 round ${Math.round(56*(1-t))}px)`});
   if(drum){const r=drum.getBoundingClientRect(),t=clamp((vh*.85-r.top)/(r.height*.9));ap2.style.strokeDashoffset=1-t;plane.style.offsetDistance=(t*100).toFixed(1)+'%';plane.style.opacity=t>0&&t<1?1:(t>=1?1:0)}
