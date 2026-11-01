@@ -9,62 +9,65 @@
 <link rel="canonical" href="https://ohis-gamma.vercel.app/portofoliu">
 <link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0B0D14;--ink:#F2F3F7;--mid:#8f95ad;--line:rgba(242,243,247,.14);--acc:#7B8CFF}
+:root{--bg:#0B0D14;--paper:#151A2B;--ink:#F2F3F7;--mid:#9AA0B8;--line:rgba(255,255,255,.10);--acc:#4C63FF;--acc2:#7B8CFF;--amber:#FFB020;--f:"Schibsted Grotesk",system-ui,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
 html{background:var(--bg)}
-body{font-family:'Inter Tight',system-ui,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:var(--f);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit}
 #track{height:900vh}
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--bg)}
-.hl{position:absolute;left:0;right:0;font-weight:400;font-size:clamp(40px,6.7vw,130px);line-height:1;letter-spacing:-.055em;white-space:nowrap;text-align:center;will-change:transform}
+.hl{position:absolute;left:0;right:0;font-weight:700;font-size:clamp(40px,6.7vw,130px);line-height:1;letter-spacing:-.05em;white-space:nowrap;text-align:center;will-change:transform}
 #l1{top:calc(50% - .98em)}#l2{top:calc(50% + .03em)}
-#l1 span,#l2 span{display:inline-block}#l1 span{margin-right:15vw}#l2 span{margin-left:15vw}
+#l1 span,#l2 span{display:inline-block}#l1 span{margin-right:15vw}#l2 span{margin-left:15vw;color:var(--acc2)}
 #cap{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:16em;text-align:center;font-size:clamp(9px,.74vw,13px);font-weight:500;line-height:1.3;letter-spacing:.03em;text-transform:uppercase}
 #gl{position:absolute;inset:0;width:100%;height:100%;display:block}
 .top{position:absolute;left:32px;right:32px;top:26px;display:flex;align-items:center;pointer-events:none}
 .acts{margin-left:auto;display:flex;align-items:center;gap:7px;pointer-events:auto}
 #pager{display:flex;margin:-26px 0 0 28px;pointer-events:auto}
 #pager span{display:grid;place-items:center;width:44px;height:50px;border:1px solid var(--line);border-top:0;margin-left:-1px;font:400 11px 'IBM Plex Mono',monospace;color:var(--mid)}
-#glow{position:absolute;left:0;right:0;top:0;height:42%;background:linear-gradient(rgba(123,140,255,.12),rgba(123,140,255,0))}
+#glow{position:absolute;left:0;right:0;top:0;height:42%;background:radial-gradient(70% 100% at 50% 0%,rgba(76,99,255,.22),rgba(76,99,255,0))}
 #cross{position:absolute;left:32px;right:32px;top:37.5%;height:1px;background:var(--line)}
-#cross i{position:absolute;left:50%;top:-.62em;margin-left:-.3em;font:400 13px 'IBM Plex Mono',monospace;color:var(--mid);background:var(--bg);padding:0 .3em;line-height:1.2;font-style:normal}
-.logo{display:flex;align-items:center;gap:9px;font-size:19px;font-weight:600;letter-spacing:.09em;text-decoration:none;pointer-events:auto}
-.logo svg{width:22px;height:22px}
-.acts a{display:flex;align-items:center;gap:9px;height:32px;padding:0 15px;border:1px solid rgba(242,243,247,.55);border-radius:99px;text-decoration:none;font-size:12px;font-weight:500;letter-spacing:.06em;transition:background .2s,color .2s}
-.acts a:hover{background:var(--ink);color:var(--bg)}
-.acts a i{width:6px;height:6px;border-radius:50%;background:currentColor}
-.acts a b{display:block;width:13px;height:7px;border-top:1px solid currentColor;border-bottom:1px solid currentColor}
+#cross i{color:var(--amber)!important;position:absolute;left:50%;top:-.62em;margin-left:-.3em;font:400 13px 'IBM Plex Mono',monospace;color:var(--mid);background:var(--bg);padding:0 .3em;line-height:1.2;font-style:normal}
+.logo{display:flex;align-items:center;text-decoration:none;pointer-events:auto;color:var(--ink)}
+.logo svg{height:34px;width:auto}
+.nav{display:flex;gap:4px;margin-left:28px;pointer-events:auto}
+.nav a{font-size:14.5px;font-weight:500;color:var(--mid);text-decoration:none;padding:8px 12px;border-radius:10px;transition:color .2s,background .2s}
+.nav a:hover,.nav a.on{color:var(--ink);background:rgba(255,255,255,.06)}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 20px;border-radius:12px;font:600 14.5px var(--f);text-decoration:none;transition:transform .3s,background .25s;pointer-events:auto}
+.btn.p{background:var(--acc);color:#fff;box-shadow:0 12px 30px -12px rgba(51,70,232,.7)}.btn.p:hover{background:#3D53F5;transform:translateY(-1px)}
+.btn.s{background:var(--paper);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+
 #hint{position:absolute;left:50%;top:33px;transform:translateX(-50%);font:400 11.5px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding-bottom:6px;border-bottom:1px solid var(--line);text-decoration:none}
 .bot{position:absolute;left:32px;right:32px;bottom:26px;display:grid;grid-template-columns:1fr auto 1fr;align-items:end;font-size:12.5px;line-height:1.35;pointer-events:none}
 .bot p{max-width:21em}
 .bot .mid{font:400 11.5px 'IBM Plex Mono',monospace;letter-spacing:.06em}
 .bot .mid s{text-decoration:none;color:var(--mid);margin:0 .9em}
 .bot .r{justify-self:end;display:flex;gap:12px;align-items:center;font:400 11.5px 'IBM Plex Mono',monospace;letter-spacing:.06em}
-.bot .r:after{content:"";width:22px;height:1px;background:var(--ink)}
+.bot .r:after{content:"";width:22px;height:1px;background:var(--amber)}
 #rule{position:absolute;left:3.5vw;right:3.5vw;top:50%;height:1px;background:var(--line);transform-origin:left;transform:scaleX(0)}
-#name{position:absolute;left:0;top:0;padding:6px 11px;background:var(--ink);color:var(--bg);border-radius:99px;font-size:11.5px;font-weight:600;letter-spacing:.04em;pointer-events:none;opacity:0;transition:opacity .16s;white-space:nowrap}
+#name{position:absolute;left:0;top:0;padding:6px 11px;background:var(--acc);color:#fff;border-radius:99px;font-size:11.5px;font-weight:600;letter-spacing:.04em;pointer-events:none;opacity:0;transition:opacity .16s;white-space:nowrap}
 #gridhint{position:absolute;left:50%;bottom:72px;transform:translateX(-50%);font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:var(--mid);opacity:0;transition:opacity .4s;white-space:nowrap}
 /* list + CTA after the film */
 .after{max-width:1180px;margin:0 auto;padding:120px 32px 90px}
 .after h2{font-weight:400;font-size:clamp(34px,4.6vw,72px);letter-spacing:-.045em;line-height:1}
-.after h2 em{font-style:normal;color:var(--acc)}
+.after h2{font-weight:700}.after h2 em{font-style:normal;color:var(--acc2)}
 .list{margin-top:56px;border-top:1px solid var(--line)}
 .row{display:grid;grid-template-columns:110px 1fr auto;gap:24px;align-items:center;padding:24px 0;border-bottom:1px solid var(--line);text-decoration:none;transition:padding .3s}
-.row:hover{padding-left:12px}
+.row:hover{padding-left:12px}.row:hover i{color:var(--acc2)}.row small{color:var(--amber)!important}
 .row small{font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:var(--mid);text-transform:uppercase}
 .row b{font-size:clamp(20px,2vw,28px);font-weight:500;letter-spacing:-.02em}
 .row span{display:block;color:var(--mid);font-size:14px;margin-top:4px}
 .row i{font-style:normal;font:400 12px 'IBM Plex Mono',monospace;letter-spacing:.06em;white-space:nowrap}
 .cta{margin-top:90px;display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap}
 .cta p{color:var(--mid);max-width:34em;margin-top:14px}
-.cta a{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 24px;border-radius:99px;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:600}
+.cta a{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 24px;border-radius:14px;background:var(--acc);color:#fff;text-decoration:none;font-weight:600;box-shadow:0 12px 30px -12px rgba(51,70,232,.7)}
 .note{margin-top:60px;font-size:12.5px;color:var(--mid);max-width:60em}
 @media (max-width:760px){
   .top{left:18px;right:18px;top:18px}.bot{left:18px;right:18px;bottom:18px;grid-template-columns:1fr auto}.bot .mid{display:none}
   #hint,#pager{display:none}.bot p{max-width:17em;font-size:11px}
-  .acts a:first-child{display:none}
+  .acts .btn.s,.nav{display:none}.logo svg{height:28px}.btn{height:40px;padding:0 14px;font-size:13.5px}
   .row{grid-template-columns:1fr auto}.row small{grid-column:1/-1}
   .after{padding:90px 18px 70px}
 }
@@ -83,11 +86,11 @@ a{color:inherit}
     <div id="cross"><i>+</i></div>
     <div id="rule"></div>
     <canvas id="gl" aria-label="Previzualizări animate ale site-urilor create de OHI Solutions"></canvas>
-    <a id="hint" href="/contact">CERE O OFERTĂ &nbsp;→</a>
+    
     <header class="top">
-      <a class="logo" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg>OHI</a>
-      <div id="pager"><span>←</span><span>→</span></div>
-      <nav class="acts"><a href="tel:+40740267706"><i></i>HAI SĂ VORBIM</a><a href="/">ACASĂ<b></b></a></nav>
+      <a class="logo" href="/" aria-label="OHI Solutions"><svg viewBox="0 18 359 170" role="img"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#3346E8" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
+      <nav class="nav"><a href="/creare-site-web">Site-uri</a><a class="on" href="/portofoliu">Portofoliu</a><a href="/preturi">Prețuri</a><a href="/contact">Contact</a></nav>
+      <nav class="acts"><a class="btn s" href="tel:+40740267706">Sună</a><a class="btn p" href="/#demo">Cere demo gratuit</a></nav>
     </header>
     <footer class="bot">
       <p>Site-uri pentru firme din Mureș, gândite să aducă cereri, nu doar să arate bine.</p>
@@ -111,7 +114,7 @@ a{color:inherit}
   </div>
   <div class="cta">
     <div><h2>Următorul poate fi <em>al tău.</em></h2><p>Spune-ne ce face afacerea ta. Îți arătăm cum ar putea arăta site-ul, înainte să plătești ceva.</p></div>
-    <a href="/contact">Cere o ofertă →</a>
+    <a href="/#demo">Cere demo gratuit →</a>
   </div>
   <p class="note">„Concept” înseamnă o propunere de design realizată de OHI Solutions, nu un site comandat sau aprobat de firma respectivă. Numele și fotografiile aparțin proprietarilor lor.</p>
 </section>
@@ -132,8 +135,7 @@ ribbon({track:$('track'),canvas:$('gl'),nameEl:$('name'),base:[.08,.09,.13],
     $('l1').style.transform=`translate3d(${run}vw,${rise*34}vh,0)`;
     $('l2').style.transform=`translate3d(${-run}vw,${rise*34}vh,0)`;
     $('cap').style.opacity=1-span(pp,.52,.57);$('cap').style.transform=`translate(-50%,calc(-50% + ${rise*34}vh))`;
-    const intro=1-span(pp,0,.05);for(const id of ['hint','pager','cross','glow'])$(id).style.opacity=intro;
-    $('hint').style.pointerEvents=intro>.5?'auto':'none';
+    const intro=1-span(pp,0,.05);for(const id of ['cross','glow'])$(id).style.opacity=intro;
     $('rule').style.transform=`scaleX(${ease(span(pp,.72,.86))})`;
     $('gridhint').style.opacity=span(pp,.88,.95);
   }});
