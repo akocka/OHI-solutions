@@ -39,6 +39,52 @@
   </div>
 </section>
 <div class="marq" aria-hidden="true"><div class="mt" id="mt"><span>Antipasti</span>✦<span>Pasta</span>✦<span>Risotto</span>✦<span>Secondi</span>✦<span>Dolci</span>✦<span>Vini</span>✦<span>Cocktail</span>✦<span>Antipasti</span>✦<span>Pasta</span>✦<span>Risotto</span>✦<span>Secondi</span>✦<span>Dolci</span>✦<span>Vini</span>✦<span>Cocktail</span>✦</div></div>
+<link rel="modulepreload" href="/demo/orobianco/assets/ribbon.js" id="rbmod">
+<style>
+.rbn{--rbg:#14110d;--rink:#f4efe6;--rmid:#a89c88;--rline:rgba(244,239,230,.14);--racc:#d8b877;position:relative}
+.rbn .rtrack{height:700vh}
+.rbn .rstage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--rbg);color:var(--rink);font-family:Inter,system-ui,sans-serif}
+.rbn .rhl{position:absolute;left:0;right:0;font-weight:400;font-size:clamp(40px,6.7vw,130px);line-height:1;letter-spacing:-.035em;white-space:nowrap;text-align:center;will-change:transform;font-family:"Lora",Georgia,serif;}
+.rbn .rl1{top:calc(50% - .98em)}.rbn .rl2{top:calc(50% + .03em)}
+.rbn .rl1 span,.rbn .rl2 span{display:inline-block}.rbn .rl1 span{margin-right:15vw}.rbn .rl2 span{margin-left:15vw}
+.rbn .rl2 span{color:var(--racc);font-style:italic}
+.rbn .rcap{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:16em;text-align:center;font-size:clamp(9.5px,.78vw,13px);font-weight:600;line-height:1.35;letter-spacing:.06em;text-transform:uppercase}
+.rbn canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.rbn .rglow{position:absolute;left:0;right:0;top:0;height:42%;background:linear-gradient(rgba(216,184,119,.13),transparent)}
+.rbn .rcross{position:absolute;left:32px;right:32px;top:37.5%;height:1px;background:var(--rline)}
+.rbn .rcross i{position:absolute;left:50%;top:-.62em;margin-left:-.3em;font:400 13px ui-monospace,monospace;color:var(--rmid);background:var(--rbg);padding:0 .3em;line-height:1.2;font-style:normal}
+.rbn .rbot{position:absolute;left:32px;right:32px;bottom:26px;display:grid;grid-template-columns:1fr auto 1fr;align-items:end;font-size:12.5px;line-height:1.4;pointer-events:none}
+.rbn .rbot p{max-width:22em}
+.rbn .rbot .rm{font:500 11px ui-monospace,monospace;letter-spacing:.1em}
+.rbn .rbot .rm s{text-decoration:none;color:var(--rmid);margin:0 .9em}
+.rbn .rbot a{justify-self:end;pointer-events:auto;display:flex;gap:12px;align-items:center;font:500 11px ui-monospace,monospace;letter-spacing:.1em;text-decoration:none;color:var(--rink)}
+.rbn .rbot a:after{content:"";width:22px;height:1px;background:currentColor}
+.rbn .rrule{position:absolute;left:3.5vw;right:3.5vw;top:50%;height:1px;background:var(--rline);transform-origin:left;transform:scaleX(0)}
+.rbn .rname{position:absolute;left:0;top:0;padding:6px 12px;background:var(--rink);color:var(--rbg);border-radius:99px;font-size:12px;font-weight:600;letter-spacing:.03em;pointer-events:none;opacity:0;transition:opacity .16s;white-space:nowrap;z-index:3}
+.rbn .rtag{position:absolute;left:32px;top:92px;font:500 11px ui-monospace,monospace;letter-spacing:.12em;color:var(--rmid);text-transform:uppercase}
+@media (max-width:760px){.rbn .rbot{left:18px;right:18px;bottom:18px;grid-template-columns:1fr auto}.rbn .rbot .rm{display:none}.rbn .rbot p{max-width:16em;font-size:11px}.rbn .rcross{left:18px;right:18px}.rbn .rtag{left:18px}}
+@media (prefers-reduced-motion:reduce){.rbn .rtrack{height:auto}.rbn .rstage{position:relative}}
+</style><section class="rbn" id="bucatarie" aria-label="Din bucătăria Orobianco"><div class="rtrack"><div class="rstage">
+  <div class="rhl rl1" aria-hidden="true"><span>CUCINA</span></div><div class="rhl rl2" aria-hidden="true"><span>ITALIANA</span></div>
+  <div class="rcap">Din bucătăria Orobianco, în fiecare zi.</div><div class="rglow"></div><div class="rcross"><i>+</i></div><div class="rrule"></div>
+  <canvas aria-hidden="true"></canvas><p class="rtag">Orobianco · Ristorante</p>
+  <div class="rbot"><p>Paste, grătar, cocktailuri și o seară lungă în centrul Târgu Mureșului.</p><div class="rm">PASTA<s>/</s>GRILL<s>/</s>VINI<s>/</s>COCKTAIL</div><a href="/demo/orobianco/meniu">VEZI MENIUL</a></div>
+  <div class="rname"></div>
+  <template class="rsrc"><a href="/demo/orobianco/despre"><img src="/demo/orobianco/img/interior.webp" alt="Salonul"></a><a href="/demo/orobianco/meniu"><img src="/demo/orobianco/img/pasta-foto.webp" alt="Spaghetti ai frutti di mare"></a><a href="/demo/orobianco/meniu"><img src="/demo/orobianco/img/steak-foto.webp" alt="Bistecca alla griglia"></a><a href="/demo/orobianco/despre"><img src="/demo/orobianco/img/chef.webp" alt="Din bucătărie"></a><a href="/demo/orobianco/rezervare"><img src="/demo/orobianco/img/mojito-foto.webp" alt="Terasa"></a><a href="/demo/orobianco/meniu"><img src="/demo/orobianco/img/platou.webp" alt="Servit la masă"></a><a href="/demo/orobianco/meniu"><img src="/demo/orobianco/img/cocktail-foto.webp" alt="Cocktailuri"></a></template>
+</div></div></section><script type="module">
+(async()=>{const sec=document.getElementById('bucatarie');if(!sec)return;
+const {ribbon}=await import(document.getElementById('rbmod').href);
+const q=s=>sec.querySelector(s),clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)),mix=(a,b,t)=>a+(b-a)*t,ease=t=>t*t*(3-2*t),out=t=>1-(1-t)**3,span=(p,a,b)=>clamp((p-a)/(b-a));
+const cards=[...q('.rsrc').content.querySelectorAll('a')].map(a=>{const im=a.querySelector('img');return {title:im.getAttribute('alt'),href:new URL(a.getAttribute('href'),document.baseURI).href,kind:'image',src:new URL(im.getAttribute('src'),document.baseURI).href}});
+
+const l1=q('.rl1'),l2=q('.rl2'),cap=q('.rcap'),fade=[q('.rcross'),q('.rglow'),q('.rtag')],rule=q('.rrule');
+ribbon({track:q('.rtrack'),canvas:q('canvas'),nameEl:q('.rname'),base:[.11,.095,.075],edgeTint:1,cards,
+ onP(pp){const rise=1-out(span(pp,0,.12)),run=mix(-50,76,span(pp,0,.58)),hl=1-span(pp,.6,.66);
+  l1.style.transform=`translate3d(${run}vw,${rise*34}vh,0)`;l2.style.transform=`translate3d(${-run}vw,${rise*34}vh,0)`;l1.style.opacity=l2.style.opacity=hl;
+  cap.style.opacity=1-span(pp,.52,.57);cap.style.transform=`translate(-50%,calc(-50% + ${rise*34}vh))`;
+  const a=1-span(pp,0,.05);fade.forEach(e=>e.style.opacity=a);rule.style.transform=`scaleX(${ease(span(pp,.72,.86))})`}});
+})();
+</script>
 <div class="strip"><div class="wrap">
   <span><i></i><b data-t="open">Deschis zilnic</b>&nbsp;12:00 – 23:00</span>
   <span><i></i>Piața Bernády György 2, Târgu Mureș</span>
