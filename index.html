@@ -123,6 +123,61 @@ h1 .ln:nth-child(2)>span{animation-delay:.1s}
 .next{padding:120px 0;text-align:center;color:var(--mut);font-size:15px;border-top:1px solid var(--line)}
 
 
+/* ---------- diferența ---------- */
+.vs{position:relative;padding:clamp(90px,12vw,150px) 0;overflow:hidden}
+.vs::before{content:"";position:absolute;left:50%;top:0;width:min(1200px,120vw);height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(123,140,255,.45),transparent)}
+.kick{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
+.kick::before{content:"";width:26px;height:2px;background:var(--amber);border-radius:2px}
+.vs h2{margin-top:16px;font-weight:800;font-size:clamp(34px,5vw,68px);line-height:1.02;letter-spacing:-.045em;max-width:14ch}
+.vs h2 s{position:relative;text-decoration:none;color:var(--mut)}
+.vs h2 s::after{content:"";position:absolute;left:-4%;right:-4%;top:54%;height:.09em;border-radius:9px;background:var(--amber);transform:scaleX(0) rotate(-3deg);transform-origin:left;transition:transform .9s var(--ease) .35s}
+.vs.in h2 s::after{transform:scaleX(1) rotate(-3deg)}
+.vshead{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.vshead p{max-width:36ch;color:var(--mut);font-size:clamp(16px,1.3vw,18px)}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.in .rv,.rv.in{opacity:1;transform:none}
+
+/* before/after slider */
+.cmp{--x:50%;position:relative;margin-top:clamp(36px,5vw,60px);aspect-ratio:16/9;max-height:min(640px,74vh);width:100%;margin-left:auto;margin-right:auto;border-radius:20px;overflow:hidden;background:#d9d9d9;cursor:ew-resize;touch-action:pan-y;user-select:none;-webkit-user-select:none;
+  box-shadow:0 0 0 1px rgba(255,255,255,.1),0 50px 100px -40px rgba(0,0,0,.9),0 0 90px -30px rgba(76,99,255,.5)}
+.cmp .bar{position:absolute;top:0;left:0;right:0;height:32px;display:flex;align-items:center;gap:6px;padding:0 14px;z-index:2}
+.cmp .bar i{width:10px;height:10px;border-radius:50%;background:#bbb}
+.cmp .bar span{margin-left:12px;height:20px;line-height:20px;padding:0 12px;border-radius:6px;font-size:11.5px}
+.old{position:absolute;inset:0;z-index:0;background:#efefef;font-family:"Times New Roman",Georgia,serif;color:#333}
+.old .bar{background:#dcdcdc}.old .bar span{background:#fff;color:#777}
+.old .in2{position:absolute;inset:32px 0 0;padding:3% 5%;display:flex;flex-direction:column;gap:3.2%}
+.old .nv{display:flex;gap:4%;font-size:clamp(9px,1.1vw,14px);color:#2a55b0;text-decoration:underline}
+.old .nv b{margin-right:auto;color:#333;text-decoration:none;font-size:1.2em}
+.old .ban{flex:1;max-height:48%;background:repeating-linear-gradient(45deg,#d4d4d4 0 14px,#cbcbcb 14px 28px);display:grid;place-items:center;color:#888;font-size:clamp(10px,1.2vw,15px);font-style:italic;position:relative}
+.old .ban::before{content:"";width:clamp(20px,2.6vw,34px);height:clamp(20px,2.6vw,34px);border-radius:50%;border:3px solid #bbb;border-top-color:#777;animation:spin 1s linear infinite;position:absolute;top:30%}
+@keyframes spin{to{transform:rotate(360deg)}}
+.old h3{font-size:clamp(14px,2.2vw,30px);font-weight:400}
+.old .tx{display:grid;gap:6px}.old .tx i{display:block;height:clamp(5px,.7vw,9px);background:#d0d0d0;border-radius:2px}.old .tx i:nth-child(2){width:86%}.old .tx i:nth-child(3){width:64%}
+.old .bt{align-self:flex-start;padding:.4em 1em;background:#e7e7e7;border:1px solid #aaa;font-size:clamp(9px,1vw,13px);color:#555}
+.new{position:absolute;inset:0;z-index:1;clip-path:inset(0 0 0 var(--x));background:var(--navy2)}
+.new .bar{background:#0b0e1a;border-bottom:1px solid var(--line)}.new .bar i:first-child{background:#ff5f57}.new .bar i:nth-child(2){background:#febc2e}.new .bar i:nth-child(3){background:#28c840}.new .bar span{background:rgba(255,255,255,.06);color:var(--mut)}
+.new video{position:absolute;inset:32px 0 0;width:100%;height:calc(100% - 32px);object-fit:cover;object-position:top}
+.lab{position:absolute;bottom:16px;z-index:3;padding:8px 13px;border-radius:10px;font:600 13px var(--f);backdrop-filter:blur(8px);transition:opacity .3s}
+.lab.l{left:16px;background:rgba(0,0,0,.6);color:#eee}.lab.r{right:16px;background:rgba(7,8,13,.8);color:var(--ink)}.lab.r b{color:var(--amber)}
+.hdl{position:absolute;top:0;bottom:0;left:var(--x);width:2px;margin-left:-1px;background:var(--amber);z-index:4;box-shadow:0 0 20px rgba(255,176,32,.6)}
+.hdl span{position:absolute;top:50%;left:50%;width:50px;height:50px;margin:-25px 0 0 -25px;border-radius:50%;background:var(--amber);display:grid;place-items:center;box-shadow:0 10px 30px -6px rgba(255,176,32,.7),0 0 0 6px rgba(255,176,32,.18)}
+.hdl svg{width:24px;height:24px;color:#14110A}
+
+.smx{display:none}
+/* the four differences */
+.diffs{margin-top:clamp(50px,7vw,90px);display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.df{position:relative;padding:28px 28px 30px;border-radius:20px;background:linear-gradient(160deg,rgba(76,99,255,.10),rgba(21,26,46,.6) 40%);box-shadow:inset 0 0 0 1px var(--line);overflow:hidden;transition:box-shadow .3s,transform .5s var(--ease)}
+.df:hover{box-shadow:inset 0 0 0 1px rgba(123,140,255,.45);transform:translateY(-4px)}
+.df .ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:rgba(76,99,255,.16);color:var(--cobalt2)}
+.df .ic svg{width:26px;height:26px}
+.df:nth-child(2) .ic{background:rgba(255,176,32,.14);color:var(--amber)}
+.df .was{margin-top:22px;display:inline-block;position:relative;font-size:14.5px;color:var(--mut)}
+.df .was::after{content:"";position:absolute;left:-2px;right:-2px;top:52%;height:1.5px;background:#ff6b6b;transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease) .5s}
+.df.in .was::after{transform:scaleX(1)}
+.df h3{margin-top:8px;font-size:clamp(21px,1.9vw,26px);font-weight:700;letter-spacing:-.025em;line-height:1.15}
+.df .big{position:absolute;right:20px;top:14px;font-size:clamp(60px,6vw,90px);font-weight:800;letter-spacing:-.06em;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(123,140,255,.28)}
+@media (max-width:760px){.diffs{grid-template-columns:1fr}.cmp{aspect-ratio:4/5;border-radius:16px}.cmp .bar span{display:none}.lab{font-size:11.5px;bottom:12px}.lab.l{left:12px}.lab.r{right:12px}.old .ban{max-height:36%}.lgx{display:none}.smx{display:inline!important}.cmp{max-height:none}}
+
 .hd .cta .sh2{display:none}
 @media (max-width:980px){
   .nav,.hd .cta .btn.g{display:none}.burger{display:grid}
@@ -169,7 +224,27 @@ h1 .ln:nth-child(2)>span{animation-delay:.1s}
     <span class="rhint">Trage ca să rotești<span class="lg2">&nbsp;· atinge ca să deschizi</span></span>
   </div>
 </section>
-<section class="next" id="demo"><div class="wrap">Secțiunile următoare vin aici, una câte una. Până atunci: <a href="/contact#demo" style="color:var(--amber);font-weight:600">cere demo-ul gratuit →</a></div></section>
+<section class="vs" id="diferenta">
+  <div class="wrap">
+    <div class="vshead">
+      <div><span class="kick rv">De ce OHI</span><h2 class="rv">Nu încă un site făcut din <s>șablon</s>.</h2></div>
+      <p class="rv">Trage de mâner și vezi diferența dintre un site făcut „ca să fie” și unul făcut să vândă.</p>
+    </div>
+    <div class="cmp rv" id="cmp" role="slider" aria-label="Comparație: șablon generic față de site făcut de OHI" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
+      <div class="old"><div class="bar"><i></i><i></i><i></i><span>www.site-generic.ro</span></div>
+        <div class="in2"><div class="nv"><b>Firma Mea SRL</b><span>Acasă</span><span>Despre</span><span>Contact</span></div><div class="ban">Se încarcă imaginea…</div><h3>Bine ați venit pe site-ul nostru!</h3><div class="tx"><i></i><i></i><i></i></div><span class="bt">Click aici</span></div></div>
+      <div class="new"><div class="bar"><i></i><i></i><i></i><span>bigbigboon.ro</span></div><video muted loop playsinline preload="none" poster="/portofoliu-media/bbb.webp" data-src="/portofoliu-media/bbb.mp4"></video></div>
+      <span class="lab l"><span class="lgx">Exemplu de șablon generic</span><span class="smx">Șablon generic</span></span><span class="lab r"><b>OHI</b> · Big Big Boon</span>
+      <div class="hdl"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span></div>
+    </div>
+    <div class="diffs">
+      <div class="df rv"><span class="big">01</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div><span class="was">Plătești avans și aștepți săptămâni</span><h3>Vezi site-ul gata înainte să plătești ceva.</h3></div>
+      <div class="df rv"><span class="big">02</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></svg></div><span class="was">Același șablon ca la alte zece firme</span><h3>Design făcut de la zero, pentru afacerea ta.</h3></div>
+      <div class="df rv"><span class="big">03</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div><span class="was">Arată bine doar pe calculator</span><h3>Gândit întâi pentru telefon, unde te caută clienții.</h3></div>
+      <div class="df rv"><span class="big">04</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div><span class="was">Un număr de suport la care nu răspunde nimeni</span><h3>Suntem în Târgu Mureș. Ne suni direct.</h3></div>
+    </div>
+  </div>
+</section>
 </main>
 <footer class="ft"><div class="wrap"><span>© 2026 OHI Solutions, Târgu Mureș</span><span><a href="/contact">Despre și contact</a>&nbsp;&nbsp;<a href="/preturi">Prețuri</a>&nbsp;&nbsp;<a href="/automatizari">Automatizări</a>&nbsp;&nbsp;<a href="/blog">Blog</a>&nbsp;&nbsp;<a href="/confidentialitate">Confidențialitate</a>&nbsp;&nbsp;<a href="/termeni">Termeni</a></span></div></footer>
 
@@ -210,6 +285,24 @@ function onScroll(){hd.classList.toggle('sc',scrollY>20);const p=Math.min(1,Math
   tilt=-7+p*9;scl=1+p*.22;if(!reduce){hc.style.transform=`translateY(${-p*70}px)`;hc.style.opacity=1-p*1.1}}
 addEventListener('scroll',onScroll,{passive:true});onScroll();
 new IntersectionObserver(e=>{visible=e[0].isIntersecting;if(!visible)cards.forEach(c=>c.querySelector('video').pause())}).observe(hero);
+})();
+</script>
+<script>
+(()=>{
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.2,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.vs,.rv').forEach(el=>io.observe(el));
+const cmp=document.getElementById('cmp'),vid=cmp.querySelector('video'),reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let x=50,auto=!reduce,drag=false;
+const set=v=>{x=Math.max(3,Math.min(97,v));cmp.style.setProperty('--x',x+'%');cmp.setAttribute('aria-valuenow',Math.round(x))};
+const fromEv=e=>{const r=cmp.getBoundingClientRect();set((e.clientX-r.left)/r.width*100)};
+cmp.addEventListener('pointerdown',e=>{auto=false;drag=true;fromEv(e)});
+addEventListener('pointermove',e=>{if(drag)fromEv(e)});addEventListener('pointerup',()=>drag=false);
+cmp.addEventListener('keydown',e=>{if(e.key=='ArrowLeft'){auto=false;set(x-5)}if(e.key=='ArrowRight'){auto=false;set(x+5)}});
+/* on first view: sweep to show both sides, then settle */
+new IntersectionObserver((es,o)=>{if(!es[0].isIntersecting)return;o.disconnect();if(!vid.src)vid.src=vid.dataset.src;vid.play().catch(()=>{});
+  if(!auto)return;const keys=[[0,50],[900,88],[2100,12],[3100,50]],t0=performance.now();
+  (function tick(now){if(!auto)return;const t=now-t0;let k=1;while(k<keys.length-1&&t>keys[k][0])k++;const [ta,va]=keys[k-1],[tb,vb]=keys[k];let p=Math.min(1,(t-ta)/(tb-ta));p=p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;set(va+(vb-va)*p);if(t<keys[keys.length-1][0])requestAnimationFrame(tick)})(t0)},{threshold:.45}).observe(cmp);
+new IntersectionObserver(es=>{es[0].isIntersecting?(vid.src&&vid.play().catch(()=>{})):vid.pause()}).observe(cmp);
 })();
 </script>
 <script src="/assistant.js" defer></script>
