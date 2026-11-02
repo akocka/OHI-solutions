@@ -22,7 +22,6 @@
 <link rel="icon" href="/icon-512.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Organization", "@id": "https://ohis-gamma.vercel.app/#org", "name": "OHI Solutions", "url": "https://ohis-gamma.vercel.app/", "logo": "https://ohis-gamma.vercel.app/icon-512.png", "description": "Creare de site-uri web și automatizări pentru afaceri locale din Târgu Mureș și din toată România.", "telephone": "+40740267706", "address": {"@type": "PostalAddress", "addressLocality": "Târgu Mureș", "addressCountry": "RO"}}, {"@context": "https://schema.org", "@type": "WebSite", "@id": "https://ohis-gamma.vercel.app/#website", "name": "OHI Solutions", "url": "https://ohis-gamma.vercel.app/", "inLanguage": "ro-RO", "publisher": {"@id": "https://ohis-gamma.vercel.app/#org"}}]</script>
-<link rel="stylesheet" href="/demo.css">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -126,70 +125,60 @@ h1 .ln:nth-child(2)>span{animation-delay:.1s}
 .next{padding:120px 0;text-align:center;color:var(--mut);font-size:15px;border-top:1px solid var(--line)}
 
 
-/* ---------- scroll builder ---------- */
-.bs{position:relative}
-.bs::before{content:"";position:absolute;left:50%;top:0;width:min(1200px,120vw);height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(123,140,255,.45),transparent);z-index:2}
-.btrack{height:520vh}
-.bstage{position:sticky;top:0;height:100svh;display:flex;align-items:center;overflow:hidden;isolation:isolate}
-.bstage::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(58% 48% at 72% 50%,color-mix(in srgb,var(--pc,#4C63FF) 24%,transparent),transparent 72%);transition:background .7s}
-.bg2{display:grid;grid-template-columns:1fr .9fr;gap:clamp(24px,4vw,70px);align-items:center;width:min(1240px,100% - 40px);margin:0 auto}
+/* ---------- manifest: words light up on scroll ---------- */
+.mf{position:relative}
+.mf::before{content:"";position:absolute;left:50%;top:0;width:min(1200px,120vw);height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(123,140,255,.4),transparent)}
+.mftrack{height:300vh}
+.mfstage{position:sticky;top:0;height:100svh;display:flex;align-items:center;overflow:hidden}
+.mfstage::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(60% 55% at 50% 50%,rgba(76,99,255,.16),transparent 70%)}
+.mfw{width:min(1100px,100% - 40px);margin:0 auto}
+.mft{font-weight:800;font-size:clamp(30px,5.2vw,74px);line-height:1.1;letter-spacing:-.045em}
+.mft i{font-style:normal;display:inline-block;color:rgba(242,243,247,.14);transition:color .25s linear,opacity .25s linear}
+.mft i.lit{color:var(--ink)}
+.mft i.lit.c{color:var(--cobalt2)}
+.mft i.lit.a{color:var(--amber)}
+.mfbar{margin-top:44px;height:3px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden}
+.mfbar b{display:block;height:100%;width:0;border-radius:3px;background:linear-gradient(90deg,var(--cobalt),var(--amber))}
+
+/* ---------- stacked service cards ---------- */
+.sv{position:relative;padding:0 0 clamp(60px,9vw,120px)}
+.svhead{width:min(1240px,100% - 40px);margin:0 auto;padding:clamp(70px,9vw,120px) 0 0}
 .kick{display:inline-flex;align-items:center;gap:10px;font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
 .kick::before{content:"";width:24px;height:2px;background:var(--amber);border-radius:2px}
-.bpanel{position:relative;width:100%;margin-top:20px;min-height:104px}
-.bp{position:absolute;left:0;right:0;top:0;display:flex;justify-content:center;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .45s var(--ease),transform .45s var(--ease)}
-.bp.on{opacity:1;transform:none;pointer-events:auto}
-.bp .bctl{margin-top:0;justify-content:center;max-width:460px}
-.bp::before{content:"";position:absolute;top:-14px;left:50%;width:2px;height:10px;margin-left:-1px;border-radius:2px;background:linear-gradient(180deg,rgba(123,140,255,.65),transparent)}
-.bphint{font-size:13px;color:var(--mut);display:inline-flex;align-items:center;gap:9px}
-.bphint::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--amber);animation:blink 1.6s infinite}
-.bph{align-content:start}
-.bsteps{position:relative;min-height:230px}
-.bst{position:absolute;inset:0;opacity:0;transform:translateY(26px);transition:opacity .5s var(--ease),transform .5s var(--ease);pointer-events:none}
-.bst.on{opacity:1;transform:none;pointer-events:auto}
-.bst h2{margin-top:14px;font-weight:800;font-size:clamp(32px,4.4vw,62px);line-height:1;letter-spacing:-.045em}
-.bst h2 em{font-style:normal;background:linear-gradient(100deg,var(--cobalt2),var(--cobalt) 55%,#9aa8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.bst p{margin-top:14px;color:var(--mut);font-size:clamp(15px,1.25vw,17.5px);max-width:34ch}
-.bctl{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px}
-.bctl button{height:44px;padding:0 15px;border-radius:13px;border:0;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1.5px var(--line);color:var(--ink);font:600 14.5px var(--f);cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background .2s,box-shadow .2s,transform .3s var(--ease)}
-.bctl button:hover{transform:translateY(-2px)}
-.bctl button[aria-pressed=true]{background:rgba(76,99,255,.16);box-shadow:inset 0 0 0 1.5px var(--cobalt)}
-.bctl .sw{width:42px;height:42px;padding:0;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 2px rgba(255,255,255,.12)}
-.bctl .sw[aria-pressed=true]{box-shadow:0 0 0 3px var(--navy),0 0 0 5px var(--amber);transform:scale(1.06)}
-.bctl .tg[aria-pressed=true]{background:rgba(255,176,32,.14);box-shadow:inset 0 0 0 1.5px var(--amber)}
-.bctl .tg b{display:grid;place-items:center;width:20px;height:20px;border-radius:7px;background:rgba(255,255,255,.1);font-size:12px;color:var(--mut)}
-.bctl .tg[aria-pressed=true] b{background:var(--amber);color:#14110A}
-.bdots{display:flex;gap:7px;margin-top:26px}
-.bdots i{width:28px;height:4px;border-radius:4px;background:rgba(255,255,255,.14);transition:background .4s,width .4s var(--ease)}
-.bdots i.on{background:var(--amber);width:46px}
-.bph{position:relative;display:grid;justify-items:center;perspective:1500px}
-.ph{position:relative;height:min(600px,58svh);width:auto;aspect-ratio:9/19.3;border-radius:52px;padding:11px;background:linear-gradient(145deg,#2A2E3A,#0B0D14);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 60px 100px -40px rgba(0,0,0,.9),0 0 90px -20px color-mix(in srgb,var(--pc,#4C63FF) 55%,transparent);transform:rotateY(-13deg) rotateX(5deg);transition:transform 1s var(--ease),box-shadow .6s;transform-style:preserve-3d}
-.bph:hover .ph{transform:rotateY(-5deg) rotateX(2deg)}
-.ph::before{content:"";position:absolute;top:20px;left:50%;width:82px;height:23px;margin-left:-41px;border-radius:14px;background:#05060A;z-index:5}
-.ph .screen{border-radius:42px}
-.ph .scroll{padding-top:34px}
-.ph .screen.wire *{background-color:transparent!important}
-.bflash{position:absolute;inset:11px;border-radius:42px;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(123,140,255,.5),transparent);background-size:100% 26%;background-repeat:no-repeat;background-position:0 -30%;opacity:0;z-index:4}
-.bflash.go{animation:scanf .75s ease}
-@keyframes scanf{0%{opacity:1;background-position:0 -30%}100%{opacity:0;background-position:0 130%}}
-.bbadge{position:absolute;left:-18px;bottom:30%;white-space:nowrap;align-self:start;height:-moz-fit-content;height:fit-content;z-index:6;display:flex;align-items:center;gap:9px;padding:11px 15px;border-radius:14px;background:rgba(14,17,32,.88);backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px var(--line),0 20px 40px -20px #000;font-size:13.5px;font-weight:600;opacity:0;transform:translateY(10px) scale(.95);transition:opacity .5s,transform .5s var(--ease)}
-.bbadge.on{opacity:1;transform:none}
-.bbadge i{font-style:normal;color:var(--amber)}
-@media (max-width:900px){
-  .btrack{height:560vh}
-  .bg2{grid-template-columns:1fr;gap:10px;justify-items:center;text-align:center}
-  .bst{position:relative;inset:auto;display:none}.bst.on{display:block}
-  .bsteps{min-height:0;order:3;width:100%}
-  .bpanel{min-height:88px;margin-top:12px}
-  .bbadge{bottom:auto;top:-10px}
-  .bst h2{font-size:clamp(23px,6vw,31px);margin-top:6px}.bst p{margin-left:auto;margin-right:auto;font-size:15px}
-  .bctl{justify-content:center;gap:7px}.bctl button{height:40px;padding:0 12px;font-size:13.5px}.bctl .sw{width:38px;height:38px}
-  .bdots{justify-content:center;margin-top:12px}
-  .bst p{margin-top:7px;font-size:14px}
-  .bph{order:1;width:100%}
-  .ph{height:min(452px,52svh);width:auto;border-radius:38px}.ph .screen{border-radius:32px}.ph::before{width:64px;height:18px;margin-left:-32px;top:16px}
-  .bbadge{left:50%;right:auto;transform:translateX(-50%) translateY(10px) scale(.95);bottom:-14px;font-size:12.5px;padding:9px 12px}
-  .bbadge.on{transform:translateX(-50%)}
+.svhead h2{margin-top:16px;font-weight:800;font-size:clamp(32px,4.6vw,66px);line-height:1;letter-spacing:-.045em}
+.svhead h2 em{font-style:normal;background:linear-gradient(100deg,var(--cobalt2),var(--cobalt) 55%,#9aa8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.svlist{width:min(1100px,100% - 40px);margin:clamp(30px,4vw,56px) auto 0}
+.card{position:sticky;top:clamp(90px,14vh,150px);margin-bottom:26px;border-radius:26px;padding:clamp(26px,3.4vw,46px);overflow:hidden;
+  background:linear-gradient(155deg,color-mix(in srgb,var(--c1) 22%,var(--navy2)),var(--navy2) 58%);
+  box-shadow:inset 0 0 0 1px var(--line),0 40px 80px -40px rgba(0,0,0,.9);
+  transform-origin:top center;transition:transform .5s var(--ease),filter .5s}
+.card .n{position:absolute;right:clamp(18px,2.5vw,34px);top:clamp(14px,2vw,24px);font-size:clamp(54px,7vw,104px);font-weight:800;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.4px color-mix(in srgb,var(--c1) 55%,transparent)}
+.card h3{font-size:clamp(24px,2.8vw,40px);font-weight:800;letter-spacing:-.03em;max-width:17ch}
+.card p{margin-top:12px;color:var(--mut);font-size:clamp(15px,1.25vw,17.5px);max-width:46ch}
+.card ul{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px;list-style:none}
+.card li{padding:8px 13px;border-radius:11px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--line);font-size:14px;font-weight:600}
+.card .vis{position:absolute;right:0;bottom:0;width:clamp(150px,20vw,260px);height:clamp(150px,20vw,260px);opacity:.55;pointer-events:none}
+.card .vis i{position:absolute;inset:0;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--c1) 70%,transparent);animation:ping 4s ease-out infinite}
+.card .vis i:nth-child(2){animation-delay:1.3s}.card .vis i:nth-child(3){animation-delay:2.6s}
+@keyframes ping{0%{transform:scale(.25);opacity:0}25%{opacity:.9}100%{transform:scale(1);opacity:0}}
+
+/* ---------- closing ---------- */
+.fin{position:relative;padding:clamp(90px,13vw,170px) 0;text-align:center;overflow:hidden}
+.fin::before{content:"";position:absolute;left:50%;top:10%;width:min(900px,120vw);aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(76,99,255,.26),transparent 65%);filter:blur(30px);pointer-events:none}
+.fin h2{font-weight:800;font-size:clamp(34px,5.6vw,80px);line-height:.98;letter-spacing:-.05em}
+.fin h2 em{font-style:normal;color:var(--amber)}
+.fin p{margin:18px auto 0;color:var(--mut);max-width:42ch;font-size:clamp(16px,1.3vw,18px)}
+.fin .btn{margin-top:32px}
+.fin .sm{margin-top:18px;font-size:14px;color:var(--mut)}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (max-width:760px){
+  .mftrack{height:260vh}
+  .card{top:86px;border-radius:22px}
+  .card .n{font-size:58px}
+  .card .vis{width:140px;height:140px;opacity:.4}
 }
+
 .hd .cta .sh2{display:none}
 @media (max-width:980px){
   .nav,.hd .cta .btn.g{display:none}.burger{display:grid}
@@ -234,27 +223,45 @@ h1 .ln:nth-child(2)>span{animation-delay:.1s}
     <span class="rhint">Trage ca să rotești<span class="lg2">&nbsp;· atinge ca să deschizi</span></span>
   </div>
 </section>
-<section class="bs" id="construieste">
-  <div class="btrack"><div class="bstage"><div class="bg2">
-    <div class="bsteps" id="bsteps">
-      <div class="bst on"><span class="kick">Pasul 1</span><h2>Pornim de la <em>zero</em>.</h2><p>O schiță goală. Nimic de pe internet, nimic copiat.</p><div class="bdots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></div></div>
-      <div class="bst"><span class="kick">Pasul 2</span><h2>Ce fel de <em>afacere</em> ai?</h2><p>Atinge și vezi cum se schimbă site-ul pe loc.</p><div class="bdots" aria-hidden="true"><i></i><i class="on"></i><i></i><i></i><i></i></div></div>
-      <div class="bst"><span class="kick">Pasul 3</span><h2>Alege <em>culoarea</em> ta.</h2><p>Culoarea brandului tău, peste tot pe site.</p><div class="bdots" aria-hidden="true"><i></i><i></i><i class="on"></i><i></i><i></i></div></div>
-      <div class="bst"><span class="kick">Pasul 4</span><h2>Adaugi ce ai <em>nevoie</em>.</h2><p>Atinge ca să pui sau să scoți o secțiune.</p><div class="bdots" aria-hidden="true"><i></i><i></i><i></i><i class="on"></i><i></i></div></div>
-      <div class="bst"><span class="kick">Gata</span><h2>Îl primești în <em>24 de ore</em>.</h2><p>Cu numele și serviciile tale. Plătești doar dacă îți place.</p><div class="bdots" aria-hidden="true"><i></i><i></i><i></i><i></i><i class="on"></i></div></div>
-    </div>
-    <div class="bph">
-      <div class="ph"><div class="screen live wire" id="bscr"></div><i class="bflash" id="bflash"></i></div>
-      <span class="bbadge" id="bbadge"><i>✓</i> Gata pe telefon</span>
-      <div class="bpanel" id="bpanel">
-        <div class="bp on"><span class="bphint">Derulează ca să construim site-ul</span></div>
-        <div class="bp"><div class="bctl" id="bniche" role="group" aria-label="Tipul afacerii"></div></div>
-        <div class="bp"><div class="bctl" id="bsw" role="group" aria-label="Culoare"></div></div>
-        <div class="bp"><div class="bctl" id="bsec" role="group" aria-label="Secțiuni"></div></div>
-        <div class="bp"><div class="bctl"><a class="btn a" id="bwa" href="https://wa.me/40740267706" target="_blank" rel="noopener">Vreau site-ul meu<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
-      </div>
-    </div>
+<section class="mf" id="manifest">
+  <div class="mftrack"><div class="mfstage"><div class="mfw">
+    <p class="mft" id="mft">Nu facem doar site-uri frumoase. Facem site-uri care se deschid instant, arată impecabil pe telefon și transformă vizitatorii în clienți.</p>
+    <div class="mfbar"><b id="mfbar"></b></div>
   </div></div></div>
+</section>
+
+<section class="sv" id="servicii">
+  <div class="svhead">
+    <span class="kick rv">Ce facem</span>
+    <h2 class="rv">Tot ce ține site-ul tău <em>în viață</em>.</h2>
+  </div>
+  <div class="svlist">
+    <article class="card rv" style="--c1:#4C63FF"><span class="n">01</span><div class="vis" aria-hidden="true"><i></i><i></i><i></i></div>
+      <h3>Site-uri făcute de la zero</h3>
+      <p>Design gândit pentru afacerea ta, nu un șablon cumpărat. Scris de mână, ca să se deschidă instant pe orice telefon.</p>
+      <ul><li>Design propriu</li><li>Rapid pe telefon</li><li>Text scris de noi</li><li>Poze pregătite</li></ul></article>
+    <article class="card rv" style="--c1:#FFB020"><span class="n">02</span><div class="vis" aria-hidden="true"><i></i><i></i><i></i></div>
+      <h3>Programări și comenzi online</h3>
+      <p>Clientul alege ora sau comanda direct de pe telefon, iar tu primești totul pe WhatsApp și în calendar. Fără telefoane ratate.</p>
+      <ul><li>Rezervări</li><li>Comenzi</li><li>WhatsApp</li><li>Google Calendar</li></ul></article>
+    <article class="card rv" style="--c1:#2BC48A"><span class="n">03</span><div class="vis" aria-hidden="true"><i></i><i></i><i></i></div>
+      <h3>Asistent AI care răspunde non-stop</h3>
+      <p>Răspunde la întrebări despre program, prețuri și servicii la orice oră, în română și maghiară, și îți trimite cererile serioase direct ție.</p>
+      <ul><li>24/7</li><li>RO și HU</li><li>Preia cereri</li><li>Învață de la tine</li></ul></article>
+    <article class="card rv" style="--c1:#8E5BD6"><span class="n">04</span><div class="vis" aria-hidden="true"><i></i><i></i><i></i></div>
+      <h3>Să te găsească lumea pe Google</h3>
+      <p>Legăm site-ul de profilul tău Google Business și scriem paginile așa încât Google să înțeleagă ce faci și unde ești.</p>
+      <ul><li>Google Business</li><li>Structură clară</li><li>Articole</li><li>Hartă și program</li></ul></article>
+  </div>
+</section>
+
+<section class="fin" id="demo">
+  <div class="wrap">
+    <h2 class="rv">Hai să începem cu<br><em>un demo gratuit</em>.</h2>
+    <p class="rv">Îți facem întâi site-ul, cu numele și serviciile tale. Îl vezi pe telefon în 24 de ore și decizi după.</p>
+    <a class="btn a rv" href="/contact#demo">Cere demo gratuit<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <p class="sm rv">Sau sună direct: <a href="tel:+40740267706" style="color:var(--ink);font-weight:600">0740 267 706</a></p>
+  </div>
 </section>
 </main>
 <footer class="ft"><div class="wrap"><span>© 2026 OHI Solutions, Târgu Mureș</span><span><a href="/contact">Despre și contact</a>&nbsp;&nbsp;<a href="/preturi">Prețuri</a>&nbsp;&nbsp;<a href="/automatizari">Automatizări</a>&nbsp;&nbsp;<a href="/blog">Blog</a>&nbsp;&nbsp;<a href="/confidentialitate">Confidențialitate</a>&nbsp;&nbsp;<a href="/termeni">Termeni</a></span></div></footer>
@@ -296,38 +303,33 @@ addEventListener('scroll',onScroll,{passive:true});onScroll();
 new IntersectionObserver(e=>{visible=e[0].isIntersecting;if(!visible)cards.forEach(c=>c.querySelector('video').pause())}).observe(hero);
 })();
 </script>
-<script src="/mock.js"></script>
 <script>
 (()=>{
-const sec=document.getElementById('construieste'),track=sec.querySelector('.btrack'),scr=document.getElementById('bscr'),flash=document.getElementById('bflash'),badge=document.getElementById('bbadge');
-const steps=[...document.querySelectorAll('.bst')],panes=[...document.querySelectorAll('.bp')],stage=sec.querySelector('.bstage');
-const NICHE=['restaurant','frizerie','cofetarie','service','salon','pensiune'];
-const SECS=[['book','Programări'],['prices','Prețuri'],['map','Program și hartă'],['rai','Asistent AI']];
-const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-let st=preset('restaurant');st.name='';let cur=-1,touched=false;
-function render(f){paint(scr,st);if(cur===0)scr.classList.add('wire');else scr.classList.remove('wire');
-  sec.style.setProperty('--pc',st.color);
-  const n=(st.name||'').trim(),t=NICHES[st.niche].label.toLowerCase();
-  document.getElementById('bwa').href='https://wa.me/'+WA+'?text='+encodeURIComponent('Bună! Vreau un demo gratuit ('+t+').');
-  if(f&&!reduce){flash.classList.remove('go');void flash.offsetWidth;flash.classList.add('go')}}
-const bn=document.getElementById('bniche'),bs=document.getElementById('bsw'),bc=document.getElementById('bsec');
-function chips(){bn.innerHTML='';NICHE.forEach(k=>{const b=document.createElement('button');b.type='button';b.innerHTML=NICHES[k].ico+' '+NICHES[k].label;b.setAttribute('aria-pressed',k===st.niche);
-  b.onclick=()=>{touched=true;st.niche=k;st.color=NICHES[k].sw[0];chips();sws();render(1)};bn.appendChild(b)})}
-function sws(){bs.innerHTML='';NICHES[st.niche].sw.forEach(c=>{const b=document.createElement('button');b.type='button';b.className='sw';b.style.setProperty('--c',c);b.setAttribute('aria-label','Culoare');b.setAttribute('aria-pressed',c===st.color);
-  b.onclick=()=>{touched=true;st.color=c;sws();render(1)};bs.appendChild(b)})}
-function tgs(){bc.innerHTML='';SECS.forEach(([k,lab])=>{const on=!!st.secs[k];const b=document.createElement('button');b.type='button';b.className='tg';b.innerHTML='<b>'+(on?'✓':'+')+'</b>'+lab;b.setAttribute('aria-pressed',on);
-  b.onclick=()=>{touched=true;st.secs[k]=on?0:1;tgs();render(1)};bc.appendChild(b)})}
-chips();sws();tgs();render();
-function setStep(i){if(i===cur)return;const prev=cur;cur=i;steps.forEach((e,k)=>e.classList.toggle('on',k===i));panes.forEach((e,k)=>e.classList.toggle('on',k===i));
-  badge.classList.toggle('on',i>=4);
-  if(i===0){st.secs={book:0,prices:0,map:0,rai:0};tgs()}
-  if(i===1&&prev<1&&!touched){st.secs={book:1,prices:0,map:0,rai:0};tgs()}
-  if(i===2&&prev<2&&!touched){st.color=NICHES[st.niche].sw[0];sws()}
-  if(i>=3&&prev<3&&!touched){st.secs={book:1,prices:1,map:1,rai:1};tgs()}
-  render(1)}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+/* manifest: light each word as you scroll through the pinned section */
+const mf=document.getElementById('manifest'),p=document.getElementById('mft'),bar=document.getElementById('mfbar');
+const HL={'instant,':'c','impecabil':'c','clienți.':'a'};
+const words=p.textContent.trim().split(/\s+/);
+p.innerHTML=words.map(w=>'<i'+(HL[w]?' class="x'+HL[w]+'"':'')+'>'+w+'</i>').join(' ');
+const its=[...p.querySelectorAll('i')];
+its.forEach(i=>{const c=i.className;if(c){i.className=c.slice(1)==='c'?'':'';i.dataset.k=c.slice(1)}});
+const track=mf.querySelector('.mftrack'),stage=mf.querySelector('.mfstage');
 function onScroll(){const r=track.getBoundingClientRect(),run=track.offsetHeight-stage.offsetHeight;
-  const p=Math.min(1,Math.max(0,(-r.top)/run));setStep(Math.min(steps.length-1,Math.floor(p*steps.length*0.999)))}
+  const q=Math.min(1,Math.max(0,(-r.top)/run));const lit=Math.round(q*1.25*its.length);
+  its.forEach((el,k)=>{const on=k<lit;el.classList.toggle('lit',on);if(el.dataset.k)el.classList.toggle(el.dataset.k,on)});
+  bar.style.width=Math.min(100,q*125)+'%'}
 addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
+/* stacked cards: each card dims and shrinks as the next one covers it */
+const cards=[...document.querySelectorAll('.svlist .card')],svs=document.getElementById('servicii');
+let run=false;
+function tick(){if(!run)return;
+  cards.forEach((c,i)=>{const nx=cards[i+1];let d=0;
+    if(nx){const nr=nx.getBoundingClientRect();d=Math.min(1,Math.max(0,(innerHeight-nr.top)/(innerHeight*0.9)))}
+    c.style.transform='scale('+(1-d*0.055)+') translateY('+(-d*10)+'px)';c.style.filter='brightness('+(1-d*0.3)+')'});
+  requestAnimationFrame(tick)}
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  new IntersectionObserver(e=>{const v=e[0].isIntersecting;if(v&&!run){run=true;requestAnimationFrame(tick)}else if(!v)run=false},{rootMargin:'200px'}).observe(svs)}
 })();
 </script>
 <script src="/assistant.js" defer></script>
