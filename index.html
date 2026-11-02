@@ -22,6 +22,7 @@
 <link rel="icon" href="/icon-512.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Organization", "@id": "https://ohis-gamma.vercel.app/#org", "name": "OHI Solutions", "url": "https://ohis-gamma.vercel.app/", "logo": "https://ohis-gamma.vercel.app/icon-512.png", "description": "Creare de site-uri web și automatizări pentru afaceri locale din Târgu Mureș și din toată România.", "telephone": "+40740267706", "address": {"@type": "PostalAddress", "addressLocality": "Târgu Mureș", "addressCountry": "RO"}}, {"@context": "https://schema.org", "@type": "WebSite", "@id": "https://ohis-gamma.vercel.app/#website", "name": "OHI Solutions", "url": "https://ohis-gamma.vercel.app/", "inLanguage": "ro-RO", "publisher": {"@id": "https://ohis-gamma.vercel.app/#org"}}]</script>
+<link rel="stylesheet" href="/demo.css">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -123,60 +124,52 @@ h1 .ln:nth-child(2)>span{animation-delay:.1s}
 .next{padding:120px 0;text-align:center;color:var(--mut);font-size:15px;border-top:1px solid var(--line)}
 
 
-/* ---------- diferența ---------- */
-.vs{position:relative;padding:clamp(90px,12vw,150px) 0;overflow:hidden}
-.vs::before{content:"";position:absolute;left:50%;top:0;width:min(1200px,120vw);height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(123,140,255,.45),transparent)}
+/* ---------- live builder: "scrie numele afacerii tale" ---------- */
+.lv{position:relative;padding:clamp(90px,11vw,150px) 0;overflow:hidden;isolation:isolate}
+.lv::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 50% at 75% 45%,color-mix(in srgb,var(--pc,#4C63FF) 26%,transparent),transparent 70%);transition:background .6s}
+.lv::after{content:"";position:absolute;left:50%;top:0;width:min(1200px,120vw);height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(123,140,255,.45),transparent)}
+.lvg{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,80px);align-items:center}
 .kick{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
 .kick::before{content:"";width:26px;height:2px;background:var(--amber);border-radius:2px}
-.vs h2{margin-top:16px;font-weight:800;font-size:clamp(34px,5vw,68px);line-height:1.02;letter-spacing:-.045em;max-width:14ch}
-.vs h2 s{position:relative;text-decoration:none;color:var(--mut)}
-.vs h2 s::after{content:"";position:absolute;left:-4%;right:-4%;top:54%;height:.09em;border-radius:9px;background:var(--amber);transform:scaleX(0) rotate(-3deg);transform-origin:left;transition:transform .9s var(--ease) .35s}
-.vs.in h2 s::after{transform:scaleX(1) rotate(-3deg)}
-.vshead{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
-.vshead p{max-width:36ch;color:var(--mut);font-size:clamp(16px,1.3vw,18px)}
+.lv h2{margin-top:16px;font-weight:800;font-size:clamp(38px,5.4vw,76px);line-height:.98;letter-spacing:-.05em}
+.lv h2 em{font-style:normal;background:linear-gradient(100deg,var(--cobalt2),var(--cobalt) 55%,#9aa8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lv .sub{margin-top:16px;color:var(--mut);font-size:clamp(16px,1.3vw,18px);max-width:38ch}
+.field{position:relative;margin-top:34px}
+.field input{width:100%;height:76px;border-radius:20px;border:0;outline:0;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1.5px var(--line);color:var(--ink);font:700 clamp(22px,2.3vw,30px) var(--f);letter-spacing:-.02em;padding:0 64px 0 24px;transition:box-shadow .25s,background .25s}
+.field input::placeholder{color:rgba(242,243,247,.28)}
+.field input:focus{background:rgba(76,99,255,.08);box-shadow:inset 0 0 0 2px var(--cobalt),0 0 0 6px rgba(76,99,255,.18)}
+.field .car{position:absolute;right:24px;top:50%;width:26px;height:26px;margin-top:-13px;border-radius:50%;background:var(--amber);display:grid;place-items:center;color:#14110A;font-weight:800;font-size:15px}
+.field.auto input{color:rgba(242,243,247,.85)}
+.field.auto input+.car{animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(255,176,32,.18)}}
+.lab2{margin-top:22px;font-size:13px;font-weight:600;color:var(--mut);letter-spacing:.04em}
+.chips{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+.chips button{height:42px;padding:0 14px;border-radius:12px;border:0;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1.5px var(--line);color:var(--ink);font:600 14.5px var(--f);cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:background .2s,box-shadow .2s,transform .3s var(--ease)}
+.chips button:hover{transform:translateY(-2px)}
+.chips button[aria-pressed=true]{background:rgba(76,99,255,.16);box-shadow:inset 0 0 0 1.5px var(--cobalt)}
+.sws{margin-top:10px;display:flex;gap:10px}
+.sws button{width:38px;height:38px;border-radius:50%;border:0;background:var(--c);cursor:pointer;box-shadow:inset 0 0 0 2px rgba(255,255,255,.12);transition:transform .25s var(--ease),box-shadow .2s}
+.sws button[aria-pressed=true]{box-shadow:0 0 0 3px var(--navy),0 0 0 5px var(--amber);transform:scale(1.08)}
+.lvcta{margin-top:30px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.lvcta small{color:var(--mut);font-size:13.5px}
+/* phone */
+.pst{position:relative;display:grid;place-items:center;perspective:1400px;min-height:640px}
+.ph{position:relative;width:300px;height:620px;border-radius:50px;padding:11px;background:linear-gradient(145deg,#2A2E3A,#0B0D14);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 60px 100px -40px rgba(0,0,0,.9),0 0 90px -20px color-mix(in srgb,var(--pc,#4C63FF) 60%,transparent);transform:rotateY(-14deg) rotateX(6deg) rotateZ(1.5deg);transition:transform 1s var(--ease),box-shadow .6s;transform-style:preserve-3d}
+.pst:hover .ph{transform:rotateY(-6deg) rotateX(3deg)}
+.ph::before{content:"";position:absolute;top:20px;left:50%;width:84px;height:24px;margin-left:-42px;border-radius:14px;background:#05060A;z-index:5}
+.ph .screen{border-radius:40px}
+.ph .scroll{padding-top:34px}
+.ph .flash{position:absolute;inset:11px;border-radius:40px;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(255,255,255,.35),transparent);background-size:100% 30%;background-repeat:no-repeat;background-position:0 -40%;opacity:0;z-index:4}
+.ph .flash.go{animation:scanf .7s ease}
+@keyframes scanf{0%{opacity:1;background-position:0 -40%}100%{opacity:0;background-position:0 140%}}
+.ptag{position:absolute;z-index:6;display:flex;align-items:center;gap:9px;padding:10px 14px;border-radius:14px;background:rgba(14,17,32,.85);backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px var(--line),0 20px 40px -20px rgba(0,0,0,.7);font-size:13.5px;font-weight:600;animation:bob 6s ease-in-out infinite}
+.ptag i{font-style:normal;color:var(--amber)}
+.ptag.t1{left:2%;top:14%}.ptag.t2{right:0;bottom:16%;animation-delay:-3s}
+@keyframes bob{50%{transform:translateY(-8px)}}
 .rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
-.in .rv,.rv.in{opacity:1;transform:none}
-
-/* before/after slider */
-.cmp{--x:50%;position:relative;margin-top:clamp(36px,5vw,60px);aspect-ratio:16/9;max-height:min(640px,74vh);width:100%;margin-left:auto;margin-right:auto;border-radius:20px;overflow:hidden;background:#d9d9d9;cursor:ew-resize;touch-action:pan-y;user-select:none;-webkit-user-select:none;
-  box-shadow:0 0 0 1px rgba(255,255,255,.1),0 50px 100px -40px rgba(0,0,0,.9),0 0 90px -30px rgba(76,99,255,.5)}
-.cmp .bar{position:absolute;top:0;left:0;right:0;height:32px;display:flex;align-items:center;gap:6px;padding:0 14px;z-index:2}
-.cmp .bar i{width:10px;height:10px;border-radius:50%;background:#bbb}
-.cmp .bar span{margin-left:12px;height:20px;line-height:20px;padding:0 12px;border-radius:6px;font-size:11.5px}
-.old{position:absolute;inset:0;z-index:0;background:#efefef;font-family:"Times New Roman",Georgia,serif;color:#333}
-.old .bar{background:#dcdcdc}.old .bar span{background:#fff;color:#777}
-.old .in2{position:absolute;inset:32px 0 0;padding:3% 5%;display:flex;flex-direction:column;gap:3.2%}
-.old .nv{display:flex;gap:4%;font-size:clamp(9px,1.1vw,14px);color:#2a55b0;text-decoration:underline}
-.old .nv b{margin-right:auto;color:#333;text-decoration:none;font-size:1.2em}
-.old .ban{flex:1;max-height:48%;background:repeating-linear-gradient(45deg,#d4d4d4 0 14px,#cbcbcb 14px 28px);display:grid;place-items:center;color:#888;font-size:clamp(10px,1.2vw,15px);font-style:italic;position:relative}
-.old .ban::before{content:"";width:clamp(20px,2.6vw,34px);height:clamp(20px,2.6vw,34px);border-radius:50%;border:3px solid #bbb;border-top-color:#777;animation:spin 1s linear infinite;position:absolute;top:30%}
-@keyframes spin{to{transform:rotate(360deg)}}
-.old h3{font-size:clamp(14px,2.2vw,30px);font-weight:400}
-.old .tx{display:grid;gap:6px}.old .tx i{display:block;height:clamp(5px,.7vw,9px);background:#d0d0d0;border-radius:2px}.old .tx i:nth-child(2){width:86%}.old .tx i:nth-child(3){width:64%}
-.old .bt{align-self:flex-start;padding:.4em 1em;background:#e7e7e7;border:1px solid #aaa;font-size:clamp(9px,1vw,13px);color:#555}
-.new{position:absolute;inset:0;z-index:1;clip-path:inset(0 0 0 var(--x));background:var(--navy2)}
-.new .bar{background:#0b0e1a;border-bottom:1px solid var(--line)}.new .bar i:first-child{background:#ff5f57}.new .bar i:nth-child(2){background:#febc2e}.new .bar i:nth-child(3){background:#28c840}.new .bar span{background:rgba(255,255,255,.06);color:var(--mut)}
-.new video{position:absolute;inset:32px 0 0;width:100%;height:calc(100% - 32px);object-fit:cover;object-position:top}
-.lab{position:absolute;bottom:16px;z-index:3;padding:8px 13px;border-radius:10px;font:600 13px var(--f);backdrop-filter:blur(8px);transition:opacity .3s}
-.lab.l{left:16px;background:rgba(0,0,0,.6);color:#eee}.lab.r{right:16px;background:rgba(7,8,13,.8);color:var(--ink)}.lab.r b{color:var(--amber)}
-.hdl{position:absolute;top:0;bottom:0;left:var(--x);width:2px;margin-left:-1px;background:var(--amber);z-index:4;box-shadow:0 0 20px rgba(255,176,32,.6)}
-.hdl span{position:absolute;top:50%;left:50%;width:50px;height:50px;margin:-25px 0 0 -25px;border-radius:50%;background:var(--amber);display:grid;place-items:center;box-shadow:0 10px 30px -6px rgba(255,176,32,.7),0 0 0 6px rgba(255,176,32,.18)}
-.hdl svg{width:24px;height:24px;color:#14110A}
-
-.smx{display:none}
-/* the four differences */
-.diffs{margin-top:clamp(50px,7vw,90px);display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.df{position:relative;padding:28px 28px 30px;border-radius:20px;background:linear-gradient(160deg,rgba(76,99,255,.10),rgba(21,26,46,.6) 40%);box-shadow:inset 0 0 0 1px var(--line);overflow:hidden;transition:box-shadow .3s,transform .5s var(--ease)}
-.df:hover{box-shadow:inset 0 0 0 1px rgba(123,140,255,.45);transform:translateY(-4px)}
-.df .ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:rgba(76,99,255,.16);color:var(--cobalt2)}
-.df .ic svg{width:26px;height:26px}
-.df:nth-child(2) .ic{background:rgba(255,176,32,.14);color:var(--amber)}
-.df .was{margin-top:22px;display:inline-block;position:relative;font-size:14.5px;color:var(--mut)}
-.df .was::after{content:"";position:absolute;left:-2px;right:-2px;top:52%;height:1.5px;background:#ff6b6b;transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease) .5s}
-.df.in .was::after{transform:scaleX(1)}
-.df h3{margin-top:8px;font-size:clamp(21px,1.9vw,26px);font-weight:700;letter-spacing:-.025em;line-height:1.15}
-.df .big{position:absolute;right:20px;top:14px;font-size:clamp(60px,6vw,90px);font-weight:800;letter-spacing:-.06em;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(123,140,255,.28)}
-@media (max-width:760px){.diffs{grid-template-columns:1fr}.cmp{aspect-ratio:4/5;border-radius:16px}.cmp .bar span{display:none}.lab{font-size:11.5px;bottom:12px}.lab.l{left:12px}.lab.r{right:12px}.old .ban{max-height:36%}.lgx{display:none}.smx{display:inline!important}.cmp{max-height:none}}
+.rv.in{opacity:1;transform:none}
+@media (max-width:900px){.lvg{grid-template-columns:1fr}.pst{min-height:0;margin-top:10px;order:3}.lvl{display:contents}.lvtop{order:1}.lvin{order:2}.lvctl{order:4}.pst{margin-top:6px}.ph{width:244px;height:500px;border-radius:44px;transform:rotateX(4deg)}.ph .screen,.ph .flash{border-radius:34px}.ptag.t1{left:0;top:6%}.ptag.t2{right:0;bottom:8%}}
+@media (max-width:560px){.field input{height:64px;border-radius:16px;padding-left:18px}.chips button{height:38px;padding:0 11px;font-size:13.5px}.lvcta .btn{width:100%}.ptag{font-size:12px;padding:8px 11px}}
 
 .hd .cta .sh2{display:none}
 @media (max-width:980px){
@@ -224,24 +217,29 @@ h1 .ln:nth-child(2)>span{animation-delay:.1s}
     <span class="rhint">Trage ca să rotești<span class="lg2">&nbsp;· atinge ca să deschizi</span></span>
   </div>
 </section>
-<section class="vs" id="diferenta">
-  <div class="wrap">
-    <div class="vshead">
-      <div><span class="kick rv">De ce OHI</span><h2 class="rv">Nu încă un site făcut din <s>șablon</s>.</h2></div>
-      <p class="rv">Trage de mâner și vezi diferența dintre un site făcut „ca să fie” și unul făcut să vândă.</p>
+<section class="lv" id="incearca">
+  <div class="wrap lvg">
+    <div class="lvl">
+      <div class="lvtop">
+        <span class="kick rv">Încearcă acum</span>
+        <h2 class="rv">Scrie numele afacerii tale.<br><em>Vezi-ți site-ul.</em></h2>
+        <p class="sub rv">Fără cont, fără plată. Așa începe fiecare site pe care îl facem.</p>
+      </div>
+      <div class="lvin rv">
+        <div class="field auto" id="fld"><input id="nm" type="text" maxlength="34" autocomplete="off" spellcheck="false" aria-label="Numele afacerii tale" placeholder="Numele afacerii"><span class="car" aria-hidden="true">→</span></div>
+      </div>
+      <div class="lvctl rv">
+        <div class="lab2">Ce fel de afacere ai?</div>
+        <div class="chips" id="chips" role="group" aria-label="Tipul afacerii"></div>
+        <div class="lab2">Culoarea ta</div>
+        <div class="sws" id="sws" role="group" aria-label="Culoare"></div>
+        <div class="lvcta"><a class="btn a" id="wa" href="https://wa.me/40740267706" target="_blank" rel="noopener">Vreau site-ul ăsta, gratuit<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><small>Îți scriem pe WhatsApp. Demo-ul real îl primești în 24 de ore.</small></div>
+      </div>
     </div>
-    <div class="cmp rv" id="cmp" role="slider" aria-label="Comparație: șablon generic față de site făcut de OHI" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
-      <div class="old"><div class="bar"><i></i><i></i><i></i><span>www.site-generic.ro</span></div>
-        <div class="in2"><div class="nv"><b>Firma Mea SRL</b><span>Acasă</span><span>Despre</span><span>Contact</span></div><div class="ban">Se încarcă imaginea…</div><h3>Bine ați venit pe site-ul nostru!</h3><div class="tx"><i></i><i></i><i></i></div><span class="bt">Click aici</span></div></div>
-      <div class="new"><div class="bar"><i></i><i></i><i></i><span>bigbigboon.ro</span></div><video muted loop playsinline preload="none" poster="/portofoliu-media/bbb.webp" data-src="/portofoliu-media/bbb.mp4"></video></div>
-      <span class="lab l"><span class="lgx">Exemplu de șablon generic</span><span class="smx">Șablon generic</span></span><span class="lab r"><b>OHI</b> · Big Big Boon</span>
-      <div class="hdl"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span></div>
-    </div>
-    <div class="diffs">
-      <div class="df rv"><span class="big">01</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div><span class="was">Plătești avans și aștepți săptămâni</span><h3>Vezi site-ul gata înainte să plătești ceva.</h3></div>
-      <div class="df rv"><span class="big">02</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></svg></div><span class="was">Același șablon ca la alte zece firme</span><h3>Design făcut de la zero, pentru afacerea ta.</h3></div>
-      <div class="df rv"><span class="big">03</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div><span class="was">Arată bine doar pe calculator</span><h3>Gândit întâi pentru telefon, unde te caută clienții.</h3></div>
-      <div class="df rv"><span class="big">04</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div><span class="was">Un număr de suport la care nu răspunde nimeni</span><h3>Suntem în Târgu Mureș. Ne suni direct.</h3></div>
+    <div class="pst rv" id="pst">
+      <div class="ph"><div class="screen live" id="scr"></div><i class="flash" id="flash"></i></div>
+      <span class="ptag t1"><i>●</i> Se actualizează live</span>
+      <span class="ptag t2"><i>✓</i> Gata pe telefon</span>
     </div>
   </div>
 </section>
@@ -287,22 +285,31 @@ addEventListener('scroll',onScroll,{passive:true});onScroll();
 new IntersectionObserver(e=>{visible=e[0].isIntersecting;if(!visible)cards.forEach(c=>c.querySelector('video').pause())}).observe(hero);
 })();
 </script>
+<script src="/mock.js"></script>
 <script>
 (()=>{
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.2,rootMargin:'0px 0px -8% 0px'});
-document.querySelectorAll('.vs,.rv').forEach(el=>io.observe(el));
-const cmp=document.getElementById('cmp'),vid=cmp.querySelector('video'),reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-let x=50,auto=!reduce,drag=false;
-const set=v=>{x=Math.max(3,Math.min(97,v));cmp.style.setProperty('--x',x+'%');cmp.setAttribute('aria-valuenow',Math.round(x))};
-const fromEv=e=>{const r=cmp.getBoundingClientRect();set((e.clientX-r.left)/r.width*100)};
-cmp.addEventListener('pointerdown',e=>{auto=false;drag=true;fromEv(e)});
-addEventListener('pointermove',e=>{if(drag)fromEv(e)});addEventListener('pointerup',()=>drag=false);
-cmp.addEventListener('keydown',e=>{if(e.key=='ArrowLeft'){auto=false;set(x-5)}if(e.key=='ArrowRight'){auto=false;set(x+5)}});
-/* on first view: sweep to show both sides, then settle */
-new IntersectionObserver((es,o)=>{if(!es[0].isIntersecting)return;o.disconnect();if(!vid.src)vid.src=vid.dataset.src;vid.play().catch(()=>{});
-  if(!auto)return;const keys=[[0,50],[900,88],[2100,12],[3100,50]],t0=performance.now();
-  (function tick(now){if(!auto)return;const t=now-t0;let k=1;while(k<keys.length-1&&t>keys[k][0])k++;const [ta,va]=keys[k-1],[tb,vb]=keys[k];let p=Math.min(1,(t-ta)/(tb-ta));p=p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;set(va+(vb-va)*p);if(t<keys[keys.length-1][0])requestAnimationFrame(tick)})(t0)},{threshold:.45}).observe(cmp);
-new IntersectionObserver(es=>{es[0].isIntersecting?(vid.src&&vid.play().catch(()=>{})):vid.pause()}).observe(cmp);
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const show=['restaurant','frizerie','cofetarie','service','salon','pensiune'];
+const scr=document.getElementById('scr'),nm=document.getElementById('nm'),fld=document.getElementById('fld'),chips=document.getElementById('chips'),sws=document.getElementById('sws'),wa=document.getElementById('wa'),flash=document.getElementById('flash'),sec=document.getElementById('incearca');
+let st=preset('restaurant');st.name='';let auto=true,timer=null;
+function render(f){paint(scr,st);sec.style.setProperty('--pc',st.color);
+  const n=(st.name||'').trim(),t=NICHES[st.niche].label.toLowerCase();
+  wa.href='https://wa.me/'+WA+'?text='+encodeURIComponent('Bună! Vreau un demo gratuit'+(n?' pentru „'+n+'”':'')+' ('+t+').');
+  if(f){flash.classList.remove('go');void flash.offsetWidth;flash.classList.add('go')}}
+function drawChips(){chips.innerHTML='';show.forEach(k=>{const b=document.createElement('button');b.type='button';b.innerHTML=NICHES[k].ico+' '+NICHES[k].label;b.setAttribute('aria-pressed',k===st.niche);b.onclick=()=>{stopAuto();st.niche=k;st.color=NICHES[k].sw[0];drawChips();drawSw();render(1)};chips.appendChild(b)})}
+function drawSw(){sws.innerHTML='';NICHES[st.niche].sw.forEach(c=>{const b=document.createElement('button');b.type='button';b.style.setProperty('--c',c);b.setAttribute('aria-label','Culoare '+c);b.setAttribute('aria-pressed',c===st.color);b.onclick=()=>{stopAuto();st.color=c;drawSw();render(1)};sws.appendChild(b)})}
+function stopAuto(){if(!auto)return;auto=false;clearTimeout(timer);fld.classList.remove('auto');if(nm.value===NICHES[st.niche].ph){nm.value=st.name=''} }
+nm.addEventListener('focus',()=>{if(auto){stopAuto();nm.value='';st.name='';render()}});
+nm.addEventListener('input',()=>{stopAuto();st.name=nm.value;render()});
+/* demo loop: types a business name, phone builds itself, then the next niche */
+let ai=0;
+function typeName(){if(!auto)return;const k=show[ai%show.length];st.niche=k;st.color=NICHES[k].sw[(ai>>1)%NICHES[k].sw.length];drawChips();drawSw();
+  const full=NICHES[k].ph;let i=0;nm.value='';st.name=' ';render(1);
+  (function step(){if(!auto)return;i++;nm.value=full.slice(0,i);st.name=nm.value||' ';render();
+    if(i<full.length)timer=setTimeout(step,55+Math.random()*60);else timer=setTimeout(()=>{ai++;typeName()},2200)})()}
+drawChips();drawSw();render();
+new IntersectionObserver(es=>{if(es[0].isIntersecting&&auto&&!timer)typeName()},{threshold:.35}).observe(sec);
 })();
 </script>
 <script src="/assistant.js" defer></script>
