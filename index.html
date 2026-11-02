@@ -135,6 +135,14 @@ h1 .ln:nth-child(2)>span{animation-delay:.1s}
 .bg2{display:grid;grid-template-columns:1fr .9fr;gap:clamp(24px,4vw,70px);align-items:center;width:min(1240px,100% - 40px);margin:0 auto}
 .kick{display:inline-flex;align-items:center;gap:10px;font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
 .kick::before{content:"";width:24px;height:2px;background:var(--amber);border-radius:2px}
+.bpanel{position:relative;width:100%;margin-top:20px;min-height:104px}
+.bp{position:absolute;left:0;right:0;top:0;display:flex;justify-content:center;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.bp.on{opacity:1;transform:none;pointer-events:auto}
+.bp .bctl{margin-top:0;justify-content:center;max-width:460px}
+.bp::before{content:"";position:absolute;top:-14px;left:50%;width:2px;height:10px;margin-left:-1px;border-radius:2px;background:linear-gradient(180deg,rgba(123,140,255,.65),transparent)}
+.bphint{font-size:13px;color:var(--mut);display:inline-flex;align-items:center;gap:9px}
+.bphint::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--amber);animation:blink 1.6s infinite}
+.bph{align-content:start}
 .bsteps{position:relative;min-height:230px}
 .bst{position:absolute;inset:0;opacity:0;transform:translateY(26px);transition:opacity .5s var(--ease),transform .5s var(--ease);pointer-events:none}
 .bst.on{opacity:1;transform:none;pointer-events:auto}
@@ -153,8 +161,8 @@ h1 .ln:nth-child(2)>span{animation-delay:.1s}
 .bdots{display:flex;gap:7px;margin-top:26px}
 .bdots i{width:28px;height:4px;border-radius:4px;background:rgba(255,255,255,.14);transition:background .4s,width .4s var(--ease)}
 .bdots i.on{background:var(--amber);width:46px}
-.bph{position:relative;display:grid;place-items:center;perspective:1500px}
-.ph{position:relative;width:clamp(240px,23vw,310px);aspect-ratio:9/19.3;border-radius:52px;padding:11px;background:linear-gradient(145deg,#2A2E3A,#0B0D14);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 60px 100px -40px rgba(0,0,0,.9),0 0 90px -20px color-mix(in srgb,var(--pc,#4C63FF) 55%,transparent);transform:rotateY(-13deg) rotateX(5deg);transition:transform 1s var(--ease),box-shadow .6s;transform-style:preserve-3d}
+.bph{position:relative;display:grid;justify-items:center;perspective:1500px}
+.ph{position:relative;height:min(600px,58svh);width:auto;aspect-ratio:9/19.3;border-radius:52px;padding:11px;background:linear-gradient(145deg,#2A2E3A,#0B0D14);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 60px 100px -40px rgba(0,0,0,.9),0 0 90px -20px color-mix(in srgb,var(--pc,#4C63FF) 55%,transparent);transform:rotateY(-13deg) rotateX(5deg);transition:transform 1s var(--ease),box-shadow .6s;transform-style:preserve-3d}
 .bph:hover .ph{transform:rotateY(-5deg) rotateX(2deg)}
 .ph::before{content:"";position:absolute;top:20px;left:50%;width:82px;height:23px;margin-left:-41px;border-radius:14px;background:#05060A;z-index:5}
 .ph .screen{border-radius:42px}
@@ -163,19 +171,22 @@ h1 .ln:nth-child(2)>span{animation-delay:.1s}
 .bflash{position:absolute;inset:11px;border-radius:42px;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(123,140,255,.5),transparent);background-size:100% 26%;background-repeat:no-repeat;background-position:0 -30%;opacity:0;z-index:4}
 .bflash.go{animation:scanf .75s ease}
 @keyframes scanf{0%{opacity:1;background-position:0 -30%}100%{opacity:0;background-position:0 130%}}
-.bbadge{position:absolute;left:-18px;bottom:11%;white-space:nowrap;z-index:6;display:flex;align-items:center;gap:9px;padding:11px 15px;border-radius:14px;background:rgba(14,17,32,.88);backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px var(--line),0 20px 40px -20px #000;font-size:13.5px;font-weight:600;opacity:0;transform:translateY(10px) scale(.95);transition:opacity .5s,transform .5s var(--ease)}
+.bbadge{position:absolute;left:-18px;bottom:30%;white-space:nowrap;align-self:start;height:-moz-fit-content;height:fit-content;z-index:6;display:flex;align-items:center;gap:9px;padding:11px 15px;border-radius:14px;background:rgba(14,17,32,.88);backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px var(--line),0 20px 40px -20px #000;font-size:13.5px;font-weight:600;opacity:0;transform:translateY(10px) scale(.95);transition:opacity .5s,transform .5s var(--ease)}
 .bbadge.on{opacity:1;transform:none}
 .bbadge i{font-style:normal;color:var(--amber)}
 @media (max-width:900px){
   .btrack{height:560vh}
-  .bg2{grid-template-columns:1fr;gap:16px;justify-items:center;text-align:center}
+  .bg2{grid-template-columns:1fr;gap:10px;justify-items:center;text-align:center}
   .bst{position:relative;inset:auto;display:none}.bst.on{display:block}
-  .bsteps{min-height:0;order:2;width:100%}
-  .bst h2{font-size:clamp(28px,7.6vw,40px)}.bst p{margin-left:auto;margin-right:auto;font-size:15px}
+  .bsteps{min-height:0;order:3;width:100%}
+  .bpanel{min-height:88px;margin-top:12px}
+  .bbadge{bottom:auto;top:-10px}
+  .bst h2{font-size:clamp(23px,6vw,31px);margin-top:6px}.bst p{margin-left:auto;margin-right:auto;font-size:15px}
   .bctl{justify-content:center;gap:7px}.bctl button{height:40px;padding:0 12px;font-size:13.5px}.bctl .sw{width:38px;height:38px}
-  .bdots{justify-content:center;margin-top:16px}
-  .bph{order:1}
-  .ph{width:min(228px,54vw);border-radius:40px}.ph .screen{border-radius:32px}.ph::before{width:64px;height:18px;margin-left:-32px;top:16px}
+  .bdots{justify-content:center;margin-top:12px}
+  .bst p{margin-top:7px;font-size:14px}
+  .bph{order:1;width:100%}
+  .ph{height:min(452px,52svh);width:auto;border-radius:38px}.ph .screen{border-radius:32px}.ph::before{width:64px;height:18px;margin-left:-32px;top:16px}
   .bbadge{left:50%;right:auto;transform:translateX(-50%) translateY(10px) scale(.95);bottom:-14px;font-size:12.5px;padding:9px 12px}
   .bbadge.on{transform:translateX(-50%)}
 }
@@ -227,14 +238,21 @@ h1 .ln:nth-child(2)>span{animation-delay:.1s}
   <div class="btrack"><div class="bstage"><div class="bg2">
     <div class="bsteps" id="bsteps">
       <div class="bst on"><span class="kick">Pasul 1</span><h2>Pornim de la <em>zero</em>.</h2><p>O schiță goală. Nimic de pe internet, nimic copiat.</p><div class="bdots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></div></div>
-      <div class="bst"><span class="kick">Pasul 2</span><h2>Ce fel de <em>afacere</em> ai?</h2><p>Atinge și vezi cum se schimbă site-ul pe loc.</p><div class="bctl" id="bniche" role="group" aria-label="Tipul afacerii"></div><div class="bdots" aria-hidden="true"><i></i><i class="on"></i><i></i><i></i><i></i></div></div>
-      <div class="bst"><span class="kick">Pasul 3</span><h2>Alege <em>culoarea</em> ta.</h2><p>Culoarea brandului tău, peste tot pe site.</p><div class="bctl" id="bsw" role="group" aria-label="Culoare"></div><div class="bdots" aria-hidden="true"><i></i><i></i><i class="on"></i><i></i><i></i></div></div>
-      <div class="bst"><span class="kick">Pasul 4</span><h2>Adaugi ce ai <em>nevoie</em>.</h2><p>Atinge ca să pui sau să scoți o secțiune.</p><div class="bctl" id="bsec" role="group" aria-label="Secțiuni"></div><div class="bdots" aria-hidden="true"><i></i><i></i><i></i><i class="on"></i><i></i></div></div>
-      <div class="bst"><span class="kick">Gata</span><h2>Îl primești în <em>24 de ore</em>.</h2><p>Cu numele și serviciile tale. Plătești doar dacă îți place.</p><div class="bctl"><a class="btn a" id="bwa" href="https://wa.me/40740267706" target="_blank" rel="noopener">Vreau site-ul meu<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div><div class="bdots" aria-hidden="true"><i></i><i></i><i></i><i></i><i class="on"></i></div></div>
+      <div class="bst"><span class="kick">Pasul 2</span><h2>Ce fel de <em>afacere</em> ai?</h2><p>Atinge și vezi cum se schimbă site-ul pe loc.</p><div class="bdots" aria-hidden="true"><i></i><i class="on"></i><i></i><i></i><i></i></div></div>
+      <div class="bst"><span class="kick">Pasul 3</span><h2>Alege <em>culoarea</em> ta.</h2><p>Culoarea brandului tău, peste tot pe site.</p><div class="bdots" aria-hidden="true"><i></i><i></i><i class="on"></i><i></i><i></i></div></div>
+      <div class="bst"><span class="kick">Pasul 4</span><h2>Adaugi ce ai <em>nevoie</em>.</h2><p>Atinge ca să pui sau să scoți o secțiune.</p><div class="bdots" aria-hidden="true"><i></i><i></i><i></i><i class="on"></i><i></i></div></div>
+      <div class="bst"><span class="kick">Gata</span><h2>Îl primești în <em>24 de ore</em>.</h2><p>Cu numele și serviciile tale. Plătești doar dacă îți place.</p><div class="bdots" aria-hidden="true"><i></i><i></i><i></i><i></i><i class="on"></i></div></div>
     </div>
     <div class="bph">
       <div class="ph"><div class="screen live wire" id="bscr"></div><i class="bflash" id="bflash"></i></div>
       <span class="bbadge" id="bbadge"><i>✓</i> Gata pe telefon</span>
+      <div class="bpanel" id="bpanel">
+        <div class="bp on"><span class="bphint">Derulează ca să construim site-ul</span></div>
+        <div class="bp"><div class="bctl" id="bniche" role="group" aria-label="Tipul afacerii"></div></div>
+        <div class="bp"><div class="bctl" id="bsw" role="group" aria-label="Culoare"></div></div>
+        <div class="bp"><div class="bctl" id="bsec" role="group" aria-label="Secțiuni"></div></div>
+        <div class="bp"><div class="bctl"><a class="btn a" id="bwa" href="https://wa.me/40740267706" target="_blank" rel="noopener">Vreau site-ul meu<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
+      </div>
     </div>
   </div></div></div>
 </section>
@@ -282,7 +300,7 @@ new IntersectionObserver(e=>{visible=e[0].isIntersecting;if(!visible)cards.forEa
 <script>
 (()=>{
 const sec=document.getElementById('construieste'),track=sec.querySelector('.btrack'),scr=document.getElementById('bscr'),flash=document.getElementById('bflash'),badge=document.getElementById('bbadge');
-const steps=[...document.querySelectorAll('.bst')],stage=sec.querySelector('.bstage');
+const steps=[...document.querySelectorAll('.bst')],panes=[...document.querySelectorAll('.bp')],stage=sec.querySelector('.bstage');
 const NICHE=['restaurant','frizerie','cofetarie','service','salon','pensiune'];
 const SECS=[['book','Programări'],['prices','Prețuri'],['map','Program și hartă'],['rai','Asistent AI']];
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -300,7 +318,7 @@ function sws(){bs.innerHTML='';NICHES[st.niche].sw.forEach(c=>{const b=document.
 function tgs(){bc.innerHTML='';SECS.forEach(([k,lab])=>{const on=!!st.secs[k];const b=document.createElement('button');b.type='button';b.className='tg';b.innerHTML='<b>'+(on?'✓':'+')+'</b>'+lab;b.setAttribute('aria-pressed',on);
   b.onclick=()=>{touched=true;st.secs[k]=on?0:1;tgs();render(1)};bc.appendChild(b)})}
 chips();sws();tgs();render();
-function setStep(i){if(i===cur)return;const prev=cur;cur=i;steps.forEach((e,k)=>e.classList.toggle('on',k===i));
+function setStep(i){if(i===cur)return;const prev=cur;cur=i;steps.forEach((e,k)=>e.classList.toggle('on',k===i));panes.forEach((e,k)=>e.classList.toggle('on',k===i));
   badge.classList.toggle('on',i>=4);
   if(i===0){st.secs={book:0,prices:0,map:0,rai:0};tgs()}
   if(i===1&&prev<1&&!touched){st.secs={book:1,prices:0,map:0,rai:0};tgs()}
