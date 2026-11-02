@@ -125,10 +125,40 @@ h1 .ln:nth-child(2)>span{animation-delay:.1s}
 .next{padding:120px 0;text-align:center;color:var(--mut);font-size:15px;border-top:1px solid var(--line)}
 
 
+/* ---------- cinematic push-in ---------- */
+.cin{position:relative}
+.cintrack{height:360vh}
+.cinstage{position:sticky;top:0;height:100svh;overflow:hidden;background:#05060A}
+.cinbox{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:max(100vw,177.7svh);aspect-ratio:1672/941}
+.cinzoom{position:absolute;inset:0;transform-origin:49.1% 39.4%;transform:scale(var(--s,1));will-change:transform}
+.cinzoom>img{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;display:block}
+.cinscr{position:absolute;inset:0;clip-path:polygon(20% 7.2%,78.2% 10.5%,78.2% 71.5%,20.5% 68.2%)}
+.cinscr img{position:absolute;left:20%;top:7.2%;width:58.2%;height:64.3%;object-fit:cover;transform:skewY(1.8deg);transform-origin:left top}
+.cinscrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(5,6,10,.3),rgba(5,6,10,.66) 48%,rgba(5,6,10,.42))}
+.cinvig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(70% 60% at 49% 39%,transparent 25%,rgba(5,6,10,.5) 65%,#05060A 100%);opacity:var(--vg,0)}
+.cinfade{position:absolute;inset:0;background:var(--navy);opacity:var(--fo,0);pointer-events:none}
+.cintx{position:absolute;inset:0;display:grid;place-items:center;padding:0 22px;text-align:center}
+.cinb{position:absolute;max-width:20ch;font-weight:800;font-size:clamp(30px,5vw,72px);line-height:1.02;letter-spacing:-.045em;opacity:0;transform:translateY(22px);text-shadow:0 14px 50px rgba(0,0,0,.85)}
+.cinb em{font-style:normal;background:linear-gradient(100deg,var(--cobalt2),var(--cobalt) 60%,#9aa8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cinb .am{color:var(--amber)}
+.cinb.last{max-width:22ch}
+.cinb .sub{display:block;margin-top:16px;font-size:clamp(15px,1.3vw,18px);font-weight:500;letter-spacing:-.01em;color:var(--mut);text-shadow:none}
+.cinb .btn{margin-top:26px}
+.cinbar{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);width:min(320px,62vw);height:3px;border-radius:3px;background:rgba(255,255,255,.12);overflow:hidden}
+.cinbar b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cobalt),var(--amber))}
+.cintip{position:absolute;left:50%;bottom:46px;transform:translateX(-50%);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);opacity:var(--tp,1);transition:opacity .4s}
+@media (max-width:760px){.cintrack{height:320vh}.cinb{font-size:clamp(25px,6.9vw,36px);max-width:14ch}
+  .cinbox{width:190vw;top:38%}
+  .cintx{align-items:end;inset:0 0 19vh 0;padding:0 20px}
+  .cinbar{bottom:16px}
+  .cinbox{-webkit-mask-image:linear-gradient(180deg,transparent,#000 9%,#000 85%,transparent);mask-image:linear-gradient(180deg,transparent,#000 9%,#000 85%,transparent)}
+  .cinb .sub{font-size:14.5px;margin-top:12px}
+}
+
 /* ---------- manifest: words light up on scroll ---------- */
 .mf{position:relative}
 .mf::before{content:"";position:absolute;left:50%;top:0;width:min(1200px,120vw);height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(123,140,255,.4),transparent)}
-.mftrack{height:300vh}
+.mftrack{height:250vh}
 .mfstage{position:sticky;top:0;height:100svh;display:flex;align-items:center;overflow:hidden}
 .mfstage::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(60% 55% at 50% 50%,rgba(76,99,255,.16),transparent 70%)}
 .mfw{width:min(1100px,100% - 40px);margin:0 auto}
@@ -223,6 +253,26 @@ h1 .ln:nth-child(2)>span{animation-delay:.1s}
     <span class="rhint">Trage ca să rotești<span class="lg2">&nbsp;· atinge ca să deschizi</span></span>
   </div>
 </section>
+<section class="cin" id="poveste">
+  <div class="cintrack"><div class="cinstage" id="cinstage">
+    <div class="cinbox"><div class="cinzoom" id="cinzoom">
+      <img src="/cin/desk-1920.webp" srcset="/cin/desk-1200.webp 1200w, /cin/desk-1920.webp 1920w" sizes="100vw" alt="Un birou cu un monitor pe care rulează un site" width="1920" height="1081" loading="lazy" decoding="async">
+      <div class="cinscr" id="cinscr"><img src="/portofoliu-media/bbb.webp" alt="" width="960" height="600" loading="lazy" decoding="async"></div>
+    </div></div>
+    <div class="cinscrim"></div>
+    <div class="cinvig" id="cinvig"></div>
+    <div class="cinfade" id="cinfade"></div>
+    <div class="cintx">
+      <p class="cinb" data-a="0" data-b=".24">Totul începe cu <em>un ecran</em>.</p>
+      <p class="cinb" data-a=".27" data-b=".52">Acolo te caută <em>clienții tăi</em>.</p>
+      <p class="cinb" data-a=".55" data-b=".78">Și tot acolo decid <span class="am">dacă rămân</span>.</p>
+      <p class="cinb last" data-a=".82" data-b="1.1">Hai să facem ecranul ăla <em>al tău</em>.<span class="sub">Demo gratuit în 24 de ore. Plătești doar dacă îți place.</span><a class="btn a" href="/contact#demo">Cere demo gratuit<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+    </div>
+    <span class="cintip" id="cintip">Derulează</span>
+    <div class="cinbar"><b id="cinbar"></b></div>
+  </div></div>
+</section>
+
 <section class="mf" id="manifest">
   <div class="mftrack"><div class="mfstage"><div class="mfw">
     <p class="mft" id="mft">Nu facem doar site-uri frumoase. Facem site-uri care se deschid instant, arată impecabil pe telefon și transformă vizitatorii în clienți.</p>
@@ -330,6 +380,32 @@ function tick(){if(!run)return;
   requestAnimationFrame(tick)}
 if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
   new IntersectionObserver(e=>{const v=e[0].isIntersecting;if(v&&!run){run=true;requestAnimationFrame(tick)}else if(!v)run=false},{rootMargin:'200px'}).observe(svs)}
+})();
+</script>
+<script>
+(()=>{
+const sec=document.getElementById('poveste'),track=sec.querySelector('.cintrack'),stage=document.getElementById('cinstage');
+const zoom=document.getElementById('cinzoom'),scr=document.getElementById('cinscr'),vig=document.getElementById('cinvig'),fade=document.getElementById('cinfade'),bar=document.getElementById('cinbar'),tip=document.getElementById('cintip');
+const beats=[...sec.querySelectorAll('.cinb')].map(el=>({el,a:parseFloat(el.dataset.a),b:parseFloat(el.dataset.b)}));
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const ez=t=>Math.pow(t,1.12);
+function frame(){
+  const r=track.getBoundingClientRect(),run=track.offsetHeight-stage.offsetHeight;
+  const p=Math.min(1,Math.max(0,(-r.top)/run));
+  const S=innerWidth<760?2.35:3.0;
+  zoom.style.setProperty('--s',(1+ez(p)*(S-1)).toFixed(4));
+  
+  vig.style.setProperty('--vg',Math.min(1,p*1.5).toFixed(3));
+  fade.style.setProperty('--fo',Math.min(1,Math.max(0,(p-.74)/.2)).toFixed(3));
+  tip.style.setProperty('--tp',p>.04?0:1);
+  bar.style.width=(p*100).toFixed(1)+'%';
+  beats.forEach(({el,a,b})=>{let o=0,y=22;
+    const fi=(p-a)/.09,fo=(b-p)/.09;
+    if(p>=a-.09&&p<=b+.09){o=Math.min(1,Math.max(0,Math.min(fi,fo)));y=22-22*Math.min(1,Math.max(0,fi))+(1-Math.min(1,Math.max(0,fo)))*-18}
+    el.style.opacity=o.toFixed(3);el.style.transform='translateY('+y.toFixed(1)+'px)';el.style.pointerEvents=o>.6?'auto':'none'});
+}
+if(reduce){zoom.style.setProperty('--s',1);scr.style.setProperty('--so',1);beats[3].el.style.opacity=1;beats[3].el.style.transform='none'}
+else{addEventListener('scroll',frame,{passive:true});addEventListener('resize',frame);frame()}
 })();
 </script>
 <script src="/assistant.js" defer></script>
