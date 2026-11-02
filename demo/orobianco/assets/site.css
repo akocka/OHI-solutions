@@ -780,3 +780,17 @@ select{-webkit-appearance:none;appearance:none;padding-right:44px;background-ima
 .dish img{will-change:auto!important;position:absolute;left:13%;top:13%;width:74%!important;height:74%!important}
 .dish{transition:opacity .45s var(--ease)!important}
 @media(max-width:860px){.dish img{left:7%;top:7%;width:86%!important;height:86%!important}}
+
+/* official Orobianco logo */
+.brand.logo{display:flex;align-items:center;gap:10px;font-size:0!important;line-height:0}
+.brand.logo .lg-em{height:42px;width:auto;transition:height .5s var(--ease)}
+.brand.logo .lg-wm{height:19px;width:auto;transition:height .5s var(--ease)}
+.hdr.solid .brand.logo .lg-em{height:36px}
+@media(max-width:700px){.brand.logo .lg-em{height:36px}.brand.logo .lg-wm{height:14px}}
+.flogo{display:block;width:120px;height:auto}
+.oi-box{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+.oi-em{width:min(150px,38vw);height:auto;opacity:0;transform:scale(.7) rotate(-25deg);animation:oiEm 1.1s cubic-bezier(.16,1,.3,1) .1s forwards}
+.oi-wmw{overflow:hidden;padding:4px 0}
+.oi-wm{display:block;width:min(240px,62vw);height:auto;transform:translateY(110%);animation:oiUp .9s cubic-bezier(.16,1,.3,1) .6s forwards}
+.oi-box .oi-sub{position:static}
+@keyframes oiEm{to{opacity:1;transform:none}}
