@@ -55,6 +55,10 @@
   var planNote=$('#planNote');
   function setPlan(p){Q.plan=p||'';if(planNote)planNote.textContent=Q.plan?('Pachet ales: '+Q.plan+'. Îl poți schimba oricând.'):'Fără avans și fără obligații.'}
   if(PL[qp])setPlan(PL[qp]);
+  var QM=(new URLSearchParams(location.search).get('model')||'').replace(/[^a-z-]/g,'').slice(0,30);
+  if(QM&&planNote)planNote.textContent='Model ales: '+QM+'. Îl adaptăm pentru afacerea ta.';
+  var qtel=(new URLSearchParams(location.search).get('tel')||'').replace(/[^\d+ ]/g,'').slice(0,20);
+  if(qtel&&$('#lPhone')){$('#lPhone').value=qtel;var dm=document.getElementById('demo');if(dm)setTimeout(function(){dm.scrollIntoView({block:'start'});var b=$('#qBiz');if(b)b.focus({preventScroll:true})},300)}
   var qt=$('#qType');
   if(qt)qt.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;Q.type=b.dataset.v;
     $$('button',qt).forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
@@ -75,7 +79,7 @@
     if($('#lHp').value||performance.now()-T0<3000){finish();return}
     var src=form.dataset.source||'site-demo-rapid',topic=form.dataset.topic||'Site nou · demo gratuit';
     var data=new URLSearchParams({created_at:new Date().toISOString(),source:src,request_id:id,name:name,business:biz,phone:phone,email:'',business_type:type,website:link,
-      need:topic+(Q.plan?(' · pachet: '+Q.plan):''),message:'Cerere de pe '+location.pathname+'.\nDomeniu: '+(type||'-')+'\nFacebook/Instagram/site: '+(link||'-')+'\nPachet: '+(Q.plan||'nealeas')+'\nMarketing: '+(mk?'DA':'nu'),
+      need:topic+(Q.plan?(' · pachet: '+Q.plan):''),message:'Cerere de pe '+location.pathname+'.\nDomeniu: '+(type||'-')+'\nFacebook/Instagram/site: '+(link||'-')+'\nPachet: '+(Q.plan||'nealeas')+(QM?'\nModel ales: '+QM:'')+'\nMarketing: '+(mk?'DA':'nu'),
       marketing_consent:mk?'da':'nu',consent_at:new Date().toISOString(),design_json:''});
     var btn=$('#lSend'),lb=$('.lb',btn);btn.disabled=true;lb.textContent='Se trimite…';
     if(!LIVE){setTimeout(finish,600);return}

@@ -14,3 +14,10 @@
   addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
   addEventListener('resize',function(){if(innerWidth>1180)setMenu(false)});
 })();
+// footer wordmark: fit the faded "OHI Solutions" exactly to the footer width
+(function(){
+  function fit(){var s=document.getElementById('oWm'),t=document.getElementById('oWmT');if(!s||!t)return;
+    try{var b=t.getBBox();if(b.width)s.setAttribute('viewBox',b.x+' '+b.y+' '+b.width+' '+b.height)}catch(e){}}
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);else addEventListener('load',fit);
+  addEventListener('resize',fit);fit();
+})();

@@ -16,17 +16,18 @@ import json, os, re, sys, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://ohis-gamma.vercel.app'
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
-         '<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">')
+         '<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">')
 
 # ---- the one menu ---------------------------------------------------------
 NAV = [('/portofoliu', 'Portofoliu', 'Lucrări reale'),
+       ('/sabloane', 'Șabloane', 'Alege un model'),
        ('/creare-site-web', 'Site-uri', 'Site de prezentare'),
        ('/automatizari', 'Automatizări', 'Nicio cerere pierdută'),
        ('/asistent-ai', 'Asistent AI', 'Răspunde și seara'),
        ('/preturi', 'Prețuri', 'Plată unică, de la 500 lei'),
        ('/cum-lucram', 'Cum lucrăm', 'În 3 pași'),
        ('/contact', 'Contact', 'Târgu Mureș')]
-MNAV = NAV[:6] + [('/blog', 'Blog', 'Sfaturi utile')] + NAV[6:]
+MNAV = NAV[:7] + [('/blog', 'Blog', 'Sfaturi utile')] + NAV[7:]
 
 LOGO = ('<svg viewBox="0 18 359 170" role="img" aria-hidden="true"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#3346E8" stroke-width="26" transform="rotate(-10 80 102)"/>'
         '<path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg>')
@@ -64,16 +65,36 @@ def header(path):
             f'</div>')
 
 
-FOOTER = ('<div class="o-ft" role="contentinfo"><div class="o-wrap">\n'
-          '  <div class="o-ftg">\n'
-          f'    <div><a class="o-logo" href="/" aria-label="OHI Solutions">{LOGO}</a><p class="o-about">Site-uri și automatizări pentru afaceri locale din Târgu Mureș și din toată România.</p></div>\n'
-          '    <div><h4>Servicii</h4><ul><li><a href="/creare-site-web">Site-uri</a></li><li><a href="/automatizari">Automatizări</a></li><li><a href="/asistent-ai">Asistent AI</a></li><li><a href="/solutii-personalizate">Funcții extra</a></li><li><a href="/preturi">Prețuri</a></li></ul></div>\n'
-          '    <div><h4>Pentru</h4><ul><li><a href="/site-uri-restaurante">Restaurante</a></li><li><a href="/site-uri-saloane">Saloane și frizerii</a></li><li><a href="/site-uri-service-auto">Service auto</a></li><li><a href="/constructor">Trimite-ne datele</a></li></ul></div>\n'
-          '    <div><h4>OHI</h4><ul><li><a href="/portofoliu">Portofoliu</a></li><li><a href="/cum-lucram">Cum lucrăm</a></li><li><a href="/blog">Blog</a></li><li><a href="/contact">Contact</a></li></ul></div>\n'
-          '    <div><h4>Contact</h4><ul><li><a class="o-tel" href="tel:+40740267706">0740 267 706</a></li><li><a href="https://wa.me/40740267706" target="_blank" rel="noopener">Scrie-ne pe WhatsApp</a></li><li>Târgu Mureș, județul Mureș</li></ul></div>\n'
+MARK = '<svg viewBox="0 18 160 170" aria-hidden="true"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="currentColor" stroke-width="24" transform="rotate(-10 80 102)"/></svg>'
+FOOTER = ('<div class="o-ft" role="contentinfo">\n'
+          '<div class="o-ftw">\n'
+          '  <div class="o-ftl">\n'
+          '    <div class="o-ftbg" aria-hidden="true"><i></i><i></i><i></i></div>\n'
+          f'    <a class="o-ftlogo" href="/" aria-label="OHI Solutions">{LOGO}</a>\n'
+          '    <p class="o-fttag">Site-uri care aduc clienți,<br><span>făcute în Târgu Mureș.</span></p>\n'
+          '    <div class="o-ftsoc"><span class="o-hand">Scrie-ne oricând!</span><div class="o-ftic">'
+          '<a href="https://wa.me/40740267706" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 18.8Z"/><path d="M9.2 9.3c.3 2.4 2.1 4.3 4.6 4.9l1-1.1 1.7.8-.4 1.6c-3.6.2-7-3-7.1-6.6l1.6-.5.8 1.7Z" class="f"/></svg></a>'
+          '<a href="tel:+40740267706" aria-label="Sună-ne"><svg viewBox="0 0 24 24"><path d="M6.6 3.5 9 3l1.6 4.2-2 1.4a10.5 10.5 0 0 0 6.8 6.8l1.4-2L21 15l-.5 2.4c-.2 1.1-1.2 1.8-2.3 1.7C10.6 18.5 5.5 13.4 4.9 5.8c-.1-1.1.6-2.1 1.7-2.3Z"/></svg></a>'
+          '<a href="/contact" aria-label="Pagina de contact"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></a>'
+          '</div></div>\n'
           '  </div>\n'
-          '  <div class="o-ftb"><span>© 2026 OHI Solutions · Târgu Mureș</span><span><a href="/confidentialitate">Confidențialitate</a> &nbsp;·&nbsp; <a href="/termeni">Termeni</a></span></div>\n'
-          '</div></div>')
+          '  <div class="o-ftr">\n'
+          f'    <div class="o-ftlucky" aria-hidden="true"><div class="o-cube">{MARK}<b></b></div><div class="o-luckrow"><svg class="o-arr" viewBox="0 0 24 24"><path d="M3 20C6 14 10 9 18 5"/><path d="M18 5h-6"/><path d="M18 5v6"/></svg><span class="o-hand">Ai o idee?</span></div></div>\n'
+          '    <div class="o-ftcols">\n'
+          '      <div><p class="o-hand o-ct">Servicii</p><a href="/creare-site-web">Site-uri</a><a href="/automatizari">Automatizări</a><a href="/asistent-ai">Asistent AI</a><a href="/solutii-personalizate">Funcții extra</a><a href="/preturi">Prețuri</a></div>\n'
+          '      <div><p class="o-hand o-ct">Pentru</p><a href="/site-uri-restaurante">Restaurante</a><a href="/site-uri-saloane">Saloane și frizerii</a><a href="/site-uri-service-auto">Service auto</a><a href="/sabloane">Șabloane</a></div>\n'
+          '      <div><p class="o-hand o-ct">OHI</p><a href="/portofoliu">Portofoliu</a><a href="/cum-lucram">Cum lucrăm</a><a href="/blog">Blog</a><a href="/contact">Contact</a></div>\n'
+          '    </div>\n'
+          '    <div class="o-ftbot">\n'
+          '      <div class="o-ftcopy"><span>© 2026 OHI Solutions · Târgu Mureș</span><span><a href="/confidentialitate">Confidențialitate</a> · <a href="/termeni">Termeni</a></span></div>\n'
+          '      <div class="o-ftcta"><p>Ai o afacere în Mureș?<strong>Hai să-i facem site-ul.</strong></p>\n'
+          '        <form class="o-ftform" action="/contact" method="get"><label class="o-vh" for="oFtTel">Numărul tău de telefon</label><input id="oFtTel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="Numărul tău de telefon" required><button type="submit">Sună-mă</button></form>\n'
+          '      </div>\n'
+          '    </div>\n'
+          '  </div>\n'
+          '</div>\n'
+          '<div class="o-ftwm" aria-hidden="true"><svg id="oWm" viewBox="62 95 876 175" preserveAspectRatio="xMidYMid meet"><text id="oWmT" x="500" y="240" text-anchor="middle" font-size="320">OHI Solutions</text></svg></div>\n'
+          '</div>')
 
 COMMON_HEAD = ('<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n')
 ICONS = ('<meta name="theme-color" content="#07080D">\n<link rel="icon" href="/favicon.ico" sizes="any">\n'
@@ -107,15 +128,21 @@ def build_native(frag_path):
     if not mm:
         sys.exit('no META in ' + frag_path)
     meta, main = json.loads(mm.group(1)), mm.group(2).strip()
+    # shared blocks: <!--INCLUDE name--> pulls tools/parts/name.html
+    main = re.sub(r'<!--INCLUDE ([\w-]+)-->', lambda m: open(os.path.join(ROOT, 'tools', 'parts', m.group(1) + '.html'), encoding='utf-8').read().strip(), main)
     path = meta['path']
     js = ''.join(f'<script src="{j}" defer></script>\n' for j in meta.get('js', []))
+    js += ''.join(f'<script type="module" src="{j}"></script>\n' for j in meta.get('module', []))
+    css = ''.join(f'<link rel="stylesheet" href="{c}">\n' for c in meta.get('css', []))
+    bc = f' class="{meta["bodycls"]}"' if meta.get('bodycls') else ''
     html = ('<!DOCTYPE html>\n<html lang="ro">\n<head>\n' + COMMON_HEAD + native_meta(meta) + '\n' + ICONS + '\n' + FONTS + '\n'
-            '<link rel="stylesheet" href="/shell.css">\n<link rel="stylesheet" href="/ohi.css">\n</head>\n'
-            f'<body data-ohi="new">\n{header(path)}\n{main}\n{FOOTER}\n'
+            '<link rel="stylesheet" href="/shell.css">\n<link rel="stylesheet" href="/ohi.css">\n' + css + '</head>\n'
+            '<body data-ohi="new"' + bc + '>' + f'\n{header(path)}\n{main}\n{FOOTER}\n'
             '<script src="/shell.js" defer></script>\n<script src="/ohi.js" defer></script>\n' + js +
             '<script src="/assistant.js" defer></script>\n</body>\n</html>\n')
     name = 'index' if path == '/' else path.strip('/')
     out = os.path.join(ROOT, name + '.html')
+    os.makedirs(os.path.dirname(out), exist_ok=True)
     open(out, 'w', encoding='utf-8').write(html)
     return out
 
