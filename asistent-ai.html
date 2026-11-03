@@ -4,136 +4,116 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Asistent AI pentru site: răspunde clienților și seara | OHI Solutions</title>
-<meta name="description" content="Asistentul AI făcut de OHI răspunde pe site-ul tău la prețuri, program și servicii și preia datele clientului, în română, maghiară și engleză. Inclus în Pro.">
+<meta name="description" content="Asistentul AI făcut de OHI stă pe site-ul tău, răspunde la întrebările de bază și preia datele clientului când tu nu poți răspunde. În română, maghiară și engleză.">
 <link rel="canonical" href="https://ohis-gamma.vercel.app/asistent-ai">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ro_RO">
 <meta property="og:site_name" content="OHI Solutions">
 <meta property="og:title" content="Asistent AI pentru site: răspunde clienților și seara | OHI Solutions">
-<meta property="og:description" content="Asistentul AI făcut de OHI răspunde pe site-ul tău la prețuri, program și servicii și preia datele clientului, în română, maghiară și engleză. Inclus în Pro.">
+<meta property="og:description" content="Asistentul AI făcut de OHI stă pe site-ul tău, răspunde la întrebările de bază și preia datele clientului când tu nu poți răspunde. În română, maghiară și engleză.">
 <meta property="og:url" content="https://ohis-gamma.vercel.app/asistent-ai">
 <meta property="og:image" content="https://ohis-gamma.vercel.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0B0D14">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Organization", "@id": "https://ohis-gamma.vercel.app/#org", "name": "OHI Solutions", "url": "https://ohis-gamma.vercel.app/", "logo": "https://ohis-gamma.vercel.app/icon-512.png", "telephone": "+40740267706", "address": {"@type": "PostalAddress", "addressLocality": "Târgu Mureș", "addressCountry": "RO"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Ce se întâmplă dacă asistentul nu știe răspunsul?", "acceptedAnswer": {"@type": "Answer", "text": "Nu inventează. Spune că transmite întrebarea, preia numele și telefonul clientului și îți trimite cererea, ca să răspunzi tu."}}, {"@type": "Question", "name": "De unde știe ce să răspundă?", "acceptedAnswer": {"@type": "Answer", "text": "Din informațiile aprobate de tine: servicii, prețuri, program, adresă și întrebările frecvente. Le scriem împreună la configurare și le schimbăm oricând."}}, {"@type": "Question", "name": "În ce limbi răspunde?", "acceptedAnswer": {"@type": "Answer", "text": "În română, maghiară și engleză, în funcție de limba în care scrie clientul."}}, {"@type": "Question", "name": "Cât costă?", "acceptedAnswer": {"@type": "Answer", "text": "Este inclus în pachetul Pro. Separat costă 99,99 lei pe lună, plus 300 lei instalare la site-urile cu plată unică."}}, {"@type": "Question", "name": "Merge și pe site-ul pe care îl am deja?", "acceptedAnswer": {"@type": "Answer", "text": "De cele mai multe ori, da. Verificăm la o discuție scurtă cum se poate adăuga."}}]}]</script>
+<meta name="theme-color" content="#07080D">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/icon-512.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/site.css">
-<link rel="stylesheet" href="/pages.css">
-<script type="importmap">{"imports":{"three":"/vendor/three/three.module.js","three/addons/":"/vendor/three/addons/"}}</script>
-<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Organization", "@id": "https://ohis-gamma.vercel.app/#org", "name": "OHI Solutions", "url": "https://ohis-gamma.vercel.app/", "logo": "https://ohis-gamma.vercel.app/icon-512.png", "telephone": "+40740267706", "address": {"@type": "PostalAddress", "addressLocality": "Târgu Mureș", "addressCountry": "RO"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Ce se întâmplă dacă asistentul nu știe răspunsul?", "acceptedAnswer": {"@type": "Answer", "text": "Nu inventează. Spune că transmite întrebarea, preia numele și telefonul clientului și îți trimite cererea, ca să răspunzi tu."}}, {"@type": "Question", "name": "De unde știe ce să răspundă?", "acceptedAnswer": {"@type": "Answer", "text": "Din informațiile aprobate de tine: servicii, prețuri, program, adresă și întrebările frecvente. Le scriem împreună la configurare și le schimbăm oricând."}}, {"@type": "Question", "name": "În ce limbi răspunde?", "acceptedAnswer": {"@type": "Answer", "text": "În română, maghiară și engleză, în funcție de limba în care scrie clientul."}}, {"@type": "Question", "name": "Cât costă?", "acceptedAnswer": {"@type": "Answer", "text": "Este inclus în pachetul Pro. Separat costă 99,99 lei pe lună, plus 300 lei instalare la site-urile cu plată unică."}}, {"@type": "Question", "name": "Merge și pe site-ul pe care îl am deja?", "acceptedAnswer": {"@type": "Answer", "text": "De cele mai multe ori, da. Verificăm la o discuție scurtă cum se poate adăuga."}}]}]</script>
-<style>
-.ph .split h1{font-size:clamp(32px,3.7vw,54px);max-width:none}
-.aichat{justify-self:center;width:min(100%,420px);border-radius:26px;background:rgba(21,26,43,.9);box-shadow:0 0 0 1px var(--line),0 50px 90px -40px rgba(0,0,0,.8);overflow:hidden;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.aihead{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line)}
-.av{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--cobalt);font-weight:700;font-size:14px}
-.aihead b{display:block;font-size:15px}.aihead small{display:flex;align-items:center;gap:6px;color:var(--slate);font-size:12.5px}
-.aihead small i{width:7px;height:7px;border-radius:50%;background:#2BC48A}
-.aibody{display:flex;flex-direction:column;gap:9px;padding:18px;min-height:360px}
-.bub{display:flex;opacity:0;transform:translateY(10px) scale(.98);transition:opacity .45s var(--ease),transform .55s var(--ease)}
-.bub.on{opacity:1;transform:none}
-.bub span{max-width:82%;padding:10px 13px;border-radius:16px;font-size:14.5px;line-height:1.4}
-.bub.u{justify-content:flex-end}.bub.u span{background:var(--cobalt);color:#fff;border-bottom-right-radius:5px}
-.bub.r span{background:#232A42;border-bottom-left-radius:5px}
-.typing{display:none;gap:4px;padding:12px 14px;background:#232A42;border-radius:16px;width:max-content}
-.typing.on{display:flex}.typing i{width:6px;height:6px;border-radius:50%;background:var(--slate);animation:tp 1s infinite}
-.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
-@keyframes tp{50%{transform:translateY(-4px);opacity:.5}}
-.aichat figcaption{padding:12px 18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--slate)}
-.aiprice{padding:32px;border-radius:24px;background:rgba(21,26,43,.85);box-shadow:0 0 0 2px var(--amber),0 40px 80px -40px rgba(255,176,32,.3);display:flex;flex-direction:column;gap:14px}
-.aiprice>b{font-size:14px;color:var(--amber)}
-.aiprice .price{display:flex;align-items:baseline}.aiprice .price b{font-size:64px;font-weight:700;letter-spacing:-.04em;line-height:1}
-.aiprice .price span{color:var(--slate);font-size:16px}
-.aiprice p{color:var(--slate)}.aiprice .btn{align-self:flex-start}
-.rm .bub{opacity:1;transform:none}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shell.css">
+<link rel="stylesheet" href="/ohi.css">
 </head>
-<body class="intro inner">
-<canvas id="space" aria-hidden="true"></canvas>
-<header id="hd"><div class="wrap hd">
-  <a class="logo" href="/" aria-label="OHI Solutions, pagina principală"><svg viewBox="0 18 359 170" role="img"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#4C63FF" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
-  <nav id="nav"><a href="/creare-site-web">Site-uri</a><a href="/automatizari">Automatizări</a><a href="/asistent-ai" aria-current="page">Asistent AI</a><a href="/preturi">Prețuri</a><a href="/portofoliu">Portofoliu</a><a href="/contact">Despre și contact</a><a class="mlink" href="/blog">Blog</a><a class="mlink" href="tel:+40740267706">Sună: 0740 267 706</a></nav>
-  <a class="btn p hcta" href="/contact#demo" data-mag=".25"><span class="lb">Cere demo gratuit</span></a>
-  <button class="burger" id="burger" type="button" aria-label="Meniu" aria-expanded="false" aria-controls="nav"><i></i><i></i></button>
-</div></header>
-<main id="top">
-<div class="ph"><div class="wrap split" style="align-items:center">
-  <div>
-    <nav class="crumb" aria-label="Navigare"><a href="/">Acasă</a><span>/</span><span>Asistent AI</span></nav>
-    <h1><span class="ln"><span>Un asistent care</span></span><span class="ln"><span>răspunde clienților,</span></span><span class="ln"><span>și seara.</span></span></h1>
-    <p class="lede fade d1">Asistentul AI făcut de OHI stă pe site-ul tău, răspunde la întrebările de bază și preia datele clientului când tu nu poți răspunde. În română, maghiară și engleză.</p>
-    <div class="ctarow fade d2"><a class="btn p" href="/contact#demo" data-mag=".35"><span class="lb">Vreau asistentul</span></a><a class="btn s" href="/preturi" data-mag=".25"><span class="lb">Vezi prețurile</span></a></div>
-    <p class="pnote fade d3">Inclus în Pro · separat 99,99 lei pe lună</p>
-  </div>
-  <figure class="aichat fade d2" aria-label="Exemplu de conversație (demo)">
-    <div class="aihead"><span class="av">AI</span><div><b>Asistent · Atelierul Brici</b><small><i></i>online acum</small></div></div>
-    <div class="aibody" id="aibody"><div class="bub u" style="--d:0"><span>Bună, cât costă o tunsoare cu barbă?</span></div><div class="bub r" style="--d:1"><span>Bună! Tunsoarea cu barbă costă 90 de lei și durează cam 45 de minute. Vreți să vă programez?</span></div><div class="bub u" style="--d:2"><span>Da, mâine după 17?</span></div><div class="bub r" style="--d:3"><span>Sigur. Îmi lăsați numele și un număr de telefon? Frizerul vă confirmă ora într-un mesaj.</span></div><div class="bub u" style="--d:4"><span>Andrei, 0740 000 000</span></div><div class="bub r" style="--d:5"><span>Mulțumesc, Andrei! Am trimis cererea. Primiți confirmarea în curând.</span></div><div class="typing" id="typing"><i></i><i></i><i></i></div></div>
-    <figcaption>Exemplu de conversație pentru o afacere fictivă.</figcaption>
-  </figure>
+<body data-ohi="new">
+<a class="o-skip" href="#main">Sari la conținut</a>
+<div class="o-hd" id="ohd" role="banner"><div class="o-wrap">
+  <a class="o-logo" href="/" aria-label="OHI Solutions, pagina principală"><svg viewBox="0 18 359 170" role="img" aria-hidden="true"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#3346E8" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
+  <div class="o-nav" role="navigation" aria-label="Principal"><a href="/portofoliu">Portofoliu</a><a href="/creare-site-web">Site-uri</a><a href="/automatizari">Automatizări</a><a href="/asistent-ai" aria-current="page">Asistent AI</a><a href="/preturi">Prețuri</a><a href="/cum-lucram">Cum lucrăm</a><a href="/contact">Contact</a></div>
+  <div class="o-cta"><a class="o-btn o-g" href="tel:+40740267706">0740 267 706</a><a class="o-btn o-a" href="/contact#demo"><span class="o-l">Cere demo gratuit</span><span class="o-s">Demo gratuit</span></a><button class="o-burger" id="oburger" type="button" aria-label="Meniu" aria-expanded="false" aria-controls="omnav"><i></i><i></i></button></div>
+  <span class="o-prog" id="oprog" aria-hidden="true"></span>
 </div></div>
-
-<section class="rule"><div class="wrap">
-  <h2 data-rv>Ce face, concret.</h2>
-  <div class="feat c3">
-    <div class="fc" data-rv data-tilt="5"><span class="ic">💬</span><h3>Răspunde la întrebări</h3><p>Prețuri, program, adresă, servicii, parcare. Răspunsuri scurte, din informațiile tale.</p></div>
-    <div class="fc" data-rv="2" data-tilt="5"><span class="ic">📝</span><h3>Preia cererea</h3><p>Când clientul vrea o programare sau o ofertă, îi cere numele și telefonul și ți le trimite.</p></div>
-    <div class="fc" data-rv="2" data-tilt="5"><span class="ic">🛑</span><h3>Nu inventează</h3><p>Dacă nu știe, spune asta și transmite întrebarea mai departe, către tine.</p></div>
+<div class="o-mnav" id="omnav" role="navigation" aria-label="Meniu mobil">
+  <a class="o-ml" href="/portofoliu">Portofoliu<span>Lucrări reale</span></a><a class="o-ml" href="/creare-site-web">Site-uri<span>Site de prezentare</span></a><a class="o-ml" href="/automatizari">Automatizări<span>Nicio cerere pierdută</span></a><a class="o-ml" href="/asistent-ai" aria-current="page">Asistent AI<span>Răspunde și seara</span></a><a class="o-ml" href="/preturi">Prețuri<span>De la 99 lei/lună</span></a><a class="o-ml" href="/cum-lucram">Cum lucrăm<span>În 3 pași</span></a><a class="o-ml" href="/blog">Blog<span>Sfaturi utile</span></a><a class="o-ml" href="/contact">Contact<span>Târgu Mureș</span></a>
+  <div class="o-mfoot"><a class="o-btn o-a" href="/contact#demo">Cere demo gratuit</a><a class="o-btn o-g" href="tel:+40740267706">Sună: 0740 267 706</a></div>
+</div>
+<main id="main">
+<section class="phero">
+  <div class="wrap phgrid">
+    <div>
+      <div class="crumb" role="navigation" aria-label="Navigare"><a href="/">Acasă</a><span>/</span><span aria-current="page">Asistent AI</span></div>
+      <h1><span class="ln"><span>Un asistent care</span></span><span class="ln"><span>răspunde clienților,</span></span><span class="ln"><span><em class="grad">și seara</em>.</span></span></h1>
+      <p class="lead fade d1">Asistentul AI făcut de OHI stă pe site-ul tău, răspunde la întrebările de bază și preia datele clientului când tu nu poți răspunde. În română, maghiară și engleză.</p>
+      <div class="ctas fade d2"><a class="btn a" href="/contact?pachet=pro#demo">Vreau asistentul<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn g" href="/preturi">Vezi prețurile</a></div>
+      <div class="pills fade d3"><span>Inclus în <b>Pro</b></span><span>Separat <b>99,99 lei</b> pe lună</span></div>
+    </div>
+    <div class="fade d3">
+      <div class="chat" id="chatDemo">
+        <div class="chd"><span class="av">AI</span><span><b>Asistent · Atelierul Brici</b><small>online acum</small></span></div>
+        <div class="cbody"><div class="bub u">Bună, cât costă o tunsoare cu barbă?</div><div class="bub b">Bună! Tunsoarea cu barbă costă 90 de lei și durează cam 45 de minute. Vreți să vă programez?</div><div class="bub u">Da, mâine după 17?</div><div class="bub b">Sigur. Îmi lăsați numele și un număr de telefon? Frizerul vă confirmă ora într-un mesaj.</div><div class="bub u">Andrei, 0740 000 000</div><div class="bub b">Mulțumesc, Andrei! Am trimis cererea. Primiți confirmarea în curând.</div><div class="typing"><i></i><i></i><i></i></div></div>
+      </div>
+      <p class="chatnote">Exemplu de conversație pentru o afacere fictivă.</p>
+    </div>
   </div>
-</div></section>
+</section>
 
-<section class="rule"><div class="wrap split">
-  <div>
-    <h2 data-rv>Îl configurăm împreună.</h2>
-    <ul class="ticks" data-rv="2">
-      <li>Ne spui serviciile, prețurile și programul</li>
-      <li>Scriem împreună răspunsurile la întrebările frecvente</li>
-      <li>Îl testăm cu întrebări reale înainte să-l pornim</li>
-      <li>Îl actualizăm oricând se schimbă ceva la tine</li>
-    </ul>
+<section class="sec tight">
+  <div class="wrap">
+    <span class="kick rv">Ce face</span>
+    <h2 class="big rv">Ce face, <em>concret</em>.</h2>
+    <div class="tiles">
+      <div class="tile rv" style="--tc:#2BC48A"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3>Răspunde la întrebări</h3><p>Prețuri, program, adresă, servicii, parcare. Răspunsuri scurte, din informațiile tale.</p></div>
+      <div class="tile rv" style="--tc:#FFB020"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/><path d="M9 12h6M9 16h4"/></svg></div><h3>Preia cererea</h3><p>Când clientul vrea o programare sau o ofertă, îi cere numele și telefonul și ți le trimite.</p></div>
+      <div class="tile rv" style="--tc:#8E5BD6"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Nu inventează</h3><p>Dacă nu știe, spune asta și transmite întrebarea mai departe, către tine.</p></div>
+    </div>
   </div>
-  <div class="aiprice" data-rv="2" data-tilt="5">
-    <b>Inclus în Pro</b>
-    <div class="price"><b data-count="99">99</b><span>,99 lei pe lună, separat</span></div>
-    <p>La site-urile cu plată unică se adaugă 300 lei instalare, o singură dată.</p>
-    <a class="btn p" href="/contact?pachet=pro#demo" data-plan="Pro" data-mag=".3"><span class="lb">Alege Pro</span></a>
-  </div>
-</div></section>
+</section>
 
-<section class="rule" id="intrebari"><div class="wrap qa">
-  <h2 data-rv>Ce ne întreabă toată lumea.</h2>
-  <div class="faq" data-rv="2">
-    <details open><summary>Ce se întâmplă dacă asistentul nu știe răspunsul?</summary><p>Nu inventează. Spune că transmite întrebarea, preia numele și telefonul clientului și îți trimite cererea, ca să răspunzi tu.</p></details>
-    <details><summary>De unde știe ce să răspundă?</summary><p>Din informațiile aprobate de tine: servicii, prețuri, program, adresă și întrebările frecvente. Le scriem împreună la configurare și le schimbăm oricând.</p></details>
-    <details><summary>În ce limbi răspunde?</summary><p>În română, maghiară și engleză, în funcție de limba în care scrie clientul.</p></details>
-    <details><summary>Cât costă?</summary><p>Este inclus în pachetul Pro. Separat costă 99,99 lei pe lună, plus 300 lei instalare la site-urile cu plată unică.</p></details>
-    <details><summary>Merge și pe site-ul pe care îl am deja?</summary><p>De cele mai multe ori, da. Verificăm la o discuție scurtă cum se poate adăuga.</p></details>
+<section class="sec alt">
+  <div class="wrap split2">
+    <div>
+      <span class="kick rv">Configurare</span>
+      <h2 class="big rv">Îl configurăm <em>împreună</em>.</h2>
+      <ul class="ticks rv"><li>Ne spui serviciile, prețurile și programul</li><li>Scriem împreună răspunsurile la întrebările frecvente</li><li>Îl testăm cu întrebări reale înainte să-l pornim</li><li>Îl actualizăm oricând se schimbă ceva la tine</li></ul>
+    </div>
+    <div class="pl hot rv"><span class="tag2">Inclus în Pro</span><h3>Asistent AI</h3>
+      <div class="pr"><b>99,99</b><span>lei pe lună, separat</span></div>
+      <p class="was">La site-urile cu plată unică se adaugă 300 lei instalare, o singură dată.</p>
+      <ul><li>Răspunde în română, maghiară și engleză</li><li>Preia numele și telefonul clientului</li><li>Răspunsuri aprobate de tine</li></ul>
+      <a class="btn a" href="/contact?pachet=pro#demo">Alege Pro</a></div>
   </div>
-</div></section>
+</section>
 
-<section class="ctab"><div class="wrap"><div class="ctabox" data-rv>
-  <div><h2>Vrei un asistent pe site?</h2><p>Îl vezi funcționând pe demo-ul tău gratuit.</p></div>
-  <div class="ctarow"><a class="btn p" href="/contact?pachet=pro#demo" data-mag=".3"><span class="lb">Cere demo gratuit</span></a><a class="btn s" href="/#cum" data-mag=".25"><span class="lb">Încearcă demo-ul live</span></a></div>
-</div></div></section>
+<section class="sec">
+  <div class="wrap">
+    <span class="kick rv">Întrebări</span>
+    <h2 class="big rv">Ce ne întreabă <em>toată lumea</em>.</h2>
+    <div class="faq"><details class="q rv"><summary>Ce se întâmplă dacă asistentul nu știe răspunsul?</summary><div class="ans">Nu inventează. Spune că transmite întrebarea, preia numele și telefonul clientului și îți trimite cererea, ca să răspunzi tu.</div></details><details class="q rv"><summary>De unde știe ce să răspundă?</summary><div class="ans">Din informațiile aprobate de tine: servicii, prețuri, program, adresă și întrebările frecvente. Le scriem împreună la configurare și le schimbăm oricând.</div></details><details class="q rv"><summary>În ce limbi răspunde?</summary><div class="ans">În română, maghiară și engleză, în funcție de limba în care scrie clientul.</div></details><details class="q rv"><summary>Cât costă?</summary><div class="ans">Este inclus în pachetul Pro. Separat costă 99,99 lei pe lună, plus 300 lei instalare la site-urile cu plată unică.</div></details><details class="q rv"><summary>Merge și pe site-ul pe care îl am deja?</summary><div class="ans">De cele mai multe ori, da. Verificăm la o discuție scurtă cum se poate adăuga.</div></details></div>
+  </div>
+</section>
+<section class="fin">
+  <div class="wrap">
+    <h2 class="rv">Vrei un asistent <em>pe site</em>?</h2>
+    <p class="rv">Îl vezi funcționând pe demo-ul tău gratuit.</p>
+    <a class="btn a rv" href="/contact#demo">Cere demo gratuit<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <p class="sm rv">Sau sună direct: <a href="tel:+40740267706" style="color:var(--ink);font-weight:600">0740 267 706</a></p>
+  </div>
+</section>
 </main>
-<footer><div class="wrap"><span>© 2026 OHI Solutions, Târgu Mureș</span><span><a href="/contact">Despre și contact</a>&nbsp;&nbsp;<a href="/preturi">Prețuri</a>&nbsp;&nbsp;<a href="/automatizari">Automatizări</a>&nbsp;&nbsp;<a href="/blog">Blog</a>&nbsp;&nbsp;<a href="/confidentialitate">Confidențialitate</a>&nbsp;&nbsp;<a href="/termeni">Termeni</a></span></div></footer>
-<script src="/motion.js"></script>
-<script type="module" src="/space.js"></script>
-<script src="/site.js"></script>
-<script>
-(function(){
-  const bs=[...document.querySelectorAll('#aibody .bub')],ty=document.getElementById('typing');
-  if(window.OHI&&OHI.reduce){bs.forEach(b=>b.classList.add('on'));return}
-  let run=false;
-  function play(){if(run)return;run=true;bs.forEach(b=>b.classList.remove('on'));let i=0;
-    (function next(){if(i>=bs.length){setTimeout(()=>{run=false;play()},5200);return}
-      const b=bs[i];if(b.classList.contains('r')){ty.classList.add('on');b.parentNode.insertBefore(ty,b);setTimeout(()=>{ty.classList.remove('on');b.classList.add('on');i++;setTimeout(next,700)},1100)}
-      else{b.classList.add('on');i++;setTimeout(next,900)}})()}
-  const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){play();io.disconnect()}},{threshold:.3});io.observe(document.getElementById('aibody'));
-})();
-</script>
+<div class="o-ft" role="contentinfo"><div class="o-wrap">
+  <div class="o-ftg">
+    <div><a class="o-logo" href="/" aria-label="OHI Solutions"><svg viewBox="0 18 359 170" role="img" aria-hidden="true"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#3346E8" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a><p class="o-about">Site-uri și automatizări pentru afaceri locale din Târgu Mureș și din toată România.</p></div>
+    <div><h4>Servicii</h4><ul><li><a href="/creare-site-web">Site-uri</a></li><li><a href="/automatizari">Automatizări</a></li><li><a href="/asistent-ai">Asistent AI</a></li><li><a href="/solutii-personalizate">Funcții extra</a></li><li><a href="/preturi">Prețuri</a></li></ul></div>
+    <div><h4>Pentru</h4><ul><li><a href="/site-uri-restaurante">Restaurante</a></li><li><a href="/site-uri-saloane">Saloane și frizerii</a></li><li><a href="/site-uri-service-auto">Service auto</a></li><li><a href="/constructor">Trimite-ne datele</a></li></ul></div>
+    <div><h4>OHI</h4><ul><li><a href="/portofoliu">Portofoliu</a></li><li><a href="/cum-lucram">Cum lucrăm</a></li><li><a href="/blog">Blog</a></li><li><a href="/contact">Contact</a></li></ul></div>
+    <div><h4>Contact</h4><ul><li><a class="o-tel" href="tel:+40740267706">0740 267 706</a></li><li><a href="https://wa.me/40740267706" target="_blank" rel="noopener">Scrie-ne pe WhatsApp</a></li><li>Târgu Mureș, județul Mureș</li></ul></div>
+  </div>
+  <div class="o-ftb"><span>© 2026 OHI Solutions · Târgu Mureș</span><span><a href="/confidentialitate">Confidențialitate</a> &nbsp;·&nbsp; <a href="/termeni">Termeni</a></span></div>
+</div></div>
+<script src="/shell.js" defer></script>
+<script src="/ohi.js" defer></script>
 <script src="/assistant.js" defer></script>
 </body>
 </html>

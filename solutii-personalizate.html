@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Funcții extra pentru site: magazin, meniu QR, rezervări, vouchere | OHI Solutions</title>
+<!--OHI:META--><title>Funcții extra pentru site: magazin, meniu QR, rezervări, vouchere | OHI Solutions</title>
 <meta name="description" content="Magazin mic, meniu QR, rezervări, programări în Google Calendar, vouchere și card de fidelitate pentru site-ul tău. Preț fix după un apel scurt.">
 <link rel="canonical" href="https://ohis-gamma.vercel.app/solutii-personalizate">
 <meta name="robots" content="index, follow">
@@ -15,14 +15,6 @@
 <meta property="og:url" content="https://ohis-gamma.vercel.app/solutii-personalizate">
 <meta property="og:image" content="https://ohis-gamma.vercel.app/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0B0D14">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" href="/icon-512.png" type="image/png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/site.css">
-<link rel="stylesheet" href="/pages.css">
 <script type="importmap">{"imports":{"three":"/vendor/three/three.module.js","three/addons/":"/vendor/three/addons/"}}</script>
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Organization", "@id": "https://ohis-gamma.vercel.app/#org", "name": "OHI Solutions", "url": "https://ohis-gamma.vercel.app/", "logo": "https://ohis-gamma.vercel.app/icon-512.png", "telephone": "+40740267706", "address": {"@type": "PostalAddress", "addressLocality": "Târgu Mureș", "addressCountry": "RO"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "De ce doar cu Business?", "acceptedAnswer": {"@type": "Answer", "text": "Funcțiile extra au nevoie de mai multe pagini și de designul complet din Business. Pe Start, care are o singură pagină, nu ar funcționa bine. Dacă ai deja Start, treci pe Business plătind doar diferența."}}, {"@type": "Question", "name": "Cât costă o funcție?", "acceptedAnswer": {"@type": "Answer", "text": "Depinde de cât de complexă e pentru afacerea ta. O discutăm întâi la un apel scurt, apoi primești prețul fix, înainte să plătești ceva."}}, {"@type": "Question", "name": "Am nevoie de o aplicație web întreagă.", "acceptedAnswer": {"@type": "Answer", "text": "Scrie-ne în formular. Pentru proiecte mari stabilim totul la un apel: ce face, cât durează și cât costă."}}, {"@type": "Question", "name": "Pot adăuga o funcție mai târziu?", "acceptedAnswer": {"@type": "Answer", "text": "Da. Ne scrii și îți facem oferta pentru funcția nouă."}}]}]</script>
 <style>
@@ -44,17 +36,30 @@
 .xc[aria-pressed=true] .tick::after{content:"";position:absolute;left:9px;top:4px;width:6px;height:12px;border:solid #14110A;border-width:0 3px 3px 0;transform:rotate(45deg)}
 .xbar{position:fixed;z-index:40;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));max-width:720px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 12px 12px 20px;border-radius:18px;background:rgba(21,26,43,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 0 0 1px var(--line),0 30px 60px -20px rgba(0,0,0,.8);transform:translateY(140%);transition:transform .5s var(--ease)}
 .xbar.on{transform:none}.xbar span{font-weight:600;font-size:15px}.xbar .btn{height:46px}
-</style>
+</style><!--/OHI:META-->
+<meta name="theme-color" content="#07080D">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/icon-512.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+<link rel="stylesheet" href="/pages.css">
+<link rel="stylesheet" href="/shell.css">
 </head>
-<body class="intro inner">
-<canvas id="space" aria-hidden="true"></canvas>
-<header id="hd"><div class="wrap hd">
-  <a class="logo" href="/" aria-label="OHI Solutions, pagina principală"><svg viewBox="0 18 359 170" role="img"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#4C63FF" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
-  <nav id="nav"><a href="/creare-site-web">Site-uri</a><a href="/automatizari">Automatizări</a><a href="/asistent-ai">Asistent AI</a><a href="/preturi">Prețuri</a><a href="/portofoliu">Portofoliu</a><a href="/contact">Despre și contact</a><a class="mlink" href="/blog">Blog</a><a class="mlink" href="tel:+40740267706">Sună: 0740 267 706</a></nav>
-  <a class="btn p hcta" href="#demo" data-mag=".25"><span class="lb">Cere demo gratuit</span></a>
-  <button class="burger" id="burger" type="button" aria-label="Meniu" aria-expanded="false" aria-controls="nav"><i></i><i></i></button>
-</div></header>
-<main id="top">
+<body class="intro inner" data-ohi="legacy">
+<a class="o-skip" href="#main">Sari la conținut</a>
+<div class="o-hd" id="ohd" role="banner"><div class="o-wrap">
+  <a class="o-logo" href="/" aria-label="OHI Solutions, pagina principală"><svg viewBox="0 18 359 170" role="img" aria-hidden="true"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#3346E8" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
+  <div class="o-nav" role="navigation" aria-label="Principal"><a href="/portofoliu">Portofoliu</a><a href="/creare-site-web" aria-current="page">Site-uri</a><a href="/automatizari">Automatizări</a><a href="/asistent-ai">Asistent AI</a><a href="/preturi">Prețuri</a><a href="/cum-lucram">Cum lucrăm</a><a href="/contact">Contact</a></div>
+  <div class="o-cta"><a class="o-btn o-g" href="tel:+40740267706">0740 267 706</a><a class="o-btn o-a" href="/contact#demo"><span class="o-l">Cere demo gratuit</span><span class="o-s">Demo gratuit</span></a><button class="o-burger" id="oburger" type="button" aria-label="Meniu" aria-expanded="false" aria-controls="omnav"><i></i><i></i></button></div>
+  <span class="o-prog" id="oprog" aria-hidden="true"></span>
+</div></div>
+<div class="o-mnav" id="omnav" role="navigation" aria-label="Meniu mobil">
+  <a class="o-ml" href="/portofoliu">Portofoliu<span>Lucrări reale</span></a><a class="o-ml" href="/creare-site-web" aria-current="page">Site-uri<span>Site de prezentare</span></a><a class="o-ml" href="/automatizari">Automatizări<span>Nicio cerere pierdută</span></a><a class="o-ml" href="/asistent-ai">Asistent AI<span>Răspunde și seara</span></a><a class="o-ml" href="/preturi">Prețuri<span>De la 99 lei/lună</span></a><a class="o-ml" href="/cum-lucram">Cum lucrăm<span>În 3 pași</span></a><a class="o-ml" href="/blog">Blog<span>Sfaturi utile</span></a><a class="o-ml" href="/contact">Contact<span>Târgu Mureș</span></a>
+  <div class="o-mfoot"><a class="o-btn o-a" href="/contact#demo">Cere demo gratuit</a><a class="o-btn o-g" href="tel:+40740267706">Sună: 0740 267 706</a></div>
+</div>
+<!--OHI:MAIN--><main id="main">
 <div class="ph"><div class="wrap">
   <nav class="crumb" aria-label="Navigare"><a href="/">Acasă</a><span>/</span><span>Funcții extra</span></nav>
   <h1><span class="ln"><span>Funcții extra,</span></span><span class="ln"><span>făcute pentru</span></span><span class="ln"><span>afacerea ta.</span></span></h1>
@@ -134,12 +139,21 @@
   </form>
 </div></section>
 
-<div class="xbar" id="xbar" aria-live="polite"><span id="xtxt"></span><a class="btn p" href="#demo" data-mag=".2"><span class="lb">Trimite cererea</span></a></div></main>
-<footer><div class="wrap"><span>© 2026 OHI Solutions, Târgu Mureș</span><span><a href="/contact">Despre și contact</a>&nbsp;&nbsp;<a href="/preturi">Prețuri</a>&nbsp;&nbsp;<a href="/automatizari">Automatizări</a>&nbsp;&nbsp;<a href="/blog">Blog</a>&nbsp;&nbsp;<a href="/confidentialitate">Confidențialitate</a>&nbsp;&nbsp;<a href="/termeni">Termeni</a></span></div></footer>
+<div class="xbar" id="xbar" aria-live="polite"><span id="xtxt"></span><a class="btn p" href="#demo" data-mag=".2"><span class="lb">Trimite cererea</span></a></div></main><!--/OHI:MAIN-->
+<div class="o-ft" role="contentinfo"><div class="o-wrap">
+  <div class="o-ftg">
+    <div><a class="o-logo" href="/" aria-label="OHI Solutions"><svg viewBox="0 18 359 170" role="img" aria-hidden="true"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#3346E8" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a><p class="o-about">Site-uri și automatizări pentru afaceri locale din Târgu Mureș și din toată România.</p></div>
+    <div><h4>Servicii</h4><ul><li><a href="/creare-site-web">Site-uri</a></li><li><a href="/automatizari">Automatizări</a></li><li><a href="/asistent-ai">Asistent AI</a></li><li><a href="/solutii-personalizate">Funcții extra</a></li><li><a href="/preturi">Prețuri</a></li></ul></div>
+    <div><h4>Pentru</h4><ul><li><a href="/site-uri-restaurante">Restaurante</a></li><li><a href="/site-uri-saloane">Saloane și frizerii</a></li><li><a href="/site-uri-service-auto">Service auto</a></li><li><a href="/constructor">Trimite-ne datele</a></li></ul></div>
+    <div><h4>OHI</h4><ul><li><a href="/portofoliu">Portofoliu</a></li><li><a href="/cum-lucram">Cum lucrăm</a></li><li><a href="/blog">Blog</a></li><li><a href="/contact">Contact</a></li></ul></div>
+    <div><h4>Contact</h4><ul><li><a class="o-tel" href="tel:+40740267706">0740 267 706</a></li><li><a href="https://wa.me/40740267706" target="_blank" rel="noopener">Scrie-ne pe WhatsApp</a></li><li>Târgu Mureș, județul Mureș</li></ul></div>
+  </div>
+  <div class="o-ftb"><span>© 2026 OHI Solutions · Târgu Mureș</span><span><a href="/confidentialitate">Confidențialitate</a> &nbsp;·&nbsp; <a href="/termeni">Termeni</a></span></div>
+</div></div>
 <script src="/motion.js"></script>
-<script type="module" src="/space.js"></script>
 <script src="/site.js"></script>
-<script>
+<script src="/shell.js" defer></script>
+<!--OHI:PAGEJS--><script>
 (function(){
   const pick=new Set(),bar=document.getElementById('xbar'),txt=document.getElementById('xtxt'),link=document.getElementById('qLink');
   const name=k=>document.querySelector(`.xc[data-x="${k}"] h3`).textContent;
@@ -148,7 +162,7 @@
   document.querySelectorAll('.xc').forEach(c=>c.addEventListener('click',()=>{const k=c.dataset.x;pick.has(k)?pick.delete(k):pick.add(k);c.setAttribute('aria-pressed',pick.has(k));upd()}));
   const demo=document.getElementById('demo');new IntersectionObserver(es=>{if(es[0].isIntersecting)bar.classList.remove('on');else if(pick.size)bar.classList.add('on')},{threshold:.1}).observe(demo);
 })();
-</script>
+</script><!--/OHI:PAGEJS-->
 <script src="/assistant.js" defer></script>
 </body>
 </html>

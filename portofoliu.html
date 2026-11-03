@@ -4,80 +4,84 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Portofoliu: site-uri create de OHI Solutions | Târgu Mureș</title>
-<meta name="description" content="Site-uri create de OHI Solutions în Târgu Mureș: proiecte pentru clienți și concepte de design, de la construcții modulare la restaurante și florării.">
+<meta name="description" content="Site-uri create de OHI Solutions în Târgu Mureș: un proiect real pentru client și concepte de design, de la construcții modulare la restaurante și florării.">
 <link rel="canonical" href="https://ohis-gamma.vercel.app/portofoliu">
 <meta name="robots" content="noindex, follow">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ro_RO">
 <meta property="og:site_name" content="OHI Solutions">
 <meta property="og:title" content="Portofoliu | OHI Solutions">
-<meta property="og:description" content="Site-uri create de OHI Solutions în Târgu Mureș: proiecte pentru clienți și concepte de design, de la construcții modulare la restaurante și florării.">
+<meta property="og:description" content="Site-uri create de OHI Solutions în Târgu Mureș: un proiect real pentru client și concepte de design, de la construcții modulare la restaurante și florării.">
 <meta property="og:url" content="https://ohis-gamma.vercel.app/portofoliu">
 <meta property="og:image" content="https://ohis-gamma.vercel.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0B0D14">
+<meta name="theme-color" content="#07080D">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/icon-512.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/site.css">
-<link rel="stylesheet" href="/pages.css">
-<link rel="stylesheet" href="/ribbon.css">
-<script type="importmap">{"imports":{"three":"/vendor/three/three.module.js","three/addons/":"/vendor/three/addons/"}}</script>
-
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shell.css">
+<link rel="stylesheet" href="/ohi.css">
 </head>
-<body class="intro inner">
-<canvas id="space" aria-hidden="true"></canvas>
-<header id="hd"><div class="wrap hd">
-  <a class="logo" href="/" aria-label="OHI Solutions, pagina principală"><svg viewBox="0 18 359 170" role="img"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#4C63FF" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
-  <nav id="nav"><a href="/creare-site-web">Site-uri</a><a href="/automatizari">Automatizări</a><a href="/asistent-ai">Asistent AI</a><a href="/preturi" aria-current="page">Prețuri</a><a href="/portofoliu" aria-current="page">Portofoliu</a><a href="/contact">Despre și contact</a><a class="mlink" href="/blog">Blog</a><a class="mlink" href="tel:+40740267706">Sună: 0740 267 706</a></nav>
-  <a class="btn p hcta" href="/contact#demo" data-mag=".25"><span class="lb">Cere demo gratuit</span></a>
-  <button class="burger" id="burger" type="button" aria-label="Meniu" aria-expanded="false" aria-controls="nav"><i></i><i></i></button>
-</div></header>
-<main id="top">
-<div class="ph"><div class="wrap">
-  <nav class="crumb" aria-label="Navigare"><a href="/">Acasă</a><span>/</span><span>Portofoliu</span></nav>
-  <h1><span class="ln"><span>Site-uri create</span></span><span class="ln"><span>de noi, pentru</span></span><span class="ln"><span>afaceri reale.</span></span></h1>
-  <p class="lede fade d1">Un client real și concepte de design pentru firme din Mureș. Derulează ca să le vezi în mișcare.</p>
-  <div class="cta fade d2"><a class="btn p" href="/#demo" data-mag=".35"><span class="lb">Cere demo gratuit</span></a><a class="btn s" href="tel:+40740267706" data-mag=".25"><span class="lb">Sună la 0740 267 706</span></a></div>
+<body data-ohi="new">
+<a class="o-skip" href="#main">Sari la conținut</a>
+<div class="o-hd" id="ohd" role="banner"><div class="o-wrap">
+  <a class="o-logo" href="/" aria-label="OHI Solutions, pagina principală"><svg viewBox="0 18 359 170" role="img" aria-hidden="true"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#3346E8" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
+  <div class="o-nav" role="navigation" aria-label="Principal"><a href="/portofoliu" aria-current="page">Portofoliu</a><a href="/creare-site-web">Site-uri</a><a href="/automatizari">Automatizări</a><a href="/asistent-ai">Asistent AI</a><a href="/preturi">Prețuri</a><a href="/cum-lucram">Cum lucrăm</a><a href="/contact">Contact</a></div>
+  <div class="o-cta"><a class="o-btn o-g" href="tel:+40740267706">0740 267 706</a><a class="o-btn o-a" href="/contact#demo"><span class="o-l">Cere demo gratuit</span><span class="o-s">Demo gratuit</span></a><button class="o-burger" id="oburger" type="button" aria-label="Meniu" aria-expanded="false" aria-controls="omnav"><i></i><i></i></button></div>
+  <span class="o-prog" id="oprog" aria-hidden="true"></span>
 </div></div>
-<section class="rule rbsec" id="lucrari" data-speed="1.15">
-  <div class="rtrack"><div class="rstage">
-    <canvas aria-label="Previzualizări animate ale site-urilor create de OHI Solutions"></canvas>
-    <div class="rhead"><div class="wrap"><h2>Fiecare site, făcut pentru o afacere anume.</h2><p class="sub">Videoclipurile sunt site-urile reale, derulate. Atinge unul ca să-l deschizi.</p></div></div>
-    <p class="rhint">Atinge un site ca să-l <b>deschizi</b></p>
-    <div class="rname"></div>
-    <template class="rsrc"><a href="https://www.bigbigboon.ro" data-title="Big Big Boon · client" data-video="/portofoliu-media/bbb.mp4" data-poster="/portofoliu-media/bbb.webp"></a><a href="/demo/orobianco" data-title="Orobianco · concept" data-video="/portofoliu-media/orobianco.mp4" data-poster="/portofoliu-media/orobianco.webp"></a><a href="/demo/amaryllis" data-title="Florăria Amaryllis · concept" data-video="/portofoliu-media/amaryllis.mp4" data-poster="/portofoliu-media/amaryllis.webp"></a><a href="/demo/ferestre-partner" data-title="Ferestre Partner · concept" data-video="/portofoliu-media/ferestre.mp4" data-poster="/portofoliu-media/ferestre.webp"></a><a href="/demo/vale-aurie" data-title="Vale Aurie · concept" data-video="/portofoliu-media/valeaurie.mp4" data-poster="/portofoliu-media/valeaurie.webp"></a><a href="/demo/pensiunea-david" data-title="Pensiunea David · concept" data-video="/portofoliu-media/david.mp4" data-poster="/portofoliu-media/david.webp"></a><a href="https://www.bigbigboon.ro" data-title="Big Big Boon · configurator 3D" data-video="/portofoliu-media/bbb-build.mp4" data-poster="/portofoliu-media/bbb-build.webp"></a><a href="/demo/amaryllis" data-title="Amaryllis · atelier" data-video="/portofoliu-media/amaryllis-atelier.mp4" data-poster="/portofoliu-media/amaryllis-atelier.webp"></a></template>
-  </div></div>
-  <div class="wrap rfoot"></div>
+<div class="o-mnav" id="omnav" role="navigation" aria-label="Meniu mobil">
+  <a class="o-ml" href="/portofoliu" aria-current="page">Portofoliu<span>Lucrări reale</span></a><a class="o-ml" href="/creare-site-web">Site-uri<span>Site de prezentare</span></a><a class="o-ml" href="/automatizari">Automatizări<span>Nicio cerere pierdută</span></a><a class="o-ml" href="/asistent-ai">Asistent AI<span>Răspunde și seara</span></a><a class="o-ml" href="/preturi">Prețuri<span>De la 99 lei/lună</span></a><a class="o-ml" href="/cum-lucram">Cum lucrăm<span>În 3 pași</span></a><a class="o-ml" href="/blog">Blog<span>Sfaturi utile</span></a><a class="o-ml" href="/contact">Contact<span>Târgu Mureș</span></a>
+  <div class="o-mfoot"><a class="o-btn o-a" href="/contact#demo">Cere demo gratuit</a><a class="o-btn o-g" href="tel:+40740267706">Sună: 0740 267 706</a></div>
+</div>
+<main id="main">
+<section class="phero">
+  <div class="wrap">
+    <div class="crumb" role="navigation" aria-label="Navigare"><a href="/">Acasă</a><span>/</span><span aria-current="page">Portofoliu</span></div>
+    <h1><span class="ln"><span>Site-uri create</span></span><span class="ln"><span>de noi, pentru</span></span><span class="ln"><span><em class="grad">afaceri reale</em>.</span></span></h1>
+    <p class="lead fade d1">Un client real din Mureș și concepte pe care le-am construit ca să arătăm ce putem. Previzualizările pornesc singure când ajung pe ecran.</p>
+    <div class="pills fade d2"><span><b>1</b> client real</span><span><b>6</b> concepte de design</span><span>Construite de la zero</span></div>
+  </div>
 </section>
-<section class="rule"><div class="wrap">
-  <h2 data-rv>Toate proiectele.</h2>
-  <div class="pflist"><a class="pfrow" href="https://www.bigbigboon.ro" data-rv><small>Client</small><span><b>Big Big Boon</b><i>Construcții modulare · configurator 3D · blog SEO</i></span><em>bigbigboon.ro →</em></a><a class="pfrow" href="/demo/orobianco" data-rv><small>Concept</small><span><b>Orobianco</b><i>Restaurant italian · meniu · rezervări pe WhatsApp</i></span><em>Vezi site-ul →</em></a><a class="pfrow" href="/demo/amaryllis" data-rv><small>Concept</small><span><b>Florăria Amaryllis</b><i>Florărie · film la derulare · compune-ți buchetul</i></span><em>Vezi site-ul →</em></a><a class="pfrow" href="/demo/ferestre-partner" data-rv><small>Concept</small><span><b>Ferestre Partner</b><i>Ferestre și uși · configurator · poveste la derulare</i></span><em>Vezi site-ul →</em></a><a class="pfrow" href="/demo/vale-aurie" data-rv><small>Concept</small><span><b>Vale Aurie</b><i>Cramă (brand fictiv) · sticlă 3D · cadouri corporate</i></span><em>Vezi site-ul →</em></a><a class="pfrow" href="/demo/pensiunea-david" data-rv><small>Concept</small><span><b>Pensiunea David</b><i>Pensiune · rezervare rapidă · ilustrații</i></span><em>Vezi site-ul →</em></a></div>
-  <p class="fic" data-rv style="margin-top:26px">„Concept” înseamnă o propunere de design realizată de OHI Solutions, nu un site comandat sau aprobat de firma respectivă. Numele și fotografiile aparțin proprietarilor lor.</p>
-</div></section>
-<section class="rule"><div class="wrap">
-  <h2 data-rv>Următorul poate fi al tău.</h2>
-  <p class="sub" data-rv="2">Îți facem întâi site-ul, cu numele și serviciile tale. Plătești doar dacă îți place.</p>
-  <a class="btn p" href="/#demo" style="margin-top:28px" data-mag=".3" data-rv="3"><span class="lb">Cere demo gratuit</span></a>
-</div></section>
-<style>
-.pflist{margin-top:40px;display:grid;gap:12px}
-.pfrow{display:grid;grid-template-columns:96px 1fr auto;gap:20px;align-items:center;padding:22px 24px;border-radius:18px;background:var(--paper);box-shadow:inset 0 0 0 1.5px var(--line);text-decoration:none;color:var(--ink);transition:transform .4s,box-shadow .3s}
-.pfrow:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 1.5px rgba(255,176,32,.5)}
-.pfrow small{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#FFB020}
-.pfrow b{display:block;font-size:clamp(19px,1.8vw,24px);font-weight:700;letter-spacing:-.02em}
-.pfrow i{display:block;font-style:normal;color:var(--slate);font-size:15px;margin-top:3px}
-.pfrow em{font-style:normal;font-weight:600;font-size:14.5px;white-space:nowrap}
-@media(max-width:700px){.pfrow{grid-template-columns:1fr;gap:8px}.pfrow em{color:#FFB020}}
-</style>
+<section class="sec tight">
+  <div class="wrap">
+    <div class="pgrid">
+      <a class="pcard rv client wide" href="https://www.bigbigboon.ro" target="_blank" rel="noopener" data-v="/portofoliu-media/bbb.mp4"><div class="media"><img src="/portofoliu-media/bbb.webp" alt="Previzualizare Big Big Boon" width="960" height="600" loading="lazy"><video muted loop playsinline preload="none"></video></div><div class="info"><span><b>Big Big Boon</b><i>Construcții modulare · configurator 3D · blog SEO · bigbigboon.ro</i></span><span class="lbl">Client</span></div></a>
+      <a class="pcard rv client" href="https://www.bigbigboon.ro" target="_blank" rel="noopener" data-v="/portofoliu-media/bbb-build.mp4"><div class="media"><img src="/portofoliu-media/bbb-build.webp" alt="Previzualizare Big Big Boon · configurator" width="960" height="600" loading="lazy"><video muted loop playsinline preload="none"></video></div><div class="info"><span><b>Big Big Boon · configurator</b><i>Clientul își alege modulul, finisajele și cere oferta</i></span><span class="lbl">Client</span></div></a>
+      <a class="pcard rv" href="/demo/orobianco" data-v="/portofoliu-media/orobianco.mp4"><div class="media"><img src="/portofoliu-media/orobianco.webp" alt="Previzualizare Orobianco" width="960" height="600" loading="lazy"><video muted loop playsinline preload="none"></video></div><div class="info"><span><b>Orobianco</b><i>Restaurant italian · meniu · rezervări pe WhatsApp</i></span><span class="lbl">Concept</span></div></a>
+      <a class="pcard rv" href="/demo/amaryllis" data-v="/portofoliu-media/amaryllis.mp4"><div class="media"><img src="/portofoliu-media/amaryllis.webp" alt="Previzualizare Florăria Amaryllis" width="960" height="600" loading="lazy"><video muted loop playsinline preload="none"></video></div><div class="info"><span><b>Florăria Amaryllis</b><i>Florărie · film la derulare · compune-ți buchetul</i></span><span class="lbl">Concept</span></div></a>
+      <a class="pcard rv" href="/demo/ferestre-partner" data-v="/portofoliu-media/ferestre.mp4"><div class="media"><img src="/portofoliu-media/ferestre.webp" alt="Previzualizare Ferestre Partner" width="960" height="600" loading="lazy"><video muted loop playsinline preload="none"></video></div><div class="info"><span><b>Ferestre Partner</b><i>Ferestre și uși · configurator · poveste la derulare</i></span><span class="lbl">Concept</span></div></a>
+      <a class="pcard rv" href="/demo/vale-aurie" data-v="/portofoliu-media/valeaurie.mp4"><div class="media"><img src="/portofoliu-media/valeaurie.webp" alt="Previzualizare Vale Aurie" width="960" height="600" loading="lazy"><video muted loop playsinline preload="none"></video></div><div class="info"><span><b>Vale Aurie</b><i>Cramă (brand fictiv) · sticlă 3D · cadouri corporate</i></span><span class="lbl">Concept</span></div></a>
+      <a class="pcard rv" href="/demo/pensiunea-david" data-v="/portofoliu-media/david.mp4"><div class="media"><img src="/portofoliu-media/david.webp" alt="Previzualizare Pensiunea David" width="960" height="600" loading="lazy"><video muted loop playsinline preload="none"></video></div><div class="info"><span><b>Pensiunea David</b><i>Pensiune · rezervare rapidă · ilustrații</i></span><span class="lbl">Concept</span></div></a>
+    </div>
+    <p class="note rv">„Concept” înseamnă o propunere de design realizată de OHI Solutions, nu un site comandat sau aprobat de firma respectivă. Numele și fotografiile aparțin proprietarilor lor.</p>
+  </div>
+</section>
+<section class="fin">
+  <div class="wrap">
+    <h2 class="rv">Următorul poate fi <em>al tău</em>.</h2>
+    <p class="rv">Îți facem întâi site-ul, cu numele și serviciile tale. Plătești doar dacă îți place.</p>
+    <a class="btn a rv" href="/contact#demo">Cere demo gratuit<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <p class="sm rv">Sau sună direct: <a href="tel:+40740267706" style="color:var(--ink);font-weight:600">0740 267 706</a></p>
+  </div>
+</section>
 </main>
-<footer><div class="wrap"><span>© 2026 OHI Solutions, Târgu Mureș</span><span><a href="/contact">Despre și contact</a>&nbsp;&nbsp;<a href="/preturi">Prețuri</a>&nbsp;&nbsp;<a href="/automatizari">Automatizări</a>&nbsp;&nbsp;<a href="/blog">Blog</a>&nbsp;&nbsp;<a href="/confidentialitate">Confidențialitate</a>&nbsp;&nbsp;<a href="/termeni">Termeni</a></span></div></footer>
-<script src="/motion.js"></script>
-<script type="module" src="/space.js"></script>
-<script src="/site.js"></script>
-<script type="module" src="/ribbon-section.js"></script>
+<div class="o-ft" role="contentinfo"><div class="o-wrap">
+  <div class="o-ftg">
+    <div><a class="o-logo" href="/" aria-label="OHI Solutions"><svg viewBox="0 18 359 170" role="img" aria-hidden="true"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#3346E8" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a><p class="o-about">Site-uri și automatizări pentru afaceri locale din Târgu Mureș și din toată România.</p></div>
+    <div><h4>Servicii</h4><ul><li><a href="/creare-site-web">Site-uri</a></li><li><a href="/automatizari">Automatizări</a></li><li><a href="/asistent-ai">Asistent AI</a></li><li><a href="/solutii-personalizate">Funcții extra</a></li><li><a href="/preturi">Prețuri</a></li></ul></div>
+    <div><h4>Pentru</h4><ul><li><a href="/site-uri-restaurante">Restaurante</a></li><li><a href="/site-uri-saloane">Saloane și frizerii</a></li><li><a href="/site-uri-service-auto">Service auto</a></li><li><a href="/constructor">Trimite-ne datele</a></li></ul></div>
+    <div><h4>OHI</h4><ul><li><a href="/portofoliu">Portofoliu</a></li><li><a href="/cum-lucram">Cum lucrăm</a></li><li><a href="/blog">Blog</a></li><li><a href="/contact">Contact</a></li></ul></div>
+    <div><h4>Contact</h4><ul><li><a class="o-tel" href="tel:+40740267706">0740 267 706</a></li><li><a href="https://wa.me/40740267706" target="_blank" rel="noopener">Scrie-ne pe WhatsApp</a></li><li>Târgu Mureș, județul Mureș</li></ul></div>
+  </div>
+  <div class="o-ftb"><span>© 2026 OHI Solutions · Târgu Mureș</span><span><a href="/confidentialitate">Confidențialitate</a> &nbsp;·&nbsp; <a href="/termeni">Termeni</a></span></div>
+</div></div>
+<script src="/shell.js" defer></script>
+<script src="/ohi.js" defer></script>
 <script src="/assistant.js" defer></script>
 </body>
 </html>
