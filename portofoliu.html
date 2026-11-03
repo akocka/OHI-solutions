@@ -17,6 +17,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<script type="importmap">{"imports":{"three":"/vendor/three/three.module.js"}}</script>
 <meta name="theme-color" content="#07080D">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/icon-512.png" type="image/png">
@@ -25,8 +26,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/shell.css">
 <link rel="stylesheet" href="/ohi.css">
+<link rel="stylesheet" href="/portofoliu.css">
 </head>
-<body data-ohi="new">
+<body data-ohi="new" class="pf-page">
 <a class="o-skip" href="#main">Sari la conținut</a>
 <div class="o-hd" id="ohd" role="banner"><div class="o-wrap">
   <a class="o-logo" href="/" aria-label="OHI Solutions, pagina principală"><svg viewBox="0 18 359 170" role="img" aria-hidden="true"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#3346E8" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FFB020"/></svg></a>
@@ -39,16 +41,39 @@
   <div class="o-mfoot"><a class="o-btn o-a" href="/contact#demo">Cere demo gratuit</a><a class="o-btn o-g" href="tel:+40740267706">Sună: 0740 267 706</a></div>
 </div>
 <main id="main">
-<section class="phero">
-  <div class="wrap">
+<section class="pf-stage" id="pfStage" aria-label="Portofoliu">
+  <div class="sp" id="sp"><div id="spWorld"><div id="spOrb"></div>
+    <h2 id="spHead" aria-hidden="true"><span class="inner"><span style="--i:0">Site-uri</span> <span style="--i:1">făcute</span> <span style="--i:2">de</span> <span style="--i:3">noi</span></span></h2>
+  </div></div>
+  <div class="sp-vig" aria-hidden="true"></div>
+  <div class="sp-ui">
+    <button class="sp-back" id="gsBack" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H4M10 6l-6 6 6 6"/></svg>Înapoi</button>
+    <span class="sp-hint" aria-hidden="true"><s></s>Trage ca să rotești · atinge un site</span>
+    <a class="sp-grid" href="#proiecte">Vezi lista<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12M3 9l5 5 5-5"/></svg></a>
+  </div>
+  <div class="gs-bg" aria-hidden="true"></div>
+  <div class="gs-cv" id="gsCv" aria-hidden="true"></div>
+  <div class="gs-text" id="gsText"><a id="gsPill" href="#proiecte" aria-label="Vezi proiectele"></a><button id="gsLink" type="button" aria-label="Deschide arhiva 3D"></button></div>
+  <div class="gs-fallback">
     <div class="crumb" role="navigation" aria-label="Navigare"><a href="/">Acasă</a><span>/</span><span aria-current="page">Portofoliu</span></div>
-    <h1><span class="ln"><span>Site-uri create</span></span><span class="ln"><span>de noi, pentru</span></span><span class="ln"><span><em class="grad">afaceri reale</em>.</span></span></h1>
-    <p class="lead fade d1">Un client real din Mureș și concepte pe care le-am construit ca să arătăm ce putem. Previzualizările pornesc singure când ajung pe ecran.</p>
-    <div class="pills fade d2"><span><b>1</b> client real</span><span><b>6</b> concepte de design</span><span>Construite de la zero</span></div>
+    <h1>Lucrări <em class="grad">reale</em>.</h1>
+    <p>Un client real din Mureș și concepte construite de la zero ca să arătăm ce putem.</p>
+    <div class="gs-fbtns"><a class="btn a" href="#proiecte">Vezi proiectele</a><button class="btn g" id="gsOpen2" type="button">Deschide arhiva 3D</button></div>
   </div>
 </section>
-<section class="sec tight">
+
+<div class="sp-lit" id="spLit" hidden role="dialog" aria-modal="true" aria-labelledby="spT">
+  <div class="sp-scrim"></div>
+  <div class="sp-plate">
+    <div class="sp-shot"><img alt=""><button type="button" class="sp-close" data-close>Închide</button></div>
+    <div class="sp-meta"><div><span class="sp-tag" id="spTag"></span><h2 id="spT"></h2><p class="sp-where" id="spWhere"></p></div>
+      <div><p class="sp-note" id="spNote"></p><a class="btn a sm" id="spGo" href="#">Deschide site-ul <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
+  </div>
+</div>
+<section class="sec tight" id="proiecte">
   <div class="wrap">
+    <span class="kick rv">Toate proiectele</span>
+    <h2 class="big rv" style="margin-bottom:34px">Atinge oricare ca să-l <em>deschizi</em>.</h2>
     <div class="pgrid">
       <a class="pcard rv client wide" href="https://www.bigbigboon.ro" target="_blank" rel="noopener" data-v="/portofoliu-media/bbb.mp4"><div class="media"><img src="/portofoliu-media/bbb.webp" alt="Previzualizare Big Big Boon" width="960" height="600" loading="lazy"><video muted loop playsinline preload="none"></video></div><div class="info"><span><b>Big Big Boon</b><i>Construcții modulare · configurator 3D · blog SEO · bigbigboon.ro</i></span><span class="lbl">Client</span></div></a>
       <a class="pcard rv client" href="https://www.bigbigboon.ro" target="_blank" rel="noopener" data-v="/portofoliu-media/bbb-build.mp4"><div class="media"><img src="/portofoliu-media/bbb-build.webp" alt="Previzualizare Big Big Boon · configurator" width="960" height="600" loading="lazy"><video muted loop playsinline preload="none"></video></div><div class="info"><span><b>Big Big Boon · configurator</b><i>Clientul își alege modulul, finisajele și cere oferta</i></span><span class="lbl">Client</span></div></a>
@@ -97,6 +122,8 @@
 </div>
 <script src="/shell.js" defer></script>
 <script src="/ohi.js" defer></script>
+<script src="/pf.js" defer></script>
+<script type="module" src="/glass.js"></script>
 <script src="/assistant.js" defer></script>
 </body>
 </html>

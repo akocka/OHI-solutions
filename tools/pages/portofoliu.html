@@ -5,20 +5,54 @@
  "title": "Portofoliu: site-uri create de OHI Solutions | Târgu Mureș",
  "desc": "Site-uri create de OHI Solutions în Târgu Mureș: un proiect real pentru client și concepte de design, de la construcții modulare la restaurante și florării.",
  "og_title": "Portofoliu | OHI Solutions",
- "ld": null
+ "ld": null,
+ "css": [
+  "/portofoliu.css"
+ ],
+ "js": [
+  "/pf.js"
+ ],
+ "module": [
+  "/glass.js"
+ ],
+ "bodycls": "pf-page",
+ "head": "<script type=\"importmap\">{\"imports\":{\"three\":\"/vendor/three/three.module.js\"}}</script>"
 }
 -->
 <main id="main">
-<section class="phero">
-  <div class="wrap">
+<section class="pf-stage" id="pfStage" aria-label="Portofoliu">
+  <div class="sp" id="sp"><div id="spWorld"><div id="spOrb"></div>
+    <h2 id="spHead" aria-hidden="true"><span class="inner"><span style="--i:0">Site-uri</span> <span style="--i:1">făcute</span> <span style="--i:2">de</span> <span style="--i:3">noi</span></span></h2>
+  </div></div>
+  <div class="sp-vig" aria-hidden="true"></div>
+  <div class="sp-ui">
+    <button class="sp-back" id="gsBack" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H4M10 6l-6 6 6 6"/></svg>Înapoi</button>
+    <span class="sp-hint" aria-hidden="true"><s></s>Trage ca să rotești · atinge un site</span>
+    <a class="sp-grid" href="#proiecte">Vezi lista<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12M3 9l5 5 5-5"/></svg></a>
+  </div>
+  <div class="gs-bg" aria-hidden="true"></div>
+  <div class="gs-cv" id="gsCv" aria-hidden="true"></div>
+  <div class="gs-text" id="gsText"><a id="gsPill" href="#proiecte" aria-label="Vezi proiectele"></a><button id="gsLink" type="button" aria-label="Deschide arhiva 3D"></button></div>
+  <div class="gs-fallback">
     <div class="crumb" role="navigation" aria-label="Navigare"><a href="/">Acasă</a><span>/</span><span aria-current="page">Portofoliu</span></div>
-    <h1><span class="ln"><span>Site-uri create</span></span><span class="ln"><span>de noi, pentru</span></span><span class="ln"><span><em class="grad">afaceri reale</em>.</span></span></h1>
-    <p class="lead fade d1">Un client real din Mureș și concepte pe care le-am construit ca să arătăm ce putem. Previzualizările pornesc singure când ajung pe ecran.</p>
-    <div class="pills fade d2"><span><b>1</b> client real</span><span><b>6</b> concepte de design</span><span>Construite de la zero</span></div>
+    <h1>Lucrări <em class="grad">reale</em>.</h1>
+    <p>Un client real din Mureș și concepte construite de la zero ca să arătăm ce putem.</p>
+    <div class="gs-fbtns"><a class="btn a" href="#proiecte">Vezi proiectele</a><button class="btn g" id="gsOpen2" type="button">Deschide arhiva 3D</button></div>
   </div>
 </section>
-<section class="sec tight">
+
+<div class="sp-lit" id="spLit" hidden role="dialog" aria-modal="true" aria-labelledby="spT">
+  <div class="sp-scrim"></div>
+  <div class="sp-plate">
+    <div class="sp-shot"><img alt=""><button type="button" class="sp-close" data-close>Închide</button></div>
+    <div class="sp-meta"><div><span class="sp-tag" id="spTag"></span><h2 id="spT"></h2><p class="sp-where" id="spWhere"></p></div>
+      <div><p class="sp-note" id="spNote"></p><a class="btn a sm" id="spGo" href="#">Deschide site-ul <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
+  </div>
+</div>
+<section class="sec tight" id="proiecte">
   <div class="wrap">
+    <span class="kick rv">Toate proiectele</span>
+    <h2 class="big rv" style="margin-bottom:34px">Atinge oricare ca să-l <em>deschizi</em>.</h2>
     <div class="pgrid">
       <a class="pcard rv client wide" href="https://www.bigbigboon.ro" target="_blank" rel="noopener" data-v="/portofoliu-media/bbb.mp4"><div class="media"><img src="/portofoliu-media/bbb.webp" alt="Previzualizare Big Big Boon" width="960" height="600" loading="lazy"><video muted loop playsinline preload="none"></video></div><div class="info"><span><b>Big Big Boon</b><i>Construcții modulare · configurator 3D · blog SEO · bigbigboon.ro</i></span><span class="lbl">Client</span></div></a>
       <a class="pcard rv client" href="https://www.bigbigboon.ro" target="_blank" rel="noopener" data-v="/portofoliu-media/bbb-build.mp4"><div class="media"><img src="/portofoliu-media/bbb-build.webp" alt="Previzualizare Big Big Boon · configurator" width="960" height="600" loading="lazy"><video muted loop playsinline preload="none"></video></div><div class="info"><span><b>Big Big Boon · configurator</b><i>Clientul își alege modulul, finisajele și cere oferta</i></span><span class="lbl">Client</span></div></a>
