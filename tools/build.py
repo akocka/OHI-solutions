@@ -23,7 +23,7 @@ NAV = [('/portofoliu', 'Portofoliu', 'Lucrări reale'),
        ('/creare-site-web', 'Site-uri', 'Site de prezentare'),
        ('/automatizari', 'Automatizări', 'Nicio cerere pierdută'),
        ('/asistent-ai', 'Asistent AI', 'Răspunde și seara'),
-       ('/preturi', 'Prețuri', 'De la 99 lei/lună'),
+       ('/preturi', 'Prețuri', 'Plată unică, de la 500 lei'),
        ('/cum-lucram', 'Cum lucrăm', 'În 3 pași'),
        ('/contact', 'Contact', 'Târgu Mureș')]
 MNAV = NAV[:6] + [('/blog', 'Blog', 'Sfaturi utile')] + NAV[6:]

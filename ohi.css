@@ -302,6 +302,7 @@ a.tile:hover,.tile.hov:hover{transform:translateY(-4px);box-shadow:inset 0 0 0 1
 .bill button small{font-size:12px;font-weight:500;opacity:.8}
 .bill button[aria-pressed=true]{background:var(--amber);color:#14110A}
 .plans[hidden]{display:none}
+.plans.c2{grid-template-columns:repeat(2,1fr);max-width:900px}
 .plans.c3{grid-template-columns:repeat(3,1fr)}
 .pl .desc{margin-top:8px;color:var(--mut);font-size:14.5px;min-height:2.9em}
 .pl.ghost{background:transparent;box-shadow:inset 0 0 0 1.5px dashed var(--line);border:1.5px dashed rgba(255,255,255,.14)}
@@ -409,7 +410,7 @@ a.cc:hover{transform:translateY(-4px);box-shadow:inset 0 0 0 1px rgba(123,140,25
 @media (max-width:980px){
   .phgrid,.split2,.formgrid{grid-template-columns:1fr}
   .split2.rev>:first-child{order:0}
-  .tiles,.tiles.c4,.niches,.facts,.plans.c3,.guar{grid-template-columns:1fr}
+  .tiles,.tiles.c4,.niches,.facts,.plans.c3,.plans.c2,.guar{grid-template-columns:1fr}
   .tiles.c2,.pgrid,.posts{grid-template-columns:1fr}
   .cgrid{grid-template-columns:1fr 1fr}
   .chat,.flow{margin:0 auto}

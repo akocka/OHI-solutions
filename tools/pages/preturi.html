@@ -1,57 +1,35 @@
 <!--META
 {
  "path": "/preturi",
- "title": "Prețuri site web Târgu Mureș: abonament sau plată unică | OHI Solutions",
- "desc": "Prețuri clare pentru site-uri în Târgu Mureș: abonament de la 99 lei pe lună sau plată unică de la 500 lei. Vezi site-ul gata înainte de orice plată.",
+ "title": "Prețuri site web Târgu Mureș: plată unică, fără abonament | OHI Solutions",
+ "desc": "Site pentru afacerea ta în Târgu Mureș, cu plată unică: Start 500 lei, Business 1.199 lei, prețuri de lansare. Fără abonament, fără avans: plătești după ce vezi demo-ul.",
  "ld": [
-  {
-   "@context": "https://schema.org",
-   "@type": "Organization",
-   "@id": "https://ohis-gamma.vercel.app/#org",
-   "name": "OHI Solutions",
-   "url": "https://ohis-gamma.vercel.app/",
-   "logo": "https://ohis-gamma.vercel.app/icon-512.png",
-   "telephone": "+40740267706",
-   "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Târgu Mureș",
-    "addressCountry": "RO"
-   }
-  },
   {
    "@context": "https://schema.org",
    "@type": "FAQPage",
    "mainEntity": [
     {
      "@type": "Question",
-     "name": "Există costuri lunare obligatorii?",
+     "name": "Există costuri lunare?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Doar dacă alegi un abonament (Start, Business sau Pro): contract de 12 luni, cu găzduire, domeniu și modificări incluse. Cu plata unică plătești o dată pentru site, iar domeniul îl plătești anual, la registrator. Administrarea și asistentul AI sunt opționale."
+      "text": "Nu. Plătești o singură dată pentru site. Singurul cost care se repetă e domeniul (.ro), o dată pe an, plătit direct la registrator, pe numele tău."
      }
     },
     {
      "@type": "Question",
-     "name": "Când plătesc prima dată?",
+     "name": "Când plătesc?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "După ce vezi demo-ul și îți place. Fără avans și fără taxă de pornire: abonamentul începe abia când site-ul e live."
+      "text": "După ce vezi demo-ul și îți place. Fără avans și fără taxă de pornire."
      }
     },
     {
      "@type": "Question",
-     "name": "Ce se întâmplă după cele 12 luni?",
+     "name": "Cum se face plata?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Continui lunar și poți opri oricând, cu 30 de zile înainte. Domeniul e mereu pe numele tău."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Pot ieși mai devreme din contract?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Da. Plătești doar diferența până la prețul cu plată unică (Start 500 lei, Business 1.199 lei) și site-ul rămâne al tău."
+      "text": "O singură dată, pe baza unui contract de cesiune a drepturilor de autor, după ce aprobi demo-ul."
      }
     },
     {
@@ -72,39 +50,37 @@
     },
     {
      "@type": "Question",
-     "name": "Cum plătesc?",
+     "name": "Pot cere modificări după lansare?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "După ce aprobi demo-ul primești un link de plată online, securizat, cu cardul. Abonamentul se plătește automat în fiecare lună."
+      "text": "Da. Ne scrii ce vrei schimbat și îți spunem costul înainte să lucrăm. Pachetele de mentenanță lunară vor fi disponibile în curând."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Al cui e site-ul?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Al tău. Domeniul e pe numele afacerii tale, iar prin contract primești drepturile asupra site-ului."
      }
     }
    ]
   },
   {
    "@context": "https://schema.org",
-   "@type": "Service",
-   "name": "Creare site web pentru afaceri locale",
-   "serviceType": "Web design",
-   "provider": {
-    "@id": "https://ohis-gamma.vercel.app/#org"
-   },
-   "areaServed": {
-    "@type": "Country",
-    "name": "România"
-   },
-   "url": "https://ohis-gamma.vercel.app/preturi",
-   "offers": [
+   "@type": "BreadcrumbList",
+   "itemListElement": [
     {
-     "@type": "Offer",
-     "name": "Start",
-     "price": "500",
-     "priceCurrency": "RON"
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Acasă",
+     "item": "https://ohis-gamma.vercel.app/"
     },
     {
-     "@type": "Offer",
-     "name": "Business",
-     "price": "1199",
-     "priceCurrency": "RON"
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Prețuri",
+     "item": "https://ohis-gamma.vercel.app/preturi"
     }
    ]
   }
@@ -115,20 +91,19 @@
 <section class="phero">
   <div class="wrap">
     <div class="crumb" role="navigation" aria-label="Navigare"><a href="/">Acasă</a><span>/</span><span aria-current="page">Prețuri</span></div>
-    <h1><span class="ln"><span>Prețuri clare.</span></span><span class="ln"><span>Plătești doar după</span></span><span class="ln"><span><em class="grad">ce îți place</em>.</span></span></h1>
-    <p class="lead fade d1">Același site, două feluri de a plăti: un abonament mic, cu totul inclus, sau o singură plată. În ambele cazuri vezi site-ul gata înainte de orice plată.</p>
-    <div class="bill fade d2" role="group" aria-label="Fel de plată"><button type="button" data-bill="lunar" aria-pressed="true">Lunar<small>totul inclus</small></button><button type="button" data-bill="unica" aria-pressed="false">O singură plată<small>site-ul e al tău</small></button></div>
+    <h1><span class="ln"><span>Plătești o dată.</span></span><span class="ln"><span><em class="grad">Site-ul e al tău</em>.</span></span></h1>
+    <p class="lead fade d1">Un preț fix, plătit o singură dată, abia după ce vezi site-ul gata și îți place. Fără abonament și fără avans.</p>
+    <div class="pills fade d2"><span><b>0 lei</b> avans</span><span>Fără abonament</span><span>Contract de drepturi de autor</span></div>
   </div>
 </section>
 
 <section class="sec tight" style="padding-top:10px">
   <div class="wrap">
-    <div class="plans c3" data-plans="lunar"><div class="pl rv"><h3>Start</h3><p class="desc">Pentru afaceri noi care vor să fie găsite din prima zi.</p><div class="pr"><b>99</b><span>lei pe lună</span></div><ul><li>Site de o pagină, făcut pentru telefon</li><li>Apel, WhatsApp și hartă</li><li>Găzduire și domeniu .ro incluse</li><li>Pregătit pentru Google</li><li>O modificare pe lună</li></ul><p class="tot">1.188 lei în total pe 12 luni</p><a class="btn g" href="/contact?pachet=start#demo">Alege Start</a></div><div class="pl hot rv"><span class="tag2">Recomandat</span><h3>Business</h3><p class="desc">Pentru afaceri care vor ca site-ul să aducă clienți.</p><div class="pr"><b>199</b><span>lei pe lună</span></div><ul><li>Până la 5 pagini, design animat</li><li>Programări sau comenzi online</li><li>Administrare: până la 5 modificări pe lună</li><li>Profil Google Business legat de site</li><li>Exclusivitate pe zona ta</li></ul><p class="tot">2.388 lei în total pe 12 luni</p><a class="btn a" href="/contact?pachet=business#demo">Alege Business</a></div><div class="pl rv"><h3>Pro</h3><p class="desc">Pentru cine primește multe întrebări și vrea răspuns și seara.</p><div class="pr"><b>299</b><span>lei pe lună</span></div><ul><li>Tot ce include Business</li><li>Asistent AI pe site, fără taxă de instalare</li><li>Răspunde în română, maghiară și engleză</li><li>Până la 10 modificări pe lună, în 48 de ore</li></ul><p class="tot">3.588 lei în total pe 12 luni</p><a class="btn g" href="/contact?pachet=pro#demo">Alege Pro</a></div></div>
-    <div class="plans c3" data-plans="unica" hidden><div class="pl rv"><h3>Start</h3><p class="desc">O pagină curată și rapidă, ca să fii găsit și contactat.</p><div class="pr"><b>500</b><span>lei, o dată</span></div><p class="was">Preț de lansare, în loc de <s>849 lei</s></p><ul><li>O pagină, toate informațiile</li><li>Făcut pentru telefon</li><li>Apel, WhatsApp și hartă</li><li>Pregătit pentru Google</li></ul><a class="btn g" href="/contact?pachet=start#demo">Alege Start</a></div><div class="pl hot rv"><span class="tag2">Recomandat</span><h3>Business</h3><p class="desc">Site premium, cu funcții care aduc clienți.</p><div class="pr"><b>1.199</b><span>lei, o dată</span></div><p class="was">Preț de lansare, în loc de <s>1.999 lei</s></p><ul><li>Până la 5 pagini, design animat</li><li>Efecte 3D, ilustrații sau intro animat</li><li>Programări sau comenzi online</li><li>Texte scrise pentru Google</li><li>Exclusivitate pe zonă 12 luni</li></ul><a class="btn a" href="/contact?pachet=business#demo">Alege Business</a></div><div class="pl ghost rv"><h3>Pro</h3><p class="desc">Pro există doar ca abonament, pentru că asistentul AI e un serviciu lunar.</p><p class="was" style="margin-top:16px">La plata unică poți adăuga asistentul AI separat, mai jos.</p><button class="btn g" type="button" data-bill="lunar" style="margin-top:24px;width:100%">Vezi Pro lunar</button></div></div>
+    <div class="plans c2"><div class="pl rv"><h3>Start</h3><p class="desc">O pagină curată și rapidă, ca să fii găsit și contactat.</p><div class="pr"><b>500</b><span>lei, o singură dată</span></div><p class="was">Preț de lansare, în loc de <s>849 lei</s></p><ul><li>O pagină cu toate informațiile</li><li>Făcut pentru telefon</li><li>Apel, WhatsApp și hartă</li><li>Pregătit pentru Google</li></ul><a class="btn g" href="/contact?pachet=start#demo">Alege Start</a></div><div class="pl hot rv"><span class="tag2">Recomandat</span><h3>Business</h3><p class="desc">Site premium, cu funcții care aduc clienți.</p><div class="pr"><b>1.199</b><span>lei, o singură dată</span></div><p class="was">Preț de lansare, în loc de <s>1.999 lei</s></p><ul><li>Până la 5 pagini, design animat</li><li>Efecte 3D, ilustrații sau intro animat</li><li>Programări sau comenzi online</li><li>Texte scrise pentru Google</li><li>Exclusivitate pe zonă 12 luni</li></ul><a class="btn a" href="/contact?pachet=business#demo">Alege Business</a></div></div>
     <div class="facts">
-      <div class="fact rv"><b>Prima plată, după demo</b><span>Fără avans și fără taxă de pornire. Abonamentul începe când site-ul e live.</span></div>
-      <div class="fact rv"><b>După 12 luni, alegi tu</b><span>Continui lunar și poți opri oricând, cu 30 de zile înainte.</span></div>
-      <div class="fact rv"><b>Domeniul e pe numele tău</b><span>Site-ul și adresa rămân ale afacerii tale, nu ale noastre.</span></div>
+      <div class="fact rv"><b>Plătești după demo</b><span>Fără avans: plătești abia după ce vezi site-ul și îl aprobi.</span></div>
+      <div class="fact rv"><b>O singură plată, cu contract</b><span>Pe baza unui contract de cesiune a drepturilor de autor.</span></div>
+      <div class="fact rv"><b>Domeniul e pe numele tău</b><span>Se plătește separat, o dată pe an, direct la registrator.</span></div>
     </div>
   </div>
 </section>
@@ -136,20 +111,19 @@
 <section class="sec alt">
   <div class="wrap">
     <span class="kick rv">Compară</span>
-    <h2 class="big rv">Ce include <em>fiecare pachet</em>.</h2>
+    <h2 class="big rv">Start sau <em>Business</em>?</h2>
     <div class="cmpwrap rv"><table class="cmp">
-      <thead><tr><th>Ce include</th><th>Start</th><th class="hl">Business</th><th>Pro</th></tr></thead>
+      <thead><tr><th>Ce include</th><th>Start · 500 lei</th><th class="hl">Business · 1.199 lei</th></tr></thead>
       <tbody>
-        <tr><td>Demo gratuit înainte de plată</td><td><span class="y">✓</span></td><td class="hl"><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
-        <tr><td>Design cu numele, culorile și logo-ul tău</td><td><span class="y">✓</span></td><td class="hl"><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
-        <tr><td>Pagini</td><td>1</td><td class="hl">până la 5</td><td>până la 5</td></tr>
-        <tr><td>Făcut pentru telefon · apel, WhatsApp, hartă</td><td><span class="y">✓</span></td><td class="hl"><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
-        <tr><td>Pregătit pentru Google</td><td><span class="y">✓</span></td><td class="hl"><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
-        <tr><td>Texte scrise pentru Google</td><td><span class="n">—</span></td><td class="hl"><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
-        <tr><td>Programări sau comenzi online</td><td><span class="n">—</span></td><td class="hl"><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
-        <tr><td>Efecte 3D, ilustrații, intro animat</td><td><span class="n">—</span></td><td class="hl"><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
-        <tr><td>Exclusivitate pe zonă</td><td><span class="n">—</span></td><td class="hl"><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
-        <tr><td>Asistent AI pe site</td><td><span class="n">—</span></td><td class="hl"><span class="n">—</span></td><td><span class="y">✓</span></td></tr>
+        <tr><td>Demo gratuit înainte de plată</td><td><span class="y">✓</span></td><td class="hl"><span class="y">✓</span></td></tr>
+        <tr><td>Design cu numele, culorile și logo-ul tău</td><td><span class="y">✓</span></td><td class="hl"><span class="y">✓</span></td></tr>
+        <tr><td>Pagini</td><td>1</td><td class="hl">până la 5</td></tr>
+        <tr><td>Făcut pentru telefon · apel, WhatsApp, hartă</td><td><span class="y">✓</span></td><td class="hl"><span class="y">✓</span></td></tr>
+        <tr><td>Pregătit pentru Google</td><td><span class="y">✓</span></td><td class="hl"><span class="y">✓</span></td></tr>
+        <tr><td>Texte scrise pentru Google</td><td><span class="n">—</span></td><td class="hl"><span class="y">✓</span></td></tr>
+        <tr><td>Programări sau comenzi online</td><td><span class="n">—</span></td><td class="hl"><span class="y">✓</span></td></tr>
+        <tr><td>Efecte 3D, ilustrații, intro animat</td><td><span class="n">—</span></td><td class="hl"><span class="y">✓</span></td></tr>
+        <tr><td>Exclusivitate pe zonă</td><td><span class="n">—</span></td><td class="hl">12 luni</td></tr>
       </tbody></table></div>
     <p class="cmphint">Glisează tabelul spre stânga ca să vezi toate coloanele →</p>
     <div class="callout rv"><div><b>Primele 5 afaceri din Târgu Mureș primesc site-ul gratuit.</b><p>Cu funcțiile din Business, în schimbul unei recenzii și al acordului să-l arătăm. Un loc e ocupat de Big Big Boon.</p></div><a class="btn a" href="/contact?pachet=gratuit#demo">Ocupă un loc<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
@@ -158,15 +132,13 @@
 
 <section class="sec">
   <div class="wrap">
-    <span class="kick rv">Opționale</span>
+    <span class="kick rv">Extra</span>
     <h2 class="big rv">Adaugi doar <em>ce îți trebuie</em>.</h2>
-    <p class="lead rv">Opționale, pentru orice pachet. Le poți adăuga și mai târziu.</p>
     <div class="tiles">
-      <div class="tile rv" style="--tc:#2BC48A"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01"/></svg></div><h3>Asistent AI</h3><p>Răspunde clienților pe site, în română, maghiară și engleză, și seara.</p><p style="margin-top:12px;color:var(--ink);font-weight:700">99,99 lei pe lună</p><p style="margin-top:2px;font-size:13.5px">+ 300 lei instalare la plata unică · inclus în Pro</p><a class="more" href="/asistent-ai">Vezi cum funcționează →</a></div>
-      <div class="tile rv" style="--tc:#FFB020"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13H11l-1 9 8.5-11H12z"/></svg></div><h3>Automatizări</h3><p>Cererile ajung în tabel și pe email, clientul primește răspuns imediat, recenziile se cer singure.</p><p style="margin-top:12px;color:var(--ink);font-weight:700">Preț la ofertă</p><p style="margin-top:2px;font-size:13.5px">după o discuție de 15 minute</p><a class="more" href="/automatizari">Vezi automatizările →</a></div>
-      <div class="tile rv" style="--tc:#8E5BD6"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></div><h3>Administrare</h3><p>Pentru site-urile cu plată unică: modificări de texte, prețuri, poze și program, plus verificare lunară.</p><p style="margin-top:12px;color:var(--ink);font-weight:700">de la 127 lei pe lună</p><p style="margin-top:2px;font-size:13.5px">149 lei lunar fără angajament · reducere la 3, 6 sau 12 luni</p></div>
+      <div class="tile rv" style="--tc:#FFB020"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13H11l-1 9 8.5-11H12z"/></svg></div><h3>Automatizări</h3><p>Cererile ajung în tabel și pe email, clientul primește răspuns imediat, recenziile se cer singure.</p><p style="margin-top:12px;color:var(--ink);font-weight:700">Preț fix la ofertă</p><p style="margin-top:2px;font-size:13.5px">după o discuție de 15 minute</p><a class="more" href="/automatizari">Vezi automatizările →</a></div>
+      <div class="tile rv" style="--tc:#4C63FF"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M3 4h2l2.5 11h11L21 8H7"/></svg></div><h3>Funcții extra</h3><p>Magazin mic, meniu QR, rezervare de masă, vouchere, card de fidelitate.</p><p style="margin-top:12px;color:var(--ink);font-weight:700">Preț fix la ofertă</p><p style="margin-top:2px;font-size:13.5px">după un apel scurt</p><a class="more" href="/solutii-personalizate">Vezi funcțiile →</a></div>
+      <div class="tile rv" style="--tc:#2BC48A"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Asistent AI și mentenanță</h3><p>Asistentul care răspunde clienților și seara, plus mentenanța lunară a site-ului.</p><p style="margin-top:12px;color:var(--ink);font-weight:700">În curând</p><p style="margin-top:2px;font-size:13.5px">servicii lunare, disponibile după înregistrarea firmei</p><a class="more" href="/asistent-ai">Despre asistentul AI →</a></div>
     </div>
-    <p class="note rv">Ai nevoie de magazin online, meniu QR, rezervări sau vouchere? Vezi <a href="/solutii-personalizate" style="color:var(--ink);font-weight:600">funcțiile extra</a>, cu preț fix după un apel scurt.</p>
   </div>
 </section>
 
@@ -174,13 +146,13 @@
   <div class="wrap">
     <span class="kick rv">Întrebări</span>
     <h2 class="big rv">Întrebări <em>despre preț</em>.</h2>
-    <div class="faq"><details class="q rv"><summary>Există costuri lunare obligatorii?</summary><div class="ans">Doar dacă alegi un abonament (Start, Business sau Pro): contract de 12 luni, cu găzduire, domeniu și modificări incluse. Cu plata unică plătești o dată pentru site, iar domeniul îl plătești anual, la registrator. Administrarea și asistentul AI sunt opționale.</div></details><details class="q rv"><summary>Când plătesc prima dată?</summary><div class="ans">După ce vezi demo-ul și îți place. Fără avans și fără taxă de pornire: abonamentul începe abia când site-ul e live.</div></details><details class="q rv"><summary>Ce se întâmplă după cele 12 luni?</summary><div class="ans">Continui lunar și poți opri oricând, cu 30 de zile înainte. Domeniul e mereu pe numele tău.</div></details><details class="q rv"><summary>Pot ieși mai devreme din contract?</summary><div class="ans">Da. Plătești doar diferența până la prețul cu plată unică (Start 500 lei, Business 1.199 lei) și site-ul rămâne al tău.</div></details><details class="q rv"><summary>Ce înseamnă prețul de lansare?</summary><div class="ans">Suntem la început, așa că primii clienți prind un preț mai mic. După lansare trecem la prețurile standard, afișate tăiat.</div></details><details class="q rv"><summary>Pot trece mai târziu de la Start la Business?</summary><div class="ans">Da, oricând. Îți facem o ofertă doar pentru ce adăugăm.</div></details><details class="q rv"><summary>Cum plătesc?</summary><div class="ans">După ce aprobi demo-ul primești un link de plată online, securizat, cu cardul. Abonamentul se plătește automat în fiecare lună.</div></details></div>
+    <div class="faq"><details class="q rv"><summary>Există costuri lunare?</summary><div class="ans">Nu. Plătești o singură dată pentru site. Singurul cost care se repetă e domeniul (.ro), o dată pe an, plătit direct la registrator, pe numele tău.</div></details><details class="q rv"><summary>Când plătesc?</summary><div class="ans">După ce vezi demo-ul și îți place. Fără avans și fără taxă de pornire.</div></details><details class="q rv"><summary>Cum se face plata?</summary><div class="ans">O singură dată, pe baza unui contract de cesiune a drepturilor de autor, după ce aprobi demo-ul.</div></details><details class="q rv"><summary>Ce înseamnă prețul de lansare?</summary><div class="ans">Suntem la început, așa că primii clienți prind un preț mai mic. După lansare trecem la prețurile standard, afișate tăiat.</div></details><details class="q rv"><summary>Pot trece mai târziu de la Start la Business?</summary><div class="ans">Da, oricând. Îți facem o ofertă doar pentru ce adăugăm.</div></details><details class="q rv"><summary>Pot cere modificări după lansare?</summary><div class="ans">Da. Ne scrii ce vrei schimbat și îți spunem costul înainte să lucrăm. Pachetele de mentenanță lunară vor fi disponibile în curând.</div></details><details class="q rv"><summary>Al cui e site-ul?</summary><div class="ans">Al tău. Domeniul e pe numele afacerii tale, iar prin contract primești drepturile asupra site-ului.</div></details></div>
   </div>
 </section>
 <section class="fin">
   <div class="wrap">
     <h2 class="rv">Alege pachetul. <em>Restul îl facem noi</em>.</h2>
-    <p class="rv">Te sunăm, iar în 24 de ore ai demo-ul pe telefon. Pachetul îl poți schimba oricând.</p>
+    <p class="rv">Te sunăm, iar în 24 de ore ai demo-ul pe telefon. Plătești o singură dată, doar dacă îți place.</p>
     <a class="btn a rv" href="/contact#demo">Cere demo gratuit<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     <p class="sm rv">Sau sună direct: <a href="tel:+40740267706" style="color:var(--ink);font-weight:600">0740 267 706</a></p>
   </div>
