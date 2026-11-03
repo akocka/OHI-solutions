@@ -16,7 +16,7 @@
   "/glass.js"
  ],
  "bodycls": "pf-page",
- "head": "<script type=\"importmap\">{\"imports\":{\"three\":\"/vendor/three/three.module.js\"}}</script>"
+ "head": "<script type=\"importmap\">{\"imports\":{\"three\":\"/vendor/three/three.module.js\"}}</script>\n<link href=\"https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap\" rel=\"stylesheet\">"
 }
 -->
 <main id="main">
@@ -28,8 +28,11 @@
   <div class="sp-ui">
     <button class="sp-back" id="gsBack" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H4M10 6l-6 6 6 6"/></svg>Înapoi</button>
     <span class="sp-hint" aria-hidden="true"><s></s>Trage ca să rotești · atinge un site</span>
+    <div class="sp-bio"><div class="sp-who"><span class="sp-av" aria-hidden="true">O</span><b>OHI Solutions</b></div><p>Fiecare site din această arhivă a fost construit de la zero, fără șabloane cumpărate. Atinge oricare ca să vezi detaliile.</p></div>
+    <span class="sp-colo">Portofoliu 2026</span>
     <a class="sp-grid" href="#proiecte">Vezi lista<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12M3 9l5 5 5-5"/></svg></a>
   </div>
+  <div class="sp-splash" id="spSplash" aria-hidden="true"><span class="mark">OHI Solutions</span><span class="bar"><s id="spBar"></s></span><span class="tag">Portofoliu 2026</span></div>
   <div class="gs-bg" aria-hidden="true"></div>
   <div class="gs-cv" id="gsCv" aria-hidden="true"></div>
   <div class="gs-text" id="gsText"><a id="gsPill" href="#proiecte" aria-label="Vezi proiectele"></a><button id="gsLink" type="button" aria-label="Deschide arhiva 3D"></button></div>
@@ -41,6 +44,7 @@
   </div>
 </section>
 
+<div class="sp-dot" id="spDot" aria-hidden="true"></div>
 <div class="sp-lit" id="spLit" hidden role="dialog" aria-modal="true" aria-labelledby="spT">
   <div class="sp-scrim"></div>
   <div class="sp-plate">

@@ -7,10 +7,10 @@
   // parallax photo
   var par = $('lpPar');
   if (par && !reduce) {
-    var box = par.parentNode, on = false, tick = false;
-    new IntersectionObserver(function (e) { on = e[0].isIntersecting; }).observe(box);
-    var upd = function () { tick = false; if (!on) return; var r = box.getBoundingClientRect(), p = (r.top + r.height / 2 - innerHeight / 2) / innerHeight;
-      par.style.transform = 'translateY(' + (Math.max(-1, Math.min(1, p)) * -70 - 15).toFixed(1) + 'px)'; };
+    var box = par.parentNode, anchor = box.parentNode, on = false, tick = false;
+    new IntersectionObserver(function (e) { on = e[0].isIntersecting; }).observe(anchor);
+    var upd = function () { tick = false; if (!on) return; var r = anchor.getBoundingClientRect(), p = (r.top + r.height / 2 - innerHeight / 2) / innerHeight;
+      box.style.translate = '0 ' + (Math.max(-1, Math.min(1, p)) * 200 * .5).toFixed(1) + 'px'; };
     addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(upd); } }, { passive: true });
     upd();
   }
@@ -22,7 +22,7 @@
     base.forEach(function (c) { row.appendChild(c.cloneNode(true)); });
     base.forEach(function (c) { row.appendChild(c.cloneNode(true)); });
     var cards = row.children, i = n, hover = false, timer;
-    var step = function () { var a = cards[0].getBoundingClientRect(), b = cards[1].getBoundingClientRect(); return b.left - a.left; };
+    var step = function () { return cards[1].offsetLeft - cards[0].offsetLeft; };
     var place = function (anim) {
       if (!anim) row.style.transition = 'none';
       row.style.transform = 'translateX(' + (-i * step()) + 'px)';
@@ -46,14 +46,24 @@
     view.addEventListener('touchend', function (e) { if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1); sx = null; });
   }
 
-  // project videos play only while on screen
-  var vids = document.querySelectorAll('.lp-prm video[data-v]');
+  // marquee: the strip is doubled so it can loop at -50%
+  var mt = document.querySelector('.vk-mtrack');
+  if (mt) Array.prototype.slice.call(mt.children).forEach(function (v) { var c = v.cloneNode(true); c.setAttribute('aria-hidden', 'true'); mt.appendChild(c); });
+
+  // fade-in-up when a block enters the screen (once)
+  var reveal = document.querySelectorAll('.vk-a,.vk-io');
+  if ('IntersectionObserver' in window && !reduce) {
+    var ro = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } }); }, { threshold: .1 });
+    reveal.forEach(function (el) { ro.observe(el); });
+  } else reveal.forEach(function (el) { el.classList.add('in'); });
+
+  // videos play only while on screen
+  var vids = document.querySelectorAll('.vk video');
   if (vids.length && 'IntersectionObserver' in window) {
     var vo = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { var v = e.target;
-        if (e.isIntersecting) { if (!v.src) v.src = v.dataset.v; if (!reduce) v.play().catch(function () {}); } else v.pause(); });
-    }, { threshold: .35 });
-    vids.forEach(function (v) { vo.observe(v); });
+      es.forEach(function (e) { var v = e.target; if (e.isIntersecting && !reduce) v.play().catch(function () {}); else v.pause(); });
+    }, { threshold: .05 });
+    vids.forEach(function (v) { v.autoplay = false; v.pause(); vo.observe(v); });
   }
 
   // partner box: little site previews follow the mouse

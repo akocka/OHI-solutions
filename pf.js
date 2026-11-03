@@ -144,6 +144,24 @@
   L.addEventListener('click', function (e) { if (e.target.closest('[data-close]') || e.target === L || e.target.classList.contains('sp-scrim')) close(); });
   addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
 
+  // splash: waits for the archive images (min ~1.1s, max 9s), then fades
+  var splash = document.getElementById('spSplash'), bar = document.getElementById('spBar'), born = performance.now(), got = 0, gone = false;
+  function bump() { got++; if (bar) bar.style.transform = 'scaleX(' + Math.min(1, got / N) + ')'; if (got >= N) finish(); }
+  function finish() { if (gone || !splash) return; gone = true; var w = Math.max(0, 1150 - (performance.now() - born));
+    setTimeout(function () { if (bar) bar.style.transform = 'scaleX(1)'; splash.classList.add('out'); setTimeout(function () { splash.remove(); }, 950); }, w); }
+  cards.forEach(function (c) { var im = c.el.querySelector('img'); if (im.complete) bump(); else { im.addEventListener('load', bump); im.addEventListener('error', bump); } });
+  setTimeout(finish, 9000);
+
+  // cursor dot for mouse users
+  var dot = document.getElementById('spDot');
+  if (dot && matchMedia('(pointer: fine)').matches) {
+    var tx = 0, ty = 0, px = 0, py = 0, dotOn = false;
+    stage.addEventListener('pointermove', function (e) { tx = e.clientX; ty = e.clientY; if (!dotOn) { px = tx; py = ty; } dotOn = true; dot.classList.add('on');
+      dot.classList.toggle('wide', !!e.target.closest('.sp-card,a,button')); });
+    stage.addEventListener('pointerleave', function () { dot.classList.remove('on'); dotOn = false; });
+    (function mv() { px += (tx - px) * .2; py += (ty - py) * .2; dot.style.transform = 'translate3d(' + px + 'px,' + py + 'px,0)'; requestAnimationFrame(mv); })();
+  }
+
   // fallback when the glass can't run: plain buttons open and close the archive
   var gl = document.getElementById('gsLink'), bk = document.getElementById('gsBack'), fo = document.getElementById('gsOpen2');
   function noGlass() { return !stage.classList.contains('gs-ready'); }

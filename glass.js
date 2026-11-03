@@ -112,50 +112,56 @@ function init() {
   // ---------- printed page (one canvas for the whole block) ----------
   const cvs = document.createElement('canvas'), cx = cvs.getContext('2d');
   const tex = new THREE.CanvasTexture(cvs); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
-  const F = '"Schibsted Grotesk", system-ui, sans-serif';
+  const F = 'Inter, "Schibsted Grotesk", system-ui, sans-serif';
   const hot = { pill: null, link: null }; let hoverUI = '';
   function paint() {
     const k = Math.max(1.5, PR); cvs.width = Math.round(B.w * k); cvs.height = Math.round(B.h * k);
     cx.setTransform(k, 0, 0, k, 0, 0); cx.clearRect(0, 0, B.w, B.h);
-    // nav slab
+    // nav slab: square mark + name, links, contact on the right
     const nh = B.navH, u = Math.max(.75, S * 1.6);
-    cx.textBaseline = 'middle'; cx.fillStyle = 'rgba(242,243,247,.92)';
-    cx.font = `700 ${Math.round(15 * u)}px ${F}`; cx.fillText('Portofoliu', 26 * u, nh / 2);
-    cx.font = `500 ${Math.round(13 * u)}px ${F}`; cx.fillStyle = 'rgba(242,243,247,.55)';
-    const st = B.w < 640 ? '1 client · 6 concepte' : '1 client real  ·  6 concepte  ·  3 modele';
-    cx.textAlign = 'right'; cx.fillText(st, B.w - 26 * u, nh / 2); cx.textAlign = 'left';
-    cx.fillStyle = '#FFB020'; cx.beginPath(); cx.arc(26 * u + cx.measureText('Portofoliu').width * 1.18 + 10 * u, nh / 2, 3.2 * u, 0, 7); cx.fill();
+    cx.textBaseline = 'middle';
+    const mk = 16 * u; cx.strokeStyle = 'rgba(245,245,247,.92)'; cx.lineWidth = 1.6 * u; cx.strokeRect(26 * u, nh / 2 - mk / 2, mk, mk);
+    cx.fillStyle = 'rgba(245,245,247,.95)'; cx.font = `600 ${Math.round(16 * u)}px ${F}`; cx.fillText('OHI', 26 * u + mk + 10 * u, nh / 2);
+    hot.nav = [];
+    if (B.w > 560) {
+      cx.font = `500 ${Math.round(13 * u)}px ${F}`; let nx = B.w * .36;
+      [['Șabloane', '/sabloane'], ['Prețuri', '/preturi'], ['Cum lucrăm', '/cum-lucram']].forEach(([t, h]) => {
+        cx.fillStyle = hoverUI === h ? 'rgba(245,245,247,1)' : 'rgba(245,245,247,.6)'; cx.fillText(t, nx, nh / 2);
+        const w = cx.measureText(t).width; hot.nav.push([h, t, nx - 6, nh / 2 - 14, w + 12, 28]); nx += w + 34 * u; });
+    }
+    cx.font = `500 ${Math.round(13 * u)}px ${F}`; cx.fillStyle = hoverUI === '/contact' ? '#fff' : 'rgba(245,245,247,.85)'; cx.textAlign = 'right';
+    cx.fillText('Contact', B.w - 26 * u, nh / 2); const cw2 = cx.measureText('Contact').width; cx.textAlign = 'left';
+    hot.nav.push(['/contact', 'Contact', B.w - 26 * u - cw2 - 6, nh / 2 - 14, cw2 + 12, 28]);
     // panel
     const ox = 0, oy = B.py - B.y, pw = B.pw, phh = B.ph;
     const big = Math.min(pw * (portrait ? .15 : .078), phh * (portrait ? .12 : .2));
     const lx = ox + pw * (portrait ? .08 : .065);
     let y = oy + phh * (portrait ? .1 : .135);
-    cx.font = `600 ${Math.round(11 * u)}px ${F}`; cx.fillStyle = 'rgba(242,243,247,.42)';
+    cx.font = `500 ${Math.round(11 * u)}px ${F}`; cx.fillStyle = 'rgba(255,255,255,.38)';
     try { cx.letterSpacing = `${(2.2 * u).toFixed(1)}px`; } catch (e) {}
-    cx.fillText('OHI SOLUTIONS · TÂRGU MUREȘ', lx, y);
+    cx.fillText('STUDIO WEB · TÂRGU MUREȘ', lx, y);
     try { cx.letterSpacing = `${(-.045 * big).toFixed(1)}px`; } catch (e) {}
     y += big * .9;
-    const g = cx.createLinearGradient(0, y, 0, y + big * 2); g.addColorStop(0, '#E4E6F0'); g.addColorStop(1, '#AEB4CC');
-    cx.fillStyle = g; cx.font = `800 ${Math.round(big)}px ${F}`; cx.textBaseline = 'top';
+    const g = cx.createLinearGradient(0, y, 0, y + big * 2); g.addColorStop(0, '#dcdce0'); g.addColorStop(1, '#bdbdc3');
+    cx.fillStyle = g; cx.font = `500 ${Math.round(big)}px ${F}`; cx.textBaseline = 'top';
     cx.fillText('Lucrări', lx, y); y += big * .97;
-    cx.fillText('reale', lx, y);
-    const rw = cx.measureText('reale').width; cx.fillStyle = '#FFB020'; cx.fillText('.', lx + rw + big * .02, y);
+    cx.fillText('reale.', lx, y);
     y += big * 1.25;
     try { cx.letterSpacing = '0px'; } catch (e) {}
-    const fs = Math.max(13, 17 * u * .8); cx.font = `400 ${Math.round(fs)}px ${F}`; cx.fillStyle = 'rgba(242,243,247,.58)';
+    const fs = Math.max(13, 17 * u * .8); cx.font = `400 ${Math.round(fs)}px ${F}`; cx.fillStyle = 'rgba(255,255,255,.55)';
     const lines = portrait ? ['Un client real din Mureș și concepte', 'construite de la zero.', 'Atinge sticla, apoi deschide arhiva.'] :
-      ['Un client real din Mureș și concepte construite de la zero.', 'Atinge sticla, apoi deschide arhiva 3D.'];
+      ['Un client real din Mureș și concepte construite de la zero. Site-uri', 'rapide, gândite pentru telefon.'];
     lines.forEach(l => { cx.fillText(l, lx, y); y += fs * 1.45; });
     y += fs * 1.1;
     // pill + link
     const bh = Math.max(36, 42 * u * .85), bw = Math.max(150, 170 * u * .85);
-    cx.fillStyle = hoverUI === 'pill' ? '#FFB020' : '#F2F3F7';
-    cx.beginPath(); cx.roundRect(lx, y, bw, bh, 8); cx.fill();
-    cx.fillStyle = '#0B0D17'; cx.font = `700 ${Math.round(Math.max(13, 14 * u * .85))}px ${F}`; cx.textBaseline = 'middle'; cx.textAlign = 'center';
+    cx.fillStyle = hoverUI === 'pill' ? '#36d67e' : '#ececef';
+    cx.beginPath(); cx.roundRect(lx, y, bw, bh, 6); cx.fill();
+    cx.fillStyle = '#0b0b0d'; cx.font = `600 ${Math.round(Math.max(13, 14 * u * .85))}px ${F}`; cx.textBaseline = 'middle'; cx.textAlign = 'center';
     cx.fillText('Vezi proiectele', lx + bw / 2, y + bh / 2); cx.textAlign = 'left';
     hot.pill = [lx, y, bw, bh];
     const linkX = lx + bw + 24 * Math.max(.7, u * .8);
-    cx.fillStyle = hoverUI === 'link' ? '#B9C2FF' : 'rgba(242,243,247,.9)'; cx.font = `600 ${Math.round(Math.max(13, 14 * u * .85))}px ${F}`;
+    cx.fillStyle = 'rgba(255,255,255,.92)'; cx.font = `500 ${Math.round(Math.max(13, 14 * u * .85))}px ${F}`;
     const lt = 'Deschide arhiva 3D →', lw = cx.measureText(lt).width;
     let lxx = linkX, lyy = y + bh / 2;
     if (portrait && linkX + lw > pw - 20) { lxx = lx; lyy = y + bh + 26; }
@@ -163,9 +169,9 @@ function init() {
     if (hoverUI === 'link') cx.fillRect(lxx, lyy + 10, lw, 1.5);
     hot.link = [lxx, lyy - 14, lw, 28];
     // footer marks
-    cx.font = `500 ${Math.round(Math.max(10, 11 * u))}px ${F}`; cx.fillStyle = 'rgba(242,243,247,.34)'; cx.textBaseline = 'alphabetic';
+    cx.font = `500 ${Math.round(Math.max(10, 11 * u))}px ${F}`; cx.fillStyle = 'rgba(255,255,255,.34)'; cx.textBaseline = 'alphabetic';
     cx.fillText('© OHI Solutions', lx, oy + phh - 22 * Math.max(.7, u));
-    cx.textAlign = 'right'; cx.fillText(coarse ? 'Târgu Mureș · 2026' : 'Trage cursorul peste sticlă', ox + pw - pw * .04, oy + phh - 22 * Math.max(.7, u)); cx.textAlign = 'left';
+    cx.textAlign = 'right'; cx.fillText('Târgu Mureș · 2026', ox + pw - pw * .04, oy + phh - 22 * Math.max(.7, u)); cx.textAlign = 'left';
     tex.needsUpdate = true;
     placeDom();
   }
@@ -174,6 +180,8 @@ function init() {
     if (!hot.pill) return;
     const off = (el, r) => { el.style.left = r[0] + 'px'; el.style.top = r[1] + 'px'; el.style.width = r[2] + 'px'; el.style.height = r[3] + 'px'; };
     off(a, hot.pill); off(b, hot.link);
+    layer.querySelectorAll('.gs-nav').forEach(n => n.remove());
+    (hot.nav || []).forEach(([h, t, x, y, w, hh]) => { const n = document.createElement('a'); n.className = 'gs-nav'; n.href = h; n.setAttribute('aria-label', t); off(n, [x, y, w, hh]); layer.appendChild(n); });
     layer.style.width = B.w + 'px'; layer.style.height = B.h + 'px';
   }
 
@@ -234,7 +242,8 @@ function init() {
     ptr.x = (x - B.px) / B.pw; ptr.y = (y - B.py) / B.ph; if (portrait) { const t = ptr.x; ptr.x = ptr.y; ptr.y = t; }
     ndc.set(ptr.tnx, ptr.tny);
     const bx = x - B.x, by = y - B.y, inR = r4 => r4 && bx > r4[0] && bx < r4[0] + r4[2] && by > r4[1] && by < r4[1] + r4[3];
-    const hv = inR(hot.pill) ? 'pill' : inR(hot.link) ? 'link' : '';
+    let hv = inR(hot.pill) ? 'pill' : inR(hot.link) ? 'link' : '';
+    if (!hv && hot.nav) for (const n of hot.nav) if (inR(n.slice(2))) hv = n[0];
     if (hv !== hoverUI) { hoverUI = hv; paint(); }
   });
   stage.addEventListener('pointerleave', () => { ptr.ton = 0; ptr.tnx = 0; ptr.tny = 0; hovered = null; if (hoverUI) { hoverUI = ''; paint(); } });

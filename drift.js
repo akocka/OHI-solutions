@@ -1,5 +1,6 @@
-// Hero B: huge words curve in from the lower right, pass behind a phone that shows a site scrolling,
-// then two short panels. Raw WebGL2, no libraries. Structure adapted from a scroll-hero recipe; visuals are OHI's own.
+// Hero 2: a pink jellyfish floats in a lilac sky; huge black words arrive from the lower right on a curve,
+// pass behind it, rest in the centre and leave left. Then the jellyfish grows and two panels appear.
+// Raw WebGL2, no libraries. Sky and jellyfish are drawn in shaders (no outside images).
 (function () {
   const $ = id => document.getElementById(id);
   const track = $('drTrack'), cv = $('drGl');
@@ -8,8 +9,7 @@
   if (!gl) { track.classList.add('dr-nogl'); return; }
 
   const WORDS = ['OHI', 'SITE-URI', 'CARE ADUC', 'CLIENȚI', 'DIN MUREȘ'];
-  const SCREENS = ['/exemple/img/cofetarie.webp', '/exemple/img/frizerie.webp', '/exemple/img/service-auto.webp'];
-  const STEP = .14, GAP = 3.4, RADIUS = 9, CAM = 11, FOCAL = 8.14, K = 1.18;
+  const STEP = .14, GAP = 3.4, RADIUS = 9, CAM = 11, FOCAL = 8.14;
   const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
   const smooth = (a, b, x) => { x = clamp((x - a) / (b - a)); return x * x * (3 - 2 * x); };
   const ease = x => x * x * x * (x * (6 * x - 15) + 10);
@@ -22,20 +22,21 @@
     const u = {}; names.forEach(n => u[n] = gl.getUniformLocation(p, n)); return { p, u };
   }
   const QUAD = `out vec2 v;void main(){vec2 c=vec2((gl_VertexID<<1)&2,gl_VertexID&2);v=c;gl_Position=vec4(c*2.-1.,0,1);}`;
+  const NOISE = `float h2(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+    float vn(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h2(i),h2(i+vec2(1,0)),f.x),mix(h2(i+vec2(0,1)),h2(i+vec2(1,1)),f.x),f.y);}
+    float fbm(vec2 p){float s=0.,a=.5;for(int i=0;i<5;i++){s+=a*vn(p);p*=2.03;a*=.5;}return s;}`;
 
-  // night sky drawn in code: navy, a drifting cobalt glow, a warm amber floor, fine grain
-  const skyP = program(QUAD, `in vec2 v;uniform vec3 C;out vec4 O;
-    float h(vec2 p){return fract(sin(dot(p,vec2(41.3,289.1)))*43758.5);}
+  // lilac sky with soft drifting clouds
+  const skyP = program(QUAD, `in vec2 v;uniform vec3 C;out vec4 O;${NOISE}
     void main(){
-      vec2 p=v; p.x=(p.x-.5)*C.x+.5;
-      vec3 c=vec3(.027,.031,.051);
-      vec2 g1=vec2(.5+.18*sin(C.y*.9+C.z*.2),.62+.05*cos(C.z*.17));
-      c+=vec3(.20,.26,.75)*.55*exp(-pow(length((p-g1)*vec2(1.,1.25)),2.)*5.5);
-      vec2 g2=vec2(.2+.1*cos(C.y*1.3),.18);
-      c+=vec3(1.,.62,.13)*.10*exp(-pow(length(p-g2),2.)*9.);
-      vec2 g3=vec2(.86,.85+.03*sin(C.z*.3));
-      c+=vec3(.48,.55,1.)*.12*exp(-pow(length(p-g3),2.)*14.);
-      c+=(h(gl_FragCoord.xy+fract(C.z))-.5)*.018;
+      vec2 p=v; p.x=(p.x-.5)*C.x+.5; p.x+=C.y*.05+C.z*.0022;
+      vec3 top=vec3(.79,.76,.94), bot=vec3(.91,.86,.95);
+      vec3 c=mix(bot,top,smoothstep(0.,1.,v.y));
+      float cl=fbm(p*vec2(2.2,3.)+vec2(C.z*.01,0.));
+      float cl2=fbm(p*vec2(5.,6.)-vec2(C.z*.006,0.));
+      c=mix(c,vec3(.97,.95,1.),smoothstep(.45,.85,cl)*.55);
+      c=mix(c,vec3(.95,.84,.93),smoothstep(.55,.9,cl2)*.25);
+      c+=vec3(.04,.02,.05)*exp(-pow(length((v-vec2(.5,.45))*vec2(1.,1.4)),2.)*3.);
       O=vec4(c,1.);}`, ['C']);
 
   const wordP = program(`layout(location=0) in vec2 a;uniform vec4 W;uniform vec4 B;uniform float A;uniform vec3 L;out vec2 v;
@@ -46,65 +47,95 @@
       float y=(a.y-.5)*L.x+L.y-L.z-3.6*pow(smoothstep(.8,8.,t),1.25)-.012*t*t;
       v=vec2(mix(B.x,B.z,a.x),mix(B.w,B.y,a.y));
       gl_Position=vec4(x*${FOCAL.toFixed(2)}/A,y*${FOCAL.toFixed(2)},0.,${CAM.toFixed(1)}-z);
-    }`, `in vec2 v;uniform sampler2D T;out vec4 O;void main(){float a=texture(T,v).a;O=vec4(vec3(.95,.955,.975)*a,a);}`, ['W', 'B', 'A', 'L', 'T']);
+    }`, `in vec2 v;uniform sampler2D T;out vec4 O;void main(){float a=texture(T,v).a;O=vec4(vec3(.043,.043,.063)*a,a);}`, ['W', 'B', 'A', 'L', 'T']);
 
   const dotP = program(`layout(location=0) in vec4 a;uniform float S,H,P;out float k;out float r;
     void main(){k=a.w;float y=fract(a.y+S*.012*(.4+a.z))*2.3-1.15;float x=fract(a.x+H*(a.w>.5?.035:.004))*2.4-1.2+.03*sin(S*.2+a.z*9.);
-      gl_Position=vec4(x,y,0,1);gl_PointSize=(a.w>.5?4.+a.z*11.:4.+a.z*18.)*P;r=S*.6+a.z*7.+H;}`,
+      gl_Position=vec4(x,y,0,1);gl_PointSize=(a.w>.5?5.+a.z*15.:5.+a.z*24.)*P;r=S*.6+a.z*7.+H;}`,
     `in float k;in float r;out vec4 O;void main(){vec2 p=gl_PointCoord-.5;
-      if(k>.5){float c=cos(r),s=sin(r);p=mat2(c,-s,s,c)*p;float a=step(max(abs(p.x),abs(p.y)),.3)*.9;O=vec4(vec3(.30,.39,1.)*a,a);}
-      else{float a=smoothstep(.5,.1,length(p))*.5;O=vec4(vec3(1.)*a,a);}}`, ['S', 'H', 'P']);
+      if(k>.5){float c=cos(r),s=sin(r);p=mat2(c,-s,s,c)*p;float a=step(max(abs(p.x),abs(p.y)),.3);O=vec4(vec3(.04)*a,a);}
+      else{float a=smoothstep(.5,.1,length(p))*.62;O=vec4(vec3(1.)*a,a);}}`, ['S', 'H', 'P']);
 
-  // the phone: rounded body with a cobalt rim, a screen that scrolls through a long page screenshot
-  const PH = 2.05; // phone height / width
-  const phoneP = program(`uniform mat3 M;out vec2 v;void main(){vec2 c=vec2((gl_VertexID<<1)&2,gl_VertexID&2);if(gl_VertexID==3)c=vec2(2,2);c*=.5;v=vec2(c.x,1.-c.y);gl_Position=vec4((M*vec3(c-.5,1.)).xy,0,1);}`,
-    `in vec2 v;uniform sampler2D T;uniform vec3 S;out vec4 O;
-    float rr(vec2 p,vec2 b,float r){vec2 q=abs(p)-b+r;return length(max(q,0.))+min(max(q.x,q.y),0.)-r;}
+  // the jellyfish, painted in a shader on a 1080:1920 quad: pulsing bell, frilled oral arms, thin tentacles
+  const jellyP = program(`uniform mat3 M;out vec2 v;void main(){vec2 c=vec2((gl_VertexID<<1)&2,gl_VertexID&2);if(gl_VertexID==3)c=vec2(2,2);c*=.5;v=vec2(c.x,1.-c.y);gl_Position=vec4((M*vec3(c-.5,1.)).xy,0,1);}`,
+    `in vec2 v;uniform float T;out vec4 O;${NOISE}
+    vec4 over(vec4 a,vec4 b){return a+b*(1.-a.a);}
     void main(){
-      vec2 p=(v-.5)*vec2(1.,${PH.toFixed(2)});
-      float body=rr(p,vec2(.5,${(PH / 2).toFixed(3)}),.1);
-      float aa=fwidth(body)*1.2;
-      float ab=1.-smoothstep(-aa,aa,body);
-      vec3 c=mix(vec3(.05,.06,.1),vec3(.09,.1,.17),v.y);
-      c+=vec3(.36,.43,1.)*(1.-smoothstep(0.,.012,abs(body+.008)))*.95;
-      float b=.032;
-      float scr=rr(p,vec2(.5-b,${(PH / 2).toFixed(3)}-b),.075);
-      float as=1.-smoothstep(-aa,aa,scr);
-      vec2 su=vec2(p.x/(1.-2.*b)+.5,(p.y+${(PH / 2).toFixed(3)}-b)/(${PH.toFixed(2)}-2.*b));
-      float win=S.y;
-      vec3 t=texture(T,vec2(su.x,S.x+su.y*win)).rgb;
-      t*=.93+.07*su.y;
-      c=mix(c,t,as);
-      float isl=rr(p-vec2(0.,-${(PH / 2).toFixed(3)}+b+.05),vec2(.13,.028),.028);
-      c=mix(c,vec3(.01),1.-smoothstep(-aa,aa,isl));
-      float gl0=smoothstep(.0,.6,1.-abs(su.x-su.y*.35-.2))*.05;
-      c+=gl0*as;
-      O=vec4(c*ab,ab);}`, ['M', 'T', 'S']);
+      vec2 p=vec2((v.x-.5)*.5625,v.y);
+      float pulse=sin(T*2.1);
+      vec2 bc=vec2(0.,.33+.006*pulse);
+      vec2 br=vec2(.205*(1.+.05*pulse),.17*(1.-.04*pulse));
+      vec2 q=(p-bc)/br;
+      float rimY=.12+.05*sin(atan(q.y,q.x)*1.+T)+.03*sin(p.x*70.+T*2.);
+      float d=length(vec2(q.x,min(q.y,0.)*1.))-1.;
+      float inside=(q.y<rimY&&d<0.)?1.:0.;
+      float edge=smoothstep(.0,-.06,d)*smoothstep(rimY+.02,rimY-.06,q.y);
+      vec4 acc=vec4(0.);
+      // bell
+      if(edge>0.){
+        float rib=.5+.5*cos(atan(q.x,-q.y+.6)*18.);
+        float depth=clamp(1.+q.y,0.,1.);
+        vec3 c=mix(vec3(1.,.62,.78),vec3(1.,.82,.9),smoothstep(.2,-1.,q.y));
+        c=mix(c,vec3(.93,.38,.62),rib*.18*depth);
+        float gon=0.;
+        for(int i=0;i<4;i++){float an=float(i)*1.5708+.8+T*.05;vec2 g=vec2(cos(an)*.42,-.35+sin(an)*.18);gon+=exp(-dot(q-g,q-g)*28.);}
+        c=mix(c,vec3(.86,.3,.55),clamp(gon,0.,1.)*.55);
+        float rim=smoothstep(-.12,0.,d)*.8+smoothstep(rimY-.12,rimY,q.y)*.6;
+        c=mix(c,vec3(1.,.94,.97),rim*.6);
+        float a=edge*(.55+.25*rim+.15*gon);
+        acc=over(acc,vec4(c*a,a));
+      }
+      // oral arms
+      float yb=bc.y+br.y*.12;
+      for(int i=0;i<4;i++){
+        float fi=float(i);
+        float len=.42+.06*fi;
+        float t=(p.y-yb)/len;
+        if(t>0.&&t<1.){
+          float x0=(fi-1.5)*.022+.035*sin(p.y*11.-T*1.7+fi*1.3)*t;
+          float w=(.026-.016*t)*(1.+.35*sin(p.y*60.+fi*3.+T*3.));
+          float dd=abs(p.x-x0)/w;
+          float a=smoothstep(1.,.55,dd)*(1.-t)*.78;
+          vec3 c=mix(vec3(.95,.45,.66),vec3(1.,.78,.88),smoothstep(.9,.2,dd));
+          acc=over(acc,vec4(c*a,a));
+        }
+      }
+      // tentacles
+      for(int i=0;i<12;i++){
+        float fi=float(i);
+        float sx=(fi/11.-.5)*br.x*1.85;
+        float y0=bc.y+br.y*(.08+.06*cos(fi));
+        float len=.5+.12*fract(sin(fi*7.1)*91.);
+        float t=(p.y-y0)/len;
+        if(t>0.&&t<1.){
+          float x0=sx*(1.-.3*t)+.045*sin(p.y*8.-T*1.4+fi*.9)*t;
+          float dd=abs(p.x-x0)/.0026;
+          float a=smoothstep(1.4,.3,dd)*(1.-t)*.55;
+          acc=over(acc,vec4(vec3(1.,.72,.85)*a,a));
+        }
+      }
+      float sp=smoothstep(.985,1.,vn(p*90.+T*.3))*edge*.6;
+      acc.rgb+=sp;
+      O=acc;
+    }`, ['M', 'T']);
 
   // word atlas
-  const ROW = 512, EM = 350, atlas = document.createElement('canvas'); atlas.width = 4096; atlas.height = ROW * WORDS.length;
+  const ROW = 512, EM = 440, atlas = document.createElement('canvas'); atlas.width = 4096; atlas.height = ROW * WORDS.length;
   let layout = [];
-  const FONT = `800 ${EM}px "Schibsted Grotesk", system-ui, sans-serif`;
   function drawAtlas() {
-    const x = atlas.getContext('2d'); x.clearRect(0, 0, atlas.width, atlas.height); x.font = FONT; x.textBaseline = 'alphabetic'; x.fillStyle = '#000';
-    try { x.letterSpacing = '-6px'; } catch (e) {}
+    const x = atlas.getContext('2d'); x.clearRect(0, 0, atlas.width, atlas.height); x.font = `${EM}px Anton, Impact, "Arial Narrow", sans-serif`; x.textBaseline = 'alphabetic'; x.fillStyle = '#000'; x.textAlign = 'left';
+    try { x.letterSpacing = '8px'; } catch (e) {}
     let c = 0; layout = [];
     WORDS.forEach((w, i) => {
-      const m = Math.min(atlas.width - 20, x.measureText(w).width + 20); x.fillText(w, 10, i * ROW + ROW * .76);
-      const uW = m / ROW * K; layout.push({ len: uW, c: c + uW / 2, u: m / atlas.width, top: i / WORDS.length, bot: (i + 1) / WORDS.length }); c += uW + GAP;
+      const m = Math.min(atlas.width - 16, x.measureText(w).width + 16); x.fillText(w, 8, i * ROW + EM * .92 + 6);
+      const uW = m / EM * .86; layout.push({ len: uW, c: c + uW / 2, u: m / atlas.width, top: i / WORDS.length, bot: (i + 1) / WORDS.length }); c += uW + GAP;
     });
   }
   const tex = (unit, filter) => { const t = gl.createTexture(); gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, t);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, filter); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR); return t; };
-  const tWords = tex(1, gl.LINEAR_MIPMAP_LINEAR), tScr = tex(2, gl.LINEAR_MIPMAP_LINEAR);
-  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([20, 24, 40, 255]));
+  const tWords = tex(1, gl.LINEAR_MIPMAP_LINEAR);
   const aniso = gl.getExtension('EXT_texture_filter_anisotropic');
-  const load = url => new Promise(r => { const i = new Image; i.onload = () => {
-    if (i.height <= 4096) return r(i);
-    const c = document.createElement('canvas'), k = 4096 / i.height; c.width = Math.round(i.width * k); c.height = 4096;
-    c.getContext('2d').drawImage(i, 0, 0, c.width, c.height); r(c);
-  }; i.onerror = () => r(null); i.src = url; });
 
   const cols = 56, ribbon = new Float32Array((cols + 1) * 4);
   for (let i = 0; i <= cols; i++) ribbon.set([i / cols, 0, i / cols, 1], i * 4);
@@ -114,46 +145,28 @@
   const vaoD = gl.createVertexArray(); gl.bindVertexArray(vaoD); gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer()); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(dots), gl.STATIC_DRAW); gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 4, gl.FLOAT, false, 0, 0);
   const vaoE = gl.createVertexArray();
 
-  let W = 1, H = 1, dpr = 1, asp = 1, scrImg = null, scrIdx = 0;
+  let W = 1, H = 1, dpr = 1, asp = 1;
   function size() { dpr = Math.min(devicePixelRatio || 1, 2); W = Math.round(cv.clientWidth * dpr); H = Math.round(cv.clientHeight * dpr); cv.width = W; cv.height = H; asp = W / H; gl.viewport(0, 0, W, H); }
   addEventListener('resize', size);
-
-  function setScreen(img) {
-    if (!img) return; scrImg = img;
-    gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_2D, tScr); gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img); gl.generateMipmap(gl.TEXTURE_2D);
-    if (aniso) gl.texParameterf(gl.TEXTURE_2D, aniso.TEXTURE_MAX_ANISOTROPY_EXT, 8);
-  }
-  const screens = [];
 
   function draw(s, sec) {
     const n = WORDS.length, span = STEP * (n - 1), k = clamp(s / span) * (n - 1), i = Math.min(n - 2, Math.floor(k)), f = k - i;
     const c0 = layout[i].c, c1 = layout[i + 1].c, head = c0 + (c1 - c0) * ease(f);
     const sink = ease(smooth(span + .015, span + .105, s)) * 6;
     const grow = ease(smooth(span + .08, span + .22, s)), side = smooth(.76, .82, s) - 2 * smooth(.88, .94, s);
-    // sky
     gl.disable(gl.BLEND); gl.useProgram(skyP.p); gl.bindVertexArray(vaoE);
-    gl.uniform3f(skyP.u.C, asp, s * 3, sec); gl.drawArrays(gl.TRIANGLES, 0, 3);
+    const ca = asp / (16 / 9); gl.uniform3f(skyP.u.C, Math.max(1, ca) * .92, s, sec); gl.drawArrays(gl.TRIANGLES, 0, 3);
     gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
-    // points
     gl.useProgram(dotP.p); gl.bindVertexArray(vaoD); gl.uniform1f(dotP.u.S, sec); gl.uniform1f(dotP.u.H, head * .1 + s * 4); gl.uniform1f(dotP.u.P, H / 900); gl.drawArrays(gl.POINTS, 0, 40);
-    // words
     gl.useProgram(wordP.p); gl.bindVertexArray(vaoW); gl.uniform1i(wordP.u.T, 1); gl.uniform1f(wordP.u.A, asp);
-    const hs = clamp(asp * .58, .26, 1); gl.uniform3f(wordP.u.L, hs * K, .19 + .1 * (1 - hs), sink);
+    const hs = clamp(asp * .58, .26, 1); gl.uniform3f(wordP.u.L, hs, .19 + .1 * (1 - hs), sink);
     layout.forEach(w => { const t = w.c - head; if (Math.abs(t) > 24) return;
       gl.uniform4f(wordP.u.W, w.len * hs, t * hs, 0, 0); gl.uniform4f(wordP.u.B, 0, w.top, w.u, w.bot); gl.drawArrays(gl.TRIANGLE_STRIP, 0, (cols + 1) * 2); });
-    // phone: the screenshot scrolls with the page, a different example site per stretch of the story
-    const want = s < .3 ? 0 : s < .62 ? 1 : 2;
-    if (want !== scrIdx && screens[want]) { scrIdx = want; setScreen(screens[want]); }
-    gl.useProgram(phoneP.p); gl.bindVertexArray(vaoE); gl.uniform1i(phoneP.u.T, 2);
-    const win = scrImg ? (PH - .064) / (1 - .064) * scrImg.width / scrImg.height : 1;
-    const local = scrIdx === 0 ? s / .3 : scrIdx === 1 ? (s - .3) / .32 : (s - .62) / .38;
-    const off = (1 - win) * clamp(.5 - .5 * Math.cos(clamp(local) * Math.PI) + .02 * Math.sin(sec * .4));
-    gl.uniform3f(phoneP.u.S, clamp(off, 0, 1 - win), win, 0);
-    const h = (.6 + grow * .12) * clamp(.62 + asp * .4, .6, 1), w = h / PH / asp * (.94 + .06 * Math.cos(s * 14));
-    const roll = (.09 * Math.sin(s * 13 + .4) + .03 * Math.sin(sec * .5)) * (1 + grow * .4), co = Math.cos(roll), si = Math.sin(roll);
-    const ox = (mx * .018 + side * .34 * Math.min(1, asp)), oy = .02 + .018 * Math.sin(sec * .8) + my * .018 - grow * .06;
-    gl.uniformMatrix3fv(phoneP.u.M, false, [w * 2 * co, w * 2 * si * asp, 0, -h * 2 * si / asp, h * 2 * co, 0, ox, oy, 1]);
+    gl.useProgram(jellyP.p); gl.bindVertexArray(vaoE); gl.uniform1f(jellyP.u.T, calm ? 1 : sec);
+    const h = (.98 + grow * .42) * clamp(.62 + asp * .4, .6, 1), w = h * (1080 / 1920) / asp * (.93 + .07 * Math.cos(s * 14));
+    const roll = (.1 * Math.sin(s * 13 + .4) + .03 * Math.sin(sec * .5)) * (1 + grow * .5), co = Math.cos(roll), si = Math.sin(roll);
+    const ox = (mx * .018 + side * .34 * Math.min(1, asp)), oy = .03 + .018 * Math.sin(sec * .8) + my * .018 - grow * .1;
+    gl.uniformMatrix3fv(jellyP.u.M, false, [w * 2 * co, w * 2 * si * asp, 0, -h * 2 * si / asp, h * 2 * co, 0, ox, oy, 1]);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     ui(s, k);
   }
@@ -182,12 +195,11 @@
   const start = () => { if (!running && layout.length) { running = true; requestAnimationFrame(loop); } };
   new IntersectionObserver(es => { vis = es[0].isIntersecting; if (vis) start(); }).observe(track);
   document.addEventListener('visibilitychange', start);
-
   $('drSkip').onclick = () => { const r = track.getBoundingClientRect(); scrollTo({ top: scrollY + r.bottom - 60, behavior: calm ? 'auto' : 'smooth' }); };
 
   let ctx, gain;
   $('drSound').onclick = () => {
-    const b = $('drSound'), on = b.getAttribute('aria-pressed') !== 'true'; b.setAttribute('aria-pressed', on); $('drSt').textContent = on ? 'PORNIT' : 'OPRIT';
+    const b = $('drSound'), on = b.getAttribute('aria-pressed') !== 'true'; b.setAttribute('aria-pressed', on); $('drSt').textContent = on ? 'ON' : 'OFF';
     if (!ctx) {
       ctx = new (window.AudioContext || window.webkitAudioContext); gain = ctx.createGain(); gain.gain.value = 0;
       const nb = ctx.createBuffer(2, ctx.sampleRate * 4, ctx.sampleRate);
@@ -197,16 +209,14 @@
       const lfo = ctx.createOscillator(), lg = ctx.createGain(); lfo.frequency.value = .09; lg.gain.value = 240; lfo.connect(lg).connect(lp.frequency);
       src.connect(lp).connect(gain).connect(ctx.destination); src.start(); lfo.start();
     }
-    ctx.resume(); gain.gain.setTargetAtTime(on ? .3 : 0, ctx.currentTime, .4);
+    ctx.resume(); gain.gain.setTargetAtTime(on ? .34 : 0, ctx.currentTime, .4);
   };
 
-  const fontReady = document.fonts ? Promise.race([document.fonts.load(FONT, 'CLIENȚI'), new Promise(r => setTimeout(r, 2500))]) : Promise.resolve();
-  Promise.all([load(SCREENS[0]), fontReady]).then(([first]) => {
-    screens[0] = first; setScreen(first);
-    SCREENS.slice(1).forEach((u, i) => load(u).then(im => { screens[i + 1] = im; }));
+  const fontReady = document.fonts ? Promise.race([document.fonts.load(`${EM}px Anton`, 'CLIENȚI'), new Promise(r => setTimeout(r, 2500))]) : Promise.resolve();
+  fontReady.then(() => {
     drawAtlas();
     gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, tWords); gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, atlas); gl.generateMipmap(gl.TEXTURE_2D);
     if (aniso) gl.texParameterf(gl.TEXTURE_2D, aniso.TEXTURE_MAX_ANISOTROPY_EXT, 8);
-    size(); read(); now = target; track.classList.add('ready'); start();
+    size(); read(); now = target; start();
   });
 })();

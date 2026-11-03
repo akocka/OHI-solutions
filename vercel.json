@@ -6,6 +6,11 @@
       "source": "/refacere-site-web",
       "destination": "/solutii-personalizate",
       "permanent": true
+    },
+    {
+      "source": "/lab/acasa-a",
+      "destination": "/",
+      "permanent": false
     }
   ]
 }

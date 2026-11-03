@@ -16,7 +16,7 @@ import json, os, re, sys, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://ohis-gamma.vercel.app'
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
-         '<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">')
+         '<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Caveat:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">')
 
 # ---- the one menu ---------------------------------------------------------
 NAV = [('/portofoliu', 'Portofoliu', 'Lucrări reale'),
@@ -70,16 +70,16 @@ FOOTER = ('<div class="o-ft" role="contentinfo">\n'
           '<div class="o-ftw">\n'
           '  <div class="o-ftl">\n'
           '    <div class="o-ftbg" aria-hidden="true"><i></i><i></i><i></i></div>\n'
-          f'    <a class="o-ftlogo" href="/" aria-label="OHI Solutions">{LOGO}</a>\n'
+          '    <a class="o-ftlogo" href="/" aria-label="OHI Solutions"><span class="o-ftmark">O</span><span class="o-ftname">OHI Solutions</span></a>\n'
           '    <p class="o-fttag">Site-uri care aduc clienți,<br><span>făcute în Târgu Mureș.</span></p>\n'
-          '    <div class="o-ftsoc"><span class="o-hand">Scrie-ne oricând!</span><div class="o-ftic">'
+          '    <div class="o-ftsoc"><span class="o-hand">Hai să vorbim!</span><div class="o-ftic">'
           '<a href="https://wa.me/40740267706" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 18.8Z"/><path d="M9.2 9.3c.3 2.4 2.1 4.3 4.6 4.9l1-1.1 1.7.8-.4 1.6c-3.6.2-7-3-7.1-6.6l1.6-.5.8 1.7Z" class="f"/></svg></a>'
           '<a href="tel:+40740267706" aria-label="Sună-ne"><svg viewBox="0 0 24 24"><path d="M6.6 3.5 9 3l1.6 4.2-2 1.4a10.5 10.5 0 0 0 6.8 6.8l1.4-2L21 15l-.5 2.4c-.2 1.1-1.2 1.8-2.3 1.7C10.6 18.5 5.5 13.4 4.9 5.8c-.1-1.1.6-2.1 1.7-2.3Z"/></svg></a>'
           '<a href="/contact" aria-label="Pagina de contact"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></a>'
           '</div></div>\n'
           '  </div>\n'
           '  <div class="o-ftr">\n'
-          f'    <div class="o-ftlucky" aria-hidden="true"><div class="o-cube">{MARK}<b></b></div><div class="o-luckrow"><svg class="o-arr" viewBox="0 0 24 24"><path d="M3 20C6 14 10 9 18 5"/><path d="M18 5h-6"/><path d="M18 5v6"/></svg><span class="o-hand">Ai o idee?</span></div></div>\n'
+          f'    <div class="o-ftlucky" aria-hidden="true"><div class="o-cube"><b>O</b></div><div class="o-luckrow"><svg class="o-arr" viewBox="0 0 24 24"><path d="M3 20C6 14 10 9 18 5"/><path d="M18 5h-6"/><path d="M18 5v6"/></svg><span class="o-hand">Ai o idee?</span></div></div>\n'
           '    <div class="o-ftcols">\n'
           '      <div><p class="o-hand o-ct">Servicii</p><a href="/creare-site-web">Site-uri</a><a href="/automatizari">Automatizări</a><a href="/asistent-ai">Asistent AI</a><a href="/solutii-personalizate">Funcții extra</a><a href="/preturi">Prețuri</a></div>\n'
           '      <div><p class="o-hand o-ct">Pentru</p><a href="/site-uri-restaurante">Restaurante</a><a href="/site-uri-saloane">Saloane și frizerii</a><a href="/site-uri-service-auto">Service auto</a><a href="/sabloane">Șabloane</a></div>\n'
@@ -87,7 +87,7 @@ FOOTER = ('<div class="o-ft" role="contentinfo">\n'
           '    </div>\n'
           '    <div class="o-ftbot">\n'
           '      <div class="o-ftcopy"><span>© 2026 OHI Solutions · Târgu Mureș</span><span><a href="/confidentialitate">Confidențialitate</a> · <a href="/termeni">Termeni</a></span></div>\n'
-          '      <div class="o-ftcta"><p>Ai o afacere în Mureș?<strong>Hai să-i facem site-ul.</strong></p>\n'
+          '      <div class="o-ftcta"><h4 style="font-weight:400">Ai o afacere în Mureș?<strong>Hai să-i facem site-ul.</strong></h4>\n'
           '        <form class="o-ftform" action="/contact" method="get"><label class="o-vh" for="oFtTel">Numărul tău de telefon</label><input id="oFtTel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="Numărul tău de telefon" required><button type="submit">Sună-mă</button></form>\n'
           '      </div>\n'
           '    </div>\n'
