@@ -146,9 +146,10 @@
   });
   // footer "Sună-mă" and old links can pass ?tel= / ?biz=
   var qp = new URLSearchParams(location.search);
+  if (qp.get('pachet')) { plan.value = qp.get('pachet').replace(/[^A-Za-z]/g, '').slice(0, 20); say('Pachet ales: ' + plan.value + '. Îl poți schimba oricând.'); }
   if (qp.get('tel')) tel.value = qp.get('tel').replace(/[^\d+ ]/g, '').slice(0, 20);
   if (qp.get('biz')) biz.value = qp.get('biz').slice(0, 80);
-  if (qp.get('tel') || qp.get('biz')) setTimeout(function () { document.getElementById('oferta').scrollIntoView({ block: 'center' }); (biz.value ? tel : biz).focus({ preventScroll: true }); }, 400);
+  if (qp.get('tel') || qp.get('biz') || qp.get('pachet')) setTimeout(function () { document.getElementById('oferta').scrollIntoView({ block: 'center' }); (biz.value ? tel : biz).focus({ preventScroll: true }); }, 400);
   f.addEventListener('submit', async function (e) {
     e.preventDefault();
     if (sent) { say('Am primit deja cererea ta. Te sunăm în curând.'); return; }

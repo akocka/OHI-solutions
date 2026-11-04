@@ -1,0 +1,102 @@
+<!--META
+{
+ "path": "/servicii",
+ "title": "Servicii: site-uri, programări online, automatizări | OHI Solutions, Târgu Mureș",
+ "desc": "Ce face OHI pentru afacerea ta: site de prezentare, site premium animat, programări și comenzi online, automatizări. Plată unică, de la 500 lei. Demo gratuit.",
+ "og_title": "Servicii OHI Solutions",
+ "css": ["/servicii.css"],
+ "js": ["/servicii.js"],
+ "module": ["/svc-glass.js"],
+ "head": "<script type=\"importmap\">{\"imports\":{\"three\":\"/vendor/three/three.module.js\"}}</script>\n<link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif&display=swap\" rel=\"stylesheet\">",
+ "ld": [{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Acasă","item":"https://ohis-gamma.vercel.app/"},{"@type":"ListItem","position":2,"name":"Servicii","item":"https://ohis-gamma.vercel.app/servicii"}]}]
+}
+-->
+<main id="main">
+<section class="sv-stage" id="svStage" aria-label="Serviciile OHI">
+  <div class="sv-bg" aria-hidden="true"></div>
+  <div class="sv-cv" id="svCv" aria-hidden="true"></div>
+  <div class="sv-fallback">
+    <p class="sv-kick">Servicii</p>
+    <h1>Tot ce face OHI <span class="sv-s">pentru afacerea ta</span></h1>
+    <p>Cinci servicii, fiecare pe bucata lui de sticlă. Atinge una ca să vezi detaliile.</p>
+  </div>
+  <ul class="sv-keys" aria-label="Alege un serviciu">
+    <li><button type="button" data-open="0">Site de prezentare</button></li>
+    <li><button type="button" data-open="1">Site premium</button></li>
+    <li><button type="button" data-open="2">Programări și comenzi online</button></li>
+    <li><button type="button" data-open="3">Automatizări</button></li>
+    <li><button type="button" data-open="4">Asistent AI</button></li>
+  </ul>
+  <p class="sv-hint" aria-hidden="true"><span class="fine">Treci cu mouse-ul peste sticlă. Click pe un serviciu.</span><span class="touch">Atinge un serviciu ca să-l deschizi.</span></p>
+  <div class="sv-detail" id="svDetail" role="dialog" aria-modal="false" aria-labelledby="svdT" hidden>
+    <button class="sv-back" id="svBack" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H4M10 6l-6 6 6 6"/></svg>Înapoi la sticlă</button>
+    <div class="sv-dbody" id="svdBody"></div>
+    <div class="sv-dnav"><button type="button" id="svPrev" aria-label="Serviciul anterior"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><span id="svCount">1 / 5</span><button type="button" id="svNext" aria-label="Serviciul următor"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+  </div>
+</section>
+
+<section class="sv-list" id="lista">
+  <div class="sv-wrap">
+    <p class="sv-kick">Toate serviciile</p>
+    <h2 class="sv-h2">Alege ce îi trebuie <span class="sv-s">afacerii tale</span></h2>
+
+    <article class="sv-item" id="prezentare" data-n="01" data-t="Site de prezentare" data-s="Rapid, gândit pentru telefon, cu apel, WhatsApp și hartă.">
+      <div class="sv-num">01</div>
+      <div class="sv-main">
+        <h3>Site de prezentare</h3>
+        <p class="sv-lead">O pagină curată și rapidă, ca oamenii să te găsească, să vadă ce faci și să te contacteze dintr-o atingere.</p>
+        <ul><li>Design făcut de la zero, cu numele, culorile și logo-ul tău</li><li>Gândit întâi pentru telefon</li><li>Butoane de apel, WhatsApp și hartă</li><li>Texte scrise de noi, pregătite pentru Google</li></ul>
+      </div>
+      <div class="sv-side"><span class="sv-price"><b>500 lei</b>plată unică · pachetul Start</span><a class="sv-cta" href="/?pachet=Start#oferta">Cere demo gratuit</a></div>
+    </article>
+
+    <article class="sv-item" id="premium" data-n="02" data-t="Site premium" data-s="Până la 5 pagini, design animat, efecte 3D sau intro.">
+      <div class="sv-num">02</div>
+      <div class="sv-main">
+        <h3>Site premium</h3>
+        <p class="sv-lead">Un site care se ține minte: mai multe pagini, animații, efecte 3D sau un intro, ca vizitatorul să simtă calitatea înainte să sune.</p>
+        <ul><li>Până la 5 pagini</li><li>Design animat, efecte 3D, ilustrații sau intro</li><li>Texte scrise pentru Google, pe fiecare pagină</li><li>Exclusivitate pe zonă, 12 luni</li></ul>
+      </div>
+      <div class="sv-side"><span class="sv-price"><b>1.199 lei</b>plată unică · pachetul Business</span><a class="sv-cta" href="/?pachet=Business#oferta">Cere demo gratuit</a></div>
+    </article>
+
+    <article class="sv-item" id="programari" data-n="03" data-t="Programări și comenzi online" data-s="Clientul alege ora sau comandă direct de pe telefon.">
+      <div class="sv-num">03</div>
+      <div class="sv-main">
+        <h3>Programări și comenzi online</h3>
+        <p class="sv-lead">Clientul își alege singur ora sau comanda, iar tu primești totul pe WhatsApp și în calendar. Fără telefoane ratate.</p>
+        <ul><li>Programări pe zile și ore, după programul tău</li><li>Comenzi sau rezervări din site</li><li>Confirmare pe WhatsApp sau email</li><li>Inclus în pachetul Business</li></ul>
+      </div>
+      <div class="sv-side"><span class="sv-price"><b>Inclus</b>în pachetul Business</span><a class="sv-cta" href="/?pachet=Business#oferta">Vreau programări online</a></div>
+    </article>
+
+    <article class="sv-item" id="automatizari" data-n="04" data-t="Automatizări" data-s="Cererile ajung singure în tabel și pe email.">
+      <div class="sv-num">04</div>
+      <div class="sv-main">
+        <h3>Automatizări</h3>
+        <p class="sv-lead">Nicio cerere pierdută: tot ce vine din site ajunge în tabelul și pe emailul tău, iar clientul primește răspuns imediat.</p>
+        <ul><li>Cererile salvate automat într-un tabel</li><li>Răspuns imediat pentru client, pe email</li><li>Mesaj automat care cere o recenzie după lucrare</li><li>Se pot adăuga și la un site existent</li></ul>
+      </div>
+      <div class="sv-side"><span class="sv-price"><b>Preț fix</b>după o discuție de 15 minute</span><a class="sv-cta" href="/#oferta">Hai să vorbim</a></div>
+    </article>
+
+    <article class="sv-item soon" id="asistent-ai" data-n="05" data-t="Asistent AI" data-s="Răspunde clienților și seara, în trei limbi. În curând.">
+      <div class="sv-num">05</div>
+      <div class="sv-main">
+        <h3>Asistent AI <span class="sv-tag">În curând</span></h3>
+        <p class="sv-lead">Un asistent pe site-ul tău care răspunde la întrebări și preia cereri, chiar și seara, în română, maghiară și engleză.</p>
+        <ul><li>Învață despre afacerea ta: servicii, prețuri, program</li><li>Preia numele și telefonul clientului</li><li>Disponibil după înregistrarea firmei OHI</li></ul>
+      </div>
+      <div class="sv-side"><span class="sv-price"><b>În curând</b>serviciu lunar</span><a class="sv-cta ghost" href="/#oferta">Anunță-mă</a></div>
+    </article>
+  </div>
+</section>
+
+<section class="sv-end">
+  <div class="sv-wrap">
+    <h2 class="sv-h2">Nu știi ce să alegi? <span class="sv-s">Îți spunem noi.</span></h2>
+    <p>Spune-ne ce afacere ai. Îți facem un demo gratuit și îți recomandăm doar ce te ajută cu adevărat.</p>
+    <a class="sv-cta big" href="/#oferta">Cere demo gratuit<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+</main>
