@@ -57,6 +57,8 @@
   if(PL[qp])setPlan(PL[qp]);
   var QM=(new URLSearchParams(location.search).get('model')||'').replace(/[^a-z-]/g,'').slice(0,30);
   if(QM&&planNote)planNote.textContent='Model ales: '+QM+'. Îl adaptăm pentru afacerea ta.';
+  var qbiz=(new URLSearchParams(location.search).get('biz')||'').slice(0,80);
+  if(qbiz&&$('#qBiz'))$('#qBiz').value=qbiz;
   var qtel=(new URLSearchParams(location.search).get('tel')||'').replace(/[^\d+ ]/g,'').slice(0,20);
   if(qtel&&$('#lPhone')){$('#lPhone').value=qtel;var dm=document.getElementById('demo');if(dm)setTimeout(function(){dm.scrollIntoView({block:'start'});var b=$('#qBiz');if(b)b.focus({preventScroll:true})},300)}
   var qt=$('#qType');
