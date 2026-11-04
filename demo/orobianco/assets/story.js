@@ -15,10 +15,20 @@
   };
 
   /* 1. street: slow push in, title lifts away */
-  pin('.sc1', 70)
-    .to('.sc1 .st-street', { scale: 1.2, ease: 'none' }, 0)
+  var t1 = pin('.sc1', 90)
     .to('.sc1 .st-hint', { opacity: 0, duration: 0.15 }, 0)
-    .to('.sc1 .st-c', { yPercent: -18, opacity: 0, ease: 'none', duration: 0.6 }, 0.4);
+    .to('.sc1 .st-c', { yPercent: -14, opacity: 0, ease: 'none', duration: 0.45 }, 0);
+  var mm = gsap.matchMedia();
+  mm.add('(min-width: 861px)', function () {
+    /* desktop: the arch grows to fill the screen, like walking through the door */
+    t1.fromTo('.sc1 .st-arch', { top: '15vh', right: '5vw', width: '34vw', height: '76vh', borderRadius: '440px 440px 0px 0px' },
+      { top: 0, right: 0, width: '100vw', height: '100vh', borderRadius: '0px 0px 0px 0px', ease: 'power1.inOut', duration: 1 }, 0)
+      .fromTo('.sc1 .st-arch img', { scale: 1 }, { scale: 1.25, ease: 'none', duration: 1 }, 0)
+      .to('.sc1 .st-arch i', { backgroundColor: 'rgba(10,8,6,.55)', duration: 0.4 }, 0.6);
+  });
+  mm.add('(max-width: 860px)', function () {
+    t1.fromTo('.sc1 .st-arch img', { scale: 1 }, { scale: 1.6, transformOrigin: '50% 72%', ease: 'power1.in', duration: 1 }, 0);
+  });
 
   /* 2. salon: interior zooms in slowly */
   pin('.sc2', 110)

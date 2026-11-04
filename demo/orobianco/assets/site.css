@@ -755,47 +755,35 @@ select{-webkit-appearance:none;appearance:none;padding-right:44px;background-ima
 .card:hover .ic{transform:translateY(-3px);transition:transform .4s var(--ease)}
 @media(prefers-reduced-motion:reduce){.ic *,.ic-ph,.ic-wa,.ic-cl *{animation:none!important}.ic-wine .liq,.ic-wine .wave{transform:translateY(5px)}.ic-house .door{opacity:.6}}
 
-/* ===== intro (once per visit): candlelit table drawn in gold, cloche lifts on the signature dish ===== */
+/* ===== intro (once per visit): the real salon in the dark, the lamp flickers on, warm light reveals the gold logo on the bar ===== */
 #ointro{display:none}
-.oi-on #ointro{display:flex;flex-direction:column;align-items:center;justify-content:center;position:fixed;inset:0;z-index:999;overflow:hidden;padding:24px;
-  background:radial-gradient(ellipse at 50% 42%,#231b12 0%,#0f0d0b 62%);animation:oiOut 1s cubic-bezier(.7,0,.2,1) 4.5s forwards}
+.oi-on #ointro{display:block;position:fixed;inset:0;z-index:999;overflow:hidden;background:#070605;animation:oiOut 1s cubic-bezier(.7,0,.2,1) 4.2s forwards}
 .oi-on body{overflow:hidden}
-#ointro::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,rgba(201,169,110,.10),transparent 55%);animation:oiBreath 3s ease-in-out infinite alternate}
-.oi-scene{width:min(520px,88vw);height:auto;overflow:visible;position:relative}
-.oi-ln path,.oi-ln2{fill:none;stroke:#C9A96E;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:oiDraw .9s cubic-bezier(.6,0,.2,1) forwards;animation-delay:calc(var(--d,0) * .12s + .15s)}
-.oi-ln2{animation-delay:.55s;stroke-width:1.8}
-.oi-ln{animation:oiFadeOut .5s ease 1.6s forwards}
-.oi-fl{opacity:0;animation:oiIn .6s ease 1.2s forwards}
-.oi-dome{opacity:0;animation:oiIn .6s ease 1.25s forwards}
-.oi-cl circle,.oi-shine{opacity:0;animation:oiIn .6s ease 1.3s forwards}
-.oi-lt{opacity:0;transform-origin:62px 120px;animation:oiIn .5s ease 1.55s forwards,oiFlick 1.6s ease-in-out 2s infinite alternate}
-.oi-flame{opacity:0;transform-origin:62px 136px;transform:scale(.2);animation:oiLight .45s cubic-bezier(.16,1,.3,1) 1.45s forwards,oiFlame .9s ease-in-out 1.9s infinite alternate}
-.oi-wl{transform:translateY(50px);animation:oiPour 1s cubic-bezier(.45,0,.2,1) 1.7s forwards}
-.oi-cl{transform-box:view-box;transform-origin:200px 222px;animation:oiLift 1s cubic-bezier(.7,0,.25,1) 2.45s forwards}
-.oi-dish{opacity:0;transform:scale(.92);animation:oiDish .9s cubic-bezier(.16,1,.3,1) 2.75s forwards}
-.oi-steam path{opacity:0;stroke-dasharray:60;stroke-dashoffset:60;animation:oiSteam 1.8s ease-out 3s infinite}
-.oi-steam path:nth-child(2){animation-delay:3.25s}.oi-steam path:nth-child(3){animation-delay:3.5s}
-.oi-brand{display:flex;align-items:center;gap:14px;margin-top:clamp(18px,4vh,34px);opacity:0;transform:translateY(14px);animation:oiUp .9s cubic-bezier(.16,1,.3,1) 3.05s forwards;position:relative}
-.oi-em{width:clamp(44px,9vw,60px);height:auto}
-.oi-wm{width:clamp(150px,34vw,220px);height:auto;filter:brightness(1.35) saturate(.9)}
-.oi-cap{margin-top:14px;font-family:"Lora",Georgia,serif;font-size:clamp(17px,2.4vw,22px);color:#F4EFE6;opacity:0;animation:oiIn .8s ease 3.35s forwards;position:relative;text-align:center}
+.oi-photo{position:absolute;inset:0}
+.oi-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 85%;display:block;filter:brightness(.05) saturate(.6) sepia(.25);transform:scale(1.12);transform-origin:46% 74%;
+  animation:oiLights 2.6s cubic-bezier(.45,0,.2,1) .5s forwards,oiPush 5s cubic-bezier(.2,0,.2,1) 0s forwards}
+.oi-lamp{position:absolute;left:65%;top:6%;width:46vmin;height:46vmin;margin:-23vmin 0 0 -23vmin;border-radius:50%;background:radial-gradient(circle,rgba(255,206,130,.55),rgba(255,170,80,.12) 40%,transparent 68%);opacity:0;mix-blend-mode:screen;
+  animation:oiFlick 1s steps(1) .25s forwards}
+.oi-dark{position:absolute;left:46%;top:76%;width:10px;height:10px;border-radius:50%;box-shadow:0 0 140px 220vmax rgba(7,6,5,.97);transform:translate(-50%,-50%) scale(1);
+  animation:oiSpot 2.8s cubic-bezier(.55,0,.15,1) .6s forwards}
+.oi-grain{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,transparent 40%,rgba(7,6,5,.75) 100%),linear-gradient(180deg,rgba(7,6,5,.88) 0%,rgba(7,6,5,.45) 26%,transparent 46%,transparent 85%,rgba(7,6,5,.6) 100%);pointer-events:none}
+.oi-txt{position:absolute;left:0;right:0;top:calc(12vh + env(safe-area-inset-top,0px));display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;padding:0 24px}
+.oi-cap{font-family:"Lora",Georgia,serif;font-size:clamp(28px,4.2vw,54px);line-height:1.1;color:#F7F1E6;opacity:0;transform:translateY(18px);animation:oiUp 1.1s cubic-bezier(.16,1,.3,1) 2.5s forwards}
 .oi-cap em{color:#E6CF9F}
+.oi-line{width:0;height:1px;background:linear-gradient(90deg,transparent,#C9A96E,transparent);animation:oiLine 1s cubic-bezier(.16,1,.3,1) 2.9s forwards}
+.oi-sub{font:600 11px/1 Inter,system-ui,sans-serif;letter-spacing:.32em;text-transform:uppercase;color:#B9AD99;opacity:0;animation:oiIn .8s ease 3.1s forwards}
 .oi-skipb{position:absolute;right:22px;bottom:calc(20px + env(safe-area-inset-bottom,0px));background:none;border:0;padding:10px 12px;font:500 12px Inter,system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#B9AD99;cursor:pointer;opacity:0;animation:oiIn .5s ease .6s forwards}
 .oi-skipb:hover{color:#E6CF9F}
 .oi-done #ointro{display:none}
-@keyframes oiDraw{to{stroke-dashoffset:0}}
+@media(max-width:700px){.oi-lamp{left:77%;top:44%}.oi-txt{top:calc(9vh + env(safe-area-inset-top,0px))}}
+@keyframes oiLights{0%{filter:brightness(.05) saturate(.6) sepia(.25)}18%{filter:brightness(.35) saturate(.7) sepia(.2)}24%{filter:brightness(.18) saturate(.7) sepia(.2)}100%{filter:brightness(.92) saturate(1.02) sepia(.08)}}
+@keyframes oiPush{to{transform:scale(1.02)}}
+@keyframes oiFlick{0%{opacity:.9}12%{opacity:.15}22%{opacity:1}30%{opacity:.4}40%,100%{opacity:1}}
+@keyframes oiSpot{to{transform:translate(-50%,-50%) scale(260)}}
 @keyframes oiIn{to{opacity:1}}
-@keyframes oiFadeOut{to{opacity:0}}
 @keyframes oiUp{to{opacity:1;transform:none}}
-@keyframes oiLight{to{opacity:1;transform:scale(1)}}
-@keyframes oiFlame{from{transform:scale(1,1) skewX(-2deg)}to{transform:scale(.94,1.08) skewX(3deg)}}
-@keyframes oiFlick{from{opacity:1}to{opacity:.78}}
-@keyframes oiPour{to{transform:translateY(16px)}}
-@keyframes oiLift{0%{transform:none}25%{transform:translateY(4px)}70%{opacity:1}100%{transform:translate(70px,-230px) rotate(14deg);opacity:0}}
-@keyframes oiDish{to{opacity:1;transform:none}}
-@keyframes oiSteam{0%{opacity:0;stroke-dashoffset:60;transform:translateY(0)}30%{opacity:.55}100%{opacity:0;stroke-dashoffset:0;transform:translateY(-18px)}}
-@keyframes oiBreath{to{opacity:.55}}
-@keyframes oiOut{0%{opacity:1;transform:none}100%{opacity:0;transform:scale(1.06);visibility:hidden;pointer-events:none}}
+@keyframes oiLine{to{width:min(220px,50vw)}}
+@keyframes oiOut{0%{opacity:1}100%{opacity:0;visibility:hidden;pointer-events:none}}
 .oi-on .hxin{animation-delay:calc(var(--d,0s) + 4.7s)}
 .oi-on .hxarr{animation-delay:6.2s}
 @media(prefers-reduced-motion:reduce){.oi-on #ointro{display:none}.oi-on .hxin{animation-delay:0s}.oi-on body{overflow:auto}}
