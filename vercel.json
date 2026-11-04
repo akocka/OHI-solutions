@@ -3,11 +3,6 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/portofoliu",
-      "destination": "/#lucrari",
-      "permanent": false
-    },
-    {
       "source": "/personalizate",
       "destination": "/#oferta",
       "permanent": false
