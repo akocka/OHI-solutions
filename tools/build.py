@@ -19,15 +19,15 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="
          '<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Caveat:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">')
 
 # ---- the one menu ---------------------------------------------------------
-NAV = [('/portofoliu', 'Portofoliu', 'Lucrări reale'),
-       ('/sabloane', 'Șabloane', 'Alege un model'),
-       ('/creare-site-web', 'Site-uri', 'Site de prezentare'),
-       ('/automatizari', 'Automatizări', 'Nicio cerere pierdută'),
-       ('/asistent-ai', 'Asistent AI', 'Răspunde și seara'),
-       ('/preturi', 'Prețuri', 'Plată unică, de la 500 lei'),
-       ('/cum-lucram', 'Cum lucrăm', 'În 3 pași'),
-       ('/contact', 'Contact', 'Târgu Mureș')]
-MNAV = NAV[:7] + [('/blog', 'Blog', 'Sfaturi utile')] + NAV[7:]
+# (url, label, short line shown in the phone menu). Until a page is rebuilt, vercel.json
+# sends its url to the matching part of the homepage, so no menu item ever leads to a 404.
+NAV = [('/servicii', 'Servicii', 'Ce facem pentru afacerea ta'),
+       ('/preturi', 'Prețuri și abonamente', 'Plată unică, de la 500 lei'),
+       ('/despre', 'Despre noi', 'Cine îți face site-ul'),
+       ('/portofoliu', 'Portofoliu', 'Lucrări reale'),
+       ('/personalizate', 'Personalizate', 'Funcții făcute pe măsură'),
+       ('/ajutor', 'Ajutor', 'Întrebări și răspunsuri')]
+MNAV = NAV
 
 LOGO = ('<svg viewBox="0 18 359 170" role="img" aria-hidden="true"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#7C5CFF" stroke-width="26" transform="rotate(-10 80 102)"/>'
         '<path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FF6B1A"/></svg>')
@@ -35,12 +35,6 @@ LOGO = ('<svg viewBox="0 18 359 170" role="img" aria-hidden="true"><rect x="24" 
 
 def section_of(path):
     """Which menu item is 'current' for a page path."""
-    if path.startswith('/blog'):
-        return '/blog'
-    if path.startswith('/site-uri-') or path == '/solutii-personalizate':
-        return '/creare-site-web'
-    if path == '/constructor':
-        return '/contact'
     return path
 
 
@@ -49,14 +43,20 @@ def cur(href, path):
 
 
 def header(path):
-    """Shared header: logo, phone and the demo button. The menu was removed while the site is rebuilt."""
+    nav = ''.join(f'<a href="{h}"{cur(h, path)}>{t}</a>' for h, t, _ in NAV)
+    mnav = ''.join(f'<a class="o-ml" href="{h}"{cur(h, path)}>{t}<span>{s}</span></a>' for h, t, s in MNAV)
     return (f'<a class="o-skip" href="#main">Sari la conținut</a>\n'
             f'<div class="o-hd" id="ohd" role="banner"><div class="o-wrap">\n'
             f'  <a class="o-logo" href="/" aria-label="OHI Solutions, pagina principală">{LOGO}</a>\n'
+            f'  <div class="o-nav" role="navigation" aria-label="Principal">{nav}</div>\n'
             f'  <div class="o-cta"><a class="o-btn o-g" href="tel:+40740267706">0740 267 706</a>'
-            f'<a class="o-btn o-a" href="/#oferta"><span class="o-l">Cere demo gratuit</span><span class="o-s">Demo gratuit</span></a></div>\n'
+            f'<a class="o-btn o-a" href="/#oferta"><span class="o-l">Cere demo gratuit</span><span class="o-s">Demo gratuit</span></a>'
+            f'<button class="o-burger" id="oburger" type="button" aria-label="Meniu" aria-expanded="false" aria-controls="omnav"><i></i><i></i></button></div>\n'
             f'  <span class="o-prog" id="oprog" aria-hidden="true"></span>\n'
-            f'</div></div>')
+            f'</div></div>\n'
+            f'<div class="o-mnav" id="omnav" role="navigation" aria-label="Meniu mobil">\n  {mnav}\n'
+            f'  <div class="o-mfoot"><a class="o-btn o-a" href="/#oferta">Cere demo gratuit</a><a class="o-btn o-g" href="tel:+40740267706">Sună: 0740 267 706</a></div>\n'
+            f'</div>')
 
 
 MARK = '<svg viewBox="0 18 160 170" aria-hidden="true"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="currentColor" stroke-width="24" transform="rotate(-10 80 102)"/></svg>'

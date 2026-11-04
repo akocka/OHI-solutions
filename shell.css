@@ -104,8 +104,8 @@ html{background:var(--o-navy)}
   .o-ftlucky{right:12px;top:-28px}.o-cube{width:72px;height:72px;border-radius:18px}.o-cube b{font-size:32px}.o-luckrow{display:none}}
 @media (prefers-reduced-motion:reduce){.o-ftbg i{animation:none}}
 
-@media (max-width:1320px){.o-cta .o-g{display:none}}
-@media (max-width:1180px){.o-nav{display:none}.o-burger{display:grid}}
+@media (max-width:1380px){.o-cta .o-g{display:none}}
+@media (max-width:1100px){.o-nav{display:none}.o-burger{display:grid}}
 @media (max-width:560px){
   .o-hd .o-wrap{height:66px;gap:10px}.o-logo svg{height:27px}
   .o-btn.o-a{height:40px;padding:0 14px;font-size:13.5px}

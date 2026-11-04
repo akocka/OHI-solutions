@@ -12,7 +12,7 @@
   if(bg)bg.addEventListener('click',function(){setMenu(!document.documentElement.classList.contains('o-mo'))});
   if(mn)mn.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false)});
   addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
-  addEventListener('resize',function(){if(innerWidth>1180)setMenu(false)});
+  addEventListener('resize',function(){if(innerWidth>1100)setMenu(false)});
 })();
 // footer wordmark: fit the faded "OHI Solutions" exactly to the footer width
 (function(){

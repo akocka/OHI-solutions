@@ -1,4 +1,36 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/servicii",
+      "destination": "/#servicii",
+      "permanent": false
+    },
+    {
+      "source": "/preturi",
+      "destination": "/#preturi",
+      "permanent": false
+    },
+    {
+      "source": "/despre",
+      "destination": "/#despre",
+      "permanent": false
+    },
+    {
+      "source": "/portofoliu",
+      "destination": "/#lucrari",
+      "permanent": false
+    },
+    {
+      "source": "/personalizate",
+      "destination": "/#oferta",
+      "permanent": false
+    },
+    {
+      "source": "/ajutor",
+      "destination": "/#oferta",
+      "permanent": false
+    }
+  ]
 }
