@@ -53,7 +53,7 @@
   // fade-in-up when a block enters the screen (once)
   var reveal = document.querySelectorAll('.vk-a,.vk-io');
   if ('IntersectionObserver' in window && !reduce) {
-    var ro = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } }); }, { threshold: .1 });
+    var ro = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } }); }, { threshold: 0, rootMargin: '0px 0px 12% 0px' });
     reveal.forEach(function (el) { ro.observe(el); });
   } else reveal.forEach(function (el) { el.classList.add('in'); });
 
@@ -91,4 +91,14 @@
     var chk = function () { var past = hero ? hero.getBoundingClientRect().bottom < innerHeight * .4 : scrollY > innerHeight * .9; var nearEnd = ft && ft.getBoundingClientRect().top < innerHeight; pill.classList.toggle('on', past && !nearEnd); };
     addEventListener('scroll', chk, { passive: true }); chk();
   }
+})();
+
+// header: light over the white sections, transparent over the dark hero
+(function () {
+  var hd = document.getElementById('ohd'), hero = document.querySelector('.va,.dr');
+  if (!hd || !hero) return;
+  var t = false;
+  function upd() { t = false; hd.classList.toggle('o-light', hero.getBoundingClientRect().bottom < 80); }
+  addEventListener('scroll', function () { if (!t) { t = true; requestAnimationFrame(upd); } }, { passive: true });
+  addEventListener('resize', upd); upd();
 })();
