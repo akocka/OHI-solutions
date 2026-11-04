@@ -803,15 +803,7 @@ select{-webkit-appearance:none;appearance:none;padding-right:44px;background-ima
 .flogo{display:block;width:120px;height:auto}
 
 
-/* ===== dish showcase: whole plate visible, no cropped dishes ===== */
-.plateWrap{right:calc(var(--pw)*-.14)}
-@media(max-width:899px){
-  .spin .grid{align-items:flex-start;padding-top:calc(96px + env(safe-area-inset-top,0px))}
-  .spin .left{width:100%}
-  .spin .txt{min-height:200px}
-  .dish-t p{max-width:34ch}
-  .dots2{margin-top:14px}
-  .ph-note{display:none}
-  .plateWrap{--pw:min(88vw,44svh);top:auto;right:50%;bottom:calc(4svh + env(safe-area-inset-bottom,0px));transform:translateX(50%)}
-  .dish img{left:6%!important;top:6%!important;width:88%!important;height:88%!important}
-}
+/* ===== dish showcase: each dish rises out of the dark under a soft spotlight, so cut-out edges never show ===== */
+.spin .dish img{object-fit:contain!important;-webkit-mask-image:radial-gradient(closest-side,#000 74%,rgba(0,0,0,.6) 88%,transparent 100%);mask-image:radial-gradient(closest-side,#000 74%,rgba(0,0,0,.6) 88%,transparent 100%)}
+.spin .dish::before{content:"";position:absolute;inset:16%;border-radius:50%;background:radial-gradient(circle at 50% 45%,rgba(255,214,150,.16),transparent 70%);z-index:-1}
+.spin .dish::after{display:none}
