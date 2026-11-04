@@ -780,8 +780,8 @@ select{-webkit-appearance:none;appearance:none;padding-right:44px;background-ima
 .oi-wm{width:clamp(150px,34vw,220px);height:auto;filter:brightness(1.35) saturate(.9)}
 .oi-cap{margin-top:14px;font-family:"Lora",Georgia,serif;font-size:clamp(17px,2.4vw,22px);color:#F4EFE6;opacity:0;animation:oiIn .8s ease 3.35s forwards;position:relative;text-align:center}
 .oi-cap em{color:#E6CF9F}
-.oi-skip{position:absolute;right:22px;bottom:calc(20px + env(safe-area-inset-bottom,0px));background:none;border:0;padding:10px 12px;font:500 12px Inter,system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#B9AD99;cursor:pointer;opacity:0;animation:oiIn .5s ease .6s forwards}
-.oi-skip:hover{color:#E6CF9F}
+.oi-skipb{position:absolute;right:22px;bottom:calc(20px + env(safe-area-inset-bottom,0px));background:none;border:0;padding:10px 12px;font:500 12px Inter,system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#B9AD99;cursor:pointer;opacity:0;animation:oiIn .5s ease .6s forwards}
+.oi-skipb:hover{color:#E6CF9F}
 .oi-done #ointro{display:none}
 @keyframes oiDraw{to{stroke-dashoffset:0}}
 @keyframes oiIn{to{opacity:1}}
