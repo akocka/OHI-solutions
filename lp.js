@@ -130,3 +130,49 @@
   }, { threshold: .35 }).observe(track);
   activate(0);
 })();
+
+// demo form at the end of the page: sends straight to the OHI leads scenario in Make
+(function () {
+  var f = document.getElementById('qf');
+  if (!f) return;
+  var HOOK = 'https://hook.eu2.make.com/pjyknr3dp5tb8b5stpbit53yqluizecy';
+  var LIVE = /(^|\.)vercel\.app$|\.ro$/.test(location.hostname);
+  var biz = document.getElementById('qfBiz'), tel = document.getElementById('qfTel'), plan = document.getElementById('qfPlan'),
+      hp = document.getElementById('qfHp'), msg = document.getElementById('qfMsg'), btn = f.querySelector('button[type=submit]'), T0 = Date.now(), sent = false;
+  function say(t, bad) { msg.textContent = t; msg.classList.toggle('bad', !!bad); }
+  // a package button anywhere on the page picks the plan for this form
+  document.querySelectorAll('[data-plan]').forEach(function (a) {
+    a.addEventListener('click', function () { plan.value = a.dataset.plan; say('Pachet ales: ' + a.dataset.plan + '. Îl poți schimba oricând.'); setTimeout(function () { biz.focus({ preventScroll: true }); }, 600); });
+  });
+  // footer "Sună-mă" and old links can pass ?tel= / ?biz=
+  var qp = new URLSearchParams(location.search);
+  if (qp.get('tel')) tel.value = qp.get('tel').replace(/[^\d+ ]/g, '').slice(0, 20);
+  if (qp.get('biz')) biz.value = qp.get('biz').slice(0, 80);
+  if (qp.get('tel') || qp.get('biz')) setTimeout(function () { document.getElementById('oferta').scrollIntoView({ block: 'center' }); (biz.value ? tel : biz).focus({ preventScroll: true }); }, 400);
+  f.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (sent) { say('Am primit deja cererea ta. Te sunăm în curând.'); return; }
+    var b = biz.value.trim(), p = tel.value.trim();
+    if (!b) { say('Scrie numele afacerii.', 1); biz.focus(); return; }
+    if (p.replace(/\D/g, '').length < 9) { say('Lasă un număr de telefon complet, ca să te putem suna.', 1); tel.focus(); return; }
+    var done = function () { sent = true; f.classList.add('ok'); btn.disabled = true; btn.firstChild.textContent = 'Cerere trimisă '; say('Mulțumim! Te sunăm în curând cu demo-ul pentru ' + b + '.'); };
+    if (hp.value || Date.now() - T0 < 3000) { done(); return; }
+    var id = 'OHI-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
+    var data = new URLSearchParams({ created_at: new Date().toISOString(), source: 'site-acasa-oferta', request_id: id, name: '', business: b, phone: p, email: '',
+      business_type: '', website: '', need: 'Site nou · demo gratuit' + (plan.value ? ' · pachet: ' + plan.value : ''),
+      message: 'Cerere din formularul de pe prima pagină.\nPachet: ' + (plan.value || 'nealeas'), page: location.pathname });
+    if (!LIVE) { console.log('[OHI] preview, not sent:', Object.fromEntries(data)); done(); return; }
+    btn.disabled = true; var old = btn.firstChild.textContent; btn.firstChild.textContent = 'Se trimite… ';
+    try {
+      var ctrl = new AbortController(), tm = setTimeout(function () { ctrl.abort(); }, 15000);
+      var res = await fetch(HOOK, { method: 'POST', body: data, signal: ctrl.signal }); clearTimeout(tm);
+      if (!res.ok) throw new Error('http ' + res.status);
+      done();
+    } catch (x) {
+      // network/CORS errors usually still deliver to Make; only a timeout or HTTP error is a real failure
+      if (x.name === 'TypeError') { done(); return; }
+      btn.disabled = false; btn.firstChild.textContent = old;
+      say('Nu s-a putut trimite. Încearcă din nou sau sună la 0740 267 706.', 1);
+    }
+  });
+})();

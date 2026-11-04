@@ -9,8 +9,8 @@
     <p>Site-urile pornesc de la 500 lei, plată unică.</p>
   </div>
   <div class="vk-btns vk-a" style="--d:.5s">
-    <a class="vk-b vk-pri" href="/contact#demo">Cere demo gratuit</a>
-    <a class="vk-b vk-sec" href="/portofoliu">Vezi proiectele</a>
+    <a class="vk-b vk-pri" href="#oferta">Cere demo gratuit</a>
+    <a class="vk-b vk-sec" href="#lucrari">Vezi proiectele</a>
   </div>
 </section>
 
@@ -41,13 +41,13 @@
       <h3>Business</h3>
       <p>Site premium, până la 5 pagini.<br>Programări sau comenzi online.</p>
       <div class="vk-amt"><b>1.199 lei</b><span>O singură dată</span></div>
-      <div class="vk-cb"><a class="vk-b vk-pri" href="/contact?pachet=business#demo">Cere demo gratuit</a><a class="vk-b vk-sec" href="/cum-lucram">Cum lucrăm</a></div>
+      <div class="vk-cb"><a class="vk-b vk-pri" href="#oferta" data-plan="Business">Cere demo gratuit</a><a class="vk-b vk-sec" href="#despre">Despre noi</a></div>
     </article>
     <article class="vk-card light vk-a" style="--d:.2s">
       <h3>Start</h3>
       <p>O pagină curată și rapidă.<br>Apel, WhatsApp și hartă.</p>
       <div class="vk-amt"><b>500 lei</b><span>O singură dată</span></div>
-      <div class="vk-cb"><a class="vk-b vk-ter" href="/contact?pachet=start#demo">Cere demo gratuit</a></div>
+      <div class="vk-cb"><a class="vk-b vk-ter" href="#oferta" data-plan="Start">Cere demo gratuit</a></div>
     </article>
   </div>
 </section>
@@ -111,20 +111,22 @@
   <p class="vk-note">„Concept” înseamnă o propunere de design făcută de noi, nu un site comandat de firma respectivă.</p>
 </section>
 
-<section class="vk-part">
+<section class="vk-part" id="oferta">
   <div class="vk-pbox" id="lpTrail">
     <span class="vk-offer"><i></i>Demo gratuit · fără avans</span>
     <h2>Vezi site-ul tău <span class="vk-s">înainte să plătești</span></h2>
     <p class="vk-plead">Spune-ne cum se numește afacerea și unde te sunăm. Îți facem demo-ul cu numele și serviciile tale și ți-l trimitem pe telefon. Plătești doar dacă îți place.</p>
-    <form class="vk-qf" action="/contact" method="get">
+    <form class="vk-qf" id="qf" action="#" method="post" novalidate>
+      <input type="hidden" name="plan" id="qfPlan" value=""><input class="o-vh" name="company_site" id="qfHp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <label class="o-vh" for="qfBiz">Numele afacerii</label><input id="qfBiz" name="biz" type="text" autocomplete="organization" placeholder="Numele afacerii" required maxlength="80">
       <label class="o-vh" for="qfTel">Telefon</label><input id="qfTel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="Telefon" required maxlength="20">
       <button type="submit" class="vk-b vk-pri">Vreau demo-ul gratuit<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </form>
+    <p class="vk-qmsg" id="qfMsg" role="status" aria-live="polite"></p>
     <ul class="vk-trust"><li>Fără avans</li><li>Plată unică, de la 500 lei</li><li>Contract de cesiune</li></ul>
     <p class="vk-alt">Preferi să vorbim? <a href="https://wa.me/40740267706" target="_blank" rel="noopener">Scrie-ne pe WhatsApp</a> sau <a href="tel:+40740267706">sună la 0740 267 706</a></p>
   </div>
 </section>
 
-<div class="vk-nav" id="lpPill"><span class="vk-nm" aria-hidden="true"><svg viewBox="0 18 160 170"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#7C5CFF" stroke-width="26" transform="rotate(-10 80 102)"/></svg>OHI</span><a class="vk-b vk-pri" href="/contact#demo">Cere demo gratuit</a></div>
+<div class="vk-nav" id="lpPill"><span class="vk-nm" aria-hidden="true"><svg viewBox="0 18 160 170"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#7C5CFF" stroke-width="26" transform="rotate(-10 80 102)"/></svg>OHI</span><a class="vk-b vk-pri" href="#oferta">Cere demo gratuit</a></div>
 </div>

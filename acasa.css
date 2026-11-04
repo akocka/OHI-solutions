@@ -507,3 +507,7 @@ html.o-mo body.lp-page .o-hd.o-light .o-burger i{background:var(--o-ink)}
   .vk-phead .vk-h{font-size:27px}
   .vk-pnav{align-self:auto;margin-top:0;flex:0 0 auto}
 }
+.vk-qmsg{position:relative;z-index:2;margin-top:12px;min-height:1.4em;font:600 14px Inter,system-ui,sans-serif;color:#FFC29C}
+.vk-qmsg.bad{color:#FF8A8A}
+.vk-qf.ok{box-shadow:inset 0 0 0 1.5px rgba(255,107,26,.7),0 30px 60px -24px rgba(255,107,26,.35)}
+.o-ftplace{font:600 14px "DM Sans",sans-serif;color:var(--o-mut);margin-bottom:14px}

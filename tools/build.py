@@ -49,20 +49,14 @@ def cur(href, path):
 
 
 def header(path):
-    nav = ''.join(f'<a href="{h}"{cur(h, path)}>{t}</a>' for h, t, _ in NAV)
-    mnav = ''.join(f'<a class="o-ml" href="{h}"{cur(h, path)}>{t}<span>{s}</span></a>' for h, t, s in MNAV)
+    """Shared header: logo, phone and the demo button. The menu was removed while the site is rebuilt."""
     return (f'<a class="o-skip" href="#main">Sari la conținut</a>\n'
             f'<div class="o-hd" id="ohd" role="banner"><div class="o-wrap">\n'
             f'  <a class="o-logo" href="/" aria-label="OHI Solutions, pagina principală">{LOGO}</a>\n'
-            f'  <div class="o-nav" role="navigation" aria-label="Principal">{nav}</div>\n'
             f'  <div class="o-cta"><a class="o-btn o-g" href="tel:+40740267706">0740 267 706</a>'
-            f'<a class="o-btn o-a" href="/contact#demo"><span class="o-l">Cere demo gratuit</span><span class="o-s">Demo gratuit</span></a>'
-            f'<button class="o-burger" id="oburger" type="button" aria-label="Meniu" aria-expanded="false" aria-controls="omnav"><i></i><i></i></button></div>\n'
+            f'<a class="o-btn o-a" href="/#oferta"><span class="o-l">Cere demo gratuit</span><span class="o-s">Demo gratuit</span></a></div>\n'
             f'  <span class="o-prog" id="oprog" aria-hidden="true"></span>\n'
-            f'</div></div>\n'
-            f'<div class="o-mnav" id="omnav" role="navigation" aria-label="Meniu mobil">\n  {mnav}\n'
-            f'  <div class="o-mfoot"><a class="o-btn o-a" href="/contact#demo">Cere demo gratuit</a><a class="o-btn o-g" href="tel:+40740267706">Sună: 0740 267 706</a></div>\n'
-            f'</div>')
+            f'</div></div>')
 
 
 MARK = '<svg viewBox="0 18 160 170" aria-hidden="true"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="currentColor" stroke-width="24" transform="rotate(-10 80 102)"/></svg>'
@@ -75,20 +69,19 @@ FOOTER = ('<div class="o-ft" role="contentinfo">\n'
           '    <div class="o-ftsoc"><span class="o-hand">Hai să vorbim!</span><div class="o-ftic">'
           '<a href="https://wa.me/40740267706" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 18.8Z"/><path d="M9.2 9.3c.3 2.4 2.1 4.3 4.6 4.9l1-1.1 1.7.8-.4 1.6c-3.6.2-7-3-7.1-6.6l1.6-.5.8 1.7Z" class="f"/></svg></a>'
           '<a href="tel:+40740267706" aria-label="Sună-ne"><svg viewBox="0 0 24 24"><path d="M6.6 3.5 9 3l1.6 4.2-2 1.4a10.5 10.5 0 0 0 6.8 6.8l1.4-2L21 15l-.5 2.4c-.2 1.1-1.2 1.8-2.3 1.7C10.6 18.5 5.5 13.4 4.9 5.8c-.1-1.1.6-2.1 1.7-2.3Z"/></svg></a>'
-          '<a href="/contact" aria-label="Pagina de contact"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></a>'
+          '<a href="/#oferta" aria-label="Cere demo gratuit"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></a>'
           '</div></div>\n'
           '  </div>\n'
           '  <div class="o-ftr">\n'
           f'    <div class="o-ftlucky" aria-hidden="true"><div class="o-cube"><b>O</b></div><div class="o-luckrow"><svg class="o-arr" viewBox="0 0 24 24"><path d="M3 20C6 14 10 9 18 5"/><path d="M18 5h-6"/><path d="M18 5v6"/></svg><span class="o-hand">Ai o idee?</span></div></div>\n'
           '    <div class="o-ftcols">\n'
-          '      <div><p class="o-hand o-ct">Servicii</p><a href="/creare-site-web">Site-uri</a><a href="/automatizari">Automatizări</a><a href="/asistent-ai">Asistent AI</a><a href="/solutii-personalizate">Funcții extra</a><a href="/preturi">Prețuri</a></div>\n'
-          '      <div><p class="o-hand o-ct">Pentru</p><a href="/site-uri-restaurante">Restaurante</a><a href="/site-uri-saloane">Saloane și frizerii</a><a href="/site-uri-service-auto">Service auto</a><a href="/sabloane">Șabloane</a></div>\n'
-          '      <div><p class="o-hand o-ct">OHI</p><a href="/portofoliu">Portofoliu</a><a href="/cum-lucram">Cum lucrăm</a><a href="/blog">Blog</a><a href="/contact">Contact</a></div>\n'
-          '    </div>\n'
+          '      <div><p class="o-hand o-ct">Pe pagină</p><a href="/#despre">Despre noi</a><a href="/#lucrari">Lucrări</a><a href="/#preturi">Prețuri</a><a href="/#oferta">Cere demo gratuit</a></div>\n'
+          '      <div><p class="o-hand o-ct">Contact</p><a href="tel:+40740267706">0740 267 706</a><a href="https://wa.me/40740267706" target="_blank" rel="noopener">WhatsApp</a><span class="o-ftplace">Târgu Mureș</span></div>\n'
+                    '    </div>\n'
           '    <div class="o-ftbot">\n'
-          '      <div class="o-ftcopy"><span>© 2026 OHI Solutions · Târgu Mureș</span><span><a href="/confidentialitate">Confidențialitate</a> · <a href="/termeni">Termeni</a></span></div>\n'
+          '      <div class="o-ftcopy"><span>© 2026 OHI Solutions · Târgu Mureș</span><span>Site în reconstrucție</span></div>\n'
           '      <div class="o-ftcta"><h4 style="font-weight:400">Ai o afacere în Mureș?<strong>Hai să-i facem site-ul.</strong></h4>\n'
-          '        <form class="o-ftform" action="/contact" method="get"><label class="o-vh" for="oFtTel">Numărul tău de telefon</label><input id="oFtTel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="Numărul tău de telefon" required><button type="submit">Sună-mă</button></form>\n'
+          '        <form class="o-ftform" action="/#oferta" method="get"><label class="o-vh" for="oFtTel">Numărul tău de telefon</label><input id="oFtTel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="Numărul tău de telefon" required><button type="submit">Sună-mă</button></form>\n'
           '      </div>\n'
           '    </div>\n'
           '  </div>\n'
@@ -199,9 +192,7 @@ def build_legacy(fname):
     return p
 
 
-LEGACY = ['confidentialitate.html', 'termeni.html', 'site-uri-restaurante.html', 'site-uri-saloane.html',
-          'site-uri-service-auto.html', 'solutii-personalizate.html', 'constructor.html'] + \
-         sorted('blog/' + os.path.basename(f) for f in glob.glob(os.path.join(ROOT, 'blog', '*.html')))
+LEGACY = []
 
 if __name__ == '__main__':
     built = []
