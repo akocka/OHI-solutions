@@ -102,7 +102,7 @@ export function ribbon(cfg) {
 
   /* ---------- scroll ---------- */
   let target = 0, p = 0, visible = true;
-  const readScroll = () => { const r = track.getBoundingClientRect(); target = clamp(-r.top / Math.max(1, track.offsetHeight - innerHeight)); };
+  const readScroll = () => { const r = track.getBoundingClientRect(); const raw = clamp(-r.top / Math.max(1, track.offsetHeight - innerHeight)); target = clamp(raw + .42 * Math.sin(2 * Math.PI * raw) / (2 * Math.PI)); };
   addEventListener('scroll', readScroll, {passive: true}); readScroll(); p = target;
   new IntersectionObserver(e => { visible = e[0].isIntersecting; }, {rootMargin: '200px'}).observe(track);
 
