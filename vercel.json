@@ -1,16 +1,4 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false,
-  "redirects": [
-    {
-      "source": "/personalizate",
-      "destination": "/#oferta",
-      "permanent": false
-    },
-    {
-      "source": "/ajutor",
-      "destination": "/#oferta",
-      "permanent": false
-    }
-  ]
+  "trailingSlash": false
 }

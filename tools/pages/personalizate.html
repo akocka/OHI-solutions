@@ -1,0 +1,74 @@
+<!--META
+{
+ "path": "/personalizate",
+ "title": "Funcții personalizate pentru site: magazin, meniu QR, rezervări | OHI Solutions",
+ "desc": "Adaugă pe site doar ce îți trebuie: magazin mic, meniu QR, rezervări, programări în calendar, vouchere, card de fidelitate, automatizări. Preț fix, stabilit înainte.",
+ "og_title": "Funcții personalizate · OHI Solutions",
+ "css": ["/extra.css"],
+ "js": ["/personalizate.js"],
+ "head": "<link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap\" rel=\"stylesheet\">",
+ "ld": [{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Acasă","item":"https://ohis-gamma.vercel.app/"},{"@type":"ListItem","position":2,"name":"Personalizate","item":"https://ohis-gamma.vercel.app/personalizate"}]}]
+}
+-->
+<main id="main">
+<section class="x-hero">
+  <div class="x-wrap">
+    <p class="x-kick">Personalizate</p>
+    <h1 class="x-h1">Site-ul tău,<br><span class="x-s">cu funcțiile tale.</span></h1>
+    <p class="x-lead">Fiecare afacere lucrează altfel. Alege ce ți-ar ușura ziua, iar noi construim exact asta în site, cu preț fix stabilit înainte să începem.</p>
+    <a class="x-btn gh" href="#alege">Alege funcțiile<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </div>
+  <div class="x-orbit" aria-hidden="true">
+    <span style="--a:0deg">Magazin</span><span style="--a:51deg">Meniu QR</span><span style="--a:103deg">Rezervări</span><span style="--a:154deg">Programări</span><span style="--a:206deg">Vouchere</span><span style="--a:257deg">Fidelitate</span><span style="--a:309deg">Automatizări</span>
+    <b></b>
+  </div>
+</section>
+
+<section class="x-sec" id="alege">
+  <div class="x-wrap x-pgrid">
+    <div>
+      <p class="x-kick">Construiește-ți site-ul</p>
+      <h2 class="x-h2">Bifează ce <span class="x-s">ți-ar folosi</span></h2>
+      <p class="x-p">Atinge oricâte. Le adunăm în dreapta, iar la final ne trimiți lista și primești oferta.</p>
+      <div class="x-feats" id="feats">
+        <button type="button" class="x-f" data-k="Magazin online mic" aria-pressed="false"><i class="ic shop"></i><b>Magazin online mic</b><span>Produse cu poză și preț, coș și comandă. Pentru câteva zeci de produse.</span><em>Pentru: cofetării, florării, producători locali</em></button>
+        <button type="button" class="x-f" data-k="Meniu QR" aria-pressed="false"><i class="ic qr"></i><b>Meniu QR</b><span>Clientul scanează codul de pe masă și vede meniul pe telefon. Îl schimbi oricând.</span><em>Pentru: restaurante, cafenele, baruri</em></button>
+        <button type="button" class="x-f" data-k="Rezervare de masă" aria-pressed="false"><i class="ic cal"></i><b>Rezervare de masă</b><span>Ziua, ora și numărul de persoane, trimise direct pe WhatsApp sau email.</span><em>Pentru: restaurante, pensiuni</em></button>
+        <button type="button" class="x-f" data-k="Programări în Google Calendar" aria-pressed="false"><i class="ic clock"></i><b>Programări în calendar</b><span>Clientul alege ora liberă, iar programarea apare singură în Google Calendar.</span><em>Pentru: saloane, frizerii, cabinete, service-uri</em></button>
+        <button type="button" class="x-f" data-k="Vouchere cadou" aria-pressed="false"><i class="ic gift"></i><b>Vouchere cadou</b><span>Voucher cu cod unic, cumpărat de pe site și trimis pe email celui care îl primește.</span><em>Pentru: spa, saloane, restaurante</em></button>
+        <button type="button" class="x-f" data-k="Card de fidelitate" aria-pressed="false"><i class="ic star"></i><b>Card de fidelitate</b><span>Puncte la fiecare vizită și o recompensă la final, fără carton pierdut prin portofel.</span><em>Pentru: cafenele, frizerii, spălătorii</em></button>
+        <button type="button" class="x-f" data-k="Automatizări (tabel, email, recenzii)" aria-pressed="false"><i class="ic bolt"></i><b>Automatizări</b><span>Cererile ajung în tabel și pe email, clientul primește răspuns, recenziile se cer singure.</span><em>Pentru: orice afacere cu cereri zilnice</em></button>
+        <button type="button" class="x-f" data-k="Altceva (descriu eu)" aria-pressed="false"><i class="ic plus"></i><b>Altceva</b><span>Ai o idee care nu e aici? Spune-ne-o și îți spunem dacă și cum se poate.</span><em>Pentru: orice idee</em></button>
+      </div>
+    </div>
+    <aside class="x-cart" id="cart" aria-live="polite">
+      <p class="x-ctitle">Site-ul tău</p>
+      <div class="x-base"><b>Site de bază</b><span>Start sau Business · <a href="/preturi">vezi prețurile</a></span></div>
+      <ul id="cartList"><li class="empty">Nicio funcție aleasă încă.</li></ul>
+      <p class="x-cnum"><b id="cartN">0</b> <span id="cartW">funcții alese</span></p>
+      <a class="x-btn" id="cartGo" href="/?pachet=Business#oferta">Cere oferta<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <p class="x-cnote">Preț fix, stabilit după un apel scurt. Funcțiile se adaugă peste pachetul Business.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="x-sec">
+  <div class="x-wrap">
+    <p class="x-kick">Cum se face</p>
+    <h2 class="x-h2">De la idee la funcție, <span class="x-s">în trei pași</span></h2>
+    <div class="x-steps">
+      <div class="rv"><b>1</b><h3>Ne spui ce vrei</h3><p>Bifezi aici sau ne scrii pe WhatsApp. Un apel de 15 minute ne ajunge să înțelegem.</p></div>
+      <div class="rv" style="transition-delay:.06s"><b>2</b><h3>Primești prețul fix</h3><p>Îți spunem exact cât costă și cât durează, înainte să lucrăm. Fără surprize la final.</p></div>
+      <div class="rv" style="transition-delay:.12s"><b>3</b><h3>O vezi funcționând</h3><p>O testezi în demo, cu datele tale, și abia apoi plătești.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="x-end">
+  <div class="x-wrap rv">
+    <h2 class="x-h2">Nu știi exact ce-ți trebuie? <span class="x-s">Asta e treaba noastră.</span></h2>
+    <p>Spune-ne cum arată o zi în afacerea ta. Îți recomandăm doar funcțiile care chiar te ajută.</p>
+    <div class="x-btns"><a class="x-btn" href="/#oferta">Cere demo gratuit<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="x-btn gh" href="https://wa.me/40740267706" target="_blank" rel="noopener">Scrie-ne pe WhatsApp</a></div>
+  </div>
+</section>
+</main>

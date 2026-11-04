@@ -147,6 +147,8 @@
   // footer "Sună-mă" and old links can pass ?tel= / ?biz=
   var qp = new URLSearchParams(location.search);
   if (qp.get('pachet')) { plan.value = qp.get('pachet').replace(/[^A-Za-z]/g, '').slice(0, 20); say('Pachet ales: ' + plan.value + '. Îl poți schimba oricând.'); }
+  var extra = (qp.get('extra') || '').slice(0, 300);
+  if (extra) say('Funcții alese: ' + extra + '.');
   if (qp.get('tel')) tel.value = qp.get('tel').replace(/[^\d+ ]/g, '').slice(0, 20);
   if (qp.get('biz')) biz.value = qp.get('biz').slice(0, 80);
   if (qp.get('tel') || qp.get('biz') || qp.get('pachet')) setTimeout(function () { document.getElementById('oferta').scrollIntoView({ block: 'center' }); (biz.value ? tel : biz).focus({ preventScroll: true }); }, 400);
@@ -161,7 +163,7 @@
     var id = 'OHI-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
     var data = new URLSearchParams({ created_at: new Date().toISOString(), source: 'site-acasa-oferta', request_id: id, name: '', business: b, phone: p, email: '',
       business_type: '', website: '', need: 'Site nou · demo gratuit' + (plan.value ? ' · pachet: ' + plan.value : ''),
-      message: 'Cerere din formularul de pe prima pagină.\nPachet: ' + (plan.value || 'nealeas'), page: location.pathname });
+      message: 'Cerere din formularul de pe prima pagină.\nPachet: ' + (plan.value || 'nealeas') + (extra ? '\nFuncții extra: ' + extra : ''), page: location.pathname });
     if (!LIVE) { console.log('[OHI] preview, not sent:', Object.fromEntries(data)); done(); return; }
     btn.disabled = true; var old = btn.firstChild.textContent; btn.firstChild.textContent = 'Se trimite… ';
     try {
