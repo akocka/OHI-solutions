@@ -87,7 +87,7 @@
   var pill = $('lpPill');
   if (pill) {
     var ft = document.querySelector('.o-ft');
-    var hero = document.querySelector('.va,.dr');
+    var hero = document.querySelector('.orb,.va,.dr');
     var chk = function () { var past = hero ? hero.getBoundingClientRect().bottom < innerHeight * .4 : scrollY > innerHeight * .9; var nearEnd = ft && ft.getBoundingClientRect().top < innerHeight; pill.classList.toggle('on', past && !nearEnd); };
     addEventListener('scroll', chk, { passive: true }); chk();
   }

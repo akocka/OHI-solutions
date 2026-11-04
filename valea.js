@@ -49,7 +49,7 @@ const uni = {
   uTime: { value: 0 }, uTravel: { value: 0 }, uL: { value: L }, uDisp: { value: 0 },
   uMouse: { value: new THREE.Vector2(9, 9) }, uOn: { value: 0 }, uAsp: { value: 1 },
   uPx: { value: 800 }, uC1: { value: new THREE.Color('#A78BFA') }, uC2: { value: new THREE.Color('#BFD3FF') },
-  uC3: { value: new THREE.Color('#FF8A3D') }
+  uC3: { value: new THREE.Color('#FF6B1A') }
 };
 
 const TERR = `

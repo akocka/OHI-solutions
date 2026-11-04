@@ -32,13 +32,13 @@
   const FOLLOW=['Cât costă?','Cum e cu demo-ul gratuit?','Cât durează?','Ce include un site?','Faceți și asistent AI?','Aveți exemple?','Vreau să vorbesc cu cineva'];
   const css=document.createElement('style');css.textContent=`
   @property --oa-a{syntax:"<angle>";inherits:false;initial-value:0deg}
-  .oa-orb{position:relative;display:block;border-radius:50%;background:conic-gradient(from var(--oa-a),#4C63FF,#A78BFA,#FF8A3D,#4C63FF);animation:oaSpin 6s linear infinite;box-shadow:0 0 18px rgba(76,99,255,.55)}
+  .oa-orb{position:relative;display:block;border-radius:50%;background:conic-gradient(from var(--oa-a),#4C63FF,#A78BFA,#FF6B1A,#4C63FF);animation:oaSpin 6s linear infinite;box-shadow:0 0 18px rgba(76,99,255,.55)}
   .oa-orb::before{content:"";position:absolute;inset:3px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#2A3566,#0E1224 70%)}
-  .oa-orb::after{content:"";position:absolute;left:50%;top:50%;width:34%;height:34%;margin:-17% 0 0 -17%;border-radius:50%;background:radial-gradient(circle,#FFE2A3,#FF8A3D 55%,rgba(255,138,61,0) 72%);animation:oaCore 2.6s ease-in-out infinite}
+  .oa-orb::after{content:"";position:absolute;left:50%;top:50%;width:34%;height:34%;margin:-17% 0 0 -17%;border-radius:50%;background:radial-gradient(circle,#FFE2A3,#FF6B1A 55%,rgba(255,107,26,0) 72%);animation:oaCore 2.6s ease-in-out infinite}
   .oa-orb.think{animation-duration:1.2s}.oa-orb.think::after{animation-duration:.8s}
   @keyframes oaSpin{to{--oa-a:360deg}}
   @keyframes oaCore{0%,100%{transform:scale(.8);opacity:.85}50%{transform:scale(1.15);opacity:1}}
-  .oa-btn{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;align-items:center;gap:11px;height:58px;padding:0 20px 0 9px;border-radius:999px;border:0;cursor:pointer;color:#F4F1FF;font:600 15px "Schibsted Grotesk",system-ui,sans-serif;background:linear-gradient(#1A1230,#1A1230) padding-box,conic-gradient(from var(--oa-a),rgba(76,99,255,.9),rgba(255,138,61,.9),rgba(76,99,255,.15),rgba(76,99,255,.9)) border-box;border:1.5px solid transparent;animation:oaSpin 5s linear infinite;box-shadow:0 20px 44px -12px rgba(0,0,0,.75),0 0 30px -6px rgba(76,99,255,.45);transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .3s}
+  .oa-btn{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;align-items:center;gap:11px;height:58px;padding:0 20px 0 9px;border-radius:999px;border:0;cursor:pointer;color:#F4F1FF;font:600 15px "Schibsted Grotesk",system-ui,sans-serif;background:linear-gradient(#1A1230,#1A1230) padding-box,conic-gradient(from var(--oa-a),rgba(76,99,255,.9),rgba(255,107,26,.9),rgba(76,99,255,.15),rgba(76,99,255,.9)) border-box;border:1.5px solid transparent;animation:oaSpin 5s linear infinite;box-shadow:0 20px 44px -12px rgba(0,0,0,.75),0 0 30px -6px rgba(76,99,255,.45);transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .3s}
   .oa-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 24px 50px -12px rgba(0,0,0,.8),0 0 40px -4px rgba(76,99,255,.65)}
   .oa-btn .oa-orb{width:40px;height:40px}
   .oa-btn .rg{position:absolute;left:9px;top:50%;width:40px;height:40px;margin-top:-20px;border-radius:50%;border:1.5px solid rgba(167,139,250,.6);animation:oaRing 2.8s ease-out infinite;pointer-events:none}
@@ -51,14 +51,14 @@
   .oa-tease b{display:block;font-size:14.5px}
   .oa-tease button{position:absolute;right:6px;top:6px;width:24px;height:24px;border:0;border-radius:8px;background:transparent;color:#5A6077;font-size:16px;cursor:pointer}
   .oa-p{position:fixed;right:18px;bottom:calc(90px + env(safe-area-inset-bottom,0px));z-index:61;width:min(396px,calc(100vw - 24px));height:min(600px,calc(100svh - 120px));display:flex;flex-direction:column;border-radius:26px;overflow:hidden;isolation:isolate;
-    background:linear-gradient(rgba(14,17,30,.96),rgba(14,17,30,.96)) padding-box,conic-gradient(from var(--oa-a),rgba(76,99,255,.75),rgba(255,138,61,.55),rgba(255,255,255,.08),rgba(255,255,255,.08),rgba(76,99,255,.75)) border-box;border:1px solid transparent;animation:oaSpin 8s linear infinite;
+    background:linear-gradient(rgba(14,17,30,.96),rgba(14,17,30,.96)) padding-box,conic-gradient(from var(--oa-a),rgba(76,99,255,.75),rgba(255,107,26,.55),rgba(255,255,255,.08),rgba(255,255,255,.08),rgba(76,99,255,.75)) border-box;border:1px solid transparent;animation:oaSpin 8s linear infinite;
     backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 50px 100px -24px rgba(0,0,0,.9),0 0 60px -20px rgba(76,99,255,.5);color:#F4F1FF;font:400 15px/1.5 "Schibsted Grotesk",system-ui,sans-serif;
     opacity:0;transform:translateY(20px) scale(.92);transform-origin:calc(100% - 40px) 100%;pointer-events:none;transition:opacity .3s,transform .55s cubic-bezier(.22,1,.36,1)}
   .oa-p.on{opacity:1;transform:none;pointer-events:auto}
   .oa-au{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
   .oa-au i{position:absolute;border-radius:50%;filter:blur(50px);opacity:.35}
   .oa-au i:nth-child(1){width:240px;height:240px;left:-80px;top:-90px;background:#4C63FF;animation:oaDrift 14s ease-in-out infinite}
-  .oa-au i:nth-child(2){width:200px;height:200px;right:-90px;top:120px;background:#FF8A3D;opacity:.16;animation:oaDrift 18s -6s ease-in-out infinite reverse}
+  .oa-au i:nth-child(2){width:200px;height:200px;right:-90px;top:120px;background:#FF6B1A;opacity:.16;animation:oaDrift 18s -6s ease-in-out infinite reverse}
   @keyframes oaDrift{0%,100%{transform:translate(0,0)}50%{transform:translate(60px,40px)}}
   .oa-h{display:flex;align-items:center;gap:12px;padding:16px 16px 14px;border-bottom:1px solid rgba(255,255,255,.07);background:linear-gradient(180deg,rgba(76,99,255,.10),rgba(76,99,255,0))}
   .oa-h .oa-orb{width:42px;height:42px;flex:none}
@@ -75,11 +75,11 @@
   .oa-b{max-width:84%;padding:11px 14px;border-radius:18px;word-wrap:break-word}
   .oa-row.u .oa-b{background:linear-gradient(135deg,#5A70FF,#3F55F0);border-bottom-right-radius:6px;box-shadow:0 10px 24px -12px rgba(76,99,255,.8)}
   .oa-row.r .oa-b{background:rgba(35,42,66,.85);border-bottom-left-radius:6px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
-  .oa-b a{color:#FF8A3D}
-  .oa-cur::after{content:"";display:inline-block;width:7px;height:15px;margin-left:2px;vertical-align:-2px;border-radius:2px;background:#FF8A3D;animation:oaBlink .8s steps(2) infinite}
+  .oa-b a{color:#FF6B1A}
+  .oa-cur::after{content:"";display:inline-block;width:7px;height:15px;margin-left:2px;vertical-align:-2px;border-radius:2px;background:#FF6B1A;animation:oaBlink .8s steps(2) infinite}
   @keyframes oaBlink{50%{opacity:0}}
-  .oa-go{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;padding:10px 12px;border-radius:12px;background:rgba(255,138,61,.10);box-shadow:inset 0 0 0 1px rgba(255,138,61,.35);color:#FFC453!important;font-weight:600;font-size:14px;text-decoration:none;transition:background .2s,transform .3s;animation:oaIn .5s cubic-bezier(.22,1,.36,1)}
-  .oa-go:hover{background:rgba(255,138,61,.18);transform:translateX(3px)}
+  .oa-go{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;padding:10px 12px;border-radius:12px;background:rgba(255,107,26,.10);box-shadow:inset 0 0 0 1px rgba(255,107,26,.35);color:#FFC453!important;font-weight:600;font-size:14px;text-decoration:none;transition:background .2s,transform .3s;animation:oaIn .5s cubic-bezier(.22,1,.36,1)}
+  .oa-go:hover{background:rgba(255,107,26,.18);transform:translateX(3px)}
   .oa-go span{transition:transform .3s}.oa-go:hover span{transform:translateX(3px)}
   .oa-th{display:flex;align-items:center;gap:9px;animation:oaIn .4s cubic-bezier(.22,1,.36,1)}
   .oa-th .oa-orb{width:26px;height:26px}
@@ -88,7 +88,7 @@
   @keyframes oaIn{from{opacity:0;transform:translateY(10px) scale(.98)}}
   .oa-q{display:flex;flex-wrap:wrap;gap:7px;padding:2px 16px 12px}
   .oa-q button{font:500 13px/1 "Schibsted Grotesk",system-ui,sans-serif;color:#E3E5EB;background:rgba(255,255,255,.03);border:1px solid #2D3450;border-radius:999px;padding:8px 12px;cursor:pointer;opacity:0;transform:translateY(6px);animation:oaChip .45s cubic-bezier(.22,1,.36,1) forwards;transition:border-color .2s,background .2s,color .2s}
-  .oa-q button:hover{border-color:#FF8A3D;background:rgba(255,138,61,.08);color:#fff}
+  .oa-q button:hover{border-color:#FF6B1A;background:rgba(255,107,26,.08);color:#fff}
   @keyframes oaChip{to{opacity:1;transform:none}}
   .oa-p form{background:none!important;border-radius:0!important;backdrop-filter:none!important;box-shadow:none!important}
   .oa-f{display:flex!important;gap:8px;padding:12px!important;border-top:1px solid rgba(255,255,255,.07)}
@@ -96,7 +96,7 @@
   .oa-f .wr:focus-within{box-shadow:inset 0 0 0 1.5px #4C63FF,0 0 0 4px rgba(76,99,255,.18)}
   .oa-f input{width:100%;font:inherit;color:#fff;background:transparent;border:0;padding:12px 13px}
   .oa-f input:focus{outline:none}
-  .oa-f button{flex:none;width:46px;border:0;border-radius:14px;background:linear-gradient(135deg,#FFC24D,#FF9F10);color:#14110A;cursor:pointer;display:grid;place-items:center;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s;box-shadow:0 8px 20px -8px rgba(255,138,61,.8)}
+  .oa-f button{flex:none;width:46px;border:0;border-radius:14px;background:linear-gradient(135deg,#FFC24D,#FF9F10);color:#14110A;cursor:pointer;display:grid;place-items:center;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s;box-shadow:0 8px 20px -8px rgba(255,107,26,.8)}
   .oa-f button:hover{transform:translateY(-2px) rotate(-8deg)}
   .oa-f button svg{width:20px;height:20px}
   .oa-lead{display:grid!important;gap:7px!important;margin-top:10px;padding:0!important}.oa-lead input{font:inherit;color:#fff;background:#0A0714;border:1.5px solid #262C42;border-radius:10px;padding:9px 10px}

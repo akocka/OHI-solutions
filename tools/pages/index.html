@@ -33,33 +33,30 @@
   }
  ],
  "js": [
+  "/orb.js",
   "/lp.js"
  ],
  "css": [
   "/acasa.css"
  ],
- "module": [
-  "/valea.js"
- ],
  "bodycls": "lp-page",
- "head": "<link href=\"https://fonts.googleapis.com/css2?family=Antonio:wght@400&family=Manrope:wght@400;500&family=Inter:wght@400;500;600&family=Instrument+Serif&display=swap\" rel=\"stylesheet\">"
+ "head": "<link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif&display=swap\" rel=\"stylesheet\">"
 }
 -->
 <main id="main">
-<section class="va" id="valea">
-  <div class="va-cv" id="vaCv" aria-hidden="true"></div>
-  <div class="va-rays" aria-hidden="true"></div><div class="va-vig" aria-hidden="true"></div>
-  <div class="va-ui" id="vaUi">
-    <div class="va-hero">
-      <h1>Făcut, nu cumpărat.</h1>
-      <p class="va-cap">Site-uri pentru afacerea ta.<br>Construite de la zero, în Târgu Mureș.</p>
-      <a class="va-go" id="vaGo" href="/contact#demo" aria-label="Cere demo gratuit"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+<section class="orb" id="orbHero">
+  <canvas id="orbCv" aria-hidden="true"></canvas>
+  <div class="orb-ui">
+    <p class="orb-kick"><i></i>Studio web · Târgu Mureș</p>
+    <h1>Site-uri care<br>aduc <em>clienți</em></h1>
+    <p class="orb-sub">Făcute de la zero pentru afacerea ta. Vezi demo-ul gata înainte să plătești.</p>
+    <div class="orb-btns">
+      <a class="orb-b pri" id="orbCta" href="/contact#demo">Cere demo gratuit<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="orb-b gho" href="/portofoliu">Vezi lucrările</a>
     </div>
-    <div class="va-corner"><span>Derulează</span><i></i>
-      <button class="va-snd" id="vaSound" type="button" aria-pressed="false" aria-label="Sunet ambiental"><svg viewBox="0 0 24 24"><path d="M4 9.5v5h3.5L12 18V6L7.5 9.5Z"/><path class="w" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="x" d="m16 10 4 4m0-4-4 4"/></svg></button>
-    </div>
+    <ul class="orb-facts"><li>Plată unică</li><li>De la 500 lei</li><li>Contract de cesiune</li></ul>
   </div>
-  <div class="va-load" id="vaLoad"><span></span></div>
+  <a class="orb-down" href="#despre" aria-label="Derulează la conținut"><span></span></a>
 </section>
 <!--INCLUDE lp-->
 </main>

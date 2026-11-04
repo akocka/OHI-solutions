@@ -30,7 +30,7 @@ NAV = [('/portofoliu', 'Portofoliu', 'Lucrări reale'),
 MNAV = NAV[:7] + [('/blog', 'Blog', 'Sfaturi utile')] + NAV[7:]
 
 LOGO = ('<svg viewBox="0 18 359 170" role="img" aria-hidden="true"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#7C5CFF" stroke-width="26" transform="rotate(-10 80 102)"/>'
-        '<path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FF8A3D"/></svg>')
+        '<path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FF6B1A"/></svg>')
 
 
 def section_of(path):

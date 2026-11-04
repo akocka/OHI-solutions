@@ -1,7 +1,7 @@
 /* OHI shared shell: header, mobile menu, footer. Loaded on every page.
    All classes are prefixed with o- and no <header>/<nav>/<footer> elements are used,
    so the shell looks identical on new pages and on older pages that still load site.css. */
-:root{--o-navy:#0A0714;--o-navy2:#130D24;--o-navy3:#1C1433;--o-cobalt:#4C63FF;--o-cobalt2:#A78BFA;--o-amber:#FF8A3D;--o-ink:#F4F1FF;--o-mut:#A9A3C2;--o-line:rgba(255,255,255,.1);--o-f:"Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;--o-ease:cubic-bezier(.16,1,.3,1)}
+:root{--o-navy:#0A0714;--o-navy2:#130D24;--o-navy3:#1C1433;--o-cobalt:#4C63FF;--o-cobalt2:#A78BFA;--o-amber:#FF6B1A;--o-ink:#F4F1FF;--o-mut:#A9A3C2;--o-line:rgba(255,255,255,.1);--o-f:"Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;--o-ease:cubic-bezier(.16,1,.3,1)}
 html{background:var(--o-navy)}
 .o-hd,.o-hd *,.o-mnav,.o-mnav *,.o-ft,.o-ft *{box-sizing:border-box;margin:0;padding:0}
 .o-hd a,.o-mnav a,.o-ft a{color:inherit;text-decoration:none}
@@ -22,7 +22,7 @@ html{background:var(--o-navy)}
 .o-nav a[aria-current="page"]::after{content:"";position:absolute;left:11px;right:11px;bottom:3px;height:2px;border-radius:2px;background:var(--o-amber)}
 .o-cta{margin-left:auto;display:flex;gap:8px;align-items:center}
 .o-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;height:42px;padding:0 17px;border-radius:12px;border:0;font:600 14.5px var(--o-f);white-space:nowrap;cursor:pointer;transition:transform .45s var(--o-ease),box-shadow .3s,background .25s}
-.o-btn.o-a{background:var(--o-amber);color:#14110A;box-shadow:0 12px 30px -14px rgba(255,138,61,.8)}
+.o-btn.o-a{background:var(--o-amber);color:#14110A;box-shadow:0 12px 30px -14px rgba(255,107,26,.8)}
 .o-btn.o-a:hover{transform:translateY(-2px)}
 .o-btn.o-g{background:rgba(255,255,255,.04);color:var(--o-ink);box-shadow:inset 0 0 0 1.5px var(--o-line)}
 .o-btn.o-g:hover{background:rgba(76,99,255,.14);box-shadow:inset 0 0 0 1.5px rgba(76,99,255,.55)}
@@ -119,7 +119,7 @@ html{background:var(--o-navy)}
 .o-ftbg{background:linear-gradient(160deg,#8B5CF6,#5B45F0 50%,#3A3FD8)}
 .o-ftbg i:nth-child(1){background:#7C5CFF;opacity:.8}
 .o-ftbg i:nth-child(2){background:#4C63FF}
-.o-ftbg i:nth-child(3){background:#FF8A3D;opacity:.5}
+.o-ftbg i:nth-child(3){background:#FF6B1A;opacity:.5}
 .o-ftic a{background:rgba(10,7,20,.72)}
 .o-ftic a:hover{background:#0A0714}
 .o-ftr{background:var(--o-navy2);box-shadow:inset 0 0 0 1px rgba(167,139,250,.16)}
@@ -132,6 +132,11 @@ html{background:var(--o-navy)}
 .o-ftform{background:rgba(255,255,255,.05);border-color:rgba(167,139,250,.22);box-shadow:none}
 .o-ftform:focus-within{border-color:rgba(167,139,250,.6)}
 .o-ftform input{color:var(--o-ink)}.o-ftform input::placeholder{color:#8F87AD}
-.o-ftform button{background:var(--o-amber);color:#1A0D05;box-shadow:0 8px 22px -6px rgba(255,138,61,.55)}
-.o-ftform button:hover{background:#FF9A55;box-shadow:0 12px 28px -6px rgba(255,138,61,.7)}
+.o-ftform button{background:var(--o-amber);color:#1A0D05;box-shadow:0 8px 22px -6px rgba(255,107,26,.55)}
+.o-ftform button:hover{background:#FF8540;box-shadow:0 12px 28px -6px rgba(255,107,26,.7)}
 .o-ftwm text{fill:rgba(196,181,253,.06)}
+
+.o-btn.o-a{background:linear-gradient(135deg,#FF8540,#FF6B1A 55%,#F2540A);color:#1A0A00;box-shadow:0 10px 26px -10px rgba(255,107,26,.9),inset 0 1px 0 rgba(255,255,255,.35)}
+.o-prog{background:linear-gradient(90deg,#8B5CF6,#FF6B1A)!important;box-shadow:0 0 10px rgba(255,107,26,.6)}
+.o-nav a[aria-current="page"]::after{background:#FF6B1A!important;box-shadow:0 0 10px rgba(255,107,26,.7)}
+.o-ftbg i:nth-child(3){opacity:.75!important}
