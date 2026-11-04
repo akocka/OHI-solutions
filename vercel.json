@@ -3,11 +3,6 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/despre",
-      "destination": "/#despre",
-      "permanent": false
-    },
-    {
       "source": "/portofoliu",
       "destination": "/#lucrari",
       "permanent": false
