@@ -1,0 +1,152 @@
+<!--META
+{
+ "path": "/preturi",
+ "title": "Prețuri site web Târgu Mureș: plată unică, de la 500 lei | OHI Solutions",
+ "desc": "Cât costă un site OHI: Start 500 lei, Business 1.199 lei, plată unică pe bază de contract. Fără avans, plătești după ce vezi demo-ul. Abonamentele vin în curând.",
+ "og_title": "Prețuri OHI Solutions: plătești o dată, site-ul e al tău",
+ "css": ["/preturi.css"],
+ "js": ["/preturi.js"],
+ "head": "<link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif&display=swap\" rel=\"stylesheet\">",
+ "ld": [{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Acasă","item":"https://ohis-gamma.vercel.app/"},{"@type":"ListItem","position":2,"name":"Prețuri","item":"https://ohis-gamma.vercel.app/preturi"}]},
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+   {"@type":"Question","name":"Există costuri lunare?","acceptedAnswer":{"@type":"Answer","text":"Nu. Plătești o singură dată pentru site. Singurul cost care se repetă e domeniul, o dată pe an, plătit direct la registrator, pe numele tău."}},
+   {"@type":"Question","name":"Când plătesc?","acceptedAnswer":{"@type":"Answer","text":"După ce vezi demo-ul și îți place. Fără avans și fără taxă de pornire."}},
+   {"@type":"Question","name":"Al cui e site-ul?","acceptedAnswer":{"@type":"Answer","text":"Al tău. Prin contractul de cesiune a drepturilor de autor primești drepturile asupra site-ului, iar domeniul e pe numele afacerii tale."}}]}]
+}
+-->
+<main id="main">
+<section class="pr-hero">
+  <div class="pr-wrap pr-hgrid">
+    <div class="pr-copy">
+      <p class="pr-kick">Prețuri și abonamente</p>
+      <h1>Plătești o dată.<br><span class="pr-s">Site-ul e al tău.</span></h1>
+      <p class="pr-lead">Fără abonament, fără avans, fără surprize. Vezi demo-ul gata, iar dacă îți place, plătești o singură dată, pe bază de contract.</p>
+      <ul class="pr-trust"><li>Plătești după demo</li><li>Contract de cesiune</li><li>Domeniul e pe numele tău</li></ul>
+    </div>
+    <div class="pr-calc" id="calc" aria-labelledby="calcT">
+      <p class="pr-ctitle" id="calcT">Cât de repede se plătește site-ul?</p>
+      <div class="pr-seg" role="radiogroup" aria-label="Pachet">
+        <button type="button" role="radio" aria-checked="true" data-price="500" data-name="Start">Start · 500 lei</button>
+        <button type="button" role="radio" aria-checked="false" data-price="1199" data-name="Business">Business · 1.199 lei</button>
+      </div>
+      <label class="pr-slab" for="cVal">Cât câștigi, în medie, de la un client nou? <b id="cValOut">200 lei</b></label>
+      <input type="range" id="cVal" min="30" max="2000" step="10" value="200">
+      <div class="pr-res">
+        <p class="pr-big"><span id="cN">3</span> <span id="cWord">clienți noi</span></p>
+        <p class="pr-rtxt">atât îi trebuie site-ului <b id="cName">Start</b> ca să-și scoată banii. După asta, fiecare client care te găsește online e câștig.</p>
+      </div>
+      <div class="pr-day"><span>Împărțit pe primul an</span><b id="cDay">1,37 lei / zi</b></div>
+      <p class="pr-note">Calcul orientativ: prețul pachetului împărțit la cât câștigi de la un client. Nu promitem un număr de clienți.</p>
+    </div>
+  </div>
+</section>
+
+<section class="pr-plans" id="pachete">
+  <div class="pr-wrap">
+    <div class="pr-head"><p class="pr-kick">Pachete</p><h2 class="pr-h2">Alege cât de departe <span class="pr-s">vrei să mergi</span></h2></div>
+    <div class="pr-cards">
+      <article class="pr-card rv">
+        <h3>Start</h3>
+        <p class="pr-for">Pentru cine vrea să fie găsit și contactat ușor.</p>
+        <div class="pr-price"><s>849 lei</s><b>500 lei</b><span>o singură dată · preț de lansare</span></div>
+        <a class="pr-btn gh" href="/?pachet=Start#oferta">Alege Start</a>
+        <ul>
+          <li>O pagină cu toate informațiile</li>
+          <li>Design făcut de la zero, cu numele și culorile tale</li>
+          <li>Gândit întâi pentru telefon</li>
+          <li>Butoane de apel, WhatsApp și hartă</li>
+          <li>Texte scrise de noi, pregătite pentru Google</li>
+          <li>Demo gratuit înainte de plată</li>
+        </ul>
+      </article>
+      <article class="pr-card best rv" style="transition-delay:.08s">
+        <span class="pr-badge">Recomandat</span>
+        <h3>Business</h3>
+        <p class="pr-for">Pentru cine vrea un site care impresionează și aduce cereri singur.</p>
+        <div class="pr-price"><s>1.999 lei</s><b>1.199 lei</b><span>o singură dată · preț de lansare</span></div>
+        <a class="pr-btn" href="/?pachet=Business#oferta">Alege Business<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <ul>
+          <li><b>Tot ce e în Start</b>, plus:</li>
+          <li>Până la 5 pagini</li>
+          <li>Design animat, efecte 3D, ilustrații sau intro</li>
+          <li>Programări sau comenzi online</li>
+          <li>Texte scrise pentru Google pe fiecare pagină</li>
+          <li>Exclusivitate pe zonă, 12 luni</li>
+        </ul>
+      </article>
+    </div>
+    <p class="pr-launch rv">Prețurile tăiate sunt prețurile standard. Suntem la început, așa că primii clienți prind prețul de lansare.</p>
+  </div>
+</section>
+
+<section class="pr-cmp">
+  <div class="pr-wrap">
+    <div class="pr-head"><p class="pr-kick">Compară</p><h2 class="pr-h2">Start sau <span class="pr-s">Business?</span></h2></div>
+    <div class="pr-tablew rv"><table class="pr-table">
+      <thead><tr><th scope="col">Ce include</th><th scope="col">Start</th><th scope="col" class="hl">Business</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Demo gratuit înainte de plată</th><td class="y">Da</td><td class="y hl">Da</td></tr>
+        <tr><th scope="row">Design cu numele, culorile și logo-ul tău</th><td class="y">Da</td><td class="y hl">Da</td></tr>
+        <tr><th scope="row">Pagini</th><td>1</td><td class="hl">până la 5</td></tr>
+        <tr><th scope="row">Făcut pentru telefon · apel, WhatsApp, hartă</th><td class="y">Da</td><td class="y hl">Da</td></tr>
+        <tr><th scope="row">Pregătit pentru Google</th><td class="y">Da</td><td class="y hl">Da</td></tr>
+        <tr><th scope="row">Texte scrise pentru Google, pe fiecare pagină</th><td class="n">Nu</td><td class="y hl">Da</td></tr>
+        <tr><th scope="row">Programări sau comenzi online</th><td class="n">Nu</td><td class="y hl">Da</td></tr>
+        <tr><th scope="row">Efecte 3D, ilustrații, intro animat</th><td class="n">Nu</td><td class="y hl">Da</td></tr>
+        <tr><th scope="row">Exclusivitate pe zonă</th><td class="n">Nu</td><td class="hl">12 luni</td></tr>
+        <tr class="tot"><th scope="row">Preț, o singură dată</th><td>500 lei</td><td class="hl">1.199 lei</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section class="pr-cost">
+  <div class="pr-wrap pr-cgrid">
+    <div class="rv">
+      <p class="pr-kick">Fără costuri ascunse</p>
+      <h2 class="pr-h2">Știi de la început <span class="pr-s">tot ce plătești</span></h2>
+      <p class="pr-p">Nu există taxă de pornire, abonament obligatoriu sau „costuri de mentenanță” trecute la final. Doar două lucruri, pe care le vezi aici.</p>
+    </div>
+    <div class="pr-steps">
+      <div class="rv"><b>1</b><div><h3>Site-ul</h3><p>500 sau 1.199 lei, o singură dată, după ce aprobi demo-ul. Pe bază de contract de cesiune a drepturilor de autor.</p></div></div>
+      <div class="rv" style="transition-delay:.06s"><b>2</b><div><h3>Domeniul (.ro)</h3><p>Se plătește o dată pe an, direct la registrator, pe numele tău. Noi îl conectăm, fără cost.</p></div></div>
+      <div class="rv" style="transition-delay:.12s"><b>+</b><div><h3>Doar dacă vrei mai mult</h3><p>Modificări după lansare sau funcții extra: îți spunem prețul înainte să lucrăm, nu după.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pr-subs" id="abonamente">
+  <div class="pr-wrap">
+    <div class="pr-head"><p class="pr-kick">Abonamente · în curând</p><h2 class="pr-h2">Pentru cine vrea să nu se mai <span class="pr-s">gândească la site</span></h2>
+      <p class="pr-p">Pachetele lunare pornesc după înregistrarea firmei OHI. Lasă-ne numărul și te anunțăm primul.</p></div>
+    <div class="pr-scards">
+      <article class="pr-sub rv"><span class="pr-soon">În curând</span><h3>Mentenanță</h3><p>Modificări de text și poze când ai nevoie, verificări lunare, site mereu la zi.</p></article>
+      <article class="pr-sub rv" style="transition-delay:.06s"><span class="pr-soon">În curând</span><h3>Asistent AI</h3><p>Un asistent pe site care răspunde clienților și seara și îți trimite cererile.</p></article>
+      <article class="pr-sub rv" style="transition-delay:.12s"><span class="pr-soon">În curând</span><h3>Totul inclus</h3><p>Mentenanță, asistent și automatizări într-un singur abonament lunar.</p></article>
+    </div>
+    <a class="pr-btn gh center rv" href="/#oferta">Anunță-mă când pornesc</a>
+  </div>
+</section>
+
+<section class="pr-faq">
+  <div class="pr-wrap pr-fgrid">
+    <div><p class="pr-kick">Întrebări</p><h2 class="pr-h2">Despre <span class="pr-s">bani</span></h2></div>
+    <div class="pr-qs">
+      <details class="rv"><summary>Există costuri lunare?</summary><p>Nu. Plătești o singură dată pentru site. Singurul cost care se repetă e domeniul, o dată pe an, plătit direct la registrator, pe numele tău.</p></details>
+      <details class="rv"><summary>Când plătesc?</summary><p>După ce vezi demo-ul și îți place. Fără avans și fără taxă de pornire.</p></details>
+      <details class="rv"><summary>Cum se face plata?</summary><p>O singură dată, pe baza unui contract de cesiune a drepturilor de autor, după ce aprobi demo-ul.</p></details>
+      <details class="rv"><summary>Ce înseamnă prețul de lansare?</summary><p>Suntem la început, așa că primii clienți prind un preț mai mic. După lansare trecem la prețurile standard, afișate tăiat.</p></details>
+      <details class="rv"><summary>Pot trece mai târziu de la Start la Business?</summary><p>Da, oricând. Îți facem o ofertă doar pentru ce adăugăm.</p></details>
+      <details class="rv"><summary>Al cui e site-ul?</summary><p>Al tău. Prin contract primești drepturile asupra site-ului, iar domeniul e pe numele afacerii tale.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="pr-end">
+  <div class="pr-wrap rv">
+    <h2 class="pr-h2">Vezi întâi. <span class="pr-s">Plătești după.</span></h2>
+    <p>Îți facem demo-ul gratuit, cu numele și serviciile tale. Dacă nu-ți place, nu datorezi nimic.</p>
+    <a class="pr-btn big" href="/#oferta">Cere demo gratuit<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+</main>

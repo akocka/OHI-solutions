@@ -3,11 +3,6 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/preturi",
-      "destination": "/#preturi",
-      "permanent": false
-    },
-    {
       "source": "/despre",
       "destination": "/#despre",
       "permanent": false
