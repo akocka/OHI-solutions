@@ -93,12 +93,3 @@
   }
 })();
 
-// header: light over the white sections, transparent over the dark hero
-(function () {
-  var hd = document.getElementById('ohd'), hero = document.querySelector('.va,.dr');
-  if (!hd || !hero) return;
-  var t = false;
-  function upd() { t = false; hd.classList.toggle('o-light', hero.getBoundingClientRect().bottom < 80); }
-  addEventListener('scroll', function () { if (!t) { t = true; requestAnimationFrame(upd); } }, { passive: true });
-  addEventListener('resize', upd); upd();
-})();

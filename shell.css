@@ -1,7 +1,7 @@
 /* OHI shared shell: header, mobile menu, footer. Loaded on every page.
    All classes are prefixed with o- and no <header>/<nav>/<footer> elements are used,
    so the shell looks identical on new pages and on older pages that still load site.css. */
-:root{--o-navy:#07080D;--o-navy2:#0E1120;--o-navy3:#151A2E;--o-cobalt:#4C63FF;--o-cobalt2:#7B8CFF;--o-amber:#FFB020;--o-ink:#F2F3F7;--o-mut:#9AA0B8;--o-line:rgba(255,255,255,.1);--o-f:"Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;--o-ease:cubic-bezier(.16,1,.3,1)}
+:root{--o-navy:#0A0714;--o-navy2:#130D24;--o-navy3:#1C1433;--o-cobalt:#4C63FF;--o-cobalt2:#A78BFA;--o-amber:#FF8A3D;--o-ink:#F4F1FF;--o-mut:#A9A3C2;--o-line:rgba(255,255,255,.1);--o-f:"Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;--o-ease:cubic-bezier(.16,1,.3,1)}
 html{background:var(--o-navy)}
 .o-hd,.o-hd *,.o-mnav,.o-mnav *,.o-ft,.o-ft *{box-sizing:border-box;margin:0;padding:0}
 .o-hd a,.o-mnav a,.o-ft a{color:inherit;text-decoration:none}
@@ -22,7 +22,7 @@ html{background:var(--o-navy)}
 .o-nav a[aria-current="page"]::after{content:"";position:absolute;left:11px;right:11px;bottom:3px;height:2px;border-radius:2px;background:var(--o-amber)}
 .o-cta{margin-left:auto;display:flex;gap:8px;align-items:center}
 .o-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;height:42px;padding:0 17px;border-radius:12px;border:0;font:600 14.5px var(--o-f);white-space:nowrap;cursor:pointer;transition:transform .45s var(--o-ease),box-shadow .3s,background .25s}
-.o-btn.o-a{background:var(--o-amber);color:#14110A;box-shadow:0 12px 30px -14px rgba(255,176,32,.8)}
+.o-btn.o-a{background:var(--o-amber);color:#14110A;box-shadow:0 12px 30px -14px rgba(255,138,61,.8)}
 .o-btn.o-a:hover{transform:translateY(-2px)}
 .o-btn.o-g{background:rgba(255,255,255,.04);color:var(--o-ink);box-shadow:inset 0 0 0 1.5px var(--o-line)}
 .o-btn.o-g:hover{background:rgba(76,99,255,.14);box-shadow:inset 0 0 0 1.5px rgba(76,99,255,.55)}
@@ -113,3 +113,25 @@ html{background:var(--o-navy)}
   .o-mnav{padding-top:84px}
 }
 @media (prefers-reduced-motion:reduce){.o-hd *,.o-mnav *{animation:none!important;transition:none!important}.o-ml{opacity:1;transform:none}}
+/* ---- footer in Violet Nova ---- */
+.o-ft{background:var(--o-navy);color:var(--o-mut)}
+.o-ftl{background:#5B3FE0;box-shadow:0 20px 50px -18px rgba(124,92,255,.55)}
+.o-ftbg{background:linear-gradient(160deg,#8B5CF6,#5B45F0 50%,#3A3FD8)}
+.o-ftbg i:nth-child(1){background:#7C5CFF;opacity:.8}
+.o-ftbg i:nth-child(2){background:#4C63FF}
+.o-ftbg i:nth-child(3){background:#FF8A3D;opacity:.5}
+.o-ftic a{background:rgba(10,7,20,.72)}
+.o-ftic a:hover{background:#0A0714}
+.o-ftr{background:var(--o-navy2);box-shadow:inset 0 0 0 1px rgba(167,139,250,.16)}
+.o-cube{background:linear-gradient(135deg,#C4B5FD 0%,#8B5CF6 50%,#4C63FF 100%);box-shadow:inset 3px 3px 8px rgba(255,255,255,.35),inset -3px -3px 12px rgba(0,0,0,.18),8px 14px 28px rgba(124,92,255,.45)}
+.o-luckrow,.o-ct{color:#8F87AD}
+.o-ftcols a{color:var(--o-ink)}
+.o-ftcols a:hover{color:var(--o-amber)}
+.o-ftcopy{color:#8F87AD}.o-ftcopy a:hover{color:var(--o-ink)}
+.o-ftcta h4{color:var(--o-mut)}.o-ftcta strong{color:var(--o-ink)}
+.o-ftform{background:rgba(255,255,255,.05);border-color:rgba(167,139,250,.22);box-shadow:none}
+.o-ftform:focus-within{border-color:rgba(167,139,250,.6)}
+.o-ftform input{color:var(--o-ink)}.o-ftform input::placeholder{color:#8F87AD}
+.o-ftform button{background:var(--o-amber);color:#1A0D05;box-shadow:0 8px 22px -6px rgba(255,138,61,.55)}
+.o-ftform button:hover{background:#FF9A55;box-shadow:0 12px 28px -6px rgba(255,138,61,.7)}
+.o-ftwm text{fill:rgba(196,181,253,.06)}

@@ -155,7 +155,7 @@ function init() {
     y += fs * 1.1;
     // pill + link
     const bh = Math.max(36, 42 * u * .85), bw = Math.max(150, 170 * u * .85);
-    cx.fillStyle = hoverUI === 'pill' ? '#36d67e' : '#ececef';
+    cx.fillStyle = hoverUI === 'pill' ? '#FF8A3D' : '#ececef';
     cx.beginPath(); cx.roundRect(lx, y, bw, bh, 6); cx.fill();
     cx.fillStyle = '#0b0b0d'; cx.font = `600 ${Math.round(Math.max(13, 14 * u * .85))}px ${F}`; cx.textBaseline = 'middle'; cx.textAlign = 'center';
     cx.fillText('Vezi proiectele', lx + bw / 2, y + bh / 2); cx.textAlign = 'left';

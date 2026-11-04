@@ -18,7 +18,7 @@ try {
 }
 const PR = Math.min(devicePixelRatio || 1, coarse ? 1.5 : 1.75);
 renderer.setPixelRatio(PR);
-renderer.setClearColor(0x000000, 1);
+renderer.setClearColor(0x0a0714, 1);
 mount.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
@@ -48,8 +48,8 @@ g.setAttribute('aKind', new THREE.BufferAttribute(kind, 1));
 const uni = {
   uTime: { value: 0 }, uTravel: { value: 0 }, uL: { value: L }, uDisp: { value: 0 },
   uMouse: { value: new THREE.Vector2(9, 9) }, uOn: { value: 0 }, uAsp: { value: 1 },
-  uPx: { value: 800 }, uC1: { value: new THREE.Color('#FFB8D6') }, uC2: { value: new THREE.Color('#F5EFE2') },
-  uC3: { value: new THREE.Color('#C8B6FF') }
+  uPx: { value: 800 }, uC1: { value: new THREE.Color('#A78BFA') }, uC2: { value: new THREE.Color('#BFD3FF') },
+  uC3: { value: new THREE.Color('#FF8A3D') }
 };
 
 const TERR = `
@@ -97,7 +97,7 @@ const mat = new THREE.ShaderMaterial({
     void main(){
       vec2 q=gl_PointCoord-.5; float r=length(q); float a; vec3 c;
       if(vKind>.5&&vKind<1.5){
-        a=smoothstep(.5,.0,r)*.42; c=vec3(.42,.62,.46);
+        a=smoothstep(.5,.0,r)*.42; c=vec3(.45,.42,.9);
       }else{
         float ang=atan(q.y,q.x);
         float open=mix(.5,1.,vBloom);
@@ -134,7 +134,7 @@ const dust = new THREE.Points(dg, new THREE.ShaderMaterial({
       p.y+=sin(uTime*.3+aSeed*20.)*.25+uDisp*aSeed; p.x+=cos(uTime*.2+aSeed*14.)*.3;
       vec4 mv=modelViewMatrix*vec4(p,1.); gl_Position=projectionMatrix*mv; float z=-mv.z;
       vA=smoothstep(40.,14.,z)*smoothstep(.5,3.,z)*(.35+.65*aSeed); gl_PointSize=(.03+.05*aSeed)*uPx/z; }`,
-  fragmentShader: `varying float vA; void main(){ float r=length(gl_PointCoord-.5); float a=(1.-smoothstep(.0,.5,r))*vA*.7; if(a<.004)discard; gl_FragColor=vec4(vec3(1.,.95,.86)*a,a); }`
+  fragmentShader: `varying float vA; void main(){ float r=length(gl_PointCoord-.5); float a=(1.-smoothstep(.0,.5,r))*vA*.7; if(a<.004)discard; gl_FragColor=vec4(vec3(.86,.82,1.)*a,a); }`
 }));
 dust.frustumCulled = false;
 scene.add(dust);

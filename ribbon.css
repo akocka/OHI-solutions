@@ -7,8 +7,8 @@
 .rbsec .rhead{position:absolute;left:0;right:0;top:clamp(96px,15vh,150px);z-index:2;pointer-events:none;will-change:transform,opacity}
 .rbsec .rhead .sub{max-width:40ch}
 .rbsec .rhint{position:absolute;left:0;right:0;bottom:calc(5vh + 6px);z-index:2;text-align:center;color:var(--slate);font-size:14.5px;opacity:0;pointer-events:none}
-.rbsec .rhint b{color:var(--amber,#FFB020);font-weight:600}
-.rbsec .rname{position:absolute;left:0;top:0;z-index:3;padding:7px 12px;border-radius:10px;background:#FFB020;color:#14110A;font-size:13px;font-weight:600;pointer-events:none;opacity:0;transition:opacity .16s;white-space:nowrap}
+.rbsec .rhint b{color:var(--amber,#FF8A3D);font-weight:600}
+.rbsec .rname{position:absolute;left:0;top:0;z-index:3;padding:7px 12px;border-radius:10px;background:#FF8A3D;color:#14110A;font-size:13px;font-weight:600;pointer-events:none;opacity:0;transition:opacity .16s;white-space:nowrap}
 .rbsec .rfoot{padding:28px 0 clamp(70px,9vw,110px)}
 .rbsec .rfoot .btn{margin-right:10px}
 @media (prefers-reduced-motion:reduce){.rbsec .rtrack{height:auto}.rbsec .rstage{position:relative;height:auto;min-height:100svh}}

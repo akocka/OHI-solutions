@@ -1,7 +1,7 @@
 /* Stil comun pentru paginile OHI (servicii, prețuri, blog). Aceleași culori și fonturi ca pagina principală. */
 :root{
-  --bg:#0B0D14; --card:#151A2B; --ink:#F2F3F7; --muted:#A3A9C0; --line:rgba(255,255,255,.12);
-  --cobalt:#4C63FF; --tag:#FFB020;
+  --bg:#0A0714; --card:#1A1230; --ink:#F4F1FF; --muted:#A3A9C0; --line:rgba(255,255,255,.12);
+  --cobalt:#4C63FF; --tag:#FF8A3D;
   --display:"Bricolage Grotesque","Arial Black",system-ui,sans-serif;
   --serif:"Instrument Serif",Georgia,serif;
   --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
@@ -15,9 +15,9 @@ html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:clip}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--tag);outline-offset:3px;border-radius:6px}
-::selection{background:var(--tag);color:#0B0D14}
+::selection{background:var(--tag);color:#0A0714}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.skip{position:absolute;left:1rem;top:-4rem;z-index:100;background:var(--tag);color:#0B0D14;padding:.6rem 1rem;border-radius:10px;font-weight:700}
+.skip{position:absolute;left:1rem;top:-4rem;z-index:100;background:var(--tag);color:#0A0714;padding:.6rem 1rem;border-radius:10px;font-weight:700}
 .skip:focus{top:1rem}
 .wrap{max-width:78rem;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)}
 .narrow{max-width:50rem}
@@ -43,7 +43,7 @@ header.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--b
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border-radius:999px;padding:.9rem 1.4rem;font-weight:700;text-decoration:none;border:1.5px solid transparent;transition:transform .25s,background .25s,color .25s;min-height:44px}
 .btn:hover{transform:translateY(-2px)}
-.btn-main{background:var(--tag);color:#0B0D14}
+.btn-main{background:var(--tag);color:#0A0714}
 .btn-ghost{border-color:var(--line);color:var(--ink)}
 .btn-ghost:hover{border-color:var(--ink)}
 .btn-sm{padding:.55rem 1rem;font-size:.92rem}
@@ -84,7 +84,7 @@ tbody th{font-weight:600;color:var(--muted)}
 .tier{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:1.4rem;display:flex;flex-direction:column}
 .tier.main{border-color:var(--tag)}
 .tier h2{margin:.7rem 0 .2rem!important;font-size:1.5rem!important}
-.tier .tag{align-self:flex-start;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0B0D14;background:var(--tag);border-radius:999px;padding:.25rem .7rem}
+.tier .tag{align-self:flex-start;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0A0714;background:var(--tag);border-radius:999px;padding:.25rem .7rem}
 .tier .amt{font-family:var(--display);font-weight:800;font-size:2.8rem;letter-spacing:-.05em;margin:.2rem 0 0;line-height:1;color:var(--ink)}
 .tier .amt-txt{font-size:2rem}
 .tier .amt small{font-size:1rem;letter-spacing:0;color:var(--muted)}
