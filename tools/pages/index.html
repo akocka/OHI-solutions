@@ -34,6 +34,7 @@
  ],
  "js": [
   "/orb.js",
+  "/hb.js",
   "/lp.js"
  ],
  "css": [
@@ -44,19 +45,30 @@
 }
 -->
 <main id="main">
-<section class="orb" id="orbHero">
+<section class="orb hb" id="orbHero">
   <canvas id="orbCv" aria-hidden="true"></canvas>
-  <div class="orb-ui">
-    <p class="orb-kick"><i></i>Studio web · Târgu Mureș</p>
-    <h1>Site-uri care<br>aduc <em>clienți</em></h1>
-    <p class="orb-sub">Făcute de la zero pentru afacerea ta. Vezi demo-ul gata înainte să plătești.</p>
-    <div class="orb-btns">
-      <a class="orb-b pri" id="orbCta" href="/contact#demo">Cere demo gratuit<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="orb-b gho" href="/portofoliu">Vezi lucrările</a>
+  <div class="hb-grid">
+    <div class="hb-copy">
+      <p class="orb-kick"><i></i>Studio web · Târgu Mureș</p>
+      <h1>Site-uri care<br>aduc <em>clienți</em></h1>
+      <p class="orb-sub">Uite cum se construiește un site OHI: făcut de la zero pentru afacerea ta, gata de primit cereri. Îl vezi înainte să plătești.</p>
+      <div class="orb-btns">
+        <a class="orb-b pri" id="orbCta" href="/contact#demo">Cere demo gratuit<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="orb-b gho" href="/sabloane">Vezi modelele</a>
+      </div>
+      <ul class="orb-facts"><li>Plată unică</li><li>De la 500 lei</li><li>Contract de cesiune</li></ul>
     </div>
-    <ul class="orb-facts"><li>Plată unică</li><li>De la 500 lei</li><li>Contract de cesiune</li></ul>
+    <div class="hb-stage" id="hbStage" aria-label="Animație: un site pentru o afacere locală se construiește singur" role="img">
+      <div class="hb-lap">
+        <div class="hb-lscr"><div class="hb-site" id="hbSiteL"></div></div>
+        <div class="hb-base"></div>
+      </div>
+      <div class="hb-ph"><div class="hb-pscr"><div class="hb-site hb-m" id="hbSiteM"></div></div></div>
+      <div class="hb-toast" id="hbToast"><b></b><span></span></div>
+      <div class="hb-cursor" id="hbCursor"></div>
+      <ol class="hb-steps" id="hbSteps"><li>Cofetărie</li><li>Frizerie</li><li>Service auto</li></ol>
+    </div>
   </div>
-  <a class="orb-down" href="#despre" aria-label="Derulează la conținut"><span></span></a>
 </section>
 <!--INCLUDE lp-->
 </main>

@@ -42,19 +42,30 @@
   <div class="o-mfoot"><a class="o-btn o-a" href="/contact#demo">Cere demo gratuit</a><a class="o-btn o-g" href="tel:+40740267706">Sună: 0740 267 706</a></div>
 </div>
 <main id="main">
-<section class="orb" id="orbHero">
+<section class="orb hb" id="orbHero">
   <canvas id="orbCv" aria-hidden="true"></canvas>
-  <div class="orb-ui">
-    <p class="orb-kick"><i></i>Studio web · Târgu Mureș</p>
-    <h1>Site-uri care<br>aduc <em>clienți</em></h1>
-    <p class="orb-sub">Făcute de la zero pentru afacerea ta. Vezi demo-ul gata înainte să plătești.</p>
-    <div class="orb-btns">
-      <a class="orb-b pri" id="orbCta" href="/contact#demo">Cere demo gratuit<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="orb-b gho" href="/portofoliu">Vezi lucrările</a>
+  <div class="hb-grid">
+    <div class="hb-copy">
+      <p class="orb-kick"><i></i>Studio web · Târgu Mureș</p>
+      <h1>Site-uri care<br>aduc <em>clienți</em></h1>
+      <p class="orb-sub">Uite cum se construiește un site OHI: făcut de la zero pentru afacerea ta, gata de primit cereri. Îl vezi înainte să plătești.</p>
+      <div class="orb-btns">
+        <a class="orb-b pri" id="orbCta" href="/contact#demo">Cere demo gratuit<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="orb-b gho" href="/sabloane">Vezi modelele</a>
+      </div>
+      <ul class="orb-facts"><li>Plată unică</li><li>De la 500 lei</li><li>Contract de cesiune</li></ul>
     </div>
-    <ul class="orb-facts"><li>Plată unică</li><li>De la 500 lei</li><li>Contract de cesiune</li></ul>
+    <div class="hb-stage" id="hbStage" aria-label="Animație: un site pentru o afacere locală se construiește singur" role="img">
+      <div class="hb-lap">
+        <div class="hb-lscr"><div class="hb-site" id="hbSiteL"></div></div>
+        <div class="hb-base"></div>
+      </div>
+      <div class="hb-ph"><div class="hb-pscr"><div class="hb-site hb-m" id="hbSiteM"></div></div></div>
+      <div class="hb-toast" id="hbToast"><b></b><span></span></div>
+      <div class="hb-cursor" id="hbCursor"></div>
+      <ol class="hb-steps" id="hbSteps"><li>Cofetărie</li><li>Frizerie</li><li>Service auto</li></ol>
+    </div>
   </div>
-  <a class="orb-down" href="#despre" aria-label="Derulează la conținut"><span></span></a>
 </section>
 <div class="vk">
 <section class="vk-hero" id="despre">
@@ -126,6 +137,9 @@
 </section>
 
 <section class="vk-proj" id="lucrari">
+  <div class="vk-phead"><h2 class="vk-h">Site-uri <span class="vk-s">făcute de noi</span></h2>
+    <div class="vk-pnav"><button type="button" id="pjPrev" aria-label="Proiectul anterior"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><span id="pjCount">1 / 3</span><button type="button" id="pjNext" aria-label="Proiectul următor"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
+  <div class="vk-ptrack" id="pjTrack">
   <article class="vk-pr vk-io">
     <div class="vk-prt"><h3>Big Big Boon</h3><p>Client · site cu configurator 3D pentru construcții modulare</p></div>
     <div class="vk-desk" data-src="https://www.bigbigboon.ro/">
@@ -162,6 +176,7 @@
     </div>
     <a class="vk-open" href="/demo/pensiunea-david">Deschide conceptul ↗</a>
   </article>
+  </div>
   <p class="vk-note">„Concept” înseamnă o propunere de design făcută de noi, nu un site comandat de firma respectivă.</p>
 </section>
 
@@ -203,6 +218,7 @@
 <script src="/shell.js" defer></script>
 <script src="/ohi.js" defer></script>
 <script src="/orb.js" defer></script>
+<script src="/hb.js" defer></script>
 <script src="/lp.js" defer></script>
 <script src="/assistant.js" defer></script>
 </body>

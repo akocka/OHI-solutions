@@ -94,29 +94,39 @@
 })();
 
 
-// project desktops: the real site loads (intro first) when the monitor comes into view; tap to scroll inside it
+// projects: monitors side by side; only the one in focus loads its live site (intro plays), tap to scroll inside it
 (function () {
-  var desks = document.querySelectorAll('.vk-desk');
-  if (!desks.length) return;
-  function fit(d) { var s = d.querySelector('.vk-scr'), f = d.querySelector('iframe'); var k = s.clientWidth / 1440; f.style.transform = 'scale(' + k + ')'; f.style.height = (s.clientHeight / k) + 'px'; }
-  desks.forEach(function (d) {
-    var f = d.querySelector('iframe');
-    f.addEventListener('load', function () { if (f.src && f.src !== 'about:blank') d.classList.add('loaded'); });
-    d.querySelector('.vk-try').addEventListener('click', function () { d.classList.add('live'); try { f.focus(); } catch (e) {} });
+  var track = document.getElementById('pjTrack');
+  if (!track) return;
+  var items = [].slice.call(track.querySelectorAll('.vk-pr')), cur = -1;
+  function fit(d) { var s = d.querySelector('.vk-scr'), f = d.querySelector('iframe'); if (!s.clientWidth) return; var k = s.clientWidth / 1440; f.style.transform = 'scale(' + k + ')'; f.style.height = Math.ceil(s.clientHeight / k) + 'px'; }
+  function unload(d) { var f = d.querySelector('iframe'); d.classList.remove('loaded', 'live'); delete d.dataset.on; if (f.getAttribute('src')) f.removeAttribute('src'); }
+  function load(d) { if (d.dataset.on) return; d.dataset.on = 1; fit(d); d.querySelector('iframe').src = d.dataset.src; }
+  items.forEach(function (it) {
+    var d = it.querySelector('.vk-desk'), f = d.querySelector('iframe');
+    f.addEventListener('load', function () { if (d.dataset.on && f.getAttribute('src')) setTimeout(function () { if (d.dataset.on) d.classList.add('loaded'); }, 250); });
+    d.querySelector('.vk-try').addEventListener('click', function () { if (!it.classList.contains('on')) { go(items.indexOf(it)); return; } load(d); d.classList.add('live'); });
     d.querySelector('.vk-done').addEventListener('click', function () { d.classList.remove('live'); });
     d.addEventListener('mouseleave', function () { d.classList.remove('live'); });
-    fit(d);
   });
-  addEventListener('resize', function () { desks.forEach(fit); });
-  if (!('IntersectionObserver' in window)) return;
-  // load when the monitor is on screen, unload when it is far away (frees memory, and the intro plays again next time)
-  var load = new IntersectionObserver(function (es) {
-    es.forEach(function (e) { var d = e.target, f = d.querySelector('iframe');
-      if (e.isIntersecting && !d.dataset.on) { d.dataset.on = 1; fit(d); f.src = d.dataset.src; } });
-  }, { threshold: .3 });
-  var unload = new IntersectionObserver(function (es) {
-    es.forEach(function (e) { var d = e.target, f = d.querySelector('iframe');
-      if (!e.isIntersecting && d.dataset.on) { delete d.dataset.on; d.classList.remove('loaded', 'live'); f.src = 'about:blank'; } });
-  }, { rootMargin: '60% 0px 60% 0px', threshold: 0 });
-  desks.forEach(function (d) { load.observe(d); unload.observe(d); });
+  var inView = false;
+  function activate(i) {
+    if (i === cur) return; cur = i;
+    items.forEach(function (it, k) { it.classList.toggle('on', k === i); var d = it.querySelector('.vk-desk'); if (k !== i) unload(d); });
+    var c = document.getElementById('pjCount'); if (c) c.textContent = (i + 1) + ' / ' + items.length;
+    if (inView) load(items[i].querySelector('.vk-desk'));
+  }
+  function go(i) { i = Math.max(0, Math.min(items.length - 1, i)); var it = items[i]; track.scrollTo({ left: it.offsetLeft - (track.clientWidth - it.clientWidth) / 2, behavior: 'smooth' }); activate(i); }
+  document.getElementById('pjPrev').onclick = function () { go(cur - 1); };
+  document.getElementById('pjNext').onclick = function () { go(cur + 1); };
+  var t = null;
+  track.addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(function () {
+    var mid = track.scrollLeft + track.clientWidth / 2, best = 0, bd = 1e9;
+    items.forEach(function (it, k) { var c = it.offsetLeft + it.clientWidth / 2, dd = Math.abs(c - mid); if (dd < bd) { bd = dd; best = k; } });
+    activate(best); }, 120); }, { passive: true });
+  addEventListener('resize', function () { items.forEach(function (it) { fit(it.querySelector('.vk-desk')); }); });
+  new IntersectionObserver(function (es) { inView = es[0].isIntersecting;
+    var d = items[Math.max(cur, 0)].querySelector('.vk-desk'); if (inView) load(d); else items.forEach(function (it) { unload(it.querySelector('.vk-desk')); });
+  }, { threshold: .35 }).observe(track);
+  activate(0);
 })();

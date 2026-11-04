@@ -77,11 +77,12 @@
     if (!vis || document.hidden) { run = false; return; }
     var t = calm ? 8 : (now - t0) / 1000;
     mx += (tx - mx) * .045; my += (ty - my) * .045; pulse += (tp - pulse) * .08;
-    var narrow = W / H < .9;
-    var S = narrow ? Math.min(.27, .43 * W / H) : .29;
-    var cy = narrow ? .23 : .15;
+    var narrow = W / H < .9, cx0 = 0, cy = narrow ? .23 : .15, S = narrow ? Math.min(.27, .43 * W / H) : .29;
+    var st = document.getElementById('hbStage');
+    if (st) { var hr = host.getBoundingClientRect(), r = st.getBoundingClientRect(), hh = hr.height || 1;
+      cx0 = ((r.left + r.width / 2 - hr.left) / hr.width - .5) * (hr.width / hh); cy = -((r.top + r.height * .45 - hr.top) / hh - .5); S = Math.min(r.width, r.height) / hh * .62; }
     gl.uniform2f(U.R, W, H); gl.uniform1f(U.T, t); gl.uniform1f(U.S, S * (1 + .03 * Math.sin(t * .8)) * (1 + .04 * pulse));
-    gl.uniform2f(U.C, mx * .09 * (W / H), cy + my * .06); gl.uniform1f(U.P, pulse); gl.uniform2f(U.M, mx, my);
+    gl.uniform2f(U.C, cx0 + mx * .06 * (W / H), cy + my * .05); gl.uniform1f(U.P, pulse); gl.uniform2f(U.M, mx, my);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
     if (first) { first = false; host.classList.add('orb-on'); }
     if (calm) { run = false; return; }
