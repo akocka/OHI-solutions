@@ -24,7 +24,7 @@
   <i class="oi-leak"></i>
   <button type="button" class="oi-skipb" id="oiskip"><span data-t="oiSkip">Sari peste</span> →</button>
 </div>
-<script>(function(){var h=document.documentElement;if(matchMedia('(prefers-reduced-motion: reduce)').matches||/nointro/.test(location.search))return;h.classList.add('oi-on','oi-inner');var t0=performance.now();
+<script>(function(){window.__introT0=performance.now();var h=document.documentElement;if(matchMedia('(prefers-reduced-motion: reduce)').matches||/nointro/.test(location.search))return;h.classList.add('oi-on','oi-inner');var t0=performance.now();
 function done(skip){if(h.classList.contains('oi-done'))return;var t=(performance.now()-t0)/1000;if(skip===true&&t<3.3){h.style.setProperty('--g0',(t+.1).toFixed(2)+'s');h.style.setProperty('--h0',(t+.95).toFixed(2)+'s')}h.classList.add('oi-play','oi-done')}
 document.getElementById('oiskip').addEventListener('click',function(){done(true)});setTimeout(function(){h.classList.add('oi-play')},3300);setTimeout(done,4300);
 var c=document.querySelector('#ointro .oi-dust'),x=c&&c.getContext('2d');if(!x)return;var W,H,D=Math.min(2,devicePixelRatio||1),P=[];function rs(){W=c.width=innerWidth*D;H=c.height=innerHeight*D}rs();addEventListener('resize',rs);
@@ -66,4 +66,5 @@ for(var i=0;i<(innerWidth<700?38:70);i++)P.push({x:Math.random(),y:Math.random()
 <script>window.PT={"hu": {"mE": "Étlap", "mH": "Az <em>Orobianco</em> étlapja", "mP": "Olasz konyha az előételektől a desszertekig, borokkal és koktélokkal.", "mNote": "<b>Minta étlap.</b> A valódi fogásokat és árakat együtt töltjük ki; bármikor módosíthatók.", "veg": "Csak vegetáriánus", "leg": "<span class=\"vtag\">V</span> vegetáriánus · Kérjük, jelezzétek, ha allergiátok van; az allergénekről kérésre tájékoztatunk."}, "en": {"mE": "Menu", "mH": "The <em>Orobianco</em> menu", "mP": "Italian cooking from antipasti to dolci, plus wines and cocktails.", "mNote": "<b>Sample menu.</b> We fill in the real dishes and prices together with you; editable anytime.", "veg": "Vegetarian only", "leg": "<span class=\"vtag\">V</span> vegetarian · Please tell us about any allergy; allergen information is available on request."}};</script>
 <script>try{Object.assign(PT.hu,{oiSkip:"Kihagyás"});Object.assign(PT.en,{oiSkip:"Skip"})}catch(e){}</script>
 <script src="/demo/orobianco/assets/site.js" defer></script>
+<script defer src="/demo/orobianco/assets/ambience.js" data-preset="restaurant"></script>
 </body></html>
