@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /concept/
 Allow: /
 
 Sitemap: https://ohis-gamma.vercel.app/sitemap.xml
