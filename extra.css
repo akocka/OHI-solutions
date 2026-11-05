@@ -131,3 +131,14 @@
 @media (max-width:1000px){.x-pgrid{grid-template-columns:1fr}.x-cart{position:static}.x-orbit{opacity:.35;right:-30vw;width:90vw}}
 @media (max-width:700px){.x-feats,.x-steps,.x-contacts{grid-template-columns:1fr}.x-hero{min-height:0;padding:120px 0 60px}.x-orbit{display:none}.x-search input{height:58px;font-size:16px}}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.x-orbit,.x-orbit b,.x-orbit span{animation:none}}
+
+/* Ajutor: embedded assistant + human contact */
+.x-ai{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(24px,4vw,56px);align-items:center}
+.x-ai-box{min-height:540px}
+.x-help{margin-top:34px;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:16px;align-items:stretch}
+.x-hform{padding:clamp(22px,3vw,34px);border-radius:26px;background:#130D24;box-shadow:inset 0 0 0 1px rgba(167,139,250,.16)}
+.x-hform .fm-k{display:none}
+.x-hform .fm-t{font-size:clamp(22px,2.4vw,28px);padding-right:0;margin-top:0}
+.x-hcall{display:grid;gap:16px}
+.x-none a{color:#FF8A4C;font-weight:600}
+@media(max-width:900px){.x-ai,.x-help{grid-template-columns:1fr}.x-ai-box{min-height:0}}

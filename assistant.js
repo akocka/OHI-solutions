@@ -102,6 +102,8 @@
   .oa-lead input:focus{outline:none;border-color:#4C63FF}
   .oa-lead button{border:0;border-radius:10px;background:linear-gradient(135deg,#FFC24D,#FF9F10);color:#14110A;font-weight:700;padding:10px;cursor:pointer}
   @media(prefers-reduced-motion:reduce){.oa-orb,.oa-orb::after,.oa-btn,.oa-p,.oa-au i,.oa-btn .rg,.oa-h small i{animation:none!important}.oa-row,.oa-th,.oa-go{animation:none}.oa-q button{animation:none;opacity:1;transform:none}.oa-p{transition:none}}
+  .oa-p.oa-emb{position:relative;right:auto;bottom:auto;width:100%;height:min(560px,72svh);opacity:1;transform:none;pointer-events:auto;z-index:1}
+  .oa-emb .oa-x{display:none}
   @media(max-width:600px){.oa-btn .lbl{display:none}.oa-btn{padding:0 8px}.oa-tease{max-width:220px}}`;
   document.head.appendChild(css);
   const ORB='<span class="oa-orb"></span>';
@@ -114,7 +116,8 @@
   <div class="oa-m" id="oaM" aria-live="polite"></div>
   <div class="oa-q" id="oaQ"></div>
   <form class="oa-f" id="oaF"><div class="wr"><input id="oaI" placeholder="Scrie o întrebare…" autocomplete="off" maxlength="300" aria-label="Întrebarea ta"></div><button type="submit" aria-label="Trimite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></form>`;
-  document.body.appendChild(tease);document.body.appendChild(btn);document.body.appendChild(p);
+  const EMB=document.getElementById('oaEmbed');
+  if(EMB){p.classList.add('oa-emb','on');p.setAttribute('role','region');EMB.appendChild(p)}else{document.body.appendChild(tease);document.body.appendChild(btn);document.body.appendChild(p)}
   const M=p.querySelector('#oaM'),I=p.querySelector('#oaI'),Q=p.querySelector('#oaQ'),hOrb=p.querySelector('.oa-h .oa-orb');let greeted=false,leadShown=false,busy=false,pend=[];const asked=new Set();
   const down=()=>{M.scrollTop=M.scrollHeight};
   function chips(list){Q.innerHTML='';list.forEach((t,i)=>{const b=document.createElement('button');b.type='button';b.textContent=t;b.style.animationDelay=(i*.07)+'s';Q.appendChild(b)})}
@@ -150,11 +153,12 @@
     p.classList.toggle('on',v);btn.setAttribute('aria-expanded',v);
     if(v){if(!greeted){greeted=true;reply('Bună! Sunt asistentul OHI. Răspund la întrebări despre site-uri, prețuri și demo-ul gratuit. Ce vrei să afli?')}setTimeout(()=>I.focus({preventScroll:true}),350)}}
   let seen=false;try{seen=!!sessionStorage.getItem('oaSeen')}catch(x){}
-  if(!seen)teaseT=setTimeout(()=>{if(!p.classList.contains('on')){tease.classList.add('on');teaseT=setTimeout(hideTease,9000)}},7000);
+  if(EMB){greeted=true;reply('Bună! Sunt asistentul OHI. Întreabă-mă orice despre site-uri, prețuri sau demo-ul gratuit.')}
+  else if(!seen)teaseT=setTimeout(()=>{if(!p.classList.contains('on')){tease.classList.add('on');teaseT=setTimeout(hideTease,9000)}},7000);
   tease.addEventListener('click',e=>{if(e.target.closest('button')){hideTease();try{sessionStorage.setItem('oaSeen','1')}catch(x){}return}open(true)});
   btn.addEventListener('click',()=>open(!p.classList.contains('on')));
   p.querySelector('.oa-x').addEventListener('click',()=>open(false));
-  addEventListener('keydown',e=>{if(e.key==='Escape')open(false)});
+  addEventListener('keydown',e=>{if(e.key==='Escape'&&!EMB)open(false)});
   Q.addEventListener('click',e=>{const b=e.target.closest('button');if(b)ask(b.textContent)});
   p.querySelector('#oaF').addEventListener('submit',e=>{e.preventDefault();ask(I.value);I.value=''});
 })();

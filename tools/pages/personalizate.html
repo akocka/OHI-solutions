@@ -4,8 +4,8 @@
  "title": "Funcții personalizate pentru site: magazin, meniu QR, rezervări | OHI Solutions",
  "desc": "Adaugă pe site doar ce îți trebuie: magazin mic, meniu QR, rezervări, programări în calendar, vouchere, card de fidelitate, automatizări. Preț fix, stabilit înainte.",
  "og_title": "Funcții personalizate · OHI Solutions",
- "css": ["/extra.css"],
- "js": ["/personalizate.js"],
+ "css": ["/extra.css","/forms.css"],
+ "js": ["/personalizate.js","/forms.js"],
  "head": "<link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap\" rel=\"stylesheet\">",
  "ld": [{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Acasă","item":"https://ohis-gamma.vercel.app/"},{"@type":"ListItem","position":2,"name":"Personalizate","item":"https://ohis-gamma.vercel.app/personalizate"}]}]
 }
@@ -46,8 +46,8 @@
       <div class="x-base"><b>Site de bază</b><span>Start sau Business · <a href="/preturi">vezi prețurile</a></span></div>
       <ul id="cartList"><li class="empty">Nicio funcție aleasă încă.</li></ul>
       <p class="x-cnum"><b id="cartN">0</b> <span id="cartW">funcții alese</span></p>
-      <a class="x-btn" id="cartGo" href="/?pachet=Business#oferta">Cere oferta<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <p class="x-cnote">Preț fix, stabilit după un apel scurt. Funcțiile se adaugă peste pachetul Business.</p>
+      <a class="x-btn" id="cartGo" href="/?pachet=Business#oferta" data-form="personalizate">Cere oferta<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <p class="x-cnote">Preț fix, stabilit după un apel scurt. Formularul se deschide aici, cu funcțiile alese.</p>
     </aside>
   </div>
 </section>

@@ -28,6 +28,7 @@
 <link rel="stylesheet" href="/shell.css">
 <link rel="stylesheet" href="/ohi.css">
 <link rel="stylesheet" href="/extra.css">
+<link rel="stylesheet" href="/forms.css">
 </head>
 <body data-ohi="new">
 <a class="o-skip" href="#main">Sari la conținut</a>
@@ -76,18 +77,32 @@
       <details data-c="dupa"><summary>Pot trece mai târziu de la Start la Business?</summary><p>Da, oricând. Îți facem o ofertă doar pentru ce adăugăm.</p></details>
       <details data-c="dupa"><summary>Ce se întâmplă dacă am o problemă cu site-ul?</summary><p>Ne suni sau ne scrii pe WhatsApp și ne uităm imediat.</p></details>
     </div>
-    <div class="x-none" id="none" hidden><b>Nu am găsit nimic pentru „<span id="noneQ"></span>”.</b><p>Întreabă-ne direct, răspundem repede.</p></div>
+    <div class="x-none" id="none" hidden><b>Nu am găsit nimic pentru „<span id="noneQ"></span>”.</b><p>Întreabă <a href="#asistent">asistentul</a> sau <a href="#contact">scrie-ne direct</a>, răspundem repede.</p></div>
   </div>
 </section>
 
-<section class="x-sec">
+<section class="x-sec" id="asistent">
+  <div class="x-wrap x-ai">
+    <div class="x-ai-t">
+      <p class="x-kick">Răspuns pe loc</p>
+      <h2 class="x-h2">Întreabă <span class="x-s">asistentul OHI</span></h2>
+      <p class="x-p">Scrie întrebarea așa cum ți-ar veni s-o spui. Asistentul răspunde din informațiile de pe site: prețuri, demo, termene, ce primești.</p>
+      <p class="x-p">Dacă nu știe sigur, nu inventează. Îți cere un telefon și te sună cineva din echipă.</p>
+    </div>
+    <div class="x-ai-box" id="oaEmbed"></div>
+  </div>
+</section>
+
+<section class="x-sec" id="contact">
   <div class="x-wrap">
-    <p class="x-kick">Încă ai o întrebare?</p>
-    <h2 class="x-h2">Vorbește cu un <span class="x-s">om, nu cu un robot</span></h2>
-    <div class="x-contacts">
-      <a class="x-cc rv" href="https://wa.me/40740267706" target="_blank" rel="noopener"><i class="ic wa"></i><b>WhatsApp</b><span>Cel mai rapid. Scrie-ne oricând.</span><em>Scrie-ne →</em></a>
-      <a class="x-cc rv" href="tel:+40740267706" style="transition-delay:.06s"><i class="ic ph"></i><b>Telefon</b><span>0740 267 706. Dacă nu răspundem, te sunăm înapoi.</span><em>Sună acum →</em></a>
-      <a class="x-cc rv" href="/#oferta" style="transition-delay:.12s"><i class="ic fm"></i><b>Formular</b><span>Lasă numele afacerii și telefonul, te sunăm noi.</span><em>Completează →</em></a>
+    <p class="x-kick">Preferi un om?</p>
+    <h2 class="x-h2">Scrie-ne sau <span class="x-s">sună-ne</span></h2>
+    <div class="x-help">
+      <div class="x-hform rv" data-ohi-form="intrebare"></div>
+      <div class="x-hcall">
+        <a class="x-cc rv" href="tel:+40740267706" style="transition-delay:.06s"><i class="ic ph"></i><b>Sună-ne</b><span>0740 267 706. Dacă nu răspundem, te sunăm înapoi.</span><em>Sună acum →</em></a>
+        <a class="x-cc rv" href="https://wa.me/40740267706" target="_blank" rel="noopener" style="transition-delay:.12s"><i class="ic wa"></i><b>WhatsApp</b><span>Scrie-ne oricând, răspundem repede.</span><em>Scrie-ne →</em></a>
+      </div>
     </div>
   </div>
 </section>
@@ -119,6 +134,7 @@
 <script src="/shell.js" defer></script>
 <script src="/ohi.js" defer></script>
 <script src="/ajutor.js" defer></script>
+<script src="/forms.js" defer></script>
 <script src="/assistant.js" defer></script>
 </body>
 </html>

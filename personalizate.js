@@ -7,6 +7,8 @@
     list.innerHTML = on.length ? on.map(function (k) { return '<li>' + k + '</li>'; }).join('') : '<li class="empty">Nicio funcție aleasă încă.</li>';
     n.textContent = on.length; w.textContent = on.length === 1 ? 'funcție aleasă' : 'funcții alese';
     go.href = '/?pachet=Business' + (on.length ? '&extra=' + encodeURIComponent(on.join(', ')) : '') + '#oferta';
+    go.dataset.pre = on.join('|');
+    go.dataset.chips = feats.map(function (f) { return f.dataset.k; }).join('|');
     go.firstChild.textContent = on.length ? 'Cere oferta pentru ' + on.length + (on.length === 1 ? ' funcție' : ' funcții') : 'Cere oferta';
     cart.classList.remove('bump'); void cart.offsetWidth; if (on.length) cart.classList.add('bump');
   }
