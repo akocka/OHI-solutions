@@ -11,7 +11,7 @@
   /* ---------- intro + hero entrance ---------- */
   var seen = false; try { seen = !!sessionStorage.getItem('oro-cin'); } catch (e) {}
   var hero = gsap.timeline({ paused: true })
-    .fromTo('.shero .media', { scale: 1.15 }, { scale: 1, duration: 2.6, ease: 'expo.out' }, 0)
+    .fromTo('.shero .media', { scale: 1.2, opacity: 0 }, { scale: 1.06, opacity: 1, duration: 2.6, ease: 'expo.out' }, 0)
     .to('.shero .k i', { scaleX: 1, duration: .9, ease: 'power3.out' }, .2)
     .to('.shero h1 .w>span', { y: 0, duration: 1.2, ease: 'expo.out', stagger: .07 }, .25)
     .to('.shero .fade', { opacity: 1, y: 0, duration: 1, ease: 'power3.out', stagger: .12 }, .7);
@@ -33,7 +33,7 @@
   } else { if (cin) cin.remove(); hero.play(); }
 
   /* hero slideshow */
-  (function () { var sl = $$('.shero .sl'), bars = $$('.slnav .bars i'), cur = $('.slnav .cur'), cap = $('.slnav .cap'), i = 0;
+  (function () { if (!$('.shero .sl')) return; var sl = $$('.shero .sl'), bars = $$('.slnav .bars i'), cur = $('.slnav .cur'), cap = $('.slnav .cap'), i = 0;
     var CAP = { ro: ['Salonul', 'Barul', 'Orobianco Garden', 'Servit la masă', 'Intrarea'], hu: ['A terem', 'A bár', 'Orobianco Garden', 'Az asztalnál', 'A bejárat'], en: ['The dining room', 'The bar', 'Orobianco Garden', 'At the table', 'The entrance'] };
     function lang() { return window.oroLang ? oroLang.get() : 'ro'; }
     function show(n) { sl.forEach(function (s, k) { s.classList.toggle('on', k === n); });
