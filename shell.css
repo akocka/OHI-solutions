@@ -140,3 +140,9 @@ html{background:var(--o-navy)}
 .o-prog{background:linear-gradient(90deg,#8B5CF6,#FF6B1A)!important;box-shadow:0 0 10px rgba(255,107,26,.6)}
 .o-nav a[aria-current="page"]::after{background:#FF6B1A!important;box-shadow:0 0 10px rgba(255,107,26,.7)}
 .o-ftbg i:nth-child(3){opacity:.75!important}
+/* legal links + ANPC SAL badge (Ordin ANPC 449/2022, mod. 270/2026) */
+.o-ftlegal{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:2px}.o-ftlegal a,.o-ftlegal button{color:inherit;font:inherit;background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(143,135,173,.45)}
+.o-ftlegal a:hover,.o-ftlegal button:hover{color:var(--o-ink)}
+.anpc-sal{display:inline-flex;align-items:center;gap:10px;width:250px;height:50px;box-sizing:border-box;padding:0 14px;border-radius:8px;background:#fff;color:#0b3d91!important;border:1px solid #c9d4ea;text-decoration:none!important;font:600 11.5px/1.2 system-ui,sans-serif}
+.anpc-sal b{font-size:17px;letter-spacing:.04em;color:#0b3d91}.anpc-sal span{opacity:.85}.o-anpc{margin-top:10px}
+.o-fpriv{font-size:12.5px;line-height:1.5;opacity:.7;margin:8px 0 0}.o-fpriv a{color:inherit;text-decoration:underline;text-underline-offset:2px}

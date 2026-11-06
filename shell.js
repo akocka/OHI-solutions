@@ -21,3 +21,27 @@
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);else addEventListener('load',fit);
   addEventListener('resize',fit);fit();
 })();
+
+/* privacy: footer "Sună-mă" keeps the phone out of the URL; every lead form shows a short privacy note */
+(function () {
+  document.addEventListener('submit', function (e) {
+    var f = e.target.closest && e.target.closest('.o-ftform'); if (!f) return;
+    e.preventDefault();
+    var v = ((f.elements.tel || {}).value || '').replace(/[^\d+ ]/g, '').slice(0, 20);
+    try { sessionStorage.setItem('ohi-tel', v); } catch (x) {}
+    var t = document.getElementById('qfTel');
+    if (t && document.getElementById('oferta')) { t.value = v; document.getElementById('oferta').scrollIntoView({ block: 'center', behavior: 'smooth' });
+      setTimeout(function () { var b = document.getElementById('qfBiz'); if (b) b.focus({ preventScroll: true }); }, 500); }
+    else location.href = '/#oferta';
+  }, true);
+  function note(f) {
+    if (f.dataset.priv || !f.querySelector('input[type=tel],input[type=email]')) return; f.dataset.priv = '1';
+    var p = document.createElement('p'); p.className = 'o-fpriv';
+    p.innerHTML = 'Folosim datele doar ca să-ți răspundem la cerere. Detalii în <a href="/confidentialitate">Politica de confidențialitate</a>.';
+    if (f.classList.contains('o-ftform')) f.parentNode.appendChild(p); else f.appendChild(p);
+  }
+  function scan() { [].forEach.call(document.querySelectorAll('form'), note); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', scan); else scan();
+  new MutationObserver(function (m) { m.forEach(function (r) { [].forEach.call(r.addedNodes, function (n) { if (n.nodeType === 1) { if (n.tagName === 'FORM') note(n); else if (n.querySelectorAll) [].forEach.call(n.querySelectorAll('form'), note); } }); }); })
+    .observe(document.documentElement, { childList: true, subtree: true });
+})();

@@ -87,3 +87,4 @@
 @media (max-width:1000px){.ab-rules,.ab-facts{grid-template-columns:repeat(2,minmax(0,1fr))}.ab-hgrid{grid-template-columns:1fr}.ab-hsticky{position:static}.ab-prog{display:none}}
 @media (max-width:600px){.ab-rules,.ab-facts{grid-template-columns:1fr}.ab-mark{width:90vw;right:-30vw;opacity:.45}.ab-steps li{padding:22px;gap:16px}.ab-mftrack{height:200vh}}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.ab-mark,.ab-mark svg rect,.ab-l,.ab-lead,.ab-down span{animation:none}.ab-mft .w{opacity:1}}
+.ab-rule.ab-ai{grid-column:1/-1}.ab-rule.ab-ai p{max-width:68ch}

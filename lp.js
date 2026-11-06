@@ -149,9 +149,12 @@
   if (qp.get('pachet')) { plan.value = qp.get('pachet').replace(/[^A-Za-z]/g, '').slice(0, 20); say('Pachet ales: ' + plan.value + '. Îl poți schimba oricând.'); }
   var extra = (qp.get('extra') || '').slice(0, 300);
   if (extra) say('Funcții alese: ' + extra + '.');
-  if (qp.get('tel')) tel.value = qp.get('tel').replace(/[^\d+ ]/g, '').slice(0, 20);
+  var st = ''; try { st = sessionStorage.getItem('ohi-tel') || ''; sessionStorage.removeItem('ohi-tel'); } catch (x) {}
+  if (qp.get('tel') || st) tel.value = (st || qp.get('tel')).replace(/[^\d+ ]/g, '').slice(0, 20);
   if (qp.get('biz')) biz.value = qp.get('biz').slice(0, 80);
-  if (qp.get('tel') || qp.get('biz') || qp.get('pachet')) setTimeout(function () { document.getElementById('oferta').scrollIntoView({ block: 'center' }); (biz.value ? tel : biz).focus({ preventScroll: true }); }, 400);
+  // never leave personal data in the address bar / history
+  if (qp.get('tel') || qp.get('biz')) { qp.delete('tel'); qp.delete('biz'); try { history.replaceState(null, '', location.pathname + (qp.toString() ? '?' + qp : '') + location.hash); } catch (x) {} }
+  if (st || tel.value || biz.value || qp.get('pachet')) setTimeout(function () { document.getElementById('oferta').scrollIntoView({ block: 'center' }); (biz.value ? tel : biz).focus({ preventScroll: true }); }, 400);
   f.addEventListener('submit', async function (e) {
     e.preventDefault();
     if (sent) { say('Am primit deja cererea ta. Te sunăm în curând.'); return; }

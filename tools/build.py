@@ -15,8 +15,8 @@ import json, os, re, sys, glob
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://ohis-gamma.vercel.app'
-FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
-         '<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Caveat:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">')
+FONTS = (''
+         '<link rel="stylesheet" href="/fonts/fonts.css">')
 
 # ---- the one menu ---------------------------------------------------------
 # (url, label, short line shown in the phone menu). Until a page is rebuilt, vercel.json
@@ -79,7 +79,9 @@ FOOTER = ('<div class="o-ft" role="contentinfo">\n'
           '      <div><p class="o-hand o-ct">Contact</p><a href="tel:+40740267706">0740 267 706</a><a href="https://wa.me/40740267706" target="_blank" rel="noopener">WhatsApp</a><span class="o-ftplace">Târgu Mureș</span></div>\n'
                     '    </div>\n'
           '    <div class="o-ftbot">\n'
-          '      <div class="o-ftcopy"><span>© 2026 OHI Solutions · Târgu Mureș</span><span>Site în reconstrucție</span></div>\n'
+          '      <div class="o-ftcopy"><span>© 2026 OHI Solutions · Târgu Mureș</span>'
+          '<span class="o-ftlegal"><a href="/confidentialitate">Confidențialitate</a><a href="/cookie">Cookie-uri</a><a href="/termeni">Termeni</a><button type="button" data-consent-open>Setări cookie</button></span>'
+          '<a class="anpc-sal o-anpc" href="https://reclamatiisal.anpc.ro" target="_blank" rel="noopener noreferrer" aria-label="ANPC – Soluționarea alternativă a litigiilor"><b>ANPC</b><span>SAL · Soluționarea alternativă a litigiilor</span></a></div>\n'
           '      <div class="o-ftcta"><h4 style="font-weight:400">Ai o afacere în Mureș?<strong>Hai să-i facem site-ul.</strong></h4>\n'
           '        <form class="o-ftform" action="/#oferta" method="get"><label class="o-vh" for="oFtTel">Numărul tău de telefon</label><input id="oFtTel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="Numărul tău de telefon" required><button type="submit">Sună-mă</button></form>\n'
           '      </div>\n'
@@ -89,7 +91,8 @@ FOOTER = ('<div class="o-ft" role="contentinfo">\n'
           '<div class="o-ftwm" aria-hidden="true"><svg id="oWm" viewBox="62 95 876 175" preserveAspectRatio="xMidYMid meet"><text id="oWmT" x="500" y="240" text-anchor="middle" font-size="320">OHI Solutions</text></svg></div>\n'
           '</div>')
 
-COMMON_HEAD = ('<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n')
+CONSENT = '<script src="/consent.js" data-policy="/confidentialitate" data-cookies="/cookie" data-accent="#6D4DF2"></script>\n'
+COMMON_HEAD = ('<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n' + CONSENT)
 ICONS = ('<meta name="theme-color" content="#0A0714">\n<link rel="icon" href="/favicon.ico" sizes="any">\n'
          '<link rel="icon" href="/icon-512.png" type="image/png">\n<link rel="apple-touch-icon" href="/apple-touch-icon.png">')
 
