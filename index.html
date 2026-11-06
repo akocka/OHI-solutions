@@ -182,18 +182,32 @@
 
 <section class="vk-part" id="oferta">
   <div class="vk-pbox" id="lpTrail">
-    <span class="vk-offer"><i></i>Demo gratuit · fără avans</span>
-    <h2>Vezi site-ul tău <span class="vk-s">înainte să plătești</span></h2>
-    <p class="vk-plead">Spune-ne cum se numește afacerea și unde te sunăm. Îți facem demo-ul cu numele și serviciile tale și ți-l trimitem pe telefon. Plătești doar dacă îți place.</p>
-    <form class="vk-qf" id="qf" action="#" method="post" novalidate>
+    <span class="vk-offer"><i></i>Apel gratuit · demo gratuit · fără avans</span>
+    <h2>Hai să vorbim <span class="vk-s">despre afacerea ta</span></h2>
+    <p class="vk-plead">Programăm un apel de 20 de minute ca să înțelegem ce vinzi, cui și cum te găsesc clienții. Apoi îți facem demo-ul gratuit și îți trimitem oferta pe e-mail.</p>
+    <ol class="vk-flow" aria-label="Cum lucrăm"><li><b>1</b>Apel de 20 min</li><li><b>2</b>Demo gratuit</li><li><b>3</b>Ofertă pe e-mail</li></ol>
+    <form class="vk-lf" id="qf" action="#" method="post" novalidate>
       <input type="hidden" name="plan" id="qfPlan" value=""><input class="o-vh" name="company_site" id="qfHp" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <label class="o-vh" for="qfBiz">Numele afacerii</label><input id="qfBiz" name="biz" type="text" autocomplete="organization" placeholder="Numele afacerii" required maxlength="80">
-      <label class="o-vh" for="qfTel">Telefon</label><input id="qfTel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="Telefon" required maxlength="20">
-      <button type="submit" class="vk-b vk-pri">Vreau demo-ul gratuit<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <fieldset class="vk-st" id="qfS1"><legend class="o-vh">Datele tale</legend>
+        <label><span>Numele tău</span><input id="qfName" name="name" type="text" autocomplete="name" required maxlength="80"></label>
+        <label><span>Numele afacerii</span><input id="qfBiz" name="biz" type="text" autocomplete="organization" required maxlength="80"></label>
+        <label><span>E-mail</span><input id="qfEmail" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="120"></label>
+        <label><span>Telefon</span><input id="qfTel" name="tel" type="tel" inputmode="tel" autocomplete="tel" required maxlength="20"></label>
+        <button type="button" class="vk-b vk-pri vk-full" id="qfNext">Continuă<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </fieldset>
+      <fieldset class="vk-st" id="qfS2" hidden><legend class="o-vh">Despre proiect</legend>
+        <label class="vk-wide"><span>Ce ai nevoie?</span><select id="qfSvc" name="service"><option>Site nou</option><option>Refacerea site-ului existent</option><option>Programări sau comenzi online</option><option>Automatizări pentru cereri</option><option>Nu știu încă, vreau o recomandare</option></select></label>
+        <label><span>Buget orientativ</span><select id="qfBud" name="budget"><option value="">Aleg după apel</option><option>Sub 1.500 lei</option><option>1.500 – 3.000 lei</option><option>3.000 – 6.000 lei</option><option>Peste 6.000 lei</option></select></label>
+        <label><span>Când ai nevoie de el?</span><select id="qfWhen" name="deadline"><option value="">Nu e grabă</option><option>Cât mai repede</option><option>Luna asta</option><option>În 1–3 luni</option></select></label>
+        <label class="vk-wide"><span>Pe scurt: ce vinzi și cine sunt clienții tăi?</span><textarea id="qfAbout" name="about" rows="3" maxlength="1500" placeholder="De ex.: torturi la comandă, clienți din Târgu Mureș, comenzi mai ales pe Facebook"></textarea></label>
+        <label><span>Site sau pagină de Facebook (opțional)</span><input id="qfWeb" name="website" type="text" maxlength="200" inputmode="url"></label>
+        <label><span>Când te putem suna?</span><select id="qfCall" name="call_time"><option>Oricând între 9 și 18</option><option>Dimineața (9–12)</option><option>După-amiaza (12–16)</option><option>Seara (16–19)</option></select></label>
+        <div class="vk-row vk-wide"><button type="button" class="vk-lnk" id="qfBack">← Înapoi</button><button type="submit" class="vk-b vk-pri">Programează apelul<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+      </fieldset>
     </form>
     <p class="vk-qmsg" id="qfMsg" role="status" aria-live="polite"></p>
-    <ul class="vk-trust"><li>Fără avans</li><li>Plată unică, de la 500 lei</li><li>Contract de cesiune</li></ul>
-    <p class="vk-alt">Preferi să vorbim? <a href="https://wa.me/40740267706" target="_blank" rel="noopener">Scrie-ne pe WhatsApp</a> sau <a href="tel:+40740267706">sună la 0740 267 706</a></p>
+    <ul class="vk-trust"><li>Apel de 20 de minute</li><li>Demo gratuit, fără avans</li><li>Ofertă pe e-mail</li></ul>
+    <p class="vk-alt">Preferi telefonul? <a href="tel:+40740267706">Sună la 0740 267 706</a></p>
   </div>
 </section>
 

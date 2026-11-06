@@ -31,7 +31,7 @@
     try { sessionStorage.setItem('ohi-tel', v); } catch (x) {}
     var t = document.getElementById('qfTel');
     if (t && document.getElementById('oferta')) { t.value = v; document.getElementById('oferta').scrollIntoView({ block: 'center', behavior: 'smooth' });
-      setTimeout(function () { var b = document.getElementById('qfBiz'); if (b) b.focus({ preventScroll: true }); }, 500); }
+      setTimeout(function () { var b = document.getElementById('qfName') || document.getElementById('qfBiz'); if (b) b.focus({ preventScroll: true }); }, 500); }
     else location.href = '/#oferta';
   }, true);
   function note(f) {
@@ -44,4 +44,20 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', scan); else scan();
   new MutationObserver(function (m) { m.forEach(function (r) { [].forEach.call(r.addedNodes, function (n) { if (n.nodeType === 1) { if (n.tagName === 'FORM') note(n); else if (n.querySelectorAll) [].forEach.call(n.querySelectorAll('form'), note); } }); }); })
     .observe(document.documentElement, { childList: true, subtree: true });
+})();
+
+
+/* where this visit came from (first page of the visit only; kept in this tab, sent only with a form) */
+(function () {
+  try {
+    if (sessionStorage.getItem('ohi-src')) return;
+    var q = new URLSearchParams(location.search), r = '';
+    try { r = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, '') : ''; } catch (e) {}
+    if (r === location.hostname.replace(/^www\./, '')) r = '';
+    var src = (q.get('utm_source') || '').toLowerCase().slice(0, 40) || (q.get('gclid') ? 'google-ads' : q.get('fbclid') ? 'facebook' :
+      /google\./.test(r) ? 'google' : /facebook|fb\.|messenger/.test(r) ? 'facebook' : /instagram/.test(r) ? 'instagram' :
+      /tiktok/.test(r) ? 'tiktok' : /bing|duckduckgo|yahoo/.test(r) ? 'cautare' : r ? r.slice(0, 40) : 'direct');
+    var camp = [q.get('utm_medium'), q.get('utm_campaign')].filter(Boolean).join(' / ').slice(0, 80);
+    sessionStorage.setItem('ohi-src', JSON.stringify({ src: src, campaign: camp, landing: location.pathname.slice(0, 120) }));
+  } catch (e) {}
 })();

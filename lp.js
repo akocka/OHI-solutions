@@ -131,22 +131,23 @@
   activate(0);
 })();
 
-// demo form at the end of the page: sends straight to the OHI leads scenario in Make
+// call-booking form at the end of the page.
+// LEADS_URL = the Google Sheet web app (tools/leads/Code.gs). Until it's set, requests go to the Make "OHI leads" scenario.
 (function () {
   var f = document.getElementById('qf');
   if (!f) return;
+  var LEADS_URL = '';
   var HOOK = 'https://hook.eu2.make.com/pjyknr3dp5tb8b5stpbit53yqluizecy';
   var LIVE = /(^|\.)vercel\.app$|\.ro$/.test(location.hostname);
-  var biz = document.getElementById('qfBiz'), tel = document.getElementById('qfTel'), plan = document.getElementById('qfPlan'),
-      hp = document.getElementById('qfHp'), msg = document.getElementById('qfMsg'), btn = f.querySelector('button[type=submit]'), T0 = Date.now(), sent = false;
+  var $ = function (id) { return document.getElementById(id); };
+  var s1 = $('qfS1'), s2 = $('qfS2'), name = $('qfName'), biz = $('qfBiz'), email = $('qfEmail'), tel = $('qfTel'), plan = $('qfPlan'),
+      hp = $('qfHp'), msg = $('qfMsg'), T0 = Date.now(), sent = false;
   function say(t, bad) { msg.textContent = t; msg.classList.toggle('bad', !!bad); }
-  // a package button anywhere on the page picks the plan for this form
   document.querySelectorAll('[data-plan]').forEach(function (a) {
-    a.addEventListener('click', function () { plan.value = a.dataset.plan; say('Pachet ales: ' + a.dataset.plan + '. Îl poți schimba oricând.'); setTimeout(function () { biz.focus({ preventScroll: true }); }, 600); });
+    a.addEventListener('click', function () { plan.value = a.dataset.plan; say('Pachet ales: ' + a.dataset.plan + '. Îl discutăm la apel.'); setTimeout(function () { name.focus({ preventScroll: true }); }, 600); });
   });
-  // footer "Sună-mă" and old links can pass ?tel= / ?biz=
   var qp = new URLSearchParams(location.search);
-  if (qp.get('pachet')) { plan.value = qp.get('pachet').replace(/[^A-Za-z]/g, '').slice(0, 20); say('Pachet ales: ' + plan.value + '. Îl poți schimba oricând.'); }
+  if (qp.get('pachet')) { plan.value = qp.get('pachet').replace(/[^A-Za-z]/g, '').slice(0, 20); say('Pachet ales: ' + plan.value + '. Îl discutăm la apel.'); }
   var extra = (qp.get('extra') || '').slice(0, 300);
   if (extra) say('Funcții alese: ' + extra + '.');
   var st = ''; try { st = sessionStorage.getItem('ohi-tel') || ''; sessionStorage.removeItem('ohi-tel'); } catch (x) {}
@@ -154,29 +155,50 @@
   if (qp.get('biz')) biz.value = qp.get('biz').slice(0, 80);
   // never leave personal data in the address bar / history
   if (qp.get('tel') || qp.get('biz')) { qp.delete('tel'); qp.delete('biz'); try { history.replaceState(null, '', location.pathname + (qp.toString() ? '?' + qp : '') + location.hash); } catch (x) {} }
-  if (st || tel.value || biz.value || qp.get('pachet')) setTimeout(function () { document.getElementById('oferta').scrollIntoView({ block: 'center' }); (biz.value ? tel : biz).focus({ preventScroll: true }); }, 400);
+  if (st || tel.value || biz.value || qp.get('pachet')) setTimeout(function () { $('oferta').scrollIntoView({ block: 'center' }); name.focus({ preventScroll: true }); }, 400);
+
+  function bad(el, t) { el.setAttribute('aria-invalid', 'true'); el.focus(); say(t, 1); return false; }
+  function step1ok() {
+    [name, biz, email, tel].forEach(function (el) { el.removeAttribute('aria-invalid'); });
+    if (!name.value.trim()) return bad(name, 'Scrie-ți numele.');
+    if (!biz.value.trim()) return bad(biz, 'Scrie numele afacerii.');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) return bad(email, 'Lasă o adresă de e-mail validă: acolo îți trimitem oferta.');
+    if (tel.value.replace(/\D/g, '').length < 9) return bad(tel, 'Lasă un număr de telefon complet, ca să te putem suna.');
+    say(''); return true;
+  }
+  $('qfNext').addEventListener('click', function () { if (!step1ok()) return; s1.hidden = true; s2.hidden = false; $('qfSvc').focus({ preventScroll: true }); });
+  $('qfBack').addEventListener('click', function () { s2.hidden = true; s1.hidden = false; name.focus({ preventScroll: true }); });
+  f.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !s1.hidden && e.target.tagName === 'INPUT') { e.preventDefault(); $('qfNext').click(); } });
+
+  function source() { var o = {}; try { o = JSON.parse(sessionStorage.getItem('ohi-src') || '{}'); } catch (x) {} return o; }
   f.addEventListener('submit', async function (e) {
     e.preventDefault();
     if (sent) { say('Am primit deja cererea ta. Te sunăm în curând.'); return; }
-    var b = biz.value.trim(), p = tel.value.trim();
-    if (!b) { say('Scrie numele afacerii.', 1); biz.focus(); return; }
-    if (p.replace(/\D/g, '').length < 9) { say('Lasă un număr de telefon complet, ca să te putem suna.', 1); tel.focus(); return; }
-    var done = function () { sent = true; f.classList.add('ok'); btn.disabled = true; btn.firstChild.textContent = 'Cerere trimisă '; say('Mulțumim! Te sunăm în curând cu demo-ul pentru ' + b + '.'); };
+    if (!s1.hidden) { $('qfNext').click(); return; }
+    if (!step1ok()) { s2.hidden = true; s1.hidden = false; return; }
+    var v = function (id) { return ($(id).value || '').trim(); };
+    var btn = f.querySelector('button[type=submit]');
+    var done = function () { sent = true; f.classList.add('ok'); btn.disabled = true; btn.firstChild.textContent = 'Cerere trimisă ';
+      say('Mulțumim, ' + v('qfName').split(' ')[0] + '! Ți-am trimis un e-mail de confirmare și te sunăm pentru apel.');
+      if (window.ohiTrack) ohiTrack('lead_submit', { service: v('qfSvc') }); };
     if (hp.value || Date.now() - T0 < 3000) { done(); return; }
-    var id = 'OHI-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
-    var data = new URLSearchParams({ created_at: new Date().toISOString(), source: 'site-acasa-oferta', request_id: id, name: '', business: b, phone: p, email: '',
-      business_type: '', website: '', need: 'Site nou · demo gratuit' + (plan.value ? ' · pachet: ' + plan.value : ''),
-      message: 'Cerere din formularul de pe prima pagină.\nPachet: ' + (plan.value || 'nealeas') + (extra ? '\nFuncții extra: ' + extra : ''), page: location.pathname });
+    var src = source(), id = 'OHI-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
+    var d = { created_at: new Date().toISOString(), request_id: id, name: v('qfName'), business: v('qfBiz'), email: v('qfEmail'), phone: v('qfTel'),
+      service: v('qfSvc') + (plan.value ? ' · pachet: ' + plan.value : '') + (extra ? ' · extra: ' + extra : ''), budget: v('qfBud'), deadline: v('qfWhen'),
+      call_time: v('qfCall'), about: v('qfAbout'), website: v('qfWeb'), src: src.src || 'direct', campaign: src.campaign || '', landing: src.landing || '', page: location.pathname };
+    // the Make scenario maps the older field names, so the details also go into "message"
+    var data = new URLSearchParams(LEADS_URL ? d : { created_at: d.created_at, source: 'site-apel', request_id: id, name: d.name, business: d.business, phone: d.phone, email: d.email,
+      business_type: '', website: d.website, need: 'Apel + demo · ' + d.service, page: d.page,
+      message: 'Despre afacere: ' + (d.about || '-') + '\nBuget: ' + (d.budget || '-') + '\nTermen: ' + (d.deadline || '-') + '\nApel: ' + d.call_time + '\nSursă: ' + d.src + (d.campaign ? ' / ' + d.campaign : '') + '\nIntrare: ' + (d.landing || '-') });
     if (!LIVE) { console.log('[OHI] preview, not sent:', Object.fromEntries(data)); done(); return; }
     btn.disabled = true; var old = btn.firstChild.textContent; btn.firstChild.textContent = 'Se trimite… ';
     try {
       var ctrl = new AbortController(), tm = setTimeout(function () { ctrl.abort(); }, 15000);
-      var res = await fetch(HOOK, { method: 'POST', body: data, signal: ctrl.signal }); clearTimeout(tm);
-      if (!res.ok) throw new Error('http ' + res.status);
-      done();
+      if (LEADS_URL) await fetch(LEADS_URL, { method: 'POST', body: data, mode: 'no-cors', signal: ctrl.signal }); // Apps Script answers cross-origin; no-cors still delivers
+      else { var res = await fetch(HOOK, { method: 'POST', body: data, signal: ctrl.signal }); if (!res.ok) throw new Error('http ' + res.status); }
+      clearTimeout(tm); done();
     } catch (x) {
-      // network/CORS errors usually still deliver to Make; only a timeout or HTTP error is a real failure
-      if (x.name === 'TypeError') { done(); return; }
+      if (x.name === 'TypeError') { done(); return; } // network/CORS quirks usually still deliver
       btn.disabled = false; btn.firstChild.textContent = old;
       say('Nu s-a putut trimite. Încearcă din nou sau sună la 0740 267 706.', 1);
     }
