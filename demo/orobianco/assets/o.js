@@ -86,7 +86,7 @@
   hooks.push(renderAll);
 
   /* ---------- nav, dock, sheet ---------- */
-  var nav = $('.nav'), dock = $('.dock'), mdock = $('.mdock'), hero = $('.hero');
+  var nav = $('.nav'), dock = $('.dock'), mdock = $('.mdock'), hero = $('.hero,.shero');
   $$('.links a').forEach(function (a) { if (a.dataset.p === document.body.dataset.page) a.classList.add('cur'); });
   function chrome() {
     var y = scrollY, vh = innerHeight, past = hero ? y > hero.offsetHeight - 90 : y > 40;
