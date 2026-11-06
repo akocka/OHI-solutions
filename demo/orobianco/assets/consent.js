@@ -32,20 +32,20 @@
 
   /* ---- texts ---- */
   var T = {
-    ro: { t: 'Respectăm confidențialitatea ta', p: 'Folosim doar ce e necesar pentru ca site-ul să funcționeze. Cu acordul tău, putem folosi și statistici anonime de vizitare și putem încărca hărți Google.',
-      acc: 'Accept toate', rej: 'Refuz', set: 'Personalizează', save: 'Salvează alegerea', pol: 'Politica de confidențialitate', ck: 'Politica de cookie-uri',
+    ro: { t: 'Respectăm confidențialitatea ta', p: 'Folosim cookie-uri opționale (statistici anonime, hărți Google) doar cu acordul tău. Nu le vindem și nu facem reclame.', pm: 'Harta de pe această pagină e găzduită de Google, care poate seta cookie-uri. O încărcăm doar cu acordul tău.',
+      acc: 'Acceptă', rej: 'Refuză', set: 'Setări', save: 'Salvează alegerea', pol: 'Politica de confidențialitate', ck: 'Politica de cookie-uri',
       n: 'Necesare', nd: 'Funcționarea site-ului, limba aleasă și alegerea ta privind cookie-urile. Mereu active.', on: 'Mereu active',
       a: 'Statistici', ad: 'Ne arată anonim ce pagini sunt vizitate, ca să îmbunătățim site-ul (Google Analytics). Fără publicitate.',
       x: 'Conținut extern', xd: 'Hărți Google Maps încorporate. Google poate seta propriile cookie-uri.',
       ml: 'Harta este găzduită de Google. Se încarcă doar cu acordul tău.', mb: 'Încarcă harta', mo: 'Deschide în Google Maps', h: 'Setări cookie' },
-    hu: { t: 'Tiszteletben tartjuk az adataidat', p: 'Csak azt használjuk, ami a weboldal működéséhez szükséges. Hozzájárulásoddal névtelen látogatási statisztikát is használhatunk és Google-térképeket tölthetünk be.',
-      acc: 'Összes elfogadása', rej: 'Elutasítom', set: 'Beállítások', save: 'Mentés', pol: 'Adatvédelmi tájékoztató', ck: 'Süti szabályzat',
+    hu: { t: 'Tiszteletben tartjuk az adataidat', p: 'Opcionális sütiket (névtelen statisztika, Google-térkép) csak a hozzájárulásoddal használunk. Nem adjuk el és nem reklámozunk.', pm: 'Az oldalon lévő térképet a Google szolgáltatja, amely sütiket helyezhet el. Csak a hozzájárulásoddal töltjük be.',
+      acc: 'Elfogadom', rej: 'Elutasítom', set: 'Beállítások', save: 'Mentés', pol: 'Adatvédelmi tájékoztató', ck: 'Süti szabályzat',
       n: 'Szükséges', nd: 'A weboldal működése, a választott nyelv és a sütikkel kapcsolatos döntésed. Mindig aktív.', on: 'Mindig aktív',
       a: 'Statisztika', ad: 'Névtelenül mutatja, mely oldalakat látogatják, hogy javíthassuk az oldalt (Google Analytics). Nincs reklám.',
       x: 'Külső tartalom', xd: 'Beágyazott Google Maps térképek. A Google saját sütiket helyezhet el.',
       ml: 'A térképet a Google szolgáltatja. Csak a hozzájárulásoddal töltődik be.', mb: 'Térkép betöltése', mo: 'Megnyitás a Google Mapsben', h: 'Süti beállítások' },
-    en: { t: 'We respect your privacy', p: 'We only use what is needed for the site to work. With your consent we may also use anonymous visit statistics and load Google maps.',
-      acc: 'Accept all', rej: 'Reject', set: 'Customise', save: 'Save choice', pol: 'Privacy policy', ck: 'Cookie policy',
+    en: { t: 'We respect your privacy', p: 'We use optional cookies (anonymous statistics, Google maps) only with your consent. We never sell data or run ads.', pm: 'The map on this page is hosted by Google, which may set cookies. We load it only with your consent.',
+      acc: 'Accept', rej: 'Reject', set: 'Settings', save: 'Save choice', pol: 'Privacy policy', ck: 'Cookie policy',
       n: 'Necessary', nd: 'Site functionality, your chosen language and your cookie choice. Always on.', on: 'Always on',
       a: 'Statistics', ad: 'Shows us anonymously which pages are visited so we can improve the site (Google Analytics). No advertising.',
       x: 'External content', xd: 'Embedded Google Maps. Google may set its own cookies.',
@@ -92,16 +92,15 @@
   }
 
   /* ---- UI ---- */
-  var css = '.cm{position:fixed;z-index:2147483000;left:16px;bottom:16px;width:min(440px,calc(100vw - 32px));font:400 14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#1d1d1f;background:#fff;border-radius:18px;box-shadow:0 24px 70px -20px rgba(0,0,0,.45),0 0 0 1px rgba(0,0,0,.06);padding:20px;transform:translateY(20px);opacity:0;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .45s}' +
-    '.cm.in{transform:none;opacity:1}.cm h2{font-family:inherit;font-size:16px;font-weight:600;line-height:1.3;margin:0 0 6px;letter-spacing:0}.cm p{margin:0 0 14px;color:#4a4a4f}.cm a{color:inherit;text-decoration:underline;text-underline-offset:2px}' +
-    '.cm .b{display:grid;grid-template-columns:1fr 1fr;gap:8px}.cm button{font-family:inherit;font-size:14px;font-weight:600;line-height:1;border-radius:12px;padding:13px 10px;cursor:pointer;border:1.5px solid #1d1d1f;background:#fff;color:#1d1d1f;min-height:44px}' +
-    '.cm button.p{background:' + ACC + ';border-color:' + ACC + ';color:#fff}.cm button.l{grid-column:1/-1;border:0;background:none;padding:8px;text-decoration:underline;text-underline-offset:3px;font-weight:500;min-height:0}' +
-    '.cm .lk{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:12px;color:#6e6e73}' +
-    '.cm .cat{border-top:1px solid #ececef;padding:12px 0;display:grid;grid-template-columns:1fr auto;gap:2px 14px;align-items:center}.cm .cat b{font-weight:600}.cm .cat small{grid-column:1;color:#6e6e73;font-size:12.5px;line-height:1.45}.cm .cat em{font-style:normal;font-size:12px;color:#6e6e73;grid-row:1;grid-column:2}' +
-    '.cm .sw{grid-row:1/span 2;grid-column:2;position:relative;width:44px;height:26px}.cm .sw input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;z-index:1}.cm .sw i{position:absolute;inset:0;border-radius:99px;background:#d2d2d7;transition:.25s}.cm .sw i::after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:.25s}' +
-    '.cm .sw input:checked+i{background:' + ACC + '}.cm .sw input:checked+i::after{transform:translateX(18px)}.cm .sw input:focus-visible+i{outline:2px solid ' + ACC + ';outline-offset:2px}' +
-    '.cm button:focus-visible,.cm a:focus-visible{outline:2px solid ' + ACC + ';outline-offset:2px}' +
-    '@media(max-width:560px){.cm{left:8px;right:8px;bottom:8px;width:auto;padding:18px;border-radius:16px;max-height:85vh;overflow:auto}}' +
+  var css = '.cm{position:fixed;z-index:2147483000;left:16px;bottom:16px;width:min(400px,calc(100vw - 32px));font:400 14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#f2f2f2;background:rgba(20,20,22,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.1);border-radius:20px;box-shadow:0 24px 60px -20px rgba(0,0,0,.6);padding:18px 18px 16px;transform:translateY(16px);opacity:0;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .45s}' +
+    '.cm.in{transform:none;opacity:1}.cm h2{font-family:inherit;font-size:15px;font-weight:600;line-height:1.3;margin:0 0 8px;color:#fff}.cm p{margin:0 0 14px;color:rgba(242,242,242,.85)}.cm a{color:inherit;text-decoration:underline;text-underline-offset:2px}' +
+    '.cm .b{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.cm button{font-family:inherit;font-size:14px;font-weight:600;line-height:1;border-radius:99px;padding:12px 22px;cursor:pointer;border:1px solid rgba(255,255,255,.28);background:transparent;color:#fff;min-height:42px}' +
+    '.cm button.p{background:' + ACC + ';border-color:' + ACC + ';color:' + (A('accent-ink') || '#fff') + '}.cm button.l{border:0;background:none;padding:8px 4px;min-height:0;font-weight:500;font-size:13px;color:rgba(242,242,242,.7);text-decoration:underline;text-underline-offset:3px;margin-left:auto}' +
+    '.cm .lk{display:none}.cm.det .lk{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-size:12px;color:rgba(242,242,242,.6)}' +
+    '.cm .cat{border-top:1px solid rgba(255,255,255,.1);padding:11px 0;display:grid;grid-template-columns:1fr auto;gap:2px 14px;align-items:center}.cm .cat b{font-weight:600}.cm .cat small{grid-column:1;color:rgba(242,242,242,.6);font-size:12.5px;line-height:1.45}.cm .cat em{font-style:normal;font-size:12px;color:rgba(242,242,242,.6);grid-row:1;grid-column:2}' +
+    '.cm .sw{grid-row:1/span 2;grid-column:2;position:relative;width:44px;height:26px}.cm .sw input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;z-index:1}.cm .sw i{position:absolute;inset:0;border-radius:99px;background:rgba(255,255,255,.2);transition:.25s}.cm .sw i::after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.25s}' +
+    '.cm .sw input:checked+i{background:' + ACC + '}.cm .sw input:checked+i::after{transform:translateX(18px)}.cm .sw input:focus-visible+i,.cm button:focus-visible,.cm a:focus-visible{outline:2px solid #fff;outline-offset:2px}' +
+    '@media(max-width:560px){.cm{left:10px;right:10px;bottom:10px;width:auto;max-height:85vh;overflow:auto}}' +
     '.cm-ph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;background:#f2efe9;color:#333;padding:20px;z-index:1;font:400 14px/1.5 system-ui,sans-serif}.cm-ph>div{max-width:320px;display:grid;justify-items:center;gap:10px}.cm-ph p{margin:0}' +
     '.cm-ph button{font-family:inherit;font-size:14px;font-weight:600;line-height:1;border:0;border-radius:99px;padding:12px 20px;background:' + ACC + ';color:#fff;cursor:pointer}.cm-ph a{font-size:13px;color:inherit}';
   var box;
@@ -115,18 +114,18 @@
     var a = !!(state && state.a), x = !!(state && state.x);
     var links = '<div class="lk"><a href="' + POLICY + '">' + t('pol') + '</a>' + (COOKIES !== POLICY ? '<a href="' + COOKIES + '">' + t('ck') + '</a>' : '') + '</div>';
     if (!detail) {
-      box.innerHTML = '<h2 id="cm-t">' + t('t') + '</h2><p>' + t('p') + '</p><div class="b"><button type="button" data-k="rej">' + t('rej') + '</button><button type="button" class="p" data-k="acc">' + t('acc') + '</button><button type="button" class="l" data-k="set">' + t('set') + '</button></div>' + links;
+      box.innerHTML = '<p id="cm-t">' + t(GA ? 'p' : 'pm') + ' <a href="' + POLICY + '">' + t('pol') + '</a></p><div class="b"><button type="button" class="p" data-k="acc">' + t('acc') + '</button><button type="button" data-k="rej">' + t('rej') + '</button><button type="button" class="l" data-k="set">' + t('set') + '</button></div>';
     } else {
       var cat = function (id, on, lock) { return '<div class="cat"><b>' + t(id) + '</b>' + (lock ? '<em>' + t('on') + '</em>' : '<span class="sw"><input type="checkbox" id="cm-' + id + '"' + (on ? ' checked' : '') + ' aria-label="' + t(id) + '"><i></i></span>') + '<small>' + t(id + 'd') + '</small></div>'; };
-      box.innerHTML = '<h2 id="cm-t">' + t('h') + '</h2>' + cat('n', 1, 1) + cat('a', a) + cat('x', x) +
-        '<div class="b" style="margin-top:6px"><button type="button" data-k="rej">' + t('rej') + '</button><button type="button" class="p" data-k="acc">' + t('acc') + '</button><button type="button" class="l" data-k="save">' + t('save') + '</button></div>' + links;
+      box.classList.add('det'); box.innerHTML = '<h2 id="cm-t">' + t('h') + '</h2>' + cat('n', 1, 1) + (GA ? cat('a', a) : '') + cat('x', x) +
+        '<div class="b" style="margin-top:6px"><button type="button" class="p" data-k="acc">' + t('acc') + '</button><button type="button" data-k="rej">' + t('rej') + '</button><button type="button" class="l" data-k="save">' + t('save') + '</button></div>' + links;
     }
     document.body.appendChild(box);
     requestAnimationFrame(function () { requestAnimationFrame(function () { box.classList.add('in'); }); });
     box.addEventListener('click', function (e) { var k = e.target.getAttribute && e.target.getAttribute('data-k'); if (!k) return;
       if (k === 'acc') save({ a: true, x: true }); else if (k === 'rej') save({ a: false, x: false });
       else if (k === 'set') show(true);
-      else if (k === 'save') save({ a: box.querySelector('#cm-a').checked, x: box.querySelector('#cm-x').checked }); });
+      else if (k === 'save') save({ a: !!(box.querySelector('#cm-a') || {}).checked, x: box.querySelector('#cm-x').checked }); });
     box.addEventListener('keydown', function (e) { if (e.key === 'Escape' && state) hide(); });
     var f = box.querySelector('button.p'); if (f && detail) f.focus({ preventScroll: true });
   }
@@ -149,7 +148,8 @@
   /* ---- boot ---- */
   window.ohiConsent = { open: function () { show(true); }, get: function () { return state; } };
   var framed = false; try { framed = window.self !== window.top; } catch (e) { framed = true; }
-  function boot() { apply(); if (!state && !framed) show(false); // inside a preview frame: stay denied, no banner
+  function needed() { return !!(GA || A('force') || document.querySelector('iframe[data-consent-src]')); }
+  function boot() { apply(); if (!state && !framed && needed()) show(false); // inside a preview frame: stay denied, no banner
     new MutationObserver(function () { if (box) show(box.querySelector('.cat') ? true : false); embeds(!!(state && state.x)); })
       .observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] }); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
