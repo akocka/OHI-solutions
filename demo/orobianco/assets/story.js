@@ -11,7 +11,7 @@
   /* ---------- intro + hero entrance ---------- */
   var seen = false; try { seen = !!sessionStorage.getItem('oro-cin'); } catch (e) {}
   var hero = gsap.timeline({ paused: true })
-    .to('.shero .media img', { scale: 1.04, duration: 2.6, ease: 'expo.out' }, 0)
+    .fromTo('.shero .media', { scale: 1.15 }, { scale: 1, duration: 2.6, ease: 'expo.out' }, 0)
     .to('.shero .k i', { scaleX: 1, duration: .9, ease: 'power3.out' }, .2)
     .to('.shero h1 .w>span', { y: 0, duration: 1.2, ease: 'expo.out', stagger: .07 }, .25)
     .to('.shero .fade', { opacity: 1, y: 0, duration: 1, ease: 'power3.out', stagger: .12 }, .7);
@@ -32,14 +32,24 @@
       .add(function () { hero.play(); }, 2.85);
   } else { if (cin) cin.remove(); hero.play(); }
 
+  /* hero slideshow */
+  (function () { var sl = $$('.shero .sl'), bars = $$('.slnav .bars i'), cur = $('.slnav .cur'), cap = $('.slnav .cap'), i = 0;
+    var CAP = { ro: ['Salonul', 'Barul', 'Orobianco Garden', 'Servit la masă', 'Intrarea'], hu: ['A terem', 'A bár', 'Orobianco Garden', 'Az asztalnál', 'A bejárat'], en: ['The dining room', 'The bar', 'Orobianco Garden', 'At the table', 'The entrance'] };
+    function lang() { return window.oroLang ? oroLang.get() : 'ro'; }
+    function show(n) { sl.forEach(function (s, k) { s.classList.toggle('on', k === n); });
+      bars.forEach(function (b, k) { b.classList.remove('run'); b.classList.toggle('done', k < n); }); void bars[n].offsetWidth; bars[n].classList.add('run');
+      cur.textContent = '0' + (n + 1); cap.style.opacity = 0; setTimeout(function () { cap.textContent = CAP[lang()][n]; cap.style.opacity = 1; }, 300); }
+    show(0); setInterval(function () { if (document.hidden || scrollY > innerHeight) return; i = (i + 1) % sl.length; show(i); }, 5500);
+    window.oroLang && oroLang.on(function () { cap.textContent = CAP[lang()][i]; }); })();
+
   /* hero: mouse depth + scroll-out */
-  var img = $('.shero .media img');
+  var img = $('.shero .media');
   if (matchMedia('(pointer:fine)').matches) addEventListener('pointermove', function (e) {
     if (scrollY > innerHeight) return; var x = e.clientX / innerWidth - .5, y = e.clientY / innerHeight - .5;
-    gsap.to(img, { xPercent: -x * 2.4, yPercent: -y * 2, duration: 1.4, ease: 'power3.out', overwrite: 'auto' });
-    gsap.to('.shero h1', { x: x * 14, y: y * 8, duration: 1.4, ease: 'power3.out', overwrite: 'auto' });
+    gsap.to(img, { x: -x * 24, y: -y * 16, duration: 1.4, ease: 'power3.out', overwrite: 'auto' });
+    gsap.to('.shero .mega', { x: x * 18, y: y * 10, duration: 1.4, ease: 'power3.out', overwrite: 'auto' });
   });
-  gsap.to('.shero .in', { yPercent: -18, opacity: 0, ease: 'none', scrollTrigger: { trigger: '.shero', start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.to('.shero .center', { yPercent: -14, opacity: 0, ease: 'none', scrollTrigger: { trigger: '.shero', start: 'top top', end: 'bottom top', scrub: true } });
   gsap.to('.shero .media', { yPercent: 22, ease: 'none', scrollTrigger: { trigger: '.shero', start: 'top top', end: 'bottom top', scrub: true } });
 
   var mm = gsap.matchMedia();

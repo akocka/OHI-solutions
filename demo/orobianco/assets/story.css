@@ -170,3 +170,45 @@ html,body{overflow-x:clip}
 @media (min-width:761px){.clock{left:auto;right:var(--pad);align-items:flex-end;text-align:right}.clock .bar{align-self:flex-end}}
 .c2::after{width:min(54vw,720px);background:linear-gradient(90deg,#17110d 66%,rgba(23,17,13,0))}
 @media (max-width:760px){.c2::after{width:auto}}
+
+/* ===== hero v2: film-like slideshow, big gold name, ticker ===== */
+.shero .sl{position:absolute;inset:0;margin:0;opacity:0;transition:opacity 1.6s ease}
+.shero .sl.on{opacity:1}
+.shero .sl img{position:absolute;inset:-4%;width:108%;height:108%;object-fit:cover;transform:scale(1.12);transition:transform 8s linear}
+.shero .sl.on img{transform:scale(1.0)}
+.shero .media img{will-change:transform}
+.shero .shade{background:radial-gradient(70% 60% at 50% 48%,rgba(13,10,8,.25),rgba(13,10,8,.72) 100%),linear-gradient(180deg,rgba(13,10,8,.55) 0%,rgba(13,10,8,.1) 30%,rgba(13,10,8,.25) 60%,rgba(13,10,8,.9) 100%)}
+.shero .center{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:90px var(--pad) 130px}
+.shero .k{justify-content:center}
+.shero .k i{width:38px}
+.shero .mega{margin:18px 0 0;font:400 clamp(64px,13.5vw,250px)/.85 var(--disp);letter-spacing:.02em;text-transform:none}
+.shero .mega .w{padding-bottom:.06em}
+.shero .mega .w>span{background:linear-gradient(100deg,#c39a5c 0%,#f1dcae 35%,#fff4da 50%,#d9b779 65%,#a8834a 100%);background-size:250% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;color:transparent;animation:foil 6s ease-in-out 2.6s infinite alternate}
+@keyframes foil{to{background-position:0 0}}
+.shero .tagl{margin-top:18px;font:italic 400 clamp(22px,2.4vw,36px)/1.2 var(--disp);color:#efe5d5}
+.shero .tagl em{color:var(--gold2)}
+.shero .center .bk{margin:30px auto 0}
+.shero .center .meta{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px}
+.slnav{position:absolute;z-index:3;left:var(--pad);bottom:76px;display:flex;align-items:center;gap:14px;font:500 13px var(--ui);color:#e6dccb}
+.slnav b{font-weight:600;letter-spacing:.06em}
+.slnav .bars{display:flex;gap:6px}
+.slnav .bars i{position:relative;width:34px;height:2px;background:rgba(255,255,255,.25);overflow:hidden}
+.slnav .bars i::after{content:"";position:absolute;inset:0;background:var(--gold2);transform:scaleX(0);transform-origin:left}
+.slnav .bars i.done::after{transform:scaleX(1)}
+.slnav .bars i.run::after{animation:bar 5.5s linear forwards}
+@keyframes bar{to{transform:scaleX(1)}}
+.slnav .cap{margin-left:10px;font:italic 400 20px var(--disp);color:#fff;transition:opacity .4s}
+.tick{position:absolute;z-index:3;left:0;right:0;bottom:0;overflow:hidden;padding:14px 0;border-top:1px solid rgba(255,255,255,.14);background:rgba(13,10,8,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.tick .t{display:flex;gap:38px;width:max-content;animation:mq 40s linear infinite;font:italic 400 22px/1 var(--disp);color:#e9dfcf}
+.tick .t span::after{content:"✦";margin-left:38px;font-size:.55em;color:var(--gold);vertical-align:middle}
+.shero .in,.shero .cue{display:none}
+@media (max-width:760px){
+ .shero .center{padding:80px 20px 150px}
+ .shero .mega{font-size:clamp(58px,18vw,96px)}
+ .shero .tagl{font-size:22px}
+ .shero .center .bk{display:none}
+ .slnav{left:20px;bottom:64px}.slnav .bars i{width:20px}.slnav .cap{font-size:17px}
+ .tick .t{font-size:18px}
+}
+.hmb{display:none}
+@media (max-width:760px){.hmb{display:inline-flex;margin-top:26px}.shero .mega{font-size:clamp(64px,21vw,104px)}}
