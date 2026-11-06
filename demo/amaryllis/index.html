@@ -487,14 +487,30 @@ function targetAt(p){const K=innerWidth<760?KM:KD;if(!isFinite(p))p=0;p=clamp(p,
   return {x:lerp(A.x,B.x,t),y:lerp(A.y,B.y,t)+dive,s:lerp(A.s,B.s,t)*(1+Math.sin(t*Math.PI)*.12),yaw:la(A.yaw,B.yaw,t),pitch:lerp(A.pitch,B.pitch,t),roll:lerp(A.roll,B.roll,t),moving:Math.sin(t*Math.PI)}}
 function scrollP(){let acc=0;const y=scrollY+innerHeight*.0001;for(let i=0;i<sections.length;i++){const s=sections[i],top=s.offsetTop,h=s.offsetHeight;if(y<top+h||i===sections.length-1)return i+clamp((y-top)/h,0,1);}return 0}
 
-/* intro path: arrive from the left, loop around the name, then hand over to the hero spot */
-function introAt(t){ /* t seconds since intro start */
-  const T1=.9,T2=2.9;
-  if(t<T1){const k=ease(t/T1);return {x:lerp(-1.25,-.62,k),y:lerp(-.55,.05,k),s:innerWidth<760?.6:.85,yaw:lerp(-10,10,k),pitch:-10,roll:14,moving:1}}
-  const k=clamp((t-T1)/(T2-T1),0,1),a=Math.PI+k*Math.PI*2.05,rx=innerWidth<760?.62:.42,ry=innerWidth<760?.2:.26;
-  return {x:Math.cos(a)*rx,y:Math.sin(a)*ry*-1+.02,s:innerWidth<760?.6:lerp(.85,1,k),yaw:(-Math.atan2(Math.cos(a)*ry,-Math.sin(a)*rx)*180/Math.PI)+180,pitch:4,roll:-18,moving:1}}
+/* intro path: the bee drifts in loosely, wanders around the name with little darts and pauses */
+function wander(t){ /* smooth pseudo-random path, normalised viewport units */
+  const m=innerWidth<760;const ax=m?.55:.42,ay=m?.2:.24;
+  return {x:Math.sin(t*1.13+.4)*ax*.78+Math.sin(t*2.71+1.3)*ax*.22+Math.sin(t*5.3)*.025,
+          y:Math.sin(t*1.67+2.1)*ay*.7+Math.sin(t*3.9+.7)*ay*.3+Math.sin(t*7.1)*.02}}
+function introAt(t){
+  const T1=1.0,T2=3.0,m=innerWidth<760;
+  if(t<T1){const k=ease(t/T1),w=wander(T1);return {x:lerp(-1.3,w.x,k),y:lerp(-.6,w.y,k)+Math.sin(k*Math.PI)*.18,s:m?.6:.85,yaw:-5,pitch:-8,roll:12,moving:1}}
+  const w=wander(t),w2=wander(t+.05),dx=w2.x-w.x,dy=w2.y-w.y;
+  return {x:w.x,y:w.y,s:m?.6:lerp(.85,.95,clamp((t-T1)/2,0,1)),yaw:-Math.atan2(0,1)+(dx>=0?-8:188)-dy*120,pitch:dy*-260,roll:dx*-320,moving:1}}
 
-const cur=targetAt(0),mouse={x:0,y:0,sx:0,sy:0};let lastX=cur.x,lastY=cur.y;
+/* landing spots: in each section the bee settles on the main button */
+const LAND=[['.hero__side .join i',.5],['#ogo',.82],['.s2 .join i',.5],['.s3 .quote',.9],['.s4 .gl',.92],['.foot .cta .join i',.5]];
+const halfHf=()=>Math.tan(THREE.MathUtils.degToRad(15))*camera.position.z;
+function landTarget(){
+  if(!introDone)return null;const p=scrollP(),i=Math.floor(p),f=p-i;let si=-1;
+  if(f<.08)si=i;else if(f>.96)si=i+1;if(si<0||si>=LAND.length)return null;
+  const el=document.querySelector(LAND[si][0]);if(!el)return null;const r=el.getBoundingClientRect();
+  if(r.width===0||r.top<innerHeight*.1||r.bottom>innerHeight*.97)return null;
+  const m=innerWidth<760,s=m?.27:.34,hh=halfHf(),scaleW=hh*2*.26*s;
+  const cx=r.left+r.width*LAND[si][1];
+  return {x:cx/innerWidth*2-1,y:-(r.top/innerHeight*2-1)+(.3*scaleW)/hh,s,yaw:14,pitch:0,roll:0,moving:0,land:true}}
+
+const cur=targetAt(0),mouse={x:0,y:0,sx:0,sy:0};let lastX=cur.x,lastY=cur.y,landed=0;
 addEventListener('pointermove',e=>{mouse.x=e.clientX/innerWidth*2-1;mouse.y=-(e.clientY/innerHeight*2-1)},{passive:true});
 const clock=new THREE.Clock();
 canvas.classList.add('ready');
@@ -503,22 +519,31 @@ function frame(){
   const dt=Math.min(clock.getDelta(),.05),t=clock.elapsedTime;
   const it=(performance.now()-introStart)/1000;
   let tg,kp=3.2,ky=2.6;
-  if(!introDone&&it<2.9){tg=introAt(it);kp=14;ky=12}
-  else{if(!introDone&&it>=2.9)finishIntro();tg=targetAt(scrollP())}
-  if(it>2.9&&it<4.2){kp=2.2;ky=2}
+  if(!introDone&&it<3.0){tg=introAt(it);kp=10;ky=8}
+  else{if(!introDone&&it>=3.0)finishIntro();tg=landTarget()||targetAt(scrollP())}
+  if(it>3.0&&it<4.4){kp=2.2;ky=2}
+  const goingLand=!!tg.land,dist=Math.hypot(cur.x-tg.x,cur.y-tg.y);
+  if(goingLand){kp=dist<.06?7:3.4;ky=4}
+  landed=lerp(landed,goingLand&&dist<.02?1:0,1-Math.exp(-dt*(goingLand?5:9)));
   const k=1-Math.exp(-dt*kp),kyy=1-Math.exp(-dt*ky);
   cur.x=lerp(cur.x,tg.x,k);cur.y=lerp(cur.y,tg.y,k);cur.s=lerp(cur.s,tg.s,k);cur.pitch=lerp(cur.pitch,tg.pitch,k);cur.roll=lerp(cur.roll,tg.roll,k);cur.yaw=la(cur.yaw,tg.yaw,kyy);cur.moving=tg.moving;
   const vx=(cur.x-lastX)/Math.max(dt,1e-3),vy=(cur.y-lastY)/Math.max(dt,1e-3);lastX=cur.x;lastY=cur.y;
   const km=1-Math.exp(-dt*2);mouse.sx=lerp(mouse.sx,mouse.x,km);mouse.sy=lerp(mouse.sy,mouse.y,km);
-  const halfH=Math.tan(THREE.MathUtils.degToRad(15))*camera.position.z,halfW=halfH*camera.aspect;
-  const hover=RM?0:Math.sin(t*2.1)*.045+Math.sin(t*3.7)*.015;
-  flight.position.set(cur.x*halfW+Math.sin(t*1.3)*.04+mouse.sx*.12,cur.y*halfH+hover*halfH*.5+mouse.sy*.08,Math.sin(t*.9)*.15);
+  const halfH=halfHf(),halfW=halfH*camera.aspect,free=1-landed;
+  /* looser hover: layered wobble, damped once it lands */
+  const hover=RM?0:(Math.sin(t*2.1)*.045+Math.sin(t*3.7)*.018+Math.sin(t*6.3)*.008)*free;
+  const sway=(Math.sin(t*1.3)*.05+Math.sin(t*2.9+.8)*.025)*free;
+  flight.position.set(cur.x*halfW+sway+mouse.sx*.12*free,cur.y*halfH+hover*halfH*.5+mouse.sy*.08*free,Math.sin(t*.9)*.15*free);
   flight.scale.setScalar(halfH*2*.26*cur.s);
-  flight.rotation.set(0,-THREE.MathUtils.degToRad(cur.yaw+mouse.sx*12),0);
-  const pitch=cur.pitch-clamp(vy*22,-28,28)+Math.sin(t*2.1+1)*3+mouse.sy*6,roll=cur.roll+clamp(vx*18,-30,30)+Math.sin(t*1.7)*4;
+  const look=landed>.5?Math.sin(t*.7)*10+Math.sin(t*1.9)*4:0; /* resting bee turns its head now and then */
+  flight.rotation.set(0,-THREE.MathUtils.degToRad(cur.yaw+look+mouse.sx*12*free),0);
+  const pitch=cur.pitch-clamp(vy*22,-28,28)*free+(Math.sin(t*2.1+1)*3+mouse.sy*6)*free,roll=cur.roll+clamp(vx*18,-30,30)*free+Math.sin(t*1.7)*4*free;
   beeRoot.rotation.set(THREE.MathUtils.degToRad(roll),0,THREE.MathUtils.degToRad(pitch),'YZX');
+  /* wings: fast beat in flight; at rest they settle back with a slow flutter */
   const freq=Math.PI*2*(RM?3:(17+cur.moving*5));
-  wings.forEach(w=>{const a=Math.sin(t*freq+w.phase);w.g.rotation.x=-.25+a*.95;w.g.rotation.y=a*.18});
+  wings.forEach(w=>{const fl=Math.sin(t*freq+w.phase),rest=Math.sin(t*Math.PI*2*1.1+w.phase)*.12;
+    w.g.rotation.x=lerp(-.25+fl*.95,-.85+rest,landed);w.g.rotation.y=lerp(fl*.18,.25,landed);
+    w.g.children[0].material.opacity=lerp(w.g.userData.op||(w.g.userData.op=w.g.children[0].material.opacity),w.g.userData.op>.5?.85:0,landed)});
   renderer.render(scene,camera);requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
