@@ -163,3 +163,17 @@ section{position:relative}
  .bk{max-width:100%}
 }
 .fcta .mbtn{display:none}@media (max-width:760px){.fcta .mbtn{display:inline-flex}}
+
+/* booking widget: readable popups, phone layout */
+.bk .pop,.bk .pop button,.bk .f b{color:var(--ink)}
+.bk .pop button.on{color:var(--paper)}
+.sc .open i{width:8px!important;height:8px!important;flex:none;background:#58c47a!important;border-radius:50%;box-shadow:0 0 0 4px rgba(88,196,122,.18)!important}
+.sc .open.closed i{background:#c9a46a!important}
+@media (max-width:760px){
+ .rcard .bk{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:6px}
+ .rcard .bk .f{position:static;min-width:0;padding:10px 14px}
+ .rcard .bk .f[data-f=p]{grid-column:1/-1}
+ .rcard .bk .f+.f::before{display:none}
+ .rcard .bk .pop{left:0;right:0;width:auto;min-width:0;top:calc(100% + 8px);bottom:auto;max-height:52vh}
+ .rcard .bk .pop .grid{grid-template-columns:repeat(4,1fr)}
+}
