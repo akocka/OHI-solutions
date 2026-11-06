@@ -1,69 +1,83 @@
 <!doctype html>
-<html lang="ro"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__ok)document.documentElement.classList.remove("js")},3500)</script>
+<html lang="ro" data-base="/demo/orobianco/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#120e0b">
 <title>Meniu · Orobianco (demo)</title>
-<meta name="description" content="Meniul restaurantului Orobianco: antipasti, paste, risotto, feluri principale, deserturi, vinuri. Demo.">
+<meta name="description" content="Meniul Orobianco: antipasti, paste, risotto, grătar, pizza, deserturi, vinuri și cocktailuri.">
+<link rel="icon" href="/demo/orobianco/img/orobianco-emblem.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Caveat:wght@500&display=swap" rel="stylesheet">
-<link rel="preload" href="/demo/orobianco/assets/lora.woff" as="font" type="font/woff" crossorigin>
-<link rel="stylesheet" href="/demo/orobianco/assets/site.css">
-</head><body>
-<div id="ointro" aria-hidden="true">
-  <div class="oi-photo"><img src="/demo/orobianco/img/salon.webp" alt="" fetchpriority="high" decoding="async"></div>
-  <i class="oi-veil"></i>
-  <canvas class="oi-dust"></canvas>
-  <i class="oi-cur t"></i><i class="oi-cur b"></i>
-  <i class="oi-line"><b></b></i><i class="oi-flare"></i>
-  <svg class="oi-frame" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M40 40H960V560H40Z"/><path pathLength="1" style="--k:1" d="M58 58H942V542H58Z"/></svg><i class="oi-cn c0"><svg viewBox="0 0 60 60"><path pathLength="1" d="M4 40V4H40M4 4L22 22M14 4c0 6 4 10 10 10"/></svg></i><i class="oi-cn c1"><svg viewBox="0 0 60 60"><path pathLength="1" d="M4 40V4H40M4 4L22 22M14 4c0 6 4 10 10 10"/></svg></i><i class="oi-cn c2"><svg viewBox="0 0 60 60"><path pathLength="1" d="M4 40V4H40M4 4L22 22M14 4c0 6 4 10 10 10"/></svg></i><i class="oi-cn c3"><svg viewBox="0 0 60 60"><path pathLength="1" d="M4 40V4H40M4 4L22 22M14 4c0 6 4 10 10 10"/></svg></i>
-  <div class="oi-txt">
-    <div class="oi-word"><span style="--i:0">O</span><span style="--i:1">R</span><span style="--i:2">O</span><span style="--i:3">B</span><span style="--i:4">I</span><span style="--i:5">A</span><span style="--i:6">N</span><span style="--i:7">C</span><span style="--i:8">O</span></div>
-    <span class="oi-sub">Ristorante · Târgu Mureș</span>
-  </div>
-  <i class="oi-leak"></i>
-  <button type="button" class="oi-skipb" id="oiskip"><span data-t="oiSkip">Sari peste</span> →</button>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/demo/orobianco/assets/o.css">
+<style>
+.mtabs{position:sticky;top:68px;z-index:20;background:rgba(250,246,239,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-block:1px solid var(--line)}
+.mtabs .wrap{display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px 0}.mtabs .wrap::-webkit-scrollbar{display:none}
+.mtabs a{flex:none;padding:9px 16px;border-radius:999px;font-size:14px;font-weight:600;color:#5d5246;transition:background .25s,color .25s}
+.mtabs a.on{background:var(--ink);color:var(--paper)}
+.veg{margin-left:auto;flex:none;display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;font-size:13.5px;font-weight:600;box-shadow:inset 0 0 0 1px var(--line)}
+.veg.on{background:var(--olive);color:#fff;box-shadow:none}
+.note{margin-top:22px;padding:14px 18px;border-radius:16px;background:#f1e7d6;font-size:14px;color:#6d5f4c;max-width:620px}
+.mgrid{display:grid;grid-template-columns:1fr 340px;gap:clamp(30px,5vw,70px);padding:50px 0 120px}
+.mcat{padding-top:30px;scroll-margin-top:140px}
+.mcat h2{display:flex;align-items:baseline;gap:16px;font:400 clamp(40px,4vw,60px)/1 var(--disp);padding-bottom:14px;border-bottom:1px solid var(--line)}
+.mcat h2 small{font:600 12px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:var(--terra)}
+.mi{display:grid;grid-template-columns:1fr auto;gap:6px 20px;padding:20px 0;border-bottom:1px dashed var(--line)}
+.mi h3{font:500 21px/1.25 var(--ui);font-size:18px}.mi h3 .v{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:999px;background:rgba(107,116,64,.14);color:var(--olive);font-size:11px;font-weight:700;vertical-align:2px}
+.mi p{grid-column:1;font-size:14.5px;color:var(--mute)}
+.mi .pr{grid-row:1/3;grid-column:2;align-self:center;font:400 22px var(--disp);color:var(--terra)}
+.mi.star h3::after{content:"★ recomandat";margin-left:8px;font-size:11px;font-weight:700;color:var(--gold);vertical-align:2px}
+.aside{position:sticky;top:150px;align-self:start;padding:28px;border-radius:24px;background:var(--night);color:var(--cream)}
+.aside h3{font:400 34px/1 var(--disp)}.aside p{margin:10px 0 20px;font-size:14.5px;color:#cbbfae}
+.aside .btn{width:100%}
+.aside .ph{margin-top:20px;border-radius:16px;overflow:hidden;aspect-ratio:4/3}.aside .ph img{width:100%;height:100%;object-fit:cover}
+@media (max-width:900px){.mgrid{grid-template-columns:1fr}.aside{position:static}.mtabs{top:60px}}
+</style>
+</head>
+<body data-page="meniu">
+<div class="intro" aria-hidden="true"><div class="m"><img src="/demo/orobianco/img/orobianco-emblem.webp" alt=""><b><span>Orobianco</span></b><small data-t="iSub">Ristorante · Târgu Mureș</small></div></div>
+<header class="nav">
+  <a class="brand" href="/demo/orobianco/" aria-label="Orobianco, acasă"><img src="/demo/orobianco/img/orobianco-emblem.webp" alt="" width="240" height="230"><span>Orobianco</span></a>
+  <nav class="links"><a href="/demo/orobianco/" data-p="home" data-t="nHome">Acasă</a><a href="/demo/orobianco/meniu" data-p="meniu" data-t="nMenu">Meniu</a><a href="/demo/orobianco/evenimente" data-p="evenimente" data-t="nEv">Evenimente</a><a href="/demo/orobianco/despre" data-p="despre" data-t="nAbout">Despre noi</a><a href="/demo/orobianco/blog" data-p="blog" data-t="nBlog">Jurnal</a></nav>
+  <div class="lang" role="group" aria-label="Limba"><button data-l="ro" class="on">RO</button><button data-l="hu">HU</button><button data-l="en">EN</button></div>
+  <a class="btn gold" href="/demo/orobianco/rezervare" data-t="nRes">Rezervă o masă</a>
+  <button class="burger" type="button" aria-label="Meniu"><i></i></button>
+</header>
+<nav class="sheet" aria-label="Meniu"><a href="/demo/orobianco/" data-t="nHome">Acasă</a><a href="/demo/orobianco/meniu" data-t="nMenu">Meniu</a><a href="/demo/orobianco/evenimente" data-t="nEv">Evenimente</a><a href="/demo/orobianco/despre" data-t="nAbout">Despre noi</a><a href="/demo/orobianco/blog" data-t="nBlog">Jurnal</a><a href="/demo/orobianco/rezervare" data-t="nRes">Rezervă o masă</a><div class="lang"><button data-l="ro" class="on">RO</button><button data-l="hu">HU</button><button data-l="en">EN</button></div></nav>
+<main>
+<section class="phero"><div class="wrap"><p class="eyebrow" data-t="mEy">Meniu</p><h1 data-t="mH">Meniul <em class="it">Orobianco</em></h1><p class="lead" data-t="mP">Bucătărie italiană, de la antipasti la dolci, plus vinuri și cocktailuri.</p><p class="note" data-t="mNote"><b>Meniu exemplu.</b> Preparatele și prețurile reale le completăm împreună cu restaurantul.</p></div></section>
+<div class="mtabs"><div class="wrap" id="mtabs"></div></div>
+<div class="wrap mgrid"><div id="mlist"></div>
+  <aside class="aside"><h3 data-t="aH">Ți-a făcut poftă?</h3><p data-t="aP">Rezervă o masă în 30 de secunde. Îți confirmăm rapid.</p><div class="bk" data-book style="display:none"></div><a class="btn gold" href="/demo/orobianco/rezervare"><span data-t="nRes">Rezervă o masă</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><div class="ph"><img src="/demo/orobianco/img/platou.webp" alt="" loading="lazy"></div></aside>
 </div>
-<script>(function(){window.__introT0=performance.now();var h=document.documentElement;if(matchMedia('(prefers-reduced-motion: reduce)').matches||/nointro/.test(location.search))return;h.classList.add('oi-on','oi-inner');var t0=performance.now();
-function done(skip){if(h.classList.contains('oi-done'))return;var t=(performance.now()-t0)/1000;if(skip===true&&t<3.3){h.style.setProperty('--g0',(t+.1).toFixed(2)+'s');h.style.setProperty('--h0',(t+.95).toFixed(2)+'s')}h.classList.add('oi-play','oi-done')}
-document.getElementById('oiskip').addEventListener('click',function(){done(true)});setTimeout(function(){h.classList.add('oi-play')},3300);setTimeout(done,4300);
-var c=document.querySelector('#ointro .oi-dust'),x=c&&c.getContext('2d');if(!x)return;var W,H,D=Math.min(2,devicePixelRatio||1),P=[];function rs(){W=c.width=innerWidth*D;H=c.height=innerHeight*D}rs();addEventListener('resize',rs);
-for(var i=0;i<(innerWidth<700?38:70);i++)P.push({x:Math.random(),y:Math.random(),r:(Math.random()*1.8+.5)*D,v:Math.random()*.00045+.00015,s:Math.random()*6.28,f:Math.random()*.6+.4});
-(function f(){if(h.classList.contains('oi-done'))return;x.clearRect(0,0,W,H);var t=performance.now()/1000;for(var i=0;i<P.length;i++){var p=P[i];p.y-=p.v;if(p.y<-.05)p.y=1.05;var px=(p.x+Math.sin(t*.6+p.s)*.012)*W,py=p.y*H,a=p.f*(.55+.45*Math.sin(t*2.2+p.s*3));var g=x.createRadialGradient(px,py,0,px,py,p.r*4);g.addColorStop(0,'rgba(255,236,190,'+a+')');g.addColorStop(.35,'rgba(230,200,140,'+a*.45+')');g.addColorStop(1,'rgba(201,169,110,0)');x.fillStyle=g;x.beginPath();x.arc(px,py,p.r*4,0,6.283);x.fill()}requestAnimationFrame(f)})()})()</script>
-<div class="bgfx" aria-hidden="true"><i></i><i></i><i></i></div><span class="leaf" style="left:8vw;--t:24s;--d:0s;--dx:6vw;--rot:320deg"><svg viewBox="0 0 30 14"><path d="M1 7C8-1 22-1 29 7C22 15 8 15 1 7Z" fill="#8a9a52"/><path d="M3 7H27" stroke="#5f6d33" stroke-width=".8"/></svg></span><span class="leaf" style="left:27vw;--t:30s;--d:6s;--dx:-5vw;--rot:-280deg"><svg viewBox="0 0 30 14"><path d="M1 7C8-1 22-1 29 7C22 15 8 15 1 7Z" fill="#8a9a52"/><path d="M3 7H27" stroke="#5f6d33" stroke-width=".8"/></svg></span><span class="leaf" style="left:48vw;--t:27s;--d:12s;--dx:7vw;--rot:360deg"><svg viewBox="0 0 30 14"><path d="M1 7C8-1 22-1 29 7C22 15 8 15 1 7Z" fill="#8a9a52"/><path d="M3 7H27" stroke="#5f6d33" stroke-width=".8"/></svg></span><span class="leaf" style="left:66vw;--t:33s;--d:3s;--dx:-6vw;--rot:300deg"><svg viewBox="0 0 30 14"><path d="M1 7C8-1 22-1 29 7C22 15 8 15 1 7Z" fill="#8a9a52"/><path d="M3 7H27" stroke="#5f6d33" stroke-width=".8"/></svg></span><span class="leaf" style="left:84vw;--t:29s;--d:9s;--dx:5vw;--rot:-340deg"><svg viewBox="0 0 30 14"><path d="M1 7C8-1 22-1 29 7C22 15 8 15 1 7Z" fill="#8a9a52"/><path d="M3 7H27" stroke="#5f6d33" stroke-width=".8"/></svg></span><span class="leaf" style="left:38vw;--t:35s;--d:17s;--dx:-4vw;--rot:260deg"><svg viewBox="0 0 30 14"><path d="M1 7C8-1 22-1 29 7C22 15 8 15 1 7Z" fill="#8a9a52"/><path d="M3 7H27" stroke="#5f6d33" stroke-width=".8"/></svg></span>
-<div class="glow" id="glow"></div>
-<header class="hdr" id="hdr"><div class="wrap">
-  <a class="brand logo" href="/demo/orobianco" aria-label="Orobianco Ristorante, acasă"><img class="lg-em" src="/demo/orobianco/img/orobianco-emblem.webp" alt="" width="240" height="230"><img class="lg-wm" src="/demo/orobianco/img/orobianco-wordmark.webp" alt="Orobianco" width="480" height="138"></a>
-  <nav class="nav"><a href="/demo/orobianco" data-t="nHome">Acasă</a><a href="/demo/orobianco/meniu" data-t="nMenu" class="cur">Meniu</a><a href="/demo/orobianco/evenimente" data-t="nEv">Evenimente</a><a href="/demo/orobianco/despre" data-t="nAbout">Despre noi</a><a href="/demo/orobianco/blog" data-t="nBlog">Blog</a></nav>
-  <div class="lang" id="lang"><button class="lcur" id="lcur" type="button" aria-label="Limba / Nyelv / Language" aria-expanded="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.5 4 5.7 4 9s-1.4 6.5-4 9c-2.6-2.5-4-5.7-4-9s1.4-6.5 4-9z"/></svg><span id="lcode">RO</span></button><div class="lpop" role="menu"><button class="on" data-l="ro" role="menuitem"><b>RO</b>Română</button><button data-l="hu" role="menuitem"><b>HU</b>Magyar</button><button data-l="en" role="menuitem"><b>EN</b>English</button></div></div>
-  <a class="btn p" href="/demo/orobianco/rezervare" data-mag><span data-t="cRes">Rezervă o masă</span></a>
-  <button class="burger" id="burger" aria-label="Meniu"><i></i></button>
-</div></header>
-<nav class="mnavp"><a href="/demo/orobianco" data-t="nHome">Acasă</a><a href="/demo/orobianco/meniu" data-t="nMenu">Meniu</a><a href="/demo/orobianco/evenimente" data-t="nEv">Evenimente</a><a href="/demo/orobianco/despre" data-t="nAbout">Despre noi</a><a href="/demo/orobianco/blog" data-t="nBlog">Blog</a><a href="/demo/orobianco/rezervare" data-t="cRes">Rezervă o masă</a><div class="mlang"><button class="on" data-l="ro">Română</button><button data-l="hu">Magyar</button><button data-l="en">English</button></div></nav>
-<section class="phero"><div class="wrap">
-  <p class="eyebrow" data-t="mE">Meniu</p>
-  <h1 data-t="mH">Meniul <em>Orobianco</em></h1>
-  <p class="sub" data-t="mP">Bucătărie italiană, de la antipasti la dolci, plus vinuri și cocktailuri.</p>
-  <div class="note"><span>✦</span><span data-t="mNote"><b>Meniu exemplu.</b> Felurile și prețurile reale le completăm împreună cu voi; le puteți schimba oricând.</span></div>
-</div></section>
-<div class="mbar"><div class="wrap"><nav id="mnav"></nav><button class="chip" id="veg" data-t="veg">Doar vegetariene</button></div></div>
-<section style="padding-top:20px"><div class="wrap"><div id="menuWrap"></div>
-  <p class="legend" data-t="leg"><span class="vtag">V</span> vegetarian · Vă rugăm să ne spuneți despre orice alergie; informațiile despre alergeni sunt disponibile la cerere.</p>
-</div></section>
-<section class="ctaband"><div class="wrap">
-  <h2 class="rv" data-t="ctaH">Rezervă o masă <em>pentru diseară</em></h2>
-  <p class="rv d1" data-t="ctaP">Cerere online în două minute, sau sună-ne direct.</p>
-  <div class="rv d2" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><a class="btn p" href="/demo/orobianco/rezervare" data-mag><span data-t="ctaB">Rezervă o masă</span><span>→</span></a><a class="btn o" href="tel:+40743373146" data-mag><span>+40 743 373 146</span></a></div>
-</div></section>
-<footer style="padding:0;border-top:1px solid var(--line)"><div class="wrap ff">
-  <div><img class="flogo" src="/demo/orobianco/img/orobianco-logo.webp" alt="Orobianco Ristorante" width="520" height="613" loading="lazy"><p style="margin-top:14px">Piața Bernády György 2<br>540072 Târgu Mureș</p></div>
-  <div><h5 data-t="fHours">Program</h5><p data-t="sOpenV">Zilnic, 12:00 – 23:00</p></div>
-  <div><h5 data-t="fLinks">Pagini</h5><a href="/demo/orobianco/meniu" data-t="nMenu">Meniu</a><a href="/demo/orobianco/evenimente" data-t="nEv">Evenimente</a><a href="/demo/orobianco/despre" data-t="nAbout">Despre noi</a><a href="/demo/orobianco/blog" data-t="nBlog">Blog</a><a href="/demo/orobianco/rezervare" data-t="cRes">Rezervă o masă</a></div>
-  <div><h5 data-t="fCont">Contact</h5><a href="tel:+40743373146">+40 743 373 146</a><a href="https://wa.me/40743373146" target="_blank" rel="noopener">WhatsApp</a></div>
-</div><div class="wrap fbot"><span>© Orobianco Ristorante</span><span class="fdemo"><span data-t="demo">Propunere de website realizată de OHI Solutions pentru Orobianco. Nu este site-ul oficial.</span></span></div></footer>
-<div class="mres" id="mres"><a class="mb" href="tel:+40743373146"><span>📞</span><b data-t="bCall">Sună</b></a><a class="mb" href="/demo/orobianco/meniu"><span>📖</span><b data-t="nMenu">Meniu</b></a><a class="btn p" href="/demo/orobianco/rezervare" style="flex:1.6;justify-content:center"><span data-t="cRes">Rezervă o masă</span></a></div>
-
-<script>window.PT={"hu": {"mE": "Étlap", "mH": "Az <em>Orobianco</em> étlapja", "mP": "Olasz konyha az előételektől a desszertekig, borokkal és koktélokkal.", "mNote": "<b>Minta étlap.</b> A valódi fogásokat és árakat együtt töltjük ki; bármikor módosíthatók.", "veg": "Csak vegetáriánus", "leg": "<span class=\"vtag\">V</span> vegetáriánus · Kérjük, jelezzétek, ha allergiátok van; az allergénekről kérésre tájékoztatunk."}, "en": {"mE": "Menu", "mH": "The <em>Orobianco</em> menu", "mP": "Italian cooking from antipasti to dolci, plus wines and cocktails.", "mNote": "<b>Sample menu.</b> We fill in the real dishes and prices together with you; editable anytime.", "veg": "Vegetarian only", "leg": "<span class=\"vtag\">V</span> vegetarian · Please tell us about any allergy; allergen information is available on request."}};</script>
-<script>try{Object.assign(PT.hu,{oiSkip:"Kihagyás"});Object.assign(PT.en,{oiSkip:"Skip"})}catch(e){}</script>
-<script src="/demo/orobianco/assets/site.js" defer></script>
-</body></html>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="fcta"><h2 data-t="fCta">Păstrăm <em class="it">o masă pentru tine.</em></h2><div class="bk" data-book></div></div>
+    <div class="fgrid">
+      <div class="fbrand"><img src="/demo/orobianco/img/orobianco-wordmark.webp" alt="Orobianco"><p data-t="fTag">Ristorante italiano în centrul Târgu Mureșului.</p><span class="open" data-open><i></i><span></span></span></div>
+      <div><h4 data-t="fAddr">Adresa</h4><p>Piața Bernády György 2<br>540072 Târgu Mureș</p><a href="https://www.google.com/maps/search/?api=1&query=Orobianco%20Ristorante%20T%C3%A2rgu%20Mure%C8%99" target="_blank" rel="noopener" data-t="fMaps">Indicații ↗</a></div>
+      <div><h4 data-t="fHours">Program</h4><p data-t="fDaily">Zilnic, 12:00 – 23:00</p></div>
+      <div><h4 data-t="fContact">Contact</h4><a href="tel:+40743373146">+40 743 373 146</a><a href="/demo/orobianco/rezervare" data-t="nRes">Rezervă o masă</a><a href="/demo/orobianco/evenimente" data-t="nEv">Evenimente</a></div>
+    </div>
+    <p class="legal" data-t="legal">Propunere de website realizată de OHI Solutions pentru Orobianco. Nu este site-ul oficial.</p>
+  </div>
+</footer>
+<div class="dock"><div class="bk" data-book></div></div>
+<div class="mdock"><a class="call" href="tel:+40743373146" aria-label="Sună"><svg viewBox="0 0 24 24"><path d="M6.6 3.5 9 3l1.6 4.2-2 1.4a10.5 10.5 0 0 0 6.8 6.8l1.4-2L21 15l-.5 2.4c-.2 1.1-1.2 1.8-2.3 1.7C10.6 18.5 5.5 13.4 4.9 5.8c-.1-1.1.6-2.1 1.7-2.3Z"/></svg></a><a class="rez" href="/demo/orobianco/rezervare"><span data-t="mRes">Rezervă o masă</span><small></small></a></div>
+<div class="dm" id="dm" role="dialog" aria-modal="true"><div><h3 data-t="dmT">Mesajul care ar ajunge la restaurant</h3><p data-t="dmP">Acesta este un demo. Pe site-ul live, butonul deschide WhatsApp cu mesajul gata scris, direct către Orobianco.</p><pre id="dmMsg"></pre><button class="btn gold" type="button" id="dmX" data-t="dmX">Am înțeles</button></div></div>
+<script>window.PAGE_T={"hu": {"fTag": "Olasz étterem Marosvásárhely központjában.", "mEy": "Étlap", "mH": "Az <em class=\"it\">Orobianco</em> étlapja", "mP": "Olasz konyha az előételektől a desszertekig, borokkal és koktélokkal.", "mNote": "<b>Minta étlap.</b> A valódi ételeket és árakat az étteremmel közösen töltjük ki.", "aH": "Megéhezett?", "aP": "Foglaljon asztalt 30 másodperc alatt. Gyorsan visszaigazoljuk."}, "en": {"fTag": "Italian restaurant in the centre of Târgu Mureș.", "mEy": "Menu", "mH": "The <em class=\"it\">Orobianco</em> menu", "mP": "Italian cooking from antipasti to dolci, plus wines and cocktails.", "mNote": "<b>Sample menu.</b> The real dishes and prices are filled in together with the restaurant.", "aH": "Feeling hungry?", "aP": "Book a table in 30 seconds. We confirm quickly."}};</script>
+<script src="/demo/orobianco/assets/o.js"></script>
+<script>
+(function(){const M=[["antipasti", {"ro": "Antipasti", "hu": "Előételek", "en": "Starters"}, [["Bruschetta al pomodoro", {"ro": "Pâine prăjită, roșii, busuioc, ulei de măsline", "hu": "Pirított kenyér, paradicsom, bazsalikom, olívaolaj", "en": "Toasted bread, tomatoes, basil, olive oil"}, "v"], ["Burrata", {"ro": "Burrata cremoasă, roșii cherry, pesto", "hu": "Krémes burrata, koktélparadicsom, pesto", "en": "Creamy burrata, cherry tomatoes, pesto"}, "v*"], ["Carpaccio di manzo", {"ro": "Vită feliată subțire, rucola, parmezan", "hu": "Vékonyra szelt marhahús, rukkola, parmezán", "en": "Thinly sliced beef, rocket, parmesan"}, ""], ["Tagliere italiano", {"ro": "Mezeluri și brânzeturi italiene", "hu": "Olasz felvágottak és sajtok", "en": "Italian cured meats and cheeses"}, ""]]], ["pasta", {"ro": "Pasta", "hu": "Tészták", "en": "Pasta"}, [["Spaghetti ai frutti di mare", {"ro": "Midii, creveți, calamar, roșii cherry", "hu": "Kagyló, garnélarák, tintahal, koktélparadicsom", "en": "Mussels, prawns, squid, cherry tomatoes"}, "*"], ["Tagliatelle al ragù", {"ro": "Sos de carne gătit încet, parmezan", "hu": "Lassan főtt húsragu, parmezán", "en": "Slow-cooked meat sauce, parmesan"}, ""], ["Ravioli ricotta e spinaci", {"ro": "Ricotta, spanac, unt cu salvie", "hu": "Ricotta, spenót, zsályás vaj", "en": "Ricotta, spinach, sage butter"}, "v"], ["Penne all'arrabbiata", {"ro": "Sos de roșii iute, usturoi, ardei", "hu": "Csípős paradicsomszósz, fokhagyma, chili", "en": "Spicy tomato sauce, garlic, chilli"}, "v"]]], ["risotto", {"ro": "Risotto", "hu": "Rizottó", "en": "Risotto"}, [["Risotto ai funghi", {"ro": "Orez carnaroli, ciuperci, parmezan", "hu": "Carnaroli rizs, gomba, parmezán", "en": "Carnaroli rice, mushrooms, parmesan"}, "v"], ["Risotto ai frutti di mare", {"ro": "Fructe de mare, vin alb, lămâie", "hu": "Tenger gyümölcsei, fehérbor, citrom", "en": "Seafood, white wine, lemon"}, ""]]], ["griglia", {"ro": "Dalla griglia", "hu": "Grillről", "en": "From the grill"}, [["Bistecca con asparagi", {"ro": "Vită la grătar, sparanghel, ierburi", "hu": "Grillezett marha, spárga, fűszernövények", "en": "Grilled beef, asparagus, herbs"}, "*"], ["Filetto di manzo", {"ro": "Medalion de vită, crostino, cimbru", "hu": "Marhaszelet, crostini, kakukkfű", "en": "Beef medallion, crostino, thyme"}, ""], ["Tagliata di manzo", {"ro": "Vită feliată, rucola, parmezan", "hu": "Szeletelt marha, rukkola, parmezán", "en": "Sliced beef, rocket, parmesan"}, ""], ["Branzino al forno", {"ro": "Lup de mare la cuptor, legume", "hu": "Sült tengeri sügér, zöldségek", "en": "Baked sea bass, vegetables"}, ""]]], ["pizza", {"ro": "Pizza", "hu": "Pizza", "en": "Pizza"}, [["Margherita", {"ro": "Sos de roșii, mozzarella, busuioc", "hu": "Paradicsomszósz, mozzarella, bazsalikom", "en": "Tomato sauce, mozzarella, basil"}, "v"], ["Diavola", {"ro": "Salam picant, mozzarella, roșii", "hu": "Csípős szalámi, mozzarella, paradicsom", "en": "Spicy salami, mozzarella, tomato"}, ""]]], ["dolci", {"ro": "Dolci", "hu": "Desszertek", "en": "Desserts"}, [["Tiramisù", {"ro": "Mascarpone, cafea, cacao", "hu": "Mascarpone, kávé, kakaó", "en": "Mascarpone, coffee, cocoa"}, "v*"], ["Panna cotta", {"ro": "Sos de fructe de pădure", "hu": "Erdei gyümölcsszósz", "en": "Forest berry sauce"}, "v"], ["Cannoli siciliani", {"ro": "Cu ricotta dulce", "hu": "Édes ricottával", "en": "With sweet ricotta"}, "v"]]], ["vini", {"ro": "Vini & cocktail", "hu": "Borok & koktélok", "en": "Wines & cocktails"}, [["Vino della casa", {"ro": "Alb, roșu sau rosé, la pahar", "hu": "Fehér, vörös vagy rozé, pohárral", "en": "White, red or rosé, by the glass"}, ""], ["Prosecco", {"ro": "La pahar sau la sticlă", "hu": "Pohárral vagy palackkal", "en": "By the glass or bottle"}, ""], ["Aperol Spritz", {"ro": "Aperol, prosecco, apă minerală, portocală", "hu": "Aperol, prosecco, szóda, narancs", "en": "Aperol, prosecco, soda, orange"}, ""], ["Negroni", {"ro": "Gin, vermut roșu, Campari", "hu": "Gin, vörös vermut, Campari", "en": "Gin, red vermouth, Campari"}, ""]]]];const tabs=document.getElementById('mtabs'),list=document.getElementById('mlist');let veg=false;
+const W={ro:{veg:'Doar vegetariene',v:'veg',pr:'— lei'},hu:{veg:'Csak vegetáriánus',v:'veg',pr:'— lej'},en:{veg:'Vegetarian only',v:'veg',pr:'— lei'}};
+function draw(){const L=oroLang.get(),w=W[L];
+ tabs.innerHTML=M.map(c=>'<a href="#'+c[0]+'">'+c[1][L]+'</a>').join('')+'<button class="veg'+(veg?' on':'')+'" type="button">🌿 '+w.veg+'</button>';
+ list.innerHTML=M.map(c=>{const it=c[2].filter(i=>!veg||i[2].includes('v'));if(!it.length)return'';return '<section class="mcat" id="'+c[0]+'"><h2>'+c[1][L]+'</h2>'+it.map(i=>'<div class="mi'+(i[2].includes('*')?' star':'')+'"><h3>'+i[0]+(i[2].includes('v')?'<span class="v">'+w.v+'</span>':'')+'</h3><p>'+i[1][L]+'</p><span class="pr">'+w.pr+'</span></div>').join('')+'</section>'}).join('');
+ tabs.querySelector('.veg').onclick=()=>{veg=!veg;draw()};spy()}
+let io;function spy(){if(io)io.disconnect();io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)tabs.querySelectorAll('a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-35% 0px -60% 0px'});list.querySelectorAll('.mcat').forEach(s=>io.observe(s))}
+draw();oroLang.on(draw);if(location.hash)setTimeout(()=>{const el=document.querySelector(location.hash);if(el)el.scrollIntoView()},200)})();
+</script>
+</body>
+</html>
