@@ -61,7 +61,24 @@ em.s{font-family:var(--fs);font-style:italic;font-weight:400;letter-spacing:-.01
 .nav ul a{display:block;padding:9px 14px;border-radius:10px;font:600 14px var(--fd);text-decoration:none;opacity:.85}
 .nav ul a:hover{opacity:1;background:rgba(255,255,255,.08)}
 .nav .btn{height:44px;padding:0 18px;font-size:14px}
-@media(max-width:860px){.nav ul{display:none}}
+.nv-r{display:flex;align-items:center;gap:8px}
+.langs{display:flex;background:rgba(255,255,255,.08);border-radius:12px;padding:3px}
+.langs button{padding:6px 9px;border-radius:9px;font:700 12.5px var(--fd);color:#BFC6C1;background:none;border:0;cursor:pointer}
+.langs button.on{background:#F3EEE5;color:#0F1814}
+.burger{display:none;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.08);place-items:center;border:0;cursor:pointer}
+.burger i{display:block;width:18px;height:2px;background:#fff;border-radius:2px;position:relative;transition:.25s}
+.burger i::before,.burger i::after{content:"";position:absolute;left:0;width:18px;height:2px;background:#fff;border-radius:2px;transition:.25s}
+.burger i::before{top:-6px}.burger i::after{top:6px}
+body.menu .burger i{background:transparent}body.menu .burger i::before{top:0;transform:rotate(45deg)}body.menu .burger i::after{top:0;transform:rotate(-45deg)}
+.mm{position:fixed;z-index:49;top:76px;left:12px;right:12px;padding:10px;border-radius:20px;background:rgba(15,24,20,.96);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:2px;opacity:0;transform:translateY(-10px);pointer-events:none;transition:.3s}
+.mm a{padding:14px 16px;border-radius:12px;font:700 17px var(--fd);color:#F3EEE5;text-decoration:none}
+.mm a:not(.btn):hover{background:rgba(255,255,255,.06)}.mm .btn{margin-top:8px;justify-content:center}
+body.menu .mm{opacity:1;transform:none;pointer-events:auto}
+.nav{background:rgba(15,24,20,.45);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+@media(max-width:1060px){.nav ul{display:none}.burger{display:grid}.nav .nv-r>.btn{display:none}}
+.ft-l{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px;font:600 13px var(--fd)}
+.ft-l a{color:#C9CEC9;text-decoration:none}.ft-l a:hover{color:#fff}
+.ft-l.sm{font-size:11.5px;margin-top:10px}.ft-l.sm a{color:#8F9A93}
 
 /* ===== 3D film (hero) ===== */
 #film{position:relative;height:960vh;background:var(--night);color:#F3EEE5}
@@ -323,7 +340,7 @@ footer img{height:34px;width:auto;margin-bottom:10px}
   .oh-sun{right:auto;left:50%;top:0;transform:translateX(-50%);width:130vw;animation:none}
   .oh-in{padding-top:calc(120px + min(calc(100vw - 28px),560px)*.68)}
   .oh-t,.oh-in>p{max-width:none}.oh-t{font-size:clamp(34px,9.6vw,52px)}
-  .oh-cta .btn{flex:1;justify-content:center}
+  .oh-cta .btn{flex:1;justify-content:center;white-space:nowrap;padding:0 14px;font-size:14px}
   .oh-chip{padding:7px 10px 7px 7px;border-radius:12px}.oh-chip i{width:28px;height:28px}.oh-chip b{font-size:12px}.oh-chip small{font-size:10.5px}
   .oh-chip.c1{left:0;top:-2%}.oh-chip.c2{right:0;bottom:-10%}
   .oh-mq{height:46px;bottom:52px}.oh-mq .tr{font-size:12px}
@@ -442,10 +459,12 @@ mark.ph{background:#FFE14D;color:#2a2100;padding:.02em .28em;border-radius:5px;-
 <div class="rib">Previzualizare · <span class="lg">cifre orientative, de confirmat</span> · OHI Solutions</div>
 
 <nav class="nav" id="nav">
-  <a class="lg" href="#top"><img src="/concept/bbb-v2/img/logo-bbb.webp" alt="Big Big Boon" width="440" height="235"></a>
-  <ul><li><a href="#produse">Produse</a></li><li><a href="#proces">Cum lucrăm</a></li><li><a href="#lucrari">Lucrări</a></li><li><a href="#pret">Prețuri</a></li></ul>
-  <a class="btn a" href="#oferta">Cere ofertă gratuită</a>
+  <a class="lg" href="/concept/bbb-v2"><img src="/concept/bbb-v2/img/logo-bbb.webp" alt="Big Big Boon" width="440" height="235"></a>
+  <ul><li><a href="#produse">Produse</a></li><li><a href="/concept/bbb-v2/preturi">Prețuri</a></li><li><a href="/concept/bbb-v2/despre">Despre noi</a></li><li><a href="/concept/bbb-v2/echipa">Echipa</a></li><li><a href="/concept/bbb-v2/blog">Blog</a></li><li><a href="/concept/bbb-v2/contact">Contact</a></li></ul>
+  <div class="nv-r"><div class="langs" role="group" aria-label="Limba"><button data-l="ro" class="on">RO</button><button data-l="hu">HU</button><button data-l="en">EN</button></div>
+  <a class="btn a" href="#oferta">Cere ofertă</a><button class="burger" aria-label="Meniu"><i></i></button></div>
 </nav>
+<div class="mm" id="mm"><a href="#produse">Produse</a><a href="/concept/bbb-v2/preturi">Prețuri</a><a href="/concept/bbb-v2/despre">Despre noi</a><a href="/concept/bbb-v2/echipa">Echipa</a><a href="/concept/bbb-v2/blog">Blog</a><a href="/concept/bbb-v2/contact">Contact</a><a class="btn a" href="#oferta">Cere ofertă gratuită</a></div>
 
 <main id="top">
 <!-- ============ HERO (original layout, new palette) ============ -->
@@ -645,8 +664,9 @@ mark.ph{background:#FFE14D;color:#2a2100;padding:.02em .28em;border-radius:5px;-
 </div></section>
 </main>
 
-<footer><div class="wrap"><div><img src="/concept/bbb-v2/img/logo-big-big-boon-360.webp" alt="Big Big Boon" width="360" height="190"><br>BIG BIG BOON 2020 SRL · Miercurea Nirajului, Mureș</div><div>Concept de redesign realizat de OHI Solutions.<br>Cifrele și textele sunt orientative, de confirmat cu Big Big Boon.</div></div></footer>
+<footer><div class="wrap"><div><img src="/concept/bbb-v2/img/logo-big-big-boon-360.webp" alt="Big Big Boon" width="360" height="190"><br>BIG BIG BOON 2020 SRL · Miercurea Nirajului, Mureș</div><div><div class="ft-l"><a href="/concept/bbb-v2/preturi">Prețuri</a><a href="/concept/bbb-v2/despre">Despre noi</a><a href="/concept/bbb-v2/echipa">Echipa</a><a href="/concept/bbb-v2/blog">Blog</a><a href="/concept/bbb-v2/contact">Contact</a></div><div class="ft-l sm"><a href="/concept/bbb-v2/confidentialitate">Confidențialitate</a><a href="/concept/bbb-v2/cookie">Cookie-uri</a><a href="/concept/bbb-v2/termeni">Termeni</a></div><br>Concept de redesign realizat de OHI Solutions.<br>Cifrele și textele sunt orientative, de confirmat cu Big Big Boon.</div></div></footer>
 
+<script src="/concept/bbb-v2/js/i18n.js"></script>
 <script src="/concept/bbb-v2/js/gsap.min.js"></script>
 <script src="/concept/bbb-v2/js/ScrollTrigger.min.js"></script>
 <script type="module" src="/concept/bbb-v2/js/build3d.js"></script>
@@ -667,12 +687,14 @@ mark.ph{background:#FFE14D;color:#2a2100;padding:.02em .28em;border-radius:5px;-
   (function () { var W = ['chioșcuri comerciale', 'căsuțe de târg', 'case modulare', 'birouri modulare', 'pergole', 'copertine', 'mobilier de grădină'],
       M = ['Case modulare', 'Birouri modulare', 'Chioșcuri comerciale', 'Căsuțe de târg', 'Structuri metalice', 'Pergole', 'Copertine', 'Mobilier de grădină', 'Producție proprie în Mureș'];
     var rot = $('#heroRot'), mq = $('#heroMarq'), i = 0; if (!rot) return;
+    var T = window.bbbT || function (x) { return x; }; W = W.map(T); M = M.map(T);
     rot.innerHTML = W.map(function (w, k) { return '<span' + (k ? '' : ' class="on"') + '>' + w + '</span>'; }).join('');
     function fit() { var mx = 0, h = rot.parentNode; rot.style.setProperty('--rf', '1em'); [].forEach.call(rot.children, function (c) { mx = Math.max(mx, c.scrollWidth); }); var w = h.clientWidth; rot.style.setProperty('--rf', mx > w ? (w / mx).toFixed(3) + 'em' : '1em'); }
     (document.fonts ? document.fonts.ready : Promise.resolve()).then(fit); addEventListener('resize', fit);
     var it = M.map(function (m) { return '<span>' + m + '</span>'; }).join(''); mq.innerHTML = it + it + it + it;
     if (RM) return; setInterval(function () { var c = rot.children[i]; c.classList.remove('on'); c.classList.add('out'); setTimeout(function () { c.classList.remove('out'); }, 500); i = (i + 1) % W.length; rot.children[i].classList.add('on'); }, 2600); })();
   $$('[data-b3f]').forEach(function (c) { c.onclick = function () { $$('[data-b3f]').forEach(function (x) { x.classList.toggle('on', x === c); }); if (window.k3setFinish) k3setFinish(c.dataset.b3f); }; });
+  $('.burger').onclick = function () { document.body.classList.toggle('menu'); }; $$('.mm a').forEach(function (a) { a.addEventListener('click', function () { document.body.classList.remove('menu'); }); });
   addEventListener('scroll', function () { $('#nav').classList.toggle('solid', scrollY > 40); }, { passive: true });
   $$('[data-fin]').forEach(function (b) { b.onclick = function () { $$('[data-fin]').forEach(function (x) { x.classList.toggle('on', x === b); }); if (window.bbbFinish) bbbFinish(b.dataset.fin); }; });
   // form demo + chips

@@ -1,0 +1,133 @@
+/* Big Big Boon preview · homepage RO / HU / EN.
+   Uses the same stored language as the live inner pages ('bbb-lang'), so the choice carries across the site. */
+(function () {
+  var D = {
+    "Previzualizare ·": ["Előnézet ·", "Preview ·"],
+    "cifre orientative, de confirmat": ["tájékoztató adatok, megerősítésre várnak", "indicative figures, to be confirmed"],
+    "Previzualizare · design nou propus de OHI Solutions": ["Előnézet · az OHI Solutions új dizájnjavaslata", "Preview · new design proposed by OHI Solutions"],
+    "Acasă": ["Kezdőlap", "Home"], "Produse": ["Termékek", "Products"], "Prețuri": ["Árak", "Pricing"], "Despre noi": ["Rólunk", "About us"],
+    "Echipa": ["Csapat", "Team"], "Blog": ["Blog", "Blog"], "Contact": ["Kapcsolat", "Contact"], "Cum lucrăm": ["Hogyan dolgozunk", "How we work"], "Lucrări": ["Munkáink", "Our work"],
+    "Cere ofertă gratuită": ["Kérjen ingyenes árajánlatot", "Get a free quote"], "Cere ofertă": ["Ajánlatot kérek", "Get a quote"],
+    "Producție proprie": ["Saját gyártás", "Our own production"], "Hala din Miercurea Nirajului": ["Nyárádszeredai csarnokunk", "Our hall in Miercurea Nirajului"],
+    "La dimensiunile tale": ["Az Ön méreteire", "Built to your size"], "Locuință, birou sau comerț": ["Lakás, iroda vagy üzlet", "Home, office or retail"],
+    "Big Big Boon · Construcții modulare · Mureș": ["Big Big Boon · Moduláris építmények · Maros megye", "Big Big Boon · Modular buildings · Mureș"],
+    "Construim": ["Építünk", "We build"], "din metal și lemn.": ["fémből és fából.", "from metal and wood."],
+    "chioșcuri comerciale": ["árusítóházakat", "retail kiosks"], "căsuțe de târg": ["vásári házakat", "market stalls"], "case modulare": ["moduláris házakat", "modular homes"],
+    "birouri modulare": ["moduláris irodákat", "modular offices"], "pergole": ["pergolákat", "pergolas"], "copertine": ["előtetőket", "carports"], "mobilier de grădină": ["kerti bútorokat", "garden furniture"],
+    "Tu alegi dimensiunile și finisajele. Noi proiectăm și construim totul în hala noastră din Miercurea Nirajului, apoi ne ocupăm de transport și montaj.": ["Ön választja ki a méreteket és a felületeket. Mi megtervezünk és megépítünk mindent nyárádszeredai csarnokunkban, majd gondoskodunk a szállításról és a szerelésről.", "You choose the size and the finishes. We design and build everything in our hall in Miercurea Nirajului, then take care of transport and installation."],
+    "Vezi produsele": ["Termékeink", "See the products"],
+    "Fără obligații · îți răspundem cu o ofertă făcută pe proiectul tău.": ["Kötelezettség nélkül · az Ön projektjére szabott ajánlattal válaszolunk.", "No obligation · we reply with a quote made for your project."],
+    "Producție proprie în Mureș": ["Saját gyártás Maros megyében", "Made in our own hall in Mureș"], "Dimensiuni la comandă": ["Méretre készül", "Built to your size"], "Mobile și demontabile": ["Mobil és szétszerelhető", "Mobile and demountable"],
+    "Case modulare": ["Moduláris házak", "Modular homes"], "Birouri modulare": ["Moduláris irodák", "Modular offices"], "Chioșcuri comerciale": ["Árusítóházak", "Retail kiosks"], "Căsuțe de târg": ["Vásári házak", "Market stalls"],
+    "Structuri metalice": ["Fémszerkezetek", "Metal structures"], "Pergole": ["Pergolák", "Pergolas"], "Copertine": ["Előtetők", "Carports"], "Mobilier de grădină": ["Kerti bútorok", "Garden furniture"],
+    "Firmă înregistrată": ["Bejegyzett cég", "Registered company"], "din 2020": ["2020 óta", "since 2020"], "CUI 43611636": ["Adószám 43611636", "Tax ID 43611636"],
+    "Ofertă în 24 de ore": ["Ajánlat 24 órán belül", "Quote within 24 hours"], "Garanție 2 ani": ["2 év garancia", "2-year warranty"], "Preț fix în contract": ["Fix ár a szerződésben", "Fixed price in the contract"],
+    "De ce Big Big Boon": ["Miért a Big Big Boon", "Why Big Big Boon"],
+    "Echipa din hala de la Miercurea Nirajului": ["A nyárádszeredai csarnok csapata", "The team at our hall in Miercurea Nirajului"],
+    "Birouri": ["Irodák", "Offices"], "Ce construim": ["Mit építünk", "What we build"], "Patru feluri de a-ți începe": ["Négy módja annak, hogy elkezdje", "Four ways to start"], "povestea.": ["a történetét.", "your story."],
+    "Toate pornesc de la aceeași idee: metal pentru rezistență, lemn pentru căldură, totul la dimensiunile tale.": ["Mindegyik ugyanabból az ötletből indul: fém a tartósságért, fa a melegségért, minden az Ön méreteire.", "They all start from the same idea: metal for strength, wood for warmth, everything built to your size."],
+    "Chioșcuri și căsuțe comerciale": ["Árusítóházak és kereskedelmi házak", "Kiosks and retail cabins"],
+    "Pentru târguri, festivaluri, street-food și terase. Se transportă, se montează, se demontează și se refolosesc.": ["Vásárokra, fesztiválokra, street foodhoz és teraszokra. Szállítható, felszerelhető, szétszerelhető és újrahasználható.", "For fairs, festivals, street food and terraces. They can be moved, installed, taken down and used again."],
+    "Târguri": ["Vásárok", "Fairs"], "Street-food": ["Street food", "Street food"], "Cafenele": ["Kávézók", "Cafés"],
+    "Case și clădiri modulare": ["Moduláris házak és épületek", "Modular homes and buildings"],
+    "Pentru locuit, birouri, turism sau comerț. Proiectare flexibilă și posibilitatea de extindere ulterioară.": ["Lakáshoz, irodához, turizmushoz vagy üzlethez. Rugalmas tervezés, később bővíthető.", "For living, offices, tourism or retail. Flexible design that can be extended later."],
+    "Locuințe": ["Lakóház", "Homes"], "Turism": ["Turizmus", "Tourism"],
+    "Birouri și spații de lucru": ["Irodák és munkaterek", "Offices and workspaces"],
+    "Module calde, luminoase, care cresc odată cu afacerea ta. Le muți dacă te muți.": ["Meleg, világos modulok, amelyek együtt nőnek a vállalkozásával. Ha költözik, viszi magával.", "Warm, bright modules that grow with your business. If you move, they move with you."],
+    "Birou": ["Iroda", "Office"], "Showroom": ["Bemutatóterem", "Showroom"], "Atelier": ["Műhely", "Workshop"],
+    "Structuri metalice și din lemn": ["Fém- és faszerkezetek", "Metal and timber structures"],
+    "Copertine, parcări acoperite, pavilioane, magazii și structuri pentru terase, făcute pe măsura ideii tale.": ["Előtetők, fedett parkolók, pavilonok, tárolók és teraszszerkezetek, az Ön elképzelése szerint.", "Carports, covered parking, pavilions, sheds and terrace structures, made to fit your idea."],
+    "Pavilioane": ["Pavilonok", "Pavilions"], "La comandă": ["Egyedi rendelés", "Made to order"],
+    "Se încarcă modelul 3D…": ["A 3D modell betöltődik…", "Loading the 3D model…"], "Construiește-ți modelul": ["Építse meg a modelljét", "Build your model"],
+    "Derulează și privește-l": ["Görgessen, és nézze meg,", "Scroll and watch"], "cum se construiește.": ["hogyan épül fel.", "how it's built."],
+    "Fundație și cadru": ["Alap és váz", "Base and frame"], "Izolație": ["Szigetelés", "Insulation"], "Pereți și placare": ["Falak és burkolat", "Walls and cladding"],
+    "Vitrină și blat": ["Kirakat és pult", "Window and counter"], "Acoperiș și grinzi": ["Tető és gerendák", "Roof and beams"], "Lumini aprinse": ["Felkapcsolt fények", "Lights on"],
+    "Totul pornește de la o bază solidă și un cadru din metal sau lemn, gândit pentru transport și montaj ușor.": ["Minden egy szilárd alappal és egy fém- vagy favázzal kezdődik, amelyet könnyű szállításra és szerelésre terveztünk.", "It all starts with a solid base and a metal or timber frame, designed for easy transport and installation."],
+    "Izolația montată între montanți aduce mai mult confort, în orice anotimp.": ["A bordák közé szerelt szigetelés minden évszakban kényelmet ad.", "Insulation fitted between the studs keeps it comfortable in every season."],
+    "Tablă neagră cu lamele din lemn sau lemn natural: aspectul îl alegi tu.": ["Fekete lemez falécekkel vagy natúr fa: a megjelenést Ön választja.", "Black metal with timber slats or natural wood: you choose the look."],
+    "Vitrină glisantă și blat de servire din lemn, la înălțimea potrivită pentru clienți.": ["Tolóablakos kirakat és fa kiszolgálópult, a vásárlóknak megfelelő magasságban.", "A sliding window and a timber serving counter at just the right height for customers."],
+    "Acoperiș în două ape, cu grinzi aparente din lemn care dau caracter construcției.": ["Nyeregtető látszó fagerendákkal, amelyek karaktert adnak az épületnek.", "A gable roof with exposed timber beams that give the building character."],
+    "Lumini calde în interior și pe fațadă. Chioșcul tău e gata de deschis.": ["Meleg fények belül és a homlokzaton. Az árusítóháza nyitásra kész.", "Warm lights inside and on the front. Your kiosk is ready to open."],
+    "Negru & lemn": ["Fekete & fa", "Black & wood"], "Lemn natural": ["Natúr fa", "Natural wood"], "Cere ofertă pentru model": ["Ajánlatot kérek erre a modellre", "Get a quote for this model"],
+    "Model 3D ilustrativ, după produsul real": ["Szemléltető 3D modell a valódi termék alapján", "Illustrative 3D model, based on the real product"],
+    "construcții livrate": ["leszállított építmény", "buildings delivered"], "săpt.": ["hét", "wks"], "de la contract la livrare, pentru un chioșc": ["a szerződéstől a szállításig, egy árusítóháznál", "from contract to delivery, for a kiosk"],
+    "producție proprie, în hala din Miercurea Nirajului": ["saját gyártás a nyárádszeredai csarnokban", "made in our own hall in Miercurea Nirajului"], "ani": ["év", "yrs"],
+    "garanție pentru structură și finisaje": ["garancia a szerkezetre és a felületekre", "warranty on structure and finishes"],
+    "Fără risc pentru tine": ["Kockázat nélkül", "No risk for you"], "Cumperi": ["Vásároljon", "Buy"], "fără griji.": ["gond nélkül.", "with peace of mind."],
+    "O construcție e o investiție mare. Așa o facem sigură, de la prima schiță până la montaj.": ["Egy építmény nagy befektetés. Így tesszük biztonságossá, az első vázlattól a szerelésig.", "A building is a big investment. Here's how we make it safe, from the first sketch to installation."],
+    "Vezi înainte să plătești.": ["Lássa, mielőtt fizet.", "See it before you pay."], "Primești gratuit o schiță sau un model 3D al proiectului tău.": ["Ingyen kap egy vázlatot vagy 3D modellt a projektjéről.", "You get a free sketch or 3D model of your project."],
+    "Preț fix, în scris.": ["Fix ár, írásban.", "Fixed price, in writing."], "Prețul și termenul de livrare sunt trecute în contract și nu se schimbă pe parcurs.": ["Az ár és a szállítási határidő a szerződésben szerepel, és menet közben nem változik.", "The price and delivery date are in the contract and don't change along the way."],
+    "Plătești în etape.": ["Szakaszosan fizet.", "Pay in stages."], "30% avans la semnare, restul la livrare.": ["30% előleg aláíráskor, a többi szállításkor.", "30% deposit when you sign, the rest on delivery."],
+    "pentru structură și finisaje.": ["a szerkezetre és a felületekre.", "on structure and finishes."], "Vino să vezi.": ["Jöjjön el és nézze meg.", "Come and see."],
+    "Te așteptăm în hala din Miercurea Nirajului, cu programare.": ["Előzetes egyeztetéssel várjuk nyárádszeredai csarnokunkban.", "Visit our hall in Miercurea Nirajului, by appointment."],
+    "De la primul telefon": ["Az első telefonhívástól", "From the first call"], "la ziua deschiderii.": ["a nyitás napjáig.", "to opening day."],
+    "Ne spui ce ai nevoie": ["Elmondja, mire van szüksége", "Tell us what you need"], "Suni, scrii sau treci pe la hală. Vorbim despre afacerea ta, loc, buget și termen.": ["Telefonál, ír vagy benéz a csarnokba. Beszélünk a vállalkozásáról, a helyszínről, a költségvetésről és a határidőről.", "Call, write or drop by the hall. We talk about your business, location, budget and timing."],
+    "Proiect și ofertă": ["Terv és ajánlat", "Design and quote"], "Stabilim dimensiunile, materialele și finisajele. Primești oferta, fără obligații.": ["Meghatározzuk a méreteket, az anyagokat és a felületeket. Kötelezettség nélkül kap ajánlatot.", "We settle the size, materials and finishes. You get the quote, with no obligation."],
+    "Producție în hala noastră": ["Gyártás a csarnokunkban", "Built in our hall"], "Cadru, izolație, placare, instalații și finisaje, sub același acoperiș.": ["Váz, szigetelés, burkolat, szerelvények és felületek, egy fedél alatt.", "Frame, insulation, cladding, wiring and finishes, all under one roof."],
+    "Transport și montaj": ["Szállítás és szerelés", "Transport and installation"], "Îl aducem și îl montăm la locul lui. Tu doar deschizi.": ["Elszállítjuk és a helyén felszereljük. Önnek csak ki kell nyitnia.", "We bring it and install it in place. You just open the doors."],
+    "Fondator": ["Alapító", "Founder"], "Salut, sunt": ["Szia, én vagyok", "Hi, I'm"], "Attila.": ["Attila.", "Attila."],
+    "Am pornit Big Big Boon din dorința de a construi lucruri care rezistă și arată bine. Fiecare chioșc și fiecare modul trece prin mâinile noastre, în hala din Miercurea Nirajului, de la cadru până la ultimul detaliu.": ["Azért indítottam a Big Big Boont, mert tartós és szép dolgokat akartam építeni. Minden árusítóház és minden modul a mi kezünkön megy át a nyárádszeredai csarnokban, a váztól az utolsó részletig.", "I started Big Big Boon because I wanted to build things that last and look good. Every kiosk and every module goes through our hands in the hall in Miercurea Nirajului, from the frame to the last detail."],
+    "Răspund personal la fiecare cerere de ofertă. Sună-mă direct:": ["Minden ajánlatkérésre személyesen válaszolok. Hívjon közvetlenül:", "I answer every quote request personally. Call me directly:"],
+    "Attila Barabási · fondator Big Big Boon": ["Barabási Attila · a Big Big Boon alapítója", "Attila Barabási · founder of Big Big Boon"],
+    "Din hala noastră": ["A csarnokunkból", "From our hall"], "Lucrări reale,": ["Valódi munkák,", "Real work,"], "nu randări.": ["nem látványtervek.", "not renders."],
+    "Fiecare fotografie de aici e făcută în hala Big Big Boon sau la locul de montaj.": ["Minden itteni fotó a Big Big Boon csarnokában vagy a szerelés helyszínén készült.", "Every photo here was taken in the Big Big Boon hall or on site."],
+    "Modul + chioșc + terasă": ["Modul + árusítóház + terasz", "Module + kiosk + terrace"], "Chioșc premium": ["Prémium árusítóház", "Premium kiosk"], "Interior din lemn": ["Fa belső tér", "Timber interior"], "Echipa, la lucru": ["A csapat munka közben", "The team at work"],
+    "Ce spun clienții": ["Amit az ügyfelek mondanak", "What clients say"], "Oameni care lucrează": ["Emberek, akik", "People who work"], "din modulele noastre.": ["a moduljainkban dolgoznak.", "from our modules."],
+    "Exemplu de recenzie": ["Példa értékelés", "Example review"],
+    "„Aveam nevoie de un birou lângă casă și nu voiam șantier în curte. Am ales dimensiunea și finisajele la telefon, iar modulul a venit montat, cu lumină și izolație. Într-o zi lucram deja din el.”": ["„Irodára volt szükségem a ház mellett, és nem akartam építkezést az udvaron. Telefonon választottam méretet és felületeket, a modul pedig szerelve érkezett, világítással és szigeteléssel. Egy nap alatt már benne dolgoztam.”", "“I needed an office next to the house and didn't want a building site in the yard. I picked the size and finishes on the phone, and the module arrived installed, with lights and insulation. A day later I was already working in it.”"],
+    "Client Big Big Boon": ["Big Big Boon ügyfél", "Big Big Boon client"], "Modul birou · Mureș": ["Irodamodul · Maros megye", "Office module · Mureș"],
+    "1 zi": ["1 nap", "1 day"], "montaj la client": ["szerelés a helyszínen", "on-site installation"], "modul cu birou": ["irodamodul", "office module"], "Mureș": ["Maros megye", "Mureș"], "livrat și montat": ["szállítva és felszerelve", "delivered and installed"],
+    "Ofertă de lansare": ["Indulási ajánlat", "Launch offer"], "Primii": ["Az első", "The first"], "5 clienți.": ["5 ügyfél.", "5 clients."],
+    "Transport gratuit pentru primele 5 comenzi, în schimbul unei recenzii și al permisiunii de a publica fotografii cu proiectul tău.": ["Ingyenes szállítás az első 5 rendeléshez, cserébe egy értékelésért és azért, hogy fotókat közölhessünk a projektjéről.", "Free transport for the first 5 orders, in exchange for a review and permission to publish photos of your project."],
+    "Locuri rămase": ["Szabad helyek", "Spots left"], "Vreau un loc": ["Kérek egy helyet", "I want a spot"],
+    "Știi de unde": ["Tudja, honnan", "Know where"], "pornești.": ["indul.", "you start."],
+    "Fiecare construcție se face la comandă, dar nu te lăsăm să ghicești. Iată de la ce preț pornește o căsuță comercială și ce schimbă prețul.": ["Minden építmény rendelésre készül, de nem hagyjuk találgatni. Íme, milyen árról indul egy kereskedelmi ház, és mi befolyásolja az árat.", "Every building is made to order, but we won't leave you guessing. Here's the starting price for a retail cabin and what changes it."],
+    "Dimensiunea": ["A méret", "Size"], "Placarea": ["A burkolat", "Cladding"], "Izolația": ["A szigetelés", "Insulation"], "Vitrina și ușile": ["Kirakat és ajtók", "Windows and doors"], "Instalația electrică": ["Elektromos szerelés", "Electrical work"], "Transportul": ["A szállítás", "Transport"],
+    "Căsuță comercială, pachet de bază": ["Kereskedelmi ház, alapcsomag", "Retail cabin, basic package"], "de la 999 €": ["999 €-tól", "from 999 €"],
+    "+ TVA · transport în funcție de distanță": ["+ ÁFA · szállítás a távolságtól függően", "+ VAT · transport depends on distance"],
+    "Structură din lemn sau metal": ["Fa- vagy fémszerkezet", "Timber or metal frame"], "Placare la alegere": ["Választható burkolat", "Cladding of your choice"], "Blat de servire": ["Kiszolgálópult", "Serving counter"],
+    "Opțional: vitrină glisantă, iluminat, izolație": ["Opcionális: tolóablak, világítás, szigetelés", "Optional: sliding window, lighting, insulation"], "Primește prețul exact": ["Kérje a pontos árat", "Get the exact price"],
+    "Întrebări frecvente": ["Gyakori kérdések", "FAQ"], "Ce ne întreabă toată lumea.": ["Amit mindenki megkérdez.", "What everyone asks us."],
+    "Cât durează până primesc chioșcul?": ["Mennyi idő alatt kapom meg az árusítóházat?", "How long until I get my kiosk?"],
+    "În jur de 4 săptămâni de la semnarea contractului, în funcție de model și de finisaje.": ["Körülbelül 4 hét a szerződés aláírásától, a modelltől és a felületektől függően.", "About 4 weeks from signing the contract, depending on the model and finishes."],
+    "Livrați și montați?": ["Szállítanak és szerelnek is?", "Do you deliver and install?"], "Da, livrăm și montăm în toată țara. Costul transportului îl primești din prima, în ofertă.": ["Igen, az egész országban szállítunk és szerelünk. A szállítás költségét már az ajánlatban megkapja.", "Yes, we deliver and install across the country. The transport cost is in the quote from the start."],
+    "Se poate folosi și iarna?": ["Télen is használható?", "Can it be used in winter?"], "Da. Modulele au izolație de 10 cm în pereți, iar pentru folosire pe tot parcursul anului recomandăm și încălzire electrică.": ["Igen. A modulok falában 10 cm szigetelés van, egész éves használathoz elektromos fűtést is javaslunk.", "Yes. The modules have 10 cm of insulation in the walls, and for year-round use we also recommend electric heating."],
+    "Cum se plătește?": ["Hogyan lehet fizetni?", "How do I pay?"], "30% avans la semnarea contractului, restul la livrare.": ["30% előleg a szerződés aláírásakor, a többi szállításkor.", "30% deposit when you sign the contract, the rest on delivery."],
+    "Am nevoie de autorizație?": ["Kell építési engedély?", "Do I need a permit?"], "Depinde de amplasament și de tipul construcției. Te ajutăm să afli ce acte îți trebuie înainte să semnezi.": ["A helyszíntől és az építmény típusától függ. Segítünk kideríteni, milyen iratok kellenek, mielőtt aláír.", "It depends on the location and the type of building. We help you find out which papers you need before you sign."],
+    "Pot veni să văd un chioșc?": ["Megnézhetek egy árusítóházat?", "Can I come and see a kiosk?"], "Da, în hala noastră din Miercurea Nirajului, cu programare.": ["Igen, nyárádszeredai csarnokunkban, előzetes egyeztetéssel.", "Yes, in our hall in Miercurea Nirajului, by appointment."],
+    "Ofertă gratuită": ["Ingyenes ajánlat", "Free quote"], "Hai să-ți construim": ["Építsük meg", "Let us build"], "locul.": ["a helyét.", "your place."],
+    "Spune-ne ce ai în minte. Îți răspundem cu o ofertă făcută pe proiectul tău, fără obligații.": ["Mondja el, mire gondol. Az Ön projektjére szabott ajánlattal válaszolunk, kötelezettség nélkül.", "Tell us what you have in mind. We'll reply with a quote made for your project, with no obligation."],
+    "TELEFON · L–V 08–16": ["TELEFON · H–P 08–16", "PHONE · MON–FRI 08–16"], "E-MAIL": ["E-MAIL", "E-MAIL"],
+    "Chioșc / căsuță comercială": ["Árusítóház / kereskedelmi ház", "Kiosk / retail cabin"], "Casă sau clădire modulară": ["Moduláris ház vagy épület", "Modular home or building"], "Structură metalică sau din lemn": ["Fém- vagy faszerkezet", "Metal or timber structure"], "Altceva": ["Valami más", "Something else"],
+    "NUME": ["NÉV", "NAME"], "TELEFON": ["TELEFON", "PHONE"], "DETALII (OPȚIONAL)": ["RÉSZLETEK (OPCIONÁLIS)", "DETAILS (OPTIONAL)"], "Ce te interesează": ["Mi érdekli", "What are you interested in"],
+    "Primește oferta gratuită": ["Kérem az ingyenes ajánlatot", "Get the free quote"], "Gratuit și fără obligații. Concept: formularul nu trimite date.": ["Ingyenes és kötelezettség nélküli. Koncepció: az űrlap nem küld adatot.", "Free, no obligation. Concept: this form doesn't send anything."],
+    "Dimensiuni, număr de bucăți, termen, locație…": ["Méretek, darabszám, határidő, helyszín…", "Size, quantity, timing, location…"],
+    "BIG BIG BOON 2020 SRL · Miercurea Nirajului, Mureș": ["BIG BIG BOON 2020 SRL · Nyárádszereda, Maros megye", "BIG BIG BOON 2020 SRL · Miercurea Nirajului, Mureș"],
+    "Concept de redesign realizat de OHI Solutions.": ["Az OHI Solutions újratervezési koncepciója.", "Redesign concept by OHI Solutions."],
+    "Cifrele și textele sunt orientative, de confirmat cu Big Big Boon.": ["Az adatok és szövegek tájékoztató jellegűek, a Big Big Boonnal egyeztetendők.", "Figures and texts are indicative, to be confirmed with Big Big Boon."],
+    "Confidențialitate": ["Adatvédelem", "Privacy"], "Cookie-uri": ["Sütik", "Cookies"], "Termeni": ["Feltételek", "Terms"], "Pagini": ["Oldalak", "Pages"], "Legal": ["Jogi", "Legal"],
+    "De ce să ai încredere": ["Miért bízhat bennünk", "Why you can trust us"], "Meniu": ["Menü", "Menu"], "Limba": ["Nyelv", "Language"],
+    "Chioșc comercial premium negru cu lemn": ["Fekete-fa prémium árusítóház", "Premium black and timber kiosk"], "Casă modulară verde cu ferestre mari": ["Zöld moduláris ház nagy ablakokkal", "Green modular home with large windows"],
+    "Interior de modul din lemn cu ferestre mari": ["Fa modul belső tere nagy ablakokkal", "Timber module interior with large windows"], "Construcție din tablă cutată verde în hala Big Big Boon": ["Zöld trapézlemez építmény a Big Big Boon csarnokában", "Green corrugated-metal building in the Big Big Boon hall"],
+    "Chioșc premium Big Big Boon": ["Big Big Boon prémium árusítóház", "Big Big Boon premium kiosk"], "Echipa Big Big Boon lucrând la un cadru modular": ["A Big Big Boon csapata egy moduláris vázon dolgozik", "The Big Big Boon team working on a modular frame"]
+  };
+  var HTML = {
+    stmt: ["Nem bádogdobozokat árulunk. Azt a <em class=\"s\">helyet</em> építjük meg, ahol a vállalkozása elkezd eladni: szilárd, szép, és bárhová vihető, ahol emberek vannak.",
+           "We don't sell metal boxes. We build the <em class=\"s\">place</em> where your business starts selling: solid, good-looking and ready to move wherever people are."]
+  };
+  var L = 'ro'; try { L = localStorage.getItem('bbb-lang') || 'ro'; } catch (e) {}
+  if (!/^(ro|hu|en)$/.test(L)) L = 'ro';
+  var k = L === 'hu' ? 0 : 1;
+  window.bbbLang = L;
+  window.bbbT = function (s) { if (L === 'ro') return s; var t = D[s.replace(/\s+/g, ' ').trim()]; return t ? t[k] : s; };
+  window.bbbSetLang = function (l) { try { localStorage.setItem('bbb-lang', l); } catch (e) {} location.reload(); };
+  document.documentElement.lang = L;
+  document.querySelectorAll('[data-l]').forEach(function (b) { b.classList.toggle('on', b.dataset.l === L); b.onclick = function () { if (b.dataset.l !== L) bbbSetLang(b.dataset.l); }; });
+  if (L === 'ro') return;
+  var st = document.getElementById('stmt'); if (st) st.innerHTML = HTML.stmt[k];
+  var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, { acceptNode: function (n) { return /^(SCRIPT|STYLE)$/.test(n.parentNode.nodeName) ? 2 : 1; } }), n, list = [];
+  while ((n = w.nextNode())) list.push(n);
+  list.forEach(function (n) { var raw = n.nodeValue, t = raw.replace(/\s+/g, ' ').trim(); if (!t || !D[t]) return; n.nodeValue = raw.replace(raw.trim(), D[t][k]); });
+  document.querySelectorAll('[placeholder],[aria-label],img[alt]').forEach(function (e) { ['placeholder', 'aria-label', 'alt'].forEach(function (a) { var v = e.getAttribute(a); if (v && D[v]) e.setAttribute(a, D[v][k]); }); });
+  document.title = L === 'hu' ? 'Big Big Boon · Moduláris építmények Maros megyéből (koncepció)' : 'Big Big Boon · Modular buildings from Mureș (concept)';
+})();
