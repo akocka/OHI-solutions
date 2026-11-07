@@ -63,7 +63,7 @@ em.s{font-family:var(--fs);font-style:italic;font-weight:400;letter-spacing:-.01
 @media(max-width:860px){.nav ul{display:none}}
 
 /* ===== 3D film (hero) ===== */
-#film{position:relative;height:720vh;background:var(--night);color:#F3EEE5}
+#film{position:relative;height:960vh;background:var(--night);color:#F3EEE5}
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
 #k3{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity 1.2s}
 .gl-ready #k3{opacity:1}
@@ -101,6 +101,10 @@ em.s{font-family:var(--fs);font-style:italic;font-weight:400;letter-spacing:-.01
 .rail li{list-style:none;display:flex;align-items:center;gap:10px;justify-content:flex-end;transition:color .3s}
 .rail li::after{content:"";width:22px;height:2px;border-radius:2px;background:currentColor;transition:width .4s var(--ease)}
 .rail li.on{color:#F3EEE5}.rail li.on::after{width:40px;background:var(--amber)}
+.cap.rng{left:0;right:0;margin:0 auto;bottom:auto;top:clamp(96px,15vh,150px);transform:translateY(24px);text-align:center;max-width:620px}
+.rchips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:18px}
+.rchips span{font:600 13px var(--fd);padding:8px 14px;border-radius:99px;background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+.cap.bs .n{display:flex;align-items:center;gap:10px}.cap.bs .n::after{content:"";width:46px;height:2px;background:var(--amber);border-radius:2px}
 .fin{position:absolute;left:50%;bottom:clamp(70px,11vh,120px);transform:translateX(-50%);text-align:center;opacity:0;width:min(560px,92vw)}
 .fin h2{font:800 clamp(32px,4.6vw,64px)/.98 var(--fd);letter-spacing:-.03em}
 .fin p{color:#C3C9C4;margin:12px 0 18px}
@@ -109,7 +113,7 @@ em.s{font-family:var(--fs);font-style:italic;font-weight:400;letter-spacing:-.01
 .sw button i{width:14px;height:14px;border-radius:50%}
 .sw button.on{background:#F3EEE5;color:var(--steel)}
 @media(max-width:860px){
-  #film{height:640vh}
+  #film{height:860vh}
   .stage::after{background:linear-gradient(0deg,rgba(10,16,13,.92) 18%,transparent 62%)}
   .hero-t{top:auto;bottom:96px;transform:none;max-width:none;right:var(--pad)}
   .hero-t h1{font-size:clamp(40px,12vw,60px);margin:14px 0 14px}
@@ -117,6 +121,7 @@ em.s{font-family:var(--fs);font-style:italic;font-weight:400;letter-spacing:-.01
   .hero-t .cta .btn{flex:1;justify-content:center}
   .cue{display:none}.rail{display:none}
   .cap,.cap.r{left:var(--pad);right:var(--pad);bottom:90px;text-align:left}
+  .cap.rng{left:var(--pad);right:var(--pad);margin:0;top:84px;transform:translateY(24px);text-align:left}.rchips{justify-content:flex-start}
   .cap h2{font-size:32px}.cap p{font-size:15px}
 }
 
@@ -286,7 +291,11 @@ footer img{height:34px;width:auto;margin-bottom:10px}
       </div>
       <div class="cue" id="cue"><i></i>Derulează</div>
 
-      <div class="cap" id="c1"><div class="n">01 · STRUCTURA</div><h2>Strat cu strat,<br>sub același acoperiș.</h2><p>Cadru, izolație, placare, acoperiș. Fiecare piesă trece prin mâinile echipei, în hala noastră.</p></div>
+      <div class="cap bs" id="b1"><div class="n">CONSTRUCȚIA · 1 / 5</div><h2>Fundația<br>și cadrul.</h2><p>Totul pornește de la o bază solidă și un cadru din metal sau lemn, gândit să fie transportat și montat ușor.</p></div>
+      <div class="cap bs r" id="b2"><div class="n">CONSTRUCȚIA · 2 / 5</div><h2>Izolația<br><em class="s">și interiorul.</em></h2><p>Vată minerală între montanți și lambriu de lemn la interior: cald iarna, plăcut vara.</p></div>
+      <div class="cap bs" id="b3"><div class="n">CONSTRUCȚIA · 3 / 5</div><h2>Pereții<br>și placarea.</h2><p>Tablă neagră cu lamele de lemn sau lemn natural. Ușă laterală, colțare și finisaje, montate în hală.</p></div>
+      <div class="cap bs r" id="b4"><div class="n">CONSTRUCȚIA · 4 / 5</div><h2>Vitrina<br><em class="s">și blatul.</em></h2><p>Vitrină glisantă cu garnituri, blat de servire din lemn pe console metalice și bandă LED dedesubt.</p></div>
+      <div class="cap bs" id="b5"><div class="n">CONSTRUCȚIA · 5 / 5</div><h2>Acoperișul<br>și grinzile.</h2><p>Acoperiș în două ape din tablă fălțuită, grinzi aparente, streașină cu spoturi și jgheaburi.</p></div>
       <div class="cap r" id="c2"><div class="n">02 · VITRINA</div><h2>Vitrină glisantă,<br>clientul te vede de departe.</h2><p>Deschidere largă, lumină caldă în interior. Vânzarea începe din prima zi.</p></div>
       <div class="cap" id="c3"><div class="n">03 · BLATUL</div><h2>Blat din lemn,<br>la înălțimea potrivită.</h2><p>Gândit pentru servire rapidă și pentru coada din fața ta.</p></div>
       <div class="cap r" id="c4"><div class="n">04 · DETALIILE</div><h2>Grinzi aparente.<br>Caracter, nu cutie.</h2><p>Acoperiș în două ape cu lemn la vedere, care se vede în toate pozele clienților tăi.</p></div>
@@ -297,13 +306,14 @@ footer img{height:34px;width:auto;margin-bottom:10px}
       <div class="pin" id="p4" style="left:52%;top:34%"><i></i><span>Grinzi din lemn</span></div>
       <div class="pin" id="p5" style="left:48%;top:42%"><i></i><span>Lămpi + lamele din lemn</span></div>
 
+      <div class="cap rng" id="c6"><div class="n">06 · GAMA</div><h2>Și nu doar <em class="s">chioșcuri.</em></h2><p>Același atelier, aceleași materiale: birouri și case modulare, căsuțe de târg din lemn natural, pergole și structuri la comandă.</p><div class="rchips"><span>Chioșcuri</span><span>Căsuțe de târg</span><span>Birouri modulare</span><span>Case modulare</span><span>Pergole</span></div></div>
       <div class="fin" id="fin">
         <div class="sw" role="group" aria-label="Finisaj"><button class="on" data-fin="black"><i style="background:linear-gradient(135deg,#1b1d20 50%,#b57a45 50%)"></i>Negru &amp; lemn</button><button data-fin="wood"><i style="background:#c08a55"></i>Lemn natural</button></div>
         <h2>Al tău, la dimensiunile tale.</h2>
         <p>Spune-ne cum îl vrei. Îți trimitem oferta gratuit.</p>
         <a class="btn a" href="#oferta">Vreau un chioșc ca ăsta<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
-      <ul class="rail" id="rail"><li>Sosirea</li><li>Structura</li><li>Vitrina</li><li>Blatul</li><li>Detaliile</li><li>Lumina</li></ul>
+      <ul class="rail" id="rail"><li>Sosirea</li><li>Construcția</li><li>Vitrina</li><li>Blatul</li><li>Detaliile</li><li>Lumina</li><li>Gama</li></ul>
     </div>
   </div>
 </section>
@@ -455,14 +465,18 @@ footer img{height:34px;width:auto;margin-bottom:10px}
 
   /* ---- film overlays, scrubbed to the same progress as the 3D ---- */
   var tl = gsap.timeline({ scrollTrigger: { trigger: '#film', start: 'top top', end: 'bottom bottom', scrub: .6,
-    onUpdate: function (s) { var p = s.progress, i = p < .12 ? 0 : p < .42 ? 1 : p < .56 ? 2 : p < .66 ? 3 : p < .76 ? 4 : 5; $$('#rail li').forEach(function (li, k) { li.classList.toggle('on', k === i); }); } } });
-  tl.to('#heroT', { opacity: 0, y: -40, duration: .06, ease: 'none' }, .07).to('#cue', { opacity: 0, duration: .03 }, .02)
-    .to('#c1', { opacity: 1, y: 0, duration: .04 }, .2).to('#c1', { opacity: 0, y: -20, duration: .04 }, .38)
-    .to('#c2', { opacity: 1, y: 0, duration: .03 }, .46).to('#p2', { opacity: 1, scale: 1, duration: .03 }, .47).to(['#c2', '#p2'], { opacity: 0, duration: .03 }, .54)
-    .to('#c3', { opacity: 1, y: 0, duration: .03 }, .57).to('#p3', { opacity: 1, scale: 1, duration: .03 }, .58).to(['#c3', '#p3'], { opacity: 0, duration: .03 }, .64)
-    .to('#c4', { opacity: 1, y: 0, duration: .03 }, .67).to('#p4', { opacity: 1, scale: 1, duration: .03 }, .68).to(['#c4', '#p4'], { opacity: 0, duration: .03 }, .74)
-    .to('#c5', { opacity: 1, y: 0, duration: .03 }, .77).to('#p5', { opacity: 1, scale: 1, duration: .03 }, .78).to(['#c5', '#p5'], { opacity: 0, duration: .03 }, .86)
-    .to('#fin', { opacity: 1, duration: .05 }, .91).to({}, { duration: .04 });
+    onUpdate: function (s) { var p = s.progress, i = p < .08 ? 0 : p < .48 ? 1 : p < .55 ? 2 : p < .61 ? 3 : p < .67 ? 4 : p < .76 ? 5 : 6; $$('#rail li').forEach(function (li, k) { li.classList.toggle('on', k === i); }); } } });
+  tl.to('#heroT', { opacity: 0, y: -40, duration: .04, ease: 'none' }, .04).to('#cue', { opacity: 0, duration: .02 }, .02);
+  // build steps follow the parts flying in (rebuild runs from .14 to .46)
+  [['#b1', .14, .2], ['#b2', .2, .265], ['#b3', .265, .335], ['#b4', .335, .385], ['#b5', .385, .46]].forEach(function (c) {
+    tl.fromTo(c[0], { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .015 }, c[1] + .004).to(c[0], { opacity: 0, y: -18, duration: .012 }, c[2] - .012);
+  });
+  tl.to('#c2', { opacity: 1, y: 0, duration: .02 }, .49).to('#p2', { opacity: 1, scale: 1, duration: .02 }, .5).to(['#c2', '#p2'], { opacity: 0, duration: .02 }, .545)
+    .to('#c3', { opacity: 1, y: 0, duration: .02 }, .555).to('#p3', { opacity: 1, scale: 1, duration: .02 }, .56).to(['#c3', '#p3'], { opacity: 0, duration: .02 }, .605)
+    .to('#c4', { opacity: 1, y: 0, duration: .02 }, .615).to('#p4', { opacity: 1, scale: 1, duration: .02 }, .62).to(['#c4', '#p4'], { opacity: 0, duration: .02 }, .665)
+    .to('#c5', { opacity: 1, y: 0, duration: .02 }, .675).to('#p5', { opacity: 1, scale: 1, duration: .02 }, .68).to(['#c5', '#p5'], { opacity: 0, duration: .02 }, .74)
+    .to('#c6', { opacity: 1, y: 0, duration: .03 }, .8).to('#c6', { opacity: 0, y: -20, duration: .02 }, .9)
+    .to('#fin', { opacity: 1, duration: .04 }, .93).to({}, { duration: .03 });
 
   /* ---- statement: words light up as you read ---- */
   var st = $('#stmt'); st.innerHTML = st.innerHTML.replace(/(<em[^>]*>[^<]*<\/em>|[^\s<]+)/g, '<span class="w">$1</span>');

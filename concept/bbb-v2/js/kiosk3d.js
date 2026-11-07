@@ -330,6 +330,52 @@ async function main() {
   const conc = (() => { const c = document.createElement('canvas'); c.width = c.height = 256; const g = c.getContext('2d'); g.fillStyle = '#7d7a74'; g.fillRect(0, 0, 256, 256); let s2 = 7; const r2 = () => (s2 = (s2 * 16807) % 2147483647) / 2147483647; for (let i = 0; i < 9000; i++) { const v = 90 + r2() * 70 | 0; g.fillStyle = `rgba(${v},${v - 3},${v - 8},${0.25 + r2() * 0.3})`; g.fillRect(r2() * 256, r2() * 256, 1 + r2() * 2, 1 + r2() * 2); } const t2 = new THREE.CanvasTexture(c); t2.wrapS = t2.wrapT = THREE.RepeatWrapping; t2.repeat.set(3, 3); t2.colorSpace = THREE.SRGBColorSpace; return t2; })();
   const pad = new THREE.Mesh(new THREE.BoxGeometry(W + 1.6, 0.08, D + 2.2), new THREE.MeshStandardMaterial({ map: conc, roughness: 0.88, color: 0xbab5ad })); pad.position.set(0, -0.04, 0.35); pad.receiveShadow = true; scene.add(pad);
 
+  /* ---------- the rest of the range, revealed at the end: modular office + natural-wood market stall ---------- */
+  const others = [];
+  const office = new THREE.Group(); scene.add(office); others.push(office);
+  {
+    const OW = 6.0, OD = 2.8, OH = 2.75, ob = 0.18, g = office;
+    const add = (m) => { m.castShadow = true; m.receiveShadow = true; g.add(m); return m; };
+    add(box(OW + 0.1, ob, OD + 0.1, M.base, 0, ob / 2, 0));
+    add(box(OW, OH, 0.06, M.seam(OW, OH), 0, ob + OH / 2, -OD / 2 + 0.03));
+    for (const sx of [-1, 1]) add(box(0.06, OH, OD, M.seam(OD, OH), sx * (OW / 2 - 0.03), ob + OH / 2, 0));
+    // front: cladding left, big glazing, wood slat panel, glass door
+    add(box(1.1, OH, 0.06, M.seam(1.1, OH), -OW / 2 + 0.55, ob + OH / 2, OD / 2 - 0.03));
+    const gw = 3.0, gx = -OW / 2 + 1.1 + gw / 2;
+    const og = new THREE.Mesh(new THREE.PlaneGeometry(gw, OH - 0.2), M.glass); og.position.set(gx, ob + OH / 2, OD / 2 - 0.02); g.add(og);
+    for (const x of [gx - gw / 2, gx, gx + gw / 2]) add(box(0.06, OH, 0.08, trimM, x, ob + OH / 2, OD / 2));
+    add(box(gw, 0.06, 0.08, trimM, gx, ob + 0.05, OD / 2)); add(box(gw, 0.06, 0.08, trimM, gx, ob + OH - 0.05, OD / 2));
+    add(box(0.9, OH, 0.08, mat('slat', 0.9, OH, { r: 0.6 }), gx + gw / 2 + 0.45, ob + OH / 2, OD / 2 - 0.02));
+    const dx = gx + gw / 2 + 0.9 + 0.5;
+    const dg = new THREE.Mesh(new THREE.PlaneGeometry(0.9, OH - 0.25), M.glass); dg.position.set(dx, ob + (OH - 0.25) / 2 + 0.05, OD / 2 - 0.02); g.add(dg);
+    add(box(0.05, OH - 0.2, 0.08, trimM, dx - 0.47, ob + OH / 2 - 0.08, OD / 2)); add(box(0.05, OH - 0.2, 0.08, trimM, dx + 0.47, ob + OH / 2 - 0.08, OD / 2));
+    add(box(OW - (dx + 0.5 + OW / 2) + 0.02, OH, 0.06, M.seam(0.3, OH), (dx + 0.5 + OW / 2) / 2 , ob + OH / 2, OD / 2 - 0.03));
+    // flat roof with timber fascia + LED soffit
+    add(box(OW + 0.7, 0.14, OD + 0.7, M.roof, 0, ob + OH + 0.07, 0.1));
+    add(box(OW + 0.72, 0.3, 0.06, M.wood(OW + 0.7, 0.3), 0, ob + OH + 0.05, OD / 2 + 0.46));
+    for (const sx of [-1, 1]) add(box(0.06, 0.3, OD + 0.72, M.wood(OD + 0.7, 0.3), sx * (OW / 2 + 0.36), ob + OH + 0.05, 0.1));
+    add(box(OW + 0.6, 0.02, 0.62, M.wood(OW, 0.6), 0, ob + OH - 0.01, OD / 2 + 0.16));
+    for (let x = -2.6; x <= 2.6; x += 0.86) { const d = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.012, 14), dl); d.position.set(x, ob + OH - 0.03, OD / 2 + 0.3); g.add(d); }
+    // inside: wood floor, desk, warm back wall that glows at night
+    g.add(box(OW - 0.15, 0.02, OD - 0.15, mat('planks', OW, OD, { r: 0.7, c: 0xa89a8a }), 0, ob + 0.01, 0));
+    const warm = new THREE.MeshStandardMaterial({ color: 0xd9b48a, emissive: 0xffc98a, emissiveIntensity: 0, roughness: 0.8 });
+    g.add(box(OW - 0.2, OH - 0.1, 0.02, warm, 0, ob + OH / 2, -OD / 2 + 0.08)); office.userData.warm = warm;
+    add(box(1.6, 0.05, 0.7, mat('pine', 1.6, 0.7, { r: 0.6 }), -0.6, ob + 0.76, -0.2)); add(box(1.5, 0.72, 0.6, plain(0x2a2d31, 0.6), -0.6, ob + 0.38, -0.2));
+    add(box(0.5, 0.9, 0.5, plain(0x3e6e57, 0.8), 1.2, ob + 0.45, -0.6));
+    const ol = new THREE.PointLight(0xffc98a, 0, 6, 1.6); ol.position.set(0, ob + OH - 0.5, 0); g.add(ol); office.userData.light = ol;
+    g.position.set(6.7, 0, -2.4); g.rotation.y = -0.5;
+  }
+  // natural-wood market stall: the same kiosk, in its wood finish
+  const woodOf = new Map(); finishable.forEach(o => { if (o.black && o.wood) woodOf.set(o.black, o.wood); });
+  const stall = kiosk.clone(true); scene.add(stall); others.push(stall);
+  stall.traverse(o => { if (o.isMesh && woodOf.has(o.material)) o.material = woodOf.get(o.material); });
+  stall.position.set(-5.4, 0, -1.6); stall.rotation.y = 0.55; stall.scale.setScalar(0.88);
+  for (const [o, x, z, w, d2] of [[office, 6.7, -2.4, 7.6, 4.4], [stall, -5.4, -1.6, 4.2, 3.6]]) {
+    const pd = new THREE.Mesh(new THREE.BoxGeometry(w, 0.08, d2), pad.material); pd.position.set(x, -0.04, z); pd.rotation.y = o.rotation.y; pd.receiveShadow = true; scene.add(pd); others.push(pd);
+  }
+  others.forEach(o => { o.userData.y0 = o.position.y; o.visible = false; });
+  
+
   const modelSize = new THREE.Box3().setFromObject(kiosk).getSize(new THREE.Vector3()).length();
   parts.forEach(p => { p.userData.k = THREE.MathUtils.clamp(0.55 / (p.userData.size / modelSize), 0.75, 1.6); });
   /* build order: 6 steps, each part flies in during its own window */
@@ -346,15 +392,18 @@ async function main() {
   // camera keyframes: [progress, camera position, look-at target]
   const KEYS = [
     [0.00, V(5.6, 3.1, 9.4), V(0, 1.55, 0)],
-    [0.12, V(4.4, 3.4, 8.6), V(0, 1.6, 0)],
-    [0.20, V(0.6, 5.2, 12.5), V(0, 1.7, 0)],   // pull up to watch it come apart
-    [0.40, V(-3.2, 3.6, 9.6), V(0, 1.6, 0)],    // rebuilt
-    [0.50, V(0.55, 1.62, 3.05), V(0, y0 + 1.42, D / 2)],          // glass
-    [0.60, V(1.9, 1.25, 2.35), V(0.55, y0 + 0.9, D / 2 + 0.2)],   // counter
-    [0.70, V(-1.1, 2.75, 2.9), V(0, yt + 0.42, D / 2 + 0.1)],     // timber truss
-    [0.80, V(2.35, 1.75, 2.05), V(1.25, y0 + 1.5, D / 2 + 0.05)], // slats + lamp
-    [0.90, V(-4.6, 2.6, 8.8), V(0, 1.55, 0)],
-    [1.00, V(-5.4, 2.9, 10.4), V(0, 1.6, 0)]
+    [0.08, V(4.4, 3.4, 8.6), V(0, 1.6, 0)],
+    [0.14, V(0.6, 5.2, 12.5), V(0, 1.7, 0)],   // pull up to watch it come apart
+    [0.30, V(5.4, 3.3, 7.8), V(0, 1.45, 0)],   // circle closer while the layers go on
+    [0.46, V(-3.2, 3.6, 9.6), V(0, 1.6, 0)],    // rebuilt
+    [0.51, V(0.55, 1.62, 3.05), V(0, y0 + 1.42, D / 2)],          // glass
+    [0.57, V(1.9, 1.25, 2.35), V(0.55, y0 + 0.9, D / 2 + 0.2)],   // counter
+    [0.63, V(-1.1, 2.75, 2.9), V(0, yt + 0.42, D / 2 + 0.1)],     // timber truss
+    [0.69, V(2.35, 1.75, 2.05), V(1.25, y0 + 1.5, D / 2 + 0.05)], // slats + lamp
+    [0.76, V(-4.6, 2.6, 8.8), V(0, 1.55, 0)],
+    [0.86, V(1.2, 7.4, 22.5), V(0.7, 1.2, -1.6)],  // the whole range
+    [0.93, V(-1.8, 5.6, 20.5), V(0.6, 1.3, -1.6)],
+    [1.00, V(-2.6, 5.2, 19.8), V(0.5, 1.4, -1.6)]
   ];
   const camPos = V(0, 0, 0), camTgt = V(0, 0, 0);
   function cam(p) {
@@ -363,13 +412,13 @@ async function main() {
     camPos.lerpVectors(a0, a1, k); camTgt.lerpVectors(t0, t1, k);
     if (portrait) { const off = camPos.clone().sub(camTgt).multiplyScalar(camPos.distanceTo(camTgt) > 5 ? 1.5 : 1.25); camPos.copy(camTgt).add(off); }
   }
-  let vw = 1, vh = 1, finish = 'black', portrait = false, dirty = true, idle = 0;
+  let shadowWide = false, vw = 1, vh = 1, finish = 'black', portrait = false, dirty = true, idle = 0;
   window.bbbFinish = (f) => { finish = f; finishable.forEach(o => { o.mesh.material = f === 'wood' ? o.wood : (o.black || o.mesh.material); }); dirty = true; };
   function apply(p) {
     cam(p);
     // assembly: 1 = built. Built -> explode (0.12-0.2) -> rebuild layer by layer (0.2-0.4)
-    const q = p < 0.12 ? 1 : p < 0.2 ? 1 - ease(seg(p, 0.12, 0.2)) * 0.999 : seg(p, 0.2, 0.4);
-    const explode = p >= 0.12 && p < 0.2;
+    const q = p < 0.08 ? 1 : p < 0.14 ? 1 - ease(seg(p, 0.08, 0.14)) * 0.999 : seg(p, 0.14, 0.46);
+    const explode = p >= 0.08 && p < 0.14;
     for (const g of parts) {
       const u = g.userData, k = explode ? q : ease(seg(q, u.win[0], u.win[1]));
       g.visible = (explode || q >= u.win[0] - 0.001) && (finish !== 'wood' || !premiumOnly.includes(g));
@@ -378,23 +427,28 @@ async function main() {
       g.position.copy(u.base).addScaledVector(u.dir, f * (u.dist + 1.2) * u.rand * u.k); g.position.y += f * 1.4;
       g.rotation.set(u.ax * u.spin * f * 1.6, u.ay * u.spin * f * 1.6, u.az * u.spin * f * 1.6);
     }
-    kiosk.rotation.y = -0.22 + (p < 0.4 ? (1 - ease(seg(p, 0.12, 0.4))) * Math.PI * 2 : 0) + Math.sin(idle * 0.25) * 0.04 * (1 - seg(p, 0.42, 0.48));
+    kiosk.rotation.y = -0.22 + (p < 0.46 ? (1 - ease(seg(p, 0.08, 0.46))) * Math.PI * 2 : 0) + Math.sin(idle * 0.25) * 0.04 * (1 - seg(p, 0.46, 0.5));
+    const rr = ease(seg(p, 0.74, 0.86));
+    others.forEach(o => { o.visible = rr > 0.001; o.position.y = o.userData.y0 - 3.2 * (1 - rr); });
+    scene.fog.far = 30 + 26 * seg(p, 0.72, 0.86); scene.fog.near = 14 + 8 * seg(p, 0.72, 0.86);
     // light: dusk at start, day while building and touring, night at the end
-    const L = Math.max(1 - seg(p, 0.1, 0.18), seg(p, 0.76, 0.86));
+    const L = Math.max(1 - seg(p, 0.06, 0.12), seg(p, 0.66, 0.74));
+    office.userData.warm.emissiveIntensity = 0.28 * L * rr; office.userData.light.intensity = 2.2 * L * rr;
+    const wide = p > 0.73; if (wide !== shadowWide) { shadowWide = wide; const sc = sun.shadow.camera, r = wide ? 14 : 7; sc.left = -r; sc.right = r; sc.top = wide ? 10 : 7; sc.bottom = wide ? -10 : -7; sc.updateProjectionMatrix(); }
     scene.background.copy(BG_DAY).lerp(BG_NIGHT, L); scene.fog.color.copy(scene.background);
     sun.intensity = 2.5 - 1.8 * L; hemi.intensity = 0.55 - 0.32 * L; rim.intensity = 0.75 - 0.35 * L;
     const lampsOn = finish === 'wood' ? 0 : L;
     M.lampOn.emissiveIntensity = 3 * lampsOn; glows.forEach(s => { s.material.opacity = 0.95 * lampsOn; });
     ledM.emissiveIntensity = 3 * lampsOn; if (bloom) bloom.strength = 0.18 + 0.62 * L;
-    if (bokeh) { const close = seg(p, 0.43, 0.48) * (1 - seg(p, 0.83, 0.88)); bokeh.enabled = close > 0.01; bokeh.uniforms.focus.value = camPos.distanceTo(camTgt); bokeh.uniforms.aperture.value = 0.0035 * close; }
+    if (bokeh) { const close = seg(p, 0.47, 0.5) * (1 - seg(p, 0.71, 0.74)); bokeh.enabled = close > 0.01; bokeh.uniforms.focus.value = camPos.distanceTo(camTgt); bokeh.uniforms.aperture.value = 0.0035 * close; }
     dl.emissiveIntensity = 1.6 * L; inLight.intensity = 5 * L; eaveGlows.forEach(s => { s.material.opacity = 0.75 * L; }); pool.material.opacity = 0.55 * L;
-    const fl = Math.max(1 - seg(p, 0.08, 0.14), seg(p, 0.86, 0.95)), bulbs = fl;
+    const fl = Math.max(1 - seg(p, 0.05, 0.1), seg(p, 0.86, 0.94)), bulbs = fl;
     festoon.visible = fl > 0.001; festoon.position.y = -3.9 * (1 - ease(fl));
     bulbM.emissiveIntensity = 4 * bulbs; bulbGlows.forEach(s => { s.material.opacity = 0.6 * bulbs; });
     cam(p); camera.position.copy(camPos); camera.lookAt(camTgt);
     // desktop: push the kiosk to the right while the headline is on screen, centre it for the close-ups
-    if (!portrait) { const sh = 0.2 * (1 - seg(p, 0.06, 0.16)) + 0.12 * seg(p, 0.88, 1); camera.setViewOffset(vw, vh, -vw * sh, 0, vw, vh); }
-    else { const sy = 0.24 * (1 - seg(p, 0.06, 0.16)) + 0.04 + 0.1 * seg(p, 0.88, 1); camera.setViewOffset(vw, vh, 0, vh * sy, vw, vh); }
+    if (!portrait) { const sh = 0.2 * (1 - seg(p, 0.04, 0.12)); camera.setViewOffset(vw, vh, -vw * sh, 0, vw, vh); }
+    else { const sy = 0.24 * (1 - seg(p, 0.04, 0.12)) + 0.04 + 0.08 * seg(p, 0.9, 1); camera.setViewOffset(vw, vh, 0, vh * sy, vw, vh); }
     camera.updateProjectionMatrix();
   }
   /* ---------- post: soft contact shadows, real lamp glow, depth of field in close-ups ---------- */
