@@ -4,7 +4,7 @@
   var $ = function (s, c) { return (c || document).querySelector(s); }, $$ = function (s, c) { return [].slice.call((c || document).querySelectorAll(s)); };
   var cin = $('.cin');
   if (!window.gsap || !window.ScrollTrigger || RM) { if (cin) cin.remove(); $$('.shero h1 .w>span,.shero .fade').forEach(function (e) { e.style.transform = 'none'; e.style.opacity = 1; });
-    $$('.c3 .dish,.c3 .nm').forEach(function (e, i) { if (i === 0 || e.classList.contains('nm') && e === $('.c3 .nm')) e.style.opacity = 1; }); return; }
+    return; }
   gsap.registerPlugin(ScrollTrigger);
   gsap.ticker.lagSmoothing(0); // animations follow real time even on slow phones
   ScrollTrigger.config({ ignoreMobileResize: true });
@@ -75,18 +75,16 @@
       .fromTo('.c2 .big', { x: '10vw' }, { x: function () { return -dist() * .35; }, ease: 'none' }, 0)
       .to('.c2 .pan img', { xPercent: -6, ease: 'none' }, 0);
 
-    /* 3. at the table: dishes served one after another */
-    var dishes = $$('.c3 .dish'), names = $$('.c3 .nm'), n = dishes.length, cnt = $('.c3 .count b');
-    var t3 = gsap.timeline({ scrollTrigger: { trigger: '.c3', start: 'top top', end: '+=' + (n * (M ? 70 : 80)) + '%', scrub: .6, pin: true, anticipatePin: 1,
-      onUpdate: function (s) { if (cnt) cnt.textContent = Math.min(n, Math.floor(s.progress * n * .999) + 1); } } });
-    t3.fromTo('.c3 .head', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .4 }, 0)
-      .fromTo('.c3 .plate', { scale: .7, rotate: -40 }, { scale: 1, rotate: 0, duration: .6, ease: 'power3.out' }, 0);
-    dishes.forEach(function (d, i) {
-      var at = .3 + i * 1.2;
-      t3.fromTo(d, { opacity: 0, rotate: -70, scale: .55, y: -60 }, { opacity: 1, rotate: 0, scale: 1, y: 0, duration: .6, ease: 'back.out(1.3)' }, at)
-        .fromTo(names[i], { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .35 }, at + .25);
-      if (i < n - 1) t3.to(d, { opacity: 0, rotate: 70, scale: .7, y: 40, duration: .45, ease: 'power2.in' }, at + .95)
-        .to(names[i], { opacity: 0, y: -18, duration: .2 }, at + .85);
+    /* 3. at the table: real dishes revealed one after another, like turning magazine pages */
+    var dis = $$('.c3 .di'), n = dis.length;
+    var t3 = gsap.timeline({ scrollTrigger: { trigger: '.c3', start: 'top top', end: '+=' + (n * (M ? 75 : 85)) + '%', scrub: .7, pin: true, anticipatePin: 1 } });
+    t3.fromTo('.c3 .head', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .4 }, 0);
+    dis.forEach(function (d, i) {
+      var at = .25 + i * 1.1, ph = d.querySelector('.ph'), im = d.querySelector('img'), cap = d.querySelector('figcaption');
+      if (i > 0) t3.fromTo(ph, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: .7, ease: 'power3.inOut' }, at);
+      t3.fromTo(im, { scale: 1.18 }, { scale: 1.02, duration: 1.4, ease: 'none' }, at - (i ? 0 : .25))
+        .fromTo(cap.children, { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: .35, stagger: .06 }, at + .3);
+      if (i < n - 1) t3.to(cap.children, { y: -16, opacity: 0, duration: .25, stagger: .03 }, at + .95);
     });
     t3.to({}, { duration: .4 });
 
