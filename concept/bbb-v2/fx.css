@@ -8,7 +8,10 @@
 .fx-glow::after{content:"";position:absolute;left:calc(100% - var(--mx,70%));top:calc(100% - var(--my,40%));width:min(50vw,640px);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);
   background:radial-gradient(circle,rgba(156,199,175,.10),rgba(156,199,175,0) 65%);transition:left 1.4s cubic-bezier(.2,.8,.2,1),top 1.4s cubic-bezier(.2,.8,.2,1)}
 .hero>.fx-glow{z-index:1;mix-blend-mode:screen}
-/* cream sections: a softer amber focus light */
+/* cream sections: dot "scales" instead of the glow (drawn by fx.js) */
+.fx-light>.fx-glow::before,.fx-light>.fx-glow::after{display:none}
+.fx-dots{position:absolute;left:0;top:0;pointer-events:none}
+/* (old cream glow, unused) */
 .fx-light>.fx-glow::before{width:min(56vw,720px);background:radial-gradient(circle,rgba(227,137,59,.36) 0%,rgba(242,166,94,.16) 36%,rgba(242,166,94,0) 66%)}
 .fx-light>.fx-glow::after{background:radial-gradient(circle,rgba(47,93,74,.08),rgba(47,93,74,0) 65%)}
 /* touch screens: the light drifts on its own */
