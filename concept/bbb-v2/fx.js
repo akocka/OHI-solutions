@@ -6,7 +6,7 @@
 
   /* 1 · amber light in every section (dark and cream): follows the cursor on desktop and swells while it moves, drifts by itself on phones */
   var lum = function (el) { var c = getComputedStyle(el).backgroundColor.match(/[\d.]+/g); if (!c || (c[3] !== undefined && +c[3] < .05)) return -1; return (.2126 * c[0] + .7152 * c[1] + .0722 * c[2]) / 255; };
-  $$('main > section, main > div.tb, body > section, .sec, .hero, footer').forEach(function (sec) {
+  $$('main > section, body > section, .sec, .hero, footer').forEach(function (sec) {
     if (sec.classList.contains('b3') || sec.querySelector(':scope > .fx-glow')) return;
     var L = lum(sec); if (L < 0) return;
     if (getComputedStyle(sec).position === 'static') sec.style.position = 'relative';
