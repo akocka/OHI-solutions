@@ -4,21 +4,26 @@
   var fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
   var $$ = function (s) { return [].slice.call(document.querySelectorAll(s)); };
 
-  /* 1 · amber light in dark sections: follows the cursor on desktop, drifts by itself on phones */
-  $$('.oh, .hero, .dark, .ct, .nb, footer').forEach(function (sec) {
-    if (sec.querySelector(':scope > .fx-glow')) return;
+  /* 1 · amber light in every section (dark and cream): follows the cursor on desktop and swells while it moves, drifts by itself on phones */
+  var lum = function (el) { var c = getComputedStyle(el).backgroundColor.match(/[\d.]+/g); if (!c || (c[3] !== undefined && +c[3] < .05)) return -1; return (.2126 * c[0] + .7152 * c[1] + .0722 * c[2]) / 255; };
+  $$('main > section, main > div.tb, body > section, .sec, .hero, footer').forEach(function (sec) {
+    if (sec.classList.contains('b3') || sec.querySelector(':scope > .fx-glow')) return;
+    var L = lum(sec); if (L < 0) return;
     if (getComputedStyle(sec).position === 'static') sec.style.position = 'relative';
-    sec.classList.add('fx-host');
+    sec.classList.add('fx-host'); if (L > .55) sec.classList.add('fx-light');
     var g = document.createElement('div'); g.className = 'fx-glow'; g.setAttribute('aria-hidden', 'true');
     sec.insertBefore(g, sec.firstChild);
     if (!fine || reduce) return;
+    var lx = 0, ly = 0, lt = 0, sc = 1, dec = 0;
     sec.addEventListener('pointermove', function (e) {
-      var r = sec.getBoundingClientRect();
-      g.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
-      g.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
-      g.style.setProperty('--mo', '1');
+      var r = sec.getBoundingClientRect(), now = performance.now();
+      g.style.setProperty('--mx', (e.clientX - r.left).toFixed(0) + 'px');
+      g.style.setProperty('--my', (e.clientY - r.top).toFixed(0) + 'px');
+      var v = Math.hypot(e.clientX - lx, e.clientY - ly) / Math.max(16, now - lt); lx = e.clientX; ly = e.clientY; lt = now;
+      sc = Math.min(1.45, Math.max(sc, 1 + v * .35)); g.style.setProperty('--ms', sc.toFixed(3)); g.style.setProperty('--mo', '1');
+      clearTimeout(dec); dec = setTimeout(function () { sc = 1; g.style.setProperty('--ms', '1'); }, 140);
     });
-    sec.addEventListener('pointerleave', function () { g.style.setProperty('--mo', '.85'); });
+    sec.addEventListener('pointerleave', function () { g.style.setProperty('--mo', '.75'); g.style.setProperty('--ms', '.9'); });
   });
 
   /* 2 · magnetic buttons with an elastic bounce back (desktop only) */
