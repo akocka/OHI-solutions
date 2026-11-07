@@ -27,7 +27,7 @@ button{font:inherit;cursor:pointer}
 .wrap{width:min(1240px,100% - var(--pad)*2);margin:0 auto}
 em.s{font-family:var(--fs);font-style:italic;font-weight:400;letter-spacing:-.01em}
 .k{font:700 12px/1 var(--fd);letter-spacing:.18em;text-transform:uppercase;color:var(--pine)}
-.night .k,#film .k,#mhero .k,.ct .k,.nb .k,.bp .k{color:var(--sage)}
+.night .k,#film .k,.oh .k,.ct .k,.nb .k,.bp .k{color:var(--sage)}
 .btn{display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 26px;border-radius:99px;border:0;font:700 15.5px var(--fd);letter-spacing:.01em;text-decoration:none;transition:transform .4s var(--ease),background .3s,box-shadow .3s}
 .btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .4s var(--ease)}
 .btn:hover svg{transform:translateX(4px)}
@@ -266,39 +266,61 @@ footer img{height:34px;width:auto;margin-bottom:10px}
 @media(prefers-reduced-motion:reduce){.up,.hero-t .k,.hero-t p,.hero-t .cta,.hero-t .note{opacity:1!important;transform:none!important}.hero-t h1 .ln>span{transform:none!important}.gl-g figure{clip-path:none!important}.gl-g img,.card .ph img{transform:none!important}.st p .w{opacity:1!important}}
 
 /* placeholders: visible gaps for Attila */
-/* ---- hero: green module ---- */
-#mhero{position:relative;height:440vh;background:#16201b;color:#F3EEE5}
-#mhero .stage::after{background:radial-gradient(120% 90% at 60% 40%,transparent 55%,rgba(8,12,10,.6)),linear-gradient(90deg,rgba(10,16,13,.7),transparent 46%)}
-.nogl-h .mstage{background:url(/concept/bbb-v2/img/f-modul-verde-fatada-960.webp) 70% center/cover}
-.nogl-h #m3,.nogl-h .mls{display:none}
-#m3{position:absolute;inset:0;width:100%;height:100%;display:block}
-.hero-t .price{display:inline-flex;align-items:baseline;gap:10px;margin-top:16px;font:700 clamp(18px,1.6vw,22px) var(--fd);color:#F3EEE5}
-.hero-t .price b{color:var(--amber2);font-size:1.2em}
-.hero-t .price small{font:500 12px var(--fb,inherit);color:#9aa49e}
-.mls{position:absolute;inset:0}
-.ml{position:absolute;left:0;top:0;opacity:0;will-change:transform,opacity}
-.ml i{position:absolute;left:-5px;top:-5px;width:10px;height:10px;border-radius:50%;background:#F2A65E;box-shadow:0 0 0 4px rgba(242,166,94,.25)}
-.ml span{position:absolute;left:14px;top:-34px;white-space:nowrap;padding:7px 11px;border-radius:9px;background:rgba(15,24,20,.82);border:1px solid rgba(242,166,94,.55);font:600 12.5px var(--fd);letter-spacing:.01em;color:#F3EEE5;backdrop-filter:blur(4px)}
-.ml span::before{content:"";position:absolute;left:-14px;bottom:-2px;width:16px;height:1px;background:rgba(242,166,94,.8);transform:rotate(-55deg);transform-origin:right}
-.mcap{position:absolute;left:var(--pad);top:50%;transform:translateY(-50%);max-width:min(460px,40vw);opacity:0}
-.mcap h2{font:800 clamp(34px,4.4vw,64px)/.95 var(--fd);letter-spacing:-.035em;margin:14px 0 16px}
-.mcap h2 em.s{color:var(--sage)}
-.mcap p{color:#C9CEC9;font-size:clamp(15px,1.2vw,18px);line-height:1.55;margin-bottom:22px}
-.mcap .btn{pointer-events:auto}
-.mcap .k{color:var(--sage)}
+/* ---- hero: original layout, new palette ---- */
+.oh{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;color:#F3EEE5;background:radial-gradient(120% 90% at 72% 42%,#1f3329 0%,#13201a 45%,#0b130f 100%);padding-bottom:64px}
+.oh-bg{position:absolute;inset:0;pointer-events:none}
+.oh-sun{position:absolute;right:-8vw;top:4%;width:min(80vw,1120px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(242,166,94,.20) 0%,rgba(227,137,59,.07) 40%,rgba(227,137,59,0) 66%);filter:blur(10px);animation:ohSun 8s ease-in-out infinite alternate}
+@keyframes ohSun{to{transform:scale(1.06);opacity:.8}}
+.oh-grid{position:absolute;inset:auto 0 0 0;height:44%;background-image:linear-gradient(rgba(156,199,175,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(156,199,175,.09) 1px,transparent 1px);background-size:70px 70px;transform:perspective(700px) rotateX(62deg);transform-origin:bottom;-webkit-mask-image:linear-gradient(transparent,#000 70%);mask-image:linear-gradient(transparent,#000 70%)}
+.oh-stage{position:absolute;z-index:2;top:50%;right:max(4vw,calc((100vw - 1320px)/2));width:min(44vw,700px);transform:translateY(calc(-50% - 10px))}
+.oh-stage picture{display:block;position:relative;z-index:2}
+.oh-img{display:block;width:100%;height:auto;filter:drop-shadow(0 26px 30px rgba(0,0,0,.55));opacity:0;transform:translateY(40px) scale(.97);animation:ohIn 1.4s .3s cubic-bezier(.16,1,.3,1) forwards,ohFloat 9s 2s ease-in-out infinite}
+@keyframes ohIn{to{opacity:1;transform:none}}
+@keyframes ohFloat{50%{transform:translateY(-8px)}}
+.oh-pool{position:absolute;z-index:1;left:16%;right:12%;top:26%;bottom:14%;background:radial-gradient(ellipse at 50% 55%,rgba(242,166,94,.42),rgba(242,166,94,0) 70%);filter:blur(46px);opacity:0;animation:ohIn 2.2s 1s ease forwards}
+.oh-shadow{position:absolute;z-index:1;left:4%;right:0;bottom:-8px;height:50px;background:radial-gradient(ellipse at 52% 45%,rgba(0,0,0,.8),rgba(0,0,0,0) 70%)}
+.oh-chip{position:absolute;z-index:3;display:flex;align-items:center;gap:10px;padding:10px 14px 10px 10px;border-radius:16px;background:rgba(15,24,20,.7);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 20px 40px -20px rgba(0,0,0,.6);opacity:0;animation:ohIn 1s 1.4s ease forwards}
+.oh-chip.c1{left:-4%;top:6%}.oh-chip.c2{right:2%;bottom:-6%;animation-delay:1.7s}
+.oh-chip i{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:rgba(156,199,175,.14);color:var(--sage);flex:none}
+.oh-chip i svg{width:20px;height:20px}
+.oh-chip b{display:block;font:700 14px/1.2 var(--fd)}.oh-chip small{display:block;font-size:12px;color:#9aa49e}
+.oh-in{position:relative;z-index:3;width:100%;max-width:1320px;margin:0 auto;padding:110px var(--pad) 40px}
+.oh-ey{display:inline-block;font:700 11.5px var(--fd);letter-spacing:.16em;text-transform:uppercase;color:var(--sage);padding:8px 13px;border-radius:99px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+.oh-t{display:flex;flex-direction:column;font:800 clamp(40px,4.9vw,76px)/1.02 var(--fd);letter-spacing:-.035em;margin:22px 0 22px;max-width:min(46vw,680px)}
+.oh-t em.s{color:#E9DCC6;font-size:1.04em}
+.oh-t .rot{position:relative;display:block;height:1.12em;overflow:hidden;color:var(--sage)}
+.oh-t .rot>span{position:absolute;left:0;top:0;white-space:nowrap;transform:translateY(105%);opacity:0;filter:blur(6px);transition:transform .6s cubic-bezier(.16,1,.3,1),opacity .45s,filter .45s}
+.oh-t .rot>span.on{transform:none;opacity:1;filter:none}
+.oh-t .rot>span.out{transform:translateY(-105%);opacity:0;filter:blur(6px);transition:transform .45s cubic-bezier(.7,0,.84,0),opacity .35s,filter .35s}
+.oh-in>p{max-width:min(42vw,520px);font-size:clamp(16px,1.3vw,19px);line-height:1.6;color:#C9CEC9}
+.oh-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.oh-in>p.oh-note{margin-top:14px;font-size:13px;color:#8F9A93}
+.oh-facts{display:flex;flex-wrap:wrap;gap:8px 22px;list-style:none;margin:26px 0 0;padding:0;color:#C9CEC9;font:600 14px var(--fd)}
+.oh-facts li{display:flex;align-items:center;gap:8px}
+.oh-facts li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--sage);box-shadow:0 0 0 4px rgba(156,199,175,.16)}
+.oh-mq{position:absolute;z-index:3;left:0;right:0;bottom:0;height:56px;display:flex;align-items:center;overflow:hidden;border-top:1px solid rgba(255,255,255,.07);background:rgba(8,13,11,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.oh-mq .tr{display:flex;flex:none;white-space:nowrap;animation:ohMq 38s linear infinite;font:700 14px var(--fd);letter-spacing:.08em;text-transform:uppercase;color:#E3E6E1}
+.oh-mq .tr span{display:inline-flex;align-items:center;gap:22px;padding-right:22px}
+.oh-mq .tr span::after{content:"";width:7px;height:7px;transform:rotate(45deg);background:var(--sage)}
+@keyframes ohMq{to{transform:translateX(-50%)}}
+@media(max-width:900px){
+  .oh{align-items:flex-end;padding-bottom:110px}
+  .oh-stage{left:50%;right:auto;top:84px;transform:translateX(-50%);width:min(calc(100vw - 28px),560px)}
+  .oh-sun{right:auto;left:50%;top:0;transform:translateX(-50%);width:130vw;animation:none}
+  .oh-in{padding-top:calc(120px + min(calc(100vw - 28px),560px)*.68)}
+  .oh-t,.oh-in>p{max-width:none}.oh-t{font-size:clamp(34px,9.6vw,52px)}
+  .oh-cta .btn{flex:1;justify-content:center}
+  .oh-chip{padding:7px 10px 7px 7px;border-radius:12px}.oh-chip i{width:28px;height:28px}.oh-chip b{font-size:12px}.oh-chip small{font-size:10.5px}
+  .oh-chip.c1{left:0;top:-2%}.oh-chip.c2{right:0;bottom:-10%}
+  .oh-mq{height:46px;bottom:52px}.oh-mq .tr{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){.oh-img,.oh-pool,.oh-chip{opacity:1;transform:none;animation:none}.oh-sun,.oh-mq .tr{animation:none}.oh-t .rot>span{transition:none}}
 .rv1{max-width:820px;background:#fff;border-radius:28px;padding:clamp(26px,4vw,48px);box-shadow:0 30px 60px -40px rgba(15,24,20,.45);display:flex;flex-direction:column;gap:18px}
 .rv1 .ex{align-self:flex-start;font:700 11px var(--fd);letter-spacing:.14em;text-transform:uppercase;background:rgba(15,24,20,.06);color:#5b655f;padding:6px 10px;border-radius:6px}
 .rv1 p{font:500 clamp(19px,1.8vw,25px)/1.45 var(--fd);letter-spacing:-.01em}
 .rv1 .facts{display:flex;flex-wrap:wrap;gap:28px;border-top:1px solid rgba(15,24,20,.1);padding-top:18px;font-size:13px;color:#5b655f}
 .rv1 .facts b{display:block;font:800 22px var(--fd);color:#0F1814;margin-bottom:2px}
 @media(max-width:860px){
-  #mhero{height:400vh}
-  #mhero .stage::after{background:linear-gradient(0deg,rgba(10,16,13,.94) 20%,transparent 58%)}
-  .mcap{top:auto;bottom:70px;transform:none;max-width:none;right:var(--pad)}
-  .mcap h2{font-size:clamp(30px,9vw,44px)}
-  .ml span{font-size:11px;padding:5px 8px;top:-28px}
-  #mhero .hero-t>.k{display:none}
-  #mhero .hero-t .price{margin-top:0}
 }
 mark.ph{background:#FFE14D;color:#2a2100;padding:.02em .28em;border-radius:5px;-webkit-box-decoration-break:clone;box-decoration-break:clone;font-style:normal;box-shadow:0 0 0 1px rgba(160,120,0,.25)}
 .nb b mark.ph,.pr mark.ph{padding:0 .18em}
@@ -372,42 +394,25 @@ mark.ph{background:#FFE14D;color:#2a2100;padding:.02em .28em;border-radius:5px;-
 </nav>
 
 <main id="top">
-<!-- ============ HERO: green module, 3D ============ -->
-<section id="mhero" aria-label="Modulul verde Big Big Boon, în 3D">
-  <div class="stage mstage">
-    <canvas id="m3" aria-hidden="true"></canvas>
-    <div class="grain" aria-hidden="true"></div>
-    <div class="ov">
-      <div class="mls" aria-hidden="true">
-      <div class="ml" data-k="i-base" data-at="2.9,0.1,1.5"><i></i><span>Bază</span></div>
-      <div class="ml" data-k="i-frame" data-at="2.94,2.2,1.44"><i></i><span>Cadru din oțel</span></div>
-      <div class="ml" data-k="i-insulation" data-at="-2.87,1.5,0.4"><i></i><span>Izolație</span></div>
-      <div class="ml" data-k="i-interior" data-at="0,2.1,-1.3"><i></i><span>Lambriu interior</span></div>
-      <div class="ml" data-k="i-cladding" data-at="2.5,0.9,1.5"><i></i><span>Tablă fălțuită</span></div>
-      <div class="ml" data-k="i-windows" data-at="1.65,2.05,1.55"><i></i><span>Ferestre cu rame din lemn</span></div>
-      <div class="ml" data-k="i-door" data-at="-0.55,2.2,1.55"><i></i><span>Ușă dublă</span></div>
-      <div class="ml" data-k="i-roof" data-at="2.6,2.95,2.2"><i></i><span>Acoperiș cu streașină</span></div>
-      <div class="ml" data-k="x-frame" data-at="2.94,2.45,1.44"><i></i><span>Cadru din oțel, sudat în hală</span></div>
-      <div class="ml" data-k="x-ins" data-at="-2.87,1.25,0.5"><i></i><span>Izolație 10 cm vată minerală</span></div>
-      <div class="ml" data-k="x-clad" data-at="2.4,0.55,1.5"><i></i><span>Tablă fălțuită, culoare la alegere</span></div>
-      <div class="ml" data-k="x-pine" data-at="0.2,1.9,-1.3"><i></i><span>Interior îmbrăcat în lemn</span></div>
-      <div class="ml" data-k="d-wood" data-at="1.65,0.62,1.62"><i></i><span>Rame din lemn masiv</span></div>
-      <div class="ml" data-k="d-roof" data-at="1.4,2.72,2.25"><i></i><span>Streașină cu lumini calde</span></div>
-      </div>
-      <div class="hero-t" id="heroT">
-        <div class="k">Producție proprie · Miercurea Nirajului</div>
-        <div class="price">Module de la <b>999 €</b><small>+ TVA</small></div>
-        <h1><span class="ln"><span>Construit în Mureș.</span></span><span class="ln"><span><em class="s">Gata de folosit.</em></span></span></h1>
-        <p>Chioșcuri, căsuțe de târg și module din metal și lemn. Tu alegi dimensiunile și finisajele, noi le construim în hala noastră și le montăm la tine.</p>
-        <div class="cta"><a class="btn a" href="#oferta">Cere ofertă gratuită<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn g" href="#produse">Vezi produsele</a></div>
-        <p class="note">Fără obligații · răspundem cu o ofertă făcută pe proiectul tău</p>
-      </div>
-      <div class="cue" id="cue"><i></i>Derulează</div>
-      <div class="mcap" id="mc1"><div class="k">01 · Ce e în pereți</div><h2>Straturi gândite <em class="s">pentru patru anotimpuri.</em></h2><p>Cadru din oțel, izolație între montanți, tablă la exterior și lemn la interior.</p></div>
-      <div class="mcap" id="mc2"><div class="k">02 · Detalii</div><h2>Lemn, sticlă <em class="s">și lumină caldă.</em></h2><p>Ferestre mari cu rame din lemn și o streașină care te primește înăuntru.</p></div>
-      <div class="mcap" id="mc3"><div class="k">03 · Intră</div><h2>Gata de folosit <em class="s">din prima zi.</em></h2><p>Birou, cameră de oaspeți sau spațiu de vânzare. Interiorul îl adaptăm după tine.</p><a class="btn a" href="#oferta">Cere ofertă gratuită<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-    </div>
+<!-- ============ HERO (original layout, new palette) ============ -->
+<section class="oh" id="acasa">
+  <div class="oh-bg" aria-hidden="true"><div class="oh-sun"></div><div class="oh-grid"></div></div>
+  <div class="oh-stage" aria-hidden="true">
+    <div class="oh-pool"></div>
+    <picture><source media="(max-width:900px)" srcset="/concept/bbb-v2/img/modul-cut3-720.webp 720w, /concept/bbb-v2/img/modul-cut3-960.webp 960w" sizes="94vw"><img class="oh-img" src="/concept/bbb-v2/img/modul-cut3.webp" alt="" width="1431" height="969" fetchpriority="high"></picture>
+    <div class="oh-shadow"></div>
+    <div class="oh-chip c1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V9l6-4v4l6-4v4l6-4v16z"/></svg></i><span><b>Producție proprie</b><small>Hala din Miercurea Nirajului</small></span></div>
+    <div class="oh-chip c2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h18M3 7v10M21 7v10M7 7v3M11 7v4M15 7v3M19 7v4"/></svg></i><span><b>La dimensiunile tale</b><small>Locuință, birou sau comerț</small></span></div>
   </div>
+  <div class="oh-in">
+    <div class="oh-ey">Big Big Boon · Construcții modulare · Mureș</div>
+    <h1 class="oh-t"><span>Construim</span><span class="rot" id="heroRot" aria-live="off"><span class="on">chioșcuri comerciale</span></span><em class="s">din metal și lemn.</em></h1>
+    <p>Tu alegi dimensiunile și finisajele. Noi proiectăm și construim totul în hala noastră din Miercurea Nirajului, apoi ne ocupăm de transport și montaj.</p>
+    <div class="oh-cta"><a class="btn a" href="#oferta">Cere ofertă gratuită<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn g" href="#produse">Vezi produsele</a></div>
+    <p class="oh-note">Fără obligații · îți răspundem cu o ofertă făcută pe proiectul tău.</p>
+    <ul class="oh-facts"><li>Producție proprie în Mureș</li><li>Dimensiuni la comandă</li><li>Mobile și demontabile</li></ul>
+  </div>
+  <div class="oh-mq" aria-hidden="true"><div class="tr" id="heroMarq"></div></div>
 </section>
 
 <!-- ============ 3D FILM ============ -->
@@ -595,7 +600,6 @@ mark.ph{background:#FFE14D;color:#2a2100;padding:.02em .28em;border-radius:5px;-
 
 <script src="/concept/bbb-v2/js/gsap.min.js"></script>
 <script src="/concept/bbb-v2/js/ScrollTrigger.min.js"></script>
-<script type="module" src="/concept/bbb-v2/js/module3d.js"></script>
 <script type="module" src="/concept/bbb-v2/js/kiosk3d.js"></script>
 <script>
 (function () {
@@ -610,6 +614,12 @@ mark.ph{background:#FFE14D;color:#2a2100;padding:.02em .28em;border-radius:5px;-
     gsap.to('.hero-t h1 .ln>span', { y: 0, duration: 1.2, ease: 'expo.out', stagger: .12, delay: .35 });
     gsap.to('.hero-t .k,.hero-t p,.hero-t .cta,.hero-t .note', { opacity: 1, y: 0, duration: 1, ease: 'power3.out', stagger: .1, delay: .7 });
   }
+  (function () { var W = ['chioșcuri comerciale', 'căsuțe de târg', 'case modulare', 'birouri modulare', 'pergole', 'copertine', 'mobilier de grădină'],
+      M = ['Case modulare', 'Birouri modulare', 'Chioșcuri comerciale', 'Căsuțe de târg', 'Structuri metalice', 'Pergole', 'Copertine', 'Mobilier de grădină', 'Producție proprie în Mureș'];
+    var rot = $('#heroRot'), mq = $('#heroMarq'), i = 0; if (!rot) return;
+    rot.innerHTML = W.map(function (w, k) { return '<span' + (k ? '' : ' class="on"') + '>' + w + '</span>'; }).join('');
+    var it = M.map(function (m) { return '<span>' + m + '</span>'; }).join(''); mq.innerHTML = it + it + it + it;
+    if (RM) return; setInterval(function () { var c = rot.children[i]; c.classList.remove('on'); c.classList.add('out'); setTimeout(function () { c.classList.remove('out'); }, 500); i = (i + 1) % W.length; rot.children[i].classList.add('on'); }, 2600); })();
   addEventListener('scroll', function () { $('#nav').classList.toggle('solid', scrollY > 40); }, { passive: true });
   $$('[data-fin]').forEach(function (b) { b.onclick = function () { $$('[data-fin]').forEach(function (x) { x.classList.toggle('on', x === b); }); if (window.bbbFinish) bbbFinish(b.dataset.fin); }; });
   // form demo + chips
@@ -630,13 +640,6 @@ mark.ph{background:#FFE14D;color:#2a2100;padding:.02em .28em;border-radius:5px;-
   tl.fromTo('#bp', { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: .03 }, .02).to('#bp', { opacity: 0, x: -30, duration: .03 }, .69)
     .to('#c6', { opacity: 1, y: 0, duration: .03 }, .78).to('#c6', { opacity: 0, y: -20, duration: .02 }, .88)
     .to('#fin', { opacity: 1, duration: .04 }, .91).to({}, { duration: .03 });
-
-  /* ---- hero module: text out, captions in, synced with module3d.js ---- */
-  gsap.timeline({ scrollTrigger: { trigger: '#mhero', start: 'top top', end: 'bottom bottom', scrub: .5 } })
-    .to('#heroT', { opacity: 0, y: -40, duration: .05, ease: 'none' }, .02).to('#cue', { opacity: 0, duration: .03 }, .01)
-    .fromTo('#mc1', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .05 }, .13).to('#mc1', { opacity: 0, y: -30, duration: .04 }, .32)
-    .fromTo('#mc2', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .05 }, .37).to('#mc2', { opacity: 0, y: -30, duration: .04 }, .53)
-    .fromTo('#mc3', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .05 }, .72).to({}, { duration: .2 }, .8);
 
   /* ---- statement: words light up as you read ---- */
   var st = $('#stmt'); st.innerHTML = st.innerHTML.replace(/(<em[^>]*>[^<]*<\/em>|[^\s<]+)/g, '<span class="w">$1</span>');
