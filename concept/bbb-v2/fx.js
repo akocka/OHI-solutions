@@ -26,6 +26,13 @@
     sec.addEventListener('pointerleave', function () { g.style.setProperty('--mo', '.75'); g.style.setProperty('--ms', '.9'); });
   });
 
+  /* 1b · hero depth: module and lights move with the cursor (desktop) or with scroll (phone) */
+  var oh = document.querySelector('.oh');
+  if (oh && !reduce) {
+    if (fine) oh.addEventListener('pointermove', function (e) { var r = oh.getBoundingClientRect(); oh.style.setProperty('--hx', ((e.clientX - r.left) / r.width * 2 - 1).toFixed(3)); oh.style.setProperty('--hy', ((e.clientY - r.top) / r.height * 2 - 1).toFixed(3)); });
+    else addEventListener('scroll', function () { var k = Math.min(1, scrollY / innerHeight); oh.style.setProperty('--hy', (k * 1.5).toFixed(3)); oh.style.setProperty('--hx', (Math.sin(k * 3) * .6).toFixed(3)); }, { passive: true });
+  }
+
   /* 2 · magnetic buttons with an elastic bounce back (desktop only) */
   if (fine && !reduce) {
     $$('.btn, .langs button, .b3c, [data-b3f]').forEach(function (b) {

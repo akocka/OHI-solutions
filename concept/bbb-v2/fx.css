@@ -4,17 +4,17 @@
 .fx-host{isolation:isolate}
 .fx-glow{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
 .fx-glow::before{content:"";position:absolute;left:var(--mx,70%);top:var(--my,40%);width:min(70vw,900px);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%) scale(var(--ms,1));
-  background:radial-gradient(circle,rgba(242,166,94,.26) 0%,rgba(227,137,59,.10) 34%,rgba(227,137,59,0) 66%);transition:left .9s cubic-bezier(.2,.8,.2,1),top .9s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.34,1.56,.5,1),opacity .6s;opacity:var(--mo,.85)}
+  background:radial-gradient(circle,rgba(242,166,94,.42) 0%,rgba(227,137,59,.16) 34%,rgba(227,137,59,0) 66%);transition:left .9s cubic-bezier(.2,.8,.2,1),top .9s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.34,1.56,.5,1),opacity .6s;opacity:var(--mo,.85)}
 .fx-glow::after{content:"";position:absolute;left:calc(100% - var(--mx,70%));top:calc(100% - var(--my,40%));width:min(50vw,640px);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);
   background:radial-gradient(circle,rgba(156,199,175,.10),rgba(156,199,175,0) 65%);transition:left 1.4s cubic-bezier(.2,.8,.2,1),top 1.4s cubic-bezier(.2,.8,.2,1)}
 .hero>.fx-glow{z-index:1;mix-blend-mode:screen}
 /* cream sections: a softer amber focus light */
-.fx-light>.fx-glow::before{width:min(56vw,720px);background:radial-gradient(circle,rgba(227,137,59,.30) 0%,rgba(242,166,94,.13) 36%,rgba(242,166,94,0) 66%)}
+.fx-light>.fx-glow::before{width:min(56vw,720px);background:radial-gradient(circle,rgba(227,137,59,.36) 0%,rgba(242,166,94,.16) 36%,rgba(242,166,94,0) 66%)}
 .fx-light>.fx-glow::after{background:radial-gradient(circle,rgba(47,93,74,.08),rgba(47,93,74,0) 65%)}
 /* touch screens: the light drifts on its own */
 @media(hover:none),(pointer:coarse){
-  .fx-glow::before{transition:none;animation:fxDrift 14s ease-in-out infinite alternate}
-  .fx-glow::after{transition:none;animation:fxDrift2 18s ease-in-out infinite alternate}
+  .fx-glow::before{transition:none;animation:fxDrift 9s ease-in-out infinite alternate}
+  .fx-glow::after{transition:none;animation:fxDrift2 12s ease-in-out infinite alternate}
 }
 @keyframes fxDrift{0%{left:78%;top:30%}35%{left:30%;top:55%}70%{left:65%;top:75%}100%{left:20%;top:25%}}
 @keyframes fxDrift2{0%{left:20%;top:70%}50%{left:80%;top:40%}100%{left:40%;top:20%}}
@@ -39,3 +39,9 @@
 
 @media(prefers-reduced-motion:reduce){.fx-glow::before,.fx-glow::after{animation:none!important;transition:none!important}.fx-zoom,.fx-zoom .fx-zi{transition:none}.fx-zoom.fx-on{transform:none}}
 .fd-ph.fx-zpar{border-radius:28px}
+
+/* hero depth: the module and background lights shift with the cursor */
+.oh-stage picture,.oh-sun,.oh-grid{transition:translate 1s cubic-bezier(.2,.8,.2,1),rotate 1s cubic-bezier(.2,.8,.2,1)}
+.oh-stage picture{translate:calc(var(--hx,0) * 22px) calc(var(--hy,0) * 14px);rotate:calc(var(--hx,0) * .8deg)}
+.oh-sun{translate:calc(var(--hx,0) * -60px) calc(var(--hy,0) * -40px)}
+.oh-grid{translate:calc(var(--hx,0) * -30px) 0}
