@@ -37,7 +37,7 @@ async function main() {
   const load = (src) => TL.loadAsync(src);
   let T;
   try {
-    const [seam, planks, pine, slat] = await Promise.all(['img/tex-0.jpg', 'img/tex-1.jpg', 'img/tex-2.jpg', 'img/tex-3.jpg'].map(load));
+    const [seam, planks, pine, slat] = await Promise.all(['/concept/bbb-v2/img/tex-0.jpg', '/concept/bbb-v2/img/tex-1.jpg', '/concept/bbb-v2/img/tex-2.jpg', '/concept/bbb-v2/img/tex-3.jpg'].map(load));
     T = { seam, planks, pine, slat };
   } catch (e) { return fail(e); }
   const maxAniso = renderer.capabilities.getMaxAnisotropy();
