@@ -2,6 +2,7 @@
    Uses the same stored language as the live inner pages ('bbb-lang'), so the choice carries across the site. */
 (function () {
   var D = {
+    "Metal și lemn.": ["Fém és fa.", "Metal and wood."], "Construit să dureze.": ["Tartósra építve.", "Built to last."], "Sari peste": ["Átugrás", "Skip"],
     "Începe cu o schiță gratuită.": ["Kezdje egy ingyenes vázlattal.", "Start with a free sketch."],
     "Ne spui ce ai nevoie, iar noi îți trimitem schița și oferta. Hotărăști abia după ce o vezi.": ["Elmondja, mire van szüksége, mi elküldjük a vázlatot és az ajánlatot. Csak azután dönt, hogy látta.", "Tell us what you need and we'll send you the sketch and the quote. You decide only after you've seen it."],
     "Cere schița gratuită": ["Kérem az ingyenes vázlatot", "Get the free sketch"], "Programează o vizită": ["Látogatás egyeztetése", "Book a visit"],
