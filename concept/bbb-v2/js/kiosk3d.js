@@ -307,7 +307,7 @@ async function main() {
       g.position.copy(u.base).addScaledVector(u.dir, f * (u.dist + 1.2) * u.rand * u.k); g.position.y += f * 1.4;
       g.rotation.set(u.ax * u.spin * f * 1.6, u.ay * u.spin * f * 1.6, u.az * u.spin * f * 1.6);
     }
-    kiosk.rotation.y = -0.22 + (p < 0.4 ? (1 - ease(seg(p, 0.12, 0.4))) * Math.PI * 0.9 : 0) + Math.sin(idle * 0.25) * 0.04 * (1 - seg(p, 0.42, 0.48));
+    kiosk.rotation.y = -0.22 + (p < 0.4 ? (1 - ease(seg(p, 0.12, 0.4))) * Math.PI * 2 : 0) + Math.sin(idle * 0.25) * 0.04 * (1 - seg(p, 0.42, 0.48));
     // light: dusk at start, day while building and touring, night at the end
     const L = Math.max(1 - seg(p, 0.1, 0.18), seg(p, 0.76, 0.86));
     scene.background.copy(BG_DAY).lerp(BG_NIGHT, L); scene.fog.color.copy(scene.background);
