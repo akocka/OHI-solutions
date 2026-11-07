@@ -6,6 +6,7 @@
   if (!window.gsap || !window.ScrollTrigger || RM) { if (cin) cin.remove(); $$('.shero h1 .w>span,.shero .fade').forEach(function (e) { e.style.transform = 'none'; e.style.opacity = 1; });
     $$('.c3 .dish,.c3 .nm').forEach(function (e, i) { if (i === 0 || e.classList.contains('nm') && e === $('.c3 .nm')) e.style.opacity = 1; }); return; }
   gsap.registerPlugin(ScrollTrigger);
+  gsap.ticker.lagSmoothing(0); // animations follow real time even on slow phones
   ScrollTrigger.config({ ignoreMobileResize: true });
 
   /* ---------- intro + hero entrance ---------- */

@@ -56,10 +56,16 @@ if (renderer) {
   const gp = [[0, 0], [.2, 0], [.21, .006], [.2, .012], [.04, .02], [.022, .04], [.018, .45], [.03, .5], [.12, .56], [.2, .66], [.24, .78], [.245, .9], [.235, 1.02], [.22, 1.1]];
   const outer = gp.map(p => new THREE.Vector2(p[0], p[1])), inner = gp.slice(7).reverse().map(p => new THREE.Vector2(Math.max(0, p[0] - .008), p[1] + .004));
   const glassGeo = new THREE.LatheGeometry(outer.concat(inner), 96);
-  const glassMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, metalness: 0, roughness: .02, transmission: 1, thickness: .08, ior: 1.5, envMapIntensity: 1.6, specularIntensity: 1, clearcoat: 1, clearcoatRoughness: 0, transparent: true, side: THREE.DoubleSide });
-  const glass = new THREE.Mesh(glassGeo, glassMat); glass.position.set(mobile ? .62 : 1.32, 0, mobile ? -.95 : -.35); glass.castShadow = true; scene.add(glass);
+  // clear crystal: see-through in the middle, bright only at the edges (fresnel), like real glass against a dark room
+  const glassMat = new THREE.ShaderMaterial({
+    transparent: true, depthWrite: false, side: THREE.DoubleSide,
+    uniforms: { tint: { value: new THREE.Color(0xfff3e2) } },
+    vertexShader: 'varying vec3 vN; varying vec3 vV; void main(){ vec4 mv = modelViewMatrix * vec4(position,1.); vN = normalize(normalMatrix * normal); vV = normalize(-mv.xyz); gl_Position = projectionMatrix * mv; }',
+    fragmentShader: 'uniform vec3 tint; varying vec3 vN; varying vec3 vV; void main(){ float f = 1. - abs(dot(normalize(vN), normalize(vV))); float a = .025 + pow(f, 3.2) * .85; float hl = smoothstep(.55, .6, vN.x) * smoothstep(.8, .6, vN.x) * .35; gl_FragColor = vec4(tint, clamp(a + hl, 0., .95)); }'
+  });
+  const glass = new THREE.Mesh(glassGeo, glassMat); glass.position.set(mobile ? .62 : 1.32, 0, mobile ? -.95 : -.35); glass.renderOrder = 2; scene.add(glass);
   const wp = [[0, .53], [.1, .565], [.18, .64], [.215, .72], [0, .72]].map(p => new THREE.Vector2(p[0], p[1]));
-  const wine = new THREE.Mesh(new THREE.LatheGeometry(wp, 64), new THREE.MeshPhysicalMaterial({ color: 0x6d0c1a, roughness: .06, clearcoat: 1, clearcoatRoughness: .02, sheen: .4, sheenColor: new THREE.Color(0xff3040), envMapIntensity: 1.3 }));
+  const wine = new THREE.Mesh(new THREE.LatheGeometry(wp, 64), new THREE.MeshPhysicalMaterial({ color: 0x5a0a16, roughness: .12, clearcoat: .6, clearcoatRoughness: .08, envMapIntensity: .55 }));
   wine.position.copy(glass.position); scene.add(wine);
 
   /* candle in a brass holder */

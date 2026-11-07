@@ -231,3 +231,14 @@ html,body{overflow-x:clip}
  .shero .center .meta{right:auto;left:50%;transform:translateX(-50%);bottom:132px;flex-direction:row}
  .hmb{position:absolute;left:50%;bottom:70px;transform:translateX(-50%);margin:0}
 }
+/* hero meta: plain text, no frosted pills */
+.shero .meta{gap:6px 18px;justify-content:center;align-items:center}
+.shero .meta .chip{background:none;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none;padding:0;border-radius:0;white-space:nowrap;font-size:13px;font-weight:500;letter-spacing:.02em;color:rgba(244,237,225,.82);text-decoration:none}
+.shero .meta .chip+.chip{position:relative;padding-left:18px}
+.shero .meta .chip+.chip::before{content:"";position:absolute;left:0;top:50%;width:4px;height:4px;border-radius:50%;background:rgba(201,164,106,.7);transform:translateY(-50%)}
+.shero .meta .chip .st{font-size:11px;letter-spacing:2px}
+@media(max-width:760px){.shero .meta{gap:6px 14px}.shero .meta .chip{font-size:12.5px}.shero .meta .chip+.chip{padding-left:14px}}
+/* mobile reserve button: centred without transform (GSAP animates transform on .fade items) */
+@media (max-width:760px){.hmb{left:0!important;right:0;transform:none!important;margin:0 auto!important;width:max-content}}
+.shero .meta .chip+.chip{padding-left:0}.shero .meta .chip+.chip::before{display:none}
+@media (max-width:760px){.shero .meta{flex-direction:column;gap:6px}}
