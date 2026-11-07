@@ -224,6 +224,46 @@ section{position:relative;min-height:100vh;height:100vh;overflow:hidden}
  .legal{padding-right:0;bottom:16px}.badge{display:none}
 }
 @media (prefers-reduced-motion:reduce){.bokeh,.cue i{animation:none}.reveal{opacity:1;transform:none;transition:none}}
+
+/* ===== longer landing: delivery, how-to, occasions strip, FAQ ===== */
+.more section{height:auto!important;min-height:0!important;overflow:visible}
+.xw{width:min(1180px,100% - var(--pad)*2);margin:0 auto}
+.xr{opacity:0;transform:translateY(34px);transition:opacity .9s ease,transform 1s cubic-bezier(.2,.8,.15,1)}
+.xr.on{opacity:1;transform:none}
+.x-del{background:#fff;padding:clamp(90px,11vw,150px) 0}
+.x-del .copy{max-width:520px}
+.xd-g{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.xd{position:relative;padding:28px;border-radius:26px;background:#f6f4fe;box-shadow:inset 0 0 0 1px rgba(91,59,209,.1);display:flex;flex-direction:column;gap:10px;transition:transform .5s cubic-bezier(.2,.8,.15,1),box-shadow .4s}
+.xd:hover{transform:translateY(-6px);box-shadow:inset 0 0 0 1px rgba(91,59,209,.2),0 30px 50px -30px rgba(91,59,209,.45)}
+.xd h3{font-weight:700;font-size:21px;letter-spacing:-.01em;margin-top:8px}.xd p{color:var(--muted);font-size:15px;line-height:1.6;flex:1}
+.xd .ic{align-self:flex-start;display:grid;place-items:center;width:52px;height:52px;border-radius:16px;background:#fff;box-shadow:0 10px 24px -14px rgba(91,59,209,.5)}
+.xd .ic svg{width:24px;height:24px;fill:none;stroke:var(--violet);stroke-width:1.8;stroke-linejoin:round}
+.xd .ic.bolt{width:auto;padding:0 14px;background:#34d186;color:#06281a;font-weight:800;font-size:17px;letter-spacing:-.02em}
+.xd .ic.uber{width:auto;padding:0 14px;background:#000;color:#fff;font-weight:700;font-size:17px}
+.xb{align-self:flex-start;margin-top:8px;display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;background:var(--ink);color:#fff;font-weight:600;font-size:14.5px;text-decoration:none;transition:transform .3s,background .3s}
+.xb:hover{transform:translateY(-2px);background:var(--violet)}
+.xd-bolt .xb{background:#2a9d63}.xd-bolt .xb:hover{background:#34d186;color:#06281a}
+.xd-uber .xb{background:#000}
+.x-how{background:linear-gradient(180deg,#ece9fc,#e4e0fa);padding:clamp(90px,11vw,150px) 0}
+.xh-g{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:44px;counter-reset:none}
+.xh-g li{position:relative;padding-top:68px}
+.xh-g b{position:absolute;top:0;left:0;font:italic 400 54px/1 Fraunces,Georgia,serif;color:var(--violet);opacity:.85}
+.xh-g h3{font-weight:700;font-size:22px;letter-spacing:-.01em}.xh-g p{color:var(--muted);margin-top:8px;line-height:1.6}
+.xh-g li:not(:last-child)::after{content:"";position:absolute;top:28px;left:64px;right:-14px;height:1px;background:linear-gradient(90deg,rgba(91,59,209,.4),transparent)}
+.x-mood{background:#2a1460;padding:34px 0;overflow:hidden}
+.xm-tr{display:flex;gap:56px;width:max-content;white-space:nowrap;font:italic 300 clamp(34px,5vw,72px)/1 Fraunces,Georgia,serif;color:#e7dcff;animation:xm 34s linear infinite}
+.xm-tr span{display:flex;align-items:center;gap:56px}.xm-tr span::after{content:"✿";font-style:normal;font-size:.45em;color:var(--gold)}
+@keyframes xm{to{transform:translateX(-50%)}}
+.x-faq{background:#fff;padding:clamp(90px,11vw,150px) 0}
+.xf-g{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,5vw,80px);align-items:start}
+.xf details{border-top:1px solid rgba(91,59,209,.15);padding:20px 0}.xf details:last-child{border-bottom:1px solid rgba(91,59,209,.15)}
+.xf summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;font-weight:600;font-size:18px}
+.xf summary::-webkit-details-marker{display:none}
+.xf summary::after{content:"+";color:var(--violet);font-size:24px;line-height:.9;transition:transform .3s}
+.xf details[open] summary::after{transform:rotate(45deg)}
+.xf p{margin-top:10px;color:var(--muted);line-height:1.65}
+@media(max-width:860px){.xd-g,.xh-g,.xf-g{grid-template-columns:1fr}.xh-g li::after{display:none}}
+@media(prefers-reduced-motion:reduce){.xr{opacity:1;transform:none}.xm-tr{animation:none}}
 </style>
 <script type="importmap">{"imports":{"three":"/vendor/three/three.module.js","three/addons/":"/vendor/three/addons/"}}</script>
 </head>
@@ -299,6 +339,39 @@ section{position:relative;min-height:100vh;height:100vh;overflow:hidden}
    <div class="route reveal d3" aria-hidden="true"><svg viewBox="0 0 600 120" preserveAspectRatio="none"><path d="M10 100C160 10 420 10 590 70"/><circle cx="10" cy="100" r="5" fill="#5b3bd1"/><circle cx="590" cy="70" r="6" fill="#d9b46a"/><text class="pin" x="0" y="120" data-t="from">oriunde în lume</text><text class="pin" x="510" y="98">Târgu Mureș</text></svg></div>
  </section>
 
+
+ <div class="more">
+ <section class="x-del" id="livrare">
+   <div class="xw">
+     <p class="eye xr"><i></i><span data-t="xd0">Cum ajung florile</span></p>
+     <h2 class="title xr" data-t="xd1">Ridici din florărie <em class="s">sau ți le aducem.</em></h2>
+     <p class="copy xr" data-t="xd2">Alege cum îți e mai simplu. Buchetul pleacă proaspăt legat, în ziua în care îl vrei.</p>
+     <div class="xd-g">
+       <article class="xd xr"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9M3 9h18v11H3zM9 20v-6h6v6"/></svg></span><h3 data-t="xd3">Ridicare din florărie</h3><p data-t="xd4">B-dul 1 Decembrie 1918 nr. 203. Luni–Sâmbătă 9–20, Duminică 9–18.</p><a class="xb" href="https://www.google.com/maps/search/?api=1&query=Flor%C4%83ria%20Amaryllis%20T%C3%A2rgu%20Mure%C8%99" target="_blank" rel="noopener" data-t="xd5">Deschide în Maps ↗</a></article>
+       <article class="xd xd-bolt xr"><span class="ic bolt" aria-hidden="true">Bolt</span><h3 data-t="xd6">Livrare cu Bolt</h3><p data-t="xd7">Comanzi buchetul și ajunge cu un curier Bolt, oriunde în Târgu Mureș.</p><a class="xb" href="#contact" data-del="bolt" data-wa="Bună ziua! Aș dori un buchet cu livrare prin Bolt." data-t="xd8">Comandă cu Bolt →</a></article>
+       <article class="xd xd-uber xr"><span class="ic uber" aria-hidden="true">Uber</span><h3 data-t="xd9">Livrare cu Uber</h3><p data-t="xd10">Preferi Uber? Buchetul vine la ușa ta sau a celui drag, la fel de repede.</p><a class="xb" href="#contact" data-del="uber" data-wa="Bună ziua! Aș dori un buchet cu livrare prin Uber." data-t="xd11">Comandă cu Uber →</a></article>
+     </div>
+   </div>
+ </section>
+
+ <section class="x-how" id="cum">
+   <div class="xw">
+     <p class="eye xr"><i></i><span data-t="xh0">Cum comanzi</span></p>
+     <h2 class="title xr" data-t="xh1">Trei pași până la <em class="s">un zâmbet.</em></h2>
+     <ol class="xh-g">
+       <li class="xr"><b>i</b><h3 data-t="xh2">Alegi momentul</h3><p data-t="xh3">Dragoste, aniversare, mulțumire sau condoleanțe. Spui cât de mare și când.</p></li>
+       <li class="xr"><b>ii</b><h3 data-t="xh4">Florista confirmă</h3><p data-t="xh5">Pe WhatsApp, în câteva minute: florile de sezon disponibile și prețul.</p></li>
+       <li class="xr"><b>iii</b><h3 data-t="xh6">Ajunge la timp</h3><p data-t="xh7">Îl ridici din florărie sau îl trimitem cu Bolt sau Uber, legat de mână, proaspăt.</p></li>
+     </ol>
+     <a class="join xr" href="#buchete"><i><svg viewBox="0 0 10 10"><path d="M3 1l4 4-4 4"/></svg></i><span data-t="xh8">Alege buchetul</span></a>
+   </div>
+ </section>
+
+ <section class="x-mood" aria-label="Ocazii">
+   <div class="xm-tr" id="xmTr"><span data-t="xm1">Dragoste</span><span data-t="xm2">Aniversare</span><span data-t="xm3">Mulțumesc</span><span data-t="xm4">Bun venit, bebe</span><span data-t="xm5">Nuntă</span><span data-t="xm6">Condoleanțe</span><span data-t="xm1">Dragoste</span><span data-t="xm2">Aniversare</span><span data-t="xm3">Mulțumesc</span><span data-t="xm4">Bun venit, bebe</span><span data-t="xm5">Nuntă</span><span data-t="xm6">Condoleanțe</span></div>
+ </section>
+ </div>
+
  <section class="s4" id="recenzii" data-theme="light">
    <div class="text">
      <p class="eye reveal"><i></i><span data-t="e4">Recenzii</span></p>
@@ -313,6 +386,22 @@ section{position:relative;min-height:100vh;height:100vh;overflow:hidden}
      <figure class="rev reveal d3"><p>„Mum loved the flowers. Totally recommend!”</p><small><i>★★★★★</i><span data-t="rv3">Recenzie Google · livrare din Australia</span></small></figure>
    </div>
  </section>
+
+
+ <div class="more">
+ <section class="x-faq" id="intrebari">
+   <div class="xw xf-g">
+     <div><p class="eye xr"><i></i><span data-t="xf0">Întrebări</span></p><h2 class="title xr" data-t="xf1">Bine de știut <em class="s">înainte să comanzi.</em></h2></div>
+     <div class="xf">
+       <details class="xr"><summary data-t="xf2">Pot comanda din altă țară?</summary><p data-t="xf3">Da. Ne scrieți pe WhatsApp, alegem buchetul împreună și îl livrăm în Târgu Mureș.</p></details>
+       <details class="xr"><summary data-t="xf4">Pot primi buchetul chiar azi?</summary><p data-t="xf5">De multe ori, da. Scrieți-ne și florista vă confirmă imediat ce flori sunt disponibile azi.</p></details>
+       <details class="xr"><summary data-t="xf6">Cum se face livrarea?</summary><p data-t="xf7">Prin curier Bolt sau Uber, oriunde în Târgu Mureș. Sau îl ridicați din florărie.</p></details>
+       <details class="xr"><summary data-t="xf8">Faceți și flori pentru nunți și evenimente?</summary><p data-t="xf9">Da: buchete de mireasă și aranjamente. Programați o discuție și pornim de la culorile și locația voastră.</p></details>
+       <details class="xr"><summary data-t="xf10">Care e programul?</summary><p data-t="xf11">Luni – Sâmbătă 9:00 – 20:00, Duminică 9:00 – 18:00.</p></details>
+     </div>
+   </div>
+ </section>
+ </div>
 
  <section class="foot" id="contact" data-theme="light">
    <div class="cta"><h2 class="title reveal" data-t="t5">Hai să-i facem cuiva <em class="s">ziua mai frumoasă.</em></h2><a class="join reveal d1" href="#contact" data-wa="Bună ziua! Aș dori să comand un buchet."><i><svg viewBox="0 0 10 10"><path d="M3 1l4 4-4 4"/></svg></i><span data-t="cta4">Comandă pe WhatsApp</span></a></div>
@@ -334,14 +423,14 @@ section{position:relative;min-height:100vh;height:100vh;overflow:hidden}
 <script>
 /* ---------- language ---------- */
 (function(){
-const T={hu:{e1:'Csokrok',e2:'Esküvők',e3:'Kiszállítás Marosvásárhelyen',e4:'Vélemények',q1:'Milyen alkalomra?',q2:'Mekkora legyen?',q3:'Mikorra?',z1:'Kicsi',z2:'Klasszikus',z3:'Nagy',d1:'Ma',d2:'Holnap',d3:'Más napra',og:'Küldés WhatsAppon',on:'A virágkötő néhány percen belül visszaigazolja a virágokat és az árat.',iSub:'Virágbolt · Marosvásárhely',skip:'Kihagyás →',n1:'Csokrok',n2:'Esküvők',n3:'Vélemények',n4:'Kapcsolat',cta:'Rendelés',h1a:'Virágok, amelyek',h1b:'elmondják.',rat:'174 Google-vélemény',hp:'Kézzel kötött csokrok, virágdíszek és esküvői virágok Marosvásárhelyen, reggeltől estig.',cta2:'Csokrot rendelek',cue:'Felfedezés',
+const T={hu:{xd0:'Hogyan érkeznek a virágok',xd1:'Elviszed az üzletből, <em class="s">vagy elvisszük neked.</em>',xd2:'Válaszd, ami egyszerűbb. A csokor frissen kötve indul, azon a napon, amikor szeretnéd.',xd3:'Átvétel az üzletben',xd4:'B-dul 1 Decembrie 1918 nr. 203. Hétfő–Szombat 9–20, Vasárnap 9–18.',xd5:'Megnyitás Mapsben ↗',xd6:'Kiszállítás Bolttal',xd7:'Megrendeled a csokrot, és egy Bolt futár hozza, bárhová Marosvásárhelyen.',xd8:'Rendelés Bolttal →',xd9:'Kiszállítás Uberrel',xd10:'Inkább Uber? A csokor ugyanolyan gyorsan érkezik az ajtódhoz vagy szeretteidhez.',xd11:'Rendelés Uberrel →',xh0:'Hogyan rendelj',xh1:'Három lépés <em class="s">egy mosolyig.</em>',xh2:'Kiválasztod az alkalmat',xh3:'Szerelem, születésnap, köszönet vagy részvét. Megmondod, mekkora és mikorra.',xh4:'A virágos visszaigazol',xh5:'WhatsAppon, pár percen belül: az elérhető szezonális virágok és az ár.',xh6:'Időben megérkezik',xh7:'Átveszed az üzletben, vagy Bolttal, Uberrel küldjük, kézzel kötve, frissen.',xh8:'Válassz csokrot',xm1:'Szerelem',xm2:'Születésnap',xm3:'Köszönöm',xm4:'Isten hozott, baba',xm5:'Esküvő',xm6:'Részvét',xf0:'Kérdések',xf1:'Jó tudni <em class="s">rendelés előtt.</em>',xf2:'Rendelhetek külföldről?',xf3:'Igen. Írjon WhatsAppon, közösen kiválasztjuk a csokrot, és kiszállítjuk Marosvásárhelyen.',xf4:'Megkaphatom a csokrot még ma?',xf5:'Gyakran igen. Írjon nekünk, és a virágos azonnal megmondja, milyen virágok kaphatók ma.',xf6:'Hogyan történik a kiszállítás?',xf7:'Bolt vagy Uber futárral, bárhová Marosvásárhelyen. Vagy átveheti az üzletben.',xf8:'Esküvőkre és rendezvényekre is készítenek virágot?',xf9:'Igen: menyasszonyi csokrok és díszek. Beszéljünk, és a színeitekből, helyszínetekből indulunk ki.',xf10:'Mi a nyitvatartás?',xf11:'Hétfő – Szombat 9:00 – 20:00, Vasárnap 9:00 – 18:00.',e1:'Csokrok',e2:'Esküvők',e3:'Kiszállítás Marosvásárhelyen',e4:'Vélemények',q1:'Milyen alkalomra?',q2:'Mekkora legyen?',q3:'Mikorra?',z1:'Kicsi',z2:'Klasszikus',z3:'Nagy',d1:'Ma',d2:'Holnap',d3:'Más napra',og:'Küldés WhatsAppon',on:'A virágkötő néhány percen belül visszaigazolja a virágokat és az árat.',iSub:'Virágbolt · Marosvásárhely',skip:'Kihagyás →',n1:'Csokrok',n2:'Esküvők',n3:'Vélemények',n4:'Kapcsolat',cta:'Rendelés',h1a:'Virágok, amelyek',h1b:'elmondják.',rat:'174 Google-vélemény',hp:'Kézzel kötött csokrok, virágdíszek és esküvői virágok Marosvásárhelyen, reggeltől estig.',cta2:'Csokrot rendelek',cue:'Felfedezés',
  t1:'Csokor minden<br><em class="s">pillanatra</em>',c1:'Elmondják, kinek szól és mit szeretnének üzenni. A virágkötő szezonális virágokat választ, kézzel köti meg, és időben elkészíti, átvételre vagy városi kiszállításra.',o1:'Szerelem',o2:'Születésnap',o3:'Köszönöm',o4:'Isten hozott, baba',o5:'Részvét',
  t2:'Menyasszonyi csokor,<br><em class="s">ahogy megálmodtad</em>',w1:'Megismerkedünk.',w1p:'Mesélnek a ruháról, a helyszínről és az esküvő színeiről.',w2:'A javaslat.',w2p:'Megkapják a csokor és a díszítés ötletét.',w3:'A nagy nap.',w3p:'Minden frissen és időben megérkezik.',cta3:'Időpontot kérek',
  t3:'Távol a szeretteitől?<br><em class="s">A virág így is odaér.</em>',c3:'Bármely országból írhatnak WhatsAppon, együtt választjuk ki a csokrot, mi pedig egyenesen az ajtajukig visszük Marosvásárhelyen.',qsrc:'Google-vélemény, ausztráliai ügyfél',from:'a világ bármely pontjáról',
  t4:'Amit az <em class="s">ügyfelek</em> mondanak',rcount:'174 Google-vélemény alapján',gl:'Összes vélemény ↗',src:'Az értékelés és a vélemények száma a Google Térképről, 2026 novemberében.',rv1:'Google-vélemény · menyasszonyi csokor',rv2:'Google-vélemény',rv3:'Google-vélemény · kiszállítás Ausztráliából',
  t5:'Szerezzünk valakinek <em class="s">szebb napot.</em>',cta4:'Rendelés WhatsAppon',fb:'Virágbolt Marosvásárhelyen',fa:'Cím',fm:'Megnyitás Térképen ↗',fh:'Nyitvatartás',h1:'Hétfő – Szombat',h2:'Vasárnap',fp:'Telefon',legal:'Weboldal-javaslat az OHI Solutions-tól a Florăria Amaryllis számára. Nem a hivatalos oldal. A méh kódból rajzolt.',
  dmT:'Az üzenet, ami a virágboltba érkezne',dmP:'Ez egy demó. Az élő változatban a gomb megnyitja a WhatsAppot ezzel a kész üzenettel, közvetlenül a Florăria Amaryllis felé.',dmX:'Értem',open:'Most nyitva',closed:'Most zárva'},
-en:{e1:'Bouquets',e2:'Weddings',e3:'Delivery in Târgu Mureș',e4:'Reviews',q1:'What is the occasion?',q2:'How big?',q3:'When?',z1:'Small',z2:'Classic',z3:'Generous',d1:'Today',d2:'Tomorrow',d3:'Another day',og:'Send on WhatsApp',on:'Our florist confirms the available flowers and the price within minutes.',iSub:'Florist · Târgu Mureș',skip:'Skip →',n1:'Bouquets',n2:'Weddings',n3:'Reviews',n4:'Contact',cta:'Order',h1a:'Flowers that say',h1b:'what you feel.',rat:'174 Google reviews',hp:'Hand-tied bouquets, arrangements and wedding flowers in Târgu Mureș, from morning till evening.',cta2:'Order a bouquet',cue:'Discover',
+en:{xd0:'How the flowers arrive',xd1:'Pick up from the shop <em class="s">or we bring them to you.</em>',xd2:'Choose whatever is easier. The bouquet leaves freshly tied, on the day you want it.',xd3:'Pick up from the shop',xd4:'B-dul 1 Decembrie 1918 nr. 203. Mon–Sat 9–20, Sun 9–18.',xd5:'Open in Maps ↗',xd6:'Delivery with Bolt',xd7:'Order the bouquet and a Bolt courier brings it anywhere in Târgu Mureș.',xd8:'Order with Bolt →',xd9:'Delivery with Uber',xd10:'Prefer Uber? The bouquet reaches your door, or theirs, just as fast.',xd11:'Order with Uber →',xh0:'How to order',xh1:'Three steps to <em class="s">a smile.</em>',xh2:'Pick the moment',xh3:'Love, birthday, thank you or sympathy. Say how big and when.',xh4:'The florist confirms',xh5:'On WhatsApp, within minutes: the seasonal flowers available and the price.',xh6:'It arrives on time',xh7:'Pick it up at the shop or we send it with Bolt or Uber, hand-tied and fresh.',xh8:'Choose a bouquet',xm1:'Love',xm2:'Birthday',xm3:'Thank you',xm4:'Welcome, baby',xm5:'Wedding',xm6:'Sympathy',xf0:'Questions',xf1:'Good to know <em class="s">before you order.</em>',xf2:'Can I order from another country?',xf3:'Yes. Message us on WhatsApp, we choose the bouquet together and deliver it in Târgu Mureș.',xf4:'Can the bouquet arrive today?',xf5:'Often, yes. Message us and the florist will confirm right away which flowers are available today.',xf6:'How does delivery work?',xf7:'By Bolt or Uber courier, anywhere in Târgu Mureș. Or pick it up from the shop.',xf8:'Do you do wedding and event flowers?',xf9:'Yes: bridal bouquets and arrangements. Book a chat and we start from your colours and venue.',xf10:'What are the opening hours?',xf11:'Mon – Sat 9:00 – 20:00, Sun 9:00 – 18:00.',e1:'Bouquets',e2:'Weddings',e3:'Delivery in Târgu Mureș',e4:'Reviews',q1:'What is the occasion?',q2:'How big?',q3:'When?',z1:'Small',z2:'Classic',z3:'Generous',d1:'Today',d2:'Tomorrow',d3:'Another day',og:'Send on WhatsApp',on:'Our florist confirms the available flowers and the price within minutes.',iSub:'Florist · Târgu Mureș',skip:'Skip →',n1:'Bouquets',n2:'Weddings',n3:'Reviews',n4:'Contact',cta:'Order',h1a:'Flowers that say',h1b:'what you feel.',rat:'174 Google reviews',hp:'Hand-tied bouquets, arrangements and wedding flowers in Târgu Mureș, from morning till evening.',cta2:'Order a bouquet',cue:'Discover',
  t1:'A bouquet for<br>every <em class="s">moment</em>',c1:'Tell us who it is for and what you want to say. Our florist picks seasonal flowers, ties them by hand and has them ready on time, for pick-up or delivery in town.',o1:'Love',o2:'Birthday',o3:'Thank you',o4:'Welcome, baby',o5:'Condolences',
  t2:'The bridal bouquet,<br><em class="s">just as you dreamed</em>',w1:'We meet.',w1p:'You tell us about the dress, the venue and your wedding colours.',w2:'The proposal.',w2p:'You get the idea for the bouquet and the arrangements.',w3:'The big day.',w3p:'Everything arrives fresh and on time.',cta3:'Book a chat',
  t3:'Far from your loved ones?<br><em class="s">The flowers still arrive.</em>',c3:'Message us on WhatsApp from any country, we choose the bouquet together, and we deliver it to their door in Târgu Mureș.',qsrc:'Google review, customer in Australia',from:'anywhere in the world',
@@ -548,6 +637,16 @@ function frame(){
 }
 requestAnimationFrame(frame);
 }
+</script>
+
+<script>
+/* longer landing: reveals + Bolt/Uber links (fill in the shop's own links) */
+(function(){
+  var DELIVERY={bolt:'',uber:''};
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.15});
+  document.querySelectorAll('.xr').forEach(function(el,i){el.style.transitionDelay=(i%4)*.08+'s';io.observe(el)});
+  document.querySelectorAll('[data-del]').forEach(function(a){var u=DELIVERY[a.dataset.del];if(u){a.href=u;a.target='_blank';a.rel='noopener';a.removeAttribute('data-wa')}});
+})();
 </script>
 </body>
 </html>
