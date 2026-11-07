@@ -296,6 +296,25 @@ form.f textarea{min-height:110px;resize:vertical}
 form.f input:focus,form.f select:focus,form.f textarea:focus{box-shadow:inset 0 0 0 1.5px var(--amber)}
 form.f .btn{grid-column:1/-1;justify-content:center;height:56px}
 form.f .ok{grid-column:1/-1;font-size:13px;color:#9fb0a6}
+fieldset.fs{border:0;margin:0;padding:0;display:none;grid-template-columns:1fr 1fr;gap:14px}
+fieldset.fs.on{display:grid;animation:fsIn .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes fsIn{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.fs-top{display:grid;gap:10px}
+.fs-steps{list-style:none;margin:0;padding:0;display:flex;gap:6px;counter-reset:s;font:700 12.5px var(--fd);color:#7f8a84}
+.fs-steps li{counter-increment:s;flex:1;display:flex;align-items:center;gap:7px}
+.fs-steps li::before{content:counter(s);width:22px;height:22px;flex:none;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08);font-size:11.5px}
+.fs-steps li.on,.fs-steps li.done{color:#F3EEE5}.fs-steps li.on::before{background:var(--amber);color:#1a1209}.fs-steps li.done::before{content:"✓";background:var(--pine2);color:#fff}
+.fs-bar{height:3px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden}.fs-bar i{display:block;height:100%;width:33.3%;background:var(--amber);transition:width .45s cubic-bezier(.2,.8,.2,1)}
+form.f .fl{font:600 12.5px var(--fd);letter-spacing:.04em;color:#AEB7B1;text-transform:uppercase;margin-top:4px}
+form.f .fl span{text-transform:none;letter-spacing:0;color:#7f8a84;font-weight:500}
+.chips[data-many] button.on{background:rgba(242,166,94,.18);color:#F2A65E;box-shadow:inset 0 0 0 1.5px var(--amber)}
+.fs-nav{display:flex;gap:10px}.fs-nav .btn{flex:1;justify-content:center;height:56px}.fs-nav .btn.g{flex:0 0 auto;padding:0 22px;background:transparent;border:1.5px solid rgba(255,255,255,.2);color:#F3EEE5}
+form.f .ck{display:flex;align-items:flex-start;gap:10px;font:500 13.5px/1.45 var(--fb);letter-spacing:0;color:#BFC6C1;cursor:pointer}
+form.f .ck input{width:20px;height:20px;padding:0;flex:none;margin-top:1px;accent-color:var(--amber)}
+form.f .bad{box-shadow:inset 0 0 0 1.5px #F08A73!important}
+@media(max-width:860px){fieldset.fs{grid-template-columns:1fr}.fs-steps{font-size:11px}.fs-steps li{gap:5px}}
+
 .chips{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px}
 .chips button{border:0;border-radius:99px;padding:10px 14px;background:rgba(255,255,255,.08);color:#dfe4e0;font:600 13.5px var(--fd);transition:background .2s}
 .chips button.on{background:var(--amber);color:#1a1209}
@@ -766,11 +785,42 @@ body.intro-on .oh *{animation-play-state:paused!important}
     </div>
   </div>
   <form class="f up" id="f" novalidate>
-    <div class="chips full" role="group" aria-label="Ce te interesează"><button type="button" class="on">Chioșc / căsuță comercială</button><button type="button">Casă sau clădire modulară</button><button type="button">Structură metalică sau din lemn</button><button type="button">Altceva</button></div>
-    <label>NUME<input name="n" autocomplete="name"></label>
-    <label>TELEFON<input name="p" type="tel" autocomplete="tel"></label>
-    <label class="full">DETALII (OPȚIONAL)<textarea name="m" placeholder="Dimensiuni, număr de bucăți, termen, locație…"></textarea></label>
-    <button class="btn a" type="submit">Primește oferta gratuită<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <div class="fs-top full"><ol class="fs-steps" aria-label="Pașii formularului"><li class="on">Ce construim</li><li>Unde și când</li><li>Contact</li></ol><div class="fs-bar"><i id="fsBar"></i></div></div>
+
+    <fieldset class="fs full on" data-s="1"><legend class="sr">Ce construim</legend>
+      <div class="fl full">Ce te interesează</div>
+      <div class="chips full" data-one="prod" role="group" aria-label="Ce te interesează"><button type="button" class="on">Chioșc / căsuță comercială</button><button type="button">Casă sau clădire modulară</button><button type="button">Birou modular</button><button type="button">Structură metalică sau din lemn</button><button type="button">Pergolă / copertină</button><button type="button">Altceva</button></div>
+      <label>LA CE O FOLOSEȘTI<select name="use"><option>Comerț / street-food</option><option>Târguri și evenimente</option><option>Locuință / casă de vacanță</option><option>Birou sau atelier</option><option>Depozitare</option><option>Turism / cazare</option><option>Altceva</option></select></label>
+      <label>BUCĂȚI<input name="qty" type="number" min="1" value="1" inputmode="numeric"></label>
+      <label>LUNGIME APROX. (M)<input name="len" inputmode="decimal" placeholder="ex. 3"></label>
+      <label>LĂȚIME APROX. (M)<input name="wid" inputmode="decimal" placeholder="ex. 2,5"></label>
+      <div class="fl full">Aspect exterior</div>
+      <div class="chips full" data-one="fin" role="group" aria-label="Aspect exterior"><button type="button">Negru &amp; lemn</button><button type="button">Lemn natural</button><button type="button">Tablă colorată</button><button type="button" class="on">Încă nu știu</button></div>
+      <div class="fl full">Ce să includă <span>(alege câte vrei)</span></div>
+      <div class="chips full" data-many="ext" role="group" aria-label="Ce să includă"><button type="button">Izolație</button><button type="button">Instalație electrică</button><button type="button">Iluminat</button><button type="button">Vitrină glisantă</button><button type="button">Blat de servire</button><button type="button">Baie / grup sanitar</button><button type="button">Transport și montaj</button></div>
+      <button class="btn a fs-next" type="button">Mai departe<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </fieldset>
+
+    <fieldset class="fs full" data-s="2"><legend class="sr">Unde și când</legend>
+      <label>LOCALITATE<input name="city" autocomplete="address-level2" placeholder="ex. Târgu Mureș"></label>
+      <label>JUDEȚ<input name="county" autocomplete="address-level1" placeholder="ex. Mureș"></label>
+      <div class="fl full">Când ai nevoie de ea</div>
+      <div class="chips full" data-one="when" role="group" aria-label="Când ai nevoie de ea"><button type="button">Cât mai repede</button><button type="button" class="on">În 1–2 luni</button><button type="button">În 3–6 luni</button><button type="button">Doar mă informez</button></div>
+      <div class="fl full">Buget orientativ</div>
+      <div class="chips full" data-one="bud" role="group" aria-label="Buget orientativ"><button type="button">Sub 3.000 €</button><button type="button">3.000 – 8.000 €</button><button type="button">8.000 – 20.000 €</button><button type="button">Peste 20.000 €</button><button type="button" class="on">Nu știu încă</button></div>
+      <label class="full">TERENUL<select name="site"><option>Am teren, e pregătit (plat, acces pentru camion)</option><option>Am teren, trebuie pregătit</option><option>Încă nu am teren / locație</option><option>Nu știu</option></select></label>
+      <div class="fs-nav full"><button class="btn g fs-back" type="button">Înapoi</button><button class="btn a fs-next" type="button">Mai departe<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+    </fieldset>
+
+    <fieldset class="fs full" data-s="3"><legend class="sr">Contact</legend>
+      <label>NUME<input name="n" autocomplete="name" required></label>
+      <label>TELEFON<input name="p" type="tel" autocomplete="tel" required></label>
+      <label>E-MAIL (OPȚIONAL)<input name="e" type="email" autocomplete="email"></label>
+      <label>CUM PREFERI SĂ TE CONTACTĂM<select name="how"><option>Telefon</option><option>WhatsApp</option><option>E-mail</option></select></label>
+      <label class="full">DETALII (OPȚIONAL)<textarea name="m" placeholder="Orice ne ajută: idei, poze de inspirație, cerințe speciale…"></textarea></label>
+      <label class="ck full"><input type="checkbox" name="gdpr" required><span>Sunt de acord ca Big Big Boon să-mi folosească datele doar pentru a-mi trimite oferta.</span></label>
+      <div class="fs-nav full"><button class="btn g fs-back" type="button">Înapoi</button><button class="btn a" type="submit">Primește oferta gratuită<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+    </fieldset>
     <p class="ok" id="fok">Gratuit și fără obligații. Concept: formularul nu trimite date.</p>
   </form>
 </div></section>
@@ -824,9 +874,19 @@ document.getElementById('iskip').onclick=end;el.addEventListener('click',functio
   addEventListener('scroll', function () { $('#nav').classList.toggle('solid', scrollY > 40); }, { passive: true });
   $$('[data-fin]').forEach(function (b) { b.onclick = function () { $$('[data-fin]').forEach(function (x) { x.classList.toggle('on', x === b); }); if (window.bbbFinish) bbbFinish(b.dataset.fin); }; });
   // form demo + chips
-  $$('.chips button').forEach(function (b) { b.onclick = function () { $$('.chips button').forEach(function (x) { x.classList.toggle('on', x === b); }); }; });
-  $$('[data-pick]').forEach(function (a) { a.addEventListener('click', function () { $$('.chips button').forEach(function (x) { x.classList.toggle('on', x.textContent === a.dataset.pick); }); }); });
-  $('#f').onsubmit = function (e) { e.preventDefault(); $('#fok').textContent = 'Mulțumim! (Concept: în site-ul real, cererea ajunge direct la Big Big Boon.)'; };
+  $$('.chips[data-one]').forEach(function (g) { var bs = [].slice.call(g.querySelectorAll('button')); bs.forEach(function (b) { b.onclick = function () { bs.forEach(function (x) { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); }); }; }); });
+  $$('.chips[data-many] button').forEach(function (b) { b.onclick = function () { b.classList.toggle('on'); b.setAttribute('aria-pressed', b.classList.contains('on')); }; });
+  $$('[data-pick]').forEach(function (a) { a.addEventListener('click', function () { $$('.chips[data-one="prod"] button').forEach(function (x) { x.classList.toggle('on', x.textContent === a.dataset.pick); }); }); });
+  (function () { var f = $('#f'), st = 1, sets = $$('fieldset.fs', f), li = $$('.fs-steps li', f);
+    function show(n) { st = n; sets.forEach(function (x) { x.classList.toggle('on', +x.dataset.s === n); }); li.forEach(function (x, i) { x.classList.toggle('on', i === n - 1); x.classList.toggle('done', i < n - 1); }); $('#fsBar').style.width = (n / 3 * 100).toFixed(1) + '%';
+      var r = f.getBoundingClientRect(); if (r.top < 70) scrollTo({ top: scrollY + r.top - 90, behavior: RM ? 'auto' : 'smooth' }); }
+    $$('.fs-next', f).forEach(function (b) { b.onclick = function () { show(Math.min(3, st + 1)); }; });
+    $$('.fs-back', f).forEach(function (b) { b.onclick = function () { show(Math.max(1, st - 1)); }; });
+    f.onsubmit = function (e) { e.preventDefault(); var bad = [f.n, f.p].filter(function (i) { return !i.value.trim(); }); if (!f.gdpr.checked) bad.push(f.gdpr.closest('.ck'));
+      $$('.bad', f).forEach(function (x) { x.classList.remove('bad'); }); bad.forEach(function (x) { x.classList.add('bad'); });
+      if (bad.length) { $('#fok').textContent = (window.bbbT || String)('Completează numele, telefonul și bifează acordul.'); return; }
+      $('#fok').textContent = (window.bbbT || String)('Mulțumim! (Concept: în site-ul real, cererea ajunge direct la Big Big Boon, cu toate detaliile.)'); };
+  })();
   if (!window.gsap || RM) { $$('.up').forEach(function (e) { e.style.opacity = 1; e.style.transform = 'none'; }); return; }
   gsap.registerPlugin(ScrollTrigger);
 

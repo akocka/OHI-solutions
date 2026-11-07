@@ -2,6 +2,23 @@
    Uses the same stored language as the live inner pages ('bbb-lang'), so the choice carries across the site. */
 (function () {
   var D = {
+    "Ce construim": ["Mit építünk", "What we build"], "Unde și când": ["Hol és mikor", "Where and when"], "Pașii formularului": ["Az űrlap lépései", "Form steps"],
+    "Birou modular": ["Moduláris iroda", "Modular office"], "Pergolă / copertină": ["Pergola / előtető", "Pergola / carport"],
+    "LA CE O FOLOSEȘTI": ["MIRE HASZNÁLJA", "WHAT IT'S FOR"], "Comerț / street-food": ["Kereskedelem / street food", "Retail / street food"], "Târguri și evenimente": ["Vásárok és rendezvények", "Fairs and events"],
+    "Locuință / casă de vacanță": ["Lakás / nyaraló", "Home / holiday house"], "Birou sau atelier": ["Iroda vagy műhely", "Office or workshop"], "Depozitare": ["Tárolás", "Storage"], "Turism / cazare": ["Turizmus / szállás", "Tourism / lodging"],
+    "BUCĂȚI": ["DARAB", "QUANTITY"], "LUNGIME APROX. (M)": ["HOSSZ KB. (M)", "LENGTH APPROX. (M)"], "LĂȚIME APROX. (M)": ["SZÉLESSÉG KB. (M)", "WIDTH APPROX. (M)"], "ex. 3": ["pl. 3", "e.g. 3"], "ex. 2,5": ["pl. 2,5", "e.g. 2.5"],
+    "Aspect exterior": ["Külső megjelenés", "Exterior look"], "Tablă colorată": ["Színes lemez", "Coloured metal"], "Încă nu știu": ["Még nem tudom", "Not sure yet"],
+    "Ce să includă": ["Mit tartalmazzon", "What to include"], "(alege câte vrei)": ["(bármennyit választhat)", "(pick as many as you like)"],
+    "Iluminat": ["Világítás", "Lighting"], "Vitrină glisantă": ["Tolóablakos kirakat", "Sliding window"], "Baie / grup sanitar": ["Fürdő / mosdó", "Bathroom / toilet"], "Mai departe": ["Tovább", "Next"], "Înapoi": ["Vissza", "Back"],
+    "LOCALITATE": ["TELEPÜLÉS", "TOWN"], "JUDEȚ": ["MEGYE", "COUNTY"], "ex. Târgu Mureș": ["pl. Marosvásárhely", "e.g. Târgu Mureș"], "ex. Mureș": ["pl. Maros", "e.g. Mureș"],
+    "Când ai nevoie de ea": ["Mikorra van rá szüksége", "When you need it"], "Cât mai repede": ["Minél hamarabb", "As soon as possible"], "În 1–2 luni": ["1–2 hónapon belül", "In 1–2 months"], "În 3–6 luni": ["3–6 hónapon belül", "In 3–6 months"], "Doar mă informez": ["Csak tájékozódom", "Just looking"],
+    "Buget orientativ": ["Tájékoztató költségvetés", "Approximate budget"], "Sub 3.000 €": ["3000 € alatt", "Under €3,000"], "3.000 – 8.000 €": ["3000 – 8000 €", "€3,000 – 8,000"], "8.000 – 20.000 €": ["8000 – 20 000 €", "€8,000 – 20,000"], "Peste 20.000 €": ["20 000 € felett", "Over €20,000"], "Nu știu încă": ["Még nem tudom", "Not sure yet"],
+    "TERENUL": ["A TELEK", "THE SITE"], "Am teren, e pregătit (plat, acces pentru camion)": ["Van telek, elő van készítve (sík, kamionnal megközelíthető)", "I have a site, it's ready (flat, truck access)"], "Am teren, trebuie pregătit": ["Van telek, elő kell készíteni", "I have a site, it needs preparing"], "Încă nu am teren / locație": ["Még nincs telek / helyszín", "No site / location yet"], "Nu știu": ["Nem tudom", "Not sure"],
+    "E-MAIL (OPȚIONAL)": ["E-MAIL (OPCIONÁLIS)", "E-MAIL (OPTIONAL)"], "CUM PREFERI SĂ TE CONTACTĂM": ["HOGYAN KERESSÜK", "HOW SHOULD WE CONTACT YOU"], "Telefon": ["Telefon", "Phone"], "WhatsApp": ["WhatsApp", "WhatsApp"], "E-mail": ["E-mail", "E-mail"],
+    "Orice ne ajută: idei, poze de inspirație, cerințe speciale…": ["Bármi, ami segít: ötletek, inspiráló fotók, különleges igények…", "Anything that helps: ideas, inspiration photos, special requirements…"],
+    "Sunt de acord ca Big Big Boon să-mi folosească datele doar pentru a-mi trimite oferta.": ["Hozzájárulok, hogy a Big Big Boon az adataimat csak az ajánlat elküldésére használja.", "I agree that Big Big Boon may use my details only to send me the quote."],
+    "Completează numele, telefonul și bifează acordul.": ["Adja meg a nevét, telefonszámát, és pipálja be a hozzájárulást.", "Fill in your name and phone and tick the consent box."],
+    "Mulțumim! (Concept: în site-ul real, cererea ajunge direct la Big Big Boon, cu toate detaliile.)": ["Köszönjük! (Koncepció: az élő oldalon a kérés minden részlettel együtt közvetlenül a Big Big Boonhoz jut.)", "Thank you! (Concept: on the live site, the request goes straight to Big Big Boon with every detail.)"],
     "Metal și lemn.": ["Fém és fa.", "Metal and wood."], "Construit să dureze.": ["Tartósra építve.", "Built to last."], "Sari peste": ["Átugrás", "Skip"],
     "Începe cu o schiță gratuită.": ["Kezdje egy ingyenes vázlattal.", "Start with a free sketch."],
     "Ne spui ce ai nevoie, iar noi îți trimitem schița și oferta. Hotărăști abia după ce o vezi.": ["Elmondja, mire van szüksége, mi elküldjük a vázlatot és az ajánlatot. Csak azután dönt, hogy látta.", "Tell us what you need and we'll send you the sketch and the quote. You decide only after you've seen it."],
