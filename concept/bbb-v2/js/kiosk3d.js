@@ -392,17 +392,12 @@ async function main() {
   // camera keyframes: [progress, camera position, look-at target]
   const KEYS = [
     [0.00, V(5.6, 3.1, 9.4), V(0, 1.55, 0)],
-    [0.08, V(4.4, 3.4, 8.6), V(0, 1.6, 0)],
-    [0.14, V(0.6, 5.2, 12.5), V(0, 1.7, 0)],   // pull up to watch it come apart
-    [0.30, V(5.4, 3.3, 7.8), V(0, 1.45, 0)],   // circle closer while the layers go on
-    [0.46, V(-3.2, 3.6, 9.6), V(0, 1.6, 0)],    // rebuilt
-    [0.51, V(0.55, 1.62, 3.05), V(0, y0 + 1.42, D / 2)],          // glass
-    [0.57, V(1.9, 1.25, 2.35), V(0.55, y0 + 0.9, D / 2 + 0.2)],   // counter
-    [0.63, V(-1.1, 2.75, 2.9), V(0, yt + 0.42, D / 2 + 0.1)],     // timber truss
-    [0.69, V(2.35, 1.75, 2.05), V(1.25, y0 + 1.5, D / 2 + 0.05)], // slats + lamp
-    [0.76, V(-4.6, 2.6, 8.8), V(0, 1.55, 0)],
-    [0.86, V(1.2, 7.4, 22.5), V(0.7, 1.2, -1.6)],  // the whole range
-    [0.93, V(-1.8, 5.6, 20.5), V(0.6, 1.3, -1.6)],
+    [0.06, V(4.4, 3.4, 8.6), V(0, 1.6, 0)],
+    [0.12, V(0, 4.3, 12.4), V(0, 1.5, 0)],     // like the official builder: front view, slow push-in
+    [0.62, V(0, 2.9, 10.6), V(0, 1.5, 0)],
+    [0.72, V(0, 3.1, 10.2), V(0, 1.5, 0)],
+    [0.84, V(1.2, 7.4, 22.5), V(0.7, 1.2, -1.6)],  // the whole range
+    [0.92, V(-1.8, 5.6, 20.5), V(0.6, 1.3, -1.6)],
     [1.00, V(-2.6, 5.2, 19.8), V(0.5, 1.4, -1.6)]
   ];
   const camPos = V(0, 0, 0), camTgt = V(0, 0, 0);
@@ -417,8 +412,8 @@ async function main() {
   function apply(p) {
     cam(p);
     // assembly: 1 = built. Built -> explode (0.12-0.2) -> rebuild layer by layer (0.2-0.4)
-    const q = p < 0.08 ? 1 : p < 0.14 ? 1 - ease(seg(p, 0.08, 0.14)) * 0.999 : seg(p, 0.14, 0.46);
-    const explode = p >= 0.08 && p < 0.14;
+    const q = p < 0.06 ? 1 : p < 0.12 ? 1 - ease(seg(p, 0.06, 0.12)) * 0.999 : seg(p, 0.12, 0.6);
+    const explode = p >= 0.06 && p < 0.12;
     for (const g of parts) {
       const u = g.userData, k = explode ? q : ease(seg(q, u.win[0], u.win[1]));
       g.visible = (explode || q >= u.win[0] - 0.001) && (finish !== 'wood' || !premiumOnly.includes(g));
@@ -427,28 +422,28 @@ async function main() {
       g.position.copy(u.base).addScaledVector(u.dir, f * (u.dist + 1.2) * u.rand * u.k); g.position.y += f * 1.4;
       g.rotation.set(u.ax * u.spin * f * 1.6, u.ay * u.spin * f * 1.6, u.az * u.spin * f * 1.6);
     }
-    kiosk.rotation.y = -0.22 + (p < 0.46 ? (1 - ease(seg(p, 0.08, 0.46))) * Math.PI * 2 : 0) + Math.sin(idle * 0.25) * 0.04 * (1 - seg(p, 0.46, 0.5));
-    const rr = ease(seg(p, 0.74, 0.86));
+    kiosk.rotation.y = -0.22 + (p < 0.62 ? (1 - ease(seg(p, 0.06, 0.62))) * Math.PI * 2 : 0) + Math.sin(idle * 0.25) * 0.04 * (1 - seg(p, 0.6, 0.66));
+    const rr = ease(seg(p, 0.72, 0.84));
     others.forEach(o => { o.visible = rr > 0.001; o.position.y = o.userData.y0 - 3.2 * (1 - rr); });
-    scene.fog.far = 30 + 26 * seg(p, 0.72, 0.86); scene.fog.near = 14 + 8 * seg(p, 0.72, 0.86);
+    scene.fog.far = 30 + 26 * seg(p, 0.7, 0.84); scene.fog.near = 14 + 8 * seg(p, 0.7, 0.84);
     // light: dusk at start, day while building and touring, night at the end
-    const L = Math.max(1 - seg(p, 0.06, 0.12), seg(p, 0.66, 0.74));
-    office.userData.warm.emissiveIntensity = 0.28 * L * rr; office.userData.light.intensity = 2.2 * L * rr;
-    const wide = p > 0.73; if (wide !== shadowWide) { shadowWide = wide; const sc = sun.shadow.camera, r = wide ? 14 : 7; sc.left = -r; sc.right = r; sc.top = wide ? 10 : 7; sc.bottom = wide ? -10 : -7; sc.updateProjectionMatrix(); }
+    const L = Math.max(1 - seg(p, 0.04, 0.1), seg(p, 0.6, 0.68));
+    office.userData.warm.emissiveIntensity = 0.1 * L * rr; office.userData.light.intensity = 1.1 * L * rr;
+    const wide = p > 0.71; if (wide !== shadowWide) { shadowWide = wide; const sc = sun.shadow.camera, r = wide ? 14 : 7; sc.left = -r; sc.right = r; sc.top = wide ? 10 : 7; sc.bottom = wide ? -10 : -7; sc.updateProjectionMatrix(); }
     scene.background.copy(BG_DAY).lerp(BG_NIGHT, L); scene.fog.color.copy(scene.background);
     sun.intensity = 2.5 - 1.8 * L; hemi.intensity = 0.55 - 0.32 * L; rim.intensity = 0.75 - 0.35 * L;
     const lampsOn = finish === 'wood' ? 0 : L;
     M.lampOn.emissiveIntensity = 3 * lampsOn; glows.forEach(s => { s.material.opacity = 0.95 * lampsOn; });
     ledM.emissiveIntensity = 3 * lampsOn; if (bloom) bloom.strength = 0.18 + 0.62 * L;
-    if (bokeh) { const close = seg(p, 0.47, 0.5) * (1 - seg(p, 0.71, 0.74)); bokeh.enabled = close > 0.01; bokeh.uniforms.focus.value = camPos.distanceTo(camTgt); bokeh.uniforms.aperture.value = 0.0035 * close; }
+    if (bokeh) { const close = 0; bokeh.enabled = close > 0.01; bokeh.uniforms.focus.value = camPos.distanceTo(camTgt); bokeh.uniforms.aperture.value = 0.0035 * close; }
     dl.emissiveIntensity = 1.6 * L; inLight.intensity = 5 * L; eaveGlows.forEach(s => { s.material.opacity = 0.75 * L; }); pool.material.opacity = 0.55 * L;
-    const fl = Math.max(1 - seg(p, 0.05, 0.1), seg(p, 0.86, 0.94)), bulbs = fl;
+    const fl = Math.max(1 - seg(p, 0.03, 0.08), seg(p, 0.62, 0.7)), bulbs = fl;
     festoon.visible = fl > 0.001; festoon.position.y = -3.9 * (1 - ease(fl));
     bulbM.emissiveIntensity = 4 * bulbs; bulbGlows.forEach(s => { s.material.opacity = 0.6 * bulbs; });
     cam(p); camera.position.copy(camPos); camera.lookAt(camTgt);
     // desktop: push the kiosk to the right while the headline is on screen, centre it for the close-ups
-    if (!portrait) { const sh = 0.2 * (1 - seg(p, 0.04, 0.12)); camera.setViewOffset(vw, vh, -vw * sh, 0, vw, vh); }
-    else { const sy = 0.24 * (1 - seg(p, 0.04, 0.12)) + 0.04 + 0.08 * seg(p, 0.9, 1); camera.setViewOffset(vw, vh, 0, vh * sy, vw, vh); }
+    if (!portrait) { const sh = 0.2 * (1 - seg(p, 0.7, 0.8)); camera.setViewOffset(vw, vh, -vw * sh, 0, vw, vh); }
+    else { const sy = 0.24 * (1 - seg(p, 0.04, 0.12)) + 0.17 * seg(p, 0.04, 0.12) * (1 - seg(p, 0.7, 0.8)) + 0.04 * seg(p, 0.7, 0.8) + 0.08 * seg(p, 0.9, 1); camera.setViewOffset(vw, vh, 0, vh * sy, vw, vh); }
     camera.updateProjectionMatrix();
   }
   /* ---------- post: soft contact shadows, real lamp glow, depth of field in close-ups ---------- */

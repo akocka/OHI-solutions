@@ -263,11 +263,72 @@ footer img{height:34px;width:auto;margin-bottom:10px}
 /* reveal helper */
 .up{opacity:0;transform:translateY(30px)}
 @media(prefers-reduced-motion:reduce){.up,.hero-t .k,.hero-t p,.hero-t .cta,.hero-t .note{opacity:1!important;transform:none!important}.hero-t h1 .ln>span{transform:none!important}.gl-g figure{clip-path:none!important}.gl-g img,.card .ph img{transform:none!important}.st p .w{opacity:1!important}}
+
+/* placeholders: visible gaps for Attila */
+mark.ph{background:#FFE14D;color:#2a2100;padding:.02em .28em;border-radius:5px;-webkit-box-decoration-break:clone;box-decoration-break:clone;font-style:normal;box-shadow:0 0 0 1px rgba(160,120,0,.25)}
+.nb b mark.ph,.pr mark.ph{padding:0 .18em}
+.rib .lg mark.ph{font-weight:700}
+/* trust bar */
+.tb{background:#0B110E;color:#cfd6d0;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+.tb-in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 26px;padding:20px 0;font:600 13.5px var(--fd);letter-spacing:.01em}
+.tb-in span{display:flex;align-items:center;gap:10px}.tb-in span::before{content:"";width:18px;height:18px;flex:none;border-radius:50%;background:var(--pine2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12l4 4 8-8' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/11px no-repeat}
+.tb-in b{color:#fff;font-weight:700}
+@media(max-width:860px){.tb-in{justify-content:flex-start;font-size:13px}.tb-in span{flex:0 0 calc(50% - 13px)}}
+/* risk free */
+.rf{background:var(--paper2);padding:clamp(100px,12vw,160px) 0}
+.rf-g{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,6vw,90px);align-items:start}
+.rf h2{font:800 clamp(36px,5vw,72px)/.98 var(--fd);letter-spacing:-.035em;margin:14px 0 18px}.rf h2 em.s{color:var(--pine)}
+.rf .lead{color:var(--mut);max-width:420px}
+.rf-l{list-style:none;display:grid;gap:12px}
+.rf-l li{display:flex;gap:18px;align-items:flex-start;background:#fff;border-radius:20px;padding:20px 22px;box-shadow:0 20px 40px -32px rgba(15,24,20,.4)}
+.rf-l i{font:800 13px var(--fd);font-style:normal;color:var(--amber);letter-spacing:.1em;padding-top:4px}
+.rf-l b{display:block;font:800 18px/1.3 var(--fd);margin-bottom:4px}.rf-l span{color:var(--mut);font-size:15px}
+@media(max-width:860px){.rf-g{grid-template-columns:1fr}}
+/* founder */
+.fd{background:var(--paper);padding:clamp(100px,12vw,160px) 0}
+.fd-g{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(30px,6vw,90px);align-items:center}
+.ph-box{aspect-ratio:4/5;border-radius:28px;background:repeating-linear-gradient(135deg,#efe8db 0 14px,#e6dece 14px 28px);display:grid;place-items:center;text-align:center;font:700 16px/1.5 var(--fd);box-shadow:inset 0 0 0 2px rgba(160,120,0,.25)}
+.fd h2{font:800 clamp(40px,5.5vw,80px)/.96 var(--fd);letter-spacing:-.035em;margin:14px 0 22px}.fd h2 em.s{color:var(--pine)}
+.fd-t{font-size:clamp(17px,1.4vw,20px);line-height:1.6;color:var(--steel);max-width:560px;margin-bottom:14px}
+.fd-call{display:inline-block;font:800 clamp(26px,3vw,40px) var(--fd);letter-spacing:-.02em;color:var(--pine);text-decoration:none;border-bottom:3px solid var(--amber);margin:4px 0 18px}
+.fd-sig{font:italic 400 18px var(--fs);color:var(--mut)}
+@media(max-width:860px){.fd-g{grid-template-columns:1fr}.ph-box{aspect-ratio:4/3}}
+/* launch offer */
+.lo{background:var(--paper);padding:0 0 clamp(80px,10vw,130px)}
+.lo-card{position:relative;overflow:hidden;border-radius:32px;background:linear-gradient(135deg,#2F5D4A,#1d3d30);color:#F3EEE5;padding:clamp(34px,5vw,64px)}
+.lo-card::after{content:"";position:absolute;right:-120px;top:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(227,137,59,.45),transparent 65%)}
+.lo-k{display:inline-block;font:700 12px var(--fd);letter-spacing:.18em;text-transform:uppercase;padding:8px 12px;border-radius:99px;background:var(--amber);color:#1a1209}
+.lo-card h2{font:800 clamp(40px,6vw,84px)/.95 var(--fd);letter-spacing:-.035em;margin:18px 0 16px}.lo-card h2 em.s{color:var(--amber2)}
+.lo-card p{max-width:620px;color:#d6e4dc;font-size:clamp(16px,1.3vw,19px);line-height:1.6;position:relative;z-index:1}
+.lo-row{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;gap:22px;margin-top:28px}
+.lo-n{display:flex;align-items:baseline;gap:12px;padding:12px 18px;border-radius:16px;background:rgba(255,255,255,.08)}.lo-n span{font-size:14px;color:#cfe0d6}.lo-n b{font:800 34px var(--fd)}
+
+/* official-style builder panel */
+.bp{position:absolute;left:max(var(--pad),calc((100vw - 1240px)/2));top:50%;transform:translateY(-50%);width:min(400px,38vw);opacity:0}
+.bp h2{font:800 clamp(26px,2.6vw,38px)/1.05 var(--fd);letter-spacing:-.025em;margin:12px 0 0}.bp h2 em.s{color:var(--amber2)}
+.bp-l{list-style:none;margin:22px 0 0;display:flex;flex-direction:column;gap:2px;counter-reset:b}
+.bp-l li{counter-increment:b;position:relative;padding:9px 12px 9px 48px;border-radius:12px;font:700 16px/1.3 var(--fd);color:#6F7A73;transition:.35s var(--ease)}
+.bp-l li::before{content:"0" counter(b);position:absolute;left:12px;top:10px;font-size:13px;letter-spacing:.06em}
+.bp-l li.done{color:#C9CFCA}.bp-l li.done::before{color:var(--amber2)}
+.bp-l li.on{color:#fff;background:rgba(255,255,255,.08)}.bp-l li.on::before{color:var(--amber2)}
+.bp-d{margin-top:16px;color:#C3C9C4;font-size:15px;line-height:1.55;min-height:3.1em;transition:opacity .25s}
+.bp-bar{height:3px;border-radius:3px;background:rgba(255,255,255,.12);margin:16px 0 18px;overflow:hidden}.bp-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--amber),var(--amber2))}
+.bp .sw{margin:0 0 14px}.bp .btn{height:48px;font-size:14.5px}
+.bp-n{margin-top:12px;font-size:12px;color:#7f8b84}
+@media(max-width:860px){
+  .bp{left:12px;right:12px;width:auto;top:auto;bottom:62px;transform:none;padding:16px;border-radius:20px;background:rgba(15,24,20,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+  .bp .k,.bp h2,.bp-n{display:none}
+  .bp-l{flex-direction:row;gap:4px;margin:0}.bp-l li{flex:1;padding:0;height:4px;border-radius:2px;background:rgba(255,255,255,.14);font-size:0}.bp-l li::before{display:none}
+  .bp-l li.done,.bp-l li.on{background:var(--amber)}
+  .bp-d{margin-top:12px;min-height:0;font-size:14px}.bp-bar{display:none}
+  .bp .sw{margin:12px 0 10px}.bp .btn{width:100%;justify-content:center}
+}
+.rail{display:none!important}
 </style>
 </head>
 <body>
 <div class="ld" id="ld"><div class="bx"><i></i><i></i><i></i></div><p>Big Big Boon</p></div>
-<div class="rib">Concept de redesign · <b>conținut demonstrativ</b> · OHI Solutions</div>
+<div class="rib">Previzualizare · <span class="lg"><mark class="ph">galben</mark> = de completat de Attila</span> · OHI Solutions</div>
 
 <nav class="nav" id="nav">
   <a class="lg" href="#top"><img src="/concept/bbb-v2/img/logo-bbb.webp" alt="Big Big Boon" width="440" height="235"></a>
@@ -291,34 +352,31 @@ footer img{height:34px;width:auto;margin-bottom:10px}
       </div>
       <div class="cue" id="cue"><i></i>Derulează</div>
 
-      <div class="cap bs" id="b1"><div class="n">CONSTRUCȚIA · 1 / 5</div><h2>Fundația<br>și cadrul.</h2><p>Totul pornește de la o bază solidă și un cadru din metal sau lemn, gândit să fie transportat și montat ușor.</p></div>
-      <div class="cap bs r" id="b2"><div class="n">CONSTRUCȚIA · 2 / 5</div><h2>Izolația<br><em class="s">și interiorul.</em></h2><p>Vată minerală între montanți și lambriu de lemn la interior: cald iarna, plăcut vara.</p></div>
-      <div class="cap bs" id="b3"><div class="n">CONSTRUCȚIA · 3 / 5</div><h2>Pereții<br>și placarea.</h2><p>Tablă neagră cu lamele de lemn sau lemn natural. Ușă laterală, colțare și finisaje, montate în hală.</p></div>
-      <div class="cap bs r" id="b4"><div class="n">CONSTRUCȚIA · 4 / 5</div><h2>Vitrina<br><em class="s">și blatul.</em></h2><p>Vitrină glisantă cu garnituri, blat de servire din lemn pe console metalice și bandă LED dedesubt.</p></div>
-      <div class="cap bs" id="b5"><div class="n">CONSTRUCȚIA · 5 / 5</div><h2>Acoperișul<br>și grinzile.</h2><p>Acoperiș în două ape din tablă fălțuită, grinzi aparente, streașină cu spoturi și jgheaburi.</p></div>
-      <div class="cap r" id="c2"><div class="n">02 · VITRINA</div><h2>Vitrină glisantă,<br>clientul te vede de departe.</h2><p>Deschidere largă, lumină caldă în interior. Vânzarea începe din prima zi.</p></div>
-      <div class="cap" id="c3"><div class="n">03 · BLATUL</div><h2>Blat din lemn,<br>la înălțimea potrivită.</h2><p>Gândit pentru servire rapidă și pentru coada din fața ta.</p></div>
-      <div class="cap r" id="c4"><div class="n">04 · DETALIILE</div><h2>Grinzi aparente.<br>Caracter, nu cutie.</h2><p>Acoperiș în două ape cu lemn la vedere, care se vede în toate pozele clienților tăi.</p></div>
-      <div class="cap" id="c5"><div class="n">05 · LUMINA</div><h2>Se aprind luminile.<br><em class="s">Ești deschis.</em></h2><p>Lămpi pe fațadă, spoturi sub streașină, lumină caldă înăuntru.</p></div>
-
-      <div class="pin" id="p2" style="left:52%;top:46%"><i></i><span>Vitrină glisantă</span></div>
-      <div class="pin" id="p3" style="left:44%;top:58%"><i></i><span>Blat din lemn</span></div>
-      <div class="pin" id="p4" style="left:52%;top:34%"><i></i><span>Grinzi din lemn</span></div>
-      <div class="pin" id="p5" style="left:48%;top:42%"><i></i><span>Lămpi + lamele din lemn</span></div>
-
-      <div class="cap rng" id="c6"><div class="n">06 · GAMA</div><h2>Și nu doar <em class="s">chioșcuri.</em></h2><p>Același atelier, aceleași materiale: birouri și case modulare, căsuțe de târg din lemn natural, pergole și structuri la comandă.</p><div class="rchips"><span>Chioșcuri</span><span>Căsuțe de târg</span><span>Birouri modulare</span><span>Case modulare</span><span>Pergole</span></div></div>
-      <div class="fin" id="fin">
+      <div class="bp" id="bp">
+        <div class="k">Construiește-ți modelul</div>
+        <h2>Derulează și privește-l <em class="s">cum se construiește.</em></h2>
+        <ol class="bp-l"><li><span>Fundație și cadru</span></li><li><span>Izolație</span></li><li><span>Pereți și placare</span></li><li><span>Vitrină și blat</span></li><li><span>Acoperiș și grinzi</span></li><li><span>Lumini aprinse</span></li></ol>
+        <p class="bp-d" id="bpD">Totul pornește de la o bază solidă și un cadru din metal sau lemn, gândit pentru transport și montaj ușor.</p>
+        <div class="bp-bar"><i id="bpBar"></i></div>
         <div class="sw" role="group" aria-label="Finisaj"><button class="on" data-fin="black"><i style="background:linear-gradient(135deg,#1b1d20 50%,#b57a45 50%)"></i>Negru &amp; lemn</button><button data-fin="wood"><i style="background:#c08a55"></i>Lemn natural</button></div>
+        <a class="btn a" href="#oferta">Cere ofertă pentru model<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <p class="bp-n">Model 3D ilustrativ, după produsul real.</p>
+      </div>
+      <div class="cap rng" id="c6"><div class="n">GAMA</div><h2>Și nu doar <em class="s">chioșcuri.</em></h2><p>Același atelier, aceleași materiale: birouri și case modulare, căsuțe de târg din lemn natural, pergole și structuri la comandă.</p><div class="rchips"><span>Chioșcuri</span><span>Căsuțe de târg</span><span>Birouri modulare</span><span>Case modulare</span><span>Pergole</span></div></div>
+      <div class="fin" id="fin">
         <h2>Al tău, la dimensiunile tale.</h2>
         <p>Spune-ne cum îl vrei. Îți trimitem oferta gratuit.</p>
         <a class="btn a" href="#oferta">Vreau un chioșc ca ăsta<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
-      <ul class="rail" id="rail"><li>Sosirea</li><li>Construcția</li><li>Vitrina</li><li>Blatul</li><li>Detaliile</li><li>Lumina</li><li>Gama</li></ul>
+      <ul class="rail" id="rail"><li>Sosirea</li><li>Construcția</li><li>Lumina</li><li>Gama</li></ul>
     </div>
   </div>
 </section>
 
 <!-- ============ STATEMENT ============ -->
+<div class="tb" aria-label="De ce să ai încredere"><div class="wrap tb-in">
+  <span><b>Firmă înregistrată</b> din 2020</span><span>CUI 43611636</span><span>Ofertă în <mark class="ph">24</mark> de ore</span><span>Garanție <mark class="ph">2</mark> ani</span><span>Preț fix în contract</span>
+</div></div>
 <section class="st"><div class="wrap">
   <div class="k up">De ce Big Big Boon</div><br>
   <p id="stmt">Nu vindem cutii din tablă. Construim <em class="s">locul</em> în care afacerea ta începe să vândă: solid, frumos și gata de mutat oriunde e lume.</p>
@@ -341,15 +399,25 @@ footer img{height:34px;width:auto;margin-bottom:10px}
 <!-- ============ NUMBERS (placeholders) ============ -->
 <section class="nb"><div class="wrap">
   <div class="nb-g">
-    <div class="up"><b data-count="120">0<sup>+</sup></b><span>construcții livrate în România <span class="tag">exemplu</span></span></div>
-    <div class="up"><b data-count="6">0<sup>săpt.</sup></b><span>timp mediu de realizare pentru un chioșc <span class="tag">exemplu</span></span></div>
+    <div class="up"><b><mark class="ph">X</mark><sup>+</sup></b><span>construcții livrate</span></div>
+    <div class="up"><b><mark class="ph">X</mark><sup>săpt.</sup></b><span>de la contract la livrare, pentru un chioșc</span></div>
     <div class="up"><b data-count="100">0<sup>%</sup></b><span>producție proprie, în hala din Miercurea Nirajului</span></div>
-    <div class="up"><b data-count="3">0<sup>ani</sup></b><span>garanție pentru structură <span class="tag">exemplu</span></span></div>
+    <div class="up"><b><mark class="ph">2</mark><sup>ani</sup></b><span>garanție pentru structură și finisaje</span></div>
   </div>
-  <p class="ex">Cifrele marcate „exemplu” sunt demonstrative și se înlocuiesc cu datele reale Big Big Boon înainte de publicare.</p>
 </div></section>
 
 <!-- ============ PROCESS ============ -->
+
+<section class="rf" id="garantii"><div class="wrap rf-g">
+  <div><div class="k up">Fără risc pentru tine</div><h2 class="up">Cumperi <em class="s">fără griji.</em></h2><p class="lead up">O construcție e o investiție mare. Așa o facem sigură, de la prima schiță până la montaj.</p></div>
+  <ul class="rf-l">
+    <li class="up"><i>01</i><div><b>Vezi înainte să plătești.</b><span>Primești gratuit o schiță sau un model 3D al proiectului tău.</span></div></li>
+    <li class="up"><i>02</i><div><b>Preț fix, în scris.</b><span>Prețul și termenul de livrare sunt trecute în contract și nu se schimbă pe parcurs.</span></div></li>
+    <li class="up"><i>03</i><div><b>Plătești în etape.</b><span><mark class="ph">30</mark>% avans la semnare, restul la livrare.</span></div></li>
+    <li class="up"><i>04</i><div><b>Garanție <mark class="ph">2</mark> ani</b><span>pentru structură și finisaje.</span></div></li>
+    <li class="up"><i>05</i><div><b>Vino să vezi.</b><span>Te așteptăm în hala din Miercurea Nirajului, cu programare.</span></div></li>
+  </ul>
+</div></section>
 <section class="ps" id="proces"><div class="wrap">
   <div class="k up">Cum lucrăm</div>
   <h2 class="up">De la primul telefon <em class="s">la ziua deschiderii.</em></h2>
@@ -363,6 +431,18 @@ footer img{height:34px;width:auto;margin-bottom:10px}
 </div></section>
 
 <!-- ============ GALLERY ============ -->
+
+<section class="fd"><div class="wrap fd-g">
+  <div class="fd-ph up"><div class="ph-box"><mark class="ph">Fotografie cu Attila<br>în hală</mark></div></div>
+  <div>
+    <div class="k up">Fondator</div>
+    <h2 class="up">Salut, sunt <em class="s">Attila.</em></h2>
+    <p class="fd-t up"><mark class="ph">2–3 propoziții: experiența lui, de ce a pornit Big Big Boon.</mark></p>
+    <p class="fd-t up">Răspund personal la fiecare cerere de ofertă. Sună-mă direct:</p>
+    <a class="fd-call up" href="tel:+40751065876">+40 751 065 876</a>
+    <p class="fd-sig up">Attila Barabási · fondator Big Big Boon</p>
+  </div>
+</div></section>
 <section class="gl" id="lucrari"><div class="wrap">
   <div class="k up">Din hala noastră</div>
   <h2 class="up">Lucrări reale, <em class="s">nu randări.</em></h2>
@@ -379,16 +459,19 @@ footer img{height:34px;width:auto;margin-bottom:10px}
 
 <!-- ============ REVIEWS (placeholders) ============ -->
 <section class="rv"><div class="wrap">
-  <div class="k up">Ce spun clienții <span class="tag">exemple, de înlocuit</span></div>
+  <div class="k up">Ce spun clienții</div>
   <h2 class="up">Oameni care vând <em class="s">din căsuțele noastre.</em></h2>
-  <div class="rv-g">
-    <div class="q up"><div class="stars">★★★★★</div><p>„[Exemplu] Am avut căsuța gata pentru târgul de Crăciun, exact cum am cerut-o. Clienții se opreau să facă poze.”</p><div class="who"><i>A</i><div><b>Nume client</b>Târg de Crăciun · exemplu</div></div></div>
-    <div class="q up"><div class="stars">★★★★★</div><p>„[Exemplu] Modulul de birou e cald iarna și arată mai bine decât ne imaginam. Montajul a durat o zi.”</p><div class="who"><i>B</i><div><b>Nume client</b>Birou modular · exemplu</div></div></div>
-    <div class="q up"><div class="stars">★★★★★</div><p>„[Exemplu] Am comandat trei chioșcuri pentru festival. Le refolosim în fiecare an.”</p><div class="who"><i>C</i><div><b>Nume organizator</b>Festival · exemplu</div></div></div>
-  </div>
+  <div class="rv-g"><div class="q up"><div class="stars">★★★★★</div><p>„<mark class="ph">Recenzie reală de la un client: ce a cumpărat și cum a fost.</mark>”</p><div class="who"><i>A</i><div><b><mark class="ph">Nume client</mark></b><mark class="ph">Afacere · oraș</mark></div></div></div><div class="q up"><div class="stars">★★★★★</div><p>„<mark class="ph">Recenzie reală de la un client: ce a cumpărat și cum a fost.</mark>”</p><div class="who"><i>B</i><div><b><mark class="ph">Nume client</mark></b><mark class="ph">Afacere · oraș</mark></div></div></div><div class="q up"><div class="stars">★★★★★</div><p>„<mark class="ph">Recenzie reală de la un client: ce a cumpărat și cum a fost.</mark>”</p><div class="who"><i>C</i><div><b><mark class="ph">Nume client</mark></b><mark class="ph">Afacere · oraș</mark></div></div></div></div>
 </div></section>
 
 <!-- ============ PRICE ============ -->
+
+<section class="lo"><div class="wrap"><div class="lo-card up">
+  <div class="lo-k">Ofertă de lansare</div>
+  <h2>Primii <em class="s">5 clienți.</em></h2>
+  <p><mark class="ph">Transport gratuit / reducere X%</mark> pentru primele 5 comenzi, în schimbul unei recenzii și al permisiunii de a publica fotografii cu proiectul tău.</p>
+  <div class="lo-row"><div class="lo-n"><span>Locuri rămase</span><b><mark class="ph">5</mark></b></div><a class="btn a" href="#oferta">Vreau un loc<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></div></section>
 <section class="pc" id="pret"><div class="wrap pc-g">
   <div>
     <div class="k up">Prețuri</div>
@@ -397,8 +480,8 @@ footer img{height:34px;width:auto;margin-bottom:10px}
     <div class="fx up"><span>Dimensiunea</span><span>Placarea</span><span>Izolația</span><span>Vitrina și ușile</span><span>Instalația electrică</span><span>Transportul</span></div>
   </div>
   <div class="pc-card up">
-    <small>Căsuță comercială, pachet de bază <span class="tag">preț exemplu</span></small>
-    <div class="pr">de la 9.900 lei</div>
+    <small>Căsuță comercială, pachet de bază</small>
+    <div class="pr">de la <mark class="ph">X</mark> lei</div>
     <small>+ TVA · transport în funcție de distanță</small>
     <ul><li>Structură din lemn sau metal</li><li>Placare la alegere</li><li>Blat de servire</li><li>Opțional: vitrină glisantă, iluminat, izolație</li></ul>
     <a class="btn a" href="#oferta">Primește prețul exact<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -408,10 +491,12 @@ footer img{height:34px;width:auto;margin-bottom:10px}
 <section class="fq"><div class="wrap">
   <div class="k up">Întrebări frecvente</div>
   <h2 class="up">Ce ne întreabă toată lumea.</h2>
-  <details class="up"><summary>Pot alege eu dimensiunile și finisajele?</summary><p>Da. Pachetele sunt doar un punct de plecare: dimensiunile, placarea, acoperișul și dotările se stabilesc împreună.</p></details>
-  <details class="up"><summary>Construcțiile pot fi mutate?</summary><p>Construcțiile mobile sunt proiectate să fie transportate, asamblate, demontate și refolosite. Detaliile de transport se stabilesc în ofertă.</p></details>
-  <details class="up"><summary>Cât durează?</summary><p>Depinde de proiect și de numărul de bucăți. Termenul exact îl primești odată cu oferta.</p></details>
-  <details class="up"><summary>Lucrați și pentru firme sau organizatori de evenimente?</summary><p>Da. Spune-ne ce tip de construcție îți trebuie, câte bucăți și până când, și îți răspundem cu o ofertă.</p></details>
+  <details class="up"><summary>Cât durează până primesc chioșcul?</summary><p><mark class="ph">X săptămâni de la semnarea contractului</mark></p></details>
+  <details class="up"><summary>Livrați și montați?</summary><p>Da, <mark class="ph">în tot județul Mureș / în toată țara</mark>. <mark class="ph">Cost transport</mark></p></details>
+  <details class="up"><summary>Se poate folosi și iarna?</summary><p><mark class="ph">Da, cu izolație de X cm…</mark></p></details>
+  <details class="up"><summary>Cum se plătește?</summary><p><mark class="ph">Avans X%, rest la livrare</mark></p></details>
+  <details class="up"><summary>Am nevoie de autorizație?</summary><p><mark class="ph">Răspunsul trebuie dat de Attila: regulile depind de loc și de tipul construcției.</mark></p></details>
+  <details class="up"><summary>Pot veni să văd un chioșc?</summary><p>Da, în hala noastră din Miercurea Nirajului, cu programare.</p></details>
 </div></section>
 
 <!-- ============ CONTACT ============ -->
@@ -436,7 +521,7 @@ footer img{height:34px;width:auto;margin-bottom:10px}
 </div></section>
 </main>
 
-<footer><div class="wrap"><div><img src="/concept/bbb-v2/img/logo-big-big-boon-360.webp" alt="Big Big Boon" width="360" height="190"><br>BIG BIG BOON 2020 SRL · Miercurea Nirajului, Mureș</div><div>Concept de redesign realizat de OHI Solutions.<br>Recenziile, cifrele și prețul marcate „exemplu” sunt demonstrative.</div></div></footer>
+<footer><div class="wrap"><div><img src="/concept/bbb-v2/img/logo-big-big-boon-360.webp" alt="Big Big Boon" width="360" height="190"><br>BIG BIG BOON 2020 SRL · Miercurea Nirajului, Mureș</div><div>Concept de redesign realizat de OHI Solutions.<br>Textele marcate cu galben se completează cu informațiile reale Big Big Boon.</div></div></footer>
 
 <script src="/concept/bbb-v2/js/gsap.min.js"></script>
 <script src="/concept/bbb-v2/js/ScrollTrigger.min.js"></script>
@@ -464,19 +549,17 @@ footer img{height:34px;width:auto;margin-bottom:10px}
   gsap.registerPlugin(ScrollTrigger);
 
   /* ---- film overlays, scrubbed to the same progress as the 3D ---- */
+  var STEPS = ["Totul pornește de la o bază solidă și un cadru din metal sau lemn, gândit pentru transport și montaj ușor.", "Izolația montată între montanți aduce mai mult confort, în orice anotimp.", "Tablă neagră cu lamele din lemn sau lemn natural: aspectul îl alegi tu.", "Vitrină glisantă și blat de servire din lemn, la înălțimea potrivită pentru clienți.", "Acoperiș în două ape, cu grinzi aparente din lemn care dau caracter construcției.", "Lumini calde în interior și pe fațadă. Chioșcul tău e gata de deschis."], SQ = [.12, .2016, .278, .394, .47, .6], lastS = -1;
   var tl = gsap.timeline({ scrollTrigger: { trigger: '#film', start: 'top top', end: 'bottom bottom', scrub: .6,
-    onUpdate: function (s) { var p = s.progress, i = p < .08 ? 0 : p < .48 ? 1 : p < .55 ? 2 : p < .61 ? 3 : p < .67 ? 4 : p < .76 ? 5 : 6; $$('#rail li').forEach(function (li, k) { li.classList.toggle('on', k === i); }); } } });
-  tl.to('#heroT', { opacity: 0, y: -40, duration: .04, ease: 'none' }, .04).to('#cue', { opacity: 0, duration: .02 }, .02);
-  // build steps follow the parts flying in (rebuild runs from .14 to .46)
-  [['#b1', .14, .2], ['#b2', .2, .265], ['#b3', .265, .335], ['#b4', .335, .385], ['#b5', .385, .46]].forEach(function (c) {
-    tl.fromTo(c[0], { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .015 }, c[1] + .004).to(c[0], { opacity: 0, y: -18, duration: .012 }, c[2] - .012);
-  });
-  tl.to('#c2', { opacity: 1, y: 0, duration: .02 }, .49).to('#p2', { opacity: 1, scale: 1, duration: .02 }, .5).to(['#c2', '#p2'], { opacity: 0, duration: .02 }, .545)
-    .to('#c3', { opacity: 1, y: 0, duration: .02 }, .555).to('#p3', { opacity: 1, scale: 1, duration: .02 }, .56).to(['#c3', '#p3'], { opacity: 0, duration: .02 }, .605)
-    .to('#c4', { opacity: 1, y: 0, duration: .02 }, .615).to('#p4', { opacity: 1, scale: 1, duration: .02 }, .62).to(['#c4', '#p4'], { opacity: 0, duration: .02 }, .665)
-    .to('#c5', { opacity: 1, y: 0, duration: .02 }, .675).to('#p5', { opacity: 1, scale: 1, duration: .02 }, .68).to(['#c5', '#p5'], { opacity: 0, duration: .02 }, .74)
-    .to('#c6', { opacity: 1, y: 0, duration: .03 }, .8).to('#c6', { opacity: 0, y: -20, duration: .02 }, .9)
-    .to('#fin', { opacity: 1, duration: .04 }, .93).to({}, { duration: .03 });
+    onUpdate: function (s) { var p = s.progress, i = p < .06 ? 0 : p < .6 ? 1 : p < .7 ? 2 : 3; $$('#rail li').forEach(function (li, k) { li.classList.toggle('on', k === i); });
+      var si = 0; SQ.forEach(function (t, k) { if (p >= t) si = k; });
+      if (si !== lastS) { lastS = si; $$('.bp-l li').forEach(function (li, k) { li.classList.toggle('on', k === si); li.classList.toggle('done', k < si); });
+        var d = $('#bpD'); d.style.opacity = 0; setTimeout(function () { d.textContent = STEPS[si]; d.style.opacity = 1; }, 180); }
+      $('#bpBar').style.width = (Math.min(1, Math.max(0, (p - .1) / .58)) * 100).toFixed(1) + '%'; } } });
+  tl.to('#heroT', { opacity: 0, y: -40, duration: .03, ease: 'none' }, .03).to('#cue', { opacity: 0, duration: .02 }, .02)
+    .fromTo('#bp', { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: .03 }, .08).to('#bp', { opacity: 0, x: -30, duration: .03 }, .69)
+    .to('#c6', { opacity: 1, y: 0, duration: .03 }, .78).to('#c6', { opacity: 0, y: -20, duration: .02 }, .88)
+    .to('#fin', { opacity: 1, duration: .04 }, .91).to({}, { duration: .03 });
 
   /* ---- statement: words light up as you read ---- */
   var st = $('#stmt'); st.innerHTML = st.innerHTML.replace(/(<em[^>]*>[^<]*<\/em>|[^\s<]+)/g, '<span class="w">$1</span>');
