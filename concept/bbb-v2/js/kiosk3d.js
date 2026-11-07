@@ -2,6 +2,12 @@
    Scroll progress of #film drives: assembled at dusk -> explodes -> rebuilds layer by layer -> camera tours details -> night. */
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { GTAOPass } from 'three/addons/postprocessing/GTAOPass.js';
+import { BokehPass } from 'three/addons/postprocessing/BokehPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 const sec = document.getElementById('film'), cvs = document.getElementById('k3'), stage = cvs.parentElement;
 const fail = (e) => { if (e) console.warn('3D fallback', e); document.documentElement.classList.add('nogl'); };
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -26,7 +32,7 @@ async function main() {
   const hemi = new THREE.HemisphereLight(0xe4e9f0, 0x2b2520, 0.5); scene.add(hemi);
   const sun = new THREE.DirectionalLight(0xfff0dc, 2.4);
   sun.position.set(-5, 9, 7); sun.castShadow = true;
-  sun.shadow.mapSize.set(mobile ? 1024 : 2048, mobile ? 1024 : 2048);
+  sun.shadow.mapSize.set(mobile ? 1024 : 4096, mobile ? 1024 : 4096);
   Object.assign(sun.shadow.camera, { left: -7, right: 7, top: 7, bottom: -7, near: 1, far: 30 });
   sun.shadow.bias = -0.0004; sun.shadow.normalBias = 0.025; sun.shadow.radius = 4;
   scene.add(sun);
@@ -99,7 +105,7 @@ async function main() {
     black: plain(0x15171a, 0.55, 0.35),
     wood: (w, h) => mat('planks', w, h, { r: 0.58 }),
     seam: (w, h) => mat('seam', w, h, { r: 0.5, m: 0.35, env: 1 }),
-    glass: new THREE.MeshStandardMaterial({ color: 0xdfeefa, roughness: 0.04, metalness: 0.1, transparent: true, opacity: 0.16, envMapIntensity: 2, depthWrite: false }),
+    glass: new THREE.MeshStandardMaterial({ color: 0xcfe2ee, roughness: 0.03, metalness: 0.2, transparent: true, opacity: 0.07, envMapIntensity: 1.1, depthWrite: false }),
     lampOn: new THREE.MeshStandardMaterial({ color: 0x111111, emissive: 0xffc27a, emissiveIntensity: 0 })
   };
   const finishable = []; // {mesh, black, wood}
@@ -260,10 +266,74 @@ async function main() {
   festoon.visible = false;
 
   /* size factor: small parts fly further */
+
+  /* ---------- extra detail, so it reads like the real product ---------- */
+  const steelM = plain(0xc9ccd0, 0.28, 1, 1.2), trimM = plain(0x111315, 0.45, 0.6, 0.9), rubber = plain(0x0a0a0a, 0.9, 0);
+  // corner flashings (L-profiles on the four vertical corners) + top/bottom drip trims
+  const trims = [];
+  for (const sx of [-1, 1]) for (const sz of [-1, 1]) {
+    trims.push(box(0.07, H + 0.02, 0.012, trimM, sx * (W / 2 + 0.006), y0 + H / 2, sz * (D / 2 + 0.002) - sz * 0.03));
+    trims.push(box(0.012, H + 0.02, 0.07, trimM, sx * (W / 2 + 0.002) - sx * 0.03, y0 + H / 2, sz * (D / 2 + 0.006)));
+  }
+  trims.push(box(W + 0.04, 0.05, 0.02, trimM, 0, y0 + 0.02, D / 2 + 0.012), box(W + 0.04, 0.05, 0.02, trimM, 0, y0 + 0.02, -D / 2 - 0.012));
+  part('trims', [0, 0.3, 1], 1.1, trims, 0.3);
+  // side door with frame, handle and hinges (right wall)
+  const doorM = M.seam(0.9, 2.0);
+  const door = [box(0.02, 1.98, 0.86, doorM, W / 2 + 0.012, y0 + 1.0, -0.35), box(0.03, 2.04, 0.04, trimM, W / 2 + 0.014, y0 + 1.02, 0.1), box(0.03, 2.04, 0.04, trimM, W / 2 + 0.014, y0 + 1.02, -0.8), box(0.03, 0.04, 0.94, trimM, W / 2 + 0.014, y0 + 2.02, -0.35)];
+  const h1 = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.16, 12), steelM); h1.rotation.x = Math.PI / 2; h1.position.set(W / 2 + 0.06, y0 + 1.02, -0.02); door.push(h1);
+  door.push(box(0.05, 0.03, 0.03, steelM, W / 2 + 0.035, y0 + 1.02, 0.05), box(0.05, 0.03, 0.03, steelM, W / 2 + 0.035, y0 + 1.02, -0.09));
+  for (const y of [0.35, 1.65]) door.push(box(0.03, 0.12, 0.03, steelM, W / 2 + 0.028, y0 + y, -0.79));
+  part('door', [1, 0, 0], 1.3, door, 0.3);
+  // small electrical box on the left wall
+  part('ebox', [-1, 0, 0], 1.6, [box(0.05, 0.32, 0.26, plain(0x8d9195, 0.55, 0.3), -W / 2 - 0.03, y0 + 1.5, -0.55)], 0.5);
+  // window gaskets + lock on the sliding pane
+  const gk = [box(1.98, 0.018, 0.02, rubber, 0, y0 + 1.92, D / 2 + 0.06), box(1.98, 0.018, 0.02, rubber, 0, y0 + 0.98, D / 2 + 0.06)];
+  gk.push(box(0.03, 0.12, 0.03, steelM, 0.06, y0 + 1.45, D / 2 + 0.07));
+  part('gaskets', [0, 0.1, 1], 1.8, gk, 0.4);
+  // counter brackets + LED strip under the counter edge
+  const brM = trimM, br = [];
+  for (const x of [-0.95, 0, 0.95]) { br.push(box(0.03, 0.03, 0.36, brM, x, y0 + 0.87, D / 2 + 0.2)); br.push(beam(0, 0, 0.36, 0.3, 0.03, 0.03, 0, brM)); br.at(-1).rotation.set(0, -Math.PI / 2, Math.atan2(0.3, 0.36)); br.at(-1).position.set(x, y0 + 0.72, D / 2 + 0.17); }
+  const ledM = new THREE.MeshStandardMaterial({ color: 0x222222, emissive: 0xffc27a, emissiveIntensity: 0 });
+  br.push(box(2.2, 0.012, 0.012, ledM, 0, y0 + 0.875, D / 2 + 0.4));
+  part('brackets', [0, -0.4, 1], 1.9, br, 0.4);
+  // inside: shelves with goods, espresso machine, menu board (seen through the window)
+  const shelfM = mat('pine', 2.2, 0.3, { r: 0.6 }), props = [];
+  for (const y of [1.55, 1.95]) props.push(box(2.2, 0.035, 0.26, shelfM, 0, y0 + y, -D / 2 + 0.33));
+  const goods = [0xb8432e, 0xe2c69a, 0x3e6e57, 0xd9d4c8, 0x8a5a32, 0x1f2a33];
+  let gi = 0;
+  for (const y of [1.55, 1.95]) for (let x = -1.0; x <= 1.0; x += 0.18) {
+    if (Math.sin(x * 9 + y * 5) > 0.75) continue;
+    const c = goods[gi++ % goods.length], tall = 0.12 + ((gi * 37) % 7) * 0.012;
+    const g = (gi % 3 === 0) ? box(0.11, tall, 0.11, plain(c, 0.55), x, y0 + y + 0.018 + tall / 2, -D / 2 + 0.33)
+      : new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, tall, 16), plain(c, 0.35, 0, 1));
+    if (!(gi % 3 === 0)) g.position.set(x, y0 + y + 0.018 + tall / 2, -D / 2 + 0.33);
+    props.push(g);
+  }
+  props.push(box(0.42, 0.42, 0.4, steelM, -0.65, y0 + 1.15, -D / 2 + 0.45), box(0.36, 0.08, 0.34, plain(0x15171a, 0.4, 0.5), -0.65, y0 + 1.4, -D / 2 + 0.45));
+  props.push(box(1.1, 0.06, 0.55, mat('pine', 1.1, 0.55, { r: 0.6 }), 0.1, y0 + 0.92, -D / 2 + 0.5), box(1.1, 0.88, 0.5, plain(0x2a2d31, 0.6, 0.2), 0.1, y0 + 0.47, -D / 2 + 0.5));
+  props.push(box(0.8, 0.5, 0.02, plain(0x141618, 0.85), 0.6, y0 + 2.18, -D / 2 + 0.2));
+  part('props', [0, 1, -1], 0.9, props, 0.3);
+  // standing-seam roof skin + gutters with a downpipe
+  const roofSkin = (w, d) => mat('seam', d, w, { r: 0.4, m: 0.5, env: 0.9, c: 0x3b3f45 });
+  const gutters = [];
+  for (const sx of [-1, 1]) {
+    const rs = new THREE.Mesh(new THREE.BoxGeometry(rl, 0.004, RD), roofSkin(rl, RD)); rs.material.map.rotation = Math.PI / 2;
+    rs.position.set(sx * ex / 2, yt + PEAK - (ex / 2) * pitch + 0.1, 0.08); rs.rotation.z = -sx * ang;
+    part('roof', [sx * 0.55, 1, 0], 1.6, [rs], 0.5);
+    const gt = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, RD, 16, 1, true, 0, Math.PI), steelM);
+    gt.rotation.set(Math.PI / 2, 0, 0); gt.rotation.z = sx > 0 ? 0 : 0; gt.position.set(sx * (ex + 0.02), ey - 0.02, 0.08); gt.material.side = THREE.DoubleSide;
+    gutters.push(gt);
+  }
+  const dp = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, yt + 0.3, 14), steelM); dp.position.set(ex + 0.02, (yt + 0.3) / 2 - 0.02, -RD / 2 + 0.3); gutters.push(dp);
+  part('gutter', [0, 1, 0], 2.4, gutters, 0.5);
+  // concrete pad under the kiosk + leveling feet
+  const conc = (() => { const c = document.createElement('canvas'); c.width = c.height = 256; const g = c.getContext('2d'); g.fillStyle = '#7d7a74'; g.fillRect(0, 0, 256, 256); let s2 = 7; const r2 = () => (s2 = (s2 * 16807) % 2147483647) / 2147483647; for (let i = 0; i < 9000; i++) { const v = 90 + r2() * 70 | 0; g.fillStyle = `rgba(${v},${v - 3},${v - 8},${0.25 + r2() * 0.3})`; g.fillRect(r2() * 256, r2() * 256, 1 + r2() * 2, 1 + r2() * 2); } const t2 = new THREE.CanvasTexture(c); t2.wrapS = t2.wrapT = THREE.RepeatWrapping; t2.repeat.set(3, 3); t2.colorSpace = THREE.SRGBColorSpace; return t2; })();
+  const pad = new THREE.Mesh(new THREE.BoxGeometry(W + 1.6, 0.08, D + 2.2), new THREE.MeshStandardMaterial({ map: conc, roughness: 0.88, color: 0xbab5ad })); pad.position.set(0, -0.04, 0.35); pad.receiveShadow = true; scene.add(pad);
+
   const modelSize = new THREE.Box3().setFromObject(kiosk).getSize(new THREE.Vector3()).length();
   parts.forEach(p => { p.userData.k = THREE.MathUtils.clamp(0.55 / (p.userData.size / modelSize), 0.75, 1.6); });
   /* build order: 6 steps, each part flies in during its own window */
-  const ORDER = { base: [0, 0.07], frame: [0.04, 0.16], insulation: [0.18, 0.3], interior: [0.2, 0.32],
+  const ORDER = { props: [0.3, 0.4], trims: [0.52, 0.6], door: [0.5, 0.58], ebox: [0.55, 0.6], gaskets: [0.64, 0.7], brackets: [0.66, 0.74], gutter: [0.95, 1], base: [0, 0.07], frame: [0.04, 0.16], insulation: [0.18, 0.3], interior: [0.2, 0.32],
     'back wall': [0.34, 0.44], 'left wall': [0.38, 0.48], 'right wall': [0.4, 0.5], 'front wall': [0.46, 0.56],
     'window frame': [0.58, 0.66], glass: [0.6, 0.68], counter: [0.64, 0.72],
     gable: [0.74, 0.8], truss: [0.77, 0.85], slats: [0.8, 0.86], lamps: [0.83, 0.88], soffit: [0.86, 0.92], roof: [0.88, 0.96], ridge: [0.93, 1] };
@@ -296,6 +366,7 @@ async function main() {
   let vw = 1, vh = 1, finish = 'black', portrait = false, dirty = true, idle = 0;
   window.bbbFinish = (f) => { finish = f; finishable.forEach(o => { o.mesh.material = f === 'wood' ? o.wood : (o.black || o.mesh.material); }); dirty = true; };
   function apply(p) {
+    cam(p);
     // assembly: 1 = built. Built -> explode (0.12-0.2) -> rebuild layer by layer (0.2-0.4)
     const q = p < 0.12 ? 1 : p < 0.2 ? 1 - ease(seg(p, 0.12, 0.2)) * 0.999 : seg(p, 0.2, 0.4);
     const explode = p >= 0.12 && p < 0.2;
@@ -314,7 +385,9 @@ async function main() {
     sun.intensity = 2.5 - 1.8 * L; hemi.intensity = 0.55 - 0.32 * L; rim.intensity = 0.75 - 0.35 * L;
     const lampsOn = finish === 'wood' ? 0 : L;
     M.lampOn.emissiveIntensity = 3 * lampsOn; glows.forEach(s => { s.material.opacity = 0.95 * lampsOn; });
-    dl.emissiveIntensity = 2.6 * L; inLight.intensity = 9 * L; eaveGlows.forEach(s => { s.material.opacity = 0.75 * L; }); pool.material.opacity = 0.55 * L;
+    ledM.emissiveIntensity = 3 * lampsOn; if (bloom) bloom.strength = 0.18 + 0.62 * L;
+    if (bokeh) { const close = seg(p, 0.43, 0.48) * (1 - seg(p, 0.83, 0.88)); bokeh.enabled = close > 0.01; bokeh.uniforms.focus.value = camPos.distanceTo(camTgt); bokeh.uniforms.aperture.value = 0.0035 * close; }
+    dl.emissiveIntensity = 1.6 * L; inLight.intensity = 5 * L; eaveGlows.forEach(s => { s.material.opacity = 0.75 * L; }); pool.material.opacity = 0.55 * L;
     const fl = Math.max(1 - seg(p, 0.08, 0.14), seg(p, 0.86, 0.95)), bulbs = fl;
     festoon.visible = fl > 0.001; festoon.position.y = -3.9 * (1 - ease(fl));
     bulbM.emissiveIntensity = 4 * bulbs; bulbGlows.forEach(s => { s.material.opacity = 0.6 * bulbs; });
@@ -324,9 +397,21 @@ async function main() {
     else { const sy = 0.24 * (1 - seg(p, 0.06, 0.16)) + 0.04 + 0.1 * seg(p, 0.88, 1); camera.setViewOffset(vw, vh, 0, vh * sy, vw, vh); }
     camera.updateProjectionMatrix();
   }
+  /* ---------- post: soft contact shadows, real lamp glow, depth of field in close-ups ---------- */
+  let composer = null, bloom = null, bokeh = null;
+  try {
+    composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    if (!mobile) { try { const ao = new GTAOPass(scene, camera, 800, 600); ao.blendIntensity = 0.85; composer.addPass(ao); } catch (e) { console.warn('AO off', e); } }
+    bloom = new UnrealBloomPass(new THREE.Vector2(512, 512), 0.5, 0.5, 0.9); composer.addPass(bloom);
+    if (!mobile) { bokeh = new BokehPass(scene, camera, { focus: 3, aperture: 0.0, maxblur: 0.008 }); bokeh.enabled = false; composer.addPass(bokeh); }
+    composer.addPass(new OutputPass());
+  } catch (e) { console.warn('post off', e); composer = null; }
+  const render = () => composer ? composer.render() : renderer.render(scene, camera);
   function resize() {
     const w = stage.clientWidth, h = stage.clientHeight; vw = w; vh = h;
     renderer.setSize(w, h, false); portrait = w / h < 0.9;
+    if (composer) { composer.setPixelRatio(renderer.getPixelRatio()); composer.setSize(w, h); }
     camera.aspect = w / h; camera.fov = portrait ? 40 : 32; camera.clearViewOffset();
     camera.updateProjectionMatrix(); dirty = true;
   }
@@ -337,11 +422,11 @@ async function main() {
     const dt = Math.min(0.05, (now - last) / 1000); last = now; idle += dt;
     readGoal();
     const d = goal - cur; cur += d * Math.min(1, dt * (reduce ? 30 : 6));
-    if (visible) { apply(cur); renderer.render(scene, camera); }
+    if (visible) { apply(cur); render(); }
     requestAnimationFrame(tick);
   }
   new IntersectionObserver(es => { visible = es[0].isIntersecting; }, { rootMargin: '200px 0px' }).observe(sec);
-  readGoal(); cur = goal; apply(cur); renderer.render(scene, camera);
+  readGoal(); cur = goal; apply(cur); render();
   document.documentElement.classList.add('gl-ready');
   requestAnimationFrame(tick);
 }
