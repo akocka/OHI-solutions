@@ -50,10 +50,10 @@
   }
 
   /* 3 · product and price options zoom in */
-  var cards = $$('.card, .plan, .pc-card, .post, .gl-g figure, .tm, .lo-card');
+  var cards = $$('.card, .plan, .pc-card, .post, .gl-g figure, .tm, .lo-card, .fd-ph');
   cards.forEach(function (c) {
     c.classList.add('fx-zoom');
-    var im = c.querySelector('img'); if (im) im.classList.add('fx-zi');
+    var im = c.querySelector('img'); if (im) { im.classList.add('fx-zi'); if (im.parentElement !== c) im.parentElement.classList.add('fx-zpar'); else c.classList.add('fx-zpar'); }
     if (fine) { c.addEventListener('pointerenter', function () { c.classList.add('fx-on'); }); c.addEventListener('pointerleave', function () { c.classList.remove('fx-on'); }); }
   });
   if (!fine && !reduce && 'IntersectionObserver' in window) {
