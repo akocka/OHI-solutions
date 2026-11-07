@@ -2,6 +2,10 @@
    Uses the same stored language as the live inner pages ('bbb-lang'), so the choice carries across the site. */
 (function () {
   var D = {
+    "Începe cu o schiță gratuită.": ["Kezdje egy ingyenes vázlattal.", "Start with a free sketch."],
+    "Ne spui ce ai nevoie, iar noi îți trimitem schița și oferta. Hotărăști abia după ce o vezi.": ["Elmondja, mire van szüksége, mi elküldjük a vázlatot és az ajánlatot. Csak azután dönt, hogy látta.", "Tell us what you need and we'll send you the sketch and the quote. You decide only after you've seen it."],
+    "Cere schița gratuită": ["Kérem az ingyenes vázlatot", "Get the free sketch"], "Programează o vizită": ["Látogatás egyeztetése", "Book a visit"],
+    "Fără obligații · răspundem în 24 de ore": ["Kötelezettség nélkül · 24 órán belül válaszolunk", "No obligation · we reply within 24 hours"],
     "Previzualizare ·": ["Előnézet ·", "Preview ·"],
     "cifre orientative, de confirmat": ["tájékoztató adatok, megerősítésre várnak", "indicative figures, to be confirmed"],
     "Previzualizare · design nou propus de OHI Solutions": ["Előnézet · az OHI Solutions új dizájnjavaslata", "Preview · new design proposed by OHI Solutions"],

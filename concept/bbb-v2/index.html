@@ -412,6 +412,14 @@ mark.ph{background:#FFE14D;color:#2a2100;padding:.02em .28em;border-radius:5px;-
 .rf-l i{font:800 13px var(--fd);font-style:normal;color:var(--pine);letter-spacing:.1em;padding-top:4px}
 .rf-l b{display:block;font:800 18px/1.3 var(--fd);margin-bottom:4px}.rf-l span{color:var(--mut);font-size:15px}
 @media(max-width:860px){.rf-g{grid-template-columns:1fr}}
+.rf-g>div:first-child{position:sticky;top:110px}
+.rf-cta{margin-top:30px;padding:24px;border-radius:24px;background:var(--night);color:#F3EEE5;display:flex;flex-direction:column;gap:8px;max-width:460px;box-shadow:0 30px 60px -36px rgba(15,24,20,.6)}
+.rf-cta b{font:800 21px/1.2 var(--fd);letter-spacing:-.01em}
+.rf-cta span{color:#B9C1BC;font-size:15px;line-height:1.55}
+.rf-b{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 4px}
+.rf-cta .btn.d{background:transparent;border:1.5px solid rgba(255,255,255,.22);color:#F3EEE5}
+.rf-cta small{font-size:12.5px;color:#8F9A93}
+@media(max-width:860px){.rf-g>div:first-child{position:static}.rf-b .btn{flex:1;justify-content:center}}
 /* founder */
 .fd{background:var(--paper);padding:clamp(100px,12vw,160px) 0}
 .fd-g{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(30px,6vw,90px);align-items:center}
@@ -548,7 +556,10 @@ mark.ph{background:#FFE14D;color:#2a2100;padding:.02em .28em;border-radius:5px;-
 <!-- ============ PROCESS ============ -->
 
 <section class="rf" id="garantii"><div class="wrap rf-g">
-  <div><div class="k up">Fără risc pentru tine</div><h2 class="up">Cumperi <em class="s">fără griji.</em></h2><p class="lead up">O construcție e o investiție mare. Așa o facem sigură, de la prima schiță până la montaj.</p></div>
+  <div><div class="k up">Fără risc pentru tine</div><h2 class="up">Cumperi <em class="s">fără griji.</em></h2><p class="lead up">O construcție e o investiție mare. Așa o facem sigură, de la prima schiță până la montaj.</p>
+    <div class="rf-cta up"><b>Începe cu o schiță gratuită.</b><span>Ne spui ce ai nevoie, iar noi îți trimitem schița și oferta. Hotărăști abia după ce o vezi.</span>
+      <div class="rf-b"><a class="btn a" href="#oferta">Cere schița gratuită<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn d" href="tel:+40751065876">Programează o vizită</a></div>
+      <small>Fără obligații · răspundem în 24 de ore</small></div></div>
   <ul class="rf-l">
     <li class="up"><i>01</i><div><b>Vezi înainte să plătești.</b><span>Primești gratuit o schiță sau un model 3D al proiectului tău.</span></div></li>
     <li class="up"><i>02</i><div><b>Preț fix, în scris.</b><span>Prețul și termenul de livrare sunt trecute în contract și nu se schimbă pe parcurs.</span></div></li>
