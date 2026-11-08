@@ -741,6 +741,50 @@ html.fly-on .oh-in{padding-top:90px!important;padding-bottom:40px!important;will
   html.fly-on .oh-note,html.fly-on .oh-facts{display:none}
 }
 @media(prefers-reduced-motion:reduce){html.fly-on .fly{height:auto}html.fly-on .fly>.oh{position:relative;height:auto;min-height:100svh!important}.hs{opacity:1}.hs i{animation:none}}
+
+/* ===== blueprint section: technical sketch that draws itself + 3 real close-ups ===== */
+.bp2{position:relative;background:#111B16;color:#EFEBE2;padding:clamp(80px,10vw,140px) 0;overflow:hidden}
+.bp2::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(232,169,122,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(232,169,122,.07) 1px,transparent 1px);background-size:32px 32px;pointer-events:none}
+.bp2 .wrap{position:relative}
+.bp2-h h2{font:800 clamp(34px,4.6vw,64px)/1 var(--fd);letter-spacing:-.035em;margin:12px 0 0;max-width:820px}
+.bp2-h h2 em.s{color:var(--blueL)}
+.bp2-g{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(28px,4vw,64px);align-items:center;margin-top:clamp(36px,5vw,64px)}
+.bp2-draw{margin:0}
+.bp2-draw svg{width:100%;height:auto;display:block}
+.bp2 .ln path{fill:none;stroke:#E8A97A;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:var(--d,0)}
+.bp2 .ln.thin path,.bp2 path.ln.thin{stroke-width:1;opacity:.6}
+.bp2 path.ln{fill:none;stroke:#E8A97A;stroke-dasharray:1;stroke-dashoffset:var(--d,0)}
+.bp2 .ln.dim path{stroke:#C8CCC0;stroke-width:1;opacity:.7}
+.bp2 .tx text{fill:#C8CCC0;font:600 12px var(--fd);letter-spacing:.12em;text-transform:uppercase}
+.bp2 .cl circle{fill:var(--amber);transition:transform .3s;transform-box:fill-box;transform-origin:center}
+.bp2 .cl a:hover circle{transform:scale(1.2)}
+.bp2 .cl text{fill:#fff;font:800 13px var(--fd);text-anchor:middle}
+.bp2-draw figcaption{margin-top:14px;font:500 12px var(--fb);color:rgba(239,235,226,.55)}
+.bp2-list{display:grid;gap:14px}
+.bp2-i{display:grid;grid-template-columns:132px 1fr;gap:16px;align-items:center;padding:12px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);transition:background .3s,border-color .3s,transform .3s}
+.bp2-i:hover,.bp2-i:target{background:rgba(200,116,58,.1);border-color:rgba(200,116,58,.45);transform:translateX(4px)}
+.bp2-i img{width:132px;height:100px;object-fit:cover;border-radius:12px;display:block}
+.bp2-i b{display:flex;align-items:center;gap:10px;font:700 18px var(--fd);color:#fff}
+.bp2-i b i{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--amber);color:#fff;font:800 12px var(--fd);font-style:normal}
+.bp2-i p{margin:6px 0 0;color:#C8CCC0;font-size:14.5px;line-height:1.5}
+@media(max-width:900px){.bp2-g{grid-template-columns:1fr}.bp2-i{grid-template-columns:96px 1fr}.bp2-i img{width:96px;height:84px}}
+@media(prefers-reduced-motion:reduce){.bp2 .ln path,.bp2 path.ln{stroke-dasharray:none}}
+
+/* leave a review */
+.rvw{max-width:820px;margin:22px auto 0;padding:22px 24px;border-radius:24px;background:#fff;border:1px solid var(--line);box-shadow:0 20px 50px -34px rgba(24,33,28,.35)}
+.rvw-h{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.rvw-h b{display:block;font:800 20px var(--fd);letter-spacing:-.02em}.rvw-h span{display:block;color:var(--mut,#5F6862);font-size:14.5px;margin-top:4px}
+.rvw-f{margin-top:20px;display:grid;gap:14px}
+.rvw-f label{display:grid;gap:6px;font:600 13px var(--fd);color:var(--steel)}
+.rvw-f input,.rvw-f select,.rvw-f textarea{font:500 15px var(--fb);padding:12px 14px;border-radius:12px;border:1px solid rgba(24,33,28,.18);background:var(--paper,#EFEBE2);color:var(--steel)}
+.rvw-f .bad{border-color:#B4432F!important;box-shadow:0 0 0 3px rgba(180,67,47,.12)}
+.rvw-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rvw-stars{display:flex;gap:4px}.rvw-stars button{border:0;background:none;font-size:34px;line-height:1;color:rgba(24,33,28,.18);cursor:pointer;padding:2px;transition:color .2s,transform .2s}
+.rvw-stars button.on{color:var(--amber)}.rvw-stars button:hover{transform:scale(1.15)}.rvw-stars.bad button{color:rgba(180,67,47,.35)}
+.rvw-ok{grid-template-columns:auto 1fr!important;align-items:start;font:500 13.5px var(--fb)!important}.rvw-ok input{margin-top:3px;width:18px;height:18px;padding:0}
+.rvw-b{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.rvw-b small{color:var(--mut,#5F6862);font-size:12.5px}
+.rvw-done{margin:0;padding:12px 14px;border-radius:12px;background:rgba(200,116,58,.1);color:var(--steel);font-size:14px}
+@media(max-width:600px){.rvw{padding:18px}.rvw-row{grid-template-columns:1fr}}
 </style>
 <link rel="stylesheet" href="/concept/bbb-v2/fx.css">
 <link rel="stylesheet" href="/concept/bbb-v2/anim.css">
@@ -844,6 +888,46 @@ html.fly-on .oh-in{padding-top:90px!important;padding-bottom:40px!important;will
 <div class="tb" aria-label="De ce să ai încredere"><div class="wrap tb-in">
   <span><i><b>Firmă înregistrată</b> din 2020</i></span><span><i>CUI 43611636</i></span><span><i>Ofertă în 24 de ore</i></span><span><i>Garanție 2 ani</i></span><span><i>Preț fix în contract</i></span>
 </div></div>
+<!-- ============ BLUEPRINT: how a module is built ============ -->
+<section class="bp2" id="cum"><div class="wrap">
+  <div class="bp2-h"><div class="k up">Cum e construit</div><h2 class="up">Desenat ca un proiect. <em class="s">Construit ca o casă.</em></h2></div>
+  <div class="bp2-g">
+    <figure class="bp2-draw" aria-label="Schiță tehnică a unui modul Big Big Boon">
+      <svg viewBox="0 0 640 420" role="img" aria-hidden="true">
+        <g class="ln thin">
+          <path pathLength="1" d="M20 360H620"/>
+          <path pathLength="1" d="M70 360V346H570V360"/>
+        </g>
+        <g class="ln">
+          <path pathLength="1" d="M90 346V150H550V346"/>
+          <path pathLength="1" d="M60 150H590L590 136H60Z"/>
+          <path pathLength="1" d="M130 330V196H196V330Z"/>
+          <path pathLength="1" d="M210 330V180H300V330M255 180V330"/>
+          <path pathLength="1" d="M360 300V176H530V300ZM445 176V300"/>
+        </g>
+        <g class="ln thin">
+          <path pathLength="1" d="M310 150V346M318 150V346M326 150V346M334 150V346"/>
+          <path pathLength="1" d="M110 150V346M118 150V346"/>
+          <path pathLength="1" d="M540 170V346M520 300V346M500 300V346M480 300V346M460 300V346M440 300V346M420 300V346M400 300V346M380 300V346"/>
+        </g>
+        <g class="ln dim">
+          <path pathLength="1" d="M90 392H550M90 386V398M550 386V398"/>
+          <path pathLength="1" d="M612 150V346M606 150H618M606 346H618"/>
+        </g>
+        <g class="tx"><text x="320" y="412" text-anchor="middle">L · la alegere</text><text x="628" y="252" transform="rotate(90 628 252)" text-anchor="middle">H</text></g>
+        <g class="cl"><a href="#bp-1"><circle cx="322" cy="120" r="13"/><text x="322" y="125">1</text></a><path class="ln thin" pathLength="1" d="M322 133V150"/>
+        <a href="#bp-2"><circle cx="445" cy="238" r="13"/><text x="445" y="243">2</text></a>
+        <a href="#bp-3"><circle cx="70" cy="380" r="13"/><text x="70" y="385">3</text></a><path class="ln thin" pathLength="1" d="M80 372L92 356"/></g>
+      </svg>
+      <figcaption>Schiță orientativă · fiecare proiect se desenează pe dimensiunile tale</figcaption>
+    </figure>
+    <div class="bp2-list">
+      <article class="bp2-i up" id="bp-1"><img src="/concept/bbb-v2/img/g-chiosc-negru-cu-lemn-finalizat-in-hala-1200.webp" alt="Placare din tablă și lemn, finalizată în hală" loading="lazy"><div><b><i>1</i>Placare lemn și tablă</b><p>Alegi combinația: tablă vopsită, lamele din lemn natural sau ambele.</p></div></article>
+      <article class="bp2-i up" id="bp-2"><img src="/concept/bbb-v2/img/g-chiosc-din-lemn-natural-cu-vitrina-1200.webp" alt="Vitrină mare într-un chioșc din lemn" loading="lazy"><div><b><i>2</i>Ferestre mari</b><p>Vitrine și uși din sticlă, puse acolo unde ai nevoie de lumină.</p></div></article>
+      <article class="bp2-i up" id="bp-3"><img src="/concept/bbb-v2/img/g-echipa-lucrand-la-un-cadru-modular-1200.webp" alt="Echipa lucrând la cadrul unui modul" loading="lazy"><div><b><i>3</i>Fundație și cadru</b><p>Structura e gândită pentru transport, așa că modulul se poate muta.</p></div></article>
+    </div>
+  </div>
+</div></section>
 <section class="st"><div class="wrap">
   <div class="k up">De ce Big Big Boon</div><br>
   <p id="stmt">Nu vindem cutii din tablă. Construim <em class="s">locul</em> în care afacerea ta începe să vândă: solid, frumos și gata de mutat oriunde e lume.</p>
@@ -990,6 +1074,17 @@ html.fly-on .oh-in{padding-top:90px!important;padding-bottom:40px!important;will
     <p>„Aveam nevoie de un birou lângă casă și nu voiam șantier în curte. Am ales dimensiunea și finisajele la telefon, iar modulul a venit montat, cu lumină și izolație. Într-o zi lucram deja din el.”</p>
     <div class="who"><i>C</i><div><b>Client Big Big Boon</b><br>Modul birou · Mureș</div></div>
     <div class="facts"><span><b>1 zi</b>montaj la client</span><span><b>6 × 3 m</b>modul cu birou</span><span><b>Mureș</b>livrat și montat</span></div>
+  </div>
+  <div class="rvw up">
+    <div class="rvw-h"><div><b>Ai cumpărat de la noi?</b><span>Spune-ne cum a fost. Recenzia ta îi ajută pe alții să aleagă.</span></div><button type="button" class="btn a" id="rvwOpen">Lasă o recenzie<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+    <form class="rvw-f" id="rvwF" hidden novalidate>
+      <div class="rvw-stars" role="radiogroup" aria-label="Nota ta"><button type="button" data-v="1" aria-label="1 stea">★</button><button type="button" data-v="2" aria-label="2 stele">★</button><button type="button" data-v="3" aria-label="3 stele">★</button><button type="button" data-v="4" aria-label="4 stele">★</button><button type="button" data-v="5" aria-label="5 stele">★</button></div>
+      <div class="rvw-row"><label>Nume<input name="n" autocomplete="name" required></label><label>Ce ai cumpărat<select name="p"><option>Casă modulară</option><option>Chioșc</option><option>Căsuță de târg</option><option>Altceva</option></select></label></div>
+      <label>Recenzia ta<textarea name="t" rows="4" required placeholder="Cum a fost colaborarea, montajul, rezultatul?"></textarea></label>
+      <label class="rvw-ok"><input type="checkbox" name="ok" required><span>Sunt de acord ca recenzia să fie publicată pe site, cu prenumele meu.</span></label>
+      <div class="rvw-b"><button class="btn a" type="submit">Trimite recenzia</button><small>Recenziile apar pe site după ce verificăm că ești client.</small></div>
+      <p class="rvw-done" hidden>Mulțumim! În previzualizare nu se trimite nimic; pe site-ul real recenzia ajunge la noi pentru verificare.</p>
+    </form>
   </div>
 </div></section>
 
@@ -1229,6 +1324,25 @@ document.getElementById('iskip').onclick=end;el.addEventListener('click',functio
   document.addEventListener('click',function(e){if(e.target.closest('.hs,.fly-sheet'))return;hs.forEach(function(x){x.classList.remove('open')});var sh=document.getElementById('flySheet');if(sh)sh.classList.remove('on')});
   addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(draw)},{passive:true});
   addEventListener('resize',size);var im=fly.querySelector('.c1 img');if(im.complete)size();else im.addEventListener('load',size);size();
+})();
+
+/* blueprint draws itself as it scrolls into view */
+(function(){var sv=document.querySelector('.bp2-draw svg');if(!sv||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var ps=[].slice.call(sv.querySelectorAll('path[pathLength]'));ps.forEach(function(p){p.style.setProperty('--d',1)});
+  var cl=[].slice.call(sv.querySelectorAll('.cl a,.tx text'));cl.forEach(function(c){c.style.opacity=0;c.style.transition='opacity .5s'});
+  function upd(){var r=sv.getBoundingClientRect(),k=Math.min(1,Math.max(0,(innerHeight*.95-r.top)/(innerHeight*.7)));
+    ps.forEach(function(p,i){var a=i/ps.length*.6,v=Math.min(1,Math.max(0,(k-a)/.4));p.style.setProperty('--d',(1-v).toFixed(3))});
+    cl.forEach(function(c){c.style.opacity=k>.85?1:0})}
+  addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+})();
+
+/* leave a review: open the form, star rating, simple checks (preview: nothing is sent) */
+(function(){var o=document.getElementById('rvwOpen'),f=document.getElementById('rvwF');if(!o||!f)return;var v=0,st=f.querySelector('.rvw-stars'),bs=[].slice.call(st.querySelectorAll('button'));
+  o.addEventListener('click',function(){f.hidden=!f.hidden;if(!f.hidden)bs[4].focus()});
+  bs.forEach(function(b){b.addEventListener('click',function(){v=+b.dataset.v;bs.forEach(function(x){x.classList.toggle('on',+x.dataset.v<=v)});st.classList.remove('bad')})});
+  f.addEventListener('submit',function(e){e.preventDefault();var ok=true;[f.n,f.t].forEach(function(i){var b=!i.value.trim();i.classList.toggle('bad',b);if(b)ok=false});
+    if(!v){st.classList.add('bad');ok=false}var c=f.ok.parentNode;c.classList.toggle('bad',!f.ok.checked);if(!f.ok.checked)ok=false;
+    if(!ok)return;/* preview: nothing is sent */f.querySelector('.rvw-done').hidden=false;f.querySelector('.rvw-b').hidden=true});
 })();
 /* buttons that open the form with a product already chosen */
 document.addEventListener('click',function(e){var a=e.target.closest('[data-prod]');if(!a)return;var bs=document.querySelectorAll('.chips[data-one="prod"] button');bs.forEach(function(x,i){x.classList.toggle('on',i===+a.dataset.prod)});});
