@@ -376,6 +376,8 @@ footer img{height:34px;width:auto;margin-bottom:10px}
   .oh-in{padding-top:calc(120px + min(calc(100vw - 28px),560px)*.68)}
   .oh-t,.oh-in>p{max-width:none}.oh-t{font-size:clamp(34px,9.6vw,52px)}
   .oh-cta .btn{flex:1;justify-content:center;white-space:nowrap;padding:0 14px;font-size:14px}
+  .oh-chip,.oh-ey,.oh-note,.oh-facts{display:none!important}
+  .oh-in>p{font-size:15.5px}
   .oh-chip{padding:7px 10px 7px 7px;border-radius:12px}.oh-chip i{width:28px;height:28px}.oh-chip b{font-size:12px}.oh-chip small{font-size:10.5px}
   .oh-chip.c1{left:0;top:-4%}.oh-chip.c2{right:0;bottom:8%}
   .oh-ey{font-size:10.5px;letter-spacing:.1em;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
@@ -559,7 +561,7 @@ mark.ph{background:#FFE14D;color:#2a2100;padding:.02em .28em;border-radius:5px;-
 @keyframes ohTab{to{transform:scaleX(1)}}
 .oh-in{pointer-events:none}.oh-in>*{pointer-events:auto}
 .oh-tabs button:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
-@media(max-width:900px){.oh-tabs{bottom:-46px}.oh-tabs button{padding:7px 11px;font-size:11.5px}.oh-in{padding-top:calc(200px + min(calc(100vw - 16px),580px)*.68)!important}}
+@media(max-width:900px){.oh-tabs{bottom:-46px}.oh-tabs button{padding:7px 11px;font-size:11.5px}.oh-in{padding-top:calc(180px + min(calc(100vw - 16px),580px)*.68)!important}}
 @media(prefers-reduced-motion:reduce){.oh-p,.oh-p.out{transition:none}.oh-tabs button.on::after{animation:none}}
 
 
@@ -570,9 +572,11 @@ mark.ph{background:#FFE14D;color:#2a2100;padding:.02em .28em;border-radius:5px;-
 .pq-row{display:flex;gap:12px;height:clamp(440px,62vh,600px)}
 .pq-c{position:relative;flex:1 1 0;min-width:0;border-radius:26px;overflow:hidden;cursor:pointer;background:#0F1814;transition:flex-grow .7s cubic-bezier(.2,.8,.2,1),flex-basis .7s cubic-bezier(.2,.8,.2,1),box-shadow .5s;outline:none}
 .pq-c.on{flex-grow:3.2}
-.pq-c img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.16,1,.3,1),filter .6s;filter:saturate(.85) brightness(.82)}
-.pq-c.on img{transform:scale(1.04);filter:none}
-.pq-c::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,19,15,0) 35%,rgba(11,19,15,.88) 100%);pointer-events:none}
+.pq-c{background:radial-gradient(110% 70% at 50% 62%,#2a4135 0%,#16241d 52%,#0d1511 100%)}
+.pq-c::before{content:"";position:absolute;left:8%;right:8%;top:58%;height:12%;background:radial-gradient(ellipse at 50% 50%,rgba(0,0,0,.6),rgba(0,0,0,0) 70%);pointer-events:none;z-index:1}
+.pq-c img{position:absolute;z-index:1;left:7%;right:7%;top:9%;width:86%;height:52%;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 18px 20px rgba(0,0,0,.45)) saturate(.9) brightness(.85);transition:transform 1.2s cubic-bezier(.16,1,.3,1),filter .6s}
+.pq-c.on img{transform:scale(1.04);filter:drop-shadow(0 22px 26px rgba(0,0,0,.5))}
+.pq-c::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,19,15,0) 55%,rgba(11,19,15,.7) 100%);pointer-events:none}
 .pq-c:focus-visible{box-shadow:0 0 0 3px var(--amber)}
 .pq-v{position:absolute;z-index:2;left:22px;bottom:22px;color:#F3EEE5;font:700 15px var(--fd);letter-spacing:.01em;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;transition:opacity .3s}
 .pq-c.on .pq-v{opacity:0}
@@ -609,7 +613,10 @@ mark.ph{background:#FFE14D;color:#2a2100;padding:.02em .28em;border-radius:5px;-
 .cfg-n{font-size:11.5px;color:#9aa49e}
 @media(max-width:860px){
   .pq-row{flex-direction:column;height:auto;gap:10px}
-  .pq-c{flex:none;height:86px}.pq-c.on{height:440px}
+  .pq-c{flex:none;height:86px}.pq-c.on{height:470px}
+  .pq-c:not(.on) img{left:auto;right:14px;top:8px;width:96px;height:70px}.pq-c:not(.on)::before{display:none}
+  .pq-c.on img{top:16px;height:44%}.pq-c.on::before{top:44%}
+  .pq-row.cfg .pq-c.on img{left:auto;right:14px;top:10px;width:150px;height:130px}.pq-row.cfg .pq-c.on::before{display:none}
   .pq-v{writing-mode:horizontal-tb;transform:none;left:20px;bottom:auto;top:50%;translate:0 -50%;font-size:17px}
   .pq-b{padding:22px}
   .pq-row.cfg .pq-c:not(.on){flex:none;height:64px}
@@ -716,48 +723,6 @@ body.intro-on .oh *{animation-play-state:paused!important}
 
 <div class="mq" aria-hidden="true"><div class="tr" id="mq"><span>Chioșcuri comerciale</span><span><em class="s">Căsuțe de târg</em></span><span>Case modulare</span><span>Birouri</span><span><em class="s">Pergole</em></span><span>Structuri metalice</span><span>Chioșcuri comerciale</span><span><em class="s">Căsuțe de târg</em></span><span>Case modulare</span><span>Birouri</span><span><em class="s">Pergole</em></span><span>Structuri metalice</span></div></div>
 
-<!-- ============ PRODUCTS ============ -->
-<section class="pq" id="produse">
-  <div class="wrap pq-hd"><div class="k up">Ce construim</div><h2 class="up">Alege ce vrei <em class="s">să construiești.</em></h2><p class="up">Atinge un produs, configurează-l și vezi pe loc prețul de pornire. Oferta exactă o primești de la noi, fără obligații.</p></div>
-  <div class="wrap">
-    <div class="pq-row" id="pqRow">
-      <article class="pq-c on" data-p="chiosc" tabindex="0" aria-label="Chioșcuri comerciale">
-        <img src="/concept/bbb-v2/img/f-chiosc-premium-negru-lemn-1200.webp" alt="Chioșcuri comerciale" loading="lazy">
-        <span class="pq-v">Chioșcuri comerciale</span>
-        <div class="pq-b"><h3>Chioșcuri comerciale</h3><p>Pentru street-food, cafenele, târguri și terase. Vitrină mare, blat din lemn, gata de vânzare.</p><div class="pq-f"><span class="pq-pr">de la <b data-from="chiosc">–</b></span><button type="button" class="btn a pq-go">Configurează și vezi prețul<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>
-      </article>
-      <article class="pq-c" data-p="casuta" tabindex="0" aria-label="Căsuțe de târg">
-        <img src="/concept/bbb-v2/img/g-chiosc-din-lemn-natural-cu-vitrina-1200.webp" alt="Căsuțe de târg" loading="lazy">
-        <span class="pq-v">Căsuțe de târg</span>
-        <div class="pq-b"><h3>Căsuțe de târg</h3><p>Ușoare, din lemn tratat, se montează și se demontează rapid. Ideale pentru sezon și evenimente.</p><div class="pq-f"><span class="pq-pr">de la <b data-from="casuta">–</b></span><button type="button" class="btn a pq-go">Configurează și vezi prețul<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>
-      </article>
-      <article class="pq-c" data-p="casa" tabindex="0" aria-label="Case și birouri modulare">
-        <img src="/concept/bbb-v2/img/f-modul-verde-fatada-960.webp" alt="Case și birouri modulare" loading="lazy">
-        <span class="pq-v">Case și birouri modulare</span>
-        <div class="pq-b"><h3>Case și birouri modulare</h3><p>Pentru locuit, birou sau turism. Izolate, luminoase și extensibile oricând.</p><div class="pq-f"><span class="pq-pr">de la <b data-from="casa">–</b></span><button type="button" class="btn a pq-go">Configurează și vezi prețul<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>
-      </article>
-      <article class="pq-c" data-p="struct" tabindex="0" aria-label="Structuri metalice și din lemn">
-        <img src="/concept/bbb-v2/img/cover-metal-sau-lemn-structura.webp" alt="Structuri metalice și din lemn" loading="lazy">
-        <span class="pq-v">Structuri metalice și din lemn</span>
-        <div class="pq-b"><h3>Structuri metalice și din lemn</h3><p>Copertine, parcări acoperite, pavilioane și magazii, făcute pe măsura ideii tale.</p><div class="pq-f"><span class="pq-pr">de la <b data-from="struct">–</b></span><button type="button" class="btn a pq-go">Configurează și vezi prețul<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>
-      </article>
-      <div class="pq-cfg" id="pqCfg" aria-live="polite">
-        <button type="button" class="pq-x" id="pqX" aria-label="Închide configuratorul">✕</button>
-        <div class="pq-tabs"><span class="on">Detalii</span><span>Opțiuni</span><span>Preț</span></div>
-        <h3 id="cfgT">Chioșcuri comerciale</h3>
-        <div class="cfg-l">Ce suprafață vrei?</div>
-        <div class="cfg-a"><b id="cfgA">6</b><span>m²</span></div>
-        <input type="range" id="cfgR" min="4" max="15" step="1" value="6" aria-label="Suprafață în metri pătrați">
-        <div class="cfg-s"><span id="cfgMin">4 m²</span><span id="cfgMax">15 m²</span></div>
-        <div class="cfg-l">Ce să includă?</div>
-        <div class="cfg-o" id="cfgO"></div>
-        <div class="cfg-p"><div><span>Preț de pornire</span><b id="cfgP">–</b><small>+ TVA · transportul și montajul se calculează în ofertă</small></div><a class="btn a" href="#oferta" id="cfgGo">Cere oferta exactă<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-        <p class="cfg-n">Prețuri exemplu pentru prezentare, de confirmat cu Big Big Boon.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ NUMBERS (placeholders) ============ -->
 <!-- ============ BUILDER (from bigbigboon.ro) ============ -->
 <section class="b3" id="build" aria-label="Construiește-ți modelul">
@@ -789,6 +754,48 @@ body.intro-on .oh *{animation-play-state:paused!important}
     <div class="up"><b>2<sup>ani</sup></b><span>garanție pentru structură și finisaje</span></div>
   </div>
 </div></section>
+
+<!-- ============ PRODUCTS ============ -->
+<section class="pq" id="produse">
+  <div class="wrap pq-hd"><div class="k up">Ce construim</div><h2 class="up">Alege ce vrei <em class="s">să construiești.</em></h2><p class="up">Atinge un produs, configurează-l și vezi pe loc prețul de pornire. Oferta exactă o primești de la noi, fără obligații.</p></div>
+  <div class="wrap">
+    <div class="pq-row" id="pqRow">
+      <article class="pq-c on" data-p="chiosc" tabindex="0" aria-label="Chioșcuri comerciale">
+        <img src="/concept/bbb-v2/img/cut-chiosc-720.webp" alt="Chioșcuri comerciale" loading="lazy">
+        <span class="pq-v">Chioșcuri comerciale</span>
+        <div class="pq-b"><h3>Chioșcuri comerciale</h3><p>Pentru street-food, cafenele, târguri și terase. Vitrină mare, blat din lemn, gata de vânzare.</p><div class="pq-f"><span class="pq-pr">de la <b data-from="chiosc">–</b></span><button type="button" class="btn a pq-go">Configurează și vezi prețul<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>
+      </article>
+      <article class="pq-c" data-p="casuta" tabindex="0" aria-label="Căsuțe de târg">
+        <img src="/concept/bbb-v2/img/cut-casuta-720.webp" alt="Căsuțe de târg" loading="lazy">
+        <span class="pq-v">Căsuțe de târg</span>
+        <div class="pq-b"><h3>Căsuțe de târg</h3><p>Ușoare, din lemn tratat, se montează și se demontează rapid. Ideale pentru sezon și evenimente.</p><div class="pq-f"><span class="pq-pr">de la <b data-from="casuta">–</b></span><button type="button" class="btn a pq-go">Configurează și vezi prețul<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>
+      </article>
+      <article class="pq-c" data-p="casa" tabindex="0" aria-label="Case și birouri modulare">
+        <img src="/concept/bbb-v2/img/modul-cut3-720.webp" alt="Case și birouri modulare" loading="lazy">
+        <span class="pq-v">Case și birouri modulare</span>
+        <div class="pq-b"><h3>Case și birouri modulare</h3><p>Pentru locuit, birou sau turism. Izolate, luminoase și extensibile oricând.</p><div class="pq-f"><span class="pq-pr">de la <b data-from="casa">–</b></span><button type="button" class="btn a pq-go">Configurează și vezi prețul<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>
+      </article>
+      <article class="pq-c" data-p="struct" tabindex="0" aria-label="Structuri metalice și din lemn">
+        <img src="/concept/bbb-v2/img/cut-structura-720.webp" alt="Structuri metalice și din lemn" loading="lazy">
+        <span class="pq-v">Structuri metalice și din lemn</span>
+        <div class="pq-b"><h3>Structuri metalice și din lemn</h3><p>Copertine, parcări acoperite, pavilioane și magazii, făcute pe măsura ideii tale.</p><div class="pq-f"><span class="pq-pr">de la <b data-from="struct">–</b></span><button type="button" class="btn a pq-go">Configurează și vezi prețul<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>
+      </article>
+      <div class="pq-cfg" id="pqCfg" aria-live="polite">
+        <button type="button" class="pq-x" id="pqX" aria-label="Închide configuratorul">✕</button>
+        <div class="pq-tabs"><span class="on">Detalii</span><span>Opțiuni</span><span>Preț</span></div>
+        <h3 id="cfgT">Chioșcuri comerciale</h3>
+        <div class="cfg-l">Ce suprafață vrei?</div>
+        <div class="cfg-a"><b id="cfgA">6</b><span>m²</span></div>
+        <input type="range" id="cfgR" min="4" max="15" step="1" value="6" aria-label="Suprafață în metri pătrați">
+        <div class="cfg-s"><span id="cfgMin">4 m²</span><span id="cfgMax">15 m²</span></div>
+        <div class="cfg-l">Ce să includă?</div>
+        <div class="cfg-o" id="cfgO"></div>
+        <div class="cfg-p"><div><span>Preț de pornire</span><b id="cfgP">–</b><small>+ TVA · transportul și montajul se calculează în ofertă</small></div><a class="btn a" href="#oferta" id="cfgGo">Cere oferta exactă<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        <p class="cfg-n">Prețuri exemplu pentru prezentare, de confirmat cu Big Big Boon.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ============ PROCESS ============ -->
 
@@ -864,21 +871,6 @@ body.intro-on .oh *{animation-play-state:paused!important}
   <p>Transport gratuit pentru primele 5 comenzi, în schimbul unei recenzii și al permisiunii de a publica fotografii cu proiectul tău.</p>
   <div class="lo-row"><div class="lo-n"><span>Locuri rămase</span><b>5</b></div><a class="btn a" href="#oferta">Vreau un loc<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
 </div></div></section>
-<section class="pc" id="pret"><div class="wrap pc-g">
-  <div>
-    <div class="k up">Prețuri</div>
-    <h2 class="up">Știi de unde <em class="s">pornești.</em></h2>
-    <p class="lead up">Fiecare construcție se face la comandă, dar nu te lăsăm să ghicești. Iată de la ce preț pornește o căsuță comercială și ce schimbă prețul.</p>
-    <div class="fx up"><span>Dimensiunea</span><span>Placarea</span><span>Izolația</span><span>Vitrina și ușile</span><span>Instalația electrică</span><span>Transportul</span></div>
-  </div>
-  <div class="pc-card up">
-    <small>Căsuță comercială, pachet de bază</small>
-    <div class="pr">de la 999 €</div>
-    <small>+ TVA · transport în funcție de distanță</small>
-    <ul><li>Structură din lemn sau metal</li><li>Placare la alegere</li><li>Blat de servire</li><li>Opțional: vitrină glisantă, iluminat, izolație</li></ul>
-    <a class="btn a" href="#oferta">Primește prețul exact<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-  </div>
-</div></section>
 
 <section class="fq"><div class="wrap">
   <div class="k up">Întrebări frecvente</div>
