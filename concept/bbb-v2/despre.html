@@ -311,11 +311,12 @@ footer .bot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;b
 @media(max-width:900px){.proc{grid-template-columns:1fr 1fr}}
 .hall{display:grid;grid-template-columns:1.3fr 1fr;gap:14px;margin-top:40px}
 .hall img{border-radius:22px;width:100%;height:100%;object-fit:cover}
-.hall .col{display:grid;gap:14px}
+.hall .col{display:grid;gap:14px;grid-template-rows:minmax(0,1fr) auto}.hall .col img{min-height:0}
 .hall .partner{border-radius:22px;background:var(--wood);color:#fff;padding:26px;display:flex;flex-direction:column;justify-content:space-between;gap:16px}
 .hall .partner b{font:800 22px/1.2 var(--fd)}
 .hall .partner .btn{background:#fff;color:var(--ink);align-self:flex-start;height:46px}
-@media(max-width:860px){.hall{grid-template-columns:1fr}}
+@media(max-width:860px){.hall{grid-template-columns:1fr}.hall img{height:auto;aspect-ratio:4/3}.hall .col{grid-template-rows:auto auto}}
+.hall .partner{position:relative;z-index:2}
 .quote{text-align:center;padding:clamp(80px,12vw,150px) var(--pad);position:relative;overflow:hidden;color:#fff}
 .quote .bgimg{position:absolute;inset:0;background:center/cover;z-index:0!important}
 .quote::after{content:"";position:absolute;inset:0;z-index:1;background:rgba(12,13,15,.72)}
