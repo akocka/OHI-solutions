@@ -688,11 +688,12 @@ body.intro-on .oh *{animation-play-state:paused!important}
 /* ===== cinematic scroll hero (fly-in): the camera moves toward the mini houses as you scroll ===== */
 .fly{position:relative}
 .fly-scene,.fly-cap,.fly-hint{display:none}
-html.fly-on .fly{height:260vh}
+html.fly-on .fly{height:300vh}
 html.fly-on .fly>.oh{position:sticky;top:0;height:100vh;height:100svh;min-height:0!important;padding-bottom:0!important;align-items:center;background:#111B16}
 html.fly-on .oh-stage,html.fly-on .oh-bg{display:none!important}
 html.fly-on .fly-scene{display:block;position:absolute;inset:0;overflow:hidden;z-index:0}
 .fly-cam{position:absolute;left:0;top:0;will-change:transform}
+.fly-cam.c2{opacity:0;visibility:hidden}
 .fly-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .fly-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(17,27,22,.82) 0%,rgba(17,27,22,.5) 34%,rgba(17,27,22,0) 62%),linear-gradient(180deg,rgba(17,27,22,.55) 0%,rgba(17,27,22,0) 22%,rgba(17,27,22,0) 70%,rgba(17,27,22,.85) 100%)}
 .fly-mist{position:absolute;pointer-events:none;border-radius:50%;filter:blur(40px);opacity:.55;will-change:transform,opacity}
@@ -711,11 +712,12 @@ html.fly-on .fly-hint{display:flex;position:absolute;z-index:3;left:50%;bottom:2
 @keyframes flyHint{0%{transform:translateY(0);opacity:1}100%{transform:translateY(8px);opacity:0}}
 html.fly-on .oh-in{padding-top:90px!important;padding-bottom:40px!important;will-change:transform,opacity}
 @media(max-width:900px){
-  html.fly-on .fly{height:210vh}
+  html.fly-on .fly{height:250vh}
   html.fly-on .fly>.oh{align-items:flex-start}
   html.fly-on .oh-in{padding-top:104px!important}
-  .fly-shade{background:linear-gradient(180deg,rgba(17,27,22,.85) 0%,rgba(17,27,22,.55) 38%,rgba(17,27,22,0) 62%,rgba(17,27,22,.8) 100%)}
+  .fly-shade{background:linear-gradient(180deg,rgba(17,27,22,.9) 0%,rgba(17,27,22,.72) 45%,rgba(17,27,22,.25) 68%,rgba(17,27,22,.8) 100%)}
   .hs span{font-size:11px;padding:6px 9px}.hs span b{font-size:12px}
+  .hs.l{flex-direction:row-reverse;transform:translate(calc(-100% + 11px),-50%) scale(calc(1 / var(--z,1)));transform-origin:right center}
   html.fly-on .oh-note,html.fly-on .oh-facts{display:none}
 }
 @media(prefers-reduced-motion:reduce){html.fly-on .fly{height:auto}html.fly-on .fly>.oh{position:relative;height:auto;min-height:100svh!important}.hs{opacity:1}.hs i{animation:none}}
@@ -775,11 +777,14 @@ html.fly-on .oh-in{padding-top:90px!important;padding-bottom:40px!important;will
 <!-- ============ HERO (original layout, new palette) ============ -->
 <div class="fly" id="fly">
 <section class="oh" id="acasa">
-  <div class="fly-scene" aria-hidden="true"><div class="fly-cam" id="flyCam"><img class="fly-img" id="flyImg" src="/concept/bbb-v2/img/g-hala-big-big-boon-la-apus-1200.webp" data-ar="1.7917" alt="" decoding="async" fetchpriority="high">
-    <div class="hs" style="left:62%;top:62%"><i></i><span><b>Structură metalică</b>sau din lemn, făcută în hala noastră</span></div>
-    <div class="hs" style="left:70%;top:55%"><i></i><span><b>Ferestre mari</b>lumină naturală, finisaje la alegere</span></div>
-    <div class="hs" style="left:75%;top:66%"><i></i><span><b>Izolație</b>pentru folosire tot anul</span></div>
-  </div><div class="fly-mist m1"></div><div class="fly-mist m2"></div><div class="fly-shade"></div></div>
+  <div class="fly-scene" aria-hidden="true">
+    <div class="fly-cam c1" data-ar="1.7917" data-fx=".72" data-fy=".55" data-hx=".79" data-hy=".72" data-z0="1" data-z1="2.5" data-a="0" data-b=".72"><img class="fly-img" src="/concept/bbb-v2/img/fly-sat-1800.webp" srcset="/concept/bbb-v2/img/fly-sat-1800.webp 1800w, /concept/bbb-v2/img/fly-sat-3200.webp 3200w" sizes="(max-width:900px) 220vw, 160vw" alt="" decoding="async" fetchpriority="high"></div>
+    <div class="fly-cam c2" data-ar="1.7917" data-fx=".70" data-fy=".5" data-hx=".705" data-hy=".55" data-z0="1.22" data-z1="1" data-z0m="1.95" data-z1m="1.6" data-a=".5" data-b="1"><img class="fly-img" src="/concept/bbb-v2/img/fly-casa-1376.webp" alt="" decoding="async" loading="lazy">
+      <div class="hs" style="left:63%;top:55%"><i></i><span><b>Placare lemn și tablă</b>finisaje la alegere</span></div>
+      <div class="hs l" style="left:73%;top:50%"><i></i><span><b>Ferestre mari</b>lumină naturală toată ziua</span></div>
+      <div class="hs" style="left:71%;top:69%"><i></i><span><b>Fundație și cadru</b>bază solidă, se poate muta</span></div>
+    </div>
+    <div class="fly-mist m1"></div><div class="fly-mist m2"></div><div class="fly-shade"></div></div>
   <p class="fly-cap">Imagine ilustrativă, generată pentru prezentare</p>
   <div class="fly-hint" aria-hidden="true"><i></i>Derulează</div>
   <div class="oh-bg" aria-hidden="true"><div class="oh-sun"></div><div class="oh-grid"></div></div>
@@ -1169,32 +1174,34 @@ document.getElementById('iskip').onclick=end;el.addEventListener('click',functio
 <script src="/concept/bbb-v2/fx.js"></script>
 <script>
 
-/* cinematic scroll hero: zoom toward the houses, fade the headline, show the info points */
+/* cinematic scroll hero: zoom toward the mini houses, dissolve to eye level at one house, show the info points */
 (function(){
-  var fly=document.getElementById('fly'),cam=document.getElementById('flyCam'),img=document.getElementById('flyImg');if(!fly||!cam)return;
-  if(/[?&]fly(=|&|$)/.test(location.search)||document.documentElement.dataset.fly==='on')document.documentElement.classList.add('fly-on');
+  var fly=document.getElementById('fly');if(!fly)return;
+  if(!/[?&]nofly/.test(location.search))document.documentElement.classList.add('fly-on');
   if(!document.documentElement.classList.contains('fly-on'))return;
   var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var CFG={fx:.66,fy:.5,hx:.66,hy:.6,zd:2.1,zm:1.7};   // focus/zoom target as fractions of the image
-  var oh=fly.querySelector('.oh'),txt=fly.querySelector('.oh-in'),hint=fly.querySelector('.fly-hint'),m1=fly.querySelector('.m1'),m2=fly.querySelector('.m2'),hs=[].slice.call(fly.querySelectorAll('.hs'));
-  var ar=+img.dataset.ar||1.7917,bw=0,bh=0,ox=0,oy=0,sp=0,raf=0;
+  var shade=fly.querySelector('.fly-shade'),oh=fly.querySelector('.oh'),txt=fly.querySelector('.oh-in'),hint=fly.querySelector('.fly-hint'),m1=fly.querySelector('.m1'),m2=fly.querySelector('.m2'),hs=[].slice.call(fly.querySelectorAll('.hs'));
+  var cams=[].slice.call(fly.querySelectorAll('.fly-cam')).map(function(el){var d=el.dataset;return{el:el,ar:+d.ar,fx:+d.fx,fy:+d.fy,hx:+d.hx,hy:+d.hy,z0:+d.z0,z1:+d.z1,z0m:+(d.z0m||d.z0),z1m:+(d.z1m||d.z1),a:+d.a,b:+d.b,ox:0,oy:0}});
+  var sp=0,raf=0;
   function clamp(v){return v<0?0:v>1?1:v}function seg(p,a,b){return clamp((p-a)/(b-a))}function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
-  function size(){var W=oh.clientWidth,H=oh.clientHeight;if(W/H>ar){bw=W;bh=W/ar}else{bh=H;bw=H*ar}ox=(W-bw)*CFG.fx;oy=(H-bh)*CFG.fy;
-    cam.style.width=bw+'px';cam.style.height=bh+'px';cam.style.transformOrigin=(CFG.hx*bw)+'px '+(CFG.hy*bh)+'px';draw(true)}
+  function size(){var W=oh.clientWidth,H=oh.clientHeight;cams.forEach(function(c){var bw,bh;if(W/H>c.ar){bw=W;bh=W/c.ar}else{bh=H;bw=H*c.ar}
+    c.ox=(W-bw)*c.fx;c.oy=(H-bh)*c.fy;c.el.style.width=bw+'px';c.el.style.height=bh+'px';c.el.style.transformOrigin=(c.hx*bw)+'px '+(c.hy*bh)+'px'});draw()}
   function prog(){var r=fly.getBoundingClientRect();return clamp(-r.top/Math.max(1,fly.offsetHeight-innerHeight))}
-  function draw(force){
-    var p=RM?0:prog();sp+=(p-sp)*.18;if(Math.abs(p-sp)<.0005)sp=p;
-    var Z=innerWidth<900?CFG.zm:CFG.zd,e=ease(seg(sp,0,.85)),z=1+(Z-1)*e;
-    cam.style.transform='translate('+ox+'px,'+oy+'px) scale('+z.toFixed(4)+')';cam.style.setProperty('--z',z.toFixed(4));
-    var h=seg(sp,.02,.3);txt.style.opacity=(1-h).toFixed(3);txt.style.transform='translateY('+(-60*h).toFixed(1)+'px)';txt.style.filter=h>0?'blur('+(h*8).toFixed(1)+'px)':'';txt.style.visibility=h>=1?'hidden':'';
+  function draw(){
+    var p=RM?0:prog();sp+=(p-sp)*.16;if(Math.abs(p-sp)<.0005)sp=p;
+    cams.forEach(function(c,i){var mob=innerWidth<900,Z0=mob?c.z0m:c.z0,Z1=mob?c.z1m:c.z1,e=ease(seg(sp,c.a,c.b)),z=Z0+(Z1-Z0)*e;c.el.style.transform='translate('+c.ox+'px,'+c.oy+'px) scale('+z.toFixed(4)+')';c.el.style.setProperty('--z',z.toFixed(4));
+      if(i===1){var f=seg(sp,.5,.66);c.el.style.opacity=f.toFixed(3);c.el.style.visibility=f>0?'visible':'hidden'}});
+    var h=seg(sp,.02,.28);txt.style.opacity=(1-h).toFixed(3);txt.style.transform='translateY('+(-60*h).toFixed(1)+'px)';txt.style.filter=h>0?'blur('+(h*8).toFixed(1)+'px)':'';txt.style.visibility=h>=1?'hidden':'';
     if(hint)hint.style.opacity=(1-seg(sp,0,.08)).toFixed(3);
-    m1.style.transform='translate('+(-40*e)+'%,'+(10*e)+'%) scale('+(1+e*.8)+')';m1.style.opacity=(.55*(1-seg(sp,.5,.9))).toFixed(3);
-    m2.style.transform='translate('+(30*e)+'%,'+(-10*e)+'%) scale('+(1+e*.6)+')';m2.style.opacity=(.4+.3*Math.sin(e*3.1)).toFixed(3);
-    hs.forEach(function(el,i){el.classList.toggle('on',sp>.5+i*.08)});
-    if(Math.abs(p-sp)>.0005&&!RM)raf=requestAnimationFrame(function(){draw()});else raf=0;
+    shade.style.opacity=(1-.65*seg(sp,.28,.62)).toFixed(3);
+    var e=ease(seg(sp,0,.7));
+    m1.style.transform='translate('+(-40*e)+'%,'+(10*e)+'%) scale('+(1+e*.9)+')';m1.style.opacity=(.5*(1-seg(sp,.45,.62))+.25*seg(sp,.5,.6)*(1-seg(sp,.62,.8))).toFixed(3);
+    m2.style.transform='translate('+(35*e)+'%,'+(-10*e)+'%) scale('+(1+e*.7)+')';m2.style.opacity=(.35+.35*seg(sp,.4,.55)*(1-seg(sp,.6,.75))).toFixed(3);
+    hs.forEach(function(el,i){el.classList.toggle('on',sp>.72+i*.07)});
+    if(Math.abs(p-sp)>.0005&&!RM)raf=requestAnimationFrame(draw);else raf=0;
   }
-  addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(function(){draw()})},{passive:true});
-  addEventListener('resize',size);if(img.complete)size();else img.addEventListener('load',size);size();
+  addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(draw)},{passive:true});
+  addEventListener('resize',size);var im=fly.querySelector('.c1 img');if(im.complete)size();else im.addEventListener('load',size);size();
 })();
 /* buttons that open the form with a product already chosen */
 document.addEventListener('click',function(e){var a=e.target.closest('[data-prod]');if(!a)return;var bs=document.querySelectorAll('.chips[data-one="prod"] button');bs.forEach(function(x,i){x.classList.toggle('on',i===+a.dataset.prod)});});
