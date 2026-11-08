@@ -194,8 +194,10 @@ body.menu .mm{opacity:1;transform:none;pointer-events:auto}
   .pr-track{display:block;width:auto;padding-bottom:60px}
   .card,.pr .card.fx-zoom{width:100%;position:sticky!important;top:calc(92px + var(--i,0) * 12px);margin-bottom:22px;transform-origin:50% 0;will-change:transform}
   .card:last-child{margin-bottom:0}
-  .card .ph{aspect-ratio:16/10}
-  .card .bd{padding:18px 20px 20px}
+  .card,.pr .card.fx-zoom{height:min(640px,calc(100svh - 130px));display:flex;flex-direction:column}
+  .card .ph{aspect-ratio:auto;flex:1 1 auto;min-height:0}
+  .card .ph img{height:100%}
+  .card .bd{padding:18px 20px 20px;flex:none}
   .card h3{font-size:24px;margin:6px 0 6px}
   .card p{font-size:14px;line-height:1.5}
   .card .for{margin:12px 0 14px}
@@ -861,7 +863,7 @@ document.getElementById('iskip').onclick=end;el.addEventListener('click',functio
   (function () { if (innerWidth > 860 || RM) return; var cs = $$('.pr-track .card'); if (!cs.length) return;
     cs.forEach(function (c, i) { c.style.setProperty('--i', i); var d = document.createElement('i'); d.className = 'stk'; c.appendChild(d); });
     var tick = false; function up() { tick = false; for (var i = 0; i < cs.length - 1; i++) { var a = cs[i].getBoundingClientRect(), b = cs[i + 1].getBoundingClientRect();
-      var k = Math.min(1, Math.max(0, (a.bottom - b.top) / a.height)); cs[i].style.transform = 'scale(' + (1 - .07 * k).toFixed(4) + ')'; cs[i].style.setProperty('--dim', (k * .55).toFixed(3)); } }
+      var k = Math.min(1, Math.max(0, (a.bottom - b.top) / a.height)); cs[i].style.transform = 'scale(' + (1 - .07 * k).toFixed(4) + ')'; cs[i].style.setProperty('--dim', (k * .45).toFixed(3)); } }
     addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(up); } }, { passive: true }); up(); })();
   addEventListener('scroll', function () { $('#nav').classList.toggle('solid', scrollY > 40); }, { passive: true });
   $$('[data-fin]').forEach(function (b) { b.onclick = function () { $$('[data-fin]').forEach(function (x) { x.classList.toggle('on', x === b); }); if (window.bbbFinish) bbbFinish(b.dataset.fin); }; });
