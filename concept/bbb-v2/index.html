@@ -729,6 +729,7 @@ html.fly-on .oh-in{padding-top:90px!important;padding-bottom:40px!important;will
   html.fly-on .oh-in{padding-top:104px!important}
   .fly-shade{background:linear-gradient(180deg,rgba(17,27,22,.9) 0%,rgba(17,27,22,.72) 45%,rgba(17,27,22,.25) 68%,rgba(17,27,22,.8) 100%)}
   .hs span{font-size:11px;padding:6px 9px}.hs span b{font-size:12px}
+  .hs.l{top:43%!important}
   .hs.l{flex-direction:row-reverse;transform:translate(calc(-100% + 11px),-50%) scale(calc(1 / var(--z,1)));transform-origin:right center}
   html.fly-on .oh-note,html.fly-on .oh-facts{display:none}
 }
@@ -791,7 +792,7 @@ html.fly-on .oh-in{padding-top:90px!important;padding-bottom:40px!important;will
 <section class="oh" id="acasa">
   <div class="fly-scene">
     <div class="fly-cam c1" data-ar="1.7917" data-fx=".72" data-fy=".55" data-hx=".79" data-hy=".72" data-z0="1" data-z1="2.05" data-a="0" data-b=".56"><img class="fly-img" src="/concept/bbb-v2/img/fly-sat-1800.webp" srcset="/concept/bbb-v2/img/fly-sat-1800.webp 1800w, /concept/bbb-v2/img/fly-sat-3200.webp 3200w, /concept/bbb-v2/img/fly-sat-4400.webp 4400w, /concept/bbb-v2/img/fly-sat-5504.webp 5504w" sizes="(max-width:900px) 250vw, 220vw" alt="" decoding="async" fetchpriority="high"></div>
-    <div class="fly-cam c2" data-ar="1.7917" data-fx=".70" data-fy=".5" data-hx=".705" data-hy=".55" data-z0="1.25" data-z1="1" data-z0m="1.95" data-z1m="1.6" data-a=".6" data-b="1"><img class="fly-img" src="/concept/bbb-v2/img/fly-casa-1376.webp" alt="" decoding="async" loading="lazy">
+    <div class="fly-cam c2" data-ar="1.7917" data-fx=".70" data-fxm=".78" data-fy=".5" data-hx=".705" data-hy=".55" data-z0="1.25" data-z1="1" data-z0m="1.5" data-z1m="1.15" data-a=".6" data-b="1"><img class="fly-img" src="/concept/bbb-v2/img/fly-casa-1376.webp" alt="" decoding="async" loading="lazy">
       <div role="button" tabindex="0" class="hs" style="left:63%;top:55%"><i></i><span><b>Placare lemn și tablă</b>finisaje la alegere<em>Alegi combinația: tablă vopsită, lamele din lemn natural sau ambele. <a href="#build">Încearcă în configurator →</a></em></span></div>
       <div role="button" tabindex="0" class="hs l" style="left:73%;top:50%"><i></i><span><b>Ferestre mari</b>lumină naturală toată ziua<em>Vitrine și uși din sticlă, puse acolo unde ai nevoie de lumină. <a href="#build">Încearcă în configurator →</a></em></span></div>
       <div role="button" tabindex="0" class="hs" style="left:71%;top:69%"><i></i><span><b>Fundație și cadru</b>bază solidă, se poate muta<em>Structura e gândită pentru transport, așa că modulul se poate muta. <a href="#oferta">Cere o ofertă →</a></em></span></div>
@@ -1194,11 +1195,11 @@ document.getElementById('iskip').onclick=end;el.addEventListener('click',functio
   if(!document.documentElement.classList.contains('fly-on'))return;
   var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var mid=fly.querySelector('.fly-mid'),fog=fly.querySelector('.fly-fog'),shade=fly.querySelector('.fly-shade'),oh=fly.querySelector('.oh'),txt=fly.querySelector('.oh-in'),hint=fly.querySelector('.fly-hint'),m1=fly.querySelector('.m1'),m2=fly.querySelector('.m2'),hs=[].slice.call(fly.querySelectorAll('.hs'));
-  var cams=[].slice.call(fly.querySelectorAll('.fly-cam')).map(function(el){var d=el.dataset;return{el:el,ar:+d.ar,fx:+d.fx,fy:+d.fy,hx:+d.hx,hy:+d.hy,z0:+d.z0,z1:+d.z1,z0m:+(d.z0m||d.z0),z1m:+(d.z1m||d.z1),a:+d.a,b:+d.b,ox:0,oy:0}});
+  var cams=[].slice.call(fly.querySelectorAll('.fly-cam')).map(function(el){var d=el.dataset;return{el:el,ar:+d.ar,fx:+d.fx,fxm:+(d.fxm||d.fx),fy:+d.fy,hx:+d.hx,hy:+d.hy,z0:+d.z0,z1:+d.z1,z0m:+(d.z0m||d.z0),z1m:+(d.z1m||d.z1),a:+d.a,b:+d.b,ox:0,oy:0}});
   var sp=0,raf=0,idle=0;
   function clamp(v){return v<0?0:v>1?1:v}function seg(p,a,b){return clamp((p-a)/(b-a))}function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
   function size(){var W=oh.clientWidth,H=oh.clientHeight;cams.forEach(function(c){var bw,bh;if(W/H>c.ar){bw=W;bh=W/c.ar}else{bh=H;bw=H*c.ar}
-    c.ox=(W-bw)*c.fx;c.oy=(H-bh)*c.fy;c.el.style.width=bw+'px';c.el.style.height=bh+'px';c.el.style.transformOrigin=(c.hx*bw)+'px '+(c.hy*bh)+'px'});draw()}
+    c.ox=(W-bw)*(W<900?c.fxm:c.fx);c.oy=(H-bh)*c.fy;c.el.style.width=bw+'px';c.el.style.height=bh+'px';c.el.style.transformOrigin=(c.hx*bw)+'px '+(c.hy*bh)+'px'});draw()}
   function prog(){var r=fly.getBoundingClientRect();return clamp(-r.top/Math.max(1,fly.offsetHeight-innerHeight))}
   function draw(){
     var p=RM?0:prog();sp+=(p-sp)*.16;if(Math.abs(p-sp)<.0005)sp=p;
