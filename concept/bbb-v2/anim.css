@@ -48,8 +48,12 @@ input:focus,select:focus,textarea:focus{transform:translateY(-1px)}
 .btn,.mcta,.fcta{white-space:nowrap}
 .btn{flex-shrink:0;justify-content:center}
 .rf-b,.cta,.ctas,.oh-cta,.hero-t .cta{flex-wrap:wrap}
+/* phones: compact buttons that sit side by side, not full-width slabs */
 @media(max-width:600px){
-  .rf-b{display:flex;flex-direction:column;align-items:stretch;gap:10px}
-  .rf-b .btn{width:100%}
-  .ctas .btn,.oh-cta .btn{flex:1 1 100%}
+  .btn{height:44px!important;padding:0 18px!important;font-size:14px!important;gap:8px}
+  .btn svg{width:15px;height:15px}
+  .oh-cta,.st-b,.rf-b,.ctas{display:flex!important;flex-direction:row!important;flex-wrap:wrap;gap:8px!important;align-items:center}
+  .oh-cta .btn,.st-b .btn,.rf-b .btn,.ctas .btn{flex:0 0 auto!important;width:auto!important}
+  .fcta,.mcta{height:48px!important;font-size:14.5px!important}
+  body{padding-bottom:70px}
 }

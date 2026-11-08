@@ -675,6 +675,9 @@ body.intro-on .oh *{animation-play-state:paused!important}
 @media(max-width:900px){.oh-ground{bottom:-10%}.oh-tabs{bottom:calc(-46px - 9%)}}
 @media(prefers-reduced-motion:reduce){.oh-ground{animation:none;opacity:1}}
 
+/* phones: no empty band between the hero, the company data and the next section */
+@media(max-width:600px){.oh{min-height:0!important;padding-bottom:28px!important}.oh-in{padding-bottom:8px!important}.oh-grid{height:14%!important;opacity:.5}
+  .tb .wrap{padding-top:14px!important;padding-bottom:14px!important}.st{padding-top:56px!important;padding-bottom:64px!important}}
 /* casa modulară (3/4 view): its own perspective concrete pad that follows the footprint, instead of the round slab */
 .oh-pad{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;z-index:0;opacity:0;transition:opacity .6s ease;pointer-events:none}
 .oh-prods .oh-p{z-index:1}
