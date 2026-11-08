@@ -688,7 +688,7 @@ body.intro-on .oh *{animation-play-state:paused!important}
 /* ===== cinematic scroll hero (fly-in): the camera moves toward the mini houses as you scroll ===== */
 .fly{position:relative}
 .fly-scene,.fly-cap,.fly-hint{display:none}
-html.fly-on .fly{height:440vh}
+html.fly-on .fly{height:560vh}
 html.fly-on .fly>.oh{position:sticky;top:0;height:100vh;height:100svh;min-height:0!important;padding-bottom:0!important;align-items:center;background:#111B16}
 html.fly-on .oh-stage,html.fly-on .oh-bg{display:none!important}
 html.fly-on .fly-scene{display:block;position:absolute;inset:0;overflow:hidden;z-index:0}
@@ -725,7 +725,7 @@ html.fly-on .fly-hint{display:flex;position:absolute;z-index:3;left:50%;bottom:2
 @keyframes flyHint{0%{transform:translateY(0);opacity:1}100%{transform:translateY(8px);opacity:0}}
 html.fly-on .oh-in{padding-top:90px!important;padding-bottom:40px!important;will-change:transform,opacity}
 @media(max-width:900px){
-  html.fly-on .fly{height:340vh}
+  html.fly-on .fly{height:460vh}
   html.fly-on .fly>.oh{align-items:flex-start}
   html.fly-on .oh-in{padding-top:104px!important}
   .fly-shade{background:linear-gradient(180deg,rgba(17,27,22,.9) 0%,rgba(17,27,22,.72) 45%,rgba(17,27,22,.25) 68%,rgba(17,27,22,.8) 100%)}
@@ -784,6 +784,19 @@ html.fly-on .oh-in{padding-top:90px!important;padding-bottom:40px!important;will
 .rvw-b{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.rvw-b small{color:var(--mut,#5F6862);font-size:12.5px}
 .rvw-done{margin:0;padding:12px 14px;border-radius:12px;background:rgba(200,116,58,.1);color:var(--steel);font-size:14px}
 @media(max-width:600px){.rvw{padding:18px}.rvw-row{grid-template-columns:1fr}}
+
+/* hero final stage: the garden photo turns into a blueprint, then leads into the 3D builder */
+.fly-bp{display:none}
+html.fly-on .fly-bp.bp2{display:flex;position:absolute;inset:0;z-index:5;padding:0;background:rgba(17,27,22,.0);align-items:center;justify-content:center;opacity:0;visibility:hidden;overflow:hidden}
+.fly-bp-in{position:relative;width:min(1000px,92vw);text-align:center}
+.fly-bp-in .k{color:var(--amber)}
+.fly-bp-in h2{font:800 clamp(30px,4vw,58px)/1 var(--fd);letter-spacing:-.035em;margin:10px 0 18px;color:#EFEBE2}
+.fly-bp-in h2 em.s{color:var(--blueL)}
+.fly-bp-in{padding-top:70px}
+.fly-bp-in>svg{width:min(760px,100%);max-height:50vh;height:auto;display:block;margin:0 auto}
+.fly-bp-b{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:18px}
+.fly-bp-b small{font:500 12px var(--fb);color:rgba(239,235,226,.55)}
+@media(max-width:900px){.fly-bp-in h2{font-size:30px}.fly-bp-in{padding-top:40px}}
 </style>
 <link rel="stylesheet" href="/concept/bbb-v2/fx.css">
 <link rel="stylesheet" href="/concept/bbb-v2/anim.css">
@@ -840,14 +853,44 @@ html.fly-on .oh-in{padding-top:90px!important;padding-bottom:40px!important;will
 <div class="fly" id="fly">
 <section class="oh" id="acasa">
   <div class="fly-scene">
-    <div class="fly-cam c1" data-ar="1.7914" data-fx=".5" data-fxm=".6" data-fy=".5" data-hx=".56" data-hy=".55" data-z0="1" data-z1="1.18" data-z0m="1" data-z1m="1.12" data-a="0" data-b=".5"><img class="fly-img" src="/concept/bbb-v2/img/fly-gradina-1800.webp" srcset="/concept/bbb-v2/img/fly-gradina-1800.webp 1800w, /concept/bbb-v2/img/fly-gradina-2576.webp 2576w" sizes="(max-width:900px) 200vw, 120vw" alt="" decoding="async" fetchpriority="high">
+    <div class="fly-cam c1" data-ar="1.7917" data-fx=".72" data-fxm=".72" data-fy=".55" data-hx=".79" data-hy=".72" data-z0="1" data-z1="2.05" data-z0m="1" data-z1m="2.05" data-a="0" data-b=".36"><img class="fly-img" src="/concept/bbb-v2/img/fly-sat-1800.webp" srcset="/concept/bbb-v2/img/fly-sat-1800.webp 1800w, /concept/bbb-v2/img/fly-sat-3200.webp 3200w, /concept/bbb-v2/img/fly-sat-4400.webp 4400w, /concept/bbb-v2/img/fly-sat-5504.webp 5504w" sizes="(max-width:900px) 250vw, 220vw" alt="" decoding="async" fetchpriority="high"></div>
+    <div class="fly-cam c2" data-ar="1.7914" data-fx=".5" data-fxm=".6" data-fy=".5" data-hx=".56" data-hy=".55" data-z0="1.22" data-z1="1" data-z0m="1.22" data-z1m="1" data-a=".44" data-b=".75"><img class="fly-img" src="/concept/bbb-v2/img/fly-gradina-1800.webp" srcset="/concept/bbb-v2/img/fly-gradina-1800.webp 1800w, /concept/bbb-v2/img/fly-gradina-2576.webp 2576w" sizes="(max-width:900px) 200vw, 120vw" alt="" decoding="async" loading="lazy">
       <div role="button" tabindex="0" class="hs" style="left:52.5%;top:47%"><i></i><span><b>Placare lemn și tablă</b>finisaje la alegere<em>Alegi combinația: tablă vopsită, lamele din lemn natural sau ambele. <a href="#build">Încearcă în configurator →</a></em></span></div>
       <div role="button" tabindex="0" class="hs l" style="left:70%;top:42%"><i></i><span><b>Ferestre mari</b>lumină naturală toată ziua<em>Vitrine și uși din sticlă, puse acolo unde ai nevoie de lumină. <a href="#build">Încearcă în configurator →</a></em></span></div>
       <div role="button" tabindex="0" class="hs" style="left:80%;top:78%"><i></i><span><b>Fundație și cadru</b>bază solidă, se poate muta<em>Structura e gândită pentru transport, așa că modulul se poate muta. <a href="#oferta">Cere o ofertă →</a></em></span></div>
     </div>
-    <div class="fly-cam c2" data-ar="1.7917" data-fx=".72" data-fxm=".72" data-fy=".55" data-hx=".7" data-hy=".62" data-z0="1.35" data-z1="1" data-z0m="1.35" data-z1m="1" data-a=".56" data-b="1"><img class="fly-img" src="/concept/bbb-v2/img/fly-sat-1800.webp" srcset="/concept/bbb-v2/img/fly-sat-1800.webp 1800w, /concept/bbb-v2/img/fly-sat-3200.webp 3200w" sizes="(max-width:900px) 250vw, 120vw" alt="" decoding="async" loading="lazy"></div>
     <div class="fly-mist m1"></div><div class="fly-mist m2"></div><div class="fly-fog"></div><div class="fly-shade"></div></div>
   <div class="fly-mid" aria-hidden="true"><span>Big Big Boon · Mureș</span><p>Mici ca dimensiune.<br><em class="s">Gândite până la ultimul detaliu.</em></p></div>
+  <div class="bp2 fly-bp" aria-hidden="true"><div class="fly-bp-in">
+    <div class="k">Cum e construit</div><h2>Desenat ca un proiect. <em class="s">Construit ca o casă.</em></h2>
+    <svg viewBox="0 0 640 420" role="img" aria-hidden="true">
+        <g class="ln thin">
+          <path pathLength="1" d="M20 360H620"/>
+          <path pathLength="1" d="M70 360V346H570V360"/>
+        </g>
+        <g class="ln">
+          <path pathLength="1" d="M90 346V150H550V346"/>
+          <path pathLength="1" d="M60 150H590L590 136H60Z"/>
+          <path pathLength="1" d="M130 330V196H196V330Z"/>
+          <path pathLength="1" d="M210 330V180H300V330M255 180V330"/>
+          <path pathLength="1" d="M360 300V176H530V300ZM445 176V300"/>
+        </g>
+        <g class="ln thin">
+          <path pathLength="1" d="M310 150V346M318 150V346M326 150V346M334 150V346"/>
+          <path pathLength="1" d="M110 150V346M118 150V346"/>
+          <path pathLength="1" d="M540 170V346M520 300V346M500 300V346M480 300V346M460 300V346M440 300V346M420 300V346M400 300V346M380 300V346"/>
+        </g>
+        <g class="ln dim">
+          <path pathLength="1" d="M90 392H550M90 386V398M550 386V398"/>
+          <path pathLength="1" d="M612 150V346M606 150H618M606 346H618"/>
+        </g>
+        <g class="tx"><text x="320" y="412" text-anchor="middle">L · la alegere</text><text x="628" y="252" transform="rotate(90 628 252)" text-anchor="middle">H</text></g>
+        <g class="cl"><g><circle cx="322" cy="120" r="13"/><text x="322" y="125">1</text></g><path class="ln thin" pathLength="1" d="M322 133V150"/>
+        <g><circle cx="445" cy="238" r="13"/><text x="445" y="243">2</text></g>
+        <g><circle cx="70" cy="380" r="13"/><text x="70" y="385">3</text></g><path class="ln thin" pathLength="1" d="M80 372L92 356"/></g>
+      </svg>
+    <div class="fly-bp-b"><a class="btn a" href="#build">Construiește-ți modelul în 3D<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><small>Schiță orientativă · fiecare proiect se desenează pe dimensiunile tale</small></div>
+  </div></div>
   <div class="fly-sheet" id="flySheet" aria-live="polite"></div>
   <p class="fly-cap">Imagine ilustrativă, generată pentru prezentare</p>
   <div class="fly-hint" aria-hidden="true"><i></i>Derulează</div>
@@ -887,46 +930,6 @@ html.fly-on .oh-in{padding-top:90px!important;padding-bottom:40px!important;will
 <div class="tb" aria-label="De ce să ai încredere"><div class="wrap tb-in">
   <span><i><b>Firmă înregistrată</b> din 2020</i></span><span><i>CUI 43611636</i></span><span><i>Ofertă în 24 de ore</i></span><span><i>Garanție 2 ani</i></span><span><i>Preț fix în contract</i></span>
 </div></div>
-<!-- ============ BLUEPRINT: how a module is built ============ -->
-<section class="bp2" id="cum"><div class="wrap">
-  <div class="bp2-h"><div class="k up">Cum e construit</div><h2 class="up">Desenat ca un proiect. <em class="s">Construit ca o casă.</em></h2></div>
-  <div class="bp2-g">
-    <figure class="bp2-draw" aria-label="Schiță tehnică a unui modul Big Big Boon">
-      <svg viewBox="0 0 640 420" role="img" aria-hidden="true">
-        <g class="ln thin">
-          <path pathLength="1" d="M20 360H620"/>
-          <path pathLength="1" d="M70 360V346H570V360"/>
-        </g>
-        <g class="ln">
-          <path pathLength="1" d="M90 346V150H550V346"/>
-          <path pathLength="1" d="M60 150H590L590 136H60Z"/>
-          <path pathLength="1" d="M130 330V196H196V330Z"/>
-          <path pathLength="1" d="M210 330V180H300V330M255 180V330"/>
-          <path pathLength="1" d="M360 300V176H530V300ZM445 176V300"/>
-        </g>
-        <g class="ln thin">
-          <path pathLength="1" d="M310 150V346M318 150V346M326 150V346M334 150V346"/>
-          <path pathLength="1" d="M110 150V346M118 150V346"/>
-          <path pathLength="1" d="M540 170V346M520 300V346M500 300V346M480 300V346M460 300V346M440 300V346M420 300V346M400 300V346M380 300V346"/>
-        </g>
-        <g class="ln dim">
-          <path pathLength="1" d="M90 392H550M90 386V398M550 386V398"/>
-          <path pathLength="1" d="M612 150V346M606 150H618M606 346H618"/>
-        </g>
-        <g class="tx"><text x="320" y="412" text-anchor="middle">L · la alegere</text><text x="628" y="252" transform="rotate(90 628 252)" text-anchor="middle">H</text></g>
-        <g class="cl"><a href="#bp-1"><circle cx="322" cy="120" r="13"/><text x="322" y="125">1</text></a><path class="ln thin" pathLength="1" d="M322 133V150"/>
-        <a href="#bp-2"><circle cx="445" cy="238" r="13"/><text x="445" y="243">2</text></a>
-        <a href="#bp-3"><circle cx="70" cy="380" r="13"/><text x="70" y="385">3</text></a><path class="ln thin" pathLength="1" d="M80 372L92 356"/></g>
-      </svg>
-      <figcaption>Schiță orientativă · fiecare proiect se desenează pe dimensiunile tale</figcaption>
-    </figure>
-    <div class="bp2-list">
-      <article class="bp2-i up" id="bp-1"><img src="/concept/bbb-v2/img/g-chiosc-negru-cu-lemn-finalizat-in-hala-1200.webp" alt="Placare din tablă și lemn, finalizată în hală" loading="lazy"><div><b><i>1</i>Placare lemn și tablă</b><p>Alegi combinația: tablă vopsită, lamele din lemn natural sau ambele.</p></div></article>
-      <article class="bp2-i up" id="bp-2"><img src="/concept/bbb-v2/img/g-chiosc-din-lemn-natural-cu-vitrina-1200.webp" alt="Vitrină mare într-un chioșc din lemn" loading="lazy"><div><b><i>2</i>Ferestre mari</b><p>Vitrine și uși din sticlă, puse acolo unde ai nevoie de lumină.</p></div></article>
-      <article class="bp2-i up" id="bp-3"><img src="/concept/bbb-v2/img/g-echipa-lucrand-la-un-cadru-modular-1200.webp" alt="Echipa lucrând la cadrul unui modul" loading="lazy"><div><b><i>3</i>Fundație și cadru</b><p>Structura e gândită pentru transport, așa că modulul se poate muta.</p></div></article>
-    </div>
-  </div>
-</div></section>
 <section class="st"><div class="wrap">
   <div class="k up">De ce Big Big Boon</div><br>
   <p id="stmt">Nu vindem cutii din tablă. Construim <em class="s">locul</em> în care afacerea ta începe să vândă: solid, frumos și gata de mutat oriunde e lume.</p>
@@ -1289,13 +1292,13 @@ document.getElementById('iskip').onclick=end;el.addEventListener('click',functio
 <script src="/concept/bbb-v2/fx.js"></script>
 <script>
 
-/* cinematic scroll hero: zoom toward the mini houses, dissolve to eye level at one house, show the info points */
+/* cinematic scroll hero: hill village zoom, fog statement, garden studio with info points, then a blueprint that leads into the 3D builder */
 (function(){
   var fly=document.getElementById('fly');if(!fly)return;
   if(!/[?&]nofly/.test(location.search))document.documentElement.classList.add('fly-on');
   if(!document.documentElement.classList.contains('fly-on'))return;
   var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var mid=fly.querySelector('.fly-mid'),fog=fly.querySelector('.fly-fog'),shade=fly.querySelector('.fly-shade'),oh=fly.querySelector('.oh'),txt=fly.querySelector('.oh-in'),hint=fly.querySelector('.fly-hint'),m1=fly.querySelector('.m1'),m2=fly.querySelector('.m2'),hs=[].slice.call(fly.querySelectorAll('.hs'));
+  var bp=fly.querySelector('.fly-bp'),bps=bp?[].slice.call(bp.querySelectorAll('path[pathLength]')):[],bpt=bp?[].slice.call(bp.querySelectorAll('.cl g,.tx text')):[],mid=fly.querySelector('.fly-mid'),fog=fly.querySelector('.fly-fog'),shade=fly.querySelector('.fly-shade'),oh=fly.querySelector('.oh'),txt=fly.querySelector('.oh-in'),hint=fly.querySelector('.fly-hint'),m1=fly.querySelector('.m1'),m2=fly.querySelector('.m2'),hs=[].slice.call(fly.querySelectorAll('.hs'));
   var cams=[].slice.call(fly.querySelectorAll('.fly-cam')).map(function(el){var d=el.dataset;return{el:el,ar:+d.ar,fx:+d.fx,fxm:+(d.fxm||d.fx),fy:+d.fy,hx:+d.hx,hy:+d.hy,z0:+d.z0,z1:+d.z1,z0m:+(d.z0m||d.z0),z1m:+(d.z1m||d.z1),a:+d.a,b:+d.b,ox:0,oy:0}});
   var sp=0,raf=0,idle=0;
   function clamp(v){return v<0?0:v>1?1:v}function seg(p,a,b){return clamp((p-a)/(b-a))}function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
@@ -1305,17 +1308,18 @@ document.getElementById('iskip').onclick=end;el.addEventListener('click',functio
   function draw(){
     var p=RM?0:prog();sp+=(p-sp)*.16;if(Math.abs(p-sp)<.0005)sp=p;
     cams.forEach(function(c,i){var mob=innerWidth<900,Z0=mob?c.z0m:c.z0,Z1=mob?c.z1m:c.z1,e=ease(seg(sp,c.a,c.b)),z=Z0+(Z1-Z0)*e;c.el.style.transform='translate('+c.ox+'px,'+c.oy+'px) scale('+z.toFixed(4)+')';c.el.style.setProperty('--z',z.toFixed(4));
-      if(i===0){var bl=seg(sp,.42,.52);c.el.style.filter=bl>0?'blur('+(bl*6).toFixed(1)+'px)':'';c.el.style.visibility=sp>.64?'hidden':'visible'}
-      if(i===1){var f=seg(sp,.56,.6);c.el.style.opacity=f.toFixed(3);c.el.style.visibility=f>0?'visible':'hidden';var sh=1-seg(sp,.6,.72);c.el.style.filter=sh>0&&f>0?'blur('+(sh*6).toFixed(1)+'px)':''}});
-    var fg=seg(sp,.4,.48)*(1-seg(sp,.62,.72));fog.style.opacity=fg.toFixed(3);fog.style.transform='scale('+(1+fg*.15).toFixed(3)+') translateX('+((sp-.56)*-30).toFixed(1)+'%)';
-    var mi=seg(sp,.44,.49)*(1-seg(sp,.6,.64));mid.style.opacity=mi.toFixed(3);mid.style.visibility=mi>0?'visible':'hidden';mid.style.filter=mi<1?'blur('+((1-mi)*10).toFixed(1)+'px)':'';mid.style.transform='translate(-50%,calc(-50% + '+((sp-.55)*-120).toFixed(1)+'px))';
+      if(i===0){var bl=seg(sp,.3,.4);c.el.style.filter=bl>0?'blur('+(bl*6).toFixed(1)+'px)':'';c.el.style.visibility=sp>.5?'hidden':'visible'}
+      if(i===1){var f=seg(sp,.44,.48);c.el.style.opacity=f.toFixed(3);c.el.style.visibility=f>0?'visible':'hidden';var sh=1-seg(sp,.48,.58),dk=seg(sp,.8,.88);c.el.style.filter=(sh>0&&f>0?'blur('+(sh*6).toFixed(1)+'px) ':'')+(dk>0?'brightness('+(1-dk*.72).toFixed(3)+') saturate('+(1-dk*.6).toFixed(3)+')':'')}});
+    var fg=seg(sp,.28,.36)*(1-seg(sp,.5,.58));fog.style.opacity=fg.toFixed(3);fog.style.transform='scale('+(1+fg*.15).toFixed(3)+') translateX('+((sp-.44)*-30).toFixed(1)+'%)';
+    var mi=seg(sp,.32,.37)*(1-seg(sp,.47,.51));mid.style.opacity=mi.toFixed(3);mid.style.visibility=mi>0?'visible':'hidden';mid.style.filter=mi<1?'blur('+((1-mi)*10).toFixed(1)+'px)':'';mid.style.transform='translate(-50%,calc(-50% + '+((sp-.42)*-120).toFixed(1)+'px))';
     var h=seg(sp,.02,.14);txt.style.opacity=(1-h).toFixed(3);txt.style.transform='translateY('+(-60*h).toFixed(1)+'px)';txt.style.filter=h>0?'blur('+(h*8).toFixed(1)+'px)':'';txt.style.visibility=h>=1?'hidden':'';
     if(hint)hint.style.opacity=(1-seg(sp,0,.08)).toFixed(3);
-    shade.style.opacity=(1-.75*seg(sp,.04,.16)+.0).toFixed(3);
-    var e=ease(seg(sp,0,.7));
+    shade.style.opacity=(1-.65*seg(sp,.04,.3)).toFixed(3);
+    var bk=seg(sp,.82,.97),bpo=seg(sp,.8,.86);bp.style.opacity=bpo.toFixed(3);bp.style.visibility=bpo>0?'visible':'hidden';bps.forEach(function(q,i){var a=i/bps.length*.55,v=clamp((bk-a)/.45);q.style.setProperty('--d',(1-v).toFixed(3))});bpt.forEach(function(t){t.style.opacity=bk>.8?1:0});
+    var e=ease(seg(sp,0,.5));
     m1.style.transform='translate('+(-40*e)+'%,'+(10*e)+'%) scale('+(1+e*.9)+')';m1.style.opacity=(.5*(1-seg(sp,.45,.62))+.25*seg(sp,.5,.6)*(1-seg(sp,.62,.8))).toFixed(3);
     m2.style.transform='translate('+(35*e)+'%,'+(-10*e)+'%) scale('+(1+e*.7)+')';m2.style.opacity=(.35+.35*seg(sp,.4,.55)*(1-seg(sp,.6,.75))).toFixed(3);
-    var hp=Math.max(p,sp);var hin=function(i){return hp>.15+i*.04&&hp<.42};hs.forEach(function(el,i){el.classList.toggle('on',hin(i));if(!hin(i))el.classList.remove('open')});if(!hin(0)){var sh=document.getElementById('flySheet');if(sh)sh.classList.remove('on')}
+    var hp=Math.max(p,sp);var hin=function(i){return hp>.6+i*.04&&hp<.8};hs.forEach(function(el,i){el.classList.toggle('on',hin(i));if(!hin(i))el.classList.remove('open')});if(!hin(0)){var sh=document.getElementById('flySheet');if(sh)sh.classList.remove('on')}
     var rr=fly.getBoundingClientRect();if(!RM&&(Math.abs(p-sp)>.0005||(rr.bottom>0&&rr.top<innerHeight&&++idle<90)))raf=requestAnimationFrame(draw);else{raf=0;idle=0}
     if(Math.abs(p-sp)>.0005)idle=0;
   }
@@ -1325,15 +1329,7 @@ document.getElementById('iskip').onclick=end;el.addEventListener('click',functio
   addEventListener('resize',size);var im=fly.querySelector('.c1 img');if(im.complete)size();else im.addEventListener('load',size);size();
 })();
 
-/* blueprint draws itself as it scrolls into view */
-(function(){var sv=document.querySelector('.bp2-draw svg');if(!sv||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  var ps=[].slice.call(sv.querySelectorAll('path[pathLength]'));ps.forEach(function(p){p.style.setProperty('--d',1)});
-  var cl=[].slice.call(sv.querySelectorAll('.cl a,.tx text'));cl.forEach(function(c){c.style.opacity=0;c.style.transition='opacity .5s'});
-  function upd(){var r=sv.getBoundingClientRect(),k=Math.min(1,Math.max(0,(innerHeight*.95-r.top)/(innerHeight*.7)));
-    ps.forEach(function(p,i){var a=i/ps.length*.6,v=Math.min(1,Math.max(0,(k-a)/.4));p.style.setProperty('--d',(1-v).toFixed(3))});
-    cl.forEach(function(c){c.style.opacity=k>.85?1:0})}
-  addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
-})();
+
 
 /* leave a review: open the form, star rating, simple checks (preview: nothing is sent) */
 (function(){var o=document.getElementById('rvwOpen'),f=document.getElementById('rvwF');if(!o||!f)return;var v=0,st=f.querySelector('.rvw-stars'),bs=[].slice.call(st.querySelectorAll('button'));
