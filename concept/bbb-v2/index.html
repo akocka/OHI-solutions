@@ -562,6 +562,64 @@ mark.ph{background:#FFE14D;color:#2a2100;padding:.02em .28em;border-radius:5px;-
 @media(max-width:900px){.oh-tabs{bottom:-46px}.oh-tabs button{padding:7px 11px;font-size:11.5px}.oh-in{padding-top:calc(200px + min(calc(100vw - 16px),580px)*.68)!important}}
 @media(prefers-reduced-motion:reduce){.oh-p,.oh-p.out{transition:none}.oh-tabs button.on::after{animation:none}}
 
+
+/* ---- products: expanding panels + configurator ---- */
+.pq{padding:clamp(80px,10vw,130px) 0;background:var(--paper)}
+.pq-hd{max-width:760px;margin-bottom:34px}.pq-hd h2{font:800 clamp(36px,5vw,68px)/1 var(--fd);letter-spacing:-.035em;margin:14px 0 14px}
+.pq-hd p{color:#5B655F;font-size:clamp(16px,1.3vw,18px);line-height:1.55;max-width:560px}
+.pq-row{display:flex;gap:12px;height:clamp(440px,62vh,600px)}
+.pq-c{position:relative;flex:1 1 0;min-width:0;border-radius:26px;overflow:hidden;cursor:pointer;background:#0F1814;transition:flex-grow .7s cubic-bezier(.2,.8,.2,1),flex-basis .7s cubic-bezier(.2,.8,.2,1),box-shadow .5s;outline:none}
+.pq-c.on{flex-grow:3.2}
+.pq-c img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.16,1,.3,1),filter .6s;filter:saturate(.85) brightness(.82)}
+.pq-c.on img{transform:scale(1.04);filter:none}
+.pq-c::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,19,15,0) 35%,rgba(11,19,15,.88) 100%);pointer-events:none}
+.pq-c:focus-visible{box-shadow:0 0 0 3px var(--amber)}
+.pq-v{position:absolute;z-index:2;left:22px;bottom:22px;color:#F3EEE5;font:700 15px var(--fd);letter-spacing:.01em;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;transition:opacity .3s}
+.pq-c.on .pq-v{opacity:0}
+.pq-b{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:28px;color:#F3EEE5;opacity:0;transform:translateY(16px);transition:opacity .4s,transform .6s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.pq-c.on .pq-b{opacity:1;transform:none;transition-delay:.25s;pointer-events:auto}
+.pq-b h3{font:800 clamp(24px,2.4vw,34px)/1.05 var(--fd);letter-spacing:-.02em;max-width:480px}
+.pq-b p{margin-top:10px;color:#C9CEC9;font-size:15px;line-height:1.5;max-width:460px}
+.pq-f{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:18px}
+.pq-pr{font:600 14px var(--fd);color:#C9CEC9}.pq-pr b{font:800 26px var(--fd);color:var(--amber2);margin-left:4px}
+.pq-cfg{display:none;flex:2.4 1 0;min-width:0;border-radius:26px;background:#fff;padding:26px 28px;flex-direction:column;gap:8px;position:relative;overflow:auto;box-shadow:0 30px 60px -40px rgba(15,24,20,.4)}
+.pq-row.cfg .pq-cfg{display:flex;animation:cfgIn .6s cubic-bezier(.2,.8,.2,1)}
+@media(min-width:861px){.pq-cfg{order:99!important}}
+@keyframes cfgIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
+.pq-row.cfg .pq-c:not(.on){flex:0 0 58px}
+.pq-row.cfg .pq-c.on{flex:1.3 1 0}
+.pq-row.cfg .pq-c.on .pq-b{opacity:0;pointer-events:none}
+.pq-row.cfg .pq-c.on .pq-v{opacity:1}
+.pq-x{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(15,24,20,.12);background:#fff;cursor:pointer;font-size:14px}
+.pq-tabs{display:flex;gap:18px;font:600 12.5px var(--fd);color:#8F9A93;border-bottom:1px solid rgba(15,24,20,.1);padding-bottom:10px}
+.pq-tabs .on{color:#0F1814}
+.pq-cfg h3{font:800 24px var(--fd);letter-spacing:-.02em;margin-top:8px}
+.cfg-l{font:700 12px var(--fd);letter-spacing:.1em;text-transform:uppercase;color:#5B655F;margin-top:10px}
+.cfg-a{display:flex;align-items:flex-start;gap:6px}.cfg-a b{font:800 clamp(52px,5vw,72px)/1 var(--fd);letter-spacing:-.04em;font-variant-numeric:tabular-nums}.cfg-a span{font:700 22px var(--fd);margin-top:6px}
+#cfgR{width:100%;accent-color:#0F1814;height:28px}
+.cfg-s{display:flex;justify-content:space-between;font-size:12px;color:#8F9A93;margin-top:-4px}
+.cfg-o{display:flex;flex-wrap:wrap;gap:8px}
+.cfg-o button{border:1px solid rgba(15,24,20,.14);background:#F6F3EC;border-radius:12px;padding:10px 13px;font:600 13.5px var(--fd);cursor:pointer;text-align:left;display:flex;gap:8px;align-items:center}
+.cfg-o button small{font:500 12px var(--fb);color:#7f8a84}
+.cfg-o button.on{background:#0F1814;color:#F3EEE5;border-color:#0F1814}.cfg-o button.on small{color:#B9C1BC}
+.cfg-p{margin-top:auto;padding-top:14px;display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap;border-top:1px solid rgba(15,24,20,.1)}
+.cfg-p>div>span{display:block;font:600 12px var(--fd);letter-spacing:.08em;text-transform:uppercase;color:#5B655F}
+.cfg-p b{display:block;font:800 clamp(30px,3vw,40px)/1.1 var(--fd);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.cfg-p small{display:block;font-size:12px;color:#7f8a84;max-width:280px}
+.cfg-n{font-size:11.5px;color:#9aa49e}
+@media(max-width:860px){
+  .pq-row{flex-direction:column;height:auto;gap:10px}
+  .pq-c{flex:none;height:86px}.pq-c.on{height:440px}
+  .pq-v{writing-mode:horizontal-tb;transform:none;left:20px;bottom:auto;top:50%;translate:0 -50%;font-size:17px}
+  .pq-b{padding:22px}
+  .pq-row.cfg .pq-c:not(.on){flex:none;height:64px}
+  .pq-row.cfg .pq-c.on{height:150px}
+  .pq-row.cfg .pq-c.on .pq-v{top:auto;bottom:18px;translate:none}
+  .pq-cfg{padding:22px 20px;flex:none;overflow:visible}
+  .cfg-p .btn{width:100%;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){.pq-c,.pq-c img,.pq-b{transition:none}.pq-row.cfg .pq-cfg{animation:none}}
+
 /* intro recoloured to the concept palette (same animation as bigbigboon.ro) */
 #intro{background:#0B130F!important;--wood:#9CC7AF;--wood2:#9CC7AF}
 #intro::before{background-image:linear-gradient(rgba(156,199,175,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(156,199,175,.07) 1px,transparent 1px)!important}
@@ -659,14 +717,44 @@ body.intro-on .oh *{animation-play-state:paused!important}
 <div class="mq" aria-hidden="true"><div class="tr" id="mq"><span>Chioșcuri comerciale</span><span><em class="s">Căsuțe de târg</em></span><span>Case modulare</span><span>Birouri</span><span><em class="s">Pergole</em></span><span>Structuri metalice</span><span>Chioșcuri comerciale</span><span><em class="s">Căsuțe de târg</em></span><span>Case modulare</span><span>Birouri</span><span><em class="s">Pergole</em></span><span>Structuri metalice</span></div></div>
 
 <!-- ============ PRODUCTS ============ -->
-<section class="pr" id="produse">
-  <div class="wrap pr-hd"><div><div class="k up">Ce construim</div><h2 class="up">Patru feluri de a-ți începe <em class="s">povestea.</em></h2></div><p class="up">Toate pornesc de la aceeași idee: metal pentru rezistență, lemn pentru căldură, totul la dimensiunile tale.</p></div>
-  <div class="pr-prog" aria-hidden="true"><i id="prProg"></i></div>
-  <div class="pr-track" id="prTrack">
-    <article class="card"><div class="ph"><img src="/concept/bbb-v2/img/f-chiosc-premium-negru-lemn-1200.webp" alt="Chioșc comercial premium negru cu lemn" loading="lazy" width="1200" height="800"></div><div class="bd"><div class="n">01</div><h3>Chioșcuri și căsuțe comerciale</h3><p>Pentru târguri, festivaluri, street-food și terase. Se transportă, se montează, se demontează și se refolosesc.</p><div class="for"><span>Târguri</span><span>Street-food</span><span>Cafenele</span></div><a class="btn a" href="#oferta" data-pick="Chioșc / căsuță comercială">Cere ofertă<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
-    <article class="card light"><div class="ph"><img src="/concept/bbb-v2/img/f-modul-verde-fatada-960.webp" alt="Casă modulară verde cu ferestre mari" loading="lazy" width="960" height="612"></div><div class="bd"><div class="n">02</div><h3>Case și clădiri modulare</h3><p>Pentru locuit, birouri, turism sau comerț. Proiectare flexibilă și posibilitatea de extindere ulterioară.</p><div class="for"><span>Locuințe</span><span>Birouri</span><span>Turism</span></div><a class="btn d" href="#oferta" data-pick="Casă sau clădire modulară">Cere ofertă<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
-    <article class="card"><div class="ph"><img src="/concept/bbb-v2/img/f-interior-modul-ferestre-mari-960.webp" alt="Interior de modul din lemn cu ferestre mari" loading="lazy" width="960" height="640"></div><div class="bd"><div class="n">03</div><h3>Birouri și spații de lucru</h3><p>Module calde, luminoase, care cresc odată cu afacerea ta. Le muți dacă te muți.</p><div class="for"><span>Birou</span><span>Showroom</span><span>Atelier</span></div><a class="btn a" href="#oferta" data-pick="Casă sau clădire modulară">Cere ofertă<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
-    <article class="card light"><div class="ph"><img src="/concept/bbb-v2/img/cover-metal-sau-lemn-structura.webp" alt="Construcție din tablă cutată verde în hala Big Big Boon" loading="lazy" width="1200" height="675"></div><div class="bd"><div class="n">04</div><h3>Structuri metalice și din lemn</h3><p>Copertine, parcări acoperite, pavilioane, magazii și structuri pentru terase, făcute pe măsura ideii tale.</p><div class="for"><span>Copertine</span><span>Pavilioane</span><span>La comandă</span></div><a class="btn d" href="#oferta" data-pick="Structură metalică sau din lemn">Cere ofertă<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+<section class="pq" id="produse">
+  <div class="wrap pq-hd"><div class="k up">Ce construim</div><h2 class="up">Alege ce vrei <em class="s">să construiești.</em></h2><p class="up">Atinge un produs, configurează-l și vezi pe loc prețul de pornire. Oferta exactă o primești de la noi, fără obligații.</p></div>
+  <div class="wrap">
+    <div class="pq-row" id="pqRow">
+      <article class="pq-c on" data-p="chiosc" tabindex="0" aria-label="Chioșcuri comerciale">
+        <img src="/concept/bbb-v2/img/f-chiosc-premium-negru-lemn-1200.webp" alt="Chioșcuri comerciale" loading="lazy">
+        <span class="pq-v">Chioșcuri comerciale</span>
+        <div class="pq-b"><h3>Chioșcuri comerciale</h3><p>Pentru street-food, cafenele, târguri și terase. Vitrină mare, blat din lemn, gata de vânzare.</p><div class="pq-f"><span class="pq-pr">de la <b data-from="chiosc">–</b></span><button type="button" class="btn a pq-go">Configurează și vezi prețul<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>
+      </article>
+      <article class="pq-c" data-p="casuta" tabindex="0" aria-label="Căsuțe de târg">
+        <img src="/concept/bbb-v2/img/g-chiosc-din-lemn-natural-cu-vitrina-1200.webp" alt="Căsuțe de târg" loading="lazy">
+        <span class="pq-v">Căsuțe de târg</span>
+        <div class="pq-b"><h3>Căsuțe de târg</h3><p>Ușoare, din lemn tratat, se montează și se demontează rapid. Ideale pentru sezon și evenimente.</p><div class="pq-f"><span class="pq-pr">de la <b data-from="casuta">–</b></span><button type="button" class="btn a pq-go">Configurează și vezi prețul<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>
+      </article>
+      <article class="pq-c" data-p="casa" tabindex="0" aria-label="Case și birouri modulare">
+        <img src="/concept/bbb-v2/img/f-modul-verde-fatada-960.webp" alt="Case și birouri modulare" loading="lazy">
+        <span class="pq-v">Case și birouri modulare</span>
+        <div class="pq-b"><h3>Case și birouri modulare</h3><p>Pentru locuit, birou sau turism. Izolate, luminoase și extensibile oricând.</p><div class="pq-f"><span class="pq-pr">de la <b data-from="casa">–</b></span><button type="button" class="btn a pq-go">Configurează și vezi prețul<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>
+      </article>
+      <article class="pq-c" data-p="struct" tabindex="0" aria-label="Structuri metalice și din lemn">
+        <img src="/concept/bbb-v2/img/cover-metal-sau-lemn-structura.webp" alt="Structuri metalice și din lemn" loading="lazy">
+        <span class="pq-v">Structuri metalice și din lemn</span>
+        <div class="pq-b"><h3>Structuri metalice și din lemn</h3><p>Copertine, parcări acoperite, pavilioane și magazii, făcute pe măsura ideii tale.</p><div class="pq-f"><span class="pq-pr">de la <b data-from="struct">–</b></span><button type="button" class="btn a pq-go">Configurează și vezi prețul<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>
+      </article>
+      <div class="pq-cfg" id="pqCfg" aria-live="polite">
+        <button type="button" class="pq-x" id="pqX" aria-label="Închide configuratorul">✕</button>
+        <div class="pq-tabs"><span class="on">Detalii</span><span>Opțiuni</span><span>Preț</span></div>
+        <h3 id="cfgT">Chioșcuri comerciale</h3>
+        <div class="cfg-l">Ce suprafață vrei?</div>
+        <div class="cfg-a"><b id="cfgA">6</b><span>m²</span></div>
+        <input type="range" id="cfgR" min="4" max="15" step="1" value="6" aria-label="Suprafață în metri pătrați">
+        <div class="cfg-s"><span id="cfgMin">4 m²</span><span id="cfgMax">15 m²</span></div>
+        <div class="cfg-l">Ce să includă?</div>
+        <div class="cfg-o" id="cfgO"></div>
+        <div class="cfg-p"><div><span>Preț de pornire</span><b id="cfgP">–</b><small>+ TVA · transportul și montajul se calculează în ofertă</small></div><a class="btn a" href="#oferta" id="cfgGo">Cere oferta exactă<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        <p class="cfg-n">Prețuri exemplu pentru prezentare, de confirmat cu Big Big Boon.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -900,6 +988,34 @@ document.getElementById('iskip').onclick=end;el.addEventListener('click',functio
     loop(); })();
   $$('[data-b3f]').forEach(function (c) { c.onclick = function () { $$('[data-b3f]').forEach(function (x) { x.classList.toggle('on', x === c); }); if (window.k3setFinish) k3setFinish(c.dataset.b3f); }; });
   $('.burger').onclick = function () { document.body.classList.toggle('menu'); }; $$('.mm a').forEach(function (a) { a.addEventListener('click', function () { document.body.classList.remove('menu'); }); });
+  /* products: expanding panels + configurator (example prices, preview only) */
+  (function () { var row = $('#pqRow'); if (!row) return; var T = window.bbbT || function (x) { return x; };
+    var EUR = function (v) { return new Intl.NumberFormat('ro-RO').format(Math.round(v / 50) * 50) + ' €'; };
+    var P = { chiosc: { t: 'Chioșcuri comerciale', min: 4, max: 15, def: 6, base: 4900, per: 450, opts: [['iz', 'Izolație', 60, 'm2'], ['el', 'Instalație electrică', 650], ['vi', 'Vitrină glisantă', 900], ['bl', 'Blat de servire din lemn', 350]] },
+      casuta: { t: 'Căsuțe de târg', min: 3, max: 9, def: 4, base: 2400, per: 380, opts: [['el', 'Instalație electrică', 450], ['vi', 'Vitrină glisantă', 700], ['il', 'Iluminat cald', 250]] },
+      casa: { t: 'Case și birouri modulare', min: 15, max: 60, def: 24, base: 18000, per: 750, opts: [['iz', 'Izolație 10 cm', 70, 'm2'], ['el', 'Instalație electrică completă', 1900], ['ba', 'Baie / grup sanitar', 3500], ['ex', 'Terasă din lemn', 1600]] },
+      struct: { t: 'Structuri metalice și din lemn', min: 6, max: 40, def: 12, base: 1900, per: 120, opts: [['ac', 'Acoperiș din tablă', 25, 'm2'], ['le', 'Placare cu lemn', 45, 'm2'], ['il', 'Iluminat', 300]] } };
+    var cur = 'chiosc', sel = {}, cs = $$('.pq-c'), R = $('#cfgR');
+    var HU = window.bbbLang === 'hu', FROM = function (v) { return HU ? EUR(v) + '-tól' : T('de la') + ' ' + EUR(v); };
+    $$('[data-from]').forEach(function (b) { var w = b.parentNode; w.innerHTML = HU ? '<b>' + EUR(P[b.dataset.from].base) + '</b>-tól' : T('de la') + ' <b>' + EUR(P[b.dataset.from].base) + '</b>'; });
+    function price() { var p = P[cur], a = +R.value, v = p.base + Math.max(0, a - p.def) * p.per - Math.max(0, p.def - a) * p.per * .8;
+      p.opts.forEach(function (o) { if (sel[o[0]]) v += o[3] === 'm2' ? o[2] * a : o[2]; }); return Math.max(p.base * .6, v); }
+    function upd() { $('#cfgA').textContent = R.value; $('#cfgP').textContent = FROM(price()); }
+    function open(k) { cur = k; var p = P[k]; cs.forEach(function (c, i) { c.style.order = i * 2; if (c.dataset.p === k) $('#pqCfg').style.order = i * 2 + 1; }); sel = {}; $('#cfgT').textContent = T(p.t); R.min = p.min; R.max = p.max; R.value = p.def; $('#cfgMin').textContent = p.min + ' m²'; $('#cfgMax').textContent = p.max + ' m²';
+      $('#cfgO').innerHTML = p.opts.map(function (o) { return '<button type="button" data-o="' + o[0] + '" aria-pressed="false">' + T(o[1]) + ' <small>+' + new Intl.NumberFormat('ro-RO').format(o[2]) + (o[3] === 'm2' ? ' €/m²' : ' €') + '</small></button>'; }).join('');
+      $$('#cfgO button').forEach(function (b) { b.onclick = function () { sel[b.dataset.o] = !sel[b.dataset.o]; b.classList.toggle('on', sel[b.dataset.o]); b.setAttribute('aria-pressed', !!sel[b.dataset.o]); upd(); }; });
+      upd(); }
+    function pick(c) { cs.forEach(function (x) { x.classList.toggle('on', x === c); }); if (row.classList.contains('cfg')) open(c.dataset.p); }
+    cs.forEach(function (c) { c.addEventListener('mouseenter', function () { if (matchMedia('(hover:hover)').matches && !row.classList.contains('cfg')) pick(c); });
+      c.addEventListener('click', function (e) { if (e.target.closest('.pq-go')) return; pick(c); });
+      c.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(c); } }); });
+    $$('.pq-go').forEach(function (b) { b.onclick = function (e) { e.stopPropagation(); var c = b.closest('.pq-c'); pick(c); row.classList.add('cfg'); open(c.dataset.p);
+      if (innerWidth <= 860) setTimeout(function () { $('#pqCfg').scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'start' }); }, 300); }; });
+    $('#pqX').onclick = function () { row.classList.remove('cfg'); };
+    R.oninput = upd;
+    $('#cfgGo').addEventListener('click', function () { var map = { chiosc: 0, casuta: 0, casa: 1, struct: 2 }, bs = $$('.chips[data-one="prod"] button'); bs.forEach(function (x, i) { x.classList.toggle('on', i === map[cur]); });
+      var m = document.querySelector('#f textarea[name="m"]'); if (m && !m.value) m.value = T(P[cur].t) + ', ~' + R.value + ' m²' + Object.keys(sel).filter(function (k) { return sel[k]; }).map(function (k) { return ', ' + T(P[cur].opts.filter(function (o) { return o[0] === k; })[0][1]); }).join(''); });
+    open('chiosc'); })();
   /* phone: stacked product cards shrink and dim as the next one slides over */
   (function () { if (innerWidth > 860 || RM) return; var cs = $$('.pr-track .card'); if (!cs.length) return;
     cs.forEach(function (c, i) { c.style.setProperty('--i', i); var d = document.createElement('i'); d.className = 'stk'; c.appendChild(d); });
@@ -935,7 +1051,7 @@ document.getElementById('iskip').onclick=end;el.addEventListener('click',functio
   /* products: horizontal pinned scroll on desktop */
   var mm = gsap.matchMedia();
   mm.add('(min-width: 861px)', function () {
-    var tr = $('#prTrack'), dist = function () { return tr.scrollWidth - innerWidth + 40; };
+    var tr = $('#prTrack'); if (!tr) return; var dist = function () { return tr.scrollWidth - innerWidth + 40; };
     gsap.to(tr, { x: function () { return -dist(); }, ease: 'none', scrollTrigger: { trigger: '.pr', start: 'top top', end: function () { return '+=' + Math.max(dist() * 1.3, innerHeight); }, pin: true, scrub: .6, invalidateOnRefresh: true, onUpdate: function (st) { $('#prProg').style.transform = 'scaleX(' + st.progress.toFixed(3) + ')'; } } });
   });
   $$('.card .ph img').forEach(function (im) { gsap.to(im, { scale: 1, ease: 'none', scrollTrigger: { trigger: im.closest('.card'), start: 'top bottom', end: 'bottom top', scrub: true, containerAnimation: null } }); });

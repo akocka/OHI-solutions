@@ -2,6 +2,19 @@
    Uses the same stored language as the live inner pages ('bbb-lang'), so the choice carries across the site. */
 (function () {
   var D = {
+    "Alege ce vrei": ["Válassza ki, mit", "Choose what you"], "să construiești.": ["szeretne építeni.", "want to build."],
+    "Atinge un produs, configurează-l și vezi pe loc prețul de pornire. Oferta exactă o primești de la noi, fără obligații.": ["Érintsen meg egy terméket, állítsa be, és azonnal látja a kezdőárat. A pontos ajánlatot tőlünk kapja, kötelezettség nélkül.", "Tap a product, configure it and see the starting price right away. You get the exact quote from us, with no obligation."],
+    "Căsuțe de târg": ["Vásári házak", "Market stalls"], "Case și birouri modulare": ["Moduláris házak és irodák", "Modular homes and offices"],
+    "Pentru street-food, cafenele, târguri și terase. Vitrină mare, blat din lemn, gata de vânzare.": ["Street foodhoz, kávézóknak, vásárokra és teraszokra. Nagy kirakat, fa pult, eladásra kész.", "For street food, cafés, fairs and terraces. Big window, timber counter, ready to sell."],
+    "Ușoare, din lemn tratat, se montează și se demontează rapid. Ideale pentru sezon și evenimente.": ["Könnyűek, kezelt fából, gyorsan fel- és leszerelhetők. Ideálisak szezonra és rendezvényekre.", "Light, made of treated wood, quick to put up and take down. Ideal for the season and events."],
+    "Pentru locuit, birou sau turism. Izolate, luminoase și extensibile oricând.": ["Lakásnak, irodának vagy turizmusra. Szigeteltek, világosak és bármikor bővíthetők.", "For living, offices or tourism. Insulated, bright and extendable at any time."],
+    "Configurează și vezi prețul": ["Állítsa be és nézze meg az árat", "Configure and see the price"], "de la": ["-tól", "from"],
+    "Închide configuratorul": ["Konfigurátor bezárása", "Close the configurator"], "Detalii": ["Részletek", "Details"], "Opțiuni": ["Opciók", "Options"], "Preț": ["Ár", "Price"],
+    "Ce suprafață vrei?": ["Mekkora alapterületet szeretne?", "What size do you want?"], "Ce să includă?": ["Mit tartalmazzon?", "What should it include?"],
+    "Preț de pornire": ["Kezdőár", "Starting price"], "+ TVA · transportul și montajul se calculează în ofertă": ["+ ÁFA · a szállítást és szerelést az ajánlat tartalmazza", "+ VAT · transport and installation are calculated in the quote"],
+    "Cere oferta exactă": ["Kérem a pontos ajánlatot", "Get the exact quote"], "Prețuri exemplu pentru prezentare, de confirmat cu Big Big Boon.": ["Bemutató példaárak, a Big Big Boonnal egyeztetendők.", "Example prices for the presentation, to be confirmed with Big Big Boon."],
+    "Izolație 10 cm": ["10 cm szigetelés", "10 cm insulation"], "Instalație electrică completă": ["Teljes elektromos szerelés", "Full electrical installation"], "Terasă din lemn": ["Fa terasz", "Timber deck"], "Iluminat cald": ["Meleg világítás", "Warm lighting"],
+    "Blat de servire din lemn": ["Fa kiszolgálópult", "Timber serving counter"], "Acoperiș din tablă": ["Lemeztető", "Metal roof"], "Placare cu lemn": ["Faburkolat", "Timber cladding"],
     "Chioșc": ["Árusítóház", "Kiosk"], "Căsuță de târg": ["Vásári ház", "Market stall"], "Casă modulară": ["Moduláris ház", "Modular home"],
     "Ce construim": ["Mit építünk", "What we build"], "Unde și când": ["Hol és mikor", "Where and when"], "Pașii formularului": ["Az űrlap lépései", "Form steps"],
     "Birou modular": ["Moduláris iroda", "Modular office"], "Pergolă / copertină": ["Pergola / előtető", "Pergola / carport"],
