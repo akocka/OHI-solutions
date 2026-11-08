@@ -2,6 +2,7 @@
    Uses the same stored language as the live inner pages ('bbb-lang'), so the choice carries across the site. */
 (function () {
   var D = {
+    "Chioșc": ["Árusítóház", "Kiosk"], "Căsuță de târg": ["Vásári ház", "Market stall"], "Casă modulară": ["Moduláris ház", "Modular home"],
     "Ce construim": ["Mit építünk", "What we build"], "Unde și când": ["Hol és mikor", "Where and when"], "Pașii formularului": ["Az űrlap lépései", "Form steps"],
     "Birou modular": ["Moduláris iroda", "Modular office"], "Pergolă / copertină": ["Pergola / előtető", "Pergola / carport"],
     "LA CE O FOLOSEȘTI": ["MIRE HASZNÁLJA", "WHAT IT'S FOR"], "Comerț / street-food": ["Kereskedelem / street food", "Retail / street food"], "Târguri și evenimente": ["Vásárok és rendezvények", "Fairs and events"],

@@ -539,6 +539,28 @@ mark.ph{background:#FFE14D;color:#2a2100;padding:.02em .28em;border-radius:5px;-
 @media(max-width:600px){#intro .ib-kiosk{transform:translateY(-9vh)}#intro .ib-cap{top:calc(50% + min(540px,82vw)*.39 + 22px - 9vh)}}
 .ib-real{width:min(40vw,170px);height:auto!important;max-width:none;opacity:0;transform:translateY(12px) scale(.97);animation:ibUp .8s 2.1s forwards}
 #intro .ib-real{width:min(26vw,96px)!important;animation:ibLogo .9s 2.3s forwards!important}
+
+/* hero products: one product per rotating word */
+.oh-prods{position:relative;z-index:2;aspect-ratio:1431/969}
+.oh-prods .oh-p{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:center;align-items:flex-end;opacity:0;transform:translateX(40px) scale(.96);transition:opacity .7s ease,transform 1s cubic-bezier(.16,1,.3,1);pointer-events:none}
+.oh-p img{width:74%!important}.oh-p.wide img{width:100%!important}
+.oh-p.on{opacity:1;transform:none;transition-delay:.18s}
+.oh-p.out{opacity:0;transform:translateX(-40px) scale(.96);transition:opacity .45s ease,transform .6s cubic-bezier(.7,0,.84,0)}
+.oh-prods .oh-img{animation:none!important;opacity:1!important;transform:none!important}
+.oh-prods{opacity:0;transform:translateY(40px) scale(.97);animation:ohIn 1.4s .3s cubic-bezier(.16,1,.3,1) forwards}
+.oh-tabs{position:absolute;z-index:4;left:50%;bottom:-36px;translate:-50% 0;display:flex;gap:4px;padding:4px;border-radius:999px;background:rgba(15,24,20,.7);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;animation:ohFade 1s 1.6s ease forwards}
+@keyframes ohFade{to{opacity:1}}
+.oh-tabs button{position:relative;overflow:hidden;border:0;background:none;color:#BFC6C1;font:700 12.5px var(--fd);padding:8px 14px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.oh-tabs button.on{background:rgba(255,255,255,.1);color:#fff}
+.oh-tabs button::after{content:"";position:absolute;left:14px;right:14px;bottom:3px;height:2px;border-radius:2px;background:var(--amber);transform:scaleX(0);transform-origin:left}
+.oh-tabs button.on::after{animation:ohTab var(--dur,4.8s) linear forwards}
+.oh-stage.paused .oh-tabs button.on::after{animation-play-state:paused}
+@keyframes ohTab{to{transform:scaleX(1)}}
+.oh-in{pointer-events:none}.oh-in>*{pointer-events:auto}
+.oh-tabs button:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+@media(max-width:900px){.oh-tabs{bottom:-46px}.oh-tabs button{padding:7px 11px;font-size:11.5px}.oh-in{padding-top:calc(176px + min(calc(100vw - 16px),580px)*.68)!important}}
+@media(prefers-reduced-motion:reduce){.oh-p,.oh-p.out{transition:none}.oh-tabs button.on::after{animation:none}}
+
 /* intro recoloured to the concept palette (same animation as bigbigboon.ro) */
 #intro{background:#0B130F!important;--wood:#9CC7AF;--wood2:#9CC7AF}
 #intro::before{background-image:linear-gradient(rgba(156,199,175,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(156,199,175,.07) 1px,transparent 1px)!important}
@@ -600,10 +622,15 @@ body.intro-on .oh *{animation-play-state:paused!important}
 <!-- ============ HERO (original layout, new palette) ============ -->
 <section class="oh" id="acasa">
   <div class="oh-bg" aria-hidden="true"><div class="oh-sun"></div><div class="oh-grid"></div></div>
-  <div class="oh-stage" aria-hidden="true">
+  <div class="oh-stage">
     <div class="oh-pool"></div>
-    <picture><source media="(max-width:900px)" srcset="/concept/bbb-v2/img/modul-cut3-720.webp 720w, /concept/bbb-v2/img/modul-cut3-960.webp 960w" sizes="94vw"><img class="oh-img" src="/concept/bbb-v2/img/modul-cut3.webp" alt="" width="1431" height="969" fetchpriority="high"></picture>
+    <div class="oh-prods">
+      <picture class="oh-p on" data-k="0"><source media="(max-width:900px)" srcset="/concept/bbb-v2/img/cut-chiosc-720.webp"><img class="oh-img" src="/concept/bbb-v2/img/cut-chiosc-960.webp" alt="" width="960" height="779" fetchpriority="high"></picture>
+      <picture class="oh-p" data-k="1"><source media="(max-width:900px)" srcset="/concept/bbb-v2/img/cut-casuta-720.webp"><img class="oh-img" src="/concept/bbb-v2/img/cut-casuta-960.webp" alt="" width="960" height="767" loading="lazy"></picture>
+      <picture class="oh-p wide" data-k="2"><source media="(max-width:900px)" srcset="/concept/bbb-v2/img/modul-cut3-720.webp 720w, /concept/bbb-v2/img/modul-cut3-960.webp 960w" sizes="94vw"><img class="oh-img" src="/concept/bbb-v2/img/modul-cut3.webp" alt="" width="1431" height="969" loading="lazy"></picture>
+    </div>
     <div class="oh-shadow"></div>
+    <div class="oh-tabs" role="tablist" aria-label="Produse"><button type="button" role="tab" class="on" data-k="0">Chioșc</button><button type="button" role="tab" data-k="1">Căsuță de târg</button><button type="button" role="tab" data-k="2">Casă modulară</button></div>
     <div class="oh-chip c1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V9l6-4v4l6-4v4l6-4v16z"/></svg></i><span><b>Producție proprie</b><small>Hala din Miercurea Nirajului</small></span></div>
     <div class="oh-chip c2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h18M3 7v10M21 7v10M7 7v3M11 7v4M15 7v3M19 7v4"/></svg></i><span><b>La dimensiunile tale</b><small>Locuință, birou sau comerț</small></span></div>
   </div>
@@ -848,15 +875,28 @@ document.getElementById('iskip').onclick=end;el.addEventListener('click',functio
     gsap.to('.hero-t h1 .ln>span', { y: 0, duration: 1.2, ease: 'expo.out', stagger: .12, delay: .35 });
     gsap.to('.hero-t .k,.hero-t p,.hero-t .cta,.hero-t .note', { opacity: 1, y: 0, duration: 1, ease: 'power3.out', stagger: .1, delay: .7 });
   }
-  (function () { var W = ['chioșcuri comerciale', 'căsuțe de târg', 'case modulare', 'birouri modulare', 'pergole', 'copertine', 'mobilier de grădină'],
+  (function () { var W = ['chioșcuri comerciale', 'căsuțe de târg', 'case modulare'],
       M = ['Case modulare', 'Birouri modulare', 'Chioșcuri comerciale', 'Căsuțe de târg', 'Structuri metalice', 'Pergole', 'Copertine', 'Mobilier de grădină', 'Producție proprie în Mureș'];
-    var rot = $('#heroRot'), mq = $('#heroMarq'), i = 0; if (!rot) return;
+    var rot = $('#heroRot'), mq = $('#heroMarq'), i = 0, DUR = 4800, timer = 0, paused = false; if (!rot) return;
     var T = window.bbbT || function (x) { return x; }; W = W.map(T); M = M.map(T);
     rot.innerHTML = W.map(function (w, k) { return '<span' + (k ? '' : ' class="on"') + '>' + w + '</span>'; }).join('');
     function fit() { var mx = 0, h = rot.parentNode; rot.style.setProperty('--rf', '1em'); [].forEach.call(rot.children, function (c) { mx = Math.max(mx, c.scrollWidth); }); var w = h.clientWidth; rot.style.setProperty('--rf', mx > w ? (w / mx).toFixed(3) + 'em' : '1em'); }
     (document.fonts ? document.fonts.ready : Promise.resolve()).then(fit); addEventListener('resize', fit);
     var it = M.map(function (m) { return '<span>' + m + '</span>'; }).join(''); mq.innerHTML = it + it + it + it;
-    if (RM) return; setInterval(function () { var c = rot.children[i]; c.classList.remove('on'); c.classList.add('out'); setTimeout(function () { c.classList.remove('out'); }, 500); i = (i + 1) % W.length; rot.children[i].classList.add('on'); }, 2600); })();
+    var stage = $('.oh-stage'), ps = $$('.oh-p'), tabs = $$('.oh-tabs button');
+    tabs.forEach(function (b) { b.textContent = T(b.textContent); });
+    stage.style.setProperty('--dur', DUR / 1000 + 's');
+    function go(n) { if (n === i) return; var c = rot.children[i], pc = ps[i];
+      c.classList.remove('on'); c.classList.add('out'); setTimeout(function () { c.classList.remove('out'); }, 500);
+      pc.classList.remove('on'); pc.classList.add('out'); setTimeout(function () { pc.classList.remove('out'); }, 700);
+      i = n; rot.children[i].classList.add('on'); ps[i].classList.add('on');
+      tabs.forEach(function (t, k) { t.classList.toggle('on', k === i); t.setAttribute('aria-selected', k === i); var a = t.cloneNode(true); });
+      tabs[i].classList.remove('on'); void tabs[i].offsetWidth; tabs[i].classList.add('on'); }
+    function loop() { clearInterval(timer); if (RM) return; timer = setInterval(function () { if (!paused && !document.hidden) go((i + 1) % W.length); }, DUR); }
+    tabs.forEach(function (t, k) { t.onclick = function () { go(k); loop(); }; });
+    stage.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { paused = true; stage.classList.add('paused'); } });
+    stage.addEventListener('pointerleave', function () { paused = false; stage.classList.remove('paused'); });
+    loop(); })();
   $$('[data-b3f]').forEach(function (c) { c.onclick = function () { $$('[data-b3f]').forEach(function (x) { x.classList.toggle('on', x === c); }); if (window.k3setFinish) k3setFinish(c.dataset.b3f); }; });
   $('.burger').onclick = function () { document.body.classList.toggle('menu'); }; $$('.mm a').forEach(function (a) { a.addEventListener('click', function () { document.body.classList.remove('menu'); }); });
   /* phone: stacked product cards shrink and dim as the next one slides over */
