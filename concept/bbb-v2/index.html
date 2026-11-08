@@ -729,7 +729,10 @@ html.fly-on .oh-in{padding-top:90px!important;padding-bottom:40px!important;will
   html.fly-on .oh-in{padding-top:104px!important}
   .fly-shade{background:linear-gradient(180deg,rgba(17,27,22,.9) 0%,rgba(17,27,22,.72) 45%,rgba(17,27,22,.25) 68%,rgba(17,27,22,.8) 100%)}
   .hs span{font-size:11px;padding:6px 9px}.hs span b{font-size:12px}
-  .hs.l{top:43%!important}
+  .hs.l{top:54%!important;left:77%!important}
+  /* phones: only the dots show; tapping one opens its label */
+  .hs:not(.open) span{display:none}
+  .hs i{width:26px;height:26px}
   .hs.l{flex-direction:row-reverse;transform:translate(calc(-100% + 11px),-50%) scale(calc(1 / var(--z,1)));transform-origin:right center}
   html.fly-on .oh-note,html.fly-on .oh-facts{display:none}
 }
