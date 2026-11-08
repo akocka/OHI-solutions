@@ -783,7 +783,7 @@ footer h3.fh{font:700 12px var(--fd);letter-spacing:.16em;text-transform:upperca
   </div>
 </footer>
 
-<a class="mcta" href="#contact" data-go="contact"><span data-t="ctaQuote">Cere ofertă</span> →</a>
+<script>document.body.classList.add('showcta')</script><a class="mcta" href="#contact" data-go="contact"><span data-t="ctaQuote">Cere ofertă</span> →</a>
 
 <div class="lb" id="lb"><button aria-label="Închide">×</button><img alt=""></div>
 
@@ -1017,7 +1017,7 @@ function onScroll(){
     const bb=$('build');
     if(bb){const r=bb.getBoundingClientRect();if(r.top<innerHeight*.5&&r.bottom>innerHeight*.5)hide=true}
     document.body.classList.toggle('inbuild',hide);
-    const ct=$('contact');document.body.classList.toggle('showcta',scrollY>innerHeight*.6&&(!ct||ct.getBoundingClientRect().top>innerHeight*.9));
+    const ct=$('contact');document.body.classList.add('showcta');
   });
 }
 addEventListener('scroll',onScroll,{passive:true});
