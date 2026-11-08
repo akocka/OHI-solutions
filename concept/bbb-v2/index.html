@@ -352,7 +352,7 @@ footer img{height:34px;width:auto;margin-bottom:10px}
 @keyframes ohFloat{50%{transform:translateY(-8px)}}
 .oh-pool{position:absolute;z-index:1;left:14%;right:14%;top:26%;bottom:14%;background:radial-gradient(ellipse at 50% 55%,rgba(242,237,228,.22),rgba(242,237,228,0) 70%);filter:blur(46px);opacity:0;animation:ohIn 2.2s 1s ease forwards}
 .oh-shadow{position:absolute;z-index:1;left:0;right:0;bottom:-30px;height:90px;background:radial-gradient(ellipse 46% 40% at 50% 40%,rgba(0,0,0,.85),rgba(0,0,0,.35) 55%,rgba(0,0,0,0) 80%);filter:blur(6px)}
-.oh-stage::after{content:"";position:absolute;z-index:1;left:-12%;right:-12%;bottom:-70px;height:150px;background:radial-gradient(ellipse at 50% 30%,rgba(74,134,234,.16),rgba(74,134,234,0) 65%);filter:blur(12px);pointer-events:none}
+.oh-stage::after{content:"";position:absolute;z-index:0;left:-12%;right:-12%;bottom:-70px;height:150px;background:radial-gradient(ellipse at 50% 30%,rgba(242,237,228,.10),rgba(242,237,228,0) 65%);filter:blur(12px);pointer-events:none}
 .oh-chip{position:absolute;z-index:3;display:flex;align-items:center;gap:10px;padding:10px 14px 10px 10px;border-radius:16px;background:rgba(30,27,24,.7);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 20px 40px -20px rgba(0,0,0,.6);opacity:0;animation:ohIn 1s 1.4s ease forwards}
 .oh-chip.c1{left:12%;top:-2%}.oh-chip.c2{right:-2%;bottom:6%;animation-delay:1.7s}
 .oh-chip i{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:rgba(216,205,189,.14);color:var(--sage);flex:none}
@@ -657,6 +657,19 @@ body.intro-on .oh *{animation-play-state:paused!important}
 .hero-t h1 em.s,.ct h2 em.s,.b3-ui h2 em.s,.lo-card h2 em.s,.bp h2 em.s,.oh-t em.s{color:var(--blueL)}
 .night .k,#film .k,.b3 .k,.oh .k,.ct .k,.nb .k,.bp .k{color:var(--blueL)}
 .lo-card{background:linear-gradient(135deg,#2C2722,#171512)}
+
+/* hero foundation: a concrete slab the products stand on (desktop: product raised and centred) */
+.oh-ground{position:absolute;z-index:1;left:3%;right:3%;bottom:-12%;aspect-ratio:10/1.7;opacity:0;animation:ohFade 1.2s .5s ease forwards;pointer-events:none}
+.oh-ground::before{content:"";position:absolute;inset:0 0 18% 0;border-radius:50%;z-index:1;
+  background:radial-gradient(ellipse 55% 60% at 50% 42%,#9A9087 0%,#7A7067 35%,#5A5249 70%,#3A342E 100%);
+  box-shadow:inset 0 3px 0 rgba(242,237,228,.28),inset 0 -10px 18px rgba(0,0,0,.25)}
+.oh-ground::after{content:"";position:absolute;inset:18% 0 0 0;border-radius:50%;z-index:0;background:linear-gradient(#3A342E,#171512 70%);box-shadow:0 34px 60px -8px rgba(0,0,0,.85)}
+.oh-shadow{z-index:2;bottom:-5%;height:10%;left:14%;right:14%;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(0,0,0,.85),rgba(0,0,0,.35) 55%,rgba(0,0,0,0) 78%);filter:blur(4px)}
+.oh-prods{z-index:3}
+.oh-tabs{bottom:calc(-36px - 10%)}
+@media(min-width:901px){.oh-stage{top:50%;bottom:auto;transform:translateY(-54%)!important}}
+@media(max-width:900px){.oh-ground{bottom:-10%}.oh-tabs{bottom:calc(-46px - 9%)}}
+@media(prefers-reduced-motion:reduce){.oh-ground{animation:none;opacity:1}}
 </style>
 <link rel="stylesheet" href="/concept/bbb-v2/fx.css">
 <link rel="stylesheet" href="/concept/bbb-v2/anim.css">
@@ -720,6 +733,7 @@ body.intro-on .oh *{animation-play-state:paused!important}
       <picture class="oh-p" data-k="1"><source media="(max-width:900px)" srcset="/concept/bbb-v2/img/cut-casuta-720.webp"><img class="oh-img" src="/concept/bbb-v2/img/cut-casuta-960.webp" alt="Căsuță de târg din lemn, Big Big Boon" width="960" height="767" loading="lazy"></picture>
       <picture class="oh-p wide" data-k="2"><source media="(max-width:900px)" srcset="/concept/bbb-v2/img/modul-cut3-720.webp 720w, /concept/bbb-v2/img/modul-cut3-960.webp 960w" sizes="94vw"><img class="oh-img" src="/concept/bbb-v2/img/modul-cut3.webp" alt="Casă modulară Big Big Boon" width="1431" height="969" loading="lazy"></picture>
     </div>
+    <div class="oh-ground" aria-hidden="true"></div>
     <div class="oh-shadow"></div>
     <div class="oh-tabs" role="tablist" aria-label="Produse"><button type="button" role="tab" class="on" data-k="0">Chioșc</button><button type="button" role="tab" data-k="1">Căsuță de târg</button><button type="button" role="tab" data-k="2">Casă modulară</button></div>
     <div class="oh-chip c1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V9l6-4v4l6-4v4l6-4v16z"/></svg></i><span><b>Producție proprie</b><small>Hala din Miercurea Nirajului</small></span></div>
