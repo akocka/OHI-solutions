@@ -48,3 +48,7 @@
 .oh-prods{translate:calc(var(--hx,0) * 18px) calc(var(--hy,0) * 10px)}
 .oh-sun{translate:calc(var(--hx,0) * -60px) calc(var(--hy,0) * -40px)}
 .oh-grid{translate:calc(var(--hx,0) * -30px) 0}
+
+/* portraits: only a gentle zoom so the face is never cropped */
+.fd-ph.fx-zoom.fx-on .fx-zi{scale:1.05}
+.fd-ph{max-width:460px}
