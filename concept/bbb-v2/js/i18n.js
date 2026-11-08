@@ -31,6 +31,8 @@
     "E-MAIL (OPȚIONAL)": ["E-MAIL (OPCIONÁLIS)", "E-MAIL (OPTIONAL)"], "CUM PREFERI SĂ TE CONTACTĂM": ["HOGYAN KERESSÜK", "HOW SHOULD WE CONTACT YOU"], "Telefon": ["Telefon", "Phone"], "WhatsApp": ["WhatsApp", "WhatsApp"], "E-mail": ["E-mail", "E-mail"],
     "Orice ne ajută: idei, poze de inspirație, cerințe speciale…": ["Bármi, ami segít: ötletek, inspiráló fotók, különleges igények…", "Anything that helps: ideas, inspiration photos, special requirements…"],
     "Sunt de acord ca Big Big Boon să-mi folosească datele doar pentru a-mi trimite oferta. Detalii în": ["Hozzájárulok, hogy a Big Big Boon az adataimat csak az ajánlat elküldésére használja. Részletek:", "I agree that Big Big Boon may use my details only to send me the quote. Details in the"],
+    "Cere ofertă pentru chioșc": ["Ajánlatot kérek kioszkra", "Get a quote for a kiosk"],
+    "Case modulare și alte produse": ["Moduláris házak és más termékek", "Modular homes and other products"],
     "politica de confidențialitate": ["adatvédelmi szabályzat", "privacy policy"],
     "Sunt de acord ca Big Big Boon să-mi folosească datele doar pentru a-mi trimite oferta.": ["Hozzájárulok, hogy a Big Big Boon az adataimat csak az ajánlat elküldésére használja.", "I agree that Big Big Boon may use my details only to send me the quote."],
     "Completează numele, telefonul și bifează acordul.": ["Adja meg a nevét, telefonszámát, és pipálja be a hozzájárulást.", "Fill in your name and phone and tick the consent box."],

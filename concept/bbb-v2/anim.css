@@ -43,3 +43,13 @@ input:focus,select:focus,textarea:focus{transform:translateY(-1px)}
   .fcta,.mcta,.an-cur b i{animation:none}
   .btn::before,.mcta::before,.fcta::before{display:none}
 }
+
+/* buttons never break their label onto several lines; groups wrap instead */
+.btn,.mcta,.fcta{white-space:nowrap}
+.btn{flex-shrink:0;justify-content:center}
+.rf-b,.cta,.ctas,.oh-cta,.hero-t .cta{flex-wrap:wrap}
+@media(max-width:600px){
+  .rf-b{display:flex;flex-direction:column;align-items:stretch;gap:10px}
+  .rf-b .btn{width:100%}
+  .ctas .btn,.oh-cta .btn{flex:1 1 100%}
+}

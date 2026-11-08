@@ -157,6 +157,10 @@ body.menu .mm{opacity:1;transform:none;pointer-events:auto}
 .st p .w{opacity:.14;transition:none}
 .st p em.s{color:var(--pine)}
 .st .by{margin-top:34px;display:flex;align-items:center;gap:14px;color:var(--mut);font-size:15px}
+.st-b{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.st-o{background:transparent;border:1.5px solid rgba(24,33,28,.25);color:var(--steel)}
+.st-o:hover{border-color:var(--amber)!important;color:var(--amber)!important;background:rgba(200,116,58,.06)!important}
+@media(max-width:600px){.st-b{flex-direction:column}.st-b .btn{width:100%}}
 .st .by span{width:46px;height:2px;background:var(--pine)}
 
 /* marquee */
@@ -771,6 +775,7 @@ body.intro-on .oh *{animation-play-state:paused!important}
   <div class="k up">De ce Big Big Boon</div><br>
   <p id="stmt">Nu vindem cutii din tablă. Construim <em class="s">locul</em> în care afacerea ta începe să vândă: solid, frumos și gata de mutat oriunde e lume.</p>
   <div class="by up"><span></span>Echipa din hala de la Miercurea Nirajului</div>
+  <div class="st-b up"><a class="btn a" href="#oferta" data-prod="0">Cere ofertă pentru chioșc<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn st-o" href="#produse">Case modulare și alte produse</a></div>
 </div></section>
 
 <div class="mq" aria-hidden="true"><div class="tr" id="mq"><span>Chioșcuri comerciale</span><span><em class="s">Căsuțe de târg</em></span><span>Case modulare</span><span>Birouri</span><span><em class="s">Pergole</em></span><span>Structuri metalice</span><span>Chioșcuri comerciale</span><span><em class="s">Căsuțe de târg</em></span><span>Case modulare</span><span>Birouri</span><span><em class="s">Pergole</em></span><span>Structuri metalice</span></div></div>
@@ -1115,6 +1120,10 @@ document.getElementById('iskip').onclick=end;el.addEventListener('click',functio
 })();
 </script>
 <script src="/concept/bbb-v2/fx.js"></script>
+<script>
+/* buttons that open the form with a product already chosen */
+document.addEventListener('click',function(e){var a=e.target.closest('[data-prod]');if(!a)return;var bs=document.querySelectorAll('.chips[data-one="prod"] button');bs.forEach(function(x,i){x.classList.toggle('on',i===+a.dataset.prod)});});
+</script>
 <script src="/concept/bbb-v2/anim.js"></script>
 </body>
 </html>
