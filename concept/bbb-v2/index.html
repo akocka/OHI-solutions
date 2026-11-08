@@ -627,6 +627,14 @@ mark.ph{background:#FFE14D;color:#2a2100;padding:.02em .28em;border-radius:5px;-
 }
 @media(prefers-reduced-motion:reduce){.pq-c,.pq-c img,.pq-b{transition:none}.pq-row.cfg .pq-cfg{animation:none}}
 
+
+/* floating "get a quote" button: always on phones, after the hero on desktop */
+.fcta{position:fixed;z-index:58;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--amber);color:#1a1209;font:700 15px var(--fd);text-decoration:none;box-shadow:0 14px 34px -10px rgba(227,137,59,.75),0 6px 18px rgba(0,0,0,.25);transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .3s}
+.fcta svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2}
+@media(max-width:900px){.fcta{left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border-radius:16px}body{padding-bottom:78px}}
+@media(min-width:901px){.fcta{right:26px;bottom:26px;height:54px;padding:0 24px;border-radius:999px;transform:translateY(120px);opacity:0}body.fcta-on .fcta{transform:none;opacity:1}}
+body.intro-on .fcta,body.fcta-hide .fcta{opacity:0;pointer-events:none;transform:translateY(120px)}
+
 /* intro recoloured to the concept palette (same animation as bigbigboon.ro) */
 #intro{background:#0B130F!important;--wood:#9CC7AF;--wood2:#9CC7AF}
 #intro::before{background-image:linear-gradient(rgba(156,199,175,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(156,199,175,.07) 1px,transparent 1px)!important}
@@ -674,6 +682,7 @@ body.intro-on .oh *{animation-play-state:paused!important}
   <p class="ib-cap" data-t="introCap">Metal și lemn. <em>Construit să dureze.</em></p>
   <button type="button" class="ib-skip" id="iskip"><span data-t="k3skip">Sari peste</span> →</button>
 </div>
+<a class="fcta" href="#oferta" id="fcta"><span>Cere ofertă gratuită</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 <div class="rib">Previzualizare · <span class="lg">cifre orientative, de confirmat</span> · OHI Solutions</div>
 
 <nav class="nav" id="nav">
@@ -1014,6 +1023,7 @@ document.getElementById('iskip').onclick=end;el.addEventListener('click',functio
     var tick = false; function up() { tick = false; for (var i = 0; i < cs.length - 1; i++) { var a = cs[i].getBoundingClientRect(), b = cs[i + 1].getBoundingClientRect();
       var k = Math.min(1, Math.max(0, (a.bottom - b.top) / a.height)); cs[i].style.transform = 'scale(' + (1 - .07 * k).toFixed(4) + ')'; cs[i].style.setProperty('--dim', (k * .45).toFixed(3)); } }
     addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(up); } }, { passive: true }); up(); })();
+  addEventListener('scroll', function () { document.body.classList.toggle('fcta-on', scrollY > innerHeight * .8); var bd = $('#build'), r = bd && bd.getBoundingClientRect(); document.body.classList.toggle('fcta-hide', !!(r && r.top < innerHeight * .5 && r.bottom > innerHeight * .6)); }, { passive: true });
   addEventListener('scroll', function () { $('#nav').classList.toggle('solid', scrollY > 40); }, { passive: true });
   $$('[data-fin]').forEach(function (b) { b.onclick = function () { $$('[data-fin]').forEach(function (x) { x.classList.toggle('on', x === b); }); if (window.bbbFinish) bbbFinish(b.dataset.fin); }; });
   // form demo + chips
