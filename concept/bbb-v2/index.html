@@ -761,7 +761,6 @@ body.intro-on .oh *{animation-play-state:paused!important}
     <p class="oh-note">Fără obligații · îți răspundem cu o ofertă făcută pe proiectul tău.</p>
     <ul class="oh-facts"><li>Producție proprie în Mureș</li><li>Dimensiuni la comandă</li><li>Mobile și demontabile</li></ul>
   </div>
-  <div class="oh-mq" aria-hidden="true"><div class="tr" id="heroMarq"></div></div>
 </section>
 
 <!-- ============ STATEMENT ============ -->
@@ -1016,7 +1015,7 @@ document.getElementById('iskip').onclick=end;el.addEventListener('click',functio
     rot.innerHTML = W.map(function (w, k) { return '<span' + (k ? '' : ' class="on"') + '>' + w + '</span>'; }).join('');
     function fit() { var mx = 0, h = rot.parentNode; rot.style.setProperty('--rf', '1em'); [].forEach.call(rot.children, function (c) { mx = Math.max(mx, c.scrollWidth); }); var w = h.clientWidth; rot.style.setProperty('--rf', mx > w ? (w / mx).toFixed(3) + 'em' : '1em'); }
     (document.fonts ? document.fonts.ready : Promise.resolve()).then(fit); addEventListener('resize', fit);
-    var it = M.map(function (m) { return '<span>' + m + '</span>'; }).join(''); mq.innerHTML = it + it + it + it;
+    var it = M.map(function (m) { return '<span>' + m + '</span>'; }).join(''); if (mq) mq.innerHTML = it + it + it + it;
     var stage = $('.oh-stage'), ps = $$('.oh-p'), tabs = $$('.oh-tabs button');
     tabs.forEach(function (b) { b.textContent = T(b.textContent); });
     stage.style.setProperty('--dur', DUR / 1000 + 's');
