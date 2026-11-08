@@ -40,7 +40,7 @@
       for (var i = 0; i < pts.length; i++) { var p = pts[i], d = Math.hypot(p[0] - mx, p[1] - my), k = d < R ? 1 - d / R : 0; k = k * k * (3 - 2 * k);
         p[2] += (k - p[2]) * .18; if (p[2] > .01) any = true; var e = p[2];
         var rad = 1.1 + e * 4.6;
-        ctx.fillStyle = e > .02 ? 'rgba(' + (47 + (227 - 47) * e | 0) + ',' + (93 + (137 - 93) * e | 0) + ',' + (74 + (59 - 74) * e | 0) + ',' + (.16 + .7 * e).toFixed(3) + ')' : 'rgba(47,93,74,.16)';
+        ctx.fillStyle = e > .02 ? 'rgba(' + (74 + (47 - 74) * e | 0) + ',' + (67 + (111 - 67) * e | 0) + ',' + (60 + (219 - 60) * e | 0) + ',' + (.16 + .7 * e).toFixed(3) + ')' : 'rgba(74,67,60,.16)';
         ctx.beginPath(); ctx.arc(p[0], p[1], rad, 0, 6.2832); ctx.fill(); }
       return any;
     }
