@@ -643,7 +643,7 @@ mark.ph{background:#FFE14D;color:#2a2100;padding:.02em .28em;border-radius:5px;-
 /* floating "get a quote" button: always on phones, after the hero on desktop */
 .fcta{position:fixed;z-index:58;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--amber);color:#FFFFFF;font:700 15px var(--fd);text-decoration:none;box-shadow:0 14px 34px -10px rgba(200,116,58,.75),0 6px 18px rgba(0,0,0,.25);transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .3s}
 .fcta svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2}
-@media(max-width:900px){.fcta{left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border-radius:16px}body{padding-bottom:78px}}
+@media(max-width:900px){.fcta{left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border-radius:16px}}
 @media(min-width:901px){.fcta{right:26px;bottom:26px;height:54px;padding:0 24px;border-radius:999px;transform:translateY(120px);opacity:0}body.fcta-on .fcta{transform:none;opacity:1}}
 body.intro-on .fcta,body.fcta-hide .fcta{opacity:0;pointer-events:none;transform:translateY(120px)}
 
@@ -695,6 +695,7 @@ html.fly-on .fly-scene{display:block;position:absolute;inset:0;overflow:hidden;z
 .fly-cam{position:absolute;left:0;top:0;will-change:transform}
 .fly-cam.c2{opacity:0;visibility:hidden}
 .fly-mid{display:none}
+.fly-sheet{display:none}
 html.fly-on .fly-mid{display:block;position:absolute;z-index:4;left:50%;top:50%;width:min(900px,88vw);transform:translate(-50%,-50%);text-align:center;opacity:0;visibility:hidden;pointer-events:none;color:#18211C}
 .fly-mid span{font:700 12px var(--fd);letter-spacing:.22em;text-transform:uppercase;color:var(--amber)}
 .fly-mid p{margin-top:14px;font:800 clamp(34px,5.4vw,78px)/1.02 var(--fd);letter-spacing:-.035em}
@@ -731,7 +732,10 @@ html.fly-on .oh-in{padding-top:90px!important;padding-bottom:40px!important;will
   .hs span{font-size:11px;padding:6px 9px}.hs span b{font-size:12px}
   .hs.l{top:54%!important;left:77%!important}
   /* phones: only the dots show; tapping one opens its label */
-  .hs:not(.open) span{display:none}
+  .hs span{display:none!important}
+  .fly-sheet{display:block;position:absolute;z-index:6;left:14px;right:14px;bottom:18px;padding:16px 18px;border-radius:16px;background:rgba(17,27,22,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.12);color:#DADDD3;font:500 14px/1.5 var(--fb);opacity:0;transform:translateY(16px);transition:opacity .35s,transform .35s;pointer-events:none}
+  .fly-sheet.on{opacity:1;transform:none;pointer-events:auto}
+  .fly-sheet b{display:block;color:#fff;font:700 16px var(--fd);margin-bottom:2px}.fly-sheet em{display:block;font-style:normal;margin-top:6px}.fly-sheet a{display:inline-block;margin-top:8px;color:#E8A97A;font-weight:700;text-decoration:none}
   .hs i{width:26px;height:26px}
   .hs.l{flex-direction:row-reverse;transform:translate(calc(-100% + 11px),-50%) scale(calc(1 / var(--z,1)));transform-origin:right center}
   html.fly-on .oh-note,html.fly-on .oh-facts{display:none}
@@ -778,7 +782,6 @@ html.fly-on .oh-in{padding-top:90px!important;padding-bottom:40px!important;will
   <p class="ib-cap" data-t="introCap">Metal și lemn. <em>Construit să dureze.</em></p>
   <button type="button" class="ib-skip" id="iskip"><span data-t="k3skip">Sari peste</span> →</button>
 </div>
-<a class="fcta" href="#oferta" id="fcta"><span>Cere ofertă gratuită</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 <div class="rib">Previzualizare · <span class="lg">cifre orientative, de confirmat</span> · OHI Solutions</div>
 
 <nav class="nav" id="nav">
@@ -802,6 +805,7 @@ html.fly-on .oh-in{padding-top:90px!important;padding-bottom:40px!important;will
     </div>
     <div class="fly-mist m1"></div><div class="fly-mist m2"></div><div class="fly-fog"></div><div class="fly-shade"></div></div>
   <div class="fly-mid" aria-hidden="true"><span>Big Big Boon · Mureș</span><p>Mici ca dimensiune.<br><em class="s">Gândite până la ultimul detaliu.</em></p></div>
+  <div class="fly-sheet" id="flySheet" aria-live="polite"></div>
   <p class="fly-cap">Imagine ilustrativă, generată pentru prezentare</p>
   <div class="fly-hint" aria-hidden="true"><i></i>Derulează</div>
   <div class="oh-bg" aria-hidden="true"><div class="oh-sun"></div><div class="oh-grid"></div></div>
@@ -1217,12 +1221,12 @@ document.getElementById('iskip').onclick=end;el.addEventListener('click',functio
     var e=ease(seg(sp,0,.7));
     m1.style.transform='translate('+(-40*e)+'%,'+(10*e)+'%) scale('+(1+e*.9)+')';m1.style.opacity=(.5*(1-seg(sp,.45,.62))+.25*seg(sp,.5,.6)*(1-seg(sp,.62,.8))).toFixed(3);
     m2.style.transform='translate('+(35*e)+'%,'+(-10*e)+'%) scale('+(1+e*.7)+')';m2.style.opacity=(.35+.35*seg(sp,.4,.55)*(1-seg(sp,.6,.75))).toFixed(3);
-    var hp=Math.max(p,sp);hs.forEach(function(el,i){el.classList.toggle('on',hp>.8+i*.05);if(hp<.8)el.classList.remove('open')});
+    var hp=Math.max(p,sp);hs.forEach(function(el,i){el.classList.toggle('on',hp>.8+i*.05);if(hp<.8)el.classList.remove('open')});if(hp<.8){var sh=document.getElementById('flySheet');if(sh)sh.classList.remove('on')}
     var rr=fly.getBoundingClientRect();if(!RM&&(Math.abs(p-sp)>.0005||(rr.bottom>0&&rr.top<innerHeight&&++idle<90)))raf=requestAnimationFrame(draw);else{raf=0;idle=0}
     if(Math.abs(p-sp)>.0005)idle=0;
   }
-  hs.forEach(function(el){el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();el.click()}});el.addEventListener('click',function(e){if(e.target.closest('a'))return;var o=!el.classList.contains('open');hs.forEach(function(x){x.classList.remove('open')});el.classList.toggle('open',o)})});
-  document.addEventListener('click',function(e){if(!e.target.closest('.hs'))hs.forEach(function(x){x.classList.remove('open')})});
+  hs.forEach(function(el){el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();el.click()}});el.addEventListener('click',function(e){if(e.target.closest('a'))return;var o=!el.classList.contains('open');hs.forEach(function(x){x.classList.remove('open')});el.classList.toggle('open',o);var sh=document.getElementById('flySheet');if(sh){sh.innerHTML=o?el.querySelector('span').innerHTML:'';sh.classList.toggle('on',o)}})});
+  document.addEventListener('click',function(e){if(e.target.closest('.hs,.fly-sheet'))return;hs.forEach(function(x){x.classList.remove('open')});var sh=document.getElementById('flySheet');if(sh)sh.classList.remove('on')});
   addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(draw)},{passive:true});
   addEventListener('resize',size);var im=fly.querySelector('.c1 img');if(im.complete)size();else im.addEventListener('load',size);size();
 })();
