@@ -4,16 +4,16 @@
 .fx-host{isolation:isolate}
 .fx-glow{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
 .fx-glow::before{content:"";position:absolute;left:var(--mx,70%);top:var(--my,40%);width:min(70vw,900px);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%) scale(var(--ms,1));
-  background:radial-gradient(circle,rgba(74,134,234,.42) 0%,rgba(47,111,219,.16) 34%,rgba(47,111,219,0) 66%);transition:left .9s cubic-bezier(.2,.8,.2,1),top .9s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.34,1.56,.5,1),opacity .6s;opacity:var(--mo,.85)}
+  background:radial-gradient(circle,rgba(217,141,85,.42) 0%,rgba(200,116,58,.16) 34%,rgba(200,116,58,0) 66%);transition:left .9s cubic-bezier(.2,.8,.2,1),top .9s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.34,1.56,.5,1),opacity .6s;opacity:var(--mo,.85)}
 .fx-glow::after{content:"";position:absolute;left:calc(100% - var(--mx,70%));top:calc(100% - var(--my,40%));width:min(50vw,640px);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);
-  background:radial-gradient(circle,rgba(216,205,189,.10),rgba(216,205,189,0) 65%);transition:left 1.4s cubic-bezier(.2,.8,.2,1),top 1.4s cubic-bezier(.2,.8,.2,1)}
+  background:radial-gradient(circle,rgba(213,203,187,.10),rgba(213,203,187,0) 65%);transition:left 1.4s cubic-bezier(.2,.8,.2,1),top 1.4s cubic-bezier(.2,.8,.2,1)}
 .hero>.fx-glow{z-index:1;mix-blend-mode:screen}
 /* cream sections: dot "scales" instead of the glow (drawn by fx.js) */
 .fx-light>.fx-glow::before,.fx-light>.fx-glow::after{display:none}
 .fx-dots{position:absolute;left:0;top:0;pointer-events:none}
 /* (old cream glow, unused) */
-.fx-light>.fx-glow::before{width:min(56vw,720px);background:radial-gradient(circle,rgba(47,111,219,.36) 0%,rgba(74,134,234,.16) 36%,rgba(74,134,234,0) 66%)}
-.fx-light>.fx-glow::after{background:radial-gradient(circle,rgba(74,67,60,.08),rgba(74,67,60,0) 65%)}
+.fx-light>.fx-glow::before{width:min(56vw,720px);background:radial-gradient(circle,rgba(200,116,58,.36) 0%,rgba(217,141,85,.16) 36%,rgba(217,141,85,0) 66%)}
+.fx-light>.fx-glow::after{background:radial-gradient(circle,rgba(68,73,64,.08),rgba(68,73,64,0) 65%)}
 /* touch screens: the light drifts on its own */
 @media(hover:none),(pointer:coarse){
   .fx-glow::before{transition:none;animation:fxDrift 9s ease-in-out infinite alternate}
@@ -28,17 +28,17 @@
 .btn.fx-mag::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
   background:radial-gradient(120px circle at var(--bx,50%) var(--by,50%),rgba(255,255,255,.35),transparent 60%)}
 .btn.fx-mag:hover::after{opacity:1}
-.btn.g:hover,.btn.o:hover,.btn.d:hover,.oh-cta .btn.g:hover{border-color:#4A86EA!important;color:#4A86EA!important;background:rgba(74,134,234,.08)!important}
+.btn.g:hover,.btn.o:hover,.btn.d:hover,.oh-cta .btn.g:hover{border-color:#D98D55!important;color:#D98D55!important;background:rgba(217,141,85,.08)!important}
 
 /* product / price options: zoom in on hover (desktop) or when centred (phone) */
 .fx-zoom{transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s,outline-color .4s;outline:2px solid transparent;outline-offset:-2px}
 .fx-zoom .fx-zi{transition:scale 1.2s cubic-bezier(.16,1,.3,1),filter .6s}
 .fx-zpar{overflow:hidden}
 .fx-zoom{position:relative}
-.fx-zoom.fx-on,.fx-zoom:focus-within{transform:translateY(-14px) scale(1.045);z-index:5;box-shadow:0 50px 90px -40px rgba(30,27,24,.6),0 0 0 1px rgba(74,134,234,.4);outline-color:rgba(74,134,234,.9)}
+.fx-zoom.fx-on,.fx-zoom:focus-within{transform:translateY(-14px) scale(1.045);z-index:5;box-shadow:0 50px 90px -40px rgba(24,33,28,.6),0 0 0 1px rgba(217,141,85,.4);outline-color:rgba(217,141,85,.9)}
 .fx-zoom.fx-on .fx-zi{scale:1.25;filter:saturate(1.12) contrast(1.03)}
 .fx-pick{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
-.fx-pick:hover,.fx-pick.on{transform:scale(1.06);box-shadow:0 0 0 2px #2F6FDB,0 10px 24px -12px rgba(47,111,219,.6)}
+.fx-pick:hover,.fx-pick.on{transform:scale(1.06);box-shadow:0 0 0 2px #C8743A,0 10px 24px -12px rgba(200,116,58,.6)}
 
 @media(prefers-reduced-motion:reduce){.fx-glow::before,.fx-glow::after{animation:none!important;transition:none!important}.fx-zoom,.fx-zoom .fx-zi{transition:none}.fx-zoom.fx-on{transform:none}}
 .fd-ph.fx-zpar{border-radius:28px}

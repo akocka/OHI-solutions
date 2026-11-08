@@ -22,11 +22,11 @@
 /* Echipa: rail + step numbers */
 .team{position:relative}
 .mo-rail{position:absolute;left:4%;right:4%;top:53px;height:2px;z-index:2;background:rgba(143,86,40,.16);border-radius:2px;pointer-events:none}
-.mo-rail i{position:absolute;inset:0;background:linear-gradient(90deg,#C17E43,#8F5628);border-radius:2px;transform-origin:left;transform:scaleX(var(--p,0));box-shadow:0 0 12px rgba(47,111,219,.45)}
+.mo-rail i{position:absolute;inset:0;background:linear-gradient(90deg,#C17E43,#8F5628);border-radius:2px;transform-origin:left;transform:scaleX(var(--p,0));box-shadow:0 0 12px rgba(200,116,58,.45)}
 .team .tm{position:relative}
 .mo-step{position:absolute;right:18px;top:20px;font:700 12px var(--fd,system-ui);letter-spacing:.12em;color:#b8ab9a;transition:color .4s}
 .tm .av{position:relative;z-index:3;transition:background .5s,color .5s,box-shadow .5s}
-.tm.mo-lit .av{background:linear-gradient(135deg,#C17E43,#8F5628);color:#fff;box-shadow:0 0 0 6px rgba(47,111,219,.16)}
+.tm.mo-lit .av{background:linear-gradient(135deg,#C17E43,#8F5628);color:#fff;box-shadow:0 0 0 6px rgba(200,116,58,.16)}
 .tm.mo-lit .mo-step{color:#8F5628}
 @media(max-width:1000px){.mo-rail{display:none}}
 

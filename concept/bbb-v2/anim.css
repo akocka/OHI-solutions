@@ -1,15 +1,15 @@
 /* Big Big Boon preview · site-wide motion layer (all pages)
-   3 colours only: main #1E1B18 · secondary #F2EDE4 · focus #2F6FDB */
+   3 colours only: main #18211C · secondary #EFEBE2 · focus #C8743A */
 
 /* scroll progress line at the very top */
-.an-prog{position:fixed;z-index:90;left:0;top:0;height:3px;width:100%;background:#2F6FDB;transform-origin:0 50%;transform:scaleX(0);pointer-events:none;box-shadow:0 0 10px rgba(47,111,219,.6)}
+.an-prog{position:fixed;z-index:90;left:0;top:0;height:3px;width:100%;background:#C8743A;transform-origin:0 50%;transform:scaleX(0);pointer-events:none;box-shadow:0 0 10px rgba(200,116,58,.6)}
 
 /* page transition curtain (also the loading screen of the inner pages) */
-.an-cur{position:fixed;inset:0;z-index:95;pointer-events:none;display:grid;place-items:center;background:#1E1B18;transform:translateY(0);transition:transform .75s cubic-bezier(.76,0,.24,1)}
-.an-cur::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:#2F6FDB;transform-origin:left;transform:scaleX(var(--ld,0));transition:transform .5s ease}
+.an-cur{position:fixed;inset:0;z-index:95;pointer-events:none;display:grid;place-items:center;background:#18211C;transform:translateY(0);transition:transform .75s cubic-bezier(.76,0,.24,1)}
+.an-cur::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:#C8743A;transform-origin:left;transform:scaleX(var(--ld,0));transition:transform .5s ease}
 .an-cur b{display:flex;gap:6px}
-.an-cur b i{width:22px;height:22px;border-radius:5px;background:#F2EDE4;opacity:.9;animation:anDot .9s cubic-bezier(.34,1.56,.64,1) infinite alternate}
-.an-cur b i:nth-child(2){animation-delay:.12s;opacity:.6}.an-cur b i:nth-child(3){animation-delay:.24s;background:#2F6FDB;opacity:1}
+.an-cur b i{width:22px;height:22px;border-radius:5px;background:#EFEBE2;opacity:.9;animation:anDot .9s cubic-bezier(.34,1.56,.64,1) infinite alternate}
+.an-cur b i:nth-child(2){animation-delay:.12s;opacity:.6}.an-cur b i:nth-child(3){animation-delay:.24s;background:#C8743A;opacity:1}
 @keyframes anDot{from{transform:translateY(6px) scale(.85)}to{transform:translateY(-6px) scale(1)}}
 .an-cur.out{transform:translateY(-101%)}
 .an-cur.in{transform:translateY(101%);transition:none}
@@ -28,7 +28,7 @@ html.an-skip .an-cur{display:none}
 .btn:hover svg,.fcta:hover svg{transform:translateX(4px)}
 /* the floating button breathes softly so the eye finds it */
 .fcta,.mcta{animation:anPulse 3.2s ease-in-out 2s infinite}
-@keyframes anPulse{0%,100%{box-shadow:0 14px 34px -10px rgba(47,111,219,.75),0 0 0 0 rgba(47,111,219,.45)}50%{box-shadow:0 14px 34px -10px rgba(47,111,219,.75),0 0 0 10px rgba(47,111,219,0)}}
+@keyframes anPulse{0%,100%{box-shadow:0 14px 34px -10px rgba(200,116,58,.75),0 0 0 0 rgba(200,116,58,.45)}50%{box-shadow:0 14px 34px -10px rgba(200,116,58,.75),0 0 0 10px rgba(200,116,58,0)}}
 
 /* links underline grows from the left */
 footer a,.ft-l a,.legal a{background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .4s cubic-bezier(.2,.8,.2,1);text-decoration:none}
