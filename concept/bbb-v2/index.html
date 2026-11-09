@@ -869,7 +869,7 @@ html.in2-done .hx-in>:nth-child(2){animation-delay:.12s}html.in2-done .hx-in>:nt
 .hx-rot>span.on{transform:none}.hx-rot>span.out{transform:translateY(-105%)}
 .hx-p{max-width:520px;margin:22px 0 0;font-size:17px;line-height:1.6;color:#D3D6CC}
 .hx-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.hx-cap{position:absolute;z-index:2;right:20px;bottom:14px;margin:0;font:500 11px var(--fb);color:rgba(239,235,226,.5)}
+.hx-cap{position:absolute;z-index:2;right:20px;bottom:150px;margin:0;font:500 11px var(--fb);color:rgba(239,235,226,.5)}
 /* the three points, under the photo */
 .hf{position:relative;z-index:3;margin-top:-2px;background:#111B16;padding:0 0 clamp(56px,7vw,90px)}
 .hf-g{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:-130px}
@@ -882,14 +882,19 @@ html.in2-done .hx-in>:nth-child(2){animation-delay:.12s}html.in2-done .hx-in>:nt
 .hf-t b i{font:800 12px var(--fd);font-style:normal;color:#E8A97A;letter-spacing:.08em}
 .hf-t p{margin:8px 0 0;color:#C8CCC0;font-size:14.5px;line-height:1.5}
 @media(max-width:900px){
-  .hx{min-height:0;height:auto;align-items:flex-end}
-  .hx-media img{object-position:64% 50%}
-  .hx-shade{background:linear-gradient(0deg,#111B16 0%,rgba(17,27,22,.88) 38%,rgba(17,27,22,.15) 70%,rgba(17,27,22,.55) 100%)}
-  .hx-in{padding-top:62svh;padding-bottom:26px}
-  .hx-t{font-size:clamp(36px,10.5vw,52px)}
-  .hx-p{font-size:15.5px}
-  .hx-cap{top:96px;bottom:auto;right:14px}
-  .hf-g{grid-template-columns:1fr;gap:10px;margin-top:6px}
+  /* phone: the whole photo under the menu, then headline and buttons, all on one screen */
+  .hx{display:block;min-height:0;height:auto;padding-top:100px}
+  .hx-media{position:relative;inset:auto;aspect-ratio:16/10;margin:0 12px;border-radius:20px;translate:none!important}
+  .hx-media img{object-position:55% 62%}
+  .hx-shade{display:none}
+  .hx-cap{right:12px;bottom:10px;font-size:10px}
+  .hx-in{padding-top:24px;padding-bottom:24px}
+  .hx-ey-l{display:none}
+  .hx-ey{font-size:11px}
+  .hx-t{font-size:clamp(34px,9.6vw,46px);margin-top:10px}
+  .hx-p{font-size:15px;margin-top:14px}
+  .hx-cta{margin-top:20px}
+  .hf-g{grid-template-columns:1fr;gap:10px;margin-top:4px}
   .hf-c{display:grid;grid-template-columns:104px 1fr;align-items:center;border-radius:16px}
   .hf-ph{aspect-ratio:auto;height:100%;min-height:96px}
   .hf-t{padding:12px 14px}.hf-t b{font-size:16.5px}.hf-t p{font-size:13.5px;margin-top:4px}
@@ -922,16 +927,15 @@ html.in2-done .hx-in>:nth-child(2){animation-delay:.12s}html.in2-done .hx-in>:nt
 <!-- ============ HERO (original layout, new palette) ============ -->
 <!-- ============ HERO ============ -->
 <section class="hx" id="acasa">
-  <div class="hx-media"><img src="/concept/bbb-v2/img/fly-gradina-1800.webp" srcset="/concept/bbb-v2/img/fly-gradina-1800.webp 1800w, /concept/bbb-v2/img/fly-gradina-2576.webp 2576w" sizes="100vw" alt="Studio modular în grădină, cu placare din tablă și lemn" fetchpriority="high" decoding="async"></div>
+  <div class="hx-media"><img src="/concept/bbb-v2/img/fly-gradina-1800.webp" srcset="/concept/bbb-v2/img/fly-gradina-1800.webp 1800w, /concept/bbb-v2/img/fly-gradina-2576.webp 2576w" sizes="100vw" alt="Studio modular în grădină, cu placare din tablă și lemn" fetchpriority="high" decoding="async"><p class="hx-cap">Imagine ilustrativă, generată pentru prezentare</p></div>
   <div class="hx-shade" aria-hidden="true"></div>
   <div class="wrap hx-in">
-    <div class="hx-ey">Big Big Boon · Construcții modulare · Mureș</div>
+    <div class="hx-ey"><span class="hx-ey-l">Big Big Boon · </span>Construcții modulare · Mureș</div>
     <h1 class="hx-t">Construim <span class="hx-rot" id="hxRot" aria-live="off"><span class="on">case modulare</span></span><em class="s">din metal și lemn.</em></h1>
     <p class="hx-p">Tu alegi dimensiunile și finisajele. Noi proiectăm și construim totul în hala noastră din Miercurea Nirajului, apoi ne ocupăm de transport și montaj.</p>
     <div class="hx-cta"><a class="btn a" href="#oferta">Cere ofertă gratuită<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn g" href="#produse">Vezi produsele</a></div>
   </div>
-  <p class="hx-cap">Imagine ilustrativă, generată pentru prezentare</p>
-</section>
+  </section>
 <section class="hf" aria-label="Cum e construit un modul">
   <div class="wrap hf-g">
     <article class="hf-c up"><div class="hf-ph"><img src="/concept/bbb-v2/img/g-chiosc-negru-cu-lemn-finalizat-in-hala-1200.webp" alt="Placare din tablă și lemn, finalizată în hală" loading="lazy"></div><div class="hf-t"><b><i>01</i>Placare lemn și tablă</b><p>Alegi combinația: tablă vopsită, lamele din lemn natural sau ambele.</p></div></article>
@@ -1313,7 +1317,7 @@ document.getElementById('iskip').onclick=end;})();
   var W=['case modulare','chioșcuri','căsuțe de târg','studiouri'].map(T),i=0;
   rot.innerHTML=W.map(function(w,k){return '<span'+(k?'':' class="on"')+'>'+w+'</span>'}).join('');
   if(!matchMedia('(prefers-reduced-motion: reduce)').matches){setInterval(function(){if(document.hidden)return;var c=rot.children[i];c.classList.remove('on');c.classList.add('out');setTimeout(function(){c.classList.remove('out')},800);i=(i+1)%W.length;rot.children[i].classList.add('on')},3200);
-    var m=document.querySelector('.hx-media'),hx=document.querySelector('.hx'),tk=false;addEventListener('scroll',function(){if(tk)return;tk=true;requestAnimationFrame(function(){tk=false;var y=scrollY;if(y<hx.offsetHeight*1.2)m.style.translate='0 '+(y*.28).toFixed(1)+'px'})},{passive:true})}
+    var m=document.querySelector('.hx-media'),hx=document.querySelector('.hx'),tk=false;addEventListener('scroll',function(){if(tk)return;tk=true;requestAnimationFrame(function(){tk=false;var y=scrollY;if(innerWidth>900&&y<hx.offsetHeight*1.2)m.style.translate='0 '+(y*.28).toFixed(1)+'px'})},{passive:true})}
 })();
 /* buttons that open the form with a product already chosen */
 document.addEventListener('click',function(e){var a=e.target.closest('[data-prod]');if(!a)return;var bs=document.querySelectorAll('.chips[data-one="prod"] button');bs.forEach(function(x,i){x.classList.toggle('on',i===+a.dataset.prod)});});

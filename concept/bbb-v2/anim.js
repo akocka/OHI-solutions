@@ -11,7 +11,7 @@
   var cur = null;
   if (!RM) {
     cur = document.createElement('div'); cur.className = 'an-cur'; cur.setAttribute('aria-hidden', 'true');
-    cur.innerHTML = '<b><i></i><i></i><i></i></b>';
+    cur.innerHTML = ''; // no loader blocks: just a quick dark fade between pages
     // the homepage has its own intro (same as the original site), so there the curtain only shows when leaving
     if (home) cur.className = 'an-cur in';
     document.body.appendChild(cur);
@@ -27,7 +27,7 @@
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0 || a.target === '_blank' || a.hasAttribute('download')) return;
       var u; try { u = new URL(a.href, location.href); } catch (x) { return; }
       if (u.origin !== location.origin || !/\/concept\/bbb-v2/.test(u.pathname)) return;
-      if (u.pathname === location.pathname && u.hash) return; // same-page anchor
+      if (u.pathname.replace(/\/$/, '') === location.pathname.replace(/\/$/, '')) return; // same page (logo, anchors): no curtain
       if (/^(mailto|tel):/.test(a.getAttribute('href'))) return;
       e.preventDefault();
       cur.className = 'an-cur in'; void cur.offsetWidth; cur.classList.add('go');
