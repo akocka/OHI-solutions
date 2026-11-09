@@ -59,6 +59,7 @@
     "Atinge punctele pentru detalii": ["Koppints a pontokra a részletekért", "Tap the points for details"],
     "Lasă-ne o recenzie pe Google. Durează un minut și îi ajută pe alții să aleagă.": ["Írj nekünk értékelést a Google-on. Egy perc, és segít másoknak dönteni.", "Leave us a review on Google. It takes a minute and helps others choose."],
     "Lasă o recenzie pe Google": ["Értékelés a Google-on", "Review us on Google"],
+    "sau construiește-ți modelul în 3D →": ["vagy építsd meg a modelled 3D-ben →", "or build your model in 3D →"],
     "Cere ofertă pentru chioșc": ["Ajánlatot kérek kioszkra", "Get a quote for a kiosk"],
     "Case modulare și alte produse": ["Moduláris házak és más termékek", "Modular homes and other products"],
     "politica de confidențialitate": ["adatvédelmi szabályzat", "privacy policy"],
