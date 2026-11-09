@@ -808,6 +808,13 @@ html.fly-on .fly-bp.bp2{display:flex;position:absolute;inset:0;z-index:5;padding
 .fly-bp-b.on{opacity:1}
 .fly-bp-b small{font:500 12px var(--fb);color:rgba(239,235,226,.55)}
 .fly-c2bg{display:none}
+.fly-cap2{display:none}
+html.fly-on .fly-cap2{display:block;position:absolute;z-index:4;left:clamp(20px,4vw,56px);bottom:clamp(60px,9vh,96px);max-width:380px;opacity:0;visibility:hidden;pointer-events:none;color:#EFEBE2;text-shadow:0 2px 18px rgba(0,0,0,.55)}
+.fly-cap2 b{display:block;font:800 clamp(24px,2.4vw,34px)/1.05 var(--fd);letter-spacing:-.025em}
+.fly-cap2 span{display:block;margin-top:8px;font:500 15px/1.5 var(--fb);color:#DADDD3}
+.fly-cap2 em{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font:700 11.5px var(--fd);letter-spacing:.14em;text-transform:uppercase;font-style:normal;color:#E8A97A}
+.fly-cap2 em::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 4px rgba(200,116,58,.25)}
+@media(max-width:900px){html.fly-on .fly-cap2{left:20px;right:20px;bottom:auto;max-width:none;text-shadow:none}.fly-cap2 b{font-size:26px}}
 @media(max-width:900px){
   .fly-bp-in{padding-top:96px}
   .fly-bp-h h2{font-size:27px}
@@ -817,8 +824,8 @@ html.fly-on .fly-bp.bp2{display:flex;position:absolute;inset:0;z-index:5;padding
   .fly-st{position:absolute;left:0;right:0;top:0;transform:translateY(14px)}
   .fly-st.on{opacity:0}.fly-st.cur{opacity:1;transform:none}
   .fly-st{grid-template-columns:92px 1fr}.fly-st img{width:92px;height:76px}
-  .fly-cam.c2 .fly-img{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 86%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 86%,transparent 100%)}
-  html.fly-on .fly-c2bg{display:block;position:absolute;inset:-40px;background:center/cover no-repeat url(/concept/bbb-v2/img/fly-gradina-1800.webp);filter:blur(28px) brightness(.55);opacity:0}
+  .fly-cam.c2 .fly-img{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 93%,transparent 100%)}
+  html.fly-on .fly-c2bg{display:none;position:absolute;inset:-40px;background:center/cover no-repeat url(/concept/bbb-v2/img/fly-gradina-1800.webp);filter:blur(28px) brightness(.55);opacity:0}
 }
 </style>
 <link rel="stylesheet" href="/concept/bbb-v2/fx.css">
@@ -878,7 +885,7 @@ html.fly-on .fly-bp.bp2{display:flex;position:absolute;inset:0;z-index:5;padding
   <div class="fly-scene">
     <div class="fly-cam c1" data-ar="1.7917" data-fx=".72" data-fxm=".72" data-fy=".55" data-hx=".79" data-hy=".72" data-z0="1" data-z1="2.05" data-z0m="1" data-z1m="2.05" data-a="0" data-b=".28"><img class="fly-img" src="/concept/bbb-v2/img/fly-sat-1800.webp" srcset="/concept/bbb-v2/img/fly-sat-1800.webp 1800w, /concept/bbb-v2/img/fly-sat-3200.webp 3200w, /concept/bbb-v2/img/fly-sat-4400.webp 4400w, /concept/bbb-v2/img/fly-sat-5504.webp 5504w" sizes="(max-width:900px) 250vw, 220vw" alt="" decoding="async" fetchpriority="high"></div>
     <div class="fly-c2bg"></div>
-    <div class="fly-cam c2" data-ar="1.7914" data-fx=".5" data-fxm=".6" data-fy=".5" data-hx=".56" data-hy=".55" data-z0="1.22" data-z1="1" data-z0m=".7" data-z1m=".56" data-a=".35" data-b=".6"><img class="fly-img" src="/concept/bbb-v2/img/fly-gradina-1800.webp" srcset="/concept/bbb-v2/img/fly-gradina-1800.webp 1800w, /concept/bbb-v2/img/fly-gradina-2576.webp 2576w" sizes="(max-width:900px) 200vw, 120vw" alt="" decoding="async" loading="lazy">
+    <div class="fly-cam c2" data-ar="1.7914" data-fx=".5" data-fxm=".6" data-fy=".5" data-hx=".56" data-hy=".55" data-z0="1.22" data-z1="1" data-z0m="1.06" data-z1m="1" data-mw="1.5" data-my=".24" data-a=".35" data-b=".6"><img class="fly-img" src="/concept/bbb-v2/img/fly-gradina-1800.webp" srcset="/concept/bbb-v2/img/fly-gradina-1800.webp 1800w, /concept/bbb-v2/img/fly-gradina-2576.webp 2576w" sizes="(max-width:900px) 200vw, 120vw" alt="" decoding="async" loading="lazy">
       <div role="button" tabindex="0" class="hs" style="left:52.5%;top:47%"><i></i><span><b>Placare lemn și tablă</b>finisaje la alegere<em>Alegi combinația: tablă vopsită, lamele din lemn natural sau ambele. <a href="#build">Încearcă în configurator →</a></em></span></div>
       <div role="button" tabindex="0" class="hs l" style="left:70%;top:42%"><i></i><span><b>Ferestre mari</b>lumină naturală toată ziua<em>Vitrine și uși din sticlă, puse acolo unde ai nevoie de lumină. <a href="#build">Încearcă în configurator →</a></em></span></div>
       <div role="button" tabindex="0" class="hs" style="left:80%;top:78%"><i></i><span><b>Fundație și cadru</b>bază solidă, se poate muta<em>Structura e gândită pentru transport, așa că modulul se poate muta. <a href="#oferta">Cere o ofertă →</a></em></span></div>
@@ -921,6 +928,7 @@ html.fly-on .fly-bp.bp2{display:flex;position:absolute;inset:0;z-index:5;padding
     </div>
     <div class="fly-bp-b"><a class="btn a" href="#build">Construiește-ți modelul în 3D<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><small>Schiță orientativă · fiecare proiect se desenează pe dimensiunile tale</small></div>
   </div></div>
+  <div class="fly-cap2" aria-hidden="true"><b>Studio în grădină</b><span>Birou, cameră de oaspeți sau atelier, la câțiva pași de casă.</span><em>Atinge punctele pentru detalii</em></div>
   <div class="fly-sheet" id="flySheet" aria-live="polite"></div>
   <p class="fly-cap">Imagine ilustrativă, generată pentru prezentare</p>
   <div class="fly-hint" aria-hidden="true"><i></i>Derulează</div>
@@ -1328,12 +1336,12 @@ document.getElementById('iskip').onclick=end;el.addEventListener('click',functio
   if(!/[?&]nofly/.test(location.search))document.documentElement.classList.add('fly-on');
   if(!document.documentElement.classList.contains('fly-on'))return;
   var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var c2bg=fly.querySelector('.fly-c2bg'),st=[].slice.call(fly.querySelectorAll('.fly-st')),clg=[].slice.call(fly.querySelectorAll('.fly-bp .cl>g')),bpb=fly.querySelector('.fly-bp-b'),bp=fly.querySelector('.fly-bp'),bps=bp?[].slice.call(bp.querySelectorAll('path[pathLength]')):[],bpt=bp?[].slice.call(bp.querySelectorAll('.cl>g,.tx text')):[],mid=fly.querySelector('.fly-mid'),fog=fly.querySelector('.fly-fog'),shade=fly.querySelector('.fly-shade'),oh=fly.querySelector('.oh'),txt=fly.querySelector('.oh-in'),hint=fly.querySelector('.fly-hint'),m1=fly.querySelector('.m1'),m2=fly.querySelector('.m2'),hs=[].slice.call(fly.querySelectorAll('.hs'));
-  var cams=[].slice.call(fly.querySelectorAll('.fly-cam')).map(function(el){var d=el.dataset;return{el:el,ar:+d.ar,fx:+d.fx,fxm:+(d.fxm||d.fx),fy:+d.fy,hx:+d.hx,hy:+d.hy,z0:+d.z0,z1:+d.z1,z0m:+(d.z0m||d.z0),z1m:+(d.z1m||d.z1),a:+d.a,b:+d.b,ox:0,oy:0}});
+  var cap2=fly.querySelector('.fly-cap2'),c2bg=fly.querySelector('.fly-c2bg'),st=[].slice.call(fly.querySelectorAll('.fly-st')),clg=[].slice.call(fly.querySelectorAll('.fly-bp .cl>g')),bpb=fly.querySelector('.fly-bp-b'),bp=fly.querySelector('.fly-bp'),bps=bp?[].slice.call(bp.querySelectorAll('path[pathLength]')):[],bpt=bp?[].slice.call(bp.querySelectorAll('.cl>g,.tx text')):[],mid=fly.querySelector('.fly-mid'),fog=fly.querySelector('.fly-fog'),shade=fly.querySelector('.fly-shade'),oh=fly.querySelector('.oh'),txt=fly.querySelector('.oh-in'),hint=fly.querySelector('.fly-hint'),m1=fly.querySelector('.m1'),m2=fly.querySelector('.m2'),hs=[].slice.call(fly.querySelectorAll('.hs'));
+  var cams=[].slice.call(fly.querySelectorAll('.fly-cam')).map(function(el){var d=el.dataset;return{el:el,ar:+d.ar,fx:+d.fx,fxm:+(d.fxm||d.fx),fy:+d.fy,hx:+d.hx,hy:+d.hy,z0:+d.z0,z1:+d.z1,z0m:+(d.z0m||d.z0),z1m:+(d.z1m||d.z1),a:+d.a,b:+d.b,mw:+(d.mw||0),my:+(d.my||0),ox:0,oy:0}});
   var sp=0,raf=0,idle=0;
   function clamp(v){return v<0?0:v>1?1:v}function seg(p,a,b){return clamp((p-a)/(b-a))}function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
   function size(){var W=oh.clientWidth,H=oh.clientHeight;cams.forEach(function(c){var bw,bh;if(W/H>c.ar){bw=W;bh=W/c.ar}else{bh=H;bw=H*c.ar}
-    c.ox=(W-bw)*(W<900?c.fxm:c.fx);c.oy=(H-bh)*c.fy;c.el.style.width=bw+'px';c.el.style.height=bh+'px';c.el.style.transformOrigin=(c.hx*bw)+'px '+(c.hy*bh)+'px'});draw()}
+    c.ox=(W-bw)*(W<900?c.fxm:c.fx);c.oy=(H-bh)*c.fy;if(W<900&&c.mw){bw=W*c.mw;bh=bw/c.ar;c.ox=(W-bw)*c.fxm;c.oy=H*c.my;if(cap2)cap2.style.top=(c.oy+bh+22)+'px'}c.el.style.width=bw+'px';c.el.style.height=bh+'px';c.el.style.transformOrigin=(c.hx*bw)+'px '+(c.hy*bh)+'px'});draw()}
   function prog(){var r=fly.getBoundingClientRect();return clamp(-r.top/Math.max(1,fly.offsetHeight-innerHeight))}
   function draw(){
     var p=RM?0:prog();sp+=(p-sp)*.16;if(Math.abs(p-sp)<.0005)sp=p;
@@ -1349,7 +1357,7 @@ document.getElementById('iskip').onclick=end;el.addEventListener('click',functio
     var e=ease(seg(sp,0,.4));
     m1.style.transform='translate('+(-40*e)+'%,'+(10*e)+'%) scale('+(1+e*.9)+')';m1.style.opacity=(.5*(1-seg(sp,.45,.62))+.25*seg(sp,.5,.6)*(1-seg(sp,.62,.8))).toFixed(3);
     m2.style.transform='translate('+(35*e)+'%,'+(-10*e)+'%) scale('+(1+e*.7)+')';m2.style.opacity=(.35+.35*seg(sp,.4,.55)*(1-seg(sp,.6,.75))).toFixed(3);
-    var hp=Math.max(p,sp);var hin=function(i){return hp>.48+i*.03&&hp<.62};hs.forEach(function(el,i){el.classList.toggle('on',hin(i));if(!hin(i))el.classList.remove('open')});if(!hin(0)){var sh=document.getElementById('flySheet');if(sh)sh.classList.remove('on')}
+    var hp=Math.max(p,sp);if(cap2){var cv=seg(sp,.44,.5)*(1-seg(sp,.6,.64));cap2.style.opacity=cv.toFixed(3);cap2.style.visibility=cv>0?'visible':'hidden';cap2.style.transform='translateY('+((1-seg(sp,.44,.5))*16).toFixed(1)+'px)'}var hin=function(i){return hp>.48+i*.03&&hp<.62};hs.forEach(function(el,i){el.classList.toggle('on',hin(i));if(!hin(i))el.classList.remove('open')});if(!hin(0)){var sh=document.getElementById('flySheet');if(sh)sh.classList.remove('on')}
     var rr=fly.getBoundingClientRect();if(!RM&&(Math.abs(p-sp)>.0005||(rr.bottom>0&&rr.top<innerHeight&&++idle<90)))raf=requestAnimationFrame(draw);else{raf=0;idle=0}
     if(Math.abs(p-sp)>.0005)idle=0;
   }
