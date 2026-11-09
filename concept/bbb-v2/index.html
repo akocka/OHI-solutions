@@ -871,8 +871,8 @@ html.in2-done .hx-in>:nth-child(2){animation-delay:.12s}html.in2-done .hx-in>:nt
 .hx-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .hx-cap{position:absolute;z-index:2;right:20px;bottom:150px;margin:0;font:500 11px var(--fb);color:rgba(239,235,226,.5)}
 /* the three points, under the photo */
-.hf{position:relative;z-index:3;margin-top:-2px;background:#111B16;box-shadow:0 -6px 0 #111B16;padding:0 0 clamp(56px,7vw,90px)}
-.hf-g{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:-130px}
+.hf{position:relative;z-index:3;margin-top:-2px;background:#111B16;box-shadow:0 -6px 0 #111B16;padding:clamp(56px,6vw,80px) 0 clamp(56px,7vw,90px)}
+.hf-g{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:0}
 .hf-c{border-radius:22px;overflow:hidden;background:rgba(24,33,28,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.09);box-shadow:0 30px 60px -30px rgba(0,0,0,.7);transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .4s}
 .hf-c:hover{transform:translateY(-6px);border-color:rgba(200,116,58,.55)}
 .hf-ph{aspect-ratio:16/9;overflow:hidden}.hf-ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
@@ -955,16 +955,37 @@ html.in2-done .hx-in>:nth-child(2){animation-delay:.12s}html.in2-done .hx-in>:nt
 <main id="top">
 <!-- ============ HERO (original layout, new palette) ============ -->
 <!-- ============ HERO ============ -->
-<section class="hx" id="acasa">
-  <div class="hx-media"><img src="/concept/bbb-v2/img/fly-gradina-1800.webp" srcset="/concept/bbb-v2/img/fly-gradina-1800.webp 1800w, /concept/bbb-v2/img/fly-gradina-2576.webp 2576w" sizes="100vw" alt="Studio modular în grădină, cu placare din tablă și lemn" fetchpriority="high" decoding="async"><p class="hx-cap">Imagine ilustrativă, generată pentru prezentare</p></div>
-  <div class="hx-shade" aria-hidden="true"></div>
-  <div class="wrap hx-in">
-    <div class="hx-ey"><span class="hx-ey-l">Big Big Boon · </span>Construcții modulare · Mureș</div>
-    <h1 class="hx-t">Construim <span class="hx-rot" id="hxRot" aria-live="off"><span class="on">case modulare</span></span><em class="s">din metal și lemn.</em></h1>
-    <p class="hx-p">Tu alegi dimensiunile și finisajele. Noi proiectăm și construim totul în hala noastră din Miercurea Nirajului, apoi ne ocupăm de transport și montaj.</p>
-    <div class="hx-cta"><a class="btn a" href="#oferta">Cere ofertă gratuită<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn g" href="#produse">Vezi produsele</a></div>
+<section class="oh" id="acasa">
+  <div class="oh-bg" aria-hidden="true"><div class="oh-sun"></div><div class="oh-grid"></div></div>
+  <div class="oh-stage">
+    <div class="oh-pool"></div>
+    <div class="oh-prods">
+      <svg class="oh-pad" viewBox="0 0 1431 969" aria-hidden="true" preserveAspectRatio="none"><defs><linearGradient id="padTop" x1="0" y1="0" x2=".3" y2="1"><stop offset="0" stop-color="#5E625A"/><stop offset=".55" stop-color="#8A8B82"/><stop offset="1" stop-color="#6E7068"/></linearGradient><filter id="padBlur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="9"/></filter><filter id="padBlur2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="26"/></filter></defs>
+        <polygon points="70,830 929,1080 1420,870 574,640" fill="#000" opacity=".75" filter="url(#padBlur2)"/>
+        <polygon points="70,760 929,994 929,1028 70,794" fill="#2A2F2A"/><polygon points="929,994 1420,806 1420,840 929,1028" fill="#4A4F48"/>
+        <polygon points="70,760 929,994 1420,806 574,565" fill="url(#padTop)"/>
+        <polyline points="70,760 929,994 1420,806" fill="none" stroke="#EFEBE2" stroke-opacity=".25" stroke-width="2"/>
+        <polygon points="150,780 915,968 1360,808 900,880" fill="#000" opacity=".55" filter="url(#padBlur)"/>
+      </svg>
+      <picture class="oh-p on" data-k="0"><source media="(max-width:900px)" srcset="/concept/bbb-v2/img/cut-chiosc-720.webp"><img class="oh-img" src="/concept/bbb-v2/img/cut-chiosc-960.webp" alt="Chioșc comercial din metal și lemn, Big Big Boon" width="960" height="779" fetchpriority="high"></picture>
+      <picture class="oh-p" data-k="1"><source media="(max-width:900px)" srcset="/concept/bbb-v2/img/cut-casuta-720.webp"><img class="oh-img" src="/concept/bbb-v2/img/cut-casuta-960.webp" alt="Căsuță de târg din lemn, Big Big Boon" width="960" height="767" loading="lazy"></picture>
+      <picture class="oh-p wide" data-k="2"><source media="(max-width:900px)" srcset="/concept/bbb-v2/img/modul-cut3-720.webp 720w, /concept/bbb-v2/img/modul-cut3-960.webp 960w" sizes="94vw"><img class="oh-img" src="/concept/bbb-v2/img/modul-cut3.webp" alt="Casă modulară Big Big Boon" width="1431" height="969" loading="lazy"></picture>
+    </div>
+    <div class="oh-ground" aria-hidden="true"></div>
+    <div class="oh-shadow"></div>
+    <div class="oh-tabs" role="tablist" aria-label="Produse"><button type="button" role="tab" class="on" data-k="0">Chioșc</button><button type="button" role="tab" data-k="1">Căsuță de târg</button><button type="button" role="tab" data-k="2">Casă modulară</button></div>
+    <div class="oh-chip c1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V9l6-4v4l6-4v4l6-4v16z"/></svg></i><span><b>Producție proprie</b><small>Hala din Miercurea Nirajului</small></span></div>
+    <div class="oh-chip c2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h18M3 7v10M21 7v10M7 7v3M11 7v4M15 7v3M19 7v4"/></svg></i><span><b>La dimensiunile tale</b><small>Locuință, birou sau comerț</small></span></div>
   </div>
-  </section>
+  <div class="oh-in">
+    <div class="oh-ey">Big Big Boon · Construcții modulare · Mureș</div>
+    <h1 class="oh-t"><span>Construim</span><span class="rot" id="heroRot" aria-live="off"><span class="on">chioșcuri comerciale</span></span><em class="s">din metal și lemn.</em></h1>
+    <p>Tu alegi dimensiunile și finisajele. Noi proiectăm și construim totul în hala noastră din Miercurea Nirajului, apoi ne ocupăm de transport și montaj.</p>
+    <div class="oh-cta"><a class="btn a" href="#oferta">Cere ofertă gratuită<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn g" href="#produse">Vezi produsele</a></div>
+    <p class="oh-note">Fără obligații · îți răspundem cu o ofertă făcută pe proiectul tău.</p>
+    <ul class="oh-facts"><li>Producție proprie în Mureș</li><li>Dimensiuni la comandă</li><li>Mobile și demontabile</li></ul>
+  </div>
+</section>
 <section class="hf" aria-label="Cum e construit un modul">
   <div class="wrap hf-g">
     <article class="hf-c up"><div class="hf-ph"><img src="/concept/bbb-v2/img/g-chiosc-negru-cu-lemn-finalizat-in-hala-1200.webp" alt="Placare din tablă și lemn, finalizată în hală" loading="lazy"></div><div class="hf-t"><b><i>01</i>Placare lemn și tablă</b><p>Alegi combinația: tablă vopsită, lamele din lemn natural sau ambele.</p></div></article>
