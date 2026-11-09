@@ -688,12 +688,12 @@ body.intro-on .oh *{animation-play-state:paused!important}
 /* ===== cinematic scroll hero (fly-in): the camera moves toward the mini houses as you scroll ===== */
 .fly{position:relative}
 .fly-scene,.fly-cap,.fly-hint{display:none}
-html.fly-on .fly{height:720vh}
+html.fly-on .fly{height:560vh;background:#111B16}
 html.fly-on .fly>.oh{position:sticky;top:0;height:100vh;height:100lvh;min-height:0!important;padding-bottom:0!important;align-items:center;background:#111B16}
 html.fly-on .oh-stage,html.fly-on .oh-bg{display:none!important}
 html.fly-on .fly-scene{display:block;position:absolute;inset:0;overflow:hidden;z-index:0}
 .fly-cam{position:absolute;left:0;top:0;will-change:transform}
-.fly-cam.c2{opacity:0;visibility:hidden}
+.fly-cam.c2:not(.main){opacity:0;visibility:hidden}
 .fly-mid{display:none}
 .fly-sheet{display:none}
 html.fly-on .fly-mid{display:block;position:absolute;z-index:4;left:50%;top:50%;width:min(900px,88vw);transform:translate(-50%,-50%);text-align:center;opacity:0;visibility:hidden;pointer-events:none;color:#18211C}
@@ -725,7 +725,7 @@ html.fly-on .fly-hint{display:flex;position:absolute;z-index:3;left:50%;bottom:2
 @keyframes flyHint{0%{transform:translateY(0);opacity:1}100%{transform:translateY(8px);opacity:0}}
 html.fly-on .oh-in{padding-top:90px!important;padding-bottom:40px!important;will-change:transform,opacity}
 @media(max-width:900px){
-  html.fly-on .fly{height:640vh}
+  html.fly-on .fly{height:520vh}
   html.fly-on .fly>.oh{align-items:flex-start}
   html.fly-on .oh-in{padding-top:104px!important}
   .fly-shade{background:linear-gradient(180deg,rgba(17,27,22,.9) 0%,rgba(17,27,22,.72) 45%,rgba(17,27,22,.25) 68%,rgba(17,27,22,.8) 100%)}
@@ -825,7 +825,6 @@ html.fly-on .fly-cap2{display:block;position:absolute;z-index:4;left:clamp(20px,
   .fly-st{position:absolute;left:0;right:0;top:0;transform:translateY(14px)}
   .fly-st.on{opacity:0}.fly-st.cur{opacity:1;transform:none}
   .fly-st{grid-template-columns:92px 1fr}.fly-st img{width:92px;height:76px}
-  .fly-cam.c2 .fly-img{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 93%,transparent 100%)}
   html.fly-on .fly-c2bg{display:none;position:absolute;inset:-40px;background:center/cover no-repeat url(/concept/bbb-v2/img/fly-gradina-1800.webp);filter:blur(28px) brightness(.55);opacity:0}
 }
 
@@ -844,8 +843,8 @@ html.fly-on .fly-cap2{display:block;position:absolute;z-index:4;left:clamp(20px,
 .in2-skip{position:absolute;right:22px;bottom:calc(22px + env(safe-area-inset-bottom,0px));border:1px solid rgba(239,235,226,.2);background:transparent;color:rgba(239,235,226,.7);font:600 12px var(--fd);letter-spacing:.08em;padding:9px 16px;border-radius:999px;cursor:pointer}
 @keyframes in2Up{to{opacity:1;transform:none}}@keyframes in2Fade{to{opacity:1}}
 /* the hero scene settles in as the intro lifts */
-html:not(.in2-done) .fly-cam.c1 img{transform:scale(1.08)}
-.fly-cam.c1 img{transition:transform 2.2s cubic-bezier(.2,.8,.2,1)}
+html:not(.in2-done) .fly-cam.main img{transform:scale(1.08)}
+.fly-cam.main img{transition:transform 2.2s cubic-bezier(.2,.8,.2,1)}
 html:not(.in2-done) .oh-in{opacity:0}
 /* numbers section in the main colour (was a different green) */
 .nb{background:#18211C!important}
@@ -877,15 +876,12 @@ html:not(.in2-done) .oh-in{opacity:0}
 <div class="fly" id="fly">
 <section class="oh" id="acasa">
   <div class="fly-scene">
-    <div class="fly-cam c1" data-ar="1.7917" data-fx=".72" data-fxm=".72" data-fy=".55" data-hx=".79" data-hy=".72" data-z0="1" data-z1="2.05" data-z0m="1" data-z1m="2.05" data-a="0" data-b=".28"><img class="fly-img" src="/concept/bbb-v2/img/fly-sat-1800.webp" srcset="/concept/bbb-v2/img/fly-sat-1800.webp 1800w, /concept/bbb-v2/img/fly-sat-3200.webp 3200w, /concept/bbb-v2/img/fly-sat-4400.webp 4400w, /concept/bbb-v2/img/fly-sat-5504.webp 5504w" sizes="(max-width:900px) 250vw, 220vw" alt="" decoding="async" fetchpriority="high"></div>
-    <div class="fly-c2bg"></div>
-    <div class="fly-cam c2" data-ar="1.7914" data-fx=".5" data-fxm=".6" data-fy=".5" data-hx=".56" data-hy=".55" data-z0="1.22" data-z1="1" data-z0m="1.06" data-z1m="1" data-mw="1.5" data-my=".24" data-a=".35" data-b=".6"><img class="fly-img" src="/concept/bbb-v2/img/fly-gradina-1800.webp" srcset="/concept/bbb-v2/img/fly-gradina-1800.webp 1800w, /concept/bbb-v2/img/fly-gradina-2576.webp 2576w" sizes="(max-width:900px) 200vw, 120vw" alt="" decoding="async" loading="lazy">
+    <div class="fly-cam c2 main" data-ar="1.7914" data-fx=".5" data-fxm=".6" data-fy=".5" data-hx=".56" data-hy=".55" data-z0="1.22" data-z1="1" data-z0m="1.06" data-z1m="1" data-mw="1.5" data-my=".24" data-a=".35" data-b=".6"><img class="fly-img" src="/concept/bbb-v2/img/fly-gradina-1800.webp" srcset="/concept/bbb-v2/img/fly-gradina-1800.webp 1800w, /concept/bbb-v2/img/fly-gradina-2576.webp 2576w" sizes="(max-width:900px) 200vw, 120vw" alt="" decoding="async" fetchpriority="high">
       <div role="button" tabindex="0" class="hs" style="left:52.5%;top:47%"><i></i><span><b>Placare lemn și tablă</b>finisaje la alegere<em>Alegi combinația: tablă vopsită, lamele din lemn natural sau ambele. <a href="#build">Încearcă în configurator →</a></em></span></div>
       <div role="button" tabindex="0" class="hs l" style="left:70%;top:42%"><i></i><span><b>Ferestre mari</b>lumină naturală toată ziua<em>Vitrine și uși din sticlă, puse acolo unde ai nevoie de lumină. <a href="#build">Încearcă în configurator →</a></em></span></div>
       <div role="button" tabindex="0" class="hs" style="left:80%;top:78%"><i></i><span><b>Fundație și cadru</b>bază solidă, se poate muta<em>Structura e gândită pentru transport, așa că modulul se poate muta. <a href="#oferta">Cere o ofertă →</a></em></span></div>
     </div>
-    <div class="fly-mist m1"></div><div class="fly-mist m2"></div><div class="fly-fog"></div><div class="fly-shade"></div></div>
-  <div class="fly-mid" aria-hidden="true"><span>Big Big Boon · Mureș</span><p>Mici ca dimensiune.<br><em class="s">Gândite până la ultimul detaliu.</em></p></div>
+    <div class="fly-mist m1"></div><div class="fly-mist m2"></div><div class="fly-shade"></div></div>
   <div class="bp2 fly-bp"><div class="fly-bp-in">
     <div class="fly-bp-h"><div class="k">Cum e construit</div><h2>Desenat ca un proiect. <em class="s">Construit ca o casă.</em></h2></div>
     <div class="fly-bp-g"><div class="fly-bp-d"><svg viewBox="0 0 640 420" role="img" aria-hidden="true">
@@ -1188,7 +1184,7 @@ var seen=false;try{seen=sessionStorage.getItem('bbb-intro')==='1'}catch(e){}
 if(matchMedia('(prefers-reduced-motion:reduce)').matches||/nointro/.test(location.search)||seen){el.remove();document.documentElement.classList.add('in2-done');return}
 document.body.classList.add('intro-on');
 var bar=document.getElementById('in2Bar'),t0=performance.now(),loaded=false,done=false;
-var im=document.querySelector('.fly-cam.c1 img');if(!im||im.complete)loaded=true;else{im.addEventListener('load',function(){loaded=true});im.addEventListener('error',function(){loaded=true})}
+var im=document.querySelector('.fly-cam.main img');if(!im||im.complete)loaded=true;else{im.addEventListener('load',function(){loaded=true});im.addEventListener('error',function(){loaded=true})}
 var end=function(){if(done)return;done=true;bar.style.transform='scaleX(1)';el.classList.add('out');document.body.classList.remove('intro-on');document.documentElement.classList.add('in2-done');try{sessionStorage.setItem('bbb-intro','1')}catch(e){}setTimeout(function(){el.remove()},1100)};
 (function tick(){if(done)return;var t=performance.now()-t0,k=Math.min(loaded?1:.85,t/1500);bar.style.transform='scaleX('+k.toFixed(3)+')';if((loaded&&t>1700)||t>3600)end();else requestAnimationFrame(tick)})();
 document.getElementById('iskip').onclick=end;})();
@@ -1320,41 +1316,52 @@ document.getElementById('iskip').onclick=end;})();
 <script src="/concept/bbb-v2/fx.js"></script>
 <script>
 
-/* cinematic scroll hero: hill village zoom, fog statement, garden studio with info points, then a blueprint that leads into the 3D builder */
+/* cinematic scroll hero: one continuous shot of the garden studio — push in (desktop) / pull back to the whole house (phone), info points, then the photo turns into a blueprint that leads into the 3D builder */
 (function(){
   var fly=document.getElementById('fly');if(!fly)return;
   if(!/[?&]nofly/.test(location.search))document.documentElement.classList.add('fly-on');
   if(!document.documentElement.classList.contains('fly-on'))return;
   var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var cap2=fly.querySelector('.fly-cap2'),c2bg=fly.querySelector('.fly-c2bg'),st=[].slice.call(fly.querySelectorAll('.fly-st')),clg=[].slice.call(fly.querySelectorAll('.fly-bp .cl>g')),bpb=fly.querySelector('.fly-bp-b'),bp=fly.querySelector('.fly-bp'),bps=bp?[].slice.call(bp.querySelectorAll('path[pathLength]')):[],bpt=bp?[].slice.call(bp.querySelectorAll('.cl>g,.tx text')):[],mid=fly.querySelector('.fly-mid'),fog=fly.querySelector('.fly-fog'),shade=fly.querySelector('.fly-shade'),oh=fly.querySelector('.oh'),txt=fly.querySelector('.oh-in'),hint=fly.querySelector('.fly-hint'),m1=fly.querySelector('.m1'),m2=fly.querySelector('.m2'),hs=[].slice.call(fly.querySelectorAll('.hs'));
-  var cams=[].slice.call(fly.querySelectorAll('.fly-cam')).map(function(el){var d=el.dataset;return{el:el,ar:+d.ar,fx:+d.fx,fxm:+(d.fxm||d.fx),fy:+d.fy,hx:+d.hx,hy:+d.hy,z0:+d.z0,z1:+d.z1,z0m:+(d.z0m||d.z0),z1m:+(d.z1m||d.z1),a:+d.a,b:+d.b,mw:+(d.mw||0),my:+(d.my||0),ox:0,oy:0}});
-  var sp=0,raf=0,idle=0;
-  function clamp(v){return v<0?0:v>1?1:v}function seg(p,a,b){return clamp((p-a)/(b-a))}function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
-  function size(){var W=oh.clientWidth,H=oh.clientHeight;cams.forEach(function(c){var bw,bh;if(W/H>c.ar){bw=W;bh=W/c.ar}else{bh=H;bw=H*c.ar}
-    c.ox=(W-bw)*(W<900?c.fxm:c.fx);c.oy=(H-bh)*c.fy;if(W<900&&c.mw){bw=W*c.mw;bh=bw/c.ar;c.ox=(W-bw)*c.fxm;c.oy=H*c.my;if(cap2)cap2.style.top=(c.oy+bh+22)+'px'}c.el.style.width=bw+'px';c.el.style.height=bh+'px';c.el.style.transformOrigin=(c.hx*bw)+'px '+(c.hy*bh)+'px'});draw()}
+  var q=function(x){return fly.querySelector(x)},qa=function(x){return [].slice.call(fly.querySelectorAll(x))};
+  var oh=q('.oh'),txt=q('.oh-in'),hint=q('.fly-hint'),shade=q('.fly-shade'),m1=q('.m1'),m2=q('.m2'),cam=q('.fly-cam.main'),img=cam.querySelector('img'),cap2=q('.fly-cap2'),sheet=document.getElementById('flySheet');
+  var hs=qa('.hs'),bp=q('.fly-bp'),bps=bp?[].slice.call(bp.querySelectorAll('path[pathLength]')):[],bpt=bp?[].slice.call(bp.querySelectorAll('.cl>g,.tx text')):[],st=qa('.fly-st'),clg=qa('.fly-bp .cl>g'),bpb=q('.fly-bp-b');
+  var AR=+cam.dataset.ar||1.79,HX=+cam.dataset.hx||.56,HY=+cam.dataset.hy||.55,W=0,H=0,sp=0,raf=0,idle=0;
+  function clamp(v){return v<0?0:v>1?1:v}function seg(p,a,b){return clamp((p-a)/(b-a))}function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}function lerp(a,b,t){return a+(b-a)*t}
+  function size(){W=oh.clientWidth;H=oh.clientHeight;draw()}
   function prog(){var r=fly.getBoundingClientRect();return clamp(-r.top/Math.max(1,fly.offsetHeight-innerHeight))}
   function draw(){
-    var p=RM?0:prog();sp+=(p-sp)*.16;if(Math.abs(p-sp)<.0005)sp=p;
-    cams.forEach(function(c,i){var mob=innerWidth<900,Z0=mob?c.z0m:c.z0,Z1=mob?c.z1m:c.z1,e=ease(seg(sp,c.a,c.b)),z=Z0+(Z1-Z0)*e;c.el.style.transform='translate('+c.ox+'px,'+c.oy+'px) scale('+z.toFixed(4)+')';c.el.style.setProperty('--z',z.toFixed(4));
-      if(i===0){var bl=seg(sp,.23,.31);c.el.style.filter=bl>0?'blur('+(bl*6).toFixed(1)+'px)':'';c.el.style.visibility=sp>.4?'hidden':'visible'}
-      if(i===1){var f=seg(sp,.35,.39);if(c2bg)c2bg.style.opacity=f.toFixed(3);c.el.style.opacity=f.toFixed(3);c.el.style.visibility=f>0?'visible':'hidden';var sh=1-seg(sp,.39,.47),dk=seg(sp,.62,.68);c.el.style.filter=(sh>0&&f>0?'blur('+(sh*6).toFixed(1)+'px) ':'')+(dk>0?'brightness('+(1-dk*.72).toFixed(3)+') saturate('+(1-dk*.6).toFixed(3)+')':'')}});
-    var fg=seg(sp,.22,.29)*(1-seg(sp,.41,.47));fog.style.opacity=fg.toFixed(3);fog.style.transform='scale('+(1+fg*.15).toFixed(3)+') translateX('+((sp-.35)*-30).toFixed(1)+'%)';
-    var mi=seg(sp,.25,.3)*(1-seg(sp,.38,.42));mid.style.opacity=mi.toFixed(3);mid.style.visibility=mi>0?'visible':'hidden';mid.style.filter=mi<1?'blur('+((1-mi)*10).toFixed(1)+'px)':'';mid.style.transform='translate(-50%,calc(-50% + '+((sp-.34)*-120).toFixed(1)+'px))';
-    var h=seg(sp,.02,.1);txt.style.opacity=(1-h).toFixed(3);txt.style.transform='translateY('+(-60*h).toFixed(1)+'px)';txt.style.filter=h>0?'blur('+(h*8).toFixed(1)+'px)':'';txt.style.visibility=h>=1?'hidden':'';
-    if(hint)hint.style.opacity=(1-seg(sp,0,.08)).toFixed(3);
-    shade.style.opacity=(1-.65*seg(sp,.04,.25)).toFixed(3);
-    var bk=seg(sp,.64,.76),bpo=seg(sp,.62,.67);var act=sp<.78?-1:sp<.85?0:sp<.92?1:2;st.forEach(function(x,i){x.classList.toggle('on',i<=act);x.classList.toggle('cur',i===act)});clg.forEach(function(x,i){x.classList.toggle('cur',i===act)});if(bpb)bpb.classList.toggle('on',sp>.93);bp.style.opacity=bpo.toFixed(3);bp.style.visibility=bpo>0?'visible':'hidden';bps.forEach(function(q,i){var a=i/bps.length*.55,v=clamp((bk-a)/.45);q.style.setProperty('--d',(1-v).toFixed(3))});bpt.forEach(function(t){t.style.opacity=bk>.8?1:0});
-    var e=ease(seg(sp,0,.4));
-    m1.style.transform='translate('+(-40*e)+'%,'+(10*e)+'%) scale('+(1+e*.9)+')';m1.style.opacity=(.5*(1-seg(sp,.45,.62))+.25*seg(sp,.5,.6)*(1-seg(sp,.62,.8))).toFixed(3);
-    m2.style.transform='translate('+(35*e)+'%,'+(-10*e)+'%) scale('+(1+e*.7)+')';m2.style.opacity=(.35+.35*seg(sp,.4,.55)*(1-seg(sp,.6,.75))).toFixed(3);
-    var hp=Math.max(p,sp);if(cap2){var cv=seg(sp,.44,.5)*(1-seg(sp,.6,.64));cap2.style.opacity=cv.toFixed(3);cap2.style.visibility=cv>0?'visible':'hidden';cap2.style.transform='translateY('+((1-seg(sp,.44,.5))*16).toFixed(1)+'px)'}var hin=function(i){return hp>.48+i*.03&&hp<.62};hs.forEach(function(el,i){el.classList.toggle('on',hin(i));if(!hin(i))el.classList.remove('open')});if(!hin(0)){var sh=document.getElementById('flySheet');if(sh)sh.classList.remove('on')}
+    var p=RM?0:prog();sp+=(p-sp)*.16;if(Math.abs(p-sp)<.0005)sp=p;var mob=W<900;
+    /* camera */
+    var bw,bh,ox,oy,z;
+    var cw,ch;if(W/H>AR){cw=W;ch=W/AR}else{ch=H;cw=H*AR}           // cover box
+    if(mob){var e=ease(seg(sp,.06,.32));var fw=W*1.5,fh=fw/AR;      // framed box: whole house visible
+      bw=lerp(cw,fw,e);bh=lerp(ch,fh,e);ox=lerp((W-cw)*.6,(W-fw)*.6,e);oy=lerp((H-ch)*.5,H*.24,e);z=1;
+      if(cap2)cap2.style.top=(H*.24+fh+22)+'px';
+      img.style.webkitMaskImage=img.style.maskImage=e>.02?'linear-gradient(180deg,transparent 0,#000 '+(7*e).toFixed(1)+'%,#000 '+(100-7*e).toFixed(1)+'%,transparent 100%)':'';
+    }else{bw=cw;bh=ch;ox=(W-cw)*.5;oy=(H-ch)*.5;z=1+.14*ease(seg(sp,.04,.5))}
+    cam.style.width=bw+'px';cam.style.height=bh+'px';cam.style.transformOrigin=(HX*bw)+'px '+(HY*bh)+'px';
+    cam.style.transform='translate('+ox.toFixed(1)+'px,'+oy.toFixed(1)+'px) scale('+z.toFixed(4)+')';cam.style.setProperty('--z',z.toFixed(4));
+    var dk=seg(sp,.55,.62);cam.style.filter=dk>0?'brightness('+(1-dk*.72).toFixed(3)+') saturate('+(1-dk*.6).toFixed(3)+')':'';
+    /* headline + shade */
+    var h=seg(sp,.03,.16);txt.style.opacity=(1-h).toFixed(3);txt.style.transform='translateY('+(-50*h).toFixed(1)+'px)';txt.style.filter=h>0?'blur('+(h*8).toFixed(1)+'px)':'';txt.style.visibility=h>=1?'hidden':'';
+    if(hint)hint.style.opacity=(1-seg(sp,0,.06)).toFixed(3);
+    shade.style.opacity=(1-.7*seg(sp,.05,.25)).toFixed(3);
+    var me=ease(seg(sp,0,.5));m1.style.transform='translate('+(-30*me)+'%,'+(8*me)+'%) scale('+(1+me*.6)+')';m1.style.opacity=(.35*(1-seg(sp,.1,.3))).toFixed(3);m2.style.opacity=(.25*(1-seg(sp,.1,.3))).toFixed(3);
+    /* info points + caption */
+    var hp=Math.max(p,sp),hin=function(i){return hp>.3+i*.03&&hp<.54};
+    hs.forEach(function(el,i){el.classList.toggle('on',hin(i));if(!hin(i))el.classList.remove('open')});if(!hin(0)&&sheet)sheet.classList.remove('on');
+    if(cap2){var cv=seg(sp,.28,.34)*(1-seg(sp,.52,.56));cap2.style.opacity=cv.toFixed(3);cap2.style.visibility=cv>0?'visible':'hidden';cap2.style.transform='translateY('+((1-seg(sp,.28,.34))*16).toFixed(1)+'px)'}
+    /* blueprint stage */
+    if(bp){var bpo=seg(sp,.55,.6),bk=seg(sp,.57,.68);bp.style.opacity=bpo.toFixed(3);bp.style.visibility=bpo>0?'visible':'hidden';
+      bps.forEach(function(x,i){var a=i/bps.length*.55,v=clamp((bk-a)/.45);x.style.setProperty('--d',(1-v).toFixed(3))});bpt.forEach(function(t){t.style.opacity=bk>.8?1:0});
+      var act=sp<.7?-1:sp<.78?0:sp<.86?1:2;st.forEach(function(x,i){x.classList.toggle('on',i<=act);x.classList.toggle('cur',i===act)});clg.forEach(function(x,i){x.classList.toggle('cur',i===act)});if(bpb)bpb.classList.toggle('on',sp>.9)}
     var rr=fly.getBoundingClientRect();if(!RM&&(Math.abs(p-sp)>.0005||(rr.bottom>0&&rr.top<innerHeight&&++idle<90)))raf=requestAnimationFrame(draw);else{raf=0;idle=0}
     if(Math.abs(p-sp)>.0005)idle=0;
   }
-  hs.forEach(function(el){el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();el.click()}});el.addEventListener('click',function(e){if(e.target.closest('a'))return;var o=!el.classList.contains('open');hs.forEach(function(x){x.classList.remove('open')});el.classList.toggle('open',o);var sh=document.getElementById('flySheet');if(sh){sh.innerHTML=o?el.querySelector('span').innerHTML:'';sh.classList.toggle('on',o)}})});
-  document.addEventListener('click',function(e){if(e.target.closest('.hs,.fly-sheet'))return;hs.forEach(function(x){x.classList.remove('open')});var sh=document.getElementById('flySheet');if(sh)sh.classList.remove('on')});
+  hs.forEach(function(el){el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();el.click()}});el.addEventListener('click',function(e){if(e.target.closest('a'))return;var o=!el.classList.contains('open');hs.forEach(function(x){x.classList.remove('open')});el.classList.toggle('open',o);if(sheet){sheet.innerHTML=o?el.querySelector('span').innerHTML:'';sheet.classList.toggle('on',o)}})});
+  document.addEventListener('click',function(e){if(e.target.closest('.hs,.fly-sheet'))return;hs.forEach(function(x){x.classList.remove('open')});if(sheet)sheet.classList.remove('on')});
   addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(draw)},{passive:true});
-  addEventListener('resize',size);var im=fly.querySelector('.c1 img');if(im.complete)size();else im.addEventListener('load',size);size();
+  addEventListener('resize',size);if(img.complete)size();else img.addEventListener('load',size);size();
 })();
 
 
