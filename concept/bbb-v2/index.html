@@ -917,7 +917,7 @@ html.in2-done .h3-ph img{transition:transform 2.6s cubic-bezier(.2,.8,.2,1);tran
 html.in2-done .h3-in>*{opacity:1;transform:none;transition:opacity .9s ease,transform 1s cubic-bezier(.2,.8,.2,1)}
 html.in2-done .h3-in>:nth-child(2){transition-delay:.1s}html.in2-done .h3-in>:nth-child(3){transition-delay:.2s}html.in2-done .h3-in>:nth-child(4){transition-delay:.3s}html.in2-done .h3-in>:nth-child(5){transition-delay:.4s}
 .h3-ey{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;background:rgba(239,235,226,.07);border:1px solid rgba(239,235,226,.14);font:700 11.5px var(--fd);letter-spacing:.18em;text-transform:uppercase;color:#E3DED3}
-.h3-ey i{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 4px rgba(200,116,58,.22)}
+.h3-ey i:not(.bstrip){width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 4px rgba(200,116,58,.22)}
 .h3-t{margin:22px 0 0;font:800 clamp(42px,5.4vw,80px)/1 var(--fd);letter-spacing:-.04em;max-width:640px!important}
 .h3-rot{display:block;position:relative;height:1.06em;overflow:hidden;color:#fff}
 .h3-rot>span{position:absolute;left:0;top:0;white-space:nowrap;transform:translateY(108%);transition:transform .75s cubic-bezier(.7,0,.2,1)}
@@ -943,6 +943,40 @@ html.in2-done .h3-in>:nth-child(2){transition-delay:.1s}html.in2-done .h3-in>:nt
 }
 @media(max-width:360px){.h3-t{font-size:32px}.h3-p{font-size:14px;line-height:1.5}.h3-in{margin-top:-36px}.h3-f{display:none}}
 @media(prefers-reduced-motion:reduce){.h3-ph img{transform:none!important;transition:none!important}.h3-in>*{opacity:1!important;transform:none!important}}
+
+/* ===== brand: block by block ===== */
+/* the block strip: metal · moss · wood, always in this order; builds one block at a time */
+.bstrip{display:inline-block;flex:none;width:30px;height:8px;vertical-align:middle;background:linear-gradient(90deg,var(--b-metal,#2F2F2E) 0 8px,transparent 8px 11px,var(--b-moss,#575C32) 11px 19px,transparent 19px 22px,#9C5820 22px 30px);clip-path:inset(0 100% 0 0);transition:clip-path .9s steps(3,jump-none)}
+.bstrip.in{clip-path:inset(0 0 0 0)}
+.oh,.h3,.night,.b3,.ct,.nb,.tb,footer,.bp,#intro,.lo-card,.rf-cta,.h3-stamp{--b-metal:#7A7D76;--b-moss:#7F8548}
+.bstrip{width:36px;height:10px;background:linear-gradient(90deg,var(--b-metal,#2F2F2E) 0 10px,transparent 10px 13px,var(--b-moss,#575C32) 13px 23px,transparent 23px 26px,#9C5820 26px 36px)}
+.k{display:flex;align-items:center;gap:12px}
+.k::before{content:"";display:inline-block;flex:none;width:30px;height:8px;background:linear-gradient(90deg,var(--b-metal,#2F2F2E) 0 8px,transparent 8px 11px,var(--b-moss,#575C32) 11px 19px,transparent 19px 22px,#9C5820 22px 30px);clip-path:inset(0 100% 0 0);transition:clip-path .9s steps(3,jump-none)}
+.k.bin::before{clip-path:inset(0 0 0 0)}
+.k{justify-content:flex-start}.st .k,.rv .k{justify-content:flex-start}
+[style*="text-align:center"] .k,.k.c{justify-content:center}
+.h3-ey .bstrip{margin-right:2px}
+/* the main button: deeper copper so white text reads clearly (4.9:1) */
+.btn.a,.btn.p,.fcta,.mcta{background:#A85E2C!important;box-shadow:0 14px 30px -14px rgba(168,94,44,.75)!important}
+.btn.a:hover,.btn.p:hover,.fcta:hover,.mcta:hover{background:#8A4A20!important}
+/* dimension lines over the hero photo: measured for you */
+.h3-dim{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:visible}
+.h3-dim .dl path{fill:none;stroke:rgba(239,235,226,.75);stroke-width:1.25;stroke-dasharray:var(--len,600);stroke-dashoffset:var(--len,600);transition:stroke-dashoffset 1.4s cubic-bezier(.65,0,.35,1)}
+.h3-dim text{fill:rgba(239,235,226,.85);font:700 11px var(--fd);letter-spacing:.16em;text-transform:uppercase;opacity:0;transition:opacity .6s}
+html.in2-done .h3-dim.on .dl path{stroke-dashoffset:0}
+html.in2-done .h3-dim.on text{opacity:1;transition-delay:1.2s}
+/* the hall stamp */
+.stamp{display:inline-flex;align-items:center;gap:12px;padding:10px 14px;border:1.5px solid rgba(239,235,226,.5);border-radius:6px;color:#EFEBE2;font:800 10.5px/1.25 var(--fd);letter-spacing:.16em;text-transform:uppercase}
+.stamp span{display:flex;flex-direction:column}.stamp b{font-weight:800;color:#E8A97A}
+.h3-stamp{position:absolute;z-index:2;right:max(28px,calc((100vw - 1240px)/2));bottom:44px;background:rgba(17,27,22,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;transform:translateY(16px);transition:opacity .6s .9s,transform .6s .9s cubic-bezier(.2,.8,.2,1)}
+html.in2-done .h3-stamp{opacity:1;transform:none}
+.h3-ph{will-change:transform}
+/* trust bar: items set down one by one */
+.tb-in>span{opacity:0;transform:translateY(14px);transition:opacity .5s,transform .55s cubic-bezier(.2,.8,.2,1)}
+.tb-in.in>span{opacity:1;transform:none}
+.tb-in.in>span:nth-child(2){transition-delay:.08s}.tb-in.in>span:nth-child(3){transition-delay:.16s}.tb-in.in>span:nth-child(4){transition-delay:.24s}.tb-in.in>span:nth-child(5){transition-delay:.32s}
+@media(max-width:760px){.h3-stamp{display:none}.h3-dim text{font-size:9.5px}}
+@media(prefers-reduced-motion:reduce){.bstrip,.k::before{clip-path:none!important;transition:none}.h3-dim .dl path{stroke-dashoffset:0!important;transition:none}.h3-dim text,.h3-stamp,.tb-in>span{opacity:1!important;transform:none!important;transition:none}}
 </style>
 <link rel="stylesheet" href="/concept/bbb-v2/fx.css">
 <link rel="stylesheet" href="/concept/bbb-v2/anim.css">
@@ -1000,8 +1034,10 @@ html.in2-done .h3-in>:nth-child(2){transition-delay:.1s}html.in2-done .h3-in>:nt
 <section class="h3" id="acasa">
   <picture class="h3-ph"><source media="(max-width:760px)" srcset="/concept/bbb-v2/img/hero-studio-m-1200.webp"><img src="/concept/bbb-v2/img/hero-studio-1600.webp" srcset="/concept/bbb-v2/img/hero-studio-1600.webp 1600w, /concept/bbb-v2/img/hero-studio-2576.webp 2576w" sizes="100vw" alt="Studio modular cu placare din tablă și lemn, într-o grădină" width="1600" height="893" fetchpriority="high" decoding="async"></picture>
   <div class="h3-sh" aria-hidden="true"></div>
+  <svg class="h3-dim" id="h3Dim" aria-hidden="true"><g class="dl"><path id="dimH"/></g><text id="dimHt">H · la alegere</text></svg>
+  <div class="stamp h3-stamp" aria-hidden="true"><i class="bstrip"></i><span>Făcut în<b>Miercurea Nirajului</b></span></div>
   <div class="wrap h3-in">
-    <span class="h3-ey"><i></i>Construcții modulare · Mureș</span>
+    <span class="h3-ey"><i class="bstrip" aria-hidden="true"></i>Construcții modulare · Mureș</span>
     <h1 class="h3-t">Construim <span class="h3-rot" id="h3Rot" aria-live="off"><span class="on">case modulare</span></span> <em class="s">din metal și lemn.</em></h1>
     <p class="h3-p">Tu alegi dimensiunile și finisajele. Noi proiectăm și construim totul în hala noastră din Miercurea Nirajului, apoi ne ocupăm de transport și montaj.</p>
     <div class="h3-cta"><a class="btn a" href="#oferta">Cere ofertă gratuită<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn g" href="#produse">Vezi produsele</a></div>
@@ -1390,6 +1426,30 @@ document.getElementById('iskip').onclick=end;el.addEventListener('click',functio
   (document.fonts?document.fonts.ready:Promise.resolve()).then(fit);addEventListener('resize',fit);
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   setInterval(function(){if(document.hidden)return;var c=rot.children[i];c.classList.remove('on');c.classList.add('out');setTimeout(function(){c.classList.remove('out')},750);i=(i+1)%W.length;rot.children[i].classList.add('on')},3400);
+})();
+
+/* brand motion: block strips build in, trust bar sets down, hero dimension lines + scroll depth */
+(function(){var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var t=e.target;if(t.classList.contains('k'))t.classList.add('bin');else t.classList.add('in');io.unobserve(t)}})},{rootMargin:'0px 0px -12% 0px'});
+  [].forEach.call(document.querySelectorAll('.k,.bstrip,.tb-in'),function(el){if(el.closest('.h3')){setTimeout(function(){el.classList.add('in')},RM?0:900);return}if(RM){el.classList.add(el.classList.contains('k')?'bin':'in');return}io.observe(el)});
+  /* dimension lines follow the house in the photo, whatever the screen shape */
+  var h=document.querySelector('.h3'),ph=document.querySelector('.h3-ph'),img=ph&&ph.querySelector('img'),sv=document.getElementById('h3Dim');if(!h||!img||!sv)return;
+  var H=document.getElementById('dimH'),Ht=document.getElementById('dimHt');
+  function place(){var mob=innerWidth<=760,box=(mob?ph:h).getBoundingClientRect(),hb=h.getBoundingClientRect(),W=box.width,Hh=box.height,ar=mob?1917/1438:2576/1438,px=mob?.5:1,py=mob?.6:.5;
+    var rw,rh;if(W/Hh>ar){rw=W;rh=W/ar}else{rh=Hh;rw=Hh*ar}var ox=(W-rw)*px+(box.left-hb.left),oy=(Hh-rh)*py+(box.top-hb.top);
+    function P(x,y){if(mob)x=(x*2576-470)/1917;return [ox+x*rw,oy+y*rh]}
+    var c=P(.905,.3),d=P(.905,.8),t=6;
+    H.setAttribute('d','M'+c[0]+' '+c[1]+'V'+d[1]+'M'+(c[0]-t)+' '+c[1]+'H'+(c[0]+t)+'M'+(d[0]-t)+' '+d[1]+'H'+(d[0]+t));
+    H.style.setProperty('--len',(d[1]-c[1]+40).toFixed(0));
+        Ht.setAttribute('x',c[0]+12);Ht.setAttribute('y',(c[1]+d[1])/2);Ht.setAttribute('dominant-baseline','middle');
+    var hide=!mob&&W<1000;sv.style.display=hide?'none':''}
+  function go(){place();setTimeout(function(){sv.classList.add('on')},1100)}
+  if(img.complete)go();else img.addEventListener('load',go);addEventListener('resize',place);
+  /* scroll depth: photo drifts and zooms a touch, text lifts away */
+  if(RM)return;var tx=document.querySelector('.h3-in'),st=document.querySelector('.h3-stamp'),tk=false;
+  addEventListener('scroll',function(){if(tk)return;tk=true;requestAnimationFrame(function(){tk=false;var y=scrollY,hh=h.offsetHeight;if(y>hh*1.2)return;var k=Math.min(1,y/hh);
+    if(innerWidth>760){ph.style.transform='translateY('+(y*.3).toFixed(1)+'px) scale('+(1+k*.06).toFixed(4)+')';sv.style.transform=ph.style.transform;sv.style.transformOrigin='50% 50%';ph.style.transformOrigin='50% 50%'}
+    tx.style.transform='translateY('+(-y*.12).toFixed(1)+'px)';tx.style.opacity=(1-Math.max(0,k-.35)*1.6).toFixed(3);if(st)st.style.translate='0 '+(-y*.2).toFixed(1)+'px'})},{passive:true});
 })();
 /* buttons that open the form with a product already chosen */
 document.addEventListener('click',function(e){var a=e.target.closest('[data-prod]');if(!a)return;var bs=document.querySelectorAll('.chips[data-one="prod"] button');bs.forEach(function(x,i){x.classList.toggle('on',i===+a.dataset.prod)});});
