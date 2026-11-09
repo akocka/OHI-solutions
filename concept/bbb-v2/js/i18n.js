@@ -65,6 +65,7 @@
     "Placare lemn și tablă": ["Fa és lemez burkolat", "Wood and metal cladding"],
     "Ferestre mari": ["Nagy ablakok", "Large windows"],
     "Imagine ilustrativă, generată pentru prezentare": ["Illusztráció, bemutatóhoz készült", "Illustrative image made for this presentation"],
+    "Hala e deschisă luni–vineri, 8:00–16:00. Poți trece oricând în program.": ["A csarnok hétfőtől péntekig 8:00–16:00 között nyitva van. Nyitvatartás alatt bármikor beugorhatsz.", "The workshop is open Monday–Friday, 8:00–16:00. Drop by any time during opening hours."],
     "Cere ofertă pentru chioșc": ["Ajánlatot kérek kioszkra", "Get a quote for a kiosk"],
     "Case modulare și alte produse": ["Moduláris házak és más termékek", "Modular homes and other products"],
     "politica de confidențialitate": ["adatvédelmi szabályzat", "privacy policy"],
