@@ -773,6 +773,7 @@ html.fly-on .oh-in{padding-top:90px!important;padding-bottom:40px!important;will
 .rvw{max-width:820px;margin:22px auto 0;padding:22px 24px;border-radius:24px;background:#fff;border:1px solid var(--line);box-shadow:0 20px 50px -34px rgba(24,33,28,.35)}
 .rvw-h{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
 .rvw-h b{display:block;font:800 20px var(--fd);letter-spacing:-.02em}.rvw-h span{display:block;color:var(--mut,#5F6862);font-size:14.5px;margin-top:4px}
+.rvw-st{color:#FFE2C7;letter-spacing:1px;font-size:13px}
 .rvw-f{margin-top:20px;display:grid;gap:14px}
 .rvw-f label{display:grid;gap:6px;font:600 13px var(--fd);color:var(--steel)}
 .rvw-f input,.rvw-f select,.rvw-f textarea{font:500 15px var(--fb);padding:12px 14px;border-radius:12px;border:1px solid rgba(24,33,28,.18);background:var(--paper,#EFEBE2);color:var(--steel)}
@@ -1116,15 +1117,7 @@ html.fly-on .fly-cap2{display:block;position:absolute;z-index:4;left:clamp(20px,
     <div class="facts"><span><b>1 zi</b>montaj la client</span><span><b>6 × 3 m</b>modul cu birou</span><span><b>Mureș</b>livrat și montat</span></div>
   </div>
   <div class="rvw up">
-    <div class="rvw-h"><div><b>Ai cumpărat de la noi?</b><span>Spune-ne cum a fost. Recenzia ta îi ajută pe alții să aleagă.</span></div><button type="button" class="btn a" id="rvwOpen">Lasă o recenzie<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
-    <form class="rvw-f" id="rvwF" hidden novalidate>
-      <div class="rvw-stars" role="radiogroup" aria-label="Nota ta"><button type="button" data-v="1" aria-label="1 stea">★</button><button type="button" data-v="2" aria-label="2 stele">★</button><button type="button" data-v="3" aria-label="3 stele">★</button><button type="button" data-v="4" aria-label="4 stele">★</button><button type="button" data-v="5" aria-label="5 stele">★</button></div>
-      <div class="rvw-row"><label>Nume<input name="n" autocomplete="name" required></label><label>Ce ai cumpărat<select name="p"><option>Casă modulară</option><option>Chioșc</option><option>Căsuță de târg</option><option>Altceva</option></select></label></div>
-      <label>Recenzia ta<textarea name="t" rows="4" required placeholder="Cum a fost colaborarea, montajul, rezultatul?"></textarea></label>
-      <label class="rvw-ok"><input type="checkbox" name="ok" required><span>Sunt de acord ca recenzia să fie publicată pe site, cu prenumele meu.</span></label>
-      <div class="rvw-b"><button class="btn a" type="submit">Trimite recenzia</button><small>Recenziile apar pe site după ce verificăm că ești client.</small></div>
-      <p class="rvw-done" hidden>Mulțumim! În previzualizare nu se trimite nimic; pe site-ul real recenzia ajunge la noi pentru verificare.</p>
-    </form>
+    <div class="rvw-h"><div><b>Ai cumpărat de la noi?</b><span>Lasă-ne o recenzie pe Google. Durează un minut și îi ajută pe alții să aleagă.</span></div><a class="btn a" id="rvwOpen" href="https://search.google.com/local/writereview?placeid=ChIJ57FWPmOvS0cRKgARK20UiV8" target="_blank" rel="noopener noreferrer">Lasă o recenzie pe Google<svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
   </div>
 </div></section>
 
@@ -1369,14 +1362,7 @@ document.getElementById('iskip').onclick=end;el.addEventListener('click',functio
 
 
 
-/* leave a review: open the form, star rating, simple checks (preview: nothing is sent) */
-(function(){var o=document.getElementById('rvwOpen'),f=document.getElementById('rvwF');if(!o||!f)return;var v=0,st=f.querySelector('.rvw-stars'),bs=[].slice.call(st.querySelectorAll('button'));
-  o.addEventListener('click',function(){f.hidden=!f.hidden;if(!f.hidden)bs[4].focus()});
-  bs.forEach(function(b){b.addEventListener('click',function(){v=+b.dataset.v;bs.forEach(function(x){x.classList.toggle('on',+x.dataset.v<=v)});st.classList.remove('bad')})});
-  f.addEventListener('submit',function(e){e.preventDefault();var ok=true;[f.n,f.t].forEach(function(i){var b=!i.value.trim();i.classList.toggle('bad',b);if(b)ok=false});
-    if(!v){st.classList.add('bad');ok=false}var c=f.ok.parentNode;c.classList.toggle('bad',!f.ok.checked);if(!f.ok.checked)ok=false;
-    if(!ok)return;/* preview: nothing is sent */f.querySelector('.rvw-done').hidden=false;f.querySelector('.rvw-b').hidden=true});
-})();
+
 /* buttons that open the form with a product already chosen */
 document.addEventListener('click',function(e){var a=e.target.closest('[data-prod]');if(!a)return;var bs=document.querySelectorAll('.chips[data-one="prod"] button');bs.forEach(function(x,i){x.classList.toggle('on',i===+a.dataset.prod)});});
 </script>
