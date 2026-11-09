@@ -1008,13 +1008,7 @@ html.in2-done .h3-in>:nth-child(2){transition-delay:.1s}html.in2-done .h3-in>:nt
     <ul class="h3-f"><li>Producție proprie în Mureș</li><li>Dimensiuni la comandă</li><li>Transport și montaj</li></ul>
   </div>
 </section>
-<section class="hf" aria-label="Cum e construit un modul">
-  <div class="wrap hf-g">
-    <article class="hf-c up"><div class="hf-ph"><img src="/concept/bbb-v2/img/g-chiosc-negru-cu-lemn-finalizat-in-hala-1200.webp" alt="Placare din tablă și lemn, finalizată în hală" loading="lazy"></div><div class="hf-t"><b><i>01</i>Placare lemn și tablă</b><p>Alegi combinația: tablă vopsită, lamele din lemn natural sau ambele.</p></div></article>
-    <article class="hf-c up"><div class="hf-ph"><img src="/concept/bbb-v2/img/g-chiosc-din-lemn-natural-cu-vitrina-1200.webp" alt="Vitrină mare într-un chioșc din lemn" loading="lazy"></div><div class="hf-t"><b><i>02</i>Ferestre mari</b><p>Vitrine și uși din sticlă, puse acolo unde ai nevoie de lumină.</p></div></article>
-    <article class="hf-c up"><div class="hf-ph"><img src="/concept/bbb-v2/img/g-echipa-lucrand-la-un-cadru-modular-1200.webp" alt="Echipa lucrând la cadrul unui modul" loading="lazy"></div><div class="hf-t"><b><i>03</i>Fundație și cadru</b><p>Structura e gândită pentru transport, așa că modulul se poate muta.</p></div></article>
-  </div>
-</section>
+
 
 <!-- ============ STATEMENT ============ -->
 <div class="tb" aria-label="De ce să ai încredere"><div class="wrap tb-in">
@@ -1242,8 +1236,7 @@ html.in2-done .h3-in>:nth-child(2){transition-delay:.1s}html.in2-done .h3-in>:nt
 <script>
 /* intro: same as bigbigboon.ro */
 (function(){var el=document.getElementById('intro');if(!el)return;
-var seen=false;try{seen=sessionStorage.getItem('bbb-intro')==='1'}catch(e){}
-if(matchMedia('(prefers-reduced-motion:reduce)').matches||/nointro/.test(location.search)||seen){el.remove();document.documentElement.classList.add('in2-done');return}
+if(matchMedia('(prefers-reduced-motion:reduce)').matches||/nointro/.test(location.search)){el.remove();document.documentElement.classList.add('in2-done');return}
 document.body.classList.add('intro-on');
 var end=function(){if(!el.isConnected||el.classList.contains('out'))return;el.classList.add('out');document.body.classList.remove('intro-on');document.documentElement.classList.add('in2-done');try{sessionStorage.setItem('bbb-intro','1')}catch(e){}setTimeout(function(){el.remove()},900)};
 document.getElementById('iskip').onclick=end;el.addEventListener('click',function(e){if(e.target===el)end()});setTimeout(end,3700);})();
