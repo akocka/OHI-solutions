@@ -871,7 +871,7 @@ html.in2-done .hx-in>:nth-child(2){animation-delay:.12s}html.in2-done .hx-in>:nt
 .hx-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .hx-cap{position:absolute;z-index:2;right:20px;bottom:150px;margin:0;font:500 11px var(--fb);color:rgba(239,235,226,.5)}
 /* the three points, under the photo */
-.hf{position:relative;z-index:3;margin-top:-2px;background:#111B16;padding:0 0 clamp(56px,7vw,90px)}
+.hf{position:relative;z-index:3;margin-top:-2px;background:#111B16;box-shadow:0 -6px 0 #111B16;padding:0 0 clamp(56px,7vw,90px)}
 .hf-g{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:-130px}
 .hf-c{border-radius:22px;overflow:hidden;background:rgba(24,33,28,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.09);box-shadow:0 30px 60px -30px rgba(0,0,0,.7);transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .4s}
 .hf-c:hover{transform:translateY(-6px);border-color:rgba(200,116,58,.55)}
@@ -888,13 +888,14 @@ html.in2-done .hx-in>:nth-child(2){animation-delay:.12s}html.in2-done .hx-in>:nt
   .hx-media img{object-position:55% 62%}
   .hx-shade{display:none}
   .hx-cap{right:12px;bottom:10px;font-size:10px}
-  .hx-in{padding-top:24px;padding-bottom:24px}
+  .hx-in{padding-top:24px;padding-bottom:12px}
   .hx-ey-l{display:none}
   .hx-ey{font-size:11px}
   .hx-t{font-size:clamp(34px,9.6vw,46px);margin-top:10px}
   .hx-p{font-size:15px;margin-top:14px}
   .hx-cta{margin-top:20px}
-  .hf-g{grid-template-columns:1fr;gap:10px;margin-top:4px}
+  .hf{padding-top:36px;padding-bottom:56px}
+  .hf-g{grid-template-columns:1fr;gap:14px;margin-top:0}
   .hf-c{display:grid;grid-template-columns:104px 1fr;align-items:center;border-radius:16px}
   .hf-ph{aspect-ratio:auto;height:100%;min-height:96px}
   .hf-t{padding:12px 14px}.hf-t b{font-size:16.5px}.hf-t p{font-size:13.5px;margin-top:4px}
@@ -905,13 +906,41 @@ html.in2-done .hx-in>:nth-child(2){animation-delay:.12s}html.in2-done .hx-in>:nt
 <link rel="stylesheet" href="/concept/bbb-v2/anim.css">
 </head>
 <body>
-<div id="intro" class="in2" aria-hidden="true">
-  <div class="in2-c">
-    <img class="in2-logo" src="/concept/bbb-v2/img/logo-bbb.webp" alt="" width="440" height="235">
-    <div class="in2-line"><i id="in2Bar"></i></div>
-    <p class="in2-t"><span>Construcții modulare</span><span>din metal și lemn</span><span>Mureș</span></p>
-  </div>
-  <button type="button" class="in2-skip" id="iskip">Sari peste</button>
+<div id="intro" aria-hidden="true">
+  <svg class="ib-kiosk" viewBox="0 0 320 250">
+    <defs>
+      <linearGradient id="ibPine" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F0C489"/><stop offset="1" stop-color="#C98F50"/></linearGradient>
+      <radialGradient id="ibGlow"><stop offset="0" stop-color="#FFC877" stop-opacity=".9"/><stop offset="1" stop-color="#FFB050" stop-opacity="0"/></radialGradient>
+    </defs>
+    <g class="fl">
+      <polygon points="44,124 160,50 276,124 276,132 160,58 44,132" fill="#2B2E33"/>
+      <polygon points="70,112 160,62 250,112" fill="#1A1C1F"/>
+      <rect x="70" y="110" width="180" height="104" fill="#1D2024"/>
+      <rect x="102" y="132" width="116" height="52" fill="url(#ibPine)"/>
+      <rect x="78" y="112" width="16" height="102" fill="#9A5C2A"/><rect x="226" y="112" width="16" height="102" fill="#9A5C2A"/>
+      <rect x="94" y="184" width="132" height="8" fill="#C17E43"/>
+      <rect x="58" y="214" width="204" height="10" fill="#33373C"/>
+      <path d="M64 112H256M160 62V112M160 86L118 112M160 86L202 112" stroke="#C17E43" stroke-width="6" fill="none"/>
+    </g>
+    <g class="lt">
+      <ellipse cx="160" cy="158" rx="92" ry="46" fill="url(#ibGlow)"/>
+      <ellipse cx="98" cy="146" rx="9" ry="24" fill="url(#ibGlow)"/><ellipse cx="222" cy="146" rx="9" ry="24" fill="url(#ibGlow)"/>
+    </g>
+    <g class="ln">
+      <path pathLength="1" style="--d:0" d="M18 228H302"/>
+      <path pathLength="1" style="--d:1" d="M58 214H262V224H58Z"/>
+      <path pathLength="1" style="--d:2" d="M70 214V110H250V214"/>
+      <path pathLength="1" style="--d:3" d="M44 124L160 50L276 124M44 132L160 58L276 132"/>
+      <path pathLength="1" style="--d:4" d="M64 112H256M160 62V112M160 86L118 112M160 86L202 112"/>
+      <path pathLength="1" style="--d:5" d="M102 132H218V184H102ZM160 132V184"/>
+      <path pathLength="1" style="--d:6" d="M94 184H226V192H94Z"/>
+      <path pathLength="1" style="--d:6" d="M82 112V214M86 112V214M90 112V214M230 112V214M234 112V214M238 112V214"/>
+      <path pathLength="1" style="--d:7" d="M96 140h5v12h-5ZM219 140h5v12h-5Z"/>
+    </g>
+  </svg>
+  <div class="ib-logo"><img class="ib-real" src="/concept/bbb-v2/img/logo-big-big-boon-360.webp" alt="" width="900" height="618"></div>
+  <p class="ib-cap" data-t="introCap">Metal și lemn. <em>Construit să dureze.</em></p>
+  <button type="button" class="ib-skip" id="iskip"><span data-t="k3skip">Sari peste</span> →</button>
 </div>
 <div class="rib">Previzualizare · <span class="lg">cifre orientative, de confirmat</span> · OHI Solutions</div>
 
@@ -1168,16 +1197,13 @@ html.in2-done .hx-in>:nth-child(2){animation-delay:.12s}html.in2-done .hx-in>:nt
 <footer><div class="wrap"><div><img src="/concept/bbb-v2/img/logo-big-big-boon-360.webp" alt="Big Big Boon" width="360" height="190"><br>BIG BIG BOON 2020 SRL · Miercurea Nirajului, Mureș</div><div><div class="ft-l"><a href="/concept/bbb-v2/preturi">Prețuri</a><a href="/concept/bbb-v2/despre">Despre noi</a><a href="/concept/bbb-v2/echipa">Echipa</a><a href="/concept/bbb-v2/blog">Blog</a><a href="/concept/bbb-v2/contact">Contact</a></div><div class="ft-l sm"><a href="/concept/bbb-v2/confidentialitate">Confidențialitate</a><a href="/concept/bbb-v2/cookie">Cookie-uri</a><a href="/concept/bbb-v2/termeni">Termeni</a></div><p style="margin-top:16px"><a class="anpc-sal" href="https://reclamatiisal.anpc.ro" target="_blank" rel="noopener noreferrer" aria-label="ANPC – Soluționarea alternativă a litigiilor"><b>ANPC</b><span>SAL · Soluționarea alternativă a litigiilor</span></a></p><br>Concept de redesign realizat de OHI Solutions.<br>Cifrele și textele sunt orientative, de confirmat cu Big Big Boon.</div></div></footer>
 
 <script>
-/* intro: short cinematic opening that hands over to the hero scene */
+/* intro: same as bigbigboon.ro */
 (function(){var el=document.getElementById('intro');if(!el)return;
 var seen=false;try{seen=sessionStorage.getItem('bbb-intro')==='1'}catch(e){}
 if(matchMedia('(prefers-reduced-motion:reduce)').matches||/nointro/.test(location.search)||seen){el.remove();document.documentElement.classList.add('in2-done');return}
 document.body.classList.add('intro-on');
-var bar=document.getElementById('in2Bar'),t0=performance.now(),loaded=false,done=false;
-var im=document.querySelector('.hx-media img');if(!im||im.complete)loaded=true;else{im.addEventListener('load',function(){loaded=true});im.addEventListener('error',function(){loaded=true})}
-var end=function(){if(done)return;done=true;bar.style.transform='scaleX(1)';el.classList.add('out');document.body.classList.remove('intro-on');document.documentElement.classList.add('in2-done');try{sessionStorage.setItem('bbb-intro','1')}catch(e){}setTimeout(function(){el.remove()},1100)};
-(function tick(){if(done)return;var t=performance.now()-t0,k=Math.min(loaded?1:.85,t/1500);bar.style.transform='scaleX('+k.toFixed(3)+')';if((loaded&&t>1700)||t>3600)end();else requestAnimationFrame(tick)})();
-document.getElementById('iskip').onclick=end;})();
+var end=function(){if(!el.isConnected||el.classList.contains('out'))return;el.classList.add('out');document.body.classList.remove('intro-on');document.documentElement.classList.add('in2-done');try{sessionStorage.setItem('bbb-intro','1')}catch(e){}setTimeout(function(){el.remove()},900)};
+document.getElementById('iskip').onclick=end;el.addEventListener('click',function(e){if(e.target===el)end()});setTimeout(end,3700);})();
 </script>
 <script src="/concept/bbb-v2/js/i18n.js"></script>
 <script src="/concept/bbb-v2/js/gsap.min.js"></script>
