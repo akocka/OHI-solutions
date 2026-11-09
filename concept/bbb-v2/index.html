@@ -845,11 +845,56 @@ html.fly-on .fly-cap2{display:block;position:absolute;z-index:4;left:clamp(20px,
 .in2-skip{position:absolute;right:22px;bottom:calc(22px + env(safe-area-inset-bottom,0px));border:1px solid rgba(239,235,226,.2);background:transparent;color:rgba(239,235,226,.7);font:600 12px var(--fd);letter-spacing:.08em;padding:9px 16px;border-radius:999px;cursor:pointer}
 @keyframes in2Up{to{opacity:1;transform:none}}@keyframes in2Fade{to{opacity:1}}
 /* the hero scene settles in as the intro lifts */
-html:not(.in2-done) .fly-cam.c1 img{transform:scale(1.08)}
-.fly-cam.c1 img{transition:transform 2.2s cubic-bezier(.2,.8,.2,1)}
-html:not(.in2-done) .oh-in{opacity:0}
+
 /* numbers section in the main colour (was a different green) */
 .nb{background:#18211C!important}
+
+/* ===== hero: one strong photo, slow settle-in, headline with rotating product, quote first ===== */
+.hx{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:#111B16;color:#EFEBE2}
+.hx-media{position:absolute;inset:0;overflow:hidden;will-change:translate}
+.hx-media img{width:100%;height:100%;object-fit:cover;object-position:62% 55%;display:block;transform:scale(1.14)}
+html.in2-done .hx-media img{animation:hxKen 2.6s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes hxKen{to{transform:scale(1.02)}}
+.hx-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(17,27,22,.92) 0%,rgba(17,27,22,.62) 36%,rgba(17,27,22,0) 66%),linear-gradient(0deg,#111B16 0%,rgba(17,27,22,0) 34%),linear-gradient(180deg,rgba(17,27,22,.6) 0%,rgba(17,27,22,0) 20%)}
+.hx-in{position:relative;z-index:2;padding-top:140px;padding-bottom:190px}
+.hx-in>*{opacity:0;transform:translateY(26px)}
+html.in2-done .hx-in>*{animation:hxUp 1s cubic-bezier(.2,.8,.2,1) forwards}
+html.in2-done .hx-in>:nth-child(2){animation-delay:.12s}html.in2-done .hx-in>:nth-child(3){animation-delay:.26s}html.in2-done .hx-in>:nth-child(4){animation-delay:.4s}
+@keyframes hxUp{to{opacity:1;transform:none}}
+.hx-ey{font:700 12px var(--fd);letter-spacing:.22em;text-transform:uppercase;color:#E8A97A}
+.hx-t{margin:16px 0 0;font:800 clamp(40px,6.2vw,92px)/.98 var(--fd);letter-spacing:-.04em;max-width:900px}
+.hx-t em.s{display:block;color:#E8A97A;font-size:.9em}
+.hx-rot{display:block;position:relative;height:1.04em;overflow:hidden}
+.hx-rot>span{position:absolute;left:0;top:0;white-space:nowrap;transform:translateY(105%);transition:transform .8s cubic-bezier(.7,0,.2,1)}
+.hx-rot>span.on{transform:none}.hx-rot>span.out{transform:translateY(-105%)}
+.hx-p{max-width:520px;margin:22px 0 0;font-size:17px;line-height:1.6;color:#D3D6CC}
+.hx-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hx-cap{position:absolute;z-index:2;right:20px;bottom:14px;margin:0;font:500 11px var(--fb);color:rgba(239,235,226,.5)}
+/* the three points, under the photo */
+.hf{position:relative;z-index:3;margin-top:-2px;background:#111B16;padding:0 0 clamp(56px,7vw,90px)}
+.hf-g{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:-130px}
+.hf-c{border-radius:22px;overflow:hidden;background:rgba(24,33,28,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.09);box-shadow:0 30px 60px -30px rgba(0,0,0,.7);transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .4s}
+.hf-c:hover{transform:translateY(-6px);border-color:rgba(200,116,58,.55)}
+.hf-ph{aspect-ratio:16/9;overflow:hidden}.hf-ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.hf-c:hover .hf-ph img{transform:scale(1.07)}
+.hf-t{padding:18px 20px 22px}
+.hf-t b{display:flex;align-items:baseline;gap:10px;font:700 19px var(--fd);color:#fff;letter-spacing:-.01em}
+.hf-t b i{font:800 12px var(--fd);font-style:normal;color:#E8A97A;letter-spacing:.08em}
+.hf-t p{margin:8px 0 0;color:#C8CCC0;font-size:14.5px;line-height:1.5}
+@media(max-width:900px){
+  .hx{min-height:0;height:auto;align-items:flex-end}
+  .hx-media img{object-position:64% 50%}
+  .hx-shade{background:linear-gradient(0deg,#111B16 0%,rgba(17,27,22,.88) 38%,rgba(17,27,22,.15) 70%,rgba(17,27,22,.55) 100%)}
+  .hx-in{padding-top:62svh;padding-bottom:26px}
+  .hx-t{font-size:clamp(36px,10.5vw,52px)}
+  .hx-p{font-size:15.5px}
+  .hx-cap{top:96px;bottom:auto;right:14px}
+  .hf-g{grid-template-columns:1fr;gap:10px;margin-top:6px}
+  .hf-c{display:grid;grid-template-columns:104px 1fr;align-items:center;border-radius:16px}
+  .hf-ph{aspect-ratio:auto;height:100%;min-height:96px}
+  .hf-t{padding:12px 14px}.hf-t b{font-size:16.5px}.hf-t p{font-size:13.5px;margin-top:4px}
+}
+@media(prefers-reduced-motion:reduce){.hx-media img{transform:none!important;animation:none!important}.hx-in>*{opacity:1!important;transform:none!important;animation:none!important}}
 </style>
 <link rel="stylesheet" href="/concept/bbb-v2/fx.css">
 <link rel="stylesheet" href="/concept/bbb-v2/anim.css">
@@ -875,88 +920,25 @@ html:not(.in2-done) .oh-in{opacity:0}
 
 <main id="top">
 <!-- ============ HERO (original layout, new palette) ============ -->
-<div class="fly" id="fly">
-<section class="oh" id="acasa">
-  <div class="fly-scene">
-    <div class="fly-cam c1" data-ar="1.7917" data-fx=".72" data-fxm=".72" data-fy=".55" data-hx=".79" data-hy=".72" data-z0="1" data-z1="2.05" data-z0m="1" data-z1m="2.05" data-a="0" data-b=".28"><img class="fly-img" src="/concept/bbb-v2/img/fly-sat-1800.webp" srcset="/concept/bbb-v2/img/fly-sat-1800.webp 1800w, /concept/bbb-v2/img/fly-sat-3200.webp 3200w, /concept/bbb-v2/img/fly-sat-4400.webp 4400w, /concept/bbb-v2/img/fly-sat-5504.webp 5504w" sizes="(max-width:900px) 250vw, 220vw" alt="" decoding="async" fetchpriority="high"></div>
-    <div class="fly-cam c2 main" data-ar="1.7914" data-fx=".5" data-fxm=".6" data-fy=".5" data-hx=".56" data-hy=".55" data-z0="1.22" data-z1="1" data-z0m="1.06" data-z1m="1" data-mw="1.5" data-my=".24" data-a=".35" data-b=".6"><img class="fly-img" src="/concept/bbb-v2/img/fly-gradina-1800.webp" srcset="/concept/bbb-v2/img/fly-gradina-1800.webp 1800w, /concept/bbb-v2/img/fly-gradina-2576.webp 2576w" sizes="(max-width:900px) 200vw, 120vw" alt="" decoding="async" fetchpriority="high">
-      <div role="button" tabindex="0" class="hs" style="left:52.5%;top:47%"><i></i><span><b>Placare lemn și tablă</b>finisaje la alegere<em>Alegi combinația: tablă vopsită, lamele din lemn natural sau ambele. <a href="#build">Încearcă în configurator →</a></em></span></div>
-      <div role="button" tabindex="0" class="hs l" style="left:70%;top:42%"><i></i><span><b>Ferestre mari</b>lumină naturală toată ziua<em>Vitrine și uși din sticlă, puse acolo unde ai nevoie de lumină. <a href="#build">Încearcă în configurator →</a></em></span></div>
-      <div role="button" tabindex="0" class="hs" style="left:80%;top:78%"><i></i><span><b>Fundație și cadru</b>bază solidă, se poate muta<em>Structura e gândită pentru transport, așa că modulul se poate muta. <a href="#oferta">Cere o ofertă →</a></em></span></div>
-    </div>
-    <div class="fly-mist m1"></div><div class="fly-mist m2"></div><div class="fly-fog"></div><div class="fly-shade"></div></div>
-  <div class="fly-mid" aria-hidden="true"><span>Big Big Boon · Mureș</span><p>Mici ca dimensiune.<br><em class="s">Gândite până la ultimul detaliu.</em></p></div>
-  <div class="bp2 fly-bp"><div class="fly-bp-in">
-    <div class="fly-bp-h"><div class="k">Cum e construit</div><h2>Desenat ca un proiect. <em class="s">Construit ca o casă.</em></h2></div>
-    <div class="fly-bp-g"><div class="fly-bp-d"><svg viewBox="0 0 640 420" role="img" aria-hidden="true">
-        <g class="ln thin">
-          <path pathLength="1" d="M20 360H620"/>
-          <path pathLength="1" d="M70 360V346H570V360"/>
-        </g>
-        <g class="ln">
-          <path pathLength="1" d="M90 346V150H550V346"/>
-          <path pathLength="1" d="M60 150H590L590 136H60Z"/>
-          <path pathLength="1" d="M130 330V196H196V330Z"/>
-          <path pathLength="1" d="M210 330V180H300V330M255 180V330"/>
-          <path pathLength="1" d="M360 300V176H530V300ZM445 176V300"/>
-        </g>
-        <g class="ln thin">
-          <path pathLength="1" d="M310 150V346M318 150V346M326 150V346M334 150V346"/>
-          <path pathLength="1" d="M110 150V346M118 150V346"/>
-          <path pathLength="1" d="M540 170V346M520 300V346M500 300V346M480 300V346M460 300V346M440 300V346M420 300V346M400 300V346M380 300V346"/>
-        </g>
-        <g class="ln dim">
-          <path pathLength="1" d="M90 392H550M90 386V398M550 386V398"/>
-          <path pathLength="1" d="M612 150V346M606 150H618M606 346H618"/>
-        </g>
-        <g class="tx"><text x="320" y="412" text-anchor="middle">L · la alegere</text><text x="628" y="252" transform="rotate(90 628 252)" text-anchor="middle">H</text></g>
-        <g class="cl"><g><circle cx="322" cy="120" r="13"/><text x="322" y="125">1</text></g><path class="ln thin" pathLength="1" d="M322 133V150"/>
-        <g><circle cx="445" cy="238" r="13"/><text x="445" y="243">2</text></g>
-        <g><circle cx="70" cy="380" r="13"/><text x="70" y="385">3</text></g><path class="ln thin" pathLength="1" d="M80 372L92 356"/></g>
-      </svg></div>
-      <div class="fly-steps">
-        <article class="fly-st"><img src="/concept/bbb-v2/img/g-chiosc-negru-cu-lemn-finalizat-in-hala-1200.webp" alt="Placare din tablă și lemn, finalizată în hală" loading="lazy"><div><b><i>1</i>Placare lemn și tablă</b><p>Alegi combinația: tablă vopsită, lamele din lemn natural sau ambele.</p></div></article>
-        <article class="fly-st"><img src="/concept/bbb-v2/img/g-chiosc-din-lemn-natural-cu-vitrina-1200.webp" alt="Vitrină mare într-un chioșc din lemn" loading="lazy"><div><b><i>2</i>Ferestre mari</b><p>Vitrine și uși din sticlă, puse acolo unde ai nevoie de lumină.</p></div></article>
-        <article class="fly-st"><img src="/concept/bbb-v2/img/g-echipa-lucrand-la-un-cadru-modular-1200.webp" alt="Echipa lucrând la cadrul unui modul" loading="lazy"><div><b><i>3</i>Fundație și cadru</b><p>Structura e gândită pentru transport, așa că modulul se poate muta.</p></div></article>
-      </div>
-    </div>
-    <div class="fly-bp-b"><a class="btn a" href="#oferta">Cere ofertă gratuită<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="fly-bp-l" href="#build">sau construiește-ți modelul în 3D →</a><small>Schiță orientativă · fiecare proiect se desenează pe dimensiunile tale</small></div>
-  </div></div>
-  <div class="fly-cap2" aria-hidden="true"><b>Studio în grădină</b><span>Birou, cameră de oaspeți sau atelier, la câțiva pași de casă.</span><em>Atinge punctele pentru detalii</em></div>
-  <div class="fly-sheet" id="flySheet" aria-live="polite"></div>
-  <p class="fly-cap">Imagine ilustrativă, generată pentru prezentare</p>
-  <div class="fly-hint" aria-hidden="true"><i></i>Derulează</div>
-  <div class="oh-bg" aria-hidden="true"><div class="oh-sun"></div><div class="oh-grid"></div></div>
-  <div class="oh-stage">
-    <div class="oh-pool"></div>
-    <div class="oh-prods">
-      <svg class="oh-pad" viewBox="0 0 1431 969" aria-hidden="true" preserveAspectRatio="none"><defs><linearGradient id="padTop" x1="0" y1="0" x2=".3" y2="1"><stop offset="0" stop-color="#5E625A"/><stop offset=".55" stop-color="#8A8B82"/><stop offset="1" stop-color="#6E7068"/></linearGradient><filter id="padBlur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="9"/></filter><filter id="padBlur2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="26"/></filter></defs>
-        <polygon points="70,830 929,1080 1420,870 574,640" fill="#000" opacity=".75" filter="url(#padBlur2)"/>
-        <polygon points="70,760 929,994 929,1028 70,794" fill="#2A2F2A"/><polygon points="929,994 1420,806 1420,840 929,1028" fill="#4A4F48"/>
-        <polygon points="70,760 929,994 1420,806 574,565" fill="url(#padTop)"/>
-        <polyline points="70,760 929,994 1420,806" fill="none" stroke="#EFEBE2" stroke-opacity=".25" stroke-width="2"/>
-        <polygon points="150,780 915,968 1360,808 900,880" fill="#000" opacity=".55" filter="url(#padBlur)"/>
-      </svg>
-      <picture class="oh-p on" data-k="0"><source media="(max-width:900px)" srcset="/concept/bbb-v2/img/cut-chiosc-720.webp"><img class="oh-img" src="/concept/bbb-v2/img/cut-chiosc-960.webp" alt="Chioșc comercial din metal și lemn, Big Big Boon" width="960" height="779" fetchpriority="high"></picture>
-      <picture class="oh-p" data-k="1"><source media="(max-width:900px)" srcset="/concept/bbb-v2/img/cut-casuta-720.webp"><img class="oh-img" src="/concept/bbb-v2/img/cut-casuta-960.webp" alt="Căsuță de târg din lemn, Big Big Boon" width="960" height="767" loading="lazy"></picture>
-      <picture class="oh-p wide" data-k="2"><source media="(max-width:900px)" srcset="/concept/bbb-v2/img/modul-cut3-720.webp 720w, /concept/bbb-v2/img/modul-cut3-960.webp 960w" sizes="94vw"><img class="oh-img" src="/concept/bbb-v2/img/modul-cut3.webp" alt="Casă modulară Big Big Boon" width="1431" height="969" loading="lazy"></picture>
-    </div>
-    <div class="oh-ground" aria-hidden="true"></div>
-    <div class="oh-shadow"></div>
-    <div class="oh-tabs" role="tablist" aria-label="Produse"><button type="button" role="tab" class="on" data-k="0">Chioșc</button><button type="button" role="tab" data-k="1">Căsuță de târg</button><button type="button" role="tab" data-k="2">Casă modulară</button></div>
-    <div class="oh-chip c1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V9l6-4v4l6-4v4l6-4v16z"/></svg></i><span><b>Producție proprie</b><small>Hala din Miercurea Nirajului</small></span></div>
-    <div class="oh-chip c2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h18M3 7v10M21 7v10M7 7v3M11 7v4M15 7v3M19 7v4"/></svg></i><span><b>La dimensiunile tale</b><small>Locuință, birou sau comerț</small></span></div>
+<!-- ============ HERO ============ -->
+<section class="hx" id="acasa">
+  <div class="hx-media"><img src="/concept/bbb-v2/img/fly-gradina-1800.webp" srcset="/concept/bbb-v2/img/fly-gradina-1800.webp 1800w, /concept/bbb-v2/img/fly-gradina-2576.webp 2576w" sizes="100vw" alt="Studio modular în grădină, cu placare din tablă și lemn" fetchpriority="high" decoding="async"></div>
+  <div class="hx-shade" aria-hidden="true"></div>
+  <div class="wrap hx-in">
+    <div class="hx-ey">Big Big Boon · Construcții modulare · Mureș</div>
+    <h1 class="hx-t">Construim <span class="hx-rot" id="hxRot" aria-live="off"><span class="on">case modulare</span></span><em class="s">din metal și lemn.</em></h1>
+    <p class="hx-p">Tu alegi dimensiunile și finisajele. Noi proiectăm și construim totul în hala noastră din Miercurea Nirajului, apoi ne ocupăm de transport și montaj.</p>
+    <div class="hx-cta"><a class="btn a" href="#oferta">Cere ofertă gratuită<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn g" href="#produse">Vezi produsele</a></div>
   </div>
-  <div class="oh-in">
-    <div class="oh-ey">Big Big Boon · Construcții modulare · Mureș</div>
-    <h1 class="oh-t"><span>Construim</span><span class="rot" id="heroRot" aria-live="off"><span class="on">chioșcuri comerciale</span></span><em class="s">din metal și lemn.</em></h1>
-    <p>Tu alegi dimensiunile și finisajele. Noi proiectăm și construim totul în hala noastră din Miercurea Nirajului, apoi ne ocupăm de transport și montaj.</p>
-    <div class="oh-cta"><a class="btn g" href="#produse">Vezi produsele</a></div>
-    <p class="oh-note">Fără obligații · îți răspundem cu o ofertă făcută pe proiectul tău.</p>
-    <ul class="oh-facts"><li>Producție proprie în Mureș</li><li>Dimensiuni la comandă</li><li>Mobile și demontabile</li></ul>
+  <p class="hx-cap">Imagine ilustrativă, generată pentru prezentare</p>
+</section>
+<section class="hf" aria-label="Cum e construit un modul">
+  <div class="wrap hf-g">
+    <article class="hf-c up"><div class="hf-ph"><img src="/concept/bbb-v2/img/g-chiosc-negru-cu-lemn-finalizat-in-hala-1200.webp" alt="Placare din tablă și lemn, finalizată în hală" loading="lazy"></div><div class="hf-t"><b><i>01</i>Placare lemn și tablă</b><p>Alegi combinația: tablă vopsită, lamele din lemn natural sau ambele.</p></div></article>
+    <article class="hf-c up"><div class="hf-ph"><img src="/concept/bbb-v2/img/g-chiosc-din-lemn-natural-cu-vitrina-1200.webp" alt="Vitrină mare într-un chioșc din lemn" loading="lazy"></div><div class="hf-t"><b><i>02</i>Ferestre mari</b><p>Vitrine și uși din sticlă, puse acolo unde ai nevoie de lumină.</p></div></article>
+    <article class="hf-c up"><div class="hf-ph"><img src="/concept/bbb-v2/img/g-echipa-lucrand-la-un-cadru-modular-1200.webp" alt="Echipa lucrând la cadrul unui modul" loading="lazy"></div><div class="hf-t"><b><i>03</i>Fundație și cadru</b><p>Structura e gândită pentru transport, așa că modulul se poate muta.</p></div></article>
   </div>
 </section>
-</div>
 
 <!-- ============ STATEMENT ============ -->
 <div class="tb" aria-label="De ce să ai încredere"><div class="wrap tb-in">
@@ -1188,7 +1170,7 @@ var seen=false;try{seen=sessionStorage.getItem('bbb-intro')==='1'}catch(e){}
 if(matchMedia('(prefers-reduced-motion:reduce)').matches||/nointro/.test(location.search)||seen){el.remove();document.documentElement.classList.add('in2-done');return}
 document.body.classList.add('intro-on');
 var bar=document.getElementById('in2Bar'),t0=performance.now(),loaded=false,done=false;
-var im=document.querySelector('.fly-cam.c1 img');if(!im||im.complete)loaded=true;else{im.addEventListener('load',function(){loaded=true});im.addEventListener('error',function(){loaded=true})}
+var im=document.querySelector('.hx-media img');if(!im||im.complete)loaded=true;else{im.addEventListener('load',function(){loaded=true});im.addEventListener('error',function(){loaded=true})}
 var end=function(){if(done)return;done=true;bar.style.transform='scaleX(1)';el.classList.add('out');document.body.classList.remove('intro-on');document.documentElement.classList.add('in2-done');try{sessionStorage.setItem('bbb-intro','1')}catch(e){}setTimeout(function(){el.remove()},1100)};
 (function tick(){if(done)return;var t=performance.now()-t0,k=Math.min(loaded?1:.85,t/1500);bar.style.transform='scaleX('+k.toFixed(3)+')';if((loaded&&t>1700)||t>3600)end();else requestAnimationFrame(tick)})();
 document.getElementById('iskip').onclick=end;})();
@@ -1213,7 +1195,7 @@ document.getElementById('iskip').onclick=end;})();
   }
   (function () { var W = ['chioșcuri comerciale', 'căsuțe de târg', 'case modulare'],
       M = ['Case modulare', 'Birouri modulare', 'Chioșcuri comerciale', 'Căsuțe de târg', 'Structuri metalice', 'Pergole', 'Copertine', 'Mobilier de grădină', 'Producție proprie în Mureș'];
-    var rot = $('#heroRot'), mq = $('#heroMarq'), i = 0, DUR = 4800, timer = 0, paused = false; if (!rot) return;
+    var rot = $('#heroRot'), mq = $('#heroMarq'), i = 0, DUR = 4800, timer = 0, paused = false; if (!rot || !$('.oh-stage')) return;
     var T = window.bbbT || function (x) { return x; }; W = W.map(T); M = M.map(T);
     rot.innerHTML = W.map(function (w, k) { return '<span' + (k ? '' : ' class="on"') + '>' + w + '</span>'; }).join('');
     function fit() { var mx = 0, h = rot.parentNode; rot.style.setProperty('--rf', '1em'); [].forEach.call(rot.children, function (c) { mx = Math.max(mx, c.scrollWidth); }); var w = h.clientWidth; rot.style.setProperty('--rf', mx > w ? (w / mx).toFixed(3) + 'em' : '1em'); }
@@ -1320,67 +1302,19 @@ document.getElementById('iskip').onclick=end;})();
 <script src="/concept/bbb-v2/fx.js"></script>
 <script>
 
-/* cinematic scroll hero: hill village zoom → fog statement → the garden studio opens like a window → info points → blueprint → quote */
-(function(){
-  var fly=document.getElementById('fly');if(!fly)return;
-  if(!/[?&]nofly/.test(location.search))document.documentElement.classList.add('fly-on');
-  if(!document.documentElement.classList.contains('fly-on'))return;
-  var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var q=function(x){return fly.querySelector(x)},qa=function(x){return [].slice.call(fly.querySelectorAll(x))};
-  var oh=q('.oh'),txt=q('.oh-in'),hint=q('.fly-hint'),shade=q('.fly-shade'),m1=q('.m1'),m2=q('.m2'),fog=q('.fly-fog'),mid=q('.fly-mid'),c1=q('.fly-cam.c1'),cam=q('.fly-cam.main'),img=cam.querySelector('img'),cap2=q('.fly-cap2'),sheet=document.getElementById('flySheet');
-  var hs=qa('.hs'),bp=q('.fly-bp'),bps=bp?[].slice.call(bp.querySelectorAll('path[pathLength]')):[],bpt=bp?[].slice.call(bp.querySelectorAll('.cl>g,.tx text')):[],st=qa('.fly-st'),clg=qa('.fly-bp .cl>g'),bpb=q('.fly-bp-b');
-  var D1=c1.dataset,A1=+D1.ar,AR=+cam.dataset.ar||1.79,HX=+cam.dataset.hx||.56,HY=+cam.dataset.hy||.55,W=0,H=0,sp=0,raf=0,idle=0;
-  function clamp(v){return v<0?0:v>1?1:v}function seg(p,a,b){return clamp((p-a)/(b-a))}function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}function lerp(a,b,t){return a+(b-a)*t}
-  function cover(ar){return W/H>ar?[W,W/ar]:[H*ar,H]}
-  function size(){W=oh.clientWidth;H=oh.clientHeight;draw()}
-  function prog(){var r=fly.getBoundingClientRect();return clamp(-r.top/Math.max(1,fly.offsetHeight-innerHeight))}
-  function draw(){
-    var p=RM?0:prog();sp+=(p-sp)*.16;if(Math.abs(p-sp)<.0005)sp=p;var mob=W<900;
-    /* 1 · hill village: zoom toward the houses */
-    var cv1=cover(A1),fx1=mob?+D1.fxm:+D1.fx;c1.style.width=cv1[0]+'px';c1.style.height=cv1[1]+'px';c1.style.transformOrigin=(+D1.hx*cv1[0])+'px '+(+D1.hy*cv1[1])+'px';
-    var z1=1+1.05*ease(seg(sp,0,.32));c1.style.transform='translate('+((W-cv1[0])*fx1).toFixed(1)+'px,'+((H-cv1[1])*+D1.fy).toFixed(1)+'px) scale('+z1.toFixed(4)+')';
-    var b1=seg(sp,.24,.32);c1.style.filter=b1>0?'blur('+(b1*6).toFixed(1)+'px)':'';c1.style.visibility=sp>.52?'hidden':'visible';
-    /* 2 · fog + statement */
-    var fg=seg(sp,.2,.28)*(1-seg(sp,.46,.54));fog.style.opacity=fg.toFixed(3);fog.style.transform='scale('+(1+fg*.15).toFixed(3)+')';
-    var mi=seg(sp,.22,.27)*(1-seg(sp,.34,.38));mid.style.opacity=mi.toFixed(3);mid.style.visibility=mi>0?'visible':'hidden';mid.style.filter=mi<1?'blur('+((1-mi)*8).toFixed(1)+'px)':'';mid.style.transform='translate(-50%,calc(-50% + '+((sp-.3)*-420).toFixed(1)+'px))';
-    /* 3 · garden studio opens like a window out of the fog */
-    var cv=cover(AR),bw,bh,ox,oy,z=1;
-    if(mob){bw=W*1.3;bh=bw/AR;ox=(W-bw)*.62;oy=Math.max(104,H*.13);if(cap2)cap2.style.top=(oy+bh+24)+'px'}
-    else{bw=cv[0];bh=cv[1];ox=(W-bw)*.5;oy=(H-bh)*.5;z=1+.08*ease(seg(sp,.5,.64))}
-    var rv=ease(seg(sp,.39,.52)),vis=sp>.38;
-    cam.style.visibility=vis?'visible':'hidden';cam.style.opacity=seg(sp,.38,.42).toFixed(3);
-    cam.style.width=bw+'px';cam.style.height=bh+'px';cam.style.transformOrigin=(HX*bw)+'px '+(HY*bh)+'px';
-    cam.style.transform='translate('+ox.toFixed(1)+'px,'+oy.toFixed(1)+'px) scale('+z.toFixed(4)+')';cam.style.setProperty('--z',z.toFixed(4));
-    var it=(1-rv),ix=mob?it*22:it*24,iy=mob?it*26:it*30,rr=mob?(4+it*20):(it*28);
-    cam.style.clipPath=rv<1?'inset('+iy.toFixed(2)+'% '+ix.toFixed(2)+'% round '+rr.toFixed(1)+'px)':(mob?'inset(0 round 4px)':'none');
-    img.style.transform='scale('+(1+.18*(1-rv)).toFixed(4)+')';
-    var dk=seg(sp,.62,.68);cam.style.filter=dk>0?'brightness('+(1-dk*.72).toFixed(3)+') saturate('+(1-dk*.6).toFixed(3)+')':'';
-    /* headline, shade, mist */
-    var h=seg(sp,.02,.1);txt.style.opacity=(1-h).toFixed(3);txt.style.transform='translateY('+(-50*h).toFixed(1)+'px)';txt.style.filter=h>0?'blur('+(h*8).toFixed(1)+'px)':'';txt.style.visibility=h>=1?'hidden':'';
-    if(hint)hint.style.opacity=(1-seg(sp,0,.05)).toFixed(3);
-    shade.style.opacity=(1-.65*seg(sp,.04,.2)).toFixed(3);
-    var me=ease(seg(sp,0,.32));m1.style.transform='translate('+(-40*me)+'%,'+(10*me)+'%) scale('+(1+me*.9)+')';m1.style.opacity=(.5*(1-seg(sp,.3,.45))).toFixed(3);
-    m2.style.transform='translate('+(35*me)+'%,'+(-10*me)+'%) scale('+(1+me*.7)+')';m2.style.opacity=(.35*(1-seg(sp,.35,.5))).toFixed(3);
-    /* info points + caption */
-    var hp=Math.max(p,sp),hin=function(i){return hp>.52+i*.025&&hp<.62};
-    hs.forEach(function(el,i){el.classList.toggle('on',hin(i));if(!hin(i))el.classList.remove('open')});if(!hin(0)&&sheet)sheet.classList.remove('on');
-    if(cap2){var cc=seg(sp,.5,.55)*(1-seg(sp,.61,.64));cap2.style.opacity=cc.toFixed(3);cap2.style.visibility=cc>0?'visible':'hidden';cap2.style.transform='translateY('+((1-seg(sp,.5,.55))*16).toFixed(1)+'px)'}
-    /* blueprint + steps + quote */
-    if(bp){var bpo=seg(sp,.62,.67),bk=seg(sp,.64,.76);bp.style.opacity=bpo.toFixed(3);bp.style.visibility=bpo>0?'visible':'hidden';
-      bps.forEach(function(x,i){var a=i/bps.length*.55,v=clamp((bk-a)/.45);x.style.setProperty('--d',(1-v).toFixed(3))});bpt.forEach(function(t){t.style.opacity=bk>.8?1:0});
-      var act=sp<.78?-1:sp<.85?0:sp<.92?1:2;st.forEach(function(x,i){x.classList.toggle('on',i<=act);x.classList.toggle('cur',i===act)});clg.forEach(function(x,i){x.classList.toggle('cur',i===act)});if(bpb)bpb.classList.toggle('on',sp>.93)}
-    var r2=fly.getBoundingClientRect();if(!RM&&(Math.abs(p-sp)>.0005||(r2.bottom>0&&r2.top<innerHeight&&++idle<90)))raf=requestAnimationFrame(draw);else{raf=0;idle=0}
-    if(Math.abs(p-sp)>.0005)idle=0;
-  }
-  hs.forEach(function(el){el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();el.click()}});el.addEventListener('click',function(e){if(e.target.closest('a'))return;var o=!el.classList.contains('open');hs.forEach(function(x){x.classList.remove('open')});el.classList.toggle('open',o);if(sheet){sheet.innerHTML=o?el.querySelector('span').innerHTML:'';sheet.classList.toggle('on',o)}})});
-  document.addEventListener('click',function(e){if(e.target.closest('.hs,.fly-sheet'))return;hs.forEach(function(x){x.classList.remove('open')});if(sheet)sheet.classList.remove('on')});
-  addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(draw)},{passive:true});
-  addEventListener('resize',size);var im1=c1.querySelector('img');if(im1.complete)size();else im1.addEventListener('load',size);size();
+
+
+
+
+
+
+/* hero: rotating product word + gentle parallax on the photo */
+(function(){var rot=document.getElementById('hxRot');if(!rot)return;var T=window.bbbT||function(x){return x};
+  var W=['case modulare','chioșcuri','căsuțe de târg','studiouri'].map(T),i=0;
+  rot.innerHTML=W.map(function(w,k){return '<span'+(k?'':' class="on"')+'>'+w+'</span>'}).join('');
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){setInterval(function(){if(document.hidden)return;var c=rot.children[i];c.classList.remove('on');c.classList.add('out');setTimeout(function(){c.classList.remove('out')},800);i=(i+1)%W.length;rot.children[i].classList.add('on')},3200);
+    var m=document.querySelector('.hx-media'),hx=document.querySelector('.hx'),tk=false;addEventListener('scroll',function(){if(tk)return;tk=true;requestAnimationFrame(function(){tk=false;var y=scrollY;if(y<hx.offsetHeight*1.2)m.style.translate='0 '+(y*.28).toFixed(1)+'px'})},{passive:true})}
 })();
-
-
-
-
 /* buttons that open the form with a product already chosen */
 document.addEventListener('click',function(e){var a=e.target.closest('[data-prod]');if(!a)return;var bs=document.querySelectorAll('.chips[data-one="prod"] button');bs.forEach(function(x,i){x.classList.toggle('on',i===+a.dataset.prod)});});
 </script>

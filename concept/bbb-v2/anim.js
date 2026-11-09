@@ -5,7 +5,7 @@
 (function () {
   var RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
-  var home = !!document.querySelector('.oh');
+  var home = !!document.querySelector('.oh,.hx');
 
   /* 1 · curtain: covers the page while it loads, lifts when ready, closes again before leaving */
   var cur = null;
