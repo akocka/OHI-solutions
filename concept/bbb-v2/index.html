@@ -689,7 +689,7 @@ body.intro-on .oh *{animation-play-state:paused!important}
 .fly{position:relative}
 .fly-scene,.fly-cap,.fly-hint{display:none}
 html.fly-on .fly{height:720vh}
-html.fly-on .fly>.oh{position:sticky;top:0;height:100vh;height:100svh;min-height:0!important;padding-bottom:0!important;align-items:center;background:#111B16}
+html.fly-on .fly>.oh{position:sticky;top:0;height:100vh;height:100lvh;min-height:0!important;padding-bottom:0!important;align-items:center;background:#111B16}
 html.fly-on .oh-stage,html.fly-on .oh-bg{display:none!important}
 html.fly-on .fly-scene{display:block;position:absolute;inset:0;overflow:hidden;z-index:0}
 .fly-cam{position:absolute;left:0;top:0;will-change:transform}
@@ -828,46 +828,39 @@ html.fly-on .fly-cap2{display:block;position:absolute;z-index:4;left:clamp(20px,
   .fly-cam.c2 .fly-img{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 93%,transparent 100%)}
   html.fly-on .fly-c2bg{display:none;position:absolute;inset:-40px;background:center/cover no-repeat url(/concept/bbb-v2/img/fly-gradina-1800.webp);filter:blur(28px) brightness(.55);opacity:0}
 }
+
+/* ===== cinematic intro (replaces the kiosk drawing): logo, copper loading line, then the hero scene fades in from behind ===== */
+#intro.in2{background:#0E1612!important;gap:0;transition:opacity 1s cubic-bezier(.4,0,.2,1),filter 1s,transform 1.1s cubic-bezier(.4,0,.2,1)}
+#intro.in2::before{background:radial-gradient(60% 50% at 50% 55%,rgba(200,116,58,.10),transparent 70%)!important}
+#intro.in2.out{opacity:0;filter:blur(8px);transform:scale(1.06)}
+.in2-c{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
+.in2-logo{width:min(150px,36vw);height:auto;opacity:0;transform:translateY(10px) scale(.96);animation:in2Up .9s .15s cubic-bezier(.2,.8,.2,1) forwards}
+.in2-line{width:min(220px,52vw);height:2px;margin:26px 0 20px;background:rgba(239,235,226,.12);border-radius:2px;overflow:hidden;opacity:0;animation:in2Fade .6s .5s forwards}
+.in2-line i{display:block;height:100%;background:var(--amber);transform-origin:left;transform:scaleX(0);box-shadow:0 0 12px rgba(200,116,58,.8)}
+.in2-t{margin:0;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;font:600 11.5px var(--fd);letter-spacing:.24em;text-transform:uppercase;color:rgba(239,235,226,.7)}
+.in2-t span{opacity:0;transform:translateY(8px);animation:in2Up .7s cubic-bezier(.2,.8,.2,1) forwards}
+.in2-t span:nth-child(1){animation-delay:.7s}.in2-t span:nth-child(2){animation-delay:.85s}.in2-t span:nth-child(3){animation-delay:1s;color:#E8A97A}
+.in2-t span+span::before{content:"·";margin-right:10px;color:rgba(239,235,226,.35)}
+.in2-skip{position:absolute;right:22px;bottom:calc(22px + env(safe-area-inset-bottom,0px));border:1px solid rgba(239,235,226,.2);background:transparent;color:rgba(239,235,226,.7);font:600 12px var(--fd);letter-spacing:.08em;padding:9px 16px;border-radius:999px;cursor:pointer}
+@keyframes in2Up{to{opacity:1;transform:none}}@keyframes in2Fade{to{opacity:1}}
+/* the hero scene settles in as the intro lifts */
+html:not(.in2-done) .fly-cam.c1 img{transform:scale(1.08)}
+.fly-cam.c1 img{transition:transform 2.2s cubic-bezier(.2,.8,.2,1)}
+html:not(.in2-done) .oh-in{opacity:0}
+/* numbers section in the main colour (was a different green) */
+.nb{background:#18211C!important}
 </style>
 <link rel="stylesheet" href="/concept/bbb-v2/fx.css">
 <link rel="stylesheet" href="/concept/bbb-v2/anim.css">
 </head>
 <body>
-<div id="intro" aria-hidden="true">
-  <svg class="ib-kiosk" viewBox="0 0 320 250">
-    <defs>
-      <linearGradient id="ibPine" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F0C489"/><stop offset="1" stop-color="#C98F50"/></linearGradient>
-      <radialGradient id="ibGlow"><stop offset="0" stop-color="#FFC877" stop-opacity=".9"/><stop offset="1" stop-color="#FFB050" stop-opacity="0"/></radialGradient>
-    </defs>
-    <g class="fl">
-      <polygon points="44,124 160,50 276,124 276,132 160,58 44,132" fill="#2B2E33"/>
-      <polygon points="70,112 160,62 250,112" fill="#1A1C1F"/>
-      <rect x="70" y="110" width="180" height="104" fill="#1D2024"/>
-      <rect x="102" y="132" width="116" height="52" fill="url(#ibPine)"/>
-      <rect x="78" y="112" width="16" height="102" fill="#9A5C2A"/><rect x="226" y="112" width="16" height="102" fill="#9A5C2A"/>
-      <rect x="94" y="184" width="132" height="8" fill="#C17E43"/>
-      <rect x="58" y="214" width="204" height="10" fill="#33373C"/>
-      <path d="M64 112H256M160 62V112M160 86L118 112M160 86L202 112" stroke="#C17E43" stroke-width="6" fill="none"/>
-    </g>
-    <g class="lt">
-      <ellipse cx="160" cy="158" rx="92" ry="46" fill="url(#ibGlow)"/>
-      <ellipse cx="98" cy="146" rx="9" ry="24" fill="url(#ibGlow)"/><ellipse cx="222" cy="146" rx="9" ry="24" fill="url(#ibGlow)"/>
-    </g>
-    <g class="ln">
-      <path pathLength="1" style="--d:0" d="M18 228H302"/>
-      <path pathLength="1" style="--d:1" d="M58 214H262V224H58Z"/>
-      <path pathLength="1" style="--d:2" d="M70 214V110H250V214"/>
-      <path pathLength="1" style="--d:3" d="M44 124L160 50L276 124M44 132L160 58L276 132"/>
-      <path pathLength="1" style="--d:4" d="M64 112H256M160 62V112M160 86L118 112M160 86L202 112"/>
-      <path pathLength="1" style="--d:5" d="M102 132H218V184H102ZM160 132V184"/>
-      <path pathLength="1" style="--d:6" d="M94 184H226V192H94Z"/>
-      <path pathLength="1" style="--d:6" d="M82 112V214M86 112V214M90 112V214M230 112V214M234 112V214M238 112V214"/>
-      <path pathLength="1" style="--d:7" d="M96 140h5v12h-5ZM219 140h5v12h-5Z"/>
-    </g>
-  </svg>
-  <div class="ib-logo"><img class="ib-real" src="/concept/bbb-v2/img/logo-big-big-boon-360.webp" alt="" width="900" height="618"></div>
-  <p class="ib-cap" data-t="introCap">Metal și lemn. <em>Construit să dureze.</em></p>
-  <button type="button" class="ib-skip" id="iskip"><span data-t="k3skip">Sari peste</span> →</button>
+<div id="intro" class="in2" aria-hidden="true">
+  <div class="in2-c">
+    <img class="in2-logo" src="/concept/bbb-v2/img/logo-bbb.webp" alt="" width="440" height="235">
+    <div class="in2-line"><i id="in2Bar"></i></div>
+    <p class="in2-t"><span>Construcții modulare</span><span>din metal și lemn</span><span>Mureș</span></p>
+  </div>
+  <button type="button" class="in2-skip" id="iskip">Sari peste</button>
 </div>
 <div class="rib">Previzualizare · <span class="lg">cifre orientative, de confirmat</span> · OHI Solutions</div>
 
@@ -1189,12 +1182,16 @@ html.fly-on .fly-cap2{display:block;position:absolute;z-index:4;left:clamp(20px,
 <footer><div class="wrap"><div><img src="/concept/bbb-v2/img/logo-big-big-boon-360.webp" alt="Big Big Boon" width="360" height="190"><br>BIG BIG BOON 2020 SRL · Miercurea Nirajului, Mureș</div><div><div class="ft-l"><a href="/concept/bbb-v2/preturi">Prețuri</a><a href="/concept/bbb-v2/despre">Despre noi</a><a href="/concept/bbb-v2/echipa">Echipa</a><a href="/concept/bbb-v2/blog">Blog</a><a href="/concept/bbb-v2/contact">Contact</a></div><div class="ft-l sm"><a href="/concept/bbb-v2/confidentialitate">Confidențialitate</a><a href="/concept/bbb-v2/cookie">Cookie-uri</a><a href="/concept/bbb-v2/termeni">Termeni</a></div><p style="margin-top:16px"><a class="anpc-sal" href="https://reclamatiisal.anpc.ro" target="_blank" rel="noopener noreferrer" aria-label="ANPC – Soluționarea alternativă a litigiilor"><b>ANPC</b><span>SAL · Soluționarea alternativă a litigiilor</span></a></p><br>Concept de redesign realizat de OHI Solutions.<br>Cifrele și textele sunt orientative, de confirmat cu Big Big Boon.</div></div></footer>
 
 <script>
-/* intro: same as bigbigboon.ro */
+/* intro: short cinematic opening that hands over to the hero scene */
 (function(){var el=document.getElementById('intro');if(!el)return;
-if(matchMedia('(prefers-reduced-motion:reduce)').matches||/nointro/.test(location.search)){el.remove();return}
+var seen=false;try{seen=sessionStorage.getItem('bbb-intro')==='1'}catch(e){}
+if(matchMedia('(prefers-reduced-motion:reduce)').matches||/nointro/.test(location.search)||seen){el.remove();document.documentElement.classList.add('in2-done');return}
 document.body.classList.add('intro-on');
-var end=function(){if(!el.isConnected||el.classList.contains('out'))return;el.classList.add('out');document.body.classList.remove('intro-on');try{sessionStorage.setItem('bbb-intro','1')}catch(e){}setTimeout(function(){el.remove()},900)};
-document.getElementById('iskip').onclick=end;el.addEventListener('click',function(e){if(e.target===el)end()});setTimeout(end,3700);})();
+var bar=document.getElementById('in2Bar'),t0=performance.now(),loaded=false,done=false;
+var im=document.querySelector('.fly-cam.c1 img');if(!im||im.complete)loaded=true;else{im.addEventListener('load',function(){loaded=true});im.addEventListener('error',function(){loaded=true})}
+var end=function(){if(done)return;done=true;bar.style.transform='scaleX(1)';el.classList.add('out');document.body.classList.remove('intro-on');document.documentElement.classList.add('in2-done');try{sessionStorage.setItem('bbb-intro','1')}catch(e){}setTimeout(function(){el.remove()},1100)};
+(function tick(){if(done)return;var t=performance.now()-t0,k=Math.min(loaded?1:.85,t/1500);bar.style.transform='scaleX('+k.toFixed(3)+')';if((loaded&&t>1700)||t>3600)end();else requestAnimationFrame(tick)})();
+document.getElementById('iskip').onclick=end;})();
 </script>
 <script src="/concept/bbb-v2/js/i18n.js"></script>
 <script src="/concept/bbb-v2/js/gsap.min.js"></script>

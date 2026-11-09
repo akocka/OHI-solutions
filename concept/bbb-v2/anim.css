@@ -55,5 +55,8 @@ input:focus,select:focus,textarea:focus{transform:translateY(-1px)}
   .oh-cta,.st-b,.rf-b,.ctas{display:flex!important;flex-direction:row!important;flex-wrap:wrap;gap:8px!important;align-items:center}
   .oh-cta .btn,.st-b .btn,.rf-b .btn,.ctas .btn{flex:0 0 auto!important;width:auto!important}
   .fcta,.mcta{height:48px!important;font-size:14.5px!important}
-  body{padding-bottom:70px}
+  body.showcta{padding-bottom:70px}
 }
+
+/* parallax on photos uses the translate property so the hover zoom (scale) keeps working */
+img.an-px{translate:0 var(--py,0);will-change:translate}

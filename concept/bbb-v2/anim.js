@@ -102,6 +102,25 @@
     gsap.fromTo(im, { clipPath: 'inset(18% 0% 0% 0% round 22px)', scale: 1.12 }, { clipPath: 'inset(0% 0% 0% 0% round 22px)', scale: 1, duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: box, start: 'top 90%', once: true }, clearProps: 'clipPath' });
   });
 
+
+  /* 9 · photos drift a little slower than the page (parallax), without touching their hover zoom */
+  $$('.fx-zpar img, .gl-g figure img, .fd-ph img, section .ph img').forEach(function (im) {
+    if (im.closest('.fly,.pq-c,.b3')) return;
+    gsap.fromTo(im, { '--py': '-7%' }, { '--py': '7%', ease: 'none', scrollTrigger: { trigger: im.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
+    im.classList.add('an-px');
+  });
+
+  /* 10 · big numbers count up when they appear */
+  $$('.nb b').forEach(function (b) {
+    var tn = [].slice.call(b.childNodes).filter(function (n) { return n.nodeType === 3 && /\d/.test(n.textContent); })[0];
+    if (!tn) return; var m = tn.textContent.match(/(\d+)/); if (!m) return;
+    var target = +m[1], pre = tn.textContent.slice(0, m.index), post = tn.textContent.slice(m.index + m[1].length), o = { v: 0 };
+    tn.textContent = pre + '0' + post;
+    ScrollTrigger.create({ trigger: b, start: 'top 85%', once: true, onEnter: function () {
+      gsap.to(o, { v: target, duration: 1.6, ease: 'power3.out', onUpdate: function () { tn.textContent = pre + Math.round(o.v) + post; } });
+    } });
+  });
+
   /* 7 · safety net: whatever happens, nothing stays invisible */
   setTimeout(function () { ScrollTrigger.refresh(); }, 1200);
   addEventListener('load', function () { ScrollTrigger.refresh(); });
