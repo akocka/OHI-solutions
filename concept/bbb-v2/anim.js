@@ -5,7 +5,7 @@
 (function () {
   var RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
-  var home = !!document.querySelector('.oh,.hx');
+  var home = !!document.querySelector('.oh,.hx,.h3');
 
   /* 1 · curtain: covers the page while it loads, lifts when ready, closes again before leaving */
   var cur = null;
@@ -47,7 +47,7 @@
   gsap.registerPlugin(ScrollTrigger);
 
   // things that already have their own motion (or must not move)
-  var SKIP = 'header,nav,.nav,.mm,.mmenu,#intro,.oh,.b3,.pr,.fcta,.mcta,.rib,.pv-rib,.an-cur,.pq-cfg,.mo-w,.an-w,.up,.rv,.tv,.tv-img,#stmt,.mq,.oh-mq,form .err,[aria-hidden="true"]';
+  var SKIP = '.h3,header,nav,.nav,.mm,.mmenu,#intro,.oh,.b3,.pr,.fcta,.mcta,.rib,.pv-rib,.an-cur,.pq-cfg,.mo-w,.an-w,.up,.rv,.tv,.tv-img,#stmt,.mq,.oh-mq,form .err,[aria-hidden="true"]';
   var free = function (el) { return !el.closest(SKIP) && !el.dataset.an; };
 
   /* 3 · headings rise word by word */
