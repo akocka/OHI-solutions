@@ -52,11 +52,27 @@
     calc: { name: 'Calculator rate', group: 'Pluginuri', plugin: 'rates', variants: [['card', 'Calculator']],
       d: { title: 'Plătești în rate', text: 'Vezi cât ar fi rata lunară.', navLabel: '', min: 5000, max: 150000, def: 30000 },
       f: [['title', 'Titlu', 'text'], ['text', 'Text', 'area']] },
+    text: { name: 'Text', group: 'Conținut', variants: [['one', 'O coloană'], ['two', 'Titlu în stânga']],
+      d: { kicker: '', title: 'Povestea noastră', body: 'Scrie aici, pe scurt, cine ești și cum lucrezi.\n\nUn al doilea paragraf, dacă ai nevoie.', navLabel: '' },
+      f: [['kicker', 'Text mic deasupra', 'text'], ['title', 'Titlu', 'text'], ['body', 'Text (rând gol = paragraf nou)', 'long'], ['navLabel', 'Nume în meniu', 'text']] },
+    form: { name: 'Formular', group: 'Clienți', variants: [['card', 'Card'], ['split', 'Cu text alături']],
+      d: { title: 'Scrie-ne', text: 'Îți răspundem în aceeași zi lucrătoare.', navLabel: 'Contact', btn: 'Trimite', ok: 'Mulțumim! Te contactăm în curând.',
+        consent: 'Folosim datele doar ca să-ți răspundem.', fields: [{ l: 'Nume', t: 'text', r: true }, { l: 'Telefon', t: 'tel', r: true }, { l: 'Mesaj', t: 'area', r: false }] },
+      f: [['title', 'Titlu', 'text'], ['text', 'Text', 'area'], ['fields', 'Câmpuri', 'fields'], ['btn', 'Buton', 'text'], ['ok', 'Mesaj după trimitere', 'text'], ['consent', 'Text despre date (GDPR)', 'area'], ['navLabel', 'Nume în meniu', 'text']] },
+    blog: { name: 'Noutăți (blog)', group: 'Conținut', variants: [['cards', 'Carduri'], ['list', 'Listă']],
+      d: { title: 'Noutăți', text: '', navLabel: 'Noutăți', count: 3 },
+      f: [['title', 'Titlu', 'text'], ['text', 'Text', 'area'], ['count', 'Câte articole arată', 'num'], ['navLabel', 'Nume în meniu', 'text']] },
+    reviews: { name: 'Recenzii', group: 'Conținut', variants: [['cards', 'Carduri'], ['quote', 'Un citat mare']],
+      d: { title: 'Ce spun clienții', text: '', navLabel: '', items: [{ t: 'Numele clientului', x: 'Lipește aici o recenzie reală (de pe Google sau primită de la client), cu acordul lui.' }] },
+      f: [['title', 'Titlu', 'text'], ['items', 'Recenzii (doar reale)', 'items']] },
+    team: { name: 'Echipa', group: 'Conținut', variants: [['cards', 'Carduri']],
+      d: { title: 'Echipa', text: '', navLabel: '', items: [{ t: 'Nume Prenume', x: 'Ce face în echipă.' }] },
+      f: [['title', 'Titlu', 'text'], ['text', 'Text', 'area'], ['items', 'Oameni', 'items']] },
     footer: { name: 'Subsol', group: 'Bază', variants: [['simple', 'Simplu']], d: { name: '', line: 'Târgu Mureș' }, f: [['name', 'Nume', 'text'], ['line', 'Text', 'text']] }
   };
   var block = function (type, d, s, v) {
     var L = LIB[type]; var data = JSON.parse(JSON.stringify(L.d)); Object.keys(d || {}).forEach(function (k) { data[k] = d[k]; });
-    return { id: uid(), type: type, v: v || L.variants[0][0], d: data, s: Object.assign({ bg: 'bg', pad: 'm', align: 'left', width: 'normal', anim: 'inherit', btn: 'inherit', img: 'right' }, s || {}) };
+    return { id: uid(), type: type, v: v || L.variants[0][0], d: data, s: Object.assign({ bg: 'bg', pad: 'm', align: 'left', width: 'normal', anim: 'inherit', btn: 'inherit', img: 'right', vis: 'all', fx: 'none' }, s || {}) };
   };
   var brand = function (name, pal, fonts, extra) {
     var p = PALETTES.filter(function (x) { return x.id === pal; })[0] || PALETTES[0], f = FONT_PAIRS.filter(function (x) { return x.id === fonts; })[0] || FONT_PAIRS[0];
@@ -84,7 +100,7 @@
   var DEF = { type: 'firma', pal: 'grafit', fonts: 'curat', book: false, hero: 'split', title: function (n) { return n + ': tot ce ai nevoie, într-un singur loc'; },
     feats: [['Răspundem repede', 'Îți scriem sau te sunăm în aceeași zi.'], ['Prețuri clare', 'Știi de la început cât costă.'], ['Aproape de tine', 'Suntem din zonă și venim la tine.']], prices: [['Serviciu', 'de la 100 lei']], services: [] };
 
-  function generate(prompt) {
+  function generate(prompt, multi) {
     var p = String(prompt || ''), kind = KINDS.filter(function (k) { return k.k.test(p); })[0] || DEF;
     var name = (p.match(/(?:numit|numele|se nume[sș]te|firma|salonul|pensiunea|restaurantul|atelierul)\s+[„"']?([A-ZĂÂÎȘȚ][\wăâîșțĂÂÎȘȚ\- ]{1,30}?)(?=[,.„"'”]|\s+(?:din|în|la|cu|și)\b|$)/) || [])[1] ||
       (p.match(/[„"']([^"'”]{2,30})[”"']/) || [])[1] || 'Afacerea ta';
@@ -103,8 +119,46 @@
     blocks.push(block('hours', { address: city ? 'Strada, număr, ' + city : 'Strada, număr, oraș', phone: phone }));
     blocks.push(block('cta', { title: 'Hai să vorbim', text: 'Ne găsești la ' + phone + '. Îți răspundem azi.', btn: 'Sună acum', btn2: 'WhatsApp' }, { bg: 'dark', align: 'center' }, 'band'));
     blocks.push(block('footer', { name: name, line: city || '' }));
-    return { brand: brand(name, kind.pal, kind.fonts), blocks: blocks };
+    var m = normalize({ brand: brand(name, kind.pal, kind.fonts), blocks: blocks });
+    m.seo = { title: name + (city ? ' · ' + city : ''), desc: kind.title(name, city) + '.' };
+    if (multi) { m.pages.push(page('despre', m)); m.pages.push(page('contact', m)); }
+    return m;
   }
+
+  /* ---------- pages, posts, site settings ---------- */
+  var slugify = function (t) {
+    return String(t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60) || 'pagina';
+  };
+  function normalize(m) {
+    m.pages = m.pages || []; m.posts = m.posts || []; m.seo = m.seo || {};
+    m.settings = Object.assign({ lang: 'ro', cookie: false, cookieText: 'Folosim doar cookie-uri necesare ca site-ul să funcționeze. Harta și video-urile externe se încarcă doar dacă ești de acord.', wa: false, waPhone: '', waText: 'Bună ziua! Am o întrebare.' }, m.settings || {});
+    m.blocks.concat.apply(m.blocks, m.pages.map(function (p) { return p.blocks; })).forEach(function (b) { b.s = b.s || {}; b.s.vis = b.s.vis || 'all'; });
+    return m;
+  }
+  var PAGE_PRESETS = {
+    gol: { title: 'Pagină nouă', blocks: function () { return [block('text', { title: 'Titlul paginii' })]; } },
+    despre: { title: 'Despre noi', blocks: function (n) { return [block('text', { kicker: 'Despre ' + n, title: 'Cine suntem' }, { pad: 'l' }), block('team', {}, { bg: 'surface' }), block('cta', {}, { bg: 'dark', align: 'center' })]; } },
+    servicii: { title: 'Servicii și prețuri', blocks: function () { return [block('text', { title: 'Ce facem' }), block('prices', {}, { bg: 'surface' }), block('faq')]; } },
+    contact: { title: 'Contact', blocks: function () { return [block('form', {}, { bg: 'surface', align: 'center' }), block('hours')]; } },
+    noutati: { title: 'Noutăți', blocks: function () { return [block('blog', { count: 9 }, { pad: 'l' })]; } }
+  };
+  function page(kind, model) {
+    var P = PAGE_PRESETS[kind] || PAGE_PRESETS.gol, used = (model.pages || []).map(function (x) { return x.slug; }), base = slugify(P.title), sl = base, i = 2;
+    while (used.indexOf(sl) > -1) sl = base + '-' + i++;
+    return { id: 'p' + uid().slice(1), title: P.title, slug: sl, nav: true, seo: {}, blocks: P.blocks(model.brand.name) };
+  }
+  function post(title) {
+    return { id: 'a' + uid().slice(1), title: title || 'Articol nou', slug: slugify(title || 'articol-nou') + '-' + uid().slice(1, 4), date: new Date().toISOString().slice(0, 10),
+      excerpt: '', body: 'Scrie aici articolul.\n\n## Un subtitlu\n\nAlt paragraf.', cover: '', published: false };
+  }
+  var TEMPLATES = [
+    { id: 'salon', name: 'Salon și înfrumusețare', desc: 'Programări online, prețuri, galerie.', prompt: 'Salon de înfrumusețare numit „Salonul Tău” din Târgu Mureș, vrem programări online', pal: 'roz' },
+    { id: 'pensiune', name: 'Pensiune sau cazare', desc: 'Camere, rezervări directe, hartă.', prompt: 'Pensiunea „Casa din Deal” din Sovata, camere și mic dejun', pal: 'padure' },
+    { id: 'restaurant', name: 'Restaurant sau cafenea', desc: 'Meniu, rezervări, program.', prompt: 'Restaurant numit „La Masă” din Cluj, rezervări', pal: 'noapte' },
+    { id: 'auto', name: 'Service auto', desc: 'Servicii, programare, pași clari.', prompt: 'Service auto numit „Auto Plus” din Reghin, programări', pal: 'mare' },
+    { id: 'atelier', name: 'Atelier, construcții, meșteri', desc: 'Lucrări, calculator de rate, ofertă.', prompt: 'Atelier de tâmplărie numit „Lemn Bun” din Reghin, mobilier la comandă, plată în rate', pal: 'lut' },
+    { id: 'firma', name: 'Orice altă firmă', desc: 'Un început curat, ușor de adaptat.', prompt: 'Firmă numită „Firma Ta”', pal: 'grafit' }
+  ];
 
   /* "edit by message": understands a few simple Romanian instructions */
   var COLORS = { verde: '#2F6B45', albastru: '#1F6FB2', rosu: '#C0392B', roșu: '#C0392B', portocaliu: '#E8641B', galben: '#E9B44C', mov: '#6D4DC2', roz: '#C2456B', negru: '#141414', maro: '#8A5A3B', auriu: '#C9A227', turcoaz: '#14A3A3' };
@@ -153,8 +207,8 @@
     blocks.push(block('hours', { hours: c.hours || [], address: c.address, phone: c.phone, map: !!a.map }));
     blocks.push(block('cta', { title: 'Hai să vorbim', text: 'Ne găsești la ' + (c.phone || '') + '.', btn: 'Sună acum', btn2: 'WhatsApp' }, { bg: 'dark', align: 'center' }));
     blocks.push(block('footer', { name: site.name, line: c.address || '' }));
-    return { brand: brand(site.name, kind, fonts), blocks: blocks };
+    return normalize({ brand: brand(site.name, kind, fonts), blocks: blocks, seo: { title: site.name, desc: c.heroText || '' } });
   }
 
-  window.OHIModel = { LIB: LIB, PALETTES: PALETTES, FONT_PAIRS: FONT_PAIRS, block: block, brand: brand, generate: generate, command: command, uid: uid, fromSite: fromSite };
+  window.OHIModel = { normalize: normalize, page: page, post: post, slugify: slugify, PAGE_PRESETS: PAGE_PRESETS, TEMPLATES: TEMPLATES, LIB: LIB, PALETTES: PALETTES, FONT_PAIRS: FONT_PAIRS, block: block, brand: brand, generate: generate, command: command, uid: uid, fromSite: fromSite };
 })();
