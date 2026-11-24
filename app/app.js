@@ -14,6 +14,16 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
   var site = function () { return S.sites.filter(function (x) { return x.id === S.siteId; })[0] || S.sites[0]; };
+  /* every site has a block model (made by the visual editor); quick edits are copied into it */
+  var modelOf = function (x) {
+    var src = x.model ? copy(x.model) : window.OHIModel.fromSite(x), c = x.content || {};
+    var first = function (t) { return src.blocks.filter(function (b) { return b.type === t; })[0]; };
+    var h = first('hero'), pr = first('prices'), ho = first('hours');
+    if (h) { h.d.title = c.heroTitle; h.d.text = c.heroText; }
+    if (pr) pr.d.items = copy(c.prices || []);
+    if (ho) { ho.d.hours = copy(c.hours || []); ho.d.address = c.address; ho.d.phone = c.phone; }
+    return src;
+  };
   var initials = function (n) { return n.split(' ').map(function (w) { return w[0]; }).join('').slice(0, 2).toUpperCase(); };
   var when = function (iso) {
     var d = new Date(iso), m = ['ian', 'feb', 'mar', 'apr', 'mai', 'iun', 'iul', 'aug', 'sep', 'oct', 'nov', 'dec'];
@@ -46,7 +56,7 @@
   var STATUS = { nou: 'Nou', sunat: 'Sunat', oferta: 'Ofertă trimisă', client: 'Client', inchis: 'Închis' };
   var SITE_ST = { live: 'Online', preview: 'Gata de aprobat', progress: 'În lucru' };
   var ROUTES = [
-    ['acasa', 'Acasă', 'home'], ['cereri', 'Cereri', 'inbox'], ['site', 'Site-ul meu', 'edit'], ['functii', 'Funcții', 'plug'],
+    ['acasa', 'Acasă', 'home'], ['cereri', 'Cereri', 'inbox'], ['site', 'Site-ul meu', 'edit'], ['functii', 'Pluginuri', 'plug'],
     ['gazduire', 'Domeniu și găzduire', 'globe', 1], ['facturi', 'Plan și facturi', 'card', 1], ['ajutor', 'Ajutor', 'help']
   ];
   var route = function () { var r = (location.hash || '').replace(/^#\/?/, ''); return ROUTES.some(function (x) { return x[0] === r; }) ? r : 'acasa'; };
@@ -98,10 +108,10 @@
     return '<div class="tb"><div><h1>Bună, ' + esc(demo.user.name) + '</h1><p>' + (nl.length ? 'Ai ' + nl.length + ' ' + (nl.length === 1 ? 'cerere nouă' : 'cereri noi') + ' de la clienți.' : 'Totul e la zi.') + '</p></div>' +
       '<div class="tb-a"><a class="bt bt-s" href="#/site">' + ic('edit') + 'Editează site-ul</a></div></div>' +
       '<div class="g g-main"><div class="g">' +
-        '<section class="cd site-cd"><div class="thumb"><iframe src="/app/site.html" title="Previzualizare ' + esc(s.name) + '" tabindex="-1" data-pv></iframe></div>' +
+        '<section class="cd site-cd"><div class="thumb"><iframe src="/app/render.html" title="Previzualizare ' + esc(s.name) + '" tabindex="-1" data-pv></iframe></div>' +
         '<div><span class="st ' + s.status + '">' + SITE_ST[s.status] + '</span><h2>' + esc(s.name) + '</h2><p class="dom">' + esc(s.domain) + ' · șablon ' + esc(s.template) + '</p>' +
         '<div class="tb-a">' + (s.status === 'preview' ? '<button class="bt bt-p" type="button" data-act="approve">Aprobă și publică</button>' : '') +
-        '<a class="bt bt-s" href="/app/site.html" target="_blank" rel="noopener" data-act="open">' + ic('ext') + 'Vezi site-ul</a></div></div></section>' +
+        '<a class="bt bt-p" href="/app/builder.html?site=' + encodeURIComponent(s.id) + '">' + ic('edit') + 'Editor vizual</a><a class="bt bt-s" href="/app/render.html?site=' + encodeURIComponent(s.id) + '" target="_blank" rel="noopener" data-act="openmodel">' + ic('ext') + 'Vezi site-ul</a></div></div></section>' +
         '<section class="cd"><div class="tb" style="margin:0 0 6px;align-items:center"><h2>Ultimele cereri</h2><a class="bt bt-g" href="#/cereri">Toate →</a></div><div class="ll">' + latest + '</div></section>' +
       '</div><div class="g">' +
         '<section class="cd kpi"><b>' + s.visits.reduce(function (a, b) { return a + b; }, 0) + '</b><span>vizite în ultimele 7 zile</span><div class="spark" aria-hidden="true">' + spark + '</div></section>' +
@@ -110,7 +120,7 @@
           '<button type="button" data-go="site" data-tab="preturi">' + ic('tag') + '<span>Prețuri<span>Servicii și tarife</span></span><i>→</i></button>' +
           '<button type="button" data-go="site" data-tab="texte">' + ic('edit') + '<span>Texte<span>Titlu, descriere, despre</span></span><i>→</i></button>' +
         '</div></section>' +
-        '<section class="cd"><h2>' + on + ' funcții active</h2><p class="sub">Formulare, programări, hartă și altele.</p><a class="bt bt-s" href="#/functii">' + ic('plug') + 'Vezi funcțiile</a></section>' +
+        '<section class="cd"><h2>' + on + ' pluginuri active</h2><p class="sub">Formulare, programări, hartă și altele.</p><a class="bt bt-s" href="#/functii">' + ic('plug') + 'Vezi funcțiile</a></section>' +
       '</div></div>';
   }
   function leadRow(l) {
@@ -163,41 +173,143 @@
         '<label class="fl"><span>Adresă</span><input class="in" data-f="address" value="' + esc(c.address) + '"></label>'
     }[tab];
     var dirty = JSON.stringify(draft.content) !== JSON.stringify(s.content);
-    return '<div class="tb"><div><h1>Site-ul meu</h1><p>Schimbi conținutul, designul rămâne la fel. Vezi rezultatul în previzualizare, apoi publici.</p></div></div>' +
+    return '<div class="tb"><div><h1>Site-ul meu</h1><p>Schimbări rapide aici. Pentru design, secțiuni, culori și animații, deschide editorul vizual.</p></div><div class="tb-a"><a class="bt bt-p" href="/app/builder.html?site=' + encodeURIComponent(s.id) + '">' + ic('edit') + 'Deschide editorul vizual</a></div></div>' +
       '<div class="ed"><section class="cd"><div class="ed-tabs" role="tablist">' + T.map(function (t) {
         return '<button type="button" role="tab" data-tab2="' + t[0] + '" aria-selected="' + (tab === t[0]) + '">' + t[1] + '</button>'; }).join('') + '</div>' +
         '<div id="edp">' + panel + '</div>' +
         '<div class="save"' + (dirty ? '' : ' hidden') + ' id="sv"><span>Ai modificări nepublicate</span><button class="bt bt-g" type="button" data-act="discard">Renunță</button><button class="bt bt-p" type="button" data-act="publish">Publică</button></div></section>' +
       '<section class="pv" aria-label="Previzualizare"><div class="pv-bar"><b>Previzualizare</b>' + esc(s.domain) + '<div class="pv-dev" role="group"><button type="button" data-dev="desk" aria-pressed="' + (device === 'desk') + '">Calculator</button><button type="button" data-dev="mob" aria-pressed="' + (device === 'mob') + '">Telefon</button></div></div>' +
-      '<div class="pv-fr' + (device === 'mob' ? ' mob' : '') + '"><iframe src="/app/site.html" title="Previzualizare site" data-pv="draft"></iframe></div></section></div>';
+      '<div class="pv-fr' + (device === 'mob' ? ' mob' : '') + '"><iframe src="/app/render.html" title="Previzualizare site" data-pv="draft"></iframe></div></section></div>';
   }
   function updateDraftUI() {
     var s = site(), dirty = JSON.stringify(draft.content) !== JSON.stringify(s.content), sv = $('#sv'); if (sv) sv.hidden = !dirty;
-    var f = $('[data-pv="draft"]'); if (f && f.contentWindow && f.contentWindow.renderSite) f.contentWindow.renderSite(draft);
+    var f = $('[data-pv="draft"]'); if (f && f.contentWindow && f.contentWindow.OHIRender) f.contentWindow.OHIRender.render(modelOf(draft), {});
   }
 
-  var ADDONS = [
-    ['form', 'form', 'Formular de cereri', 'Clienții îți scriu de pe site; cererile apar aici și pe e-mail.'],
-    ['booking', 'cal', 'Programări online', 'Clienții aleg ziua și ora; tu confirmi din cont.'],
-    ['prices', 'tag', 'Listă de prețuri sau meniu', 'Servicii, produse sau meniul, pe categorii.'],
-    ['map', 'pin', 'Hartă și program', 'Adresa, harta și orele de lucru pe fiecare pagină.'],
-    ['langs', 'lang', 'Trei limbi', 'Site-ul în română, maghiară și engleză.'],
-    ['shop', 'bag', 'Magazin mic', 'Produse, coș și comenzi trimise către tine.'],
-    ['ai', 'spark', 'Asistent pe site', 'Răspunde vizitatorilor din textele site-ului tău.', 1]
+  /* plugins: each one is a feature OHI builds and maintains; some also add a section to the site */
+  var PLUG = [
+    ['Clienți', [
+      ['form', 'form', 'Formular de cereri', 'Cererile apar în cont, pe e-mail și pe telefon.', 'Gratuit'],
+      ['booking', 'cal', 'Programări online', 'Clienții aleg serviciul și ora; tu confirmi.', 'În plan', 'booking'],
+      ['reviews', 'star', 'Recenzii Google', 'Cere recenzii după fiecare client și arată-le pe site.', 'În plan'],
+      ['whatsapp', 'chat', 'WhatsApp', 'Buton de WhatsApp și cererile trimise pe WhatsApp.', 'Gratuit'],
+      ['newsletter', 'mail', 'Newsletter', 'Strânge adrese de e-mail și trimite noutăți.', 'În plan']]],
+    ['Vânzări și plăți', [
+      ['payments', 'card', 'Plăți online', 'Avans sau plată integrală cu cardul, direct pe site.', 'Comision procesator', null, 1],
+      ['shop', 'bag', 'Magazin', 'Produse, coș, livrare și comenzi.', 'În plan'],
+      ['rates', 'calc', 'Calculator rate', 'Rata lunară orientativă și cerere de ofertă.', 'Gratuit', 'calc'],
+      ['vouchers', 'tag', 'Vouchere cadou', 'Vinzi carduri cadou pe care clienții le folosesc la tine.', 'Curând', null, 0, 1]]],
+    ['Conținut', [
+      ['prices', 'tag', 'Prețuri sau meniu', 'Liste de prețuri, meniuri, pe categorii.', 'Gratuit'],
+      ['map', 'pin', 'Hartă și program', 'Adresa, harta și orele de lucru.', 'Gratuit'],
+      ['langs', 'lang', 'Trei limbi', 'Site-ul în română, maghiară și engleză.', 'În plan'],
+      ['blog', 'edit', 'Noutăți (blog)', 'Articole scurte, bune și pentru Google.', 'În plan']]],
+    ['Marketing', [
+      ['seo', 'search', 'SEO local', 'Pagini și texte ca să te găsească lumea din oraș.', 'În plan'],
+      ['gbp', 'pin', 'Profil Google', 'Program, poze și postări sincronizate cu Google.', 'Curând', null, 0, 1],
+      ['stats', 'chart', 'Statistici', 'Vizite și cereri, fără cookie-uri de urmărire.', 'Gratuit']]],
+    ['AI și automatizări', [
+      ['aibuild', 'spark', 'Construiește cu AI', 'Descrii afacerea și primești site-ul gata făcut.', 'Gratuit'],
+      ['ai', 'spark', 'Asistent pe site', 'Răspunde vizitatorilor din textele tale.', 'Curând', null, 0, 1],
+      ['make', 'link', 'Make, Google Sheets, Calendar', 'Trimite cererile unde lucrezi deja.', 'În plan']]]
   ];
+  var IC2 = { star: '<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>', chat: '<path d="M4 20l1.5-4A8 8 0 1 1 8 19z"/>', mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>', calc: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/>', search: '<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/>', chart: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>', link: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>' };
+  Object.keys(IC2).forEach(function (k) { I[k] = IC2[k]; });
+  var plugQ = '', plugCat = 'Toate';
   function pageAddons() {
-    var s = site();
-    return '<div class="tb"><div><h1>Funcții</h1><p>Pornește sau oprește funcții pe site. Le facem noi, așa că nu strică nimic.</p></div></div>' +
-      '<section class="cd"><div class="ao">' + ADDONS.map(function (a, i) {
-        return (i ? '<hr style="border:0;border-top:1px solid var(--line);margin:0">' : '') + '<div class="ao-i"><span class="ao-ic">' + ic(a[1]) + '</span><div><h3>' + a[2] + '</h3><p>' + a[3] + '</p></div>' +
-          (a[4] ? '<span class="soon">În curând</span>' : '<button type="button" class="tg" role="switch" aria-checked="' + !!s.addons[a[0]] + '" aria-label="' + a[2] + '" data-ao="' + a[0] + '"></button>') + '</div>';
-      }).join('') + '</div></section>';
+    var s = site(), on = function (k) { return !!s.addons[k]; };
+    var cats = ['Toate', 'Instalate'].concat(PLUG.map(function (c) { return c[0]; }));
+    var list = [];
+    PLUG.forEach(function (c) { c[1].forEach(function (p) { list.push({ cat: c[0], p: p }); }); });
+    list = list.filter(function (x) { return (plugCat === 'Toate' || (plugCat === 'Instalate' ? on(x.p[0]) : x.cat === plugCat)) && (!plugQ || (x.p[2] + ' ' + x.p[3]).toLowerCase().indexOf(plugQ.toLowerCase()) > -1); });
+    var card = function (x) {
+      var p = x.p, inst = on(p[0]), soon = p[7];
+      return '<div class="pg' + (inst ? ' on' : '') + '"><div class="pg-h"><span class="ao-ic">' + ic(p[1]) + '</span><div><h3>' + esc(p[2]) + '</h3><small>' + esc(x.cat) + ' · ' + esc(p[4]) + '</small></div></div><p>' + esc(p[3]) + '</p><div class="pg-a">' +
+        (soon ? '<span class="soon" style="margin:0">În curând</span>' : inst ? '<span class="st live">Instalat</span>' + (p[6] ? '<button class="bt bt-s" type="button" data-plset="' + p[0] + '">Setări</button>' : '') + '<button class="bt bt-g" type="button" data-plug="' + p[0] + '">Dezinstalează</button>' : '<button class="bt bt-p" type="button" data-plug="' + p[0] + '">Instalează</button>') + '</div></div>';
+    };
+    return '<div class="tb"><div><h1>Pluginuri</h1><p>Funcții noi pentru site, instalate cu un click. Le facem și le întreținem noi, așa că nu strică nimic.</p></div></div>' +
+      '<div class="pg-bar"><input class="in" type="search" placeholder="Caută: plăți, recenzii, WhatsApp…" value="' + esc(plugQ) + '" data-plq aria-label="Caută pluginuri"><div class="flt" role="group" aria-label="Categorii">' + cats.map(function (c) { return '<button type="button" data-plcat="' + esc(c) + '" aria-pressed="' + (plugCat === c) + '">' + esc(c) + '</button>'; }).join('') + '</div></div>' +
+      '<div class="pg-grid">' + (list.map(card).join('') || '<p class="empty">Niciun plugin găsit.</p>') + '</div>';
   }
+  function plugToggle(k) {
+    var s = site(), was = !!s.addons[k], meta; PLUG.forEach(function (c) { c[1].forEach(function (p) { if (p[0] === k) meta = p; }); });
+    s.addons[k] = !was;
+    var bt = meta && meta[5];
+    if (bt) {
+      var m = s.model || window.OHIModel.fromSite(s), ex = m.blocks.filter(function (b) { return b.type === bt; })[0];
+      if (!was && !ex) m.blocks.splice(Math.max(1, m.blocks.length - 2), 0, window.OHIModel.block(bt, {}, { bg: 'surface', align: 'center' }));
+      else if (ex) ex.hidden = was;
+      s.model = m;
+    }
+    if (draft && draft.id === s.id) draft.addons = copy(s.addons);
+    save(); render(); toast((was ? 'Dezinstalat: ' : 'Instalat: ') + meta[2] + (bt && !was ? ' · am adăugat și secțiunea pe site' : ''));
+    if (!was && meta[6]) plugSettings(k);
+  }
+  function plugSettings(k) {
+    var s = site(); s.pay = s.pay || { provider: 'stripe', mode: 'test', deposit: '30', currency: 'RON' };
+    var P = s.pay, bg = document.createElement('div'); bg.className = 'dw-bg';
+    var d = document.createElement('aside'); d.className = 'dw'; d.setAttribute('role', 'dialog'); d.setAttribute('aria-modal', 'true'); d.setAttribute('aria-label', 'Setări plăți');
+    var opt = function (v, l, cur) { return '<option value="' + v + '"' + (cur === v ? ' selected' : '') + '>' + l + '</option>'; };
+    d.innerHTML = '<div class="dw-h"><div><small style="color:var(--mute)">Plugin</small><h2>Plăți online</h2></div><button class="x" type="button" aria-label="Închide">×</button></div>' +
+      '<p style="margin:0 0 18px;color:var(--mute)">Banii ajung direct în contul firmei tale, prin procesatorul ales. OHI nu atinge banii și nu vede datele cardului.</p>' +
+      '<label class="fl"><span>Procesator de plăți</span><select class="in" data-pay="provider">' + opt('stripe', 'Stripe', P.provider) + opt('netopia', 'NETOPIA Payments', P.provider) + opt('transfer', 'Doar transfer bancar (fără card)', P.provider) + '</select></label>' +
+      '<label class="fl"><span>Ce plătește clientul online</span><select class="in" data-pay="deposit">' + opt('30', 'Avans 30%', P.deposit) + opt('50', 'Avans 50%', P.deposit) + opt('100', 'Tot prețul', P.deposit) + '</select></label>' +
+      '<label class="fl"><span>Monedă</span><select class="in" data-pay="currency">' + opt('RON', 'Lei (RON)', P.currency) + opt('EUR', 'Euro (EUR)', P.currency) + '</select></label>' +
+      '<div class="tgl" style="display:flex;align-items:center;justify-content:space-between;margin:6px 0 18px"><span><b>Mod de test</b><br><small style="color:var(--mute)">Plăți de probă, fără bani reali</small></span><button type="button" class="tg" role="switch" aria-checked="' + (P.mode === 'test') + '" data-paytest aria-label="Mod de test"></button></div>' +
+      '<div class="banner" style="margin:0 0 16px">Pentru plăți reale conectezi contul firmei la procesator. Comisioanele le stabilește procesatorul.</div>' +
+      '<button class="bt bt-p bt-w" type="button" data-payconnect>Conectează contul ' + (P.provider === 'netopia' ? 'NETOPIA' : P.provider === 'transfer' ? 'bancar' : 'Stripe') + '</button>';
+    var close = function () { bg.remove(); d.remove(); document.removeEventListener('keydown', key); };
+    var key = function (e) { if (e.key === 'Escape') close(); };
+    bg.addEventListener('click', close); d.querySelector('.x').addEventListener('click', close); document.addEventListener('keydown', key);
+    d.addEventListener('change', function (e) { var t = e.target; if (t.dataset.pay) { P[t.dataset.pay] = t.value; save(); d.querySelector('[data-payconnect]').textContent = 'Conectează contul ' + (P.provider === 'netopia' ? 'NETOPIA' : P.provider === 'transfer' ? 'bancar' : 'Stripe'); } });
+    d.addEventListener('click', function (e) {
+      if (e.target.closest('[data-paytest]')) { P.mode = P.mode === 'test' ? 'live' : 'test'; save(); e.target.closest('[data-paytest]').setAttribute('aria-checked', P.mode === 'test'); toast(P.mode === 'test' ? 'Mod de test pornit' : 'Mod de test oprit'); }
+      if (e.target.closest('[data-payconnect]')) toast('În platforma reală se deschide pagina procesatorului, unde firma își conectează contul.');
+    });
+    document.body.appendChild(bg); document.body.appendChild(d); d.querySelector('.x').focus();
+  }
+
+  /* domains: the client keeps their own domain; OHI hosts the site and the certificate */
   function pageHosting() {
-    var s = site();
-    return '<div class="tb"><div><h1>Domeniu și găzduire</h1><p>Site-ul tău e găzduit de OHI. Noi ne ocupăm de server, certificat și actualizări.</p></div></div>' +
-      '<div class="g g2"><section class="cd"><h2>' + esc(s.domain) + '</h2><p class="sub">Adresa site-ului tău</p><ul class="chk"><li>Domeniu conectat</li><li>Conexiune sigură (HTTPS) activă</li><li>Ultima publicare: azi</li></ul></section>' +
-      '<section class="cd"><h2>Ai nevoie de altceva?</h2><p class="sub">Schimbare de domeniu, adresă de e-mail pe domeniu sau mutarea unui site existent.</p><a class="bt bt-s" href="#/ajutor">Scrie-ne</a></section></div>';
+    var s = site(); s.domains = s.domains || [{ name: s.domain, status: s.status === 'live' ? 'ok' : 'wait', main: true }, { name: 'www.' + s.domain, status: s.status === 'live' ? 'ok' : 'wait', redirect: s.domain }];
+    var row = function (d, i) {
+      return '<tr><td><b>' + esc(d.name) + '</b>' + (d.main ? ' <span class="st" style="margin-left:6px">Principal</span>' : '') + (d.redirect ? '<br><small style="color:var(--mute)">trimite către ' + esc(d.redirect) + '</small>' : '') + '</td>' +
+        '<td>' + (d.status === 'ok' ? '<span class="st live">Conectat · HTTPS activ</span>' : d.status === 'check' ? '<span class="st progress">Se verifică</span>' : '<span class="st preview">Așteaptă setările DNS</span>') + '</td>' +
+        '<td style="text-align:right">' + (d.status !== 'ok' ? '<button class="bt bt-s" type="button" data-dns="' + i + '">Instrucțiuni</button> ' : '') + (d.main ? '' : '<button class="bt bt-g" type="button" data-rmdom="' + i + '">Scoate</button>') + '</td></tr>';
+    };
+    return '<div class="tb"><div><h1>Domeniu și găzduire</h1><p>Domeniul rămâne al tău. Noi găzduim site-ul, certificatul HTTPS și actualizările.</p></div><div class="tb-a"><button class="bt bt-p" type="button" data-act="adddom">+ Conectează un domeniu</button></div></div>' +
+      '<section class="cd" style="margin:0 0 16px"><h2>Domeniile tale</h2><p class="sub">Poți avea mai multe adrese; una e principală, celelalte trimit către ea.</p><table class="tbl"><thead><tr><th>Domeniu</th><th>Stare</th><th></th></tr></thead><tbody>' + s.domains.map(row).join('') + '</tbody></table></section>' +
+      '<div class="g g3"><section class="cd"><h2>Găzduire inclusă</h2><ul class="chk"><li>Certificat HTTPS automat</li><li>Site rapid, servit din rețea globală</li><li>Protecție anti-atac inclusă</li></ul></section>' +
+      '<section class="cd"><h2>Adresă de test</h2><p class="sub">Merge și fără domeniu, cât lucrăm la site.</p><p style="margin:0;font-weight:600">' + esc(s.id) + '.ohi.ro</p><small style="color:var(--mute)">exemplu de adresă, de stabilit</small></section>' +
+      '<section class="cd"><h2>Nu ai domeniu?</h2><p class="sub">Te ajutăm să cumperi unul pe numele firmei tale, ca să rămână al tău.</p><a class="bt bt-s" href="#/ajutor">Scrie-ne</a></section></div>';
+  }
+  function domainDialog(i) {
+    var s = site(), isNew = i === undefined, d = isNew ? null : s.domains[i];
+    var bg = document.createElement('div'); bg.className = 'dw-bg';
+    var w = document.createElement('aside'); w.className = 'dw'; w.setAttribute('role', 'dialog'); w.setAttribute('aria-modal', 'true'); w.setAttribute('aria-label', 'Conectează domeniul');
+    var step2 = function (name) {
+      return '<p style="margin:0 0 14px">Intră în contul unde ai cumpărat <b>' + esc(name) + '</b> (de ex. ROTLD, GoDaddy, Namecheap) și schimbă <b>serverele de nume</b> cu acestea:</p>' +
+        '<table class="tbl" style="margin:0 0 14px"><thead><tr><th>Server de nume</th></tr></thead><tbody><tr><td><code>ns1.vercel-dns.com</code></td></tr><tr><td><code>ns2.vercel-dns.com</code></td></tr></tbody></table>' +
+        '<p style="margin:0 0 18px;color:var(--mute);font-size:13.5px">Dacă nu poți schimba serverele de nume, îți arătăm înregistrările DNS exacte pentru domeniul tău după ce îl adaugi. Schimbarea poate dura până la 48 de ore; noi verificăm singuri și îți scriem când e gata.</p>' +
+        '<button class="bt bt-p bt-w" type="button" data-domcheck>Am făcut setările, verifică</button>';
+    };
+    w.innerHTML = '<div class="dw-h"><div><small style="color:var(--mute)">Domeniu</small><h2>' + (isNew ? 'Conectează un domeniu' : esc(d.name)) + '</h2></div><button class="x" type="button" aria-label="Închide">×</button></div><div id="dstep">' +
+      (isNew ? '<label class="fl"><span>Domeniul tău</span><input class="in" id="dname" placeholder="firmata.ro" autocomplete="off" spellcheck="false"></label><button class="bt bt-p bt-w" type="button" data-domadd>Continuă</button>' : step2(d.name)) + '</div>';
+    var close = function () { bg.remove(); w.remove(); document.removeEventListener('keydown', key); render(); };
+    var key = function (e) { if (e.key === 'Escape') close(); };
+    bg.addEventListener('click', close); w.querySelector('.x').addEventListener('click', close); document.addEventListener('keydown', key);
+    w.addEventListener('click', function (e) {
+      if (e.target.closest('[data-domadd]')) {
+        var v = w.querySelector('#dname').value.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/\/.*$/, '');
+        if (!/^([a-z0-9-]+\.)+[a-z]{2,}$/.test(v)) { toast('Scrie domeniul așa: firmata.ro'); return; }
+        s.domains.push({ name: v, status: 'wait', redirect: s.domains[0].name }); i = s.domains.length - 1; save(); w.querySelector('#dstep').innerHTML = step2(v);
+      }
+      if (e.target.closest('[data-domcheck]')) {
+        var dd = s.domains[i]; dd.status = 'check'; save(); var b = e.target.closest('[data-domcheck]'); b.disabled = true; b.textContent = 'Se verifică…';
+        setTimeout(function () { dd.status = 'ok'; save(); toast(dd.name + ' e conectat, cu HTTPS (demo)'); close(); }, 1600);
+      }
+    });
+    document.body.appendChild(bg); document.body.appendChild(w); (w.querySelector('#dname') || w.querySelector('.x')).focus();
   }
   function pageBilling() {
     var s = site();
@@ -224,23 +336,30 @@
     document.title = titles[r] + ' · ' + site().name + ' | OHI';
     shell(r, { acasa: pageHome, cereri: pageLeads, site: pageSite, functii: pageAddons, gazduire: pageHosting, facturi: pageBilling, ajutor: pageHelp }[r]());
     $$('iframe[data-pv]').forEach(function (f) {
-      var go = function () { try { if (f.contentWindow.renderSite) f.contentWindow.renderSite(f.dataset.pv === 'draft' ? draft : site()); } catch (e) { /* not ready */ } };
+      var go = function () { try { if (f.contentWindow.OHIRender) f.contentWindow.OHIRender.render(modelOf(f.dataset.pv === 'draft' ? draft : site()), {}); } catch (e) { /* not ready */ } };
       f.addEventListener('load', go); go();
     });
     var m = $('#main'); if (m) m.focus && m.setAttribute('tabindex', '-1');
   }
-  window.__ohiPreviewReady = function (w) { $$('iframe[data-pv]').forEach(function (f) { if (f.contentWindow === w) w.renderSite(f.dataset.pv === 'draft' ? draft : site()); }); };
+  window.__ohiRenderReady = function (w) { $$('iframe[data-pv]').forEach(function (f) { if (f.contentWindow === w) w.OHIRender.render(modelOf(f.dataset.pv === 'draft' ? draft : site()), {}); }); };
 
   document.addEventListener('click', function (e) {
-    var t = e.target.closest('[data-act],[data-site],[data-lead],[data-filter],[data-go],[data-tab2],[data-dev],[data-ao],[data-add],[data-rm]');
+    var t = e.target.closest('[data-act],[data-site],[data-lead],[data-filter],[data-go],[data-tab2],[data-dev],[data-ao],[data-add],[data-rm],[data-plug],[data-plset],[data-plcat],[data-dns],[data-rmdom]');
     if (!t) { if (menuOpen && !e.target.closest('.sw')) { menuOpen = false; render(); } return; }
     var a = t.dataset.act;
     if (a === 'menu') { menuOpen = !menuOpen; render(); return; }
     if (a === 'logout') { S.logged = false; save(); menuOpen = false; location.hash = ''; render(); return; }
     if (a === 'newclient') { menuOpen = false; render(); toast('În platforma reală: inviți clientul pe e-mail și îi alegi șablonul.'); return; }
     if (a === 'approve') { site().status = 'live'; save(); render(); toast(site().domain + ' e acum online.'); return; }
+    if (a === 'openmodel') { site().model = modelOf(site()); save(); return; }
+    if (a === 'adddom') { domainDialog(); return; }
+    if (t.dataset.plug) { plugToggle(t.dataset.plug); return; }
+    if (t.dataset.plset) { plugSettings(t.dataset.plset); return; }
+    if (t.dataset.plcat) { plugCat = t.dataset.plcat; render(); return; }
+    if (t.dataset.dns) { domainDialog(+t.dataset.dns); return; }
+    if (t.dataset.rmdom) { site().domains.splice(+t.dataset.rmdom, 1); save(); render(); toast('Domeniul a fost scos'); return; }
     if (a === 'open') { e.preventDefault(); toast('În platforma reală se deschide ' + site().domain + '.'); return; }
-    if (a === 'publish') { site().content = copy(draft.content); save(); render(); toast('Publicat pe ' + site().domain); return; }
+    if (a === 'publish') { site().content = copy(draft.content); site().model = modelOf(site()); save(); render(); toast('Publicat pe ' + site().domain); return; }
     if (a === 'discard') { draft = null; render(); toast('Modificările au fost anulate.'); return; }
     if (t.dataset.site) { S.siteId = t.dataset.site; menuOpen = false; draft = null; filter = 'toate'; save(); render(); return; }
     if (t.dataset.lead) { openLead(t.dataset.lead); return; }
@@ -253,7 +372,9 @@
     if (t.dataset.rm) { draft.content[t.dataset.rm].splice(+t.dataset.i, 1); render(); return; }
   });
   document.addEventListener('input', function (e) {
-    var t = e.target; if (!draft) return;
+    var t = e.target;
+    if (t.dataset.plq !== undefined) { plugQ = t.value; var pos = t.selectionStart; render(); var n = $('[data-plq]'); if (n) { n.focus(); n.setSelectionRange(pos, pos); } return; }
+    if (!draft) return;
     if (t.dataset.f) { draft.content[t.dataset.f] = t.value; updateDraftUI(); }
     if (t.dataset.row) { draft.content[t.dataset.row][+t.dataset.i][+t.dataset.j] = t.value; updateDraftUI(); }
   });

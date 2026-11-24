@@ -221,3 +221,19 @@ textarea.in{height:auto;min-height:96px;padding:12px 14px;resize:vertical;line-h
   .tbl .hide-m{display:none}
   .toast{bottom:84px}
 }
+
+/* plugins store */
+.pg-bar{display:flex;flex-direction:column;gap:12px;margin:0 0 16px}
+.pg-bar .in{max-width:420px}
+.pg-bar .flt{margin:0}
+.pg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.pg{display:flex;flex-direction:column;gap:10px;padding:18px;border-radius:var(--r);background:var(--card);box-shadow:inset 0 0 0 1px var(--line)}
+.pg.on{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.pg-h{display:flex;gap:12px;align-items:center}
+.pg-h h3{margin:0;font-size:15px}
+.pg-h small{color:var(--mute);font-size:12px}
+.pg p{margin:0;color:var(--ink2);font-size:13.5px;flex:1}
+.pg-a{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.pg-a .bt{height:36px;padding:0 14px;font-size:13px}
+.dw code{font:600 13.5px ui-monospace,Menlo,Consolas,monospace;background:rgba(20,19,17,.06);padding:3px 7px;border-radius:6px}
+.dw{overflow-x:hidden}.dw .tbl{table-layout:fixed}.dw code{word-break:break-all}
