@@ -92,7 +92,9 @@
     var cols = [['accent', 'Principală'], ['bg', 'Fundal'], ['surface', 'Fundal 2'], ['ink', 'Text'], ['mute', 'Text estompat'], ['dark', 'Închisă']].map(function (k) {
       return '<label><input type="color" data-color="' + k[0] + '" value="' + esc(c[k[0]]) + '">' + k[1] + '</label>'; }).join('');
     var F = window.OHIRenderFonts || {};
-    var fonts = M.FONT_PAIRS.map(function (f) { return '<button data-fp="' + f.id + '" aria-pressed="' + (b.fontPair === f.id) + '"><b style="font-family:' + fam(f.head) + '">Aa ' + esc(f.name) + '</b><small>' + esc(famName(f.head)) + ' + ' + esc(famName(f.body)) + '</small></button>'; }).join('');
+    var fonts = M.FONT_PAIRS.map(function (f) { return '<button data-fp="' + f.id + '" aria-pressed="' + (b.fontPair === f.id) + '"><b style="font-family:' + fam(f.head) + '">' + esc(famName(f.head)) + (f.head === f.body ? '' : ' + ' + esc(famName(f.body))) + '</b><small>' + esc(f.name) + '</small></button>'; }).join('');
+    var fsel = function (key) { return '<select class="in" data-font="' + key + '">' + Object.keys(FAM).map(function (k) { return '<option value="' + k + '"' + (b[key] === k ? ' selected' : '') + '>' + esc(FAM[k]) + ' · ' + FSTYLE[k] + '</option>'; }).join('') + '</select>'; };
+    fonts += '</div><div class="fsel"><label class="fl"><span>Font titluri</span>' + fsel('headFont') + '</label><label class="fl"><span>Font text</span>' + fsel('bodyFont') + '</label><p class="h">Toate sunt din Google Fonts, gratuite și pentru uz comercial.</p>';
     return '<div class="sec"><h3>Culori</h3><div class="pal">' + pals + '</div></div>' +
       '<div class="sec"><h3>Culorile tale</h3><p class="h">Alege exact nuanța brandului. Textul de pe butoane se adaptează singur.</p><div class="colors">' + cols + '</div></div>' +
       '<div class="sec"><h3>Fonturi</h3><div class="fonts">' + fonts + '</div></div>' +
@@ -105,6 +107,7 @@
       '<div class="sec"><h3>Spațiere</h3>' + seg('density', [['compact', 'Compactă'], ['normal', 'Normală'], ['airy', 'Aerisită']]) + '</div>';
   }
   var FAM = { fraunces: 'Fraunces', playfair: 'Playfair Display', cormorant: 'Cormorant Garamond', instrument: 'Instrument Serif', archivo: 'Archivo', manrope: 'Manrope', inter: 'Inter', dmsans: 'DM Sans', poppins: 'Poppins', schibsted: 'Schibsted Grotesk' };
+  var FSTYLE = { fraunces: 'clasic', playfair: 'editorial', cormorant: 'elegant', instrument: 'rafinat', archivo: 'modern', manrope: 'modern', inter: 'curat', dmsans: 'prietenos', poppins: 'rotund', schibsted: 'grotesc' };
   var famName = function (k) { return FAM[k] || k; };
   var fam = function (k) { return '\'' + famName(k) + '\',serif'; };
   function aiPanel() {
@@ -254,6 +257,7 @@
   document.addEventListener('change', function (e) {
     var t = e.target, d = t.dataset, b = sel && blk(sel);
     if (d.color !== undefined || d.radius !== undefined) { typing = false; panels(); return; }
+    if (d.font) { commit(function () { model.brand[d.font] = t.value; var hit = M.FONT_PAIRS.filter(function (x) { return x.head === model.brand.headFont && x.body === model.brand.bodyFont; })[0]; model.brand.fontPair = hit ? hit.id : 'custom'; }); return; }
     if (!b) return;
     if (d.stsel) { commit(function () { b.s[d.stsel] = t.value; }); preview(true); return; }
     if (d.img && t.files[0]) { readImg(t.files[0], function (u) { commit(function () { b.d[d.img] = u; }); }); return; }
