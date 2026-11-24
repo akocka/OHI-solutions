@@ -1,24 +1,47 @@
-/* OHI Platform teaser on the home page: announcement + waiting list (the rest of the page is unchanged) */
-.vk-new{display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;padding:6px 14px 6px 6px;border-radius:999px;font:600 13px/1.2 Inter,system-ui,sans-serif;color:#F4F1FF;text-decoration:none;
-  background:rgba(139,92,246,.12);box-shadow:inset 0 0 0 1px rgba(167,139,250,.35);transition:background .2s}
-.vk-new b{padding:4px 10px;border-radius:999px;background:linear-gradient(135deg,#FF8540,#FF6B1A);color:#1A0A00;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase}
-.vk-new span{color:#FF8A4C;transition:transform .2s}
-.vk-new:hover{background:rgba(139,92,246,.2)}.vk-new:hover span{transform:translateX(3px)}
-.vk-plat{position:relative;padding:clamp(56px,8vw,104px) 24px;overflow:hidden}
-.vk-plat::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(700px 420px at 20% 30%,rgba(139,92,246,.22),transparent 70%),radial-gradient(520px 360px at 90% 80%,rgba(255,107,26,.12),transparent 70%)}
+/* OHI Platform teaser: announcement + waiting list (the rest of the page is unchanged).
+   Three colours only, no gradients or glow:
+   main  #141311 (warm near-black)  ·  secondary #EDE8E0 (bone, text + lines)  ·  focus #FF6B1A (orange, one thing at a time) */
+.vk-new{display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;padding:6px 14px 6px 6px;border-radius:999px;font:600 13px/1.2 Inter,system-ui,sans-serif;color:#EDE8E0;text-decoration:none;
+  background:#141311;box-shadow:inset 0 0 0 1px rgba(237,232,224,.18);transition:box-shadow .2s}
+.vk-new b{padding:4px 10px;border-radius:999px;background:#FF6B1A;color:#141311;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase}
+.vk-new span{color:#FF6B1A;transition:transform .2s}
+.vk-new:hover{box-shadow:inset 0 0 0 1px rgba(237,232,224,.4)}.vk-new:hover span{transform:translateX(3px)}
+
+.vk-plat{position:relative;padding:clamp(56px,8vw,104px) 24px;background:#141311;color:#EDE8E0;border-top:1px solid rgba(237,232,224,.08);border-bottom:1px solid rgba(237,232,224,.08)}
 .vk-plw{position:relative;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,5vw,72px);align-items:center}
-.vk-plat h2{margin:16px 0 14px;font-size:clamp(30px,3.8vw,50px);line-height:1.06;letter-spacing:-.03em;font-weight:600;color:#F4F1FF}
-.vk-plat .vk-plead{max-width:52ch;margin:0;color:#A9A3C2;font-size:16px;line-height:1.6}
-.vk-plf{list-style:none;margin:26px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.vk-plf li{padding:16px 16px 16px 44px;position:relative;border-radius:16px;background:rgba(255,255,255,.035);box-shadow:inset 0 0 0 1px rgba(167,139,250,.18)}
-.vk-plf li::before{content:"";position:absolute;left:16px;top:19px;width:14px;height:14px;border-radius:5px;background:linear-gradient(135deg,#A78BFA,#4C63FF 55%,#FF6B1A);transform:rotate(-10deg)}
-.vk-plf b{display:block;font-size:15px;font-weight:600;color:#F4F1FF}
-.vk-plf span{display:block;margin-top:3px;font-size:13.5px;line-height:1.45;color:#A9A3C2}
-.vk-plbox{border-radius:28px;padding:clamp(22px,3vw,34px);background:linear-gradient(#130D24,#130D24) padding-box,linear-gradient(140deg,rgba(167,139,250,.7),rgba(76,99,255,.35) 45%,rgba(255,107,26,.7)) border-box;border:1.5px solid transparent;box-shadow:0 50px 100px -40px rgba(0,0,0,.8),0 0 80px -30px rgba(139,92,246,.5)}
+.vk-plat .vk-offer{background:none;box-shadow:inset 0 0 0 1px rgba(237,232,224,.2);color:#EDE8E0}
+.vk-plat .vk-offer i{background:#FF6B1A;box-shadow:none}
+.vk-plat h2{margin:16px 0 14px;font-size:clamp(30px,3.8vw,50px);line-height:1.06;letter-spacing:-.03em;font-weight:600;color:#EDE8E0}
+.vk-plat h2 .vk-s{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#FF6B1A;-webkit-text-fill-color:#FF6B1A}
+.vk-plat .vk-plead{max-width:52ch;margin:0;color:rgba(237,232,224,.68);font-size:16px;line-height:1.6}
+.vk-plf{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:1px solid rgba(237,232,224,.14)}
+.vk-plf li{padding:18px 18px 18px 0;border-bottom:1px solid rgba(237,232,224,.14)}
+.vk-plf li:nth-child(odd){padding-right:24px}
+.vk-plf b{display:block;font-size:15px;font-weight:600;color:#EDE8E0}
+.vk-plf span{display:block;margin-top:4px;font-size:13.5px;line-height:1.45;color:rgba(237,232,224,.6)}
+
+/* the form card: same three colours */
+.vk-plbox{border-radius:24px;padding:clamp(22px,3vw,34px);background:#1B1A18;box-shadow:inset 0 0 0 1px rgba(237,232,224,.12)}
+.vk-plbox .fm-k{color:#FF6B1A}
+.vk-plbox .fm-k::before{background:#FF6B1A}
+.vk-plbox .fm-t{color:#EDE8E0}
+.vk-plbox .fm-t em{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#FF6B1A;-webkit-text-fill-color:#FF6B1A}
+.vk-plbox .fm-s,.vk-plbox .fm-q>span,.vk-plbox .fm-l>span,.vk-plbox .fm-alt,.vk-plbox .fm-note{color:rgba(237,232,224,.62)}
+.vk-plbox .fm-alt a{color:#EDE8E0}
+.vk-plbox .fm-c{background:none;box-shadow:inset 0 0 0 1px rgba(237,232,224,.22);color:#EDE8E0}
+.vk-plbox .fm-c:hover{background:rgba(237,232,224,.06)}
+.vk-plbox .fm-c[aria-pressed="true"]{background:#FF6B1A;color:#141311;box-shadow:none}
+.vk-plbox input,.vk-plbox textarea{background:#141311!important;border-color:rgba(237,232,224,.16)!important;box-shadow:none!important;color:#EDE8E0!important}
+.vk-plbox input:focus,.vk-plbox textarea:focus{border-color:#FF6B1A!important;outline:none}
+.vk-plbox .fm-go{background:#FF6B1A;color:#141311;box-shadow:none}
+.vk-plbox .fm-go:hover{box-shadow:none;transform:translateY(-1px)}
+.vk-plbox input::placeholder,.vk-plbox textarea::placeholder{color:rgba(237,232,224,.35)!important}
+.vk-plbox .fm-note:not(:last-child){display:none}
+.vk-plbox .o-fpriv{color:rgba(237,232,224,.5)}.vk-plbox .o-fpriv a{color:rgba(237,232,224,.8)}
+
 @media(max-width:900px){
   .vk-plw{grid-template-columns:1fr}
-  .vk-plf{grid-template-columns:1fr;gap:8px}
-  .vk-plf li{padding:13px 14px 13px 42px}
+  .vk-plf{grid-template-columns:1fr}
+  .vk-plf li,.vk-plf li:nth-child(odd){padding:14px 0}
   .vk-plat{padding-left:16px;padding-right:16px}
 }
-.vk-plbox .fm-note:not(:last-child){display:none}
