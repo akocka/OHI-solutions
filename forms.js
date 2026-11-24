@@ -13,6 +13,8 @@
       q: 'Ce funcții vrei pe site?', chips: [], f: ['biz', 'tel', 'site', 'msg'], src: 'site-personalizate', need: 'Funcții personalizate', go: 'Cere oferta', ok: 'Te sunăm cu oferta pentru funcțiile alese.' },
     abonament: { k: 'Abonamente · în curând', t: 'Te anunțăm <em>primul</em>', s: 'Abonamentele pornesc după înregistrarea firmei. Lasă-ne un telefon și te sunăm când sunt gata.',
       q: 'Ce te interesează?', chips: ['Mentenanță', 'Asistent AI', 'Totul inclus'], f: ['name', 'tel'], src: 'site-abonamente', need: 'Abonament · anunță-mă', go: 'Anunță-mă', ok: 'Te anunțăm când pornesc abonamentele.' },
+    platforma: { k: 'OHI Platform · în curând', t: 'Alătură-te și fii <em>primul.</em>', s: 'Lasă-ne numele și telefonul. Când pornește platforma, primii înscriși primesc acces înaintea tuturor.',
+      q: 'Tu ești:', chips: ['Am o afacere', 'Sunt freelancer sau agenție'], f: ['name', 'tel'], src: 'site-platforma', need: 'OHI Platform · listă de așteptare', go: 'Vreau să fiu primul', ok: 'Te anunțăm primii când pornește platforma.' },
     intrebare: { k: 'Ajutor', t: 'Pune-ne o <em>întrebare</em>', s: 'Îți răspundem noi, un om din echipă, de obicei în aceeași zi.',
       f: ['name', 'tel', 'msgReq'], src: 'site-ajutor', need: 'Întrebare', go: 'Trimite întrebarea', ok: 'Îți răspundem cât mai repede.' }
   };
