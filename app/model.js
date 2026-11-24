@@ -52,6 +52,9 @@
     calc: { name: 'Calculator rate', group: 'Pluginuri', plugin: 'rates', variants: [['card', 'Calculator']],
       d: { title: 'Plătești în rate', text: 'Vezi cât ar fi rata lunară.', navLabel: '', min: 5000, max: 150000, def: 30000 },
       f: [['title', 'Titlu', 'text'], ['text', 'Text', 'area']] },
+    products: { name: 'Produse', group: 'Vânzări', variants: [['grid', 'Grilă'], ['list', 'Listă']],
+      d: { kicker: '', title: 'Produse', text: 'Comanzi online, plătești la livrare sau cu cardul (când pornești Plăți online).', navLabel: 'Produse', btn: 'Comandă', items: [{ t: 'Produsul tău', p: '100 lei', x: 'O frază despre produs.', img: '' }, { t: 'Alt produs', p: '150 lei', x: 'O frază despre produs.', img: '' }] },
+      f: [['kicker', 'Text mic deasupra', 'text'], ['title', 'Titlu', 'text'], ['text', 'Text', 'area'], ['items', 'Produse', 'products'], ['btn', 'Textul butonului', 'text'], ['navLabel', 'Nume în meniu', 'text']] },
     text: { name: 'Text', group: 'Conținut', variants: [['one', 'O coloană'], ['two', 'Titlu în stânga']],
       d: { kicker: '', title: 'Povestea noastră', body: 'Scrie aici, pe scurt, cine ești și cum lucrezi.\n\nUn al doilea paragraf, dacă ai nevoie.', navLabel: '' },
       f: [['kicker', 'Text mic deasupra', 'text'], ['title', 'Titlu', 'text'], ['body', 'Text (rând gol = paragraf nou)', 'long'], ['navLabel', 'Nume în meniu', 'text']] },
@@ -140,6 +143,7 @@
     despre: { title: 'Despre noi', blocks: function (n) { return [block('text', { kicker: 'Despre ' + n, title: 'Cine suntem' }, { pad: 'l' }), block('team', {}, { bg: 'surface' }), block('cta', {}, { bg: 'dark', align: 'center' })]; } },
     servicii: { title: 'Servicii și prețuri', blocks: function () { return [block('text', { title: 'Ce facem' }), block('prices', {}, { bg: 'surface' }), block('faq')]; } },
     contact: { title: 'Contact', blocks: function () { return [block('form', {}, { bg: 'surface', align: 'center' }), block('hours')]; } },
+    magazin: { title: 'Produse', blocks: function () { return [block('products', {}, { pad: 'l' }), block('form', { title: 'Comandă', text: 'Scrie ce vrei și te sunăm să confirmăm.', fields: [{ l: 'Nume', t: 'text', r: true }, { l: 'Telefon', t: 'tel', r: true }, { l: 'Comanda', t: 'area', r: true }, { l: 'Adresa de livrare', t: 'text', r: false }] }, { bg: 'surface', align: 'center' })]; } },
     noutati: { title: 'Noutăți', blocks: function () { return [block('blog', { count: 9 }, { pad: 'l' })]; } }
   };
   function page(kind, model) {

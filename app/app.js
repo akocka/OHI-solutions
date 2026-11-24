@@ -202,14 +202,14 @@
       ['newsletter', 'mail', 'Newsletter', 'Strânge adrese de e-mail și trimite noutăți.', 'În plan']]],
     ['Vânzări și plăți', [
       ['payments', 'card', 'Plăți online', 'Avans sau plată integrală cu cardul, direct pe site.', 'Comision procesator', null, 1],
-      ['shop', 'bag', 'Magazin', 'Produse, coș, livrare și comenzi.', 'În plan'],
+      ['shop', 'bag', 'Magazin', 'Produse cu poză și preț, comandă pe formular sau WhatsApp.', 'Gratuit'],
       ['rates', 'calc', 'Calculator rate', 'Rata lunară orientativă și cerere de ofertă.', 'Gratuit', 'calc'],
       ['vouchers', 'tag', 'Vouchere cadou', 'Vinzi carduri cadou pe care clienții le folosesc la tine.', 'Curând', null, 0, 1]]],
     ['Conținut', [
       ['prices', 'tag', 'Prețuri sau meniu', 'Liste de prețuri, meniuri, pe categorii.', 'Gratuit'],
       ['map', 'pin', 'Hartă și program', 'Adresa, harta și orele de lucru.', 'Gratuit'],
       ['langs', 'lang', 'Trei limbi', 'Site-ul în română, maghiară și engleză.', 'În plan'],
-      ['blog', 'edit', 'Noutăți (blog)', 'Articole scurte, bune și pentru Google.', 'În plan']]],
+      ['blog', 'edit', 'Noutăți (blog)', 'Articole scurte, bune și pentru Google.', 'Gratuit']]],
     ['Marketing', [
       ['seo', 'search', 'SEO local', 'Pagini și texte ca să te găsească lumea din oraș.', 'În plan'],
       ['gbp', 'pin', 'Profil Google', 'Program, poze și postări sincronizate cu Google.', 'Curând', null, 0, 1],

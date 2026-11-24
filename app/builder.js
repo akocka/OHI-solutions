@@ -170,6 +170,11 @@
         '<button class="mini' + (x.r ? ' on' : '') + '" data-ffr="' + i + '" title="Obligatoriu" aria-pressed="' + !!x.r + '">*</button><button class="mini x" data-rmi="' + k + '" data-i="' + i + '" aria-label="Șterge">×</button>' +
         (x.t === 'select' ? '<input class="in ffo" data-ff="' + i + '" data-fk="o" value="' + esc(x.o || '') + '" placeholder="Opțiuni, despărțite prin virgulă">' : '') + '</div>'; }).join('') +
       '</div><button class="add" data-addi="' + k + '" data-ty="fields">+ Adaugă câmp</button><p class="h" style="margin-top:6px">* = obligatoriu. Cererile ajung în Cereri, în contul tău.</p></div>';
+    if (ty === 'products') return '<div class="fl"><span style="display:block;font-size:12.5px;font-weight:600;margin:0 0 5px">' + lab + '</span><div class="li-ed">' + (v || []).map(function (x, i) {
+      return '<div class="it prd"><div class="prd-img">' + (x.img ? '<img src="' + esc(x.img) + '" alt=""><button class="mini x" data-prdimg="' + i + '" aria-label="Scoate poza">×</button>' : '<label class="up sm"><input type="file" accept="image/*" data-prdup="' + i + '">Poză</label>') + '</div>' +
+        '<div class="prd-f"><input class="in" data-li="' + k + '" data-i="' + i + '" data-j="t" value="' + esc(x.t) + '" aria-label="Nume"><input class="in" data-li="' + k + '" data-i="' + i + '" data-j="p" value="' + esc(x.p) + '" aria-label="Preț" placeholder="Preț"></div>' +
+        '<textarea class="in" data-li="' + k + '" data-i="' + i + '" data-j="x" aria-label="Descriere">' + esc(x.x) + '</textarea><button class="mini x" data-rmi="' + k + '" data-i="' + i + '" aria-label="Șterge">×</button></div>'; }).join('') +
+      '</div><button class="add" data-addi="' + k + '" data-ty="products">+ Adaugă produs</button></div>';
     if (ty === 'bool') return '<div class="tgl">' + lab + '<button class="tg" role="switch" aria-checked="' + !!v + '" data-bool="' + k + '" aria-label="' + lab + '"></button></div>';
     if (ty === 'lines') return '<label class="fl"><span>' + lab + ' <em>unul pe rând</em></span><textarea class="in" data-lines="' + k + '">' + esc((v || []).join('\n')) + '</textarea></label>';
     if (ty === 'img') return '<div class="fl"><span style="display:block;font-size:12.5px;font-weight:600;margin:0 0 5px">' + lab + '</span>' + (v ? '<div class="one-img"><img src="' + esc(v) + '" alt=""></div><button class="add" data-rmimg="' + k + '">Scoate poza</button>' : '<label class="up"><input type="file" accept="image/*" data-img="' + k + '">Încarcă o poză</label>') + '</div>';
@@ -233,8 +238,8 @@
   }
   function newPageDialog() {
     var ov = document.createElement('div'); ov.className = 'ov';
-    var K = M.PAGE_PRESETS, labels = { gol: 'Goală', despre: 'Despre noi', servicii: 'Servicii și prețuri', contact: 'Contact cu formular', noutati: 'Noutăți (blog)' };
-    var desc = { gol: 'Pornești de la zero.', despre: 'Povestea ta, echipa, îndemn.', servicii: 'Ce faci, prețuri, întrebări.', contact: 'Formular, program, hartă.', noutati: 'Lista de articole.' };
+    var K = M.PAGE_PRESETS, labels = { magazin: 'Magazin (produse)', gol: 'Goală', despre: 'Despre noi', servicii: 'Servicii și prețuri', contact: 'Contact cu formular', noutati: 'Noutăți (blog)' };
+    var desc = { magazin: 'Produse cu poză și preț, comandă.', gol: 'Pornești de la zero.', despre: 'Povestea ta, echipa, îndemn.', servicii: 'Ce faci, prețuri, întrebări.', contact: 'Formular, program, hartă.', noutati: 'Lista de articole.' };
     ov.innerHTML = '<div class="md lib" role="dialog" aria-modal="true" aria-label="Pagină nouă"><button class="x" aria-label="Închide">×</button><h2>Pagină nouă</h2><p>Alege un punct de plecare. Apoi schimbi orice.</p><div class="gr">' +
       Object.keys(K).map(function (k) { return '<button class="cdl pgk" data-newpg="' + k + '"><b>' + labels[k] + '</b><small>' + desc[k] + '</small></button>'; }).join('') + '</div></div>';
     ov.addEventListener('click', function (e) {
@@ -339,11 +344,12 @@
     if (d['var']) { commit(function () { b.v = d['var']; }); return; }
     if (d.st) { commit(function () { b.s[d.st] = d.val; }); return; }
     if (d.bool) { commit(function () { b.d[d.bool] = !b.d[d.bool]; }); return; }
+    if (d.prdimg !== undefined) { commit(function () { b.d.items[+d.prdimg].img = ''; }); return; }
     if (d.ffr !== undefined) { commit(function () { var f = b.d.fields[+d.ffr]; f.r = !f.r; }); return; }
     if (d.rmimg) { commit(function () { b.d[d.rmimg] = ''; }); return; }
     if (d.rmg) { commit(function () { b.d[d.rmg].splice(+d.i, 1); }); return; }
     if (d.rmi) { commit(function () { b.d[d.rmi].splice(+d.i, 1); }); return; }
-    if (d.addi) { commit(function () { var arr = b.d[d.addi] = b.d[d.addi] || []; arr.push(d.ty === 'pairs' ? ['', ''] : d.ty === 'fields' ? { l: 'Câmp nou', t: 'text', r: false } : d.ty === 'qa' ? { q: 'Întrebare nouă?', a: 'Răspuns.' } : { t: 'Element nou', x: 'Descriere scurtă.' }); }); return; }
+    if (d.addi) { commit(function () { var arr = b.d[d.addi] = b.d[d.addi] || []; arr.push(d.ty === 'pairs' ? ['', ''] : d.ty === 'fields' ? { l: 'Câmp nou', t: 'text', r: false } : d.ty === 'products' ? { t: 'Produs nou', p: '', x: '', img: '' } : d.ty === 'qa' ? { q: 'Întrebare nouă?', a: 'Răspuns.' } : { t: 'Element nou', x: 'Descriere scurtă.' }); }); return; }
     if ((d.a === 'up' || d.a === 'down' || d.a === 'dup' || d.a === 'del') && curPage() && shared(b)) { toast('Meniul și subsolul se schimbă din pagina Acasă.'); return; }
     if (d.a === 'up' || d.a === 'down') { var k = B().indexOf(b), n = k + (d.a === 'up' ? -1 : 1); if (n < 0 || n >= B().length) return; commit(function () { B().splice(k, 1); B().splice(n, 0, b); }); return; }
     if (d.a === 'dup') { var c = copy(b); c.id = M.uid(); commit(function () { B().splice(B().indexOf(b) + 1, 0, c); sel = c.id; }); toast('Secțiune copiată'); return; }
@@ -384,6 +390,7 @@
     if (d.seo || d.pg || d.po || d.set || d.ff !== undefined) { typing = false; return; }   // no redraw here: it would swallow the click that caused the blur
     if (d.font) { commit(function () { model.brand[d.font] = t.value; var hit = M.FONT_PAIRS.filter(function (x) { return x.head === model.brand.headFont && x.body === model.brand.bodyFont; })[0]; model.brand.fontPair = hit ? hit.id : 'custom'; }); return; }
     if (!b) return;
+    if (d.prdup !== undefined && t.files && t.files[0]) { readImg(t.files[0], function (u) { commit(function () { b.d.items[+d.prdup].img = u; }); }); return; }
     if (d.ffsel !== undefined) { commit(function () { b.d.fields[+d.ffsel].t = t.value; }); return; }
     if (d.stsel) { commit(function () { b.s[d.stsel] = t.value; }); preview(true); return; }
     if (d.img && t.files[0]) { readImg(t.files[0], function (u) { commit(function () { b.d[d.img] = u; }); }); return; }

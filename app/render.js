@@ -25,7 +25,7 @@
       '--maxw': '1160px', '--an-d': { slow: '1.1s', normal: '.7s', fast: '.4s' }[b.animSpeed] || '.7s'
     };
   };
-  var LABEL = { nav: 'Meniu', hero: 'Început', features: 'Avantaje', prices: 'Prețuri', gallery: 'Galerie', faq: 'Întrebări', hours: 'Program și contact', cta: 'Îndemn', booking: 'Plugin · Programări', calc: 'Plugin · Calculator rate', footer: 'Subsol', text: 'Text', form: 'Formular', blog: 'Noutăți', reviews: 'Recenzii', team: 'Echipa', article: 'Articol' };
+  var LABEL = { nav: 'Meniu', hero: 'Început', features: 'Avantaje', prices: 'Prețuri', gallery: 'Galerie', faq: 'Întrebări', hours: 'Program și contact', cta: 'Îndemn', booking: 'Plugin · Programări', calc: 'Plugin · Calculator rate', footer: 'Subsol', text: 'Text', form: 'Formular', blog: 'Noutăți', reviews: 'Recenzii', team: 'Echipa', article: 'Articol', products: 'Produse' };
   var CTX = { opts: {}, model: null };
   /* links between pages: the public site uses /slug, the stand-alone preview uses ?site=..&p=slug */
   var href = function (kind, slug) { var f = CTX.opts.href; if (f) return f(kind, slug); return kind === 'home' ? '?site=' + encodeURIComponent(CTX.opts.siteId || '') : '?site=' + encodeURIComponent(CTX.opts.siteId || '') + '&' + (kind === 'post' ? 'post' : 'p') + '=' + encodeURIComponent(slug); };
@@ -113,6 +113,13 @@
       }).join('') : '<p class="empty an">Primele articole apar aici după ce le publici.</p>';
       return '<div class="w"><div class="al">' + head(d) + '</div><div class="posts ' + (b.v === 'list' ? 'pl' : '') + '">' + cards + '</div></div>';
     },
+    products: function (d, m, b) {
+      var it = (d.items || []).map(function (x, i) {
+        return '<div class="prod an">' + (b.v === 'list' ? '' : img(x.img, 'Poza produsului')) + '<div class="pi"><div class="pt">' + t('h3', 'items.' + i + '.t', x.t) + t('b', 'items.' + i + '.p', x.p, 'pp') + '</div>' + t('p', 'items.' + i + '.x', x.x) +
+          '<a class="bt p sm" href="#" data-order="' + esc(x.t) + '">' + esc(d.btn || 'Comandă') + '</a></div></div>';
+      }).join('');
+      return '<div class="w"><div class="al">' + head(d) + '</div><div class="prods' + (b.v === 'list' ? ' pl' : '') + '">' + it + '</div></div>';
+    },
     reviews: function (d, m, b) {
       var it = (d.items || []).map(function (r, i) { return '<figure class="rv an"><blockquote data-t="items.' + i + '.x">' + esc(r.x) + '</blockquote><figcaption data-t="items.' + i + '.t">' + esc(r.t) + '</figcaption></figure>'; });
       return '<div class="w"><div class="al">' + head(d) + '</div><div class="' + (b.v === 'quote' ? 'rv1' : 'cols') + '" style="--n:' + Math.min(3, Math.max(1, it.length)) + '">' + (b.v === 'quote' ? it.slice(0, 1) : it).join('') + '</div></div>';
@@ -153,6 +160,7 @@
       return '<section class="' + cls + (blk.hidden ? ' hidden-blk' : '') + (opts.sel === blk.id ? ' sel' : '') + '"' + attrs + '>' + html + '</section>';
     }).join('') + extras(model, opts);
     wireCalc(); reveal(!!opts.replay); fxInit();
+    if (!opts.edit) { var ord = null; try { ord = sessionStorage.getItem('ohi-order'); } catch (e) { /* storage off */ } var fm0 = ord && document.querySelector('.ohi-form'); if (fm0) { try { sessionStorage.removeItem('ohi-order'); } catch (e) { /* storage off */ } var ta0 = fm0.querySelector('textarea'); if (ta0) ta0.value = 'Vreau să comand: ' + ord + '\n'; } }
   }
   /* site-wide extras: WhatsApp button and the cookie notice */
   function extras(m, opts) {
@@ -171,6 +179,16 @@
     var mn = e.target.closest('.mnu');
     if (mn) { var nv = mn.closest('.nav'), open = !nv.classList.contains('open'); nv.classList.toggle('open', open); mn.setAttribute('aria-expanded', open); return; }
     var openNav = document.querySelector('.nav.open'); if (openNav && e.target.closest('.nav ul a')) { openNav.classList.remove('open'); }
+    var od = e.target.closest('[data-order]');
+    if (od && !document.body.classList.contains('edit')) {
+      e.preventDefault();
+      var fm = document.querySelector('.ohi-form');
+      if (fm) { var ta = fm.querySelector('textarea') || fm.querySelector('input:not(.hp)'); if (ta) ta.value = 'Vreau să comand: ' + od.dataset.order + '\n' + (ta.value || ''); fm.scrollIntoView({ behavior: 'smooth', block: 'center' }); setTimeout(function () { (fm.querySelector('input:not(.hp)') || ta).focus({ preventScroll: true }); }, 500); return; }
+      var M2 = CTX.model, withForm = (M2.pages || []).filter(function (p) { return p.blocks.some(function (x) { return x.type === 'form'; }); })[0];
+      if (withForm) { try { sessionStorage.setItem('ohi-order', od.dataset.order); } catch (x) { /* storage off */ } location.href = href('page', withForm.slug); return; }
+      var wa = document.querySelector('.wa'); if (wa) { location.href = wa.href.split('?')[0] + '?text=' + encodeURIComponent('Bună ziua! Vreau să comand: ' + od.dataset.order); }
+      return;
+    }
     var ck = e.target.closest('[data-ck]');
     if (ck) { try { localStorage.setItem('ohi-cookie-' + (CTX.opts.siteId || 'x'), ck.dataset.ck); } catch (x) { /* storage off */ } var bar = ck.closest('.ck-bar'); if (bar && !document.body.classList.contains('edit')) bar.remove(); return; }
     /* stand-alone preview: move between pages without reloading */
