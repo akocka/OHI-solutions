@@ -7,7 +7,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://cloud.umami.is; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self' data:; connect-src 'self' https://hook.eu2.make.com https://script.google.com https://script.googleusercontent.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://cloud.umami.is https://api-gateway.umami.dev; frame-src 'self' https://www.google.com https://maps.google.com https://www.bigbigboon.ro; media-src 'self' blob:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
+          "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://hook.eu2.make.com; frame-src 'none'; media-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
         },
         {
           "key": "Strict-Transport-Security",
@@ -34,6 +34,88 @@
           "value": "none"
         }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/servicii",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/preturi",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/despre",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/portofoliu",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/personalizate",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/ajutor",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/cookie",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/termeni",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/exemple/:path*",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/demos/:path*",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/concept/:path*",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/clienti/:path*",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/portofoliu-media/:path*",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/cin/:path*",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/vendor/:path*",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/tools/:path*",
+      "destination": "/",
+      "permanent": false
     }
   ]
 }
