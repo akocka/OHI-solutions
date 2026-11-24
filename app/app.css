@@ -278,3 +278,4 @@ textarea.in{height:auto;min-height:96px;padding:12px 14px;resize:vertical;line-h
   .tbl.team td:first-child{grid-column:1/-1}
   .tbl.team .in.sm{max-width:none;width:100%}
 }
+@media(max-width:560px){.tbl.team td:last-child{text-align:left!important}.tbl.team td:nth-child(2){align-self:center}}
