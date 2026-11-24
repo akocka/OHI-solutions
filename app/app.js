@@ -57,7 +57,7 @@
   var SITE_ST = { live: 'Online', preview: 'Gata de aprobat', progress: 'În lucru' };
   var ROUTES = [
     ['acasa', 'Acasă', 'home'], ['cereri', 'Cereri', 'inbox'], ['site', 'Site-ul meu', 'edit'], ['functii', 'Pluginuri', 'plug'],
-    ['gazduire', 'Domeniu și găzduire', 'globe', 1], ['facturi', 'Plan și facturi', 'card', 1], ['ajutor', 'Ajutor', 'help']
+    ['gazduire', 'Domeniu și găzduire', 'globe', 1], ['integrari', 'Integrări', 'link', 1], ['echipa', 'Echipă', 'users', 1], ['facturi', 'Plan și facturi', 'card', 1], ['ajutor', 'Ajutor', 'help']
   ];
   var route = function () { var r = (location.hash || '').replace(/^#\/?/, ''); return ROUTES.some(function (x) { return x[0] === r; }) ? r : 'acasa'; };
 
@@ -119,6 +119,12 @@
           '<button type="button" data-go="site" data-tab="program">' + ic('clock') + '<span>Programul<span>Ore de lucru, zile libere</span></span><i>→</i></button>' +
           '<button type="button" data-go="site" data-tab="preturi">' + ic('tag') + '<span>Prețuri<span>Servicii și tarife</span></span><i>→</i></button>' +
           '<button type="button" data-go="site" data-tab="texte">' + ic('edit') + '<span>Texte<span>Titlu, descriere, despre</span></span><i>→</i></button>' +
+        '</div></section>' +
+        '<section class="cd"><h2>Contul</h2><div class="qa">' +
+          '<a href="#/gazduire">' + ic('globe') + '<span>Domeniu<span>Adresa site-ului, HTTPS</span></span><i>→</i></a>' +
+          '<a href="#/integrari">' + ic('link') + '<span>Integrări<span>Google, e-mail, Make, Stripe</span></span><i>→</i></a>' +
+          '<a href="#/echipa">' + ic('users') + '<span>Echipă<span>Cine are acces la cont</span></span><i>→</i></a>' +
+          '<a href="#/facturi">' + ic('card') + '<span>Plan și facturi<span>Ce plătești</span></span><i>→</i></a>' +
         '</div></section>' +
         '<section class="cd"><h2>' + on + ' pluginuri active</h2><p class="sub">Formulare, programări, hartă și altele.</p><a class="bt bt-s" href="#/functii">' + ic('plug') + 'Vezi funcțiile</a></section>' +
       '</div></div>';
@@ -213,7 +219,7 @@
       ['ai', 'spark', 'Asistent pe site', 'Răspunde vizitatorilor din textele tale.', 'Curând', null, 0, 1],
       ['make', 'link', 'Make, Google Sheets, Calendar', 'Trimite cererile unde lucrezi deja.', 'În plan']]]
   ];
-  var IC2 = { star: '<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>', chat: '<path d="M4 20l1.5-4A8 8 0 1 1 8 19z"/>', mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>', calc: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/>', search: '<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/>', chart: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>', link: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>' };
+  var IC2 = { users: '<circle cx="9" cy="8" r="3.2"/><path d="M3 19a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/>', star: '<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>', chat: '<path d="M4 20l1.5-4A8 8 0 1 1 8 19z"/>', mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>', calc: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/>', search: '<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/>', chart: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>', link: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>' };
   Object.keys(IC2).forEach(function (k) { I[k] = IC2[k]; });
   var plugQ = '', plugCat = 'Toate';
   function pageAddons() {
@@ -329,12 +335,99 @@
       }).join('') + '</div></section></div>';
   }
 
+  /* ---------- new site from a template ---------- */
+  function newSiteDialog() {
+    var M = window.OHIModel, ov = document.createElement('div'); ov.className = 'dw-bg nsd-bg';
+    var w = document.createElement('div'); w.className = 'nsd'; w.setAttribute('role', 'dialog'); w.setAttribute('aria-modal', 'true'); w.setAttribute('aria-label', 'Site nou');
+    var pick = M.TEMPLATES[0].id;
+    var cards = function () { return M.TEMPLATES.map(function (t) {
+      var pal = M.PALETTES.filter(function (p) { return p.id === t.pal; })[0].colors;
+      return '<button type="button" class="tpl" data-tpl="' + t.id + '" aria-pressed="' + (pick === t.id) + '"><i style="background:' + pal.bg + '"><span style="background:' + pal.accent + '"></span><span style="background:' + pal.surface + '"></span><span style="background:' + pal.dark + '"></span></i><b>' + esc(t.name) + '</b><small>' + esc(t.desc) + '</small></button>'; }).join(''); };
+    w.innerHTML = '<div class="dw-h"><div><small style="color:var(--mute)">Site nou</small><h2>Pentru cine e site-ul?</h2></div><button class="x" type="button" aria-label="Închide">×</button></div>' +
+      '<form id="nsf" novalidate><label class="fl"><span>Numele afacerii</span><input class="in" name="n" required maxlength="60" placeholder="ex. Salon Bianca"></label>' +
+      '<div class="two-c"><label class="fl"><span>Orașul</span><input class="in" name="c" maxlength="40" placeholder="ex. Târgu Mureș"></label><label class="fl"><span>Telefon</span><input class="in" name="t" inputmode="tel" maxlength="20" placeholder="07xx xxx xxx"></label></div>' +
+      '<span class="lbl2">Alege un șablon</span><div class="tpls" id="tpls">' + cards() + '</div>' +
+      '<label class="fl" style="margin-top:14px"><span>Sau descrie-l cu cuvintele tale <em>(opțional, îl folosește AI-ul)</em></span><textarea class="in" name="d" maxlength="500" placeholder="ce faci, ce vrei să găsească clienții pe site"></textarea></label>' +
+      '<button class="bt bt-p bt-w" type="submit">Creează site-ul</button><p class="note">Primești un site cu Acasă, Despre noi și Contact. Îl schimbi apoi cum vrei în editor.</p></form>';
+    var close = function () { ov.remove(); w.remove(); document.removeEventListener('keydown', key); };
+    var key = function (e) { if (e.key === 'Escape') close(); };
+    ov.addEventListener('click', close); w.querySelector('.x').addEventListener('click', close); document.addEventListener('keydown', key);
+    w.addEventListener('click', function (e) { var b = e.target.closest('[data-tpl]'); if (!b) return; pick = b.dataset.tpl; $$('[data-tpl]', w).forEach(function (x) { x.setAttribute('aria-pressed', x === b); }); });
+    w.querySelector('#nsf').addEventListener('submit', function (e) {
+      e.preventDefault(); var f = e.target, name = f.n.value.trim(), city = f.c.value.trim(), tel = f.t.value.trim();
+      if (name.length < 2) { f.n.classList.add('err'); f.n.focus(); toast('Scrie numele afacerii.'); return; }
+      var T = M.TEMPLATES.filter(function (x) { return x.id === pick; })[0];
+      var prompt = (f.d.value.trim() ? f.d.value.trim() + '. ' : '') + T.prompt.replace(/„[^”]*”/, '„' + name + '”').replace(/ din [A-ZĂÂÎȘȚ][^,]*/, '') + (city ? ' din ' + city : '') + (tel ? ', telefon ' + tel : '');
+      var m = M.generate(prompt, true); m.brand.name = name;
+      m.blocks.forEach(function (b) { if (b.type === 'nav') b.d.logo = name; if (b.type === 'footer') { b.d.name = name; b.d.line = city; } });
+      var hero = m.blocks.filter(function (b) { return b.type === 'hero'; })[0], hrs = m.blocks.filter(function (b) { return b.type === 'hours'; })[0], pr = m.blocks.filter(function (b) { return b.type === 'prices'; })[0];
+      var id = M.slugify(name), n = 2; while (S.sites.some(function (x) { return x.id === id; })) id = M.slugify(name) + '-' + n++;
+      var nsite = { id: id, name: name, type: T.name, domain: 'domeniul-tau.ro', status: 'progress', plan: 'Start', template: T.name, since: new Date().toISOString().slice(0, 10),
+        content: { heroTitle: hero.d.title, heroText: hero.d.text, about: '', phone: tel || hrs.d.phone, address: hrs.d.address, hours: hrs.d.hours, prices: pr.d.items },
+        leads: [], visits: [0, 0, 0, 0, 0, 0, 0], addons: { form: true, booking: m.blocks.some(function (b) { return b.type === 'booking'; }), prices: true, map: true }, domains: [], model: m };
+      S.sites.push(nsite); S.siteId = id; save(); close(); location.hash = '#/acasa'; render(); toast('Site-ul „' + name + '” e gata de editat.');
+    });
+    document.body.appendChild(ov); document.body.appendChild(w); w.querySelector('[name=n]').focus();
+  }
+
+  /* ---------- integrations ---------- */
+  function pageIntegrations() {
+    var s = site(), g = s.integrations = s.integrations || { notify: true, email: demo.user.email, hook: '', gcal: 'off', stripe: 'off', gsv: '' };
+    var card = function (icon, title, sub, body, badge) { return '<section class="cd ig"><div class="ig-h"><span class="ig-i">' + ic(icon) + '</span><div><h2>' + title + '</h2><p class="sub">' + sub + '</p></div>' + (badge || '') + '</div>' + body + '</section>'; };
+    var conn = function (st) { return st === 'on' ? '<span class="st live">Conectat</span>' : st === 'wait' ? '<span class="st preview">Așteaptă aprobarea</span>' : ''; };
+    return '<div class="tb"><div><h1>Integrări</h1><p>Leagă site-ul de aplicațiile cu care lucrezi deja. Nu îți cerem niciodată parola: te conectezi direct la Google sau Stripe și poți retrage accesul oricând.</p></div></div>' +
+      '<div class="g g2">' +
+      card('mail', 'Cereri pe e-mail', 'Fiecare cerere de pe site îți vine și pe e-mail. Când dai Răspunde, scrii direct clientului.',
+        '<div class="tgl2"><span>Trimite-mi cererile pe e-mail</span><button class="tg" role="switch" aria-checked="' + !!g.notify + '" data-ig="notify" aria-label="Cereri pe e-mail"></button></div>' +
+        (g.notify ? '<label class="fl"><span>Adresa</span><input class="in" type="email" data-igf="email" value="' + esc(g.email) + '"></label>' : ''), '<span class="st live">Fără conectare</span>') +
+      card('cal', 'Google Calendar', 'Programările de pe site intră direct în calendarul tău, iar orele ocupate dispar din formular.',
+        (g.gcal === 'on' ? '<p class="mini-t">Conectat la ' + esc(demo.user.email) + '. Calendarul: Programări.</p><button class="bt bt-g" type="button" data-igc="gcal">Deconectează</button>' : '<button class="bt bt-p" type="button" data-igc="gcal">Conectează Google</button>'), conn(g.gcal)) +
+      card('link', 'Make, Zapier, n8n (webhook)', 'Trimite fiecare cerere unde vrei: Google Sheets, CRM, WhatsApp Business și altele.',
+        '<label class="fl"><span>Adresa webhook</span><input class="in" data-igf="hook" value="' + esc(g.hook) + '" placeholder="https://hook.eu2.make.com/…" spellcheck="false"></label><button class="bt bt-s" type="button" data-igtest>Trimite o cerere de test</button>') +
+      card('card', 'Stripe (plăți cu cardul)', 'Banii ajung direct în contul tău Stripe. OHI nu atinge banii și nu vede datele cardului.',
+        (g.stripe === 'on' ? '<p class="mini-t">Cont Stripe conectat (mod de test).</p><button class="bt bt-g" type="button" data-igc="stripe">Deconectează</button>' : '<button class="bt bt-p" type="button" data-igc="stripe">Conectează Stripe</button>'), conn(g.stripe)) +
+      card('search', 'Google Search Console', 'Vezi cum te găsesc oamenii în Google. Lipește codul de verificare din Search Console.',
+        '<label class="fl"><span>Cod de verificare (meta)</span><input class="in" data-igf="gsv" value="' + esc(g.gsv) + '" placeholder="ex. AbC123…" spellcheck="false"></label><p class="mini-t">Sitemap-ul și pagina robots.txt le facem noi automat.</p>') +
+      card('chart', 'Statistici OHI', 'Vizite, pagini văzute și de unde vin oamenii. Fără cookie-uri, deci fără banner obligatoriu pentru ele.',
+        '<a class="bt bt-s" href="#/acasa">Vezi statisticile</a>', '<span class="st live">Inclus</span>') +
+      '</div>' +
+      '<section class="cd" style="margin-top:16px"><h2>În curând</h2><p class="sub">Google Analytics, Meta Pixel, Facebook și Instagram, Google Business Profile, facturare SmartBill și FGO. Le pornim pe rând, cu acordul vizitatorilor acolo unde legea o cere.</p></section>';
+  }
+  function igConnect(k) {
+    var s = site(), g = s.integrations, names = { gcal: 'Google', stripe: 'Stripe' };
+    if (g[k] === 'on') { g[k] = 'off'; save(); render(); toast('Deconectat de la ' + names[k] + '.'); return; }
+    var ov = document.createElement('div'); ov.className = 'dw-bg nsd-bg'; var w = document.createElement('div'); w.className = 'nsd'; w.setAttribute('role', 'dialog'); w.setAttribute('aria-modal', 'true');
+    var what = k === 'gcal' ? ['Să vadă orele ocupate din calendarul tău', 'Să adauge programările făcute pe site'] : ['Să creeze plăți în contul tău Stripe', 'Să vadă dacă o plată a reușit (nu vede cardurile)'];
+    w.innerHTML = '<div class="dw-h"><div><small style="color:var(--mute)">Demo</small><h2>Conectare ' + names[k] + '</h2></div><button class="x" type="button" aria-label="Închide">×</button></div>' +
+      '<p>În platforma reală se deschide pagina oficială ' + names[k] + '. Acolo vezi exact ce poate face OHI și apeși „Permite”:</p><ul class="chk">' + what.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>' +
+      '<p class="note">OHI nu primește niciodată parola ta. Accesul se poate retrage oricând, din contul ' + names[k] + ' sau de aici.</p><button class="bt bt-p bt-w" type="button" data-ok>Continuă (demo)</button>';
+    var close = function () { ov.remove(); w.remove(); };
+    ov.addEventListener('click', close); w.querySelector('.x').addEventListener('click', close);
+    w.querySelector('[data-ok]').addEventListener('click', function () { g[k] = 'on'; save(); close(); render(); toast('Conectat la ' + names[k] + ' (demo).'); });
+    document.body.appendChild(ov); document.body.appendChild(w); w.querySelector('[data-ok]').focus();
+  }
+
+  /* ---------- team ---------- */
+  var ROLES = [['owner', 'Proprietar', 'Tot, inclusiv facturi, plăți și ștergerea site-ului.'], ['admin', 'Administrator', 'Tot, în afară de ștergerea contului. Poate porni pluginuri și conecta domenii.'], ['editor', 'Editor', 'Schimbă texte, poze și secțiuni; răspunde la cereri.'], ['viewer', 'Doar vizualizare', 'Vede site-ul și cererile, fără să schimbe ceva.']];
+  function pageTeam() {
+    var s = site(), team = s.team = s.team || [{ name: demo.user.name, email: demo.user.email, role: 'owner', you: true }];
+    var rname = function (r) { return (ROLES.filter(function (x) { return x[0] === r; })[0] || [0, r])[1]; };
+    return '<div class="tb"><div><h1>Echipă</h1><p>Cine are acces la contul ' + esc(s.name) + '. Fiecare intră cu e-mailul lui, fără parole împărțite.</p></div></div>' +
+      '<div class="g g2"><section class="cd"><h2>Oameni</h2><table class="tbl team"><thead><tr><th>Persoana</th><th>Rol</th><th></th></tr></thead><tbody>' + team.map(function (m, i) {
+        return '<tr><td><b>' + esc(m.name || m.email) + '</b>' + (m.you ? ' <span class="st">Tu</span>' : '') + '<br><small style="color:var(--mute)">' + esc(m.email) + (m.pending ? ' · invitație trimisă' : '') + '</small></td>' +
+          '<td>' + (m.role === 'owner' ? rname(m.role) : '<select class="in sm" data-trole="' + i + '" aria-label="Rol">' + ROLES.slice(1).map(function (r) { return '<option value="' + r[0] + '"' + (m.role === r[0] ? ' selected' : '') + '>' + r[1] + '</option>'; }).join('') + '</select>') + '</td>' +
+          '<td style="text-align:right">' + (m.role === 'owner' ? '' : '<button class="bt bt-g" type="button" data-trm="' + i + '">Scoate</button>') + '</td></tr>'; }).join('') + '</tbody></table></section>' +
+      '<section class="cd"><h2>Invită pe cineva</h2><form id="tf" novalidate><label class="fl"><span>E-mail</span><input class="in" type="email" name="e" required placeholder="coleg@firma.ro"></label>' +
+      '<label class="fl"><span>Rol</span><select class="in" name="r">' + ROLES.slice(1).map(function (r) { return '<option value="' + r[0] + '"' + (r[0] === 'editor' ? ' selected' : '') + '>' + r[1] + '</option>'; }).join('') + '</select></label><button class="bt bt-p" type="submit">Trimite invitația</button></form>' +
+      '<ul class="roles">' + ROLES.map(function (r) { return '<li><b>' + r[1] + '</b><span>' + r[2] + '</span></li>'; }).join('') + '</ul></section></div>';
+  }
+
   /* ---------- render + events ---------- */
   function render() {
     if (!S.logged) return login();
     var r = route(), titles = {}; ROUTES.forEach(function (x) { titles[x[0]] = x[1]; });
     document.title = titles[r] + ' · ' + site().name + ' | OHI';
-    shell(r, { acasa: pageHome, cereri: pageLeads, site: pageSite, functii: pageAddons, gazduire: pageHosting, facturi: pageBilling, ajutor: pageHelp }[r]());
+    shell(r, { acasa: pageHome, cereri: pageLeads, site: pageSite, functii: pageAddons, gazduire: pageHosting, facturi: pageBilling, ajutor: pageHelp, integrari: pageIntegrations, echipa: pageTeam }[r]());
     $$('iframe[data-pv]').forEach(function (f) {
       var go = function () { try { if (f.contentWindow.OHIRender) f.contentWindow.OHIRender.render(modelOf(f.dataset.pv === 'draft' ? draft : site()), {}); } catch (e) { /* not ready */ } };
       f.addEventListener('load', go); go();
@@ -344,15 +437,19 @@
   window.__ohiRenderReady = function (w) { $$('iframe[data-pv]').forEach(function (f) { if (f.contentWindow === w) w.OHIRender.render(modelOf(f.dataset.pv === 'draft' ? draft : site()), {}); }); };
 
   document.addEventListener('click', function (e) {
-    var t = e.target.closest('[data-act],[data-site],[data-lead],[data-filter],[data-go],[data-tab2],[data-dev],[data-ao],[data-add],[data-rm],[data-plug],[data-plset],[data-plcat],[data-dns],[data-rmdom]');
+    var t = e.target.closest('[data-ig],[data-igc],[data-igtest],[data-trm],[data-act],[data-site],[data-lead],[data-filter],[data-go],[data-tab2],[data-dev],[data-ao],[data-add],[data-rm],[data-plug],[data-plset],[data-plcat],[data-dns],[data-rmdom]');
     if (!t) { if (menuOpen && !e.target.closest('.sw')) { menuOpen = false; render(); } return; }
     var a = t.dataset.act;
     if (a === 'menu') { menuOpen = !menuOpen; render(); return; }
     if (a === 'logout') { S.logged = false; save(); menuOpen = false; location.hash = ''; render(); return; }
-    if (a === 'newclient') { menuOpen = false; render(); toast('În platforma reală: inviți clientul pe e-mail și îi alegi șablonul.'); return; }
+    if (a === 'newclient') { menuOpen = false; render(); newSiteDialog(); return; }
     if (a === 'approve') { site().status = 'live'; save(); render(); toast(site().domain + ' e acum online.'); return; }
     if (a === 'openmodel') { site().model = modelOf(site()); save(); return; }
     if (a === 'adddom') { domainDialog(); return; }
+    if (t.dataset.ig) { var gi = site().integrations; gi[t.dataset.ig] = !gi[t.dataset.ig]; save(); render(); return; }
+    if (t.dataset.igc) { igConnect(t.dataset.igc); return; }
+    if (t.dataset.igtest !== undefined) { var hk = site().integrations.hook; toast(/^https:\/\/[^\s]+$/.test(hk) ? 'Demo: în platforma reală trimitem acum o cerere de test la adresa ta. Aici nu se trimite nimic.' : 'Pune întâi o adresă care începe cu https://'); return; }
+    if (t.dataset.trm) { var tm = site().team, ti = +t.dataset.trm; confirmTeam(tm[ti], function () { tm.splice(ti, 1); save(); render(); toast('Accesul a fost retras.'); }); return; }
     if (t.dataset.plug) { plugToggle(t.dataset.plug); return; }
     if (t.dataset.plset) { plugSettings(t.dataset.plset); return; }
     if (t.dataset.plcat) { plugCat = t.dataset.plcat; render(); return; }
@@ -378,7 +475,17 @@
     if (t.dataset.f) { draft.content[t.dataset.f] = t.value; updateDraftUI(); }
     if (t.dataset.row) { draft.content[t.dataset.row][+t.dataset.i][+t.dataset.j] = t.value; updateDraftUI(); }
   });
+  document.addEventListener('change', function (e) {
+    var t = e.target;
+    if (t.dataset.igf) { var v = t.value.trim(); if (t.dataset.igf === 'hook' && v && !/^https:\/\/[^\s]+$/.test(v)) { toast('Adresa trebuie să înceapă cu https://'); return; } site().integrations[t.dataset.igf] = v; save(); toast('Salvat'); return; }
+    if (t.dataset.trole) { site().team[+t.dataset.trole].role = t.value; save(); toast('Rolul a fost schimbat.'); }
+  });
+  function confirmTeam(m, fn) { var b = document.createElement('div'); b.className = 'dw-bg nsd-bg'; var w = document.createElement('div'); w.className = 'nsd'; w.setAttribute('role', 'alertdialog'); w.setAttribute('aria-modal', 'true');
+    w.innerHTML = '<h2>Scoți accesul pentru ' + esc(m.name || m.email) + '?</h2><p>Nu mai poate intra în cont. Îl poți invita din nou oricând.</p><div style="display:flex;gap:8px;justify-content:flex-end"><button class="bt bt-s" type="button" data-n>Renunță</button><button class="bt bt-p" type="button" data-y>Scoate</button></div>';
+    var close = function () { b.remove(); w.remove(); }; b.addEventListener('click', close); w.querySelector('[data-n]').addEventListener('click', close); w.querySelector('[data-y]').addEventListener('click', function () { close(); fn(); });
+    document.body.appendChild(b); document.body.appendChild(w); w.querySelector('[data-y]').focus(); }
   document.addEventListener('submit', function (e) {
+    if (e.target.id === 'tf') { e.preventDefault(); var em = e.target.e.value.trim().toLowerCase(); if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) { toast('Scrie o adresă de e-mail validă.'); return; } if (site().team.some(function (x) { return x.email === em; })) { toast('Persoana are deja acces.'); return; } site().team.push({ email: em, role: e.target.r.value, pending: true }); save(); render(); toast('Invitație pregătită pentru ' + em + ' (demo: nu se trimite e-mail).'); return; }
     if (e.target.id !== 'hf') return; e.preventDefault();
     var v = e.target.t.value.trim(); if (v.length < 3) { toast('Scrie pe scurt ce ai nevoie.'); return; }
     S.tickets.push({ id: 'T-' + (36 + S.tickets.length), title: v.slice(0, 80), when: new Date().toISOString().slice(0, 10), status: 'Primit' }); save(); render(); toast('Am primit cererea. Îți răspundem în curând.');
