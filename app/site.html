@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Previzualizare</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+*{box-sizing:border-box}body{margin:0;font:16px/1.6 Inter,system-ui,sans-serif;color:#1C1A17;background:#FAF7F2}
+.w{max-width:1040px;margin:0 auto;padding:0 24px}
+header{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+header b{font-family:Fraunces,Georgia,serif;font-size:22px;font-weight:600}
+header a{font-size:14px;font-weight:600;text-decoration:none;color:#1C1A17;padding:10px 16px;border-radius:999px;border:1px solid rgba(28,26,23,.2)}
+.hero{padding:56px 0 64px}
+.hero h1{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:clamp(34px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:0 0 18px;max-width:14ch}
+.hero p{font-size:clamp(16px,2vw,19px);color:#5B564E;max-width:44ch;margin:0 0 28px}
+.cta{display:inline-flex;padding:14px 24px;border-radius:999px;background:#1C1A17;color:#FAF7F2;font-weight:600;text-decoration:none}
+section.s{padding:48px 0;border-top:1px solid rgba(28,26,23,.1)}
+section.s h2{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:30px;margin:0 0 18px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px dashed rgba(28,26,23,.18)}
+.li span:last-child{font-weight:600;white-space:nowrap}
+.map{margin-top:18px;height:160px;border-radius:12px;background:repeating-linear-gradient(45deg,#EDE7DD 0 12px,#F3EEE6 12px 24px);display:grid;place-items:center;color:#8A8378;font-size:13px}
+.book{background:#1C1A17;color:#FAF7F2;border-radius:18px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.book h2{color:#FAF7F2;margin:0}
+.book a{background:#FAF7F2;color:#1C1A17}
+footer{padding:28px 0 40px;color:#8A8378;font-size:13px}
+.hide{display:none!important}
+@media(max-width:700px){.cols{grid-template-columns:1fr;gap:24px}.hero{padding:32px 0 44px}}
+</style>
+</head>
+<body>
+<div class="w">
+  <header><b data-k="name"></b><a data-k="phoneLink">Sună</a></header>
+  <div class="hero"><h1 data-k="heroTitle"></h1><p data-k="heroText"></p><a class="cta" id="ctaBook" href="#programare">Programează-te</a></div>
+  <section class="s" id="despre"><h2>Despre noi</h2><p data-k="about"></p></section>
+  <section class="s" id="preturi"><div class="cols"><div><h2>Prețuri</h2><div id="prices"></div></div><div><h2>Program</h2><div id="hours"></div><p data-k="address" style="margin:18px 0 0;color:#5B564E"></p><div class="map" id="map">Hartă</div></div></div></section>
+  <section class="s" id="programare"><div class="book" id="book"><h2>Rezervă-ți locul online</h2><a class="cta" href="#programare">Alege ora</a></div></section>
+  <footer data-k="footer"></footer>
+</div>
+<script src="/app/site.js"></script>
+</body>
+</html>
