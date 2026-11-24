@@ -119,6 +119,12 @@
     else if (/anima.*(zoom|m[aă]rire)/.test(t)) { model.brand.anim = 'zoom'; did.push('animații zoom'); }
     else if (/anima.*(lateral|st[aâ]nga|alunec)/.test(t)) { model.brand.anim = 'left'; did.push('animații din lateral'); }
     else if (/anima/.test(t)) { model.brand.anim = 'up'; did.push('animații de jos în sus'); }
+    var fxT = sel || model.blocks.filter(function (x) { return x.type === 'hero'; })[0], fx = null;
+    if (/parallax|adâncime|adancime/.test(t)) fx = ['parallax', 'imagine în adâncime'];
+    else if (/(text\w* urc|imagin\w* coboar|derulare)/.test(t)) fx = ['split', 'imaginea coboară, textul urcă'];
+    else if (/peste sec|urc[aă] peste/.test(t)) fx = ['cover', 'secțiunea urcă peste cea de sus'];
+    else if (/f[aă]r[aă] efect/.test(t)) fx = ['none', 'fără efect la derulare'];
+    if (fx && fxT) { fxT.s.fx = fx[0]; did.push(fx[1]); }
     if (/(mai )?(rotunjit|rotund)/.test(t) && /col[tț]/.test(t)) { model.brand.radius = 24; did.push('colțuri mai rotunjite'); }
     if (/col[tț]uri drepte|f[aă]r[aă] rotunj/.test(t) && !/butoan/.test(t)) { model.brand.radius = 0; did.push('colțuri drepte'); }
     if (/(temă|tema|fundal) (închis|inchis|întunecat|dark)|mod (închis|întunecat)/.test(t)) { var p = PALETTES[2]; model.brand.colors = Object.assign({}, p.colors, { accent: model.brand.colors.accent }); did.push('temă închisă'); }

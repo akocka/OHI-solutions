@@ -95,11 +95,11 @@
       if (blk.hidden && !opts.edit) return '';
       var s = blk.s || {}, an = s.anim && s.anim !== 'inherit' ? s.anim : b.anim, bs = s.btn && s.btn !== 'inherit' ? s.btn : b.btnStyle;
       var cls = blk.type === 'nav' ? 'nav' : blk.type === 'footer' ? 'foot' : 'blk ' + blk.type;
-      var attrs = ' id="' + blk.id + '" data-id="' + blk.id + '" data-label="' + esc(LABEL[blk.type] || blk.type) + '" data-v="' + esc(blk.v || '') + '" data-bg="' + esc(s.bg || 'bg') + '" data-pad="' + esc(s.pad || 'm') + '" data-al="' + esc(s.align || 'left') + '" data-w="' + esc(s.width || 'normal') + '" data-img="' + esc(s.img || 'right') + '" data-an="' + esc(an === 'none' ? '' : an) + '" data-bs="' + esc(bs) + '"';
+      var attrs = ' id="' + blk.id + '" data-id="' + blk.id + '" data-label="' + esc(LABEL[blk.type] || blk.type) + '" data-v="' + esc(blk.v || '') + '" data-bg="' + esc(s.bg || 'bg') + '" data-pad="' + esc(s.pad || 'm') + '" data-al="' + esc(s.align || 'left') + '" data-w="' + esc(s.width || 'normal') + '" data-img="' + esc(s.img || 'right') + '" data-an="' + esc(an === 'none' ? '' : an) + '" data-bs="' + esc(bs) + '"' + (s.fx && s.fx !== 'none' && blk.type !== 'nav' ? ' data-fx="' + esc(s.fx) + '"' : '');
       var html = (B[blk.type] || function () { return ''; })(blk.d || {}, model, blk);
       return '<section class="' + cls + (blk.hidden ? ' hidden-blk' : '') + (opts.sel === blk.id ? ' sel' : '') + '"' + attrs + '>' + html + '</section>';
     }).join('');
-    wireCalc(); reveal(!!opts.replay);
+    wireCalc(); reveal(!!opts.replay); fxInit();
   }
   function wireCalc() {
     [].forEach.call(document.querySelectorAll('[data-calc]'), function (c) {
@@ -118,6 +118,26 @@
     io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .12 });
     els.forEach(function (e) { if (replay) e.classList.remove('in'); io.observe(e); });
   }
+
+  /* scroll effects per section: --fx runs from -0.5 (section entering at the bottom) to 0.5 (leaving at the top),
+     --fxp from 0 to 1 while the section enters. CSS turns these into movement with the translate/scale properties,
+     so they never fight the appear animations, which use transform. */
+  var fxEls = [], fxTick = false;
+  function fxRun() {
+    fxTick = false; var vh = innerHeight;
+    fxEls.forEach(function (el) {
+      var r = el.getBoundingClientRect(); if (r.bottom < -100 || r.top > vh + 100) return;
+      var p = (vh - r.top) / (vh + r.height), e = Math.min(1, Math.max(0, (vh - r.top) / (vh * .9)));
+      el.style.setProperty('--fx', (Math.min(1, Math.max(0, p)) - .5).toFixed(4)); el.style.setProperty('--fxp', e.toFixed(4));
+    });
+  }
+  function fxInit() {
+    fxEls = [].slice.call(document.querySelectorAll('[data-fx]'));
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) fxEls = [];
+    fxRun();
+  }
+  addEventListener('scroll', function () { if (!fxTick) { fxTick = true; requestAnimationFrame(fxRun); } }, { passive: true });
+  addEventListener('resize', fxRun);
 
   /* editing: click selects a block, double-click edits text in place */
   document.addEventListener('click', function (e) {

@@ -142,9 +142,27 @@ h1,h2,h3{font-family:var(--f-head);font-weight:var(--w-head);letter-spacing:var(
 [data-an=up] .an{opacity:0;transform:translateY(28px)}
 [data-an=zoom] .an{opacity:0;transform:scale(.94)}
 [data-an=left] .an{opacity:0;transform:translateX(-36px)}
-[data-an] .an.in{opacity:1;transform:none}
+[data-an=right] .an{opacity:0;transform:translateX(36px)}
+[data-an=blur] .an{opacity:0;filter:blur(12px);transform:scale(1.02)}
+[data-an=flip] .an{opacity:0;transform:perspective(900px) rotateX(18deg) translateY(24px);transform-origin:50% 100%}
+[data-an=blur] .an{transition:opacity var(--an-d) ease,filter var(--an-d) ease,transform var(--an-d) ease}
+[data-an] .an.in{opacity:1;transform:none;filter:none}
+
+/* scroll effects (per section). Movement uses translate/scale, appear uses transform, so both can run together */
+[data-fx]{--fx:0;--fxp:1;--fxd:clamp(44px,8vw,110px);overflow:clip}
+[data-fx=parallax] .media>img,[data-fx=parallax] .media>.ph{scale:1.22;translate:0 calc(var(--fx) * 16%)}
+[data-fx=split] .al{translate:0 calc(var(--fx) * -1 * var(--fxd))}
+[data-fx=split] .media{translate:0 calc(var(--fx) * var(--fxd))}
+[data-fx=zoom] .media>img,[data-fx=zoom] .media>.ph{scale:calc(1.35 - var(--fxp) * .35)}
+[data-fx=drift] .al{translate:0 calc(var(--fx) * -1.4 * var(--fxd));opacity:calc(1.3 - var(--fx) * var(--fx) * 4)}
+[data-fx=slide] .media,[data-fx=slide] .card,[data-fx=slide] .pr{translate:calc((1 - var(--fxp)) * -14%) 0}
+[data-fx=slide] .al{translate:calc((1 - var(--fxp)) * 10%) 0}
+[data-fx=cover]{position:relative;z-index:2;margin-top:-44px;border-radius:30px 30px 0 0;box-shadow:0 -18px 40px -20px rgba(0,0,0,.28)}
+.nav+[data-fx=cover]{margin-top:0;border-radius:0;box-shadow:none}
+[data-fx=cover] .w{translate:0 calc((1 - var(--fxp)) * 50px)}
+.hero[data-v=cover][data-fx=parallax] .bgimg>img{scale:1.25}
 .an:nth-child(2){transition-delay:calc(var(--an-d) * .15)}.an:nth-child(3){transition-delay:calc(var(--an-d) * .3)}.an:nth-child(4){transition-delay:calc(var(--an-d) * .45)}
-@media(prefers-reduced-motion:reduce){.an{opacity:1!important;transform:none!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){.an{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}[data-fx] *{translate:none!important;scale:none!important}}
 
 /* editing mode (inside the builder only) */
 .edit .blk,.edit .nav,.edit .foot{cursor:pointer;outline:0 solid transparent;outline-offset:-2px;transition:outline-color .15s}
