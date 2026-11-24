@@ -137,7 +137,8 @@
     var pg = opts.page ? pages.filter(function (p) { return p.slug === opts.page || p.id === opts.page; })[0] : null;
     var po = opts.post ? posts.filter(function (p) { return (p.slug === opts.post || p.id === opts.post) && (p.published || opts.edit); })[0] : null;
     var nav = model.blocks.filter(function (x) { return x.type === 'nav'; })[0], foot = model.blocks.filter(function (x) { return x.type === 'footer'; })[0];
-    var list = po ? [nav, { id: 'art', type: 'article', v: '', d: po, s: { bg: 'bg', pad: 'm', align: 'left', width: 'narrow', anim: 'inherit' } }, foot]
+    var list = opts.notFound ? [nav, { id: 'nf', type: 'text', v: 'one', d: { kicker: '404', title: 'Pagina nu există', body: 'Poate a fost mutată sau ștearsă. Din meniu ajungi oriunde pe site.' }, s: { bg: 'bg', pad: 'l', align: 'center', width: 'narrow', anim: 'inherit' } }, foot]
+      : po ? [nav, { id: 'art', type: 'article', v: '', d: po, s: { bg: 'bg', pad: 'm', align: 'left', width: 'narrow', anim: 'inherit' } }, foot]
       : pg ? [nav].concat(pg.blocks, [foot]) : model.blocks;
     CTX = { opts: opts, model: model, page: pg, post: po };
     var seo = po ? { title: po.title, desc: po.excerpt } : pg ? pg.seo || {} : model.seo || {};
@@ -257,6 +258,16 @@
   if (window.parent && window.parent !== window && window.parent.__ohiRenderReady) window.parent.__ohiRenderReady(window);
   else {
     /* stand-alone preview: /app/render.html?site=<id> shows the saved demo site full-screen */
+    /* public site: the server embeds the published site as data (not code), and we draw it */
+    var live = document.getElementById('ohi-data');
+    if (live) {
+      try {
+        var D = JSON.parse(live.textContent);
+        render(D.model, { live: true, siteSlug: D.slug, siteId: D.slug, page: D.page, post: D.post, notFound: D.nf, keepTitle: true, loadedAt: Date.now(),
+          href: function (kind, slug) { return kind === 'home' ? '/' : kind === 'post' ? '/noutati/' + encodeURIComponent(slug) : '/' + encodeURIComponent(slug); } });
+      } catch (e) { /* keep the plain HTML the server sent */ }
+      return;
+    }
     var route = function () {
       var q = new URLSearchParams(location.search), id = q.get('site');
       try { var st = JSON.parse(localStorage.getItem('ohi-demo-v1') || 'null'); var s = st && st.sites.filter(function (x) { return x.id === id; })[0]; if (s && s.model) render(s.model, { standalone: true, siteId: id, page: q.get('p'), post: q.get('post') }); } catch (e) { /* nothing saved in this browser */ }

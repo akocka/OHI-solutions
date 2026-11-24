@@ -108,7 +108,7 @@
     var phone = (p.match(/0\d{3}[\s.]?\d{3}[\s.]?\d{3}/) || [])[0] || '07xx xxx xxx';
     var blocks = [
       block('nav', { logo: name, btn: kind.book ? 'Programează-te' : 'Sună acum' }),
-      block('hero', { kicker: city || 'Bine ai venit', title: kind.title(name, city), text: 'Suntem ' + name + (city ? ' din ' + city : '') + '. Află ce facem, cât costă și cum ne găsești, totul pe o singură pagină.', btn: kind.book ? 'Programează-te' : 'Cere ofertă', btn2: 'Vezi prețurile' }, { pad: 'l', align: kind.hero === 'center' ? 'center' : 'left' }, kind.hero),
+      block('hero', { kicker: city || 'Bine ai venit', title: kind.title(name, city), text: 'Suntem ' + name + (city ? ' din ' + city : '') + '. Află ce facem, cât costă și cum ne găsești' + (multi ? '.' : ', totul pe o singură pagină.'), btn: kind.book ? 'Programează-te' : 'Cere ofertă', btn2: 'Vezi prețurile' }, { pad: 'l', align: kind.hero === 'center' ? 'center' : 'left' }, kind.hero),
       block('features', { title: 'De ce ' + name, items: kind.feats.map(function (f) { return { t: f[0], x: f[1] }; }) }, { bg: 'surface' }, kind.type === 'auto' ? 'numbers' : 'cards'),
       block('prices', { items: kind.prices }, {}, kind.type === 'restaurant' ? 'cards' : 'list'),
       block('gallery', { title: 'Din ' + (kind.type === 'pensiune' ? 'pensiune' : kind.type === 'restaurant' ? 'bucătărie' : 'lucrările noastre') }, {}, 'masonry')

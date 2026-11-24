@@ -477,7 +477,7 @@
   });
   document.addEventListener('change', function (e) {
     var t = e.target;
-    if (t.dataset.igf) { var v = t.value.trim(); if (t.dataset.igf === 'hook' && v && !/^https:\/\/[^\s]+$/.test(v)) { toast('Adresa trebuie să înceapă cu https://'); return; } site().integrations[t.dataset.igf] = v; save(); toast('Salvat'); return; }
+    if (t.dataset.igf) { var v = t.value.trim(); if (t.dataset.igf === 'hook' && v && !/^https:\/\/[^\s]+$/.test(v)) { toast('Adresa trebuie să înceapă cu https://'); return; } site().integrations[t.dataset.igf] = v; if (t.dataset.igf === 'gsv' && site().model) { site().model.settings = site().model.settings || {}; site().model.settings.gsv = v.replace(/[^A-Za-z0-9_-]/g, '').slice(0, 100); } save(); toast('Salvat'); return; }
     if (t.dataset.trole) { site().team[+t.dataset.trole].role = t.value; save(); toast('Rolul a fost schimbat.'); }
   });
   function confirmTeam(m, fn) { var b = document.createElement('div'); b.className = 'dw-bg nsd-bg'; var w = document.createElement('div'); w.className = 'nsd'; w.setAttribute('role', 'alertdialog'); w.setAttribute('aria-modal', 'true');

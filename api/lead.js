@@ -19,7 +19,7 @@ module.exports = L.guard(async (req, res) => {
   if (L.limited('lead:' + L.ipOf(req) + ':' + slug, 5, 10 * 60 * 1000)) return L.send(res, 429, { error: 'slow_down' });
 
   // bots: filled the hidden field, or submitted faster than a person can type. Pretend success.
-  if (b.website || (Number(b.t) > 0 && Number(b.t) < 2500)) return L.send(res, 200, { ok: true });
+  if (b.website || (Number(b.t) > 0 && Number(b.t) < 1500)) return L.send(res, 200, { ok: true });
 
   const lead = {
     name: L.clean(b.name, 120), phone: L.clean(b.phone, 40), email: L.clean(b.email, 200).toLowerCase(),
