@@ -108,33 +108,43 @@
 
   /* ---------- pages ---------- */
   function pageHome() {
-    var s = site(), nl = s.leads.filter(function (l) { return l.status === 'nou'; }), on = Object.keys(s.addons).filter(function (k) { return s.addons[k]; }).length;
-    var max = Math.max.apply(null, s.visits.concat([1]));
-    var spark = s.visits.map(function (v) { return '<i style="height:' + Math.max(6, Math.round(v / max * 100)) + '%"></i>'; }).join('');
-    var latest = s.leads.slice(0, 3).map(leadRow).join('') || '<p class="empty">Încă nu ai cereri. Când cineva completează un formular pe site, apare aici.</p>';
-    return (isClient() ? '<section class="cd ag"><div><b>Site-ul tău e făcut și îngrijit de ' + esc(demo.client.agency) + '.</b><span>Pentru o schimbare mai mare sau o idee nouă, le scrii direct de aici.</span></div><a class="bt bt-p" href="#/ajutor">Cere o modificare</a></section>' : '') + '<div class="tb"><div><h1>Bună, ' + esc(me().name) + '</h1><p>' + (nl.length ? 'Ai ' + nl.length + ' ' + (nl.length === 1 ? 'cerere nouă' : 'cereri noi') + ' de la clienți.' : 'Totul e la zi.') + '</p></div>' +
-      '<div class="tb-a"><a class="bt bt-s" href="#/site">' + ic('edit') + 'Editează site-ul</a></div></div>' +
-      '<div class="g g-main"><div class="g">' +
-        '<section class="cd site-cd"><div class="thumb"><iframe src="/app/render.html" title="Previzualizare ' + esc(s.name) + '" tabindex="-1" data-pv></iframe></div>' +
-        '<div><span class="st ' + s.status + '">' + SITE_ST[s.status] + '</span><h2>' + esc(s.name) + '</h2><p class="dom">' + esc(s.domain) + ' · șablon ' + esc(s.template) + '</p>' +
-        '<div class="tb-a">' + (s.status === 'preview' ? '<button class="bt bt-p" type="button" data-act="approve">Aprobă și publică</button>' : '') +
-        '<a class="bt bt-p" href="/app/builder.html?site=' + encodeURIComponent(s.id) + '">' + ic('edit') + 'Editor vizual</a><a class="bt bt-s" href="/app/render.html?site=' + encodeURIComponent(s.id) + '" target="_blank" rel="noopener" data-act="openmodel">' + ic('ext') + 'Vezi site-ul</a></div></div></section>' +
-        '<section class="cd"><div class="tb" style="margin:0 0 6px;align-items:center"><h2>Ultimele cereri</h2><a class="bt bt-g" href="#/cereri">Toate →</a></div><div class="ll">' + latest + '</div></section>' +
-      '</div><div class="g">' +
-        '<section class="cd kpi"><b>' + s.visits.reduce(function (a, b) { return a + b; }, 0) + '</b><span>vizite în ultimele 7 zile</span><div class="spark" aria-hidden="true">' + spark + '</div></section>' +
-        '<section class="cd"><h2>Schimbări rapide</h2><p class="sub">Cele mai folosite, la un click.</p><div class="qa">' +
-          '<button type="button" data-go="site" data-tab="program">' + ic('clock') + '<span>Programul<span>Ore de lucru, zile libere</span></span><i>→</i></button>' +
-          '<button type="button" data-go="site" data-tab="preturi">' + ic('tag') + '<span>Prețuri<span>Servicii și tarife</span></span><i>→</i></button>' +
-          '<button type="button" data-go="site" data-tab="texte">' + ic('edit') + '<span>Texte<span>Titlu, descriere, despre</span></span><i>→</i></button>' +
-        '</div></section>' +
-        '<section class="cd"><h2>Contul</h2><div class="qa">' +
-          '<a href="#/gazduire">' + ic('globe') + '<span>Domeniu<span>Adresa site-ului, HTTPS</span></span><i>→</i></a>' +
-          '<a href="#/integrari">' + ic('link') + '<span>Integrări<span>Google, e-mail, Make, Stripe</span></span><i>→</i></a>' +
-          '<a href="#/echipa">' + ic('users') + '<span>Echipă<span>Cine are acces la cont</span></span><i>→</i></a>' +
-          '<a href="#/facturi">' + ic('card') + '<span>Plan și facturi<span>Ce plătești</span></span><i>→</i></a>' +
-        '</div></section>' +
-        '<section class="cd"><h2>' + on + ' pluginuri active</h2><p class="sub">Formulare, programări, hartă și altele.</p><a class="bt bt-s" href="#/functii">' + ic('plug') + 'Vezi funcțiile</a></section>' +
-      '</div></div>';
+    var s = site(), nl = s.leads.filter(function (l) { return l.status === 'nou'; }), on = Object.keys(s.addons).filter(function (k) { return s.addons[k]; });
+    var total = s.visits.reduce(function (a, b) { return a + b; }, 0), h = new Date().getHours();
+    var hello = h < 11 ? 'Bună dimineața' : h < 18 ? 'Bună ziua' : 'Bună seara';
+    var today = new Date().toLocaleDateString('ro-RO', { weekday: 'long', day: 'numeric', month: 'long' });
+    var latest = s.leads.slice(0, 4).map(leadRow).join('') || '<p class="empty">Încă nu ai cereri. Când cineva completează un formular pe site, apare aici.</p>';
+    var plugNames = { form: 'formular', booking: 'programări', prices: 'prețuri', map: 'hartă', gallery: 'galerie', reviews: 'recenzii', calc: 'calculator rate', payments: 'plăți', shop: 'magazin', blog: 'blog', chat: 'chat' };
+    return (isClient() ? '<section class="ag2"><div><b>Site-ul tău e făcut și îngrijit de ' + esc(demo.client.agency) + '.</b><span>Pentru o schimbare mai mare sau o idee nouă, le scrii direct de aici.</span></div><a class="bt bt-s" href="#/ajutor">Cere o modificare</a></section>' : '') +
+      '<header class="hm-h"><div><p class="hm-d">' + esc(today) + '</p><h1>' + hello + ', ' + esc(me().name) + '</h1></div>' +
+        (nl.length ? '<a class="hm-new" href="#/cereri"><span class="dot"></span>' + nl.length + ' ' + (nl.length === 1 ? 'cerere nouă' : 'cereri noi') + '</a>' : '<span class="hm-quiet">Nicio cerere nouă. Totul e la zi.</span>') + '</header>' +
+      '<section class="hm-win" aria-label="Site-ul ' + esc(s.name) + '">' +
+        '<div class="hm-bar"><span class="hm-url"><span class="hm-dot ' + s.status + '"></span>' + esc(s.domain) + '</span><span class="hm-st">' + SITE_ST[s.status] + '</span>' +
+          '<div class="hm-act">' + (s.status === 'preview' ? '<button class="bt bt-p" type="button" data-act="approve">Aprobă și publică</button>' : '') +
+          '<a class="bt bt-l" href="/app/render.html?site=' + encodeURIComponent(s.id) + '" target="_blank" rel="noopener">' + ic('ext') + '<span>Deschide site-ul</span></a>' +
+          '<a class="bt bt-p" href="/app/builder.html?site=' + encodeURIComponent(s.id) + '">' + ic('edit') + 'Editează</a></div></div>' +
+        '<div class="hm-view"><iframe src="/app/render.html" title="Previzualizare ' + esc(s.name) + '" tabindex="-1" data-pv></iframe></div></section>' +
+      '<section class="hm-nums" aria-label="Pe scurt">' +
+        '<div class="hm-n"><span class="hm-l">Vizite în ultimele 7 zile</span><b data-count="' + total + '">' + total + '</b>' + area(s.visits) + '</div>' +
+        '<div class="hm-n"><span class="hm-l">Cereri noi</span><b data-count="' + nl.length + '">' + nl.length + '</b><span class="hm-s">' + s.leads.length + ' în total, ' + s.leads.filter(function (l) { return l.status === 'rezolvat'; }).length + ' rezolvate</span></div>' +
+        '<div class="hm-n"><span class="hm-l">Pluginuri pornite</span><b data-count="' + on.length + '">' + on.length + '</b><span class="hm-s">' + esc(on.map(function (k) { return plugNames[k] || k; }).join(', ')) + '</span></div>' +
+      '</section>' +
+      '<div class="hm-cols"><section class="hm-box"><div class="hm-bh"><h2>Ultimele cereri</h2><a href="#/cereri">Vezi toate</a></div><div class="ll">' + latest + '</div></section>' +
+        '<section class="hm-box"><div class="hm-bh"><h2>Schimbi rapid</h2></div><div class="qa2">' +
+          '<button type="button" data-go="site" data-tab="program">' + ic('clock') + '<span><b>Programul</b>Ore de lucru, zile libere</span></button>' +
+          '<button type="button" data-go="site" data-tab="preturi">' + ic('tag') + '<span><b>Prețuri</b>Servicii și tarife</span></button>' +
+          '<button type="button" data-go="site" data-tab="texte">' + ic('edit') + '<span><b>Texte</b>Titlu, descriere, despre</span></button>' +
+          '<a href="#/gazduire">' + ic('globe') + '<span><b>Domeniu</b>Adresa site-ului</span></a>' +
+          '<a href="#/integrari">' + ic('link') + '<span><b>Integrări</b>Google, e-mail, Stripe</span></a>' +
+          '<a href="#/echipa">' + ic('users') + '<span><b>Echipă</b>Cine are acces</span></a>' +
+        '</div></section></div>';
+  }
+  /* 7-day visits as a small area chart with day initials */
+  function area(v) {
+    var W = 280, H = 64, max = Math.max.apply(null, v.concat([1])), n = v.length, pts = v.map(function (x, i) { return [Math.round(i / (n - 1) * W), Math.round(H - 6 - x / max * (H - 14))]; });
+    var line = pts.map(function (p, i) { return (i ? 'L' : 'M') + p[0] + ' ' + p[1]; }).join(' ');
+    var days = ['D', 'L', 'Ma', 'Mi', 'J', 'V', 'S'], d0 = new Date().getDay();
+    var labels = v.map(function (x, i) { return '<span>' + days[(d0 - (n - 1 - i) + 70) % 7] + '</span>'; }).join('');
+    return '<div class="hm-chart"><svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" aria-hidden="true"><path class="ar" d="' + line + ' L' + W + ' ' + H + ' L0 ' + H + ' Z"/><path class="ln" d="' + line + '"/><circle cx="' + pts[n - 1][0] + '" cy="' + pts[n - 1][1] + '" r="3.5"/></svg><div class="hm-days">' + labels + '</div></div>';
   }
   function leadRow(l) {
     return '<button type="button" class="lr" data-lead="' + l.id + '"><span class="lr-top"><span class="st ' + l.status + '">' + STATUS[l.status] + '</span><b>' + esc(l.name) + '</b></span><small>' + when(l.when) + '</small><p>' + esc(l.what) + '</p></button>';
@@ -442,6 +452,16 @@
       f.addEventListener('load', go); go();
     });
     var m = $('#main'); if (m) m.focus && m.setAttribute('tabindex', '-1');
+    fitHome(); countUp();
+  }
+  /* the live site window on the home page: draw the site at desktop width and scale it to fit */
+  function fitHome() { var v = $('.hm-view'); if (!v) return; var f = v.querySelector('iframe'), base = v.clientWidth < 620 ? v.clientWidth : 1280, sc = v.clientWidth / base; f.style.width = base + 'px'; f.style.transform = 'scale(' + sc + ')'; f.style.height = Math.ceil(v.clientHeight / sc) + 'px'; }
+  addEventListener('resize', fitHome);
+  /* numbers count up once when the home page opens */
+  function countUp() {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    $$('[data-count]').forEach(function (el) { var to = +el.dataset.count, t0 = performance.now(); if (!to) return;
+      var step = function (t) { var p = Math.min(1, (t - t0) / 900), e = 1 - Math.pow(1 - p, 3); el.textContent = Math.round(to * e); if (p < 1) requestAnimationFrame(step); }; requestAnimationFrame(step); });
   }
   window.__ohiRenderReady = function (w) { $$('iframe[data-pv]').forEach(function (f) { if (f.contentWindow === w) w.OHIRender.render(modelOf(f.dataset.pv === 'draft' ? draft : site()), {}); }); };
 
