@@ -3,47 +3,123 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>OHI Platform: în curând | OHI Solutions</title>
-<meta name="description" content="OHI Platform vine în curând: un singur cont pentru site-ul tău. Cererile clienților într-un loc, editezi singur și pornești funcții noi dintr-un click. Alătură-te și fii primul.">
+<title>OHI Platform: spune ce faci, primești site-ul | OHI Solutions</title>
+<meta name="description" content="OHI îți face site-ul pe loc, din câteva cuvinte despre afacerea ta. Apoi schimbi orice cu un click. Găzduire, domeniu și cererile clienților într-un singur cont.">
 <link rel="canonical" href="https://ohis-gamma.vercel.app/">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ro_RO">
 <meta property="og:site_name" content="OHI Solutions">
-<meta property="og:title" content="OHI Platform vine în curând · Alătură-te și fii primul">
-<meta property="og:description" content="Un singur cont pentru site-ul tău: cererile clienților, editare simplă și funcții noi dintr-un click.">
+<meta property="og:title" content="OHI Platform: spune ce faci, primești site-ul">
+<meta property="og:description" content="Site-ul făcut pe loc, schimbat de tine cu un click, găzduit pe domeniul tău.">
 <meta property="og:url" content="https://ohis-gamma.vercel.app/">
 <meta property="og:image" content="https://ohis-gamma.vercel.app/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#141311">
+<meta name="theme-color" content="#EDE8E0">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/icon-512.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/fonts/fonts.css">
 <link rel="stylesheet" href="/forms.css">
 <link rel="stylesheet" href="/platforma.css">
+<link rel="stylesheet" href="/site.css">
 </head>
-<body class="pl-page">
-<header class="pl-hd"><a class="pl-logo" href="/" aria-label="OHI Solutions"><svg viewBox="0 18 359 170" role="img" aria-hidden="true"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="#EDE8E0" stroke-width="26" transform="rotate(-10 80 102)"/><path d="M233.9 160V61h21.45v99ZM168.95 160V61h21.6v99ZM181.7 118.75v-17.7h60.75v17.7ZM277.4 160V61h22.05v99Z" fill="currentColor"/><circle cx="332.4" cy="150" r="13" fill="#FF6B1A"/></svg></a><a class="pl-tel" href="tel:+40740267706">0740 267 706</a></header>
+<body>
+<a class="skip" href="#main">Sari la conținut</a>
+<header class="hd" id="hd">
+  <a class="logo" href="/" aria-label="OHI, prima pagină"><svg viewBox="0 18 359 170" aria-hidden="true"><rect x="24" y="46" width="112" height="112" rx="30" fill="none" stroke="currentColor" stroke-width="26"/><path d="M178 40v124M178 102h76M254 40v124M318 40v124" fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round"/><circle cx="345" cy="158" r="14" fill="#FF6B1A"/></svg></a>
+  <nav class="hd-nav" aria-label="Meniu"><a href="#cum">Cum funcționează</a><a href="#functii">Ce primești</a><a href="#agentii">Pentru agenții</a><a href="#intrebari">Întrebări</a></nav>
+  <div class="hd-a"><a class="b b-q" href="/app/">Intră în cont</a><a class="b b-p" href="#lista">Lista de așteptare</a></div>
+  <button class="hd-m" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Meniu"><span></span><span></span></button>
+</header>
+<nav class="mnav" id="mnav" aria-label="Meniu" hidden><a href="#cum">Cum funcționează</a><a href="#functii">Ce primești</a><a href="#agentii">Pentru agenții</a><a href="#intrebari">Întrebări</a><a href="/app/">Intră în cont</a><a class="b b-p" href="#lista">Lista de așteptare</a></nav>
+
 <main id="main">
-<section class="vk-plat" id="platforma" aria-labelledby="platH">
-  <div class="vk-plw">
-    <div class="vk-plt">
-      <span class="vk-offer"><i></i>În curând · OHI Platform</span>
-      <h1 id="platH">Acum lansăm <span class="vk-s">cele mai bune idei</span> pentru prezența ta online.</h1>
-      <p class="vk-plead">Un singur cont pentru site-ul tău. Vezi cererile clienților într-un loc, schimbi singur textele, pozele și prețurile, și pornești funcții noi dintr-un click.</p>
-      <ul class="vk-plf">
-        <li><b>Cererile clienților</b><span>toate într-un loc, cu telefon la un tap</span></li>
-        <li><b>Editezi singur</b><span>texte, poze, prețuri, program, fără să strici designul</span></li>
-        <li><b>Funcții dintr-un click</b><span>programări, meniu, magazin, formulare</span></li>
-        <li><b>Pentru afaceri și freelanceri</b><span>îți faci site-ul singur sau ți-l facem noi</span></li>
-      </ul>
+<section class="hero" aria-labelledby="h1">
+  <div class="hero-t">
+    <h1 id="h1">Spune ce faci.<br>OHI îți face site-ul pe loc.</h1>
+    <p class="lead">Apoi schimbi orice cu un click: texte, culori, poze, butoane, animații. Găzduirea, domeniul și cererile clienților stau toate într-un singur cont.</p>
+  </div>
+  <div class="demo" id="demo">
+    <div class="demo-c">
+      <div class="ctl" role="group" aria-label="Alege o afacere">
+        <span class="ctl-l">Încearcă</span>
+        <button type="button" data-kind="salon" aria-pressed="true">Salon</button>
+        <button type="button" data-kind="pensiune" aria-pressed="false">Pensiune</button>
+        <button type="button" data-kind="restaurant" aria-pressed="false">Restaurant</button>
+        <button type="button" data-kind="auto" aria-pressed="false">Service auto</button>
+        <button type="button" data-kind="atelier" aria-pressed="false">Atelier</button>
+      </div>
+      <div class="ctl ctl-r">
+        <div class="sw" role="group" aria-label="Culori" id="sw"></div>
+        <div class="mo" role="group" aria-label="Mișcare"><button type="button" data-mo="calm" aria-pressed="false">Calm</button><button type="button" data-mo="lively" aria-pressed="true">Viu</button><button type="button" data-mo="cinematic" aria-pressed="false">Cinematic</button></div>
+      </div>
     </div>
-    <div class="vk-plbox"><div data-ohi-form="platforma"></div><p class="pl-priv">Folosim numele și telefonul doar ca să te anunțăm când pornește platforma. Detalii în <a href="/confidentialitate">Politica de confidențialitate</a>.</p></div>
+    <div class="win">
+      <div class="win-bar"><span class="url" id="url">salonul-tau.ro</span><span class="win-n">Previzualizare live, făcută acum de OHI</span></div>
+      <div class="win-v" id="wv"><iframe id="dfr" src="/app/render.html?lib=1" title="Site făcut de OHI, previzualizare" tabindex="-1"></iframe></div>
+    </div>
   </div>
 </section>
+
+<section class="sec how" id="cum" aria-labelledby="cumH">
+  <h2 id="cumH">Cum funcționează</h2>
+  <ol class="steps">
+    <li><b>Descrii afacerea</b><p>Câteva cuvinte: ce faci, unde, pentru cine. Alegi un șablon sau lași AI-ul să pornească.</p></li>
+    <li><b>Ajustezi ce vrei</b><p>Dai click pe orice text, buton sau poză și îl schimbi. Adaugi secțiuni gata făcute, cu previzualizare.</p></li>
+    <li><b>Publici pe domeniul tău</b><p>Site-ul tău merge pe adresa ta, cu HTTPS. Cererile clienților îți vin în cont și pe e-mail.</p></li>
+  </ol>
+</section>
+
+<section class="sec feat" id="functii" aria-labelledby="fH">
+  <div class="feat-h"><h2 id="fH">Ce primești</h2><p>Tot ce îți trebuie ca să ai un site care aduce clienți, fără să ții minte zece conturi.</p></div>
+  <dl class="fl">
+    <div><dt>Editor vizual</dt><dd>Click pe orice element: mărime, culoare, poziție, stil de buton, unde duce, cum apare.</dd></div>
+    <div><dt>Secțiuni gata făcute</dt><dd>Peste 25 de modele: deschideri, servicii, cifre, pași, galerii, recenzii, îndemnuri. Le vezi live înainte să le pui.</dd></div>
+    <div><dt>Cererile clienților</dt><dd>Formularele de pe site ajung într-un singur loc, cu telefonul la un tap. Le marchezi: sunat, ofertă trimisă, client.</dd></div>
+    <div><dt>Pluginuri</dt><dd>Programări online, magazin cu produse, blog, buton WhatsApp, calculator de rate, plăți cu cardul prin Stripe.</dd></div>
+    <div><dt>Mai multe pagini și Google</dt><dd>Despre, Contact, Produse, Noutăți. Pentru fiecare pagină alegi titlul și descrierea din Google și vezi cum arată.</dd></div>
+    <div><dt>Găzduire și domeniu</dt><dd>Te ocupi de afacere. Noi ținem site-ul pornit, cu HTTPS, pe domeniul tău.</dd></div>
+  </dl>
+</section>
+
+<section class="ag" id="agentii" aria-labelledby="agH">
+  <div class="ag-w">
+    <h2 id="agH">Faci site-uri pentru alții? OHI e și pentru tine.</h2>
+    <p class="ag-l">Toți clienții tăi într-un singur cont. Le faci site-ul, ei își schimbă singuri textele și pozele, iar tu nu mai primești mesaje pentru fiecare preț.</p>
+    <ul class="ag-list">
+      <li><b>Un cont, mulți clienți</b><span>Treci de la un site la altul dintr-un meniu. Faci unul nou dintr-un șablon în câteva minute.</span></li>
+      <li><b>Blochezi designul</b><span>Clientul schimbă doar texte, poze, prețuri și program. Designul rămâne cum l-ai făcut.</span></li>
+      <li><b>Clientul are contul lui</b><span>Vede doar site-ul lui și cererile lui. Când vrea ceva mai mare, îți scrie direct din cont.</span></li>
+      <li><b>Echipă cu roluri</b><span>Proprietar, administrator, editor sau doar vizualizare. Fiecare intră cu e-mailul lui.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec trust" aria-labelledby="tH">
+  <h2 id="tH">Datele clienților tăi stau separat</h2>
+  <p>Fiecare cont își vede doar datele lui: regula e pusă direct în baza de date, nu doar în aplicație, și o testăm la fiecare schimbare. Cheile de plată nu se salvează la noi, iar parolele nu există: intri cu un link primit pe e-mail.</p>
+</section>
+
+<section class="sec faq" id="intrebari" aria-labelledby="qH">
+  <h2 id="qH">Întrebări</h2>
+  <div class="qa">
+    <details><summary>Când pornește OHI?</summary><p>Lucrăm acum la ultimele părți. Cei de pe lista de așteptare află primii și primesc acces înaintea celorlalți.</p></details>
+    <details><summary>Cât costă?</summary><p>Prețurile le anunțăm la lansare. Îți spunem dinainte, pe telefon sau e-mail, înainte să plătești ceva.</p></details>
+    <details><summary>Am deja un site. Îl pot muta?</summary><p>Da. Îți păstrezi domeniul; îl legăm de site-ul nou făcut în OHI și îți arătăm exact ce setezi.</p></details>
+    <details><summary>Trebuie să știu programare sau design?</summary><p>Nu. Dai click pe ce vrei să schimbi. Dacă nu ai timp, îți facem noi site-ul și îl schimbi apoi singur.</p></details>
+    <details><summary>Merge bine pe telefon?</summary><p>Da. Fiecare site arată bine pe telefon, iar editorul îți arată cum se vede pe calculator, tabletă și telefon.</p></details>
+  </div>
+</section>
+
+<section class="wl" id="lista" aria-label="Lista de așteptare">
+  <div class="wl-w"><div class="vk-plbox"><div data-ohi-form="platforma"></div></div><p class="pl-priv">Îți folosim numele și telefonul doar ca să te anunțăm de lansare. Detalii în <a href="/confidentialitate">politica de confidențialitate</a>.</p></div>
+</section>
 </main>
-<footer class="pl-ft"><span>© 2026 OHI Solutions · Târgu Mureș</span><span><a href="/confidentialitate">Confidențialitate</a><a href="tel:+40740267706">0740 267 706</a></span></footer>
+
+<footer class="ft"><span>© 2026 OHI Solutions</span><nav aria-label="Legal"><a href="/confidentialitate">Confidențialitate</a><a href="/app/">Intră în cont</a></nav></footer>
+<script src="/app/model.js" defer></script>
+<script src="/site.js" defer></script>
 <script src="/forms.js" defer></script>
 </body>
 </html>
