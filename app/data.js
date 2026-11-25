@@ -2,6 +2,7 @@
    Everything here is invented for the demo: no real people, phones or businesses. */
 window.OHI_DEMO = {
   user: { name: 'Andrei', email: 'andrei@exemplu.ro', role: 'studio' },
+  client: { name: 'Ana', email: 'ana@exemplu.ro', siteId: 'salon-ana', agency: 'Studio Andrei' },
   sites: [
     {
       id: 'salon-ana', name: 'Salon Ana', type: 'Salon de înfrumusețare', domain: 'salon-ana.ro', status: 'live', plan: 'Business',

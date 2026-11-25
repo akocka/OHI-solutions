@@ -11,6 +11,9 @@
   var S = load() || { logged: true, siteId: window.OHI_DEMO.sites[0].id, sites: copy(window.OHI_DEMO.sites), tickets: copy(window.OHI_DEMO.tickets), notes: {} };
   var sid = new URLSearchParams(location.search).get('site') || S.siteId;
   var site = S.sites.filter(function (x) { return x.id === sid; })[0] || S.sites[0];
+  /* a client whose agency locked the design may change only texts and photos */
+  var LOCK = S.as === 'client' && site.lock === 'content';
+  if (LOCK) document.documentElement.classList.add('locked');
   if (!site.model) site.model = M.fromSite(site);
   M.normalize(site.model);
   var model = site.model, cur = 'home', selEl = null, sel = null, tab = 'sec', dev = 'desk', past = [], future = [], win = null, typing = false, published = JSON.stringify(model);
@@ -53,7 +56,7 @@
       '<button class="ib" data-a="undo" title="Anulează (Ctrl+Z)">' + ic('undo') + '</button><button class="ib" data-a="redo" title="Refă (Ctrl+Shift+Z)">' + ic('redo') + '</button>' +
       '<button class="ib" data-a="replay" title="Rulează animațiile din nou">' + ic('play') + '</button></div>' +
       '<div class="rt"><a class="bt bt-d" href="/app/render.html?site=' + encodeURIComponent(site.id) + '" target="_blank" rel="noopener">' + ic('ext') + 'Previzualizare</a><button class="bt bt-p" data-a="publish">Publică</button></div></header>' +
-      '<div class="body"><aside class="pn l" id="pl"></aside><main class="cv" id="cv" data-dev="' + dev + '"><div class="frame"><iframe id="fr" src="/app/render.html" title="Previzualizarea site-ului"></iframe></div><p class="hint">Click pe o secțiune ca s-o editezi · dublu-click pe un text ca să-l schimbi direct</p></main><aside class="pn r" id="pr"></aside></div></div>';
+      '<div class="body"><aside class="pn l" id="pl"></aside><main class="cv" id="cv" data-dev="' + dev + '"><div class="frame"><iframe id="fr" src="/app/render.html" title="Previzualizarea site-ului"></iframe></div><p class="hint">Click pe o secțiune ca s-o alegi · click pe un text, buton sau poză ca să-l stilizezi · dublu-click ca să scrii direct</p></main><aside class="pn r" id="pr"></aside></div></div>';
     topState();
   }
   function topState() {
@@ -84,7 +87,7 @@
   function panels() {
     var narrow = window.innerWidth <= 1180;
     if (!narrow && tab === 'ins') tab = 'sec';
-    var tabs = '<div class="tabs" role="tablist">' + [['sec', 'Pagină'], ['site', 'Site'], ['des', 'Design'], ['ai', 'AI'], ['ins', 'Secțiune']].map(function (t) {
+    var tabs = '<div class="tabs" role="tablist">' + [['sec', 'Pagină'], ['site', 'Site'], ['des', 'Design'], ['ai', 'AI'], ['ins', 'Secțiune']].filter(function (t) { return !LOCK || (t[0] !== 'des' && t[0] !== 'ai'); }).map(function (t) {
       return '<button role="tab" class="' + (t[0] === 'ins' ? 't-ins' : '') + '" data-tab="' + t[0] + '" aria-selected="' + (tab === t[0]) + '">' + t[1] + '</button>'; }).join('') + '</div>';
     var body = tab === 'site' ? sitePanel() : tab === 'sec' ? (curPost() ? postPanel() : secPanel()) : tab === 'des' ? designPanel() : tab === 'ai' ? aiPanel() : inspector();
     $('#pl').innerHTML = tabs + body;
@@ -94,11 +97,11 @@
   function secPanel() {
     var list = B().map(function (b, i) {
       var L = LIB[b.type], vn = (L.variants.filter(function (v) { return v[0] === b.v; })[0] || L.variants[0])[1];
-      return '<li draggable="true" data-sel="' + b.id + '" data-i="' + i + '" class="' + (b.id === sel ? 'sel' : '') + (b.hidden ? ' off' : '') + '"><span class="grip" aria-hidden="true">⋮⋮</span><span class="tx"><b>' + esc(L.name) + (L.plugin ? '<span class="pl">Plugin</span>' : '') + '</b><small>' + esc(vn) + '</small></span>' +
+      return '<li draggable="' + !LOCK + '" data-sel="' + b.id + '" data-i="' + i + '" class="' + (b.id === sel ? 'sel' : '') + (b.hidden ? ' off' : '') + '"><span class="grip" aria-hidden="true">⋮⋮</span><span class="tx"><b>' + esc(L.name) + (L.plugin ? '<span class="pl">Plugin</span>' : '') + '</b><small>' + esc(vn) + '</small></span>' +
         '<button class="mini" data-mv="-1" data-i="' + i + '" title="Mută în sus">' + ic('up') + '</button><button class="mini" data-mv="1" data-i="' + i + '" title="Mută în jos">' + ic('down') + '</button><button class="mini" data-hide="' + b.id + '" title="' + (b.hidden ? 'Arată' : 'Ascunde') + '">' + ic(b.hidden ? 'eyeoff' : 'eye') + '</button></li>';
     }).join('');
     var p = curPage();
-    return pagePicker() + '<div class="sec"><h3>Secțiuni' + (p ? ' · ' + esc(p.title) : '') + '</h3><p class="h">Trage ca să schimbi ordinea. Click ca s-o editezi.' + (p ? ' Meniul și subsolul sunt comune tuturor paginilor: le schimbi din Acasă.' : '') + '</p><ul class="sl" id="sl">' + (list || '<li class="none">Pagina e goală. Adaugă prima secțiune.</li>') + '</ul></div>' +
+    return pagePicker() + (LOCK ? '<div class="sec lockn">Designul e stabilit de agenția ta. Dă click pe orice text sau poză din previzualizare ca s-o schimbi.</div>' : '') + '<div class="sec"><h3>Secțiuni' + (p ? ' · ' + esc(p.title) : '') + '</h3><p class="h">Trage ca să schimbi ordinea. Click ca s-o editezi.' + (p ? ' Meniul și subsolul sunt comune tuturor paginilor: le schimbi din Acasă.' : '') + '</p><ul class="sl" id="sl">' + (list || '<li class="none">Pagina e goală. Adaugă prima secțiune.</li>') + '</ul></div>' +
       '<div class="sec"><button class="bt bt-p bt-w" data-a="lib">+ Adaugă secțiune</button></div>';
   }
   function designPanel() {
@@ -153,6 +156,12 @@
         '<label class="cpick" title="Altă culoare"><input type="color" data-elc="' + key + '" value="' + (/^#/.test(cur) ? cur : '#FF6B1A') + '"></label></div>';
     };
     var txtVal = getPath(b.d, P);
+    if (LOCK) {
+      var cur0 = getPath(b.d, P);
+      return '<div class="ins-h"><div><button class="add back-sec" data-a="elback">← ' + esc(LIB[b.type].name) + '</button><b>' + esc(elName(P, K)) + '</b><small>Poți schimba conținutul; designul e stabilit de agenție</small></div></div><div class="sec">' +
+        (K === 'img' ? (cur0 ? '<div class="one-img"><img src="' + esc(cur0) + '" alt=""></div>' : '') + '<label class="up"><input type="file" accept="image/*" data-elimg="' + esc(P) + '">' + (cur0 ? 'Schimbă poza' : 'Încarcă o poză') + '</label>'
+          : '<label class="fl"><span>Textul</span><textarea class="in" rows="3" data-eltx="' + esc(P) + '">' + esc(txtVal == null ? '' : txtVal) + '</textarea></label>') + '</div>';
+    }
     var content = K === 'img' ? '' : '<label class="fl"><span>Textul</span><textarea class="in" rows="2" data-eltx="' + esc(P) + '">' + esc(txtVal == null ? '' : txtVal) + '</textarea></label>';
     var move = '<div class="sec"><h3>Poziție</h3>' + rng('x', 'Mută stânga / dreapta', -200, 200, 2, 'px', 0) + rng('y', 'Mută sus / jos', -200, 200, 2, 'px', 0) + rng('mt', 'Spațiu deasupra', -60, 160, 2, 'px', 0) + rng('mb', 'Spațiu dedesubt', -60, 160, 2, 'px', 0) + tog('hide', 'Ascunde elementul') + '</div>';
     var body;
@@ -197,6 +206,7 @@
     var L = LIB[b.type], s = b.s;
     var seg = function (key, opts) { return '<div class="seg" role="group">' + opts.map(function (o) { return '<button data-st="' + key + '" data-val="' + o[0] + '" aria-pressed="' + (s[key] === o[0]) + '" title="' + esc(o[2] || o[1]) + '">' + o[1] + '</button>'; }).join('') + '</div>'; };
     var fields = L.f.map(function (f) { return field(b, f); }).join('');
+    if (LOCK) return '<div class="ins-h"><div><b>' + esc(L.name) + '</b><small>Designul e stabilit de agenție</small></div></div><div class="sec"><h3>Conținut</h3>' + fields + '</div>';
     var c = model.brand.colors;
     var bgs = [['bg', 'Fundal', c.bg], ['surface', 'Fundal 2', c.surface], ['dark', 'Închis', c.dark], ['accent', 'Principal', c.accent]].map(function (o) {
       return '<button data-st="bg" data-val="' + o[0] + '" aria-pressed="' + (s.bg === o[0]) + '" style="background:' + o[2] + '" title="' + o[1] + '"><small>' + o[1] + '</small></button>'; }).join('');
@@ -459,6 +469,7 @@
     if (d.ex) { $('#aiP').value = d.ex; $('#aiP').focus(); return; }
     if (d.cmdx) { runCmd(d.cmdx); return; }
     if (!b) return;
+    if (LOCK && (d.a === 'up' || d.a === 'down' || d.a === 'dup' || d.a === 'del' || d.hide || d.st || d['var'] || d.elv !== undefined || d.eltg || d.sttg)) { toast('Designul e blocat de agenție. Poți schimba texte și poze.'); return; }
     var eo = function () { b.e = b.e || {}; return (b.e[selEl.path] = b.e[selEl.path] || {}); };
     if (d.a === 'elback') { selEl = null; preview(); panels(); return; }
     if (d.a === 'elreset' && selEl) { commit(function () { if (b.e) delete b.e[selEl.path]; }); toast('Stilul elementului a fost resetat.'); return; }
@@ -542,7 +553,7 @@
   function wireDnD() {
     var list = $('#sl'); if (!list) return; var from = null;
     $$('li', list).forEach(function (li) {
-      li.addEventListener('dragstart', function (e) { from = +li.dataset.i; li.classList.add('drag'); e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', li.dataset.i); } catch (x) { /* old browsers */ } });
+      li.addEventListener('dragstart', function (e) { if (LOCK) { e.preventDefault(); return; } from = +li.dataset.i; li.classList.add('drag'); e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', li.dataset.i); } catch (x) { /* old browsers */ } });
       li.addEventListener('dragend', function () { li.classList.remove('drag'); $$('li', list).forEach(function (x) { x.classList.remove('over'); }); });
       li.addEventListener('dragover', function (e) { e.preventDefault(); $$('li', list).forEach(function (x) { x.classList.toggle('over', x === li); }); });
       li.addEventListener('drop', function (e) { e.preventDefault(); var to = +li.dataset.i; if (from === null || from === to) return; commit(function () { var x = B().splice(from, 1)[0]; B().splice(to, 0, x); }); from = null; });

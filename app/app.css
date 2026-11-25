@@ -279,3 +279,16 @@ textarea.in{height:auto;min-height:96px;padding:12px 14px;resize:vertical;line-h
   .tbl.team .in.sm{max-width:none;width:100%}
 }
 @media(max-width:560px){.tbl.team td:last-child{text-align:left!important}.tbl.team td:nth-child(2){align-self:center}}
+
+/* client view */
+.demo-as{display:grid;gap:8px;margin-top:14px}
+.demo-as .bt{height:auto;padding:12px 16px;flex-direction:column;align-items:flex-start;gap:2px;text-align:left}
+.demo-as .bt small{font-weight:400;color:var(--mute);font-size:12.5px}
+.banner.cl{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.banner.cl button{margin-left:auto;border:0;background:var(--ink);color:var(--bone);border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:600;cursor:pointer}
+.sw-one{cursor:default}
+.cd.ag,.cd.lockc{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.cd.ag b,.cd.lockc b{display:block;font-size:15px}.cd.ag span,.cd.lockc span{display:block;color:var(--mute);font-size:13.5px;margin-top:2px}
+.cd.lockc .tgl2{margin:0}
+.lock-note{display:flex;gap:8px;align-items:center;margin:0 0 14px;padding:10px 14px;border-radius:12px;background:var(--bone);font-size:13.5px}
+.lock-note svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}

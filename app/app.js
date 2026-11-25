@@ -71,17 +71,24 @@
       '<main class="lg-main"><form class="lg-box" id="lf" novalidate><h1>Intră în cont</h1><p>Îți trimitem un link de conectare pe e-mail. Fără parole de ținut minte.</p>' +
       '<label class="fl"><span>E-mail</span><input class="in" type="email" name="email" autocomplete="email" required placeholder="nume@firma.ro"></label>' +
       '<button class="bt bt-p bt-w" type="submit">Trimite linkul de conectare</button>' +
-      '<span class="demo-tag">Demo: apasă butonul și intri direct, cu date inventate.</span></form></main></div>';
-    $('#lf').addEventListener('submit', function (e) { e.preventDefault(); S.logged = true; save(); location.hash = '#/acasa'; render(); toast('Bine ai venit, ' + demo.user.name + '!'); });
+      '<span class="demo-tag">Demo: alege cum vrei să vezi platforma. Datele sunt inventate.</span>' +
+      '<div class="demo-as"><button class="bt bt-s" type="submit">Intră ca agenție<small>Andrei, cu 3 clienți</small></button><button class="bt bt-s" type="button" id="asc">Intră ca client<small>Ana, proprietara Salon Ana</small></button></div></form></main></div>';
+    $('#lf').addEventListener('submit', function (e) { e.preventDefault(); S.logged = true; S.as = 'agency'; save(); location.hash = '#/acasa'; render(); toast('Bine ai venit, ' + demo.user.name + '!'); });
+    $('#asc').addEventListener('click', function () { S.logged = true; S.as = 'client'; S.siteId = demo.client.siteId; save(); location.hash = '#/acasa'; render(); toast('Bine ai venit, ' + demo.client.name + '!'); });
   }
+
+  /* who is looking: the agency (many clients) or one client (only their site) */
+  var isClient = function () { return S.as === 'client'; };
+  var me = function () { return isClient() ? { name: demo.client.name, email: demo.client.email, label: 'Proprietar · ' + site().name } : { name: demo.user.name, email: demo.user.email, label: 'Cont agenție' }; };
 
   /* ---------- shell ---------- */
   function switcher() {
     var s = site();
+    if (isClient()) return '<div class="sw"><div class="sw-b sw-one"><span class="av">' + initials(s.name) + '</span><span><b>' + esc(s.name) + '</b><small>' + esc(s.domain) + '</small></span></div></div>';
     return '<div class="sw"><button class="sw-b" type="button" aria-haspopup="true" aria-expanded="' + menuOpen + '" data-act="menu"><span class="av">' + initials(s.name) + '</span><span><b>' + esc(s.name) + '</b><small>' + esc(s.domain) + '</small></span><i>▾</i></button>' +
       (menuOpen ? '<div class="sw-m" role="menu">' + S.sites.map(function (x) {
         return '<button type="button" role="menuitem" data-site="' + x.id + '" aria-current="' + (x.id === s.id) + '"><span class="av">' + initials(x.name) + '</span><span>' + esc(x.name) + '<small>' + SITE_ST[x.status] + '</small></span></button>';
-      }).join('') + '<button type="button" class="sw-add" data-act="newclient">+ Client nou</button></div>' : '') + '</div>';
+      }).join('') + '<button type="button" class="sw-add" data-act="newclient">+ Client nou</button><button type="button" class="sw-add" data-act="asclient">Vezi cum arată pentru client →</button></div>' : '') + '</div>';
   }
   function shell(r, html) {
     var newLeads = site().leads.filter(function (l) { return l.status === 'nou'; }).length;
@@ -92,9 +99,9 @@
     $('#app').innerHTML =
       '<div class="sh"><aside class="sb"><a class="logo" href="#/acasa" aria-label="OHI, acasă">' + LOGO + '</a>' + switcher() +
       '<nav class="nv" aria-label="Meniu">' + nav + '</nav>' +
-      '<div class="sb-ft"><span class="av">' + initials(demo.user.name) + '</span><span>' + esc(demo.user.name) + '<small>Cont Studio</small></span><button type="button" data-act="logout">Ieși</button></div></aside>' +
+      '<div class="sb-ft"><span class="av">' + initials(me().name) + '</span><span>' + esc(me().name) + '<small>' + esc(me().label) + '</small></span><button type="button" data-act="logout">Ieși</button></div></aside>' +
       '<div><header class="mh"><a class="logo" href="#/acasa" aria-label="OHI">' + LOGO + '</a>' + switcher() + '</header>' +
-      '<main class="mn" id="main"><div class="banner"><b>Demo</b> Datele sunt inventate și nimic nu se trimite. Așa va arăta contul clienților tăi.</div>' + html + '</main></div></div>';
+      '<main class="mn" id="main">' + (isClient() ? '<div class="banner cl"><b>Demo</b> Așa vede ' + esc(demo.client.name) + ' contul ei. <button type="button" data-act="asagency">← Înapoi la contul agenției</button></div>' : '<div class="banner"><b>Demo</b> Datele sunt inventate și nimic nu se trimite.</div>') + html + '</main></div></div>';
     // desktop labels: full names
     $$('.sb .nv a').forEach(function (a, i) { var l = a.querySelector('.lbl'); if (window.innerWidth > 760) l.textContent = ROUTES[i][1]; });
   }
@@ -105,7 +112,7 @@
     var max = Math.max.apply(null, s.visits.concat([1]));
     var spark = s.visits.map(function (v) { return '<i style="height:' + Math.max(6, Math.round(v / max * 100)) + '%"></i>'; }).join('');
     var latest = s.leads.slice(0, 3).map(leadRow).join('') || '<p class="empty">Încă nu ai cereri. Când cineva completează un formular pe site, apare aici.</p>';
-    return '<div class="tb"><div><h1>Bună, ' + esc(demo.user.name) + '</h1><p>' + (nl.length ? 'Ai ' + nl.length + ' ' + (nl.length === 1 ? 'cerere nouă' : 'cereri noi') + ' de la clienți.' : 'Totul e la zi.') + '</p></div>' +
+    return (isClient() ? '<section class="cd ag"><div><b>Site-ul tău e făcut și îngrijit de ' + esc(demo.client.agency) + '.</b><span>Pentru o schimbare mai mare sau o idee nouă, le scrii direct de aici.</span></div><a class="bt bt-p" href="#/ajutor">Cere o modificare</a></section>' : '') + '<div class="tb"><div><h1>Bună, ' + esc(me().name) + '</h1><p>' + (nl.length ? 'Ai ' + nl.length + ' ' + (nl.length === 1 ? 'cerere nouă' : 'cereri noi') + ' de la clienți.' : 'Totul e la zi.') + '</p></div>' +
       '<div class="tb-a"><a class="bt bt-s" href="#/site">' + ic('edit') + 'Editează site-ul</a></div></div>' +
       '<div class="g g-main"><div class="g">' +
         '<section class="cd site-cd"><div class="thumb"><iframe src="/app/render.html" title="Previzualizare ' + esc(s.name) + '" tabindex="-1" data-pv></iframe></div>' +
@@ -180,6 +187,8 @@
     }[tab];
     var dirty = JSON.stringify(draft.content) !== JSON.stringify(s.content);
     return '<div class="tb"><div><h1>Site-ul meu</h1><p>Schimbări rapide aici. Pentru design, secțiuni, culori și animații, deschide editorul vizual.</p></div><div class="tb-a"><a class="bt bt-p" href="/app/builder.html?site=' + encodeURIComponent(s.id) + '">' + ic('edit') + 'Deschide editorul vizual</a></div></div>' +
+      (isClient() ? (s.lock === 'content' ? '<p class="lock-note">' + ic('lock') + 'Designul e stabilit de ' + esc(demo.client.agency) + '. Poți schimba liber textele, pozele, prețurile și programul.</p>' : '') :
+        '<section class="cd lockc"><div><b>Ce poate schimba clientul</b><span>' + (s.lock === 'content' ? 'Doar texte, poze, prețuri și program. Designul rămâne cum l-ai făcut tu.' : 'Tot: texte, design, secțiuni, culori.') + '</span></div><div class="tgl2"><span>Blochează designul</span><button class="tg" role="switch" type="button" aria-checked="' + (s.lock === 'content') + '" data-act="lock" aria-label="Blochează designul pentru client"></button></div></section>') +
       '<div class="ed"><section class="cd"><div class="ed-tabs" role="tablist">' + T.map(function (t) {
         return '<button type="button" role="tab" data-tab2="' + t[0] + '" aria-selected="' + (tab === t[0]) + '">' + t[1] + '</button>'; }).join('') + '</div>' +
         '<div id="edp">' + panel + '</div>' +
@@ -219,7 +228,7 @@
       ['ai', 'spark', 'Asistent pe site', 'Răspunde vizitatorilor din textele tale.', 'Curând', null, 0, 1],
       ['make', 'link', 'Make, Google Sheets, Calendar', 'Trimite cererile unde lucrezi deja.', 'În plan']]]
   ];
-  var IC2 = { users: '<circle cx="9" cy="8" r="3.2"/><path d="M3 19a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/>', star: '<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>', chat: '<path d="M4 20l1.5-4A8 8 0 1 1 8 19z"/>', mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>', calc: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/>', search: '<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/>', chart: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>', link: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>' };
+  var IC2 = { lock: '<rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/>', users: '<circle cx="9" cy="8" r="3.2"/><path d="M3 19a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/>', star: '<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>', chat: '<path d="M4 20l1.5-4A8 8 0 1 1 8 19z"/>', mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>', calc: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/>', search: '<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/>', chart: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>', link: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>' };
   Object.keys(IC2).forEach(function (k) { I[k] = IC2[k]; });
   var plugQ = '', plugCat = 'Toate';
   function pageAddons() {
@@ -443,6 +452,9 @@
     if (a === 'menu') { menuOpen = !menuOpen; render(); return; }
     if (a === 'logout') { S.logged = false; save(); menuOpen = false; location.hash = ''; render(); return; }
     if (a === 'newclient') { menuOpen = false; render(); newSiteDialog(); return; }
+    if (a === 'asclient') { menuOpen = false; S.as = 'client'; save(); location.hash = '#/acasa'; render(); toast('Acum vezi contul ca ' + demo.client.name + ' (clientul).'); return; }
+    if (a === 'asagency') { S.as = 'agency'; save(); render(); toast('Înapoi în contul agenției.'); return; }
+    if (a === 'lock') { var ls = site(); ls.lock = ls.lock === 'content' ? '' : 'content'; save(); render(); toast(ls.lock ? 'Clientul poate schimba doar texte și poze.' : 'Clientul poate schimba tot.'); return; }
     if (a === 'approve') { site().status = 'live'; save(); render(); toast(site().domain + ' e acum online.'); return; }
     if (a === 'openmodel') { site().model = modelOf(site()); save(); return; }
     if (a === 'adddom') { domainDialog(); return; }

@@ -280,3 +280,8 @@ input[type=range]{width:100%;accent-color:var(--ink)}
 /* the scaled preview must never scroll sideways inside its frame */
 .frame{overflow:clip;position:relative}
 .frame iframe{position:absolute;left:0;top:0}
+/* client with locked design: hide structure and design controls */
+.locked [data-a=lib],.locked [data-a=newpage],.locked [data-a=delpage],.locked .sl .mini,.locked .sl .grip,.locked .pgl .mini,.locked [data-a=gen]{display:none!important}
+.locked .sl li{cursor:pointer}
+.locked .pgpick{grid-template-columns:1fr}
+.lockn{font-size:13px;background:#fff;border-radius:12px;padding:12px 14px!important;margin:0 14px 10px;box-shadow:inset 0 0 0 1px var(--line)}
