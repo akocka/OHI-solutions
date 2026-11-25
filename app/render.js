@@ -122,11 +122,11 @@
     },
     stats: function (d, m, b) {
       var it = (d.items || []).map(function (x, i) { return '<div class="stat an">' + t('b', 'items.' + i + '.t', x.t, 'sv') + t('span', 'items.' + i + '.x', x.x, 'sl') + '</div>'; }).join('');
-      return '<div class="w">' + (d.title || d.kicker ? '<div class="al">' + head(d) + '</div>' : '') + '<div class="stats" style="--n:' + Math.min(4, Math.max(1, (d.items || []).length)) + '">' + it + '</div></div>';
+      return '<div class="w">' + (d.title || d.kicker ? '<div class="al">' + head(d) + '</div>' : '') + '<div class="stgrid" style="--n:' + Math.min(4, Math.max(1, (d.items || []).length)) + '">' + it + '</div></div>';
     },
     steps: function (d, m, b) {
       var it = (d.items || []).map(function (x, i) { return '<li class="an"><span class="sn">' + (i + 1) + '</span><div>' + t('h3', 'items.' + i + '.t', x.t) + t('p', 'items.' + i + '.x', x.x) + '</div></li>'; }).join('');
-      return '<div class="w"><div class="al">' + head(d) + '</div><ol class="steps ' + (b.v === 'row' ? 'row' : '') + '">' + it + '</ol></div>';
+      return '<div class="w"><div class="al">' + head(d) + '</div><ol class="stlist ' + (b.v === 'row' ? 'row' : '') + '">' + it + '</ol></div>';
     },
     split: function (d, m, b) {
       var list = (d.list || []).length ? '<ul class="chk an">' + d.list.map(function (x, i) { return '<li data-t="list.' + i + '">' + esc(x) + '</li>'; }).join('') + '</ul>' : '';
@@ -280,6 +280,7 @@
       return '<section class="' + cls + (blk.hidden ? ' hidden-blk' : '') + (opts.sel === blk.id ? ' sel' : '') + '"' + attrs + '>' + html + '</section>';
     }).join('') + extras(model, opts);
     applyStyles(list); if (opts.edit && opts.selEl) markEl(opts.sel, opts.selEl);
+    motionPass(model, opts);
     wireCalc(); reveal(!!opts.replay); fxInit();
     if (!opts.edit) { var ord = null; try { ord = sessionStorage.getItem('ohi-order'); } catch (e) { /* storage off */ } var fm0 = ord && document.querySelector('.ohi-form'); if (fm0) { try { sessionStorage.removeItem('ohi-order'); } catch (e) { /* storage off */ } var ta0 = fm0.querySelector('textarea'); if (ta0) ta0.value = 'Vreau să comand: ' + ord + '\n'; } }
   }
@@ -345,11 +346,42 @@
     });
   }
   var io = null;
+  /* motion levels. calm = simple appear; lively = headlines rise word by word, photos are uncovered,
+     numbers count up, cards follow the mouse; cinematic = the same, slower and bigger. */
+  function motionPass(model, opts) {
+    var mo = (model.brand && model.brand.motion) || 'calm', root = document.getElementById('site');
+    root.setAttribute('data-motion', mo);
+    if (mo === 'calm' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    [].forEach.call(root.querySelectorAll('.blk h1[data-t], .blk h2[data-t], .art h1'), function (h) {
+      if (h.closest('.nav') || h.querySelector('.wd')) return;
+      var i = 0, words = h.textContent.split(/(\s+)/);
+      h.innerHTML = words.map(function (w) { return /^\s+$/.test(w) || !w ? w : '<span class="wd"><span style="--i:' + (i++) + '">' + esc(w) + '</span></span>'; }).join('');
+      h.classList.add('ws');
+    });
+    if (!opts.edit) [].forEach.call(root.querySelectorAll('.stat .sv'), function (el) {
+      var m = /^(\D*)(\d[\d.,]*)(.*)$/.exec(el.textContent.trim()); if (!m) return;
+      var to = parseFloat(m[2].replace(/[.,](?=\d{3}\b)/g, '').replace(',', '.')); if (!isFinite(to) || to > 1e7) return;
+      el.dataset.cnt = JSON.stringify([m[1], to, m[3], /[.,]\d+$/.test(m[2]) ? 1 : 0]); el.textContent = m[1] + '0' + m[3];
+    });
+  }
+  function countIn(el) {
+    var sv = el.querySelector && el.querySelector('.sv[data-cnt]'); if (!sv) return;
+    var c = JSON.parse(sv.dataset.cnt), t0 = performance.now(), dur = document.getElementById('site').getAttribute('data-motion') === 'cinematic' ? 1800 : 1200; sv.removeAttribute('data-cnt');
+    var step = function (t) { var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 4), v = c[1] * e; sv.textContent = c[0] + (c[3] ? v.toFixed(1).replace('.', ',') : Math.round(v)) + c[2]; if (p < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }
+  /* cards lean slightly towards the mouse (lively / cinematic, mouse only) */
+  document.addEventListener('pointermove', function (e) {
+    if (e.pointerType !== 'mouse') return; var rt = document.getElementById('site'), mo = rt && rt.getAttribute('data-motion'); if (!mo || mo === 'calm') return;
+    var c = e.target.closest && e.target.closest('.card,.prod,.rv,.stat'); if (!c || document.body.classList.contains('edit')) return;
+    var r = c.getBoundingClientRect(); c.style.setProperty('--rx', ((e.clientY - r.top) / r.height - .5) * -5 + 'deg'); c.style.setProperty('--ry', ((e.clientX - r.left) / r.width - .5) * 6 + 'deg');
+  });
+  document.addEventListener('pointerout', function (e) { var c = e.target.closest && e.target.closest('.card,.prod,.rv,.stat'); if (c && !c.contains(e.relatedTarget)) { c.style.removeProperty('--rx'); c.style.removeProperty('--ry'); } });
   function reveal(replay) {
     var els = [].slice.call(document.querySelectorAll('.an'));
     if (io) io.disconnect();
     if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
-    io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .12 });
+    io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); countIn(e.target); io.unobserve(e.target); } }); }, { threshold: .12 });
     els.forEach(function (e) { if (replay) e.classList.remove('in'); io.observe(e); });
   }
 

@@ -120,6 +120,8 @@
       '<div class="sec"><h3>Butoane</h3><label class="fl"><span>Formă</span></label>' + seg('btnShape', [['pill', 'Rotunjite'], ['round', 'Colțuri moi'], ['square', 'Drepte']]) +
       '<label class="fl" style="margin-top:12px"><span>Stil</span></label>' + seg('btnStyle', [['fill', 'Plin'], ['outline', 'Contur'], ['soft', 'Discret']]) + '</div>' +
       '<div class="sec"><h3>Colțuri</h3><label class="fl"><span>Rotunjire carduri și poze <em>' + b.radius + ' px</em></span><input type="range" min="0" max="36" step="2" value="' + b.radius + '" data-radius></label></div>' +
+      '<div class="sec"><h3>Mișcare</h3>' + seg('motion', [['calm', 'Calmă'], ['lively', 'Vie'], ['cinematic', 'Cinematică']]) +
+      '<p class="h" style="margin-top:8px">' + ({ lively: 'Titlurile apar cuvânt cu cuvânt, pozele se descoperă, cifrele numără, cardurile urmăresc mouse-ul.', cinematic: 'Ca Vie, dar mai lent și mai amplu. Pentru deschideri care impresionează.' }[b.motion] || 'Apariții simple și discrete. Bună pentru site-uri foarte sobre.') + '</p></div>' +
       '<div class="sec"><h3>Animații</h3>' + seg('anim', [['none', 'Fără'], ['fade', 'Apariție'], ['up', 'Sus'], ['left', 'Lateral'], ['zoom', 'Zoom']]) +
       '<label class="fl" style="margin-top:12px"><span>Viteză</span></label>' + seg('animSpeed', [['fast', 'Rapidă'], ['normal', 'Normală'], ['slow', 'Lentă']]) +
       '<button class="bt bt-s bt-w" style="margin-top:12px" data-a="replay">' + ic('play') + 'Vezi animațiile</button></div>' +
@@ -465,7 +467,7 @@
     if (d.sel && !e.target.closest('.mini')) { sel = d.sel; if (window.innerWidth <= 1180) tab = 'ins'; markSel(); panels(); var el = win && win.document.getElementById(sel); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
     if (d.pal) { var p = M.PALETTES.filter(function (x) { return x.id === d.pal; })[0]; commit(function () { model.brand.palette = p.id; model.brand.colors = copy(p.colors); }); return; }
     if (d.fp) { var f = M.FONT_PAIRS.filter(function (x) { return x.id === d.fp; })[0]; commit(function () { model.brand.fontPair = f.id; model.brand.headFont = f.head; model.brand.bodyFont = f.body; }); return; }
-    if (d.brand) { commit(function () { model.brand[d.brand] = d.val; }); if (d.brand === 'anim' || d.brand === 'animSpeed') preview(true); return; }
+    if (d.brand) { commit(function () { model.brand[d.brand] = d.val; }); if (d.brand === 'anim' || d.brand === 'animSpeed' || d.brand === 'motion') preview(true); return; }
     if (d.ex) { $('#aiP').value = d.ex; $('#aiP').focus(); return; }
     if (d.cmdx) { runCmd(d.cmdx); return; }
     if (!b) return;

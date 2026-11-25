@@ -138,6 +138,7 @@
     blocks.push(block('cta', { title: 'Hai să vorbim', text: 'Ne găsești la ' + phone + '. Îți răspundem azi.', btn: 'Sună acum', btn2: 'WhatsApp' }, { bg: 'dark', align: 'center' }, 'band'));
     blocks.push(block('footer', { name: name, line: city || '' }));
     var m = normalize({ brand: brand(name, kind.pal, kind.fonts), blocks: blocks });
+    m.brand.motion = 'lively';
     m.seo = { title: name + (city ? ' · ' + city : ''), desc: kind.title(name, city) + '.' };
     if (multi) { m.pages.push(page('despre', m)); m.pages.push(page('contact', m)); }
     return m;
@@ -184,7 +185,7 @@
     return String(t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60) || 'pagina';
   };
   function normalize(m) {
-    m.pages = m.pages || []; m.posts = m.posts || []; m.seo = m.seo || {};
+    m.pages = m.pages || []; m.posts = m.posts || []; m.seo = m.seo || {}; m.brand.motion = m.brand.motion || 'calm';
     m.settings = Object.assign({ lang: 'ro', cookie: false, cookieText: 'Folosim doar cookie-uri necesare ca site-ul să funcționeze. Harta și video-urile externe se încarcă doar dacă ești de acord.', wa: false, waPhone: '', waText: 'Bună ziua! Am o întrebare.' }, m.settings || {});
     m.blocks.concat.apply(m.blocks, m.pages.map(function (p) { return p.blocks; })).forEach(function (b) { b.s = b.s || {}; b.s.vis = b.s.vis || 'all'; });
     return m;
