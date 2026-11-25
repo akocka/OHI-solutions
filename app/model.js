@@ -55,6 +55,21 @@
     products: { name: 'Produse', group: 'Vânzări', variants: [['grid', 'Grilă'], ['list', 'Listă']],
       d: { kicker: '', title: 'Produse', text: 'Comanzi online, plătești la livrare sau cu cardul (când pornești Plăți online).', navLabel: 'Produse', btn: 'Comandă', items: [{ t: 'Produsul tău', p: '100 lei', x: 'O frază despre produs.', img: '' }, { t: 'Alt produs', p: '150 lei', x: 'O frază despre produs.', img: '' }] },
       f: [['kicker', 'Text mic deasupra', 'text'], ['title', 'Titlu', 'text'], ['text', 'Text', 'area'], ['items', 'Produse', 'products'], ['btn', 'Textul butonului', 'text'], ['navLabel', 'Nume în meniu', 'text']] },
+    stats: { name: 'Cifre', group: 'Conținut', variants: [['cards', 'Carduri']],
+      d: { kicker: '', title: '', text: '', navLabel: '', items: [{ t: '12', x: 'ani de când lucrăm (scrie cifra ta reală)' }, { t: '300+', x: 'clienți mulțumiți' }, { t: '24h', x: 'timp de răspuns' }] },
+      f: [['kicker', 'Text mic deasupra', 'text'], ['title', 'Titlu', 'text'], ['items', 'Cifre (doar reale)', 'items']] },
+    steps: { name: 'Pași', group: 'Conținut', variants: [['list', 'Unul sub altul'], ['row', 'Pe un rând']],
+      d: { kicker: 'Cum lucrăm', title: 'Simplu, în trei pași', text: '', navLabel: '', items: [{ t: 'Ne suni sau ne scrii', x: 'Ne spui ce ai nevoie.' }, { t: 'Primești oferta', x: 'Clar, fără costuri ascunse.' }, { t: 'Ne apucăm de treabă', x: 'Și te ținem la curent.' }] },
+      f: [['kicker', 'Text mic deasupra', 'text'], ['title', 'Titlu', 'text'], ['text', 'Text', 'area'], ['items', 'Pași', 'items'], ['navLabel', 'Nume în meniu', 'text']] },
+    split: { name: 'Imagine + text', group: 'Conținut', variants: [['plain', 'Simplu'], ['overlap', 'Cu etichetă pe imagine']],
+      d: { kicker: 'Despre noi', title: 'Un titlu care spune povestea', text: 'Două-trei propoziții despre cine ești și cum lucrezi.', list: ['Un lucru important', 'Al doilea lucru', 'Al treilea lucru'], btn: 'Află mai mult', btn2: '', img: '', badge: 'Din 20XX', navLabel: '' },
+      f: [['kicker', 'Text mic deasupra', 'text'], ['title', 'Titlu', 'area'], ['text', 'Text', 'area'], ['list', 'Listă cu bife (un rând = un punct)', 'lines'], ['btn', 'Buton', 'text'], ['btn2', 'Buton 2', 'text'], ['img', 'Imagine', 'img'], ['badge', 'Eticheta de pe imagine', 'text'], ['navLabel', 'Nume în meniu', 'text']] },
+    marquee: { name: 'Bandă în mișcare', group: 'Conținut', variants: [['solid', 'Plin'], ['outline', 'Contur']],
+      d: { words: 'Tunsori · Coafuri · Vopsit · Tratamente', speed: '30' },
+      f: [['words', 'Cuvinte (despărțite prin ·)', 'text'], ['speed', 'Durata unei ture, în secunde (mai mic = mai repede)', 'text']] },
+    logos: { name: 'Logo-uri / parteneri', group: 'Conținut', variants: [['row', 'Rând']],
+      d: { title: 'Lucrăm cu', names: 'Partener 1, Partener 2, Partener 3, Partener 4' },
+      f: [['title', 'Titlu', 'text'], ['names', 'Nume (despărțite prin virgulă)', 'text']] },
     text: { name: 'Text', group: 'Conținut', variants: [['one', 'O coloană'], ['two', 'Titlu în stânga']],
       d: { kicker: '', title: 'Povestea noastră', body: 'Scrie aici, pe scurt, cine ești și cum lucrezi.\n\nUn al doilea paragraf, dacă ai nevoie.', navLabel: '' },
       f: [['kicker', 'Text mic deasupra', 'text'], ['title', 'Titlu', 'text'], ['body', 'Text (rând gol = paragraf nou)', 'long'], ['navLabel', 'Nume în meniu', 'text']] },
@@ -127,6 +142,42 @@
     if (multi) { m.pages.push(page('despre', m)); m.pages.push(page('contact', m)); }
     return m;
   }
+
+  /* ---------- ready-made section designs ---------- */
+  var P = function (id, cat, name, desc, make) { return { id: id, cat: cat, name: name, desc: desc, make: make }; };
+  var withE = function (b, e, v) { b.e = e; if (v) b.v = v; return b; };
+  var BTN1 = { bst: 'fill', bsz: 'l', ic: 'arrow', hov: 'arrow', bfull: '1' }, BTN2 = { bst: 'link' };
+  var PRESETS = [
+    P('h-editorial', 'Început', 'Editorial mare', 'Titlu uriaș, mult spațiu, elegant.', function (n) { return withE(block('hero', { kicker: 'Bine ai venit', title: n + ', făcut cu grijă', img: '' }, { pad: 'l', align: 'center', minh: '75' }, 'center'), { kicker: { up: 1, ls: .2, size: 13, w: 600, c: 'accent' }, title: { size: 92, lh: 1, ls: -.03, mw: 16 }, text: { size: 19, mw: 46 }, btn: BTN1, btn2: BTN2, img: { ratio: 'x', r: 28 } }); }),
+    P('h-split-frame', 'Început', 'Text + poză cu ramă', 'Poza cu umbră colorată în spate.', function (n) { return withE(block('hero', { kicker: 'Din 20XX', title: 'Ce faci tu, spus clar în câteva cuvinte' }, { pad: 'l', minh: '75' }, 'split'), { kicker: { deco: 'mark', w: 600 }, title: { size: 64, lh: 1.02 }, btn: Object.assign({}, BTN1, { ic: 'cal' }), btn2: { bst: 'outline' }, img: { ratio: 'p', r: 24, fr: 'offset' } }); }),
+    P('h-cover-full', 'Început', 'Poză pe tot ecranul', 'Impact maxim, text alb peste poză.', function (n) { return withE(block('hero', { kicker: n, title: 'Un titlu scurt, puternic' }, { pad: 'l', minh: '100', va: 'bottom' }, 'cover'), { kicker: { up: 1, ls: .18, size: 13, c: 'white' }, title: { size: 88, lh: 1, c: 'white', mw: 14 }, text: { c: 'white', size: 19 }, btn: { bst: 'white', bsz: 'l', ic: 'arrow', hov: 'lift' }, btn2: { bst: 'glass', bsz: 'l' } }); }),
+    P('h-gradient', 'Început', 'Gradient modern', 'Fundal în degrade, margine rotunjită.', function (n) { return withE(block('hero', { kicker: 'Nou', title: 'Spune într-o frază de ce merită', img: '' }, { pad: 'l', align: 'center', bgType: 'gradient', gr: 'radial', g1: '#3B3355', g2: '#141311', minh: '75', div: 'round' }, 'center'), { kicker: { bst: '', up: 1, ls: .16, size: 12, c: 'accent' }, title: { size: 76, lh: 1.02, deco: 'grad', mw: 18 }, text: { size: 19, mw: 44 }, btn: { bst: 'white', bsz: 'l', ic: 'arrow', hov: 'shine' }, btn2: { bst: 'glass', bsz: 'l' }, img: { hide: 1 } }); }),
+    P('h-arch', 'Început', 'Arcadă elegantă', 'Poză în formă de arc, stil boutique.', function (n) { return withE(block('hero', { kicker: n, title: 'Frumusețe, liniște și atenție la detalii' }, { pad: 'l', bg: 'surface' }, 'split'), { kicker: { it: 1, font: 'head', size: 22, c: 'accent' }, title: { size: 60, lh: 1.05, w: 400 }, btn: { bst: 'dark', bsz: 'l', hov: 'lift' }, btn2: BTN2, img: { ratio: 'p', fr: 'arch' } }); }),
+    P('h-minimal', 'Început', 'Minimal, doar text', 'Pentru firme serioase, fără poză.', function (n) { return withE(block('hero', { kicker: '', title: n + ' — ' + 'ce faci, unde și pentru cine', img: '' }, { pad: 'l', minh: '75' }, 'center'), { title: { size: 100, lh: .98, ls: -.04, w: 400, mw: 15 }, text: { size: 20, mw: 40 }, btn: { bst: 'link', size: 18, ic: 'arrow', hov: 'arrow' }, btn2: { hide: 1 }, img: { hide: 1 } }); }),
+    P('a-split-check', 'Despre și servicii', 'Imagine + text cu bife', 'Clasicul care convinge.', function () { return withE(block('split', {}, { pad: 'l' }), { title: { size: 48 }, img: { ratio: 'l', r: 24, sh: 'soft' }, btn: { bst: 'outline', ic: 'arrow', hov: 'arrow' } }); }),
+    P('a-overlap', 'Despre și servicii', 'Poză cu etichetă', 'Eticheta scoate în față un fapt real.', function () { return withE(block('split', { list: [] }, { pad: 'l', bg: 'surface', img: 'left' }, 'overlap'), { kicker: { up: 1, ls: .14, size: 12, c: 'accent' }, title: { size: 52, lh: 1.05 }, img: { ratio: 'p', r: 20 }, btn: BTN1 }); }),
+    P('f-glass', 'Despre și servicii', 'Carduri de sticlă', 'Pe fundal închis, efect de sticlă.', function () { return withE(block('features', { kicker: 'Servicii', title: 'Ce facem cel mai bine' }, { pad: 'l', align: 'center', bgType: 'gradient', g1: '#1E2A3A', g2: '#0E1116', ga: 160, card: 'glass' }), { kicker: { up: 1, ls: .16, size: 12, c: 'accent' }, title: { size: 52 } }); }),
+    P('f-line', 'Despre și servicii', 'Coloane cu linie', 'Curat, de revistă.', function () { return withE(block('features', { title: 'De ce să ne alegi', items: [{ t: 'Atenție', x: 'O frază care explică.' }, { t: 'Calitate', x: 'O frază care explică.' }, { t: 'Rapiditate', x: 'O frază care explică.' }, { t: 'Garanție', x: 'O frază care explică.' }] }, { pad: 'l', card: 'line', cols: 4, gap: 'l' }), { title: { size: 44 } }); }),
+    P('f-numbers-dark', 'Despre și servicii', 'Numerotat, închis', 'Pași sau avantaje pe fundal închis.', function () { return withE(block('features', { kicker: 'Avantaje', title: 'Trei motive' }, { pad: 'l', bg: 'dark', card: 'outline' }, 'numbers'), { title: { size: 52 } }); }),
+    P('s-accent', 'Cifre și pași', 'Cifre pe culoarea brandului', 'Bandă puternică cu cifre reale.', function () { return withE(block('stats', {}, { pad: 'm', bg: 'accent', card: 'flat', align: 'center' }), {}); }),
+    P('s-outline', 'Cifre și pași', 'Cifre cu titlu', 'Discret, cu contur.', function () { return withE(block('stats', { kicker: 'În cifre', title: 'Ce am făcut până acum' }, { pad: 'l', card: 'outline' }), { title: { size: 44 } }); }),
+    P('st-list', 'Cifre și pași', 'Pași unul sub altul', 'Explică procesul, liniștește clientul.', function () { return withE(block('steps', {}, { pad: 'l', width: 'narrow' }), { title: { size: 48 } }); }),
+    P('st-row', 'Cifre și pași', 'Pași pe un rând', 'Scurt și vizual.', function () { return withE(block('steps', {}, { pad: 'l', bg: 'surface', align: 'center' }, 'row'), { title: { size: 44 } }); }),
+    P('m-accent', 'Bandă și parteneri', 'Bandă în mișcare', 'Cuvintele trec continuu pe ecran.', function () { return block('marquee', {}, { bg: 'accent' }); }),
+    P('m-outline', 'Bandă și parteneri', 'Bandă cu litere contur', 'Mai discret, foarte modern.', function () { return block('marquee', { speed: '45' }, { bg: 'bg' }, 'outline'); }),
+    P('l-row', 'Bandă și parteneri', 'Parteneri / branduri', 'Numele cu care lucrezi.', function () { return block('logos', {}, { bg: 'surface', pad: 's' }); }),
+    P('g-masonry', 'Galerie', 'Mozaic lat', 'Poze mari, zoom la trecerea mouse-ului.', function () { return withE(block('gallery', {}, { pad: 'l', inner: 'wide', hz: '1', gap: 's' }, 'masonry'), { title: { size: 44 } }); }),
+    P('g-strip', 'Galerie', 'Bandă glisantă', 'Poze care se derulează lateral.', function () { return block('gallery', {}, { pad: 'm' }, 'strip'); }),
+    P('r-quote', 'Recenzii', 'Un citat mare', 'O recenzie reală, pusă în valoare.', function () { return withE(block('reviews', {}, { pad: 'l', bg: 'dark', align: 'center', width: 'narrow' }, 'quote'), { title: { hide: 1 } }); }),
+    P('r-cards', 'Recenzii', 'Carduri cu umbră', 'Mai multe recenzii reale.', function () { return withE(block('reviews', { items: [{ t: 'Numele clientului', x: 'Lipește aici o recenzie reală.' }, { t: 'Numele clientului', x: 'Lipește aici o recenzie reală.' }, { t: 'Numele clientului', x: 'Lipește aici o recenzie reală.' }] }, { pad: 'l', bg: 'surface', card: 'shadow' }), { title: { size: 44 } }); }),
+    P('c-gradient', 'Îndemn', 'Îndemn în degrade', 'Final puternic, buton alb.', function () { return withE(block('cta', {}, { pad: 'l', align: 'center', bgType: 'gradient', g1: '#FF6B1A', g2: '#B83A10', ga: 120 }), { title: { size: 60, c: 'white' }, text: { c: 'white' }, btn: { bst: 'white', bsz: 'l', ic: 'phone', hov: 'lift' }, btn2: { bst: 'glass', bsz: 'l', ic: 'wa' } }); }),
+    P('c-image', 'Îndemn', 'Îndemn peste poză', 'Pui o poză de fundal, textul rămâne lizibil.', function () { return withE(block('cta', {}, { pad: 'l', align: 'center', bgType: 'image', ovl: 55, minh: '50' }), { title: { size: 60 }, btn: { bst: 'white', bsz: 'l', ic: 'arrow', hov: 'arrow' }, btn2: { bst: 'glass', bsz: 'l' } }); }),
+    P('c-card', 'Îndemn', 'Card pe culoarea brandului', 'Card rotunjit, atrage privirea.', function () { return withE(block('cta', {}, { pad: 'l', align: 'center' }, 'card'), { title: { size: 52 }, btn: { bst: 'white', bsz: 'l', ic: 'phone', hov: 'grow' } }); }),
+    P('p-cards', 'Prețuri și produse', 'Prețuri pe carduri', 'Ușor de comparat.', function () { return withE(block('prices', {}, { pad: 'l', bg: 'surface', card: 'shadow', align: 'center' }, 'cards'), { title: { size: 48 } }); }),
+    P('p-products', 'Prețuri și produse', 'Produse cu poză', 'Mini magazin, comandă rapidă.', function () { return withE(block('products', {}, { pad: 'l', card: 'outline' }), { title: { size: 48 } }); }),
+    P('k-form', 'Contact', 'Formular cu text alături', 'Cereri direct în cont.', function () { return withE(block('form', {}, { pad: 'l', bg: 'surface' }, 'split'), { title: { size: 52 } }); }),
+    P('k-hours-dark', 'Contact', 'Program pe fundal închis', 'Adresă, program, telefon.', function () { return withE(block('hours', {}, { pad: 'l', bg: 'dark' }), { title: { size: 44 } }); })
+  ];
 
   /* ---------- pages, posts, site settings ---------- */
   var slugify = function (t) {
@@ -214,5 +265,5 @@
     return normalize({ brand: brand(site.name, kind, fonts), blocks: blocks, seo: { title: site.name, desc: c.heroText || '' } });
   }
 
-  window.OHIModel = { normalize: normalize, page: page, post: post, slugify: slugify, PAGE_PRESETS: PAGE_PRESETS, TEMPLATES: TEMPLATES, LIB: LIB, PALETTES: PALETTES, FONT_PAIRS: FONT_PAIRS, block: block, brand: brand, generate: generate, command: command, uid: uid, fromSite: fromSite };
+  window.OHIModel = { PRESETS: PRESETS, block: block, normalize: normalize, page: page, post: post, slugify: slugify, PAGE_PRESETS: PAGE_PRESETS, TEMPLATES: TEMPLATES, LIB: LIB, PALETTES: PALETTES, FONT_PAIRS: FONT_PAIRS, block: block, brand: brand, generate: generate, command: command, uid: uid, fromSite: fromSite };
 })();

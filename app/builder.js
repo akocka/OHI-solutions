@@ -13,7 +13,7 @@
   var site = S.sites.filter(function (x) { return x.id === sid; })[0] || S.sites[0];
   if (!site.model) site.model = M.fromSite(site);
   M.normalize(site.model);
-  var model = site.model, cur = 'home', sel = null, tab = 'sec', dev = 'desk', past = [], future = [], win = null, typing = false, published = JSON.stringify(model);
+  var model = site.model, cur = 'home', selEl = null, sel = null, tab = 'sec', dev = 'desk', past = [], future = [], win = null, typing = false, published = JSON.stringify(model);
   var save = function () { site.model = model; try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { toast('Spațiu plin în browser: pozele mari nu se pot păstra în demo.'); } };
   var toast = function (t) { var o = $('.toast'); if (o) o.remove(); var d = document.createElement('div'); d.className = 'toast'; d.setAttribute('role', 'status'); d.textContent = t; document.body.appendChild(d); setTimeout(function () { d.remove(); }, 2600); };
   var I = {
@@ -68,14 +68,16 @@
     var k = Math.min(1, aw / W); box.style.width = Math.round(W * k) + 'px'; box.style.height = ah + 'px';
     fr.style.width = W + 'px'; fr.style.height = Math.round(ah / k) + 'px'; fr.style.transform = k < 1 ? 'scale(' + k + ')' : 'none';
   }
-  function preview(replay) { var p = curPage(), po = curPost(); if (win && win.OHIRender) win.OHIRender.render(model, { edit: true, sel: sel, replay: replay, siteId: site.id, page: p ? p.id : null, post: po ? po.id : null }); }
+  function preview(replay) { var p = curPage(), po = curPost(); if (win && win.OHIRender) win.OHIRender.render(model, { edit: true, sel: sel, selEl: selEl && selEl.id === sel ? selEl.path : null, replay: replay, siteId: site.id, page: p ? p.id : null, post: po ? po.id : null }); }
   window.__ohiRenderReady = function (w) { win = w; preview(); };
   window.__ohiBuilder = {
-    select: function (id) { sel = id; if (window.innerWidth <= 1180) tab = 'ins'; markSel(); panels(); },
+    select: function (id) { var had = !!selEl; sel = id; selEl = null; if (window.innerWidth <= 1180) tab = 'ins'; if (had) preview(); else markSel(); panels(); },
+    selectEl: function (id, path, kind) { sel = id; selEl = { id: id, path: path, kind: kind }; if (window.innerWidth <= 1180) tab = 'ins'; markSel(); if (win && win.OHIRender.markEl) win.OHIRender.markEl(id, path); panels(); },
     goPage: function (slug) { go(slug === '' ? 'home' : slug); },
     setText: function (id, path, val) { var b = blk(id); if (!b) return; commit(function () { setPath(b.d, path, val); }); }
   };
   function markSel() { if (!win) return; $$('[data-id]', win.document).forEach(function (e) { e.classList.toggle('sel', e.dataset.id === sel); }); }
+  function getPath(o, path) { return path.split('.').reduce(function (x, k) { return x == null ? x : x[k]; }, o); }
   function setPath(o, path, val) { var p = path.split('.'), x = o; for (var i = 0; i < p.length - 1; i++) x = x[p[i]]; x[p[p.length - 1]] = val; }
 
   /* ---------- left + right panels ---------- */
@@ -134,8 +136,63 @@
       ['culoarea principală albastru', 'butoane drepte', 'colțuri mai rotunjite', 'animații zoom', 'temă închisă', 'adaugă o galerie', 'titlul: Bine ai venit!', 'centrează'].map(function (e) { return '<button class="bt-s" style="background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)" data-cmdx="' + esc(e) + '">' + esc(e) + '</button>'; }).join('') +
       '</div><ul class="log" id="log"></ul></div>';
   }
+  /* ---------- element styling panel ---------- */
+  var ICO = { arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>', down: '<path d="M12 5v14M6 13l6 6 6-6"/>', phone: '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>', wa: '<path d="M4 20l1.4-4A8 8 0 1 1 8.2 18.6z"/>', cal: '<rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/>', mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>', star: '<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>', check: '<path d="m5 12 5 5 9-10"/>', play: '<path d="M7 4v16l13-8z"/>', bag: '<path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2"/>' };
+  var EL_NAMES = { kicker: 'Text mic', title: 'Titlu', text: 'Text', btn: 'Buton principal', btn2: 'Buton secundar', img: 'Imagine', logo: 'Logo', badge: 'Eticheta', words: 'Cuvinte' };
+  function elName(path, kind) { var base = path.split('.')[0]; return EL_NAMES[path] || (kind === 'img' ? 'Imagine' : kind === 'btn' ? 'Buton' : /\.t$/.test(path) ? 'Titlu de element' : /\.x$|\.a$/.test(path) ? 'Text de element' : EL_NAMES[base] || 'Text'); }
+  function elPanel(b) {
+    var P = selEl.path, K = selEl.kind, e = (b.e || {})[P] || {};
+    var chip = function (key, val, label, title) { return '<button data-elv="' + key + '" data-val="' + esc(val) + '" aria-pressed="' + (String(e[key] == null ? '' : e[key]) === String(val)) + '"' + (title ? ' title="' + esc(title) + '"' : '') + '>' + label + '</button>'; };
+    var chips = function (key, opts) { return '<div class="chips">' + opts.map(function (o) { return chip(key, o[0], o[1], o[2]); }).join('') + '</div>'; };
+    var rng = function (key, label, min, max, step, unit, dflt) { var v = e[key] == null || e[key] === '' ? dflt : e[key]; return '<label class="fl rg"><span>' + label + ' <em data-out="' + key + '">' + (e[key] == null || e[key] === '' ? 'implicit' : v + unit) + '</em></span><input type="range" data-elr="' + key + '" data-unit="' + unit + '" min="' + min + '" max="' + max + '" step="' + step + '" value="' + v + '"></label>'; };
+    var tog = function (key, label) { return '<div class="tgl">' + label + '<button class="tg" role="switch" aria-checked="' + !!e[key] + '" data-eltg="' + key + '" aria-label="' + esc(label) + '"></button></div>'; };
+    var colorRow = function (key, label) {
+      var cur = e[key] || '', cc = model.brand.colors;
+      return '<label class="fl"><span>' + label + '</span></label><div class="cl-row">' + [['', 'Implicit', 'transparent'], ['accent', 'Principal', cc.accent], ['ink', 'Text', cc.ink], ['mute', 'Discret', cc.mute], ['white', 'Alb', '#ffffff'], ['dark', 'Închis', cc.dark]].map(function (o) {
+        return '<button data-elv="' + key + '" data-val="' + o[0] + '" aria-pressed="' + (cur === o[0]) + '" title="' + o[1] + '" style="background:' + o[2] + '"' + (o[0] ? '' : ' class="none"') + '></button>'; }).join('') +
+        '<label class="cpick" title="Altă culoare"><input type="color" data-elc="' + key + '" value="' + (/^#/.test(cur) ? cur : '#FF6B1A') + '"></label></div>';
+    };
+    var txtVal = getPath(b.d, P);
+    var content = K === 'img' ? '' : '<label class="fl"><span>Textul</span><textarea class="in" rows="2" data-eltx="' + esc(P) + '">' + esc(txtVal == null ? '' : txtVal) + '</textarea></label>';
+    var move = '<div class="sec"><h3>Poziție</h3>' + rng('x', 'Mută stânga / dreapta', -200, 200, 2, 'px', 0) + rng('y', 'Mută sus / jos', -200, 200, 2, 'px', 0) + rng('mt', 'Spațiu deasupra', -60, 160, 2, 'px', 0) + rng('mb', 'Spațiu dedesubt', -60, 160, 2, 'px', 0) + tog('hide', 'Ascunde elementul') + '</div>';
+    var body;
+    if (K === 'img') {
+      var cur = getPath(b.d, P);
+      body = '<div class="sec"><h3>Poza</h3>' + (cur ? '<div class="one-img"><img src="' + esc(cur) + '" alt=""></div>' : '') + '<label class="up"><input type="file" accept="image/*" data-elimg="' + esc(P) + '">' + (cur ? 'Schimbă poza' : 'Încarcă o poză') + '</label>' + (cur ? '<button class="add" data-elimgrm="' + esc(P) + '">Scoate poza</button>' : '') + '</div>' +
+        '<div class="sec"><h3>Formă</h3><label class="fl"><span>Format</span></label>' + chips('ratio', [['', 'Implicit'], ['sq', '1:1'], ['l', '4:3'], ['p', '3:4'], ['w', '16:9'], ['x', '21:9'], ['t', '9:16']]) +
+        rng('r', 'Colțuri rotunjite', 0, 200, 1, 'px', 16) + '<label class="fl"><span>Ramă</span></label>' + chips('fr', [['', 'Fără'], ['border', 'Chenar'], ['offset', 'Umbră colorată'], ['arch', 'Arcadă'], ['blob', 'Organic']]) +
+        '<label class="fl"><span>Umbră</span></label>' + chips('sh', [['', 'Fără'], ['soft', 'Fină'], ['strong', 'Puternică']]) + '</div>' +
+        '<div class="sec"><h3>Culoare și încadrare</h3><label class="fl"><span>Filtru</span></label>' + chips('flt', [['', 'Natural'], ['bw', 'Alb-negru'], ['warm', 'Cald'], ['cool', 'Rece'], ['vivid', 'Viu'], ['fade', 'Pastel'], ['dark', 'Întunecat']]) +
+        rng('fx2', 'Punctul important (stânga–dreapta)', 0, 100, 1, '%', 50) + rng('fy', 'Punctul important (sus–jos)', 0, 100, 1, '%', 50) + rng('zoom', 'Zoom', 1, 2, .05, 'x', 1) +
+        '<label class="fl"><span>La trecerea mouse-ului</span></label>' + chips('hz', [['', 'Nimic'], ['zoom', 'Zoom ușor']]) + '</div>';
+    } else if (K === 'btn') {
+      var lk = e.link || {}, linkVal;
+      if (lk.k === 'sec') linkVal = '<select class="in" data-ellv>' + B().filter(function (x) { return x.type !== 'nav'; }).map(function (x) { return '<option value="' + x.id + '"' + (lk.v === x.id ? ' selected' : '') + '>' + esc(LIB[x.type].name + (x.d.title ? ': ' + String(x.d.title).slice(0, 26) : '')) + '</option>'; }).join('') + '</select>';
+      else if (lk.k === 'page') linkVal = '<select class="in" data-ellv><option value="">Acasă</option>' + model.pages.map(function (x) { return '<option value="' + esc(x.slug) + '"' + (lk.v === x.slug ? ' selected' : '') + '>' + esc(x.title) + '</option>'; }).join('') + '</select>';
+      else if (lk.k) linkVal = '<input class="in" data-ellv value="' + esc(lk.v || '') + '" placeholder="' + ({ tel: '07xx xxx xxx', mail: 'nume@firma.ro', wa: '07xx xxx xxx', url: 'https://…' }[lk.k] || '') + '">';
+      body = '<div class="sec"><h3>Buton</h3>' + content +
+        '<label class="fl"><span>Stil</span></label>' + chips('bst', [['', 'Implicit'], ['fill', 'Plin'], ['outline', 'Contur'], ['soft', 'Discret'], ['dark', 'Închis'], ['white', 'Alb'], ['glass', 'Sticlă'], ['grad', 'Degrade'], ['link', 'Link']]) +
+        '<label class="fl"><span>Mărime</span></label>' + chips('bsz', [['s', 'Mic'], ['', 'Normal'], ['l', 'Mare'], ['xl', 'Foarte mare']]) +
+        '<label class="fl"><span>Culoare buton</span></label><div class="cl-row"><button data-elv="bcol" data-val="" class="none" aria-pressed="' + !e.bcol + '" title="Culoarea principală"></button><label class="cpick" title="Altă culoare"><input type="color" data-elc="bcol" value="' + (e.bcol || model.brand.colors.accent) + '"></label></div>' +
+        '<label class="fl"><span>Iconiță</span></label><div class="chips icons">' + chip('ic', '', 'Fără') + ['arrow', 'down', 'phone', 'wa', 'cal', 'mail', 'check', 'star', 'play', 'bag'].map(function (k) { return chip('ic', k, '<svg viewBox="0 0 24 24" class="bi2">' + (ICO[k] || '') + '</svg>', k); }).join('') + '</div>' + tog('icl', 'Iconița în stânga') +
+        '<label class="fl"><span>Efect la trecerea mouse-ului</span></label>' + chips('hov', [['', 'Fără'], ['lift', 'Se ridică'], ['grow', 'Crește'], ['glow', 'Aură'], ['shine', 'Sclipire'], ['arrow', 'Săgeata se mișcă']]) +
+        tog('bfull', 'Pe toată lățimea pe telefon') + '</div>' +
+        '<div class="sec"><h3>Unde duce</h3><select class="in" data-ellk><option value="">Nicăieri (deocamdată)</option>' + [['sec', 'O secțiune de pe pagină'], ['page', 'O pagină a site-ului'], ['tel', 'Sună la un număr'], ['wa', 'Deschide WhatsApp'], ['mail', 'Trimite e-mail'], ['url', 'Alt site (link)']].map(function (o) { return '<option value="' + o[0] + '"' + (lk.k === o[0] ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') + '</select>' + (linkVal ? '<div style="margin-top:8px">' + linkVal + '</div>' : '') + '</div>';
+    } else {
+      body = '<div class="sec"><h3>Text</h3>' + content +
+        '<label class="fl"><span>Font</span></label>' + chips('font', [['', 'Implicit'], ['head', esc(FAM[model.brand.headFont] || 'Titluri')], ['body', esc(FAM[model.brand.bodyFont] || 'Text')]]) +
+        rng('size', 'Mărime', 10, 160, 1, 'px', 18) + '<label class="fl"><span>Grosime</span></label>' + chips('w', [['', 'Impl.'], ['300', '300'], ['400', '400'], ['500', '500'], ['600', '600'], ['700', '700'], ['800', '800']]) +
+        colorRow('c', 'Culoare') + '<label class="fl"><span>Stil</span></label><div class="chips">' + chip('it', e.it ? '' : '1', '<i>Înclinat</i>').replace('aria-pressed="false"', 'aria-pressed="' + !!e.it + '"') + chip('up', e.up ? '' : '1', 'MAJUSCULE').replace('aria-pressed="false"', 'aria-pressed="' + !!e.up + '"') + '</div>' +
+        '<label class="fl"><span>Efect</span></label>' + chips('deco', [['', 'Fără'], ['grad', 'Degrade'], ['mark', 'Marcaj'], ['line', 'Subliniat'], ['out', 'Contur']]) +
+        '<label class="fl"><span>Aliniere</span></label>' + chips('al', [['', 'Ca secțiunea'], ['left', 'Stânga'], ['center', 'Centru'], ['right', 'Dreapta']]) +
+        rng('ls', 'Spațiu între litere', -.08, .4, .01, 'em', 0) + rng('lh', 'Distanța între rânduri', .8, 2.2, .05, '', 1.2) + rng('mw', 'Lățime maximă', 8, 80, 1, ' caractere', 40) + '</div>';
+    }
+    return '<div class="ins-h"><div><button class="add back-sec" data-a="elback">← ' + esc(LIB[b.type].name) + '</button><b>' + esc(elName(P, K)) + '</b><small>Stilul se aplică doar acestui element</small></div></div>' + body + move +
+      '<div class="sec"><button class="add" data-a="elreset">Resetează stilul elementului</button></div>';
+  }
   function inspector() {
     var b = sel && blk(sel);
+    if (b && selEl && selEl.id === b.id) return elPanel(b);
     if (!b) return '<div class="empty-ins"><b>Alege o secțiune</b>Dă click pe ea în previzualizare sau în lista din stânga. Aici o schimbi: conținut, poziție, culori, animații.</div>';
     var L = LIB[b.type], s = b.s;
     var seg = function (key, opts) { return '<div class="seg" role="group">' + opts.map(function (o) { return '<button data-st="' + key + '" data-val="' + o[0] + '" aria-pressed="' + (s[key] === o[0]) + '" title="' + esc(o[2] || o[1]) + '">' + o[1] + '</button>'; }).join('') + '</div>'; };
@@ -150,13 +207,41 @@
       '<div class="sec"><h3>Poziție și spațiu</h3><label class="fl"><span>Aliniere text</span></label>' + seg('align', [['left', ic('al'), 'Stânga'], ['center', ic('ac'), 'Centru'], ['right', ic('ar'), 'Dreapta']]) +
         (b.type === 'hero' && b.v === 'split' ? '<label class="fl" style="margin-top:12px"><span>Imaginea</span></label>' + seg('img', [['left', 'În stânga'], ['right', 'În dreapta']]) : '') +
         '<label class="fl" style="margin-top:12px"><span>Lățime</span></label>' + seg('width', [['narrow', 'Îngustă'], ['normal', 'Normală'], ['wide', 'Lată']]) +
-        '<label class="fl" style="margin-top:12px"><span>Spațiu sus și jos</span></label>' + seg('pad', [['s', 'Mic'], ['m', 'Mediu'], ['l', 'Mare']]) +
+        '<label class="fl" style="margin-top:12px"><span>Înălțime</span></label>' + seg('minh', [['', 'Automată'], ['50', '½ ecran'], ['75', '¾ ecran'], ['100', 'Tot ecranul']]) +
+        (s.minh ? '<label class="fl" style="margin-top:12px"><span>Conținutul pe verticală</span></label>' + seg('va', [['top', 'Sus'], ['', 'Mijloc'], ['bottom', 'Jos']]) : '') +
+        '<label class="fl" style="margin-top:12px"><span>Spațiu sus și jos</span></label>' + seg('pad', [['none', '0'], ['s', 'Mic'], ['m', 'Mediu'], ['l', 'Mare'], ['xl', 'Foarte mare']]) +
         '<label class="fl" style="margin-top:12px"><span>Unde se vede</span></label>' + seg('vis', [['all', 'Peste tot'], ['desk', 'Calculator'], ['mob', 'Telefon']]) + '</div>' +
-      '<div class="sec"><h3>Fundal</h3><div class="sw" style="margin-bottom:18px">' + bgs + '</div></div>' +
+      bgPanel(b, bgs) + layoutPanel(b) +
       '<div class="sec"><h3>Butoane și animație</h3><label class="fl"><span>Stil butoane aici</span></label>' + seg('btn', [['inherit', 'Implicit'], ['fill', 'Plin'], ['outline', 'Contur'], ['soft', 'Discret']]) +
         '<label class="fl" style="margin-top:12px"><span>Animație la apariție</span></label><select class="in" data-stsel="anim">' + [['inherit', 'Ca tot site-ul'], ['none', 'Fără'], ['fade', 'Apariție lină'], ['up', 'De jos în sus'], ['left', 'Din stânga'], ['right', 'Din dreapta'], ['zoom', 'Zoom'], ['blur', 'Din ceață (blur)'], ['flip', 'Se ridică în 3D']].map(function (o) { return '<option value="' + o[0] + '"' + (s.anim === o[0] ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') + '</select>' +
         (false ? '' : '<label class="fl" style="margin-top:12px"><span>Efect la derulare</span></label><select class="in" data-stsel="fx">' + [['none', 'Fără'], ['split', 'Imaginea coboară, textul urcă'], ['parallax', 'Imagine în adâncime (parallax)'], ['zoom', 'Imaginea se apropie'], ['drift', 'Textul plutește în sus'], ['slide', 'Intră din lateral'], ['cover', 'Urcă peste secțiunea de sus']].map(function (o) { return '<option value="' + o[0] + '"' + ((s.fx || 'none') === o[0] ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') + '</select><p class="h" style="margin-top:6px">Derulează în previzualizare ca să vezi efectul.</p>') + '</div>') +
       '<div class="sec"><div class="acts"><button data-a="up">↑ Sus</button><button data-a="down">↓ Jos</button><button data-a="dup">Copiază</button><button data-a="del" class="del">Șterge</button></div></div>';
+  }
+  function bgPanel(b, bgs) {
+    var s = b.s, t = s.bgType || '', c = model.brand.colors;
+    var tabs = '<div class="chips">' + [['', 'Din temă'], ['color', 'Culoare'], ['gradient', 'Degrade'], ['image', 'Imagine']].map(function (o) { return '<button data-st="bgType" data-val="' + o[0] + '" aria-pressed="' + (t === o[0]) + '">' + o[1] + '</button>'; }).join('') + '</div>';
+    var cp = function (key, dflt, label) { return '<label class="cpick wide"><input type="color" data-stc="' + key + '" value="' + (s[key] || dflt) + '"><span>' + label + '</span></label>'; };
+    var sr = function (key, label, min, max, dflt, unit) { return '<label class="fl rg"><span>' + label + ' <em>' + (s[key] == null ? dflt : s[key]) + unit + '</em></span><input type="range" data-str="' + key + '" data-unit="' + unit + '" min="' + min + '" max="' + max + '" value="' + (s[key] == null ? dflt : s[key]) + '"></label>'; };
+    var body = t === 'color' ? '<div class="cp-row">' + cp('bgc', c.surface, 'Culoarea fundalului') + '</div>'
+      : t === 'gradient' ? '<div class="cp-row">' + cp('g1', c.accent, 'Culoarea 1') + cp('g2', c.dark, 'Culoarea 2') + '</div><label class="fl"><span>Tip</span></label><div class="chips"><button data-st="gr" data-val="" aria-pressed="' + (s.gr !== 'radial') + '">Liniar</button><button data-st="gr" data-val="radial" aria-pressed="' + (s.gr === 'radial') + '">Circular</button></div>' + (s.gr === 'radial' ? '' : sr('ga', 'Direcția', 0, 360, 135, '°'))
+      : t === 'image' ? (s.bgImg ? '<div class="one-img"><img src="' + esc(s.bgImg) + '" alt=""></div>' : '') + '<label class="up"><input type="file" accept="image/*" data-stimg="bgImg">' + (s.bgImg ? 'Schimbă poza de fundal' : 'Încarcă poza de fundal') + '</label>' +
+          '<div class="cp-row">' + cp('ovlC', '#000000', 'Culoarea stratului') + '</div>' + sr('ovl', 'Cât de închis e stratul', 0, 90, 45, '%') + sr('blur', 'Estompare', 0, 20, 0, 'px') +
+          '<div class="tgl">Poza stă pe loc la derulare<button class="tg" role="switch" aria-checked="' + !!s.fixed + '" data-sttg="fixed" aria-label="Poza fixă"></button></div>'
+      : '<div class="sw">' + bgs + '</div>';
+    return '<div class="sec"><h3>Fundal</h3>' + tabs + '<div style="margin-top:12px">' + body + '</div>' +
+      '<label class="fl" style="margin-top:14px"><span>Culoare text în secțiune</span></label><div class="cl-row"><button data-st="textC" data-val="" class="none" aria-pressed="' + !s.textC + '" title="Automată"></button><button data-st="textC" data-val="white" aria-pressed="' + (s.textC === 'white') + '" style="background:#fff" title="Alb"></button><button data-st="textC" data-val="dark" aria-pressed="' + (s.textC === 'dark') + '" style="background:' + c.dark + '" title="Închis"></button><label class="cpick" title="Altă culoare"><input type="color" data-stc="textC" value="' + (/^#/.test(s.textC || '') ? s.textC : '#141311') + '"></label></div>' +
+      '<label class="fl"><span>Culoare de accent doar aici</span></label><div class="cl-row"><button data-st="accC" data-val="" class="none" aria-pressed="' + !s.accC + '" title="Ca tot site-ul"></button><label class="cpick" title="Altă culoare"><input type="color" data-stc="accC" value="' + (s.accC || c.accent) + '"></label></div>' +
+      '<label class="fl"><span>Marginea de jos</span></label><div class="chips">' + [['', 'Dreaptă'], ['round', 'Rotunjită'], ['curve', 'Curbă'], ['slant', 'Oblică'], ['wave', 'Val']].map(function (o) { return '<button data-st="div" data-val="' + o[0] + '" aria-pressed="' + ((s.div || '') === o[0]) + '">' + o[1] + '</button>'; }).join('') + '</div></div>';
+  }
+  function layoutPanel(b) {
+    var s = b.s, grid = ['features', 'stats', 'products', 'blog', 'gallery', 'reviews', 'team', 'prices'].indexOf(b.type) > -1;
+    var ch = function (key, opts) { return '<div class="chips">' + opts.map(function (o) { return '<button data-st="' + key + '" data-val="' + o[0] + '" aria-pressed="' + (String(s[key] || '') === String(o[0])) + '">' + o[1] + '</button>'; }).join('') + '</div>'; };
+    if (!grid) return '';
+    return '<div class="sec"><h3>Așezare</h3><label class="fl"><span>Coloane pe calculator</span></label>' + ch('cols', [['', 'Auto'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5']]) +
+      '<label class="fl"><span>Coloane pe telefon</span></label>' + ch('mcols', [['', 'Auto'], ['1', '1'], ['2', '2']]) +
+      '<label class="fl"><span>Spațiu între elemente</span></label>' + ch('gap', [['s', 'Mic'], ['', 'Normal'], ['l', 'Mare'], ['xl', 'Foarte mare']]) +
+      '<label class="fl"><span>Aspectul cardurilor</span></label>' + ch('card', [['', 'Implicit'], ['flat', 'Plat'], ['outline', 'Contur'], ['shadow', 'Umbră'], ['glass', 'Sticlă'], ['line', 'Cu linie']]) +
+      '<label class="fl"><span>Pozele la trecerea mouse-ului</span></label>' + ch('hz', [['', 'Nimic'], ['1', 'Zoom ușor']]) + '</div>';
   }
   function field(b, f) {
     var k = f[0], lab = f[1], ty = f[2], v = b.d[k];
@@ -251,22 +336,55 @@
     document.body.appendChild(ov); ov.querySelector('[data-newpg]').focus();
   }
 
-  /* ---------- library modal ---------- */
+  /* ---------- library: ready-made designs (with live preview) + empty sections ---------- */
+  function insertBlock(nb) {
+    var at = sel ? B().indexOf(blk(sel)) + 1 : B().length - 1;
+    if (curPage() && (!sel || shared(blk(sel)))) at = B().length;
+    commit(function () { B().splice(curPage() ? Math.max(0, at) : Math.max(1, at), 0, nb); sel = nb.id; selEl = null; });
+    toast('Am adăugat: ' + (LIB[nb.type] || {}).name + (LIB[nb.type] && LIB[nb.type].plugin ? ' (pluginul se pornește automat)' : '') + '. Dă click pe orice text sau buton ca să-l stilizezi.');
+    setTimeout(function () { var el = win && win.document.getElementById(nb.id); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 80);
+  }
   function library() {
-    var groups = {}; Object.keys(LIB).forEach(function (k) { if (k === 'nav' || k === 'footer') return; var g = LIB[k].group; (groups[g] = groups[g] || []).push(k); });
+    var cats = []; M.PRESETS.forEach(function (p) { if (cats.indexOf(p.cat) < 0) cats.push(p.cat); });
+    var mode = 'ready', cat = cats[0], pick = null, pw = null;
     var ov = document.createElement('div'); ov.className = 'ov';
-    ov.innerHTML = '<div class="md lib" role="dialog" aria-modal="true" aria-label="Adaugă secțiune"><button class="x" aria-label="Închide">×</button><h2>Adaugă o secțiune</h2><p>Alege tipul și aspectul. O pui după secțiunea selectată și o poți schimba oricând.</p>' +
-      Object.keys(groups).map(function (g) { return '<h4>' + g + '</h4><div class="gr">' + groups[g].map(function (k) { var L = LIB[k]; return '<div class="cdl"><b>' + esc(L.name) + (L.plugin ? '<span class="pl">Plugin</span>' : '') + '</b><div class="vs">' + L.variants.map(function (v) { return '<button data-addb="' + k + '" data-v="' + v[0] + '">' + esc(v[1]) + '</button>'; }).join('') + '</div></div>'; }).join('') + '</div>'; }).join('') + '</div>';
-    var close = function () { ov.remove(); };
+    ov.innerHTML = '<div class="md lib2" role="dialog" aria-modal="true" aria-label="Adaugă secțiune"><div class="lib2-h"><h2>Adaugă o secțiune</h2><div class="chips" id="lm"><button data-lm="ready" aria-pressed="true">Gata făcute</button><button data-lm="empty" aria-pressed="false">Goale, de la zero</button></div><button class="x" aria-label="Închide">×</button></div>' +
+      '<div class="lib2-b"><nav class="lib2-c" id="lc"></nav><div class="lib2-l" id="ll"></div><div class="lib2-p"><div class="lib2-f" id="lf"><iframe id="lfr" title="Previzualizare secțiune" src="/app/render.html?lib=1" tabindex="-1"></iframe></div><div class="lib2-a"><div><b id="lpn"></b><small id="lpd"></small></div><button class="bt bt-p" id="ladd" disabled>Adaugă pe pagină</button></div></div></div></div>';
+    var $o = function (q) { return ov.querySelector(q); };
+    var make = function () { return pick && (pick.preset ? pick.preset.make(model.brand.name) : M.block(pick.type, {}, {}, pick.v)); };
+    var fit = function () { var f = $o('#lf'), fr = $o('#lfr'); if (!f) return; var w = f.clientWidth, sc = w / 1280; fr.style.transform = 'scale(' + sc + ')'; fr.style.height = Math.ceil(f.clientHeight / sc) + 'px'; };
+    var show = function () {
+      if (!pw || !pw.OHIRender || !pick) return;
+      var nb = make(); var nav = model.blocks.filter(function (x) { return x.type === 'nav'; })[0];
+      pw.OHIRender.render({ brand: model.brand, blocks: (nb.type === 'hero' && nav ? [nav] : []).concat([nb]), pages: [], posts: [], settings: {} }, { replay: true, keepTitle: true, siteId: 'lib' });
+      pw.scrollTo(0, 0);
+      $o('#lpn').textContent = pick.preset ? pick.preset.name : LIB[pick.type].name + ' · ' + pick.label; $o('#lpd').textContent = pick.preset ? pick.preset.desc : 'Pornești de la zero, cu text de exemplu.'; $o('#ladd').disabled = false;
+    };
+    var list = function () {
+      $o('#lc').innerHTML = mode === 'ready' ? cats.map(function (c) { return '<button data-lcat="' + esc(c) + '" aria-pressed="' + (c === cat) + '">' + esc(c) + '</button>'; }).join('') : '';
+      $o('#lc').hidden = mode !== 'ready';
+      if (mode === 'ready') {
+        $o('#ll').innerHTML = M.PRESETS.filter(function (p) { return p.cat === cat; }).map(function (p) { return '<button class="lp" data-pre="' + p.id + '" aria-pressed="' + (!!pick && pick.preset === p) + '"><b>' + esc(p.name) + '</b><small>' + esc(p.desc) + '</small></button>'; }).join('');
+      } else {
+        $o('#ll').innerHTML = Object.keys(LIB).filter(function (k) { return k !== 'nav' && k !== 'footer'; }).map(function (k) { var L = LIB[k]; return '<div class="lp-e"><b>' + esc(L.name) + (L.plugin ? ' <span class="pl">Plugin</span>' : '') + '</b><div class="chips">' + L.variants.map(function (v) { return '<button data-ety="' + k + '" data-ev="' + v[0] + '" data-el="' + esc(v[1]) + '" aria-pressed="' + (!!pick && !pick.preset && pick.type === k && pick.v === v[0]) + '">' + esc(v[1]) + '</button>'; }).join('') + '</div></div>'; }).join('');
+      }
+    };
+    var close = function () { removeEventListener('resize', fit); ov.remove(); };
     ov.addEventListener('click', function (e) {
       if (e.target === ov || e.target.closest('.x')) return close();
-      var b = e.target.closest('[data-addb]'); if (!b) return;
-      var nb = M.block(b.dataset.addb, {}, {}, b.dataset.v), at = sel ? B().indexOf(blk(sel)) + 1 : B().length - 1;
-      if (curPage() && !sel) at = B().length; if (curPage() && shared(blk(sel))) at = B().length; commit(function () { B().splice(curPage() ? Math.max(0, at) : Math.max(1, at), 0, nb); sel = nb.id; });
-      close(); toast('Am adăugat: ' + LIB[nb.type].name + (LIB[nb.type].plugin ? ' (pluginul se pornește automat)' : ''));
-      setTimeout(function () { var el = win && win.document.getElementById(nb.id); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 60);
+      var t = e.target.closest('button'); if (!t) return; var d = t.dataset;
+      if (d.lm) { mode = d.lm; $$('#lm button', ov).forEach(function (x) { x.setAttribute('aria-pressed', x === t); }); list(); return; }
+      if (d.lcat) { cat = d.lcat; list(); var first = M.PRESETS.filter(function (p) { return p.cat === cat; })[0]; pick = { preset: first }; list(); show(); return; }
+      if (d.pre) { pick = { preset: M.PRESETS.filter(function (p) { return p.id === d.pre; })[0] }; list(); show(); if (window.innerWidth <= 760) $o('.lib2-p').scrollIntoView({ behavior: 'smooth', block: 'nearest' }); return; }
+      if (d.ety) { pick = { type: d.ety, v: d.ev, label: d.el }; list(); show(); return; }
+      if (t.id === 'ladd' && pick) { var nb = make(); close(); insertBlock(nb); }
     });
-    document.body.appendChild(ov); ov.querySelector('[data-addb]').focus();
+    ov.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    document.body.appendChild(ov);
+    pick = { preset: M.PRESETS[0] }; list();
+    var fr = $o('#lfr'); fr.addEventListener('load', function () { pw = fr.contentWindow; fit(); show(); });
+    addEventListener('resize', fit); setTimeout(fit, 30);
+    $o('[data-pre]').focus();
   }
   function confirmBox(title, text, ok, fn) {
     var ov = document.createElement('div'); ov.className = 'ov';
@@ -341,8 +459,15 @@
     if (d.ex) { $('#aiP').value = d.ex; $('#aiP').focus(); return; }
     if (d.cmdx) { runCmd(d.cmdx); return; }
     if (!b) return;
+    var eo = function () { b.e = b.e || {}; return (b.e[selEl.path] = b.e[selEl.path] || {}); };
+    if (d.a === 'elback') { selEl = null; preview(); panels(); return; }
+    if (d.a === 'elreset' && selEl) { commit(function () { if (b.e) delete b.e[selEl.path]; }); toast('Stilul elementului a fost resetat.'); return; }
+    if (d.elv !== undefined && selEl) { commit(function () { var o = eo(); if (d.val === '') delete o[d.elv]; else o[d.elv] = d.val; }); return; }
+    if (d.eltg && selEl) { commit(function () { var o = eo(); if (o[d.eltg]) delete o[d.eltg]; else o[d.eltg] = 1; }); return; }
+    if (d.elimgrm) { commit(function () { setPath(b.d, d.elimgrm, ''); }); return; }
+    if (d.sttg) { commit(function () { if (b.s[d.sttg]) delete b.s[d.sttg]; else b.s[d.sttg] = 1; }); return; }
     if (d['var']) { commit(function () { b.v = d['var']; }); return; }
-    if (d.st) { commit(function () { b.s[d.st] = d.val; }); return; }
+    if (d.st) { commit(function () { if (d.val === '' && d.st !== 'bg') delete b.s[d.st]; else b.s[d.st] = d.val; if (d.st === 'bgType' && d.val === 'gradient' && !b.s.g1) { b.s.g1 = model.brand.colors.accent; b.s.g2 = model.brand.colors.dark; } }); return; }
     if (d.bool) { commit(function () { b.d[d.bool] = !b.d[d.bool]; }); return; }
     if (d.prdimg !== undefined) { commit(function () { b.d.items[+d.prdimg].img = ''; }); return; }
     if (d.ffr !== undefined) { commit(function () { var f = b.d.fields[+d.ffr]; f.r = !f.r; }); return; }
@@ -371,6 +496,13 @@
     if (d.po && d.po !== 'slug') return live(function () { var x = curPost(); x[d.po] = t.value; if (d.po === 'excerpt') counter(155); if (d.po === 'title' && x.slugAuto !== false && !x.published) { x.slug = M.slugify(t.value); var sf = $('[data-po=slug]'); if (sf) sf.value = x.slug; } });
     if (!b) return;
     if (d.ff !== undefined) return live(function () { b.d.fields[+d.ff][d.fk] = t.value; });
+    var outEm = function (txt) { var em = t.parentNode.querySelector('em'); if (em) em.textContent = txt; };
+    if (d.elr && selEl) return live(function () { b.e = b.e || {}; var o = b.e[selEl.path] = b.e[selEl.path] || {}; o[d.elr] = +t.value; outEm(t.value + (d.unit || '')); });
+    if (d.elc && selEl) return live(function () { b.e = b.e || {}; var o = b.e[selEl.path] = b.e[selEl.path] || {}; o[d.elc] = t.value; });
+    if (d.eltx) return live(function () { setPath(b.d, d.eltx, t.value); });
+    if (d.ellv !== undefined && selEl) return live(function () { b.e = b.e || {}; var o = b.e[selEl.path] = b.e[selEl.path] || {}; o.link = o.link || {}; o.link.v = t.value; });
+    if (d.str) return live(function () { b.s[d.str] = +t.value; outEm(t.value + (d.unit || '')); });
+    if (d.stc) return live(function () { b.s[d.stc] = t.value; });
     if (d.fd && t.type === 'number') return live(function () { b.d[d.fd] = Math.max(1, Math.min(24, +t.value || 1)); });
     if (d.fd) return live(function () { b.d[d.fd] = t.value; });
     if (d.lines) return live(function () { b.d[d.lines] = t.value.split('\n').map(function (x) { return x.trim(); }).filter(Boolean); });
@@ -390,6 +522,10 @@
     if (d.seo || d.pg || d.po || d.set || d.ff !== undefined) { typing = false; return; }   // no redraw here: it would swallow the click that caused the blur
     if (d.font) { commit(function () { model.brand[d.font] = t.value; var hit = M.FONT_PAIRS.filter(function (x) { return x.head === model.brand.headFont && x.body === model.brand.bodyFont; })[0]; model.brand.fontPair = hit ? hit.id : 'custom'; }); return; }
     if (!b) return;
+    if (d.ellk !== undefined && selEl) { commit(function () { b.e = b.e || {}; var o = b.e[selEl.path] = b.e[selEl.path] || {}; if (!t.value) delete o.link; else o.link = { k: t.value, v: t.value === 'sec' ? (B().filter(function (x) { return x.type !== 'nav' && x.id !== b.id; })[0] || {}).id || '' : '' }; }); return; }
+    if (d.elimg && t.files && t.files[0]) { readImg(t.files[0], function (u) { commit(function () { setPath(b.d, d.elimg, u); }); }); return; }
+    if (d.stimg && t.files && t.files[0]) { readImg(t.files[0], function (u) { commit(function () { b.s[d.stimg] = u; }); }); return; }
+    if (d.elr || d.elc || d.eltx || d.ellv !== undefined || d.str || d.stc) { typing = false; return; }   // no redraw: it would swallow the next click
     if (d.prdup !== undefined && t.files && t.files[0]) { readImg(t.files[0], function (u) { commit(function () { b.d.items[+d.prdup].img = u; }); }); return; }
     if (d.ffsel !== undefined) { commit(function () { b.d.fields[+d.ffsel].t = t.value; }); return; }
     if (d.stsel) { commit(function () { b.s[d.stsel] = t.value; }); preview(true); return; }

@@ -25,16 +25,16 @@
       '--maxw': '1160px', '--an-d': { slow: '1.1s', normal: '.7s', fast: '.4s' }[b.animSpeed] || '.7s'
     };
   };
-  var LABEL = { nav: 'Meniu', hero: 'Început', features: 'Avantaje', prices: 'Prețuri', gallery: 'Galerie', faq: 'Întrebări', hours: 'Program și contact', cta: 'Îndemn', booking: 'Plugin · Programări', calc: 'Plugin · Calculator rate', footer: 'Subsol', text: 'Text', form: 'Formular', blog: 'Noutăți', reviews: 'Recenzii', team: 'Echipa', article: 'Articol', products: 'Produse' };
+  var LABEL = { nav: 'Meniu', hero: 'Început', features: 'Avantaje', prices: 'Prețuri', gallery: 'Galerie', faq: 'Întrebări', hours: 'Program și contact', cta: 'Îndemn', booking: 'Plugin · Programări', calc: 'Plugin · Calculator rate', footer: 'Subsol', text: 'Text', form: 'Formular', blog: 'Noutăți', reviews: 'Recenzii', team: 'Echipa', article: 'Articol', products: 'Produse', stats: 'Cifre', steps: 'Pași', split: 'Imagine + text', marquee: 'Bandă în mișcare', logos: 'Logo-uri' };
   var CTX = { opts: {}, model: null };
   /* links between pages: the public site uses /slug, the stand-alone preview uses ?site=..&p=slug */
   var href = function (kind, slug) { var f = CTX.opts.href; if (f) return f(kind, slug); return kind === 'home' ? '?site=' + encodeURIComponent(CTX.opts.siteId || '') : '?site=' + encodeURIComponent(CTX.opts.siteId || '') + '&' + (kind === 'post' ? 'post' : 'p') + '=' + encodeURIComponent(slug); };
   var paras = function (txt) { return String(txt || '').split(/\n\s*\n/).map(function (p) { p = p.trim(); if (!p) return ''; return /^##\s+/.test(p) ? '<h3>' + esc(p.replace(/^##\s+/, '')) + '</h3>' : '<p>' + esc(p).replace(/\n/g, '<br>') + '</p>'; }).join(''); };
   var fmtDate = function (d) { try { return new Date(d + 'T12:00:00').toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }); } catch (e) { return d; } };
-  var img = function (src, label, cls) { return '<div class="media ' + (cls || '') + '">' + (src ? '<img src="' + esc(src) + '" alt="">' : '<div class="ph">' + esc(label || 'Imagine') + '</div>') + '</div>'; };
+  var img = function (src, label, cls, path) { return '<div class="media ' + (cls || '') + '"' + (path ? ' data-t="' + path + '" data-k="img"' : '') + '>' + (src ? '<img src="' + esc(src) + '" alt="">' : '<div class="ph">' + esc(label || 'Imagine') + '</div>') + '</div>'; };
   var t = function (tag, path, val, cls) { return '<' + tag + (cls ? ' class="' + cls + '"' : '') + ' data-t="' + path + '">' + esc(val) + '</' + tag + '>'; };
   var btns = function (d) {
-    return (d.btn || d.btn2) ? '<div class="btns an">' + (d.btn ? '<a class="bt p" href="#" data-t="btn">' + esc(d.btn) + '</a>' : '') + (d.btn2 ? '<a class="bt s" href="#" data-t="btn2">' + esc(d.btn2) + '</a>' : '') + '</div>' : '';
+    return (d.btn || d.btn2) ? '<div class="btns an">' + (d.btn ? '<a class="bt p" href="#" data-t="btn" data-k="btn">' + esc(d.btn) + '</a>' : '') + (d.btn2 ? '<a class="bt s" href="#" data-t="btn2" data-k="btn">' + esc(d.btn2) + '</a>' : '') + '</div>' : '';
   };
   var head = function (d) { return (d.kicker ? t('span', 'kicker', d.kicker, 'kick an') : '') + (d.title ? t('h2', 'title', d.title, 'h2 an') : '') + (d.text ? t('p', 'text', d.text, 'lead an') : ''); };
 
@@ -47,9 +47,9 @@
     },
     hero: function (d, m, b) {
       var text = '<div class="al">' + (d.kicker ? t('span', 'kicker', d.kicker, 'kick an') : '') + t('h1', 'title', d.title, 'an') + t('p', 'text', d.text, 'lead an') + btns(d) + '</div>';
-      if (b.v === 'cover') return img(d.img, 'Imagine mare de fundal', 'bgimg') + '<div class="w">' + text + '</div>';
-      if (b.v === 'center') return '<div class="w">' + text + '<div class="an">' + img(d.img, 'Imagine lată') + '</div></div>';
-      return '<div class="w"><div class="grid">' + text + '<div class="an">' + img(d.img, 'Imaginea principală') + '</div></div></div>';
+      if (b.v === 'cover') return img(d.img, 'Imagine mare de fundal', 'bgimg', 'img') + '<div class="w">' + text + '</div>';
+      if (b.v === 'center') return '<div class="w">' + text + '<div class="an">' + img(d.img, 'Imagine lată', '', 'img') + '</div></div>';
+      return '<div class="w"><div class="grid">' + text + '<div class="an">' + img(d.img, 'Imaginea principală', '', 'img') + '</div></div></div>';
     },
     features: function (d, m, b) {
       var items = (d.items || []).map(function (it, i) {
@@ -63,7 +63,7 @@
     },
     gallery: function (d) {
       var n = Math.max(3, (d.imgs || []).length), tiles = '';
-      for (var i = 0; i < n; i++) tiles += img((d.imgs || [])[i], 'Poza ' + (i + 1), 'an');
+      for (var i = 0; i < n; i++) tiles += img((d.imgs || [])[i], 'Poza ' + (i + 1), 'an', 'imgs.' + i);
       return '<div class="w"><div class="al">' + head(d) + '</div><div class="gal">' + tiles + '</div></div>';
     },
     faq: function (d) {
@@ -120,6 +120,28 @@
       }).join('');
       return '<div class="w"><div class="al">' + head(d) + '</div><div class="prods' + (b.v === 'list' ? ' pl' : '') + '">' + it + '</div></div>';
     },
+    stats: function (d, m, b) {
+      var it = (d.items || []).map(function (x, i) { return '<div class="stat an">' + t('b', 'items.' + i + '.t', x.t, 'sv') + t('span', 'items.' + i + '.x', x.x, 'sl') + '</div>'; }).join('');
+      return '<div class="w">' + (d.title || d.kicker ? '<div class="al">' + head(d) + '</div>' : '') + '<div class="stats" style="--n:' + Math.min(4, Math.max(1, (d.items || []).length)) + '">' + it + '</div></div>';
+    },
+    steps: function (d, m, b) {
+      var it = (d.items || []).map(function (x, i) { return '<li class="an"><span class="sn">' + (i + 1) + '</span><div>' + t('h3', 'items.' + i + '.t', x.t) + t('p', 'items.' + i + '.x', x.x) + '</div></li>'; }).join('');
+      return '<div class="w"><div class="al">' + head(d) + '</div><ol class="steps ' + (b.v === 'row' ? 'row' : '') + '">' + it + '</ol></div>';
+    },
+    split: function (d, m, b) {
+      var list = (d.list || []).length ? '<ul class="chk an">' + d.list.map(function (x, i) { return '<li data-t="list.' + i + '">' + esc(x) + '</li>'; }).join('') + '</ul>' : '';
+      var text = '<div class="al">' + head(d) + list + btns(d) + '</div>';
+      return '<div class="w"><div class="grid split-g' + (b.v === 'overlap' ? ' ovl' : '') + '">' + text + '<div class="an">' + img(d.img, 'Imagine', '', 'img') + (b.v === 'overlap' && d.badge ? t('span', 'badge', d.badge, 'badge') : '') + '</div></div></div>';
+    },
+    marquee: function (d, m, b) {
+      var words = String(d.words || '').split('·').map(function (x) { return x.trim(); }).filter(Boolean);
+      var run = words.map(function (x) { return '<span>' + esc(x) + '</span><i aria-hidden="true">✦</i>'; }).join('');
+      return '<div class="mq' + (b.v === 'outline' ? ' mq-o' : '') + '" aria-label="' + esc(words.join(', ')) + '"><div class="mq-t" style="--mq:' + Math.max(12, Math.min(80, +d.speed || 30)) + 's">' + run + run + '</div></div>';
+    },
+    logos: function (d) {
+      var it = String(d.names || '').split(',').map(function (x) { return x.trim(); }).filter(Boolean).map(function (x) { return '<span class="lg an">' + esc(x) + '</span>'; }).join('');
+      return '<div class="w">' + (d.title ? '<p class="lgt an" data-t="title">' + esc(d.title) + '</p>' : '') + '<div class="lgs">' + it + '</div></div>';
+    },
     reviews: function (d, m, b) {
       var it = (d.items || []).map(function (r, i) { return '<figure class="rv an"><blockquote data-t="items.' + i + '.x">' + esc(r.x) + '</blockquote><figcaption data-t="items.' + i + '.t">' + esc(r.t) + '</figcaption></figure>'; });
       return '<div class="w"><div class="al">' + head(d) + '</div><div class="' + (b.v === 'quote' ? 'rv1' : 'cols') + '" style="--n:' + Math.min(3, Math.max(1, it.length)) + '">' + (b.v === 'quote' ? it.slice(0, 1) : it).join('') + '</div></div>';
@@ -133,6 +155,103 @@
     },
     footer: function (d, m) { return '<div class="w"><span><b data-t="name">' + esc(d.name || m.brand.name) + '</b> · ' + esc(d.line || '') + '</span><span>© 2026 · Site găzduit de OHI</span></div>'; }
   };
+
+  /* ---------- design engine: section backgrounds/layout and per-element styles ---------- */
+  var HEX = /^#[0-9a-fA-F]{6}$/;
+  var col = function (v) { return v === 'accent' ? 'var(--c-accent)' : v === 'ink' ? 'var(--b-ink)' : v === 'mute' ? 'var(--b-mute)' : v === 'white' ? '#ffffff' : v === 'dark' ? 'var(--c-dark)' : HEX.test(v || '') ? v : ''; };
+  var safeUrl = function (u) { u = String(u || ''); return /^data:image\/(png|jpe?g|webp|gif);base64,[A-Za-z0-9+\/=]+$/.test(u) || /^https:\/\/[^"'()\s\\]+$/.test(u) ? u : ''; };
+  var num = function (v, lo, hi, d) { v = parseFloat(v); return isFinite(v) ? Math.max(lo, Math.min(hi, v)) : d; };
+  function secAttrs(s) {
+    var st = [], tone = null, a = '';
+    if (s.bgType === 'color' && HEX.test(s.bgc || '')) { st.push('--sec-bg:' + s.bgc); tone = lum(s.bgc) < .42 ? 'dark' : 'light'; }
+    if (s.bgType === 'gradient') {
+      var g1 = HEX.test(s.g1 || '') ? s.g1 : '#ffffff', g2 = HEX.test(s.g2 || '') ? s.g2 : '#141311', ga = Math.round(num(s.ga, 0, 360, 135));
+      st.push('--sec-bg:' + (s.gr === 'radial' ? 'radial-gradient(circle at 30% 20%,' + g1 + ',' + g2 + ')' : 'linear-gradient(' + ga + 'deg,' + g1 + ',' + g2 + ')')); tone = (lum(g1) + lum(g2)) / 2 < .42 ? 'dark' : 'light';
+    }
+    if (s.bgType === 'image') {
+      var u = safeUrl(s.bgImg), o = num(s.ovl, 0, 90, 45), oc = HEX.test(s.ovlC || '') ? s.ovlC : '#000000';
+      if (u) st.push('--sec-img:url("' + u + '")');
+      st.push('--sec-ovl:' + oc, '--sec-ovo:' + (o / 100), '--sec-blur:' + num(s.blur, 0, 20, 0) + 'px');
+      tone = u && o >= 35 ? (lum(oc) < .42 ? 'dark' : 'light') : null;
+      if (s.fixed) a += ' data-fixed="1"';
+    }
+    if (s.cols) st.push('--cols:' + Math.round(num(s.cols, 1, 6, 3)));
+    if (s.mcols) a += ' data-mcols="' + (s.mcols === '2' ? 2 : 1) + '"';
+    if (s.gap) st.push('--gap:' + ({ s: '12px', m: '22px', l: '40px', xl: '64px' }[s.gap] || '22px'));
+    if (s.inner) st.push('--maxw-s:' + ({ narrow: '760px', normal: '1160px', wide: '1360px', full: '100%' }[s.inner] || '1160px'));
+    if (s.textC && col(s.textC)) st.push('--b-ink:' + col(s.textC));
+    if (s.accC && HEX.test(s.accC)) st.push('--c-accent:' + s.accC, '--c-on-accent:' + on(s.accC));
+    ['bgType', 'minh', 'va', 'card', 'div', 'hz'].forEach(function (k) { if (s[k] && /^[a-z0-9]{1,12}$/.test(s[k])) a += ' data-' + k.toLowerCase() + '="' + s[k] + '"'; });
+    if (s.cols) a += ' data-cols="1"';
+    if (tone) a += ' data-tone="' + tone + '"';
+    return a + (st.length ? ' style="' + esc(st.join(';')) + '"' : '');
+  }
+  var ICONS = {
+    arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>', down: '<path d="M12 5v14M6 13l6 6 6-6"/>', phone: '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>',
+    wa: '<path d="M4 20l1.4-4A8 8 0 1 1 8.2 18.6z"/>', cal: '<rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/>', mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+    star: '<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>', check: '<path d="m5 12 5 5 9-10"/>', play: '<path d="M7 4v16l13-8z"/>', bag: '<path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2"/>'
+  };
+  var ico = function (k) { return ICONS[k] ? '<svg class="bi" viewBox="0 0 24 24" aria-hidden="true">' + ICONS[k] + '</svg>' : ''; };
+  function linkOf(l) {
+    if (!l || !l.k) return null; var v = String(l.v || '').trim();
+    if (l.k === 'sec') return /^[a-z0-9]{1,20}$/i.test(v) ? '#' + v : null;
+    if (l.k === 'page') return v ? href('page', v) : href('home');
+    if (l.k === 'tel') return v.replace(/[^0-9+]/g, '').length > 5 ? 'tel:' + v.replace(/[^0-9+]/g, '') : null;
+    if (l.k === 'mail') return /^[^\s@"<>]+@[^\s@"<>]+\.[a-z]{2,}$/i.test(v) ? 'mailto:' + v : null;
+    if (l.k === 'wa') return v.replace(/[^0-9]/g, '').length > 6 ? 'https://wa.me/' + v.replace(/[^0-9]/g, '').replace(/^0/, '40') : null;
+    if (l.k === 'url') return /^https?:\/\/[^\s"<>]+$/i.test(v) ? v : null;
+    return null;
+  }
+  function applyEl(el, st) {
+    var k = el.dataset.k || 'txt', S = el.style;
+    if (st.hide) { el.classList.add('el-hide'); }
+    if (st.x || st.y) S.translate = num(st.x, -400, 400, 0) + 'px ' + num(st.y, -400, 400, 0) + 'px';
+    if (st.mt !== undefined && st.mt !== '') S.marginTop = num(st.mt, -120, 240, 0) + 'px';
+    if (st.mb !== undefined && st.mb !== '') S.marginBottom = num(st.mb, -120, 240, 0) + 'px';
+    if (k === 'img') {
+      var im = el.querySelector('img');
+      if (st.ratio) S.aspectRatio = { sq: '1/1', p: '3/4', l: '4/3', w: '16/9', x: '21/9', t: '9/16' }[st.ratio] || '';
+      if (st.r !== undefined && st.r !== '') S.borderRadius = num(st.r, 0, 400, 16) + 'px';
+      ['sh', 'fr', 'hz'].forEach(function (a) { if (st[a] && /^[a-z]{1,10}$/.test(st[a])) el.dataset[a] = st[a]; });
+      if (im) {
+        if (st.fit === 'contain') im.style.objectFit = 'contain';
+        if (st.fx2 !== undefined || st.fy !== undefined) im.style.objectPosition = num(st.fx2, 0, 100, 50) + '% ' + num(st.fy, 0, 100, 50) + '%';
+        var f = { bw: 'grayscale(1)', warm: 'sepia(.35) saturate(1.2)', cool: 'saturate(.85) hue-rotate(-12deg) brightness(1.03)', vivid: 'saturate(1.45) contrast(1.06)', fade: 'contrast(.88) brightness(1.08) saturate(.8)', dark: 'brightness(.72)' }[st.flt];
+        if (f) im.style.filter = f;
+        if (st.zoom) im.style.scale = num(st.zoom, 1, 2, 1);
+      }
+      return;
+    }
+    if (k === 'btn') {
+      ['bst', 'bsz', 'hov', 'bfull'].forEach(function (a) { if (st[a] && /^[a-z0-9]{1,10}$/.test(String(st[a]))) el.dataset[a] = st[a]; });
+      if (st.bcol && HEX.test(st.bcol)) { S.setProperty('--bt-bg', st.bcol); S.setProperty('--bt-ink', on(st.bcol)); }
+      if (st.ic && ICONS[st.ic]) el.insertAdjacentHTML(st.icl ? 'afterbegin' : 'beforeend', ico(st.ic));
+      var h = linkOf(st.link); if (h) { el.setAttribute('href', h); if (/^https?:/.test(h)) { el.target = '_blank'; el.rel = 'noopener'; } }
+      if (st.size) S.fontSize = num(st.size, 11, 28, 16) + 'px';
+      return;
+    }
+    if (st.size) { var n = num(st.size, 10, 200, 16); S.fontSize = n > 26 ? 'clamp(' + Math.round(Math.max(18, n * .6)) + 'px,' + (n / 12.8).toFixed(2) + 'vw,' + n + 'px)' : n + 'px'; }
+    if (st.w) S.fontWeight = Math.round(num(st.w, 100, 900, 400) / 100) * 100;
+    if (st.c && col(st.c)) S.color = col(st.c);
+    if (st.ls !== undefined && st.ls !== '') S.letterSpacing = num(st.ls, -.1, .4, 0) + 'em';
+    if (st.lh) S.lineHeight = num(st.lh, .8, 2.4, 1.3);
+    if (st.al && /^(left|center|right)$/.test(st.al)) { S.textAlign = st.al; if (st.al === 'center') { S.marginLeft = 'auto'; S.marginRight = 'auto'; } }
+    if (st.it) S.fontStyle = 'italic';
+    if (st.up) S.textTransform = 'uppercase';
+    if (st.font === 'head') { S.fontFamily = 'var(--f-head)'; } else if (st.font === 'body') { S.fontFamily = 'var(--f-body)'; }
+    if (st.mw) S.maxWidth = num(st.mw, 8, 120, 40) + 'ch';
+    if (st.deco && /^(grad|mark|line|out)$/.test(st.deco)) el.classList.add('tx-' + st.deco);
+  }
+  function applyStyles(list) {
+    list.forEach(function (blk) {
+      if (!blk || !blk.e) return;
+      var sec = document.getElementById(blk.id); if (!sec) return;
+      Object.keys(blk.e).forEach(function (path) {
+        if (!/^[a-zA-Z0-9.]{1,40}$/.test(path)) return;
+        [].forEach.call(sec.querySelectorAll('[data-t="' + path + '"]'), function (el) { applyEl(el, blk.e[path] || {}); });
+      });
+    });
+  }
 
   function render(model, opts) {
     opts = opts || {};
@@ -156,9 +275,11 @@
       var s = blk.s || {}, an = s.anim && s.anim !== 'inherit' ? s.anim : b.anim, bs = s.btn && s.btn !== 'inherit' ? s.btn : b.btnStyle;
       var cls = blk.type === 'nav' ? 'nav' : blk.type === 'footer' ? 'foot' : 'blk ' + blk.type;
       var attrs = ' id="' + blk.id + '" data-id="' + blk.id + '" data-label="' + esc(LABEL[blk.type] || blk.type) + '" data-v="' + esc(blk.v || '') + '" data-bg="' + esc(s.bg || 'bg') + '" data-pad="' + esc(s.pad || 'm') + '" data-al="' + esc(s.align || 'left') + '" data-w="' + esc(s.width || 'normal') + '" data-img="' + esc(s.img || 'right') + '" data-an="' + esc(an === 'none' ? '' : an) + '" data-bs="' + esc(bs) + '"' + (s.fx && s.fx !== 'none' && blk.type !== 'nav' ? ' data-fx="' + esc(s.fx) + '"' : '');
+      attrs += secAttrs(s);
       var html = (B[blk.type] || function () { return ''; })(blk.d || {}, model, blk);
       return '<section class="' + cls + (blk.hidden ? ' hidden-blk' : '') + (opts.sel === blk.id ? ' sel' : '') + '"' + attrs + '>' + html + '</section>';
     }).join('') + extras(model, opts);
+    applyStyles(list); if (opts.edit && opts.selEl) markEl(opts.sel, opts.selEl);
     wireCalc(); reveal(!!opts.replay); fxInit();
     if (!opts.edit) { var ord = null; try { ord = sessionStorage.getItem('ohi-order'); } catch (e) { /* storage off */ } var fm0 = ord && document.querySelector('.ohi-form'); if (fm0) { try { sessionStorage.removeItem('ohi-order'); } catch (e) { /* storage off */ } var ta0 = fm0.querySelector('textarea'); if (ta0) ta0.value = 'Vreau să comand: ' + ord + '\n'; } }
   }
@@ -260,6 +381,8 @@
     if (e.target.closest('a')) e.preventDefault();
     if (e.target.closest('[contenteditable=true]')) return;
     var b = e.target.closest('[data-id]'); var P = window.parent && window.parent.__ohiBuilder;
+    var el = e.target.closest('[data-t]');
+    if (b && el && P && P.selectEl && b.contains(el)) { P.selectEl(b.dataset.id, el.dataset.t, el.dataset.k || 'txt'); return; }
     if (b && P) P.select(b.dataset.id);
   });
   document.addEventListener('dblclick', function (e) {
@@ -272,8 +395,14 @@
     el.addEventListener('keydown', function (k) { if (k.key === 'Enter' && el.tagName !== 'P') { k.preventDefault(); el.blur(); } if (k.key === 'Escape') el.blur(); });
   });
 
-  window.OHIRender = { render: render, labels: LABEL, fonts: FONTS };
-  if (window.parent && window.parent !== window && window.parent.__ohiRenderReady) window.parent.__ohiRenderReady(window);
+  function markEl(id, path) {
+    [].forEach.call(document.querySelectorAll('.el-sel'), function (x) { x.classList.remove('el-sel'); });
+    var sec = document.getElementById(id); if (!sec || !path) return;
+    var el = sec.querySelector('[data-t="' + path + '"]'); if (el) el.classList.add('el-sel');
+  }
+  window.OHIRender = { render: render, labels: LABEL, fonts: FONTS, icons: Object.keys(ICONS), markEl: markEl };
+  if (/[?&]lib=1/.test(location.search)) { /* section library preview: the editor draws into it */ }
+  else if (window.parent && window.parent !== window && window.parent.__ohiRenderReady) window.parent.__ohiRenderReady(window);
   else {
     /* stand-alone preview: /app/render.html?site=<id> shows the saved demo site full-screen */
     /* public site: the server embeds the published site as data (not code), and we draw it */
